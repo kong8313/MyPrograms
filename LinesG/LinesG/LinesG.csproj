@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{88CCEE3C-CA9B-423D-B32B-556983035C69}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LinesG</RootNamespace>
+    <AssemblyName>LinesG</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>lines.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="zlib.net">
+      <HintPath>dll\zlib.net.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Consts.cs" />
+    <Compile Include="HowToPlayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HowToPlayForm.Designer.cs">
+      <DependentUpon>HowToPlayForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LeaderInfo.cs" />
+    <Compile Include="Leaders.cs" />
+    <Compile Include="LeadersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LeadersForm.Designer.cs">
+      <DependentUpon>LeadersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lines.cs" />
+    <Compile Include="LinesLogic.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewLeaderNameForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewLeaderNameForm.Designer.cs">
+      <DependentUpon>NewLeaderNameForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Packer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="TimeConverter.cs" />
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HowToPlayForm.resx">
+      <DependentUpon>HowToPlayForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LeadersForm.resx">
+      <DependentUpon>LeadersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewLeaderNameForm.resx">
+      <DependentUpon>NewLeaderNameForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Aqua_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Aqua_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Aqua_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blue_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blue_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blue_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Brown_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Brown_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Brown_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Empty.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Green_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Green_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Green_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Pink_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Pink_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Pink_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Red_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Red_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Red_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Yellow_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Yellow_jump.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Yellow_small.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Aqua_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Aqua_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blue_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blue_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Brown_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Brown_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Green_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Green_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Pink_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Pink_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Red_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Red_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Yellow_blowup.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Yellow_grow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Aqua_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Blue_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Brown_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Green_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Lines.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Pink_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Red_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Pictures\Yellow_black.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lines.ico" />
+    <None Include="Pictures\lines_icon.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
