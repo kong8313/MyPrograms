@@ -30,10 +30,10 @@
         {
             this.buttonOk = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
@@ -64,25 +64,15 @@
             this.panel1.Size = new System.Drawing.Size(261, 127);
             this.panel1.TabIndex = 3;
             // 
-            // label1
+            // label3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(79, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(130, 19);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Игра \"Шарики\"";
-            // 
-            // pictureBoxIcon
-            // 
-            this.pictureBoxIcon.BackgroundImage = global::LinesG.Properties.Resources.lines_icon;
-            this.pictureBoxIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxIcon.Location = new System.Drawing.Point(8, 8);
-            this.pictureBoxIcon.Name = "pictureBoxIcon";
-            this.pictureBoxIcon.Size = new System.Drawing.Size(40, 40);
-            this.pictureBoxIcon.TabIndex = 1;
-            this.pictureBoxIcon.TabStop = false;
+            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(4, 51);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(252, 74);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Создана исключительно для внутреннего пользования v1.1\r\n\r\nАвтор: Коновалов Григор" +
+    "ий Михайлович";
             // 
             // label2
             // 
@@ -94,15 +84,25 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Вариация на тему Lines98";
             // 
-            // label3
+            // pictureBoxIcon
             // 
-            this.label3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(4, 51);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(252, 74);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Создана исключительно для внутреннего пользования\r\n\r\nАвтор: Коновалов Григорий Ми" +
-    "хайлович";
+            this.pictureBoxIcon.BackgroundImage = global::LinesG.Properties.Resources.lines_icon;
+            this.pictureBoxIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxIcon.Location = new System.Drawing.Point(8, 8);
+            this.pictureBoxIcon.Name = "pictureBoxIcon";
+            this.pictureBoxIcon.Size = new System.Drawing.Size(40, 40);
+            this.pictureBoxIcon.TabIndex = 1;
+            this.pictureBoxIcon.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(79, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 19);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Игра \"Шарики\"";
             // 
             // AboutForm
             // 

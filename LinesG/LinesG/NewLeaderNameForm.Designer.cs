@@ -60,7 +60,7 @@
             this.textBoxName.MaxLength = 20;
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(265, 26);
-            this.textBoxName.TabIndex = 4;
+            this.textBoxName.TabIndex = 0;
             // 
             // NewLeaderNameForm
             // 
@@ -75,6 +75,7 @@
             this.Name = "NewLeaderNameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Игра окончена";
+            this.Shown += new System.EventHandler(this.NewLeaderNameForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

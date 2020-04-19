@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -131,7 +132,7 @@ namespace LinesG
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
 
         private async void pictureBox_MouseClick(object sender, MouseEventArgs e)
@@ -151,6 +152,7 @@ namespace LinesG
 
                 _lines.SavePosition();
                 _lines.StopJumping();
+                _lines.SaveLastMovedCellPosition(revertedPath.Last());
                 stepBackToolStripMenuItem.Enabled = true;
 
                 for (int i = revertedPath.Length - 1; i > 0; i--)
@@ -309,12 +311,13 @@ namespace LinesG
                     if (DialogResult.Yes == MessageBox.Show("Игра окончена. Ваш результат не попал в десятку лучших. Хотите сыграть ещё раз?", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                     {
                         RunNewGame();
-                        return;
                     }
                     else
                     {
                         exitToolStripMenuItem_Click(null, null);
                     }
+
+                    return;
                 }
 
                 var newLeaderNameForm = new NewLeaderNameForm();
@@ -366,8 +369,10 @@ namespace LinesG
                 {
                     _lines.LoadGame(openFileDialog.FileName, out _score, out _timeInSec, out _undoStepCnt);
 
+                    stepBackToolStripMenuItem.Enabled = false;
                     ShowScore(0);
                     panelField_Paint(null, null);
+
                 }
             }
             catch (Exception ex)

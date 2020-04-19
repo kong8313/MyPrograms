@@ -23,5 +23,10 @@ namespace LinesG
             UserName = textBoxName.Text;
             Close();
         }
+
+        private void NewLeaderNameForm_Shown(object sender, EventArgs e)
+        {
+            textBoxName.Focus();
+        }
     }
 }

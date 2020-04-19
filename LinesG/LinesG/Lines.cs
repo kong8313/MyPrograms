@@ -12,6 +12,7 @@ namespace LinesG
         private int[,] _savedField = new int[Consts.FieldSize, Consts.FieldSize];
         private int _prevSavedValue = 0;
 
+        private Point? _lastMoveCellPosition;
         private Point? _jumpedPosition;
 
         private readonly Random _random;
@@ -24,6 +25,7 @@ namespace LinesG
 
             _random = new Random();
             _jumpedPosition = null;
+            _lastMoveCellPosition = null;
 
             InitNewField();
         }
@@ -185,7 +187,7 @@ namespace LinesG
             
             if (futureBallsCount == 2)
             {
-                var position = GetRandomPosition();
+                var position = _lastMoveCellPosition ?? GetRandomPosition();
 
                 if (!position.HasValue)
                 {
@@ -211,6 +213,11 @@ namespace LinesG
             }
 
             return true;
+        }
+
+        public void SaveLastMovedCellPosition(Point point)
+        {
+            _lastMoveCellPosition = point;
         }
 
         public List<Image> GetFutureImages()
@@ -297,11 +304,16 @@ namespace LinesG
                 int n = 0;
 
                 var tempField = new int[Consts.FieldSize, Consts.FieldSize];
+                Point? tempJumpedPosition = null;
                 for (int i = 0; i < Consts.FieldSize; i++)
                 {
                     for (int j = 0; j < Consts.FieldSize; j++)
                     {
                         tempField[i, j] = int.Parse(fieldData[n]);
+                        if (tempField[i, j] > 10 && tempField[i, j] < 20)
+                        {
+                            tempJumpedPosition = new Point(i, j);
+                        }
                         n++;
                     }
                 }
@@ -309,7 +321,12 @@ namespace LinesG
                 score = tempScore;
                 timeInSec = tempTimeInSec;
                 undoStepCnt = tempUndoStepCnt;
+                
                 Array.Copy(tempField, Field, Consts.FieldSize * Consts.FieldSize);
+                Array.Copy(tempField, _savedField, Consts.FieldSize * Consts.FieldSize);
+
+                _jumpedPosition = tempJumpedPosition;                
+                _prevSavedValue = 0;
             }
             catch(Exception ex)
             {
