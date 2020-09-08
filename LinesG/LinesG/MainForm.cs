@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -77,6 +79,18 @@ namespace LinesG
             pictureBox.MouseClick += new MouseEventHandler(pictureBox_MouseClick);
 
             panelField.Controls.Add(pictureBox);
+        }
+
+        private void RedrawCells(List<Point> redrawPoints)
+        {
+            foreach (Point point in redrawPoints)
+            {
+                var pictureBox = (PictureBox)panelField.Controls[GetPictureBoxName(point.X, point.Y)];
+                pictureBox.Image = _lines.GetImage(point.X, point.Y);
+            }
+
+            Thread.Sleep(50);
+            Application.DoEvents();
         }
 
         private void panelField_Paint(object sender, PaintEventArgs e)
@@ -158,7 +172,8 @@ namespace LinesG
                 for (int i = revertedPath.Length - 1; i > 0; i--)
                 {
                     _lines.DoMove(revertedPath[i], revertedPath[i - 1]);
-                    panelField_Paint(null, null);
+                    RedrawCells(new List<Point> { revertedPath[i], revertedPath[i - 1] });
+                    //panelField_Paint(null, null);
                 }
 
                 int scores = _lines.CleanLines(position);
