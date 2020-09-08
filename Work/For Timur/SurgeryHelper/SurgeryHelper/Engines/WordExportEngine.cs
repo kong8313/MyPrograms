@@ -1602,7 +1602,7 @@ namespace SurgeryHelper.Engines
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "На основании анамнеза, жалоб и данных осмотра, ставлю:";
+                _paragraph.Range.Text = "На основании анамнеза, жалоб, данных осмотра и дополнительных методов обследования, ставлю:";
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
