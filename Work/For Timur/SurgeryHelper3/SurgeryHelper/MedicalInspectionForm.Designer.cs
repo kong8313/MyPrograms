@@ -48,11 +48,11 @@
             this.radioButtonNewLn = new System.Windows.Forms.RadioButton();
             this.radioButtonLnWithNumber = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
-            this.comboBoxTeoRisk = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.textBoxComplaints = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.groupBoxPlan = new System.Windows.Forms.GroupBox();
+            this.comboBoxTreatmentType = new System.Windows.Forms.ComboBox();
+            this.label123 = new System.Windows.Forms.Label();
             this.comboBoxInspectionPlan = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxIsPlanEnabled = new System.Windows.Forms.CheckBox();
@@ -64,23 +64,11 @@
             this.checkBox16 = new System.Windows.Forms.CheckBox();
             this.checkBox15 = new System.Windows.Forms.CheckBox();
             this.checkBox14 = new System.Windows.Forms.CheckBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
             this.checkBoxIsAnamnezEnabled = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
             this.textBoxAnMorbi = new System.Windows.Forms.TextBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.textBox8 = new System.Windows.Forms.TextBox();
@@ -368,6 +356,21 @@
             this.label41 = new System.Windows.Forms.Label();
             this.checkBoxIsHandDamage = new System.Windows.Forms.CheckBox();
             this.label117 = new System.Windows.Forms.Label();
+            this.groupBoxRiskTeo = new System.Windows.Forms.GroupBox();
+            this.comboBoxTeoRisk = new System.Windows.Forms.ComboBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.checkBoxTeoRisk = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPageGeneral.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -384,6 +387,7 @@
             this.groupBoxRightHand.SuspendLayout();
             this.groupBoxLeftHand.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
+            this.groupBoxRiskTeo.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDocuments
@@ -464,8 +468,6 @@
             this.tabPageGeneral.Controls.Add(this.radioButtonNewLn);
             this.tabPageGeneral.Controls.Add(this.radioButtonLnWithNumber);
             this.tabPageGeneral.Controls.Add(this.label3);
-            this.tabPageGeneral.Controls.Add(this.comboBoxTeoRisk);
-            this.tabPageGeneral.Controls.Add(this.label2);
             this.tabPageGeneral.Controls.Add(this.textBoxComplaints);
             this.tabPageGeneral.Controls.Add(this.label17);
             this.tabPageGeneral.Controls.Add(this.groupBoxPlan);
@@ -612,42 +614,20 @@
             this.label3.TabIndex = 100;
             this.label3.Text = "Экспертный анамнез";
             // 
-            // comboBoxTeoRisk
-            // 
-            this.comboBoxTeoRisk.FormattingEnabled = true;
-            this.comboBoxTeoRisk.Items.AddRange(new object[] {
-            "отсутствует",
-            "низкий",
-            "умеренный",
-            "высокий"});
-            this.comboBoxTeoRisk.Location = new System.Drawing.Point(10, 376);
-            this.comboBoxTeoRisk.Name = "comboBoxTeoRisk";
-            this.comboBoxTeoRisk.Size = new System.Drawing.Size(342, 21);
-            this.comboBoxTeoRisk.TabIndex = 5;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 360);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 13);
-            this.label2.TabIndex = 98;
-            this.label2.Text = "Риск ТЭО";
-            // 
             // textBoxComplaints
             // 
-            this.textBoxComplaints.Location = new System.Drawing.Point(10, 98);
+            this.textBoxComplaints.Location = new System.Drawing.Point(10, 136);
             this.textBoxComplaints.MaxLength = 200000;
             this.textBoxComplaints.Multiline = true;
             this.textBoxComplaints.Name = "textBoxComplaints";
             this.textBoxComplaints.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxComplaints.Size = new System.Drawing.Size(353, 255);
+            this.textBoxComplaints.Size = new System.Drawing.Size(353, 261);
             this.textBoxComplaints.TabIndex = 3;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(16, 82);
+            this.label17.Location = new System.Drawing.Point(8, 120);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(50, 13);
             this.label17.TabIndex = 97;
@@ -655,14 +635,37 @@
             // 
             // groupBoxPlan
             // 
+            this.groupBoxPlan.Controls.Add(this.comboBoxTreatmentType);
+            this.groupBoxPlan.Controls.Add(this.label123);
             this.groupBoxPlan.Controls.Add(this.comboBoxInspectionPlan);
             this.groupBoxPlan.Controls.Add(this.label1);
             this.groupBoxPlan.Controls.Add(this.checkBoxIsPlanEnabled);
             this.groupBoxPlan.Location = new System.Drawing.Point(10, 6);
             this.groupBoxPlan.Name = "groupBoxPlan";
-            this.groupBoxPlan.Size = new System.Drawing.Size(353, 72);
+            this.groupBoxPlan.Size = new System.Drawing.Size(353, 111);
             this.groupBoxPlan.TabIndex = 1;
             this.groupBoxPlan.TabStop = false;
+            // 
+            // comboBoxTreatmentType
+            // 
+            this.comboBoxTreatmentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTreatmentType.FormattingEnabled = true;
+            this.comboBoxTreatmentType.Items.AddRange(new object[] {
+            "консервативное",
+            "оперативное"});
+            this.comboBoxTreatmentType.Location = new System.Drawing.Point(9, 84);
+            this.comboBoxTreatmentType.Name = "comboBoxTreatmentType";
+            this.comboBoxTreatmentType.Size = new System.Drawing.Size(333, 21);
+            this.comboBoxTreatmentType.TabIndex = 4;
+            // 
+            // label123
+            // 
+            this.label123.AutoSize = true;
+            this.label123.Location = new System.Drawing.Point(6, 68);
+            this.label123.Name = "label123";
+            this.label123.Size = new System.Drawing.Size(50, 13);
+            this.label123.TabIndex = 84;
+            this.label123.Text = "Лечение";
             // 
             // comboBoxInspectionPlan
             // 
@@ -701,26 +704,15 @@
             // 
             // tabPageAnamnes
             // 
+            this.tabPageAnamnes.Controls.Add(this.groupBoxRiskTeo);
             this.tabPageAnamnes.Controls.Add(this.label121);
             this.tabPageAnamnes.Controls.Add(this.dateTimePickerDateTrauma);
             this.tabPageAnamnes.Controls.Add(this.groupBoxAnVitae);
-            this.tabPageAnamnes.Controls.Add(this.checkBox12);
             this.tabPageAnamnes.Controls.Add(this.checkBoxIsAnamnezEnabled);
-            this.tabPageAnamnes.Controls.Add(this.checkBox11);
-            this.tabPageAnamnes.Controls.Add(this.checkBox10);
             this.tabPageAnamnes.Controls.Add(this.textBoxAnMorbi);
-            this.tabPageAnamnes.Controls.Add(this.checkBox9);
             this.tabPageAnamnes.Controls.Add(this.label4);
-            this.tabPageAnamnes.Controls.Add(this.checkBox8);
-            this.tabPageAnamnes.Controls.Add(this.checkBox7);
-            this.tabPageAnamnes.Controls.Add(this.checkBox6);
-            this.tabPageAnamnes.Controls.Add(this.checkBox5);
-            this.tabPageAnamnes.Controls.Add(this.checkBox4);
-            this.tabPageAnamnes.Controls.Add(this.checkBox3);
             this.tabPageAnamnes.Controls.Add(this.label6);
-            this.tabPageAnamnes.Controls.Add(this.checkBox2);
             this.tabPageAnamnes.Controls.Add(this.label7);
-            this.tabPageAnamnes.Controls.Add(this.checkBox1);
             this.tabPageAnamnes.Controls.Add(this.label8);
             this.tabPageAnamnes.Controls.Add(this.label9);
             this.tabPageAnamnes.Controls.Add(this.textBox8);
@@ -826,50 +818,17 @@
             this.checkBox14.Text = "Желтуха";
             this.checkBox14.UseVisualStyleBackColor = true;
             // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Enabled = false;
-            this.checkBox12.Location = new System.Drawing.Point(468, 381);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(136, 17);
-            this.checkBox12.TabIndex = 47;
-            this.checkBox12.Text = "12. Онкозаболевание";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
             // checkBoxIsAnamnezEnabled
             // 
             this.checkBoxIsAnamnezEnabled.AutoSize = true;
             this.checkBoxIsAnamnezEnabled.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsAnamnezEnabled.Location = new System.Drawing.Point(12, 5);
             this.checkBoxIsAnamnezEnabled.Name = "checkBoxIsAnamnezEnabled";
-            this.checkBoxIsAnamnezEnabled.Size = new System.Drawing.Size(230, 20);
+            this.checkBoxIsAnamnezEnabled.Size = new System.Drawing.Size(226, 20);
             this.checkBoxIsAnamnezEnabled.TabIndex = 0;
             this.checkBoxIsAnamnezEnabled.Text = "Включить анамнез в отчёт";
             this.checkBoxIsAnamnezEnabled.UseVisualStyleBackColor = true;
             this.checkBoxIsAnamnezEnabled.CheckedChanged += new System.EventHandler(this.checkBoxIsAnamnezEnabled_CheckedChanged);
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Enabled = false;
-            this.checkBox11.Location = new System.Drawing.Point(468, 359);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(139, 17);
-            this.checkBox11.TabIndex = 45;
-            this.checkBox11.Text = "11. Прием эстрогенов";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Enabled = false;
-            this.checkBox10.Location = new System.Drawing.Point(469, 337);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(132, 17);
-            this.checkBox10.TabIndex = 43;
-            this.checkBox10.Text = "10. Сахарный диабет";
-            this.checkBox10.UseVisualStyleBackColor = true;
             // 
             // textBoxAnMorbi
             // 
@@ -882,17 +841,6 @@
             this.textBoxAnMorbi.Size = new System.Drawing.Size(812, 74);
             this.textBoxAnMorbi.TabIndex = 3;
             // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Enabled = false;
-            this.checkBox9.Location = new System.Drawing.Point(469, 315);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(437, 17);
-            this.checkBox9.TabIndex = 41;
-            this.checkBox9.Text = "9. Иммобилизация нижней конечности с пребыванием в постели 3 и более дней";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -901,72 +849,6 @@
             this.label4.Size = new System.Drawing.Size(57, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "An. morbi. ";
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Enabled = false;
-            this.checkBox8.Location = new System.Drawing.Point(469, 293);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(90, 17);
-            this.checkBox8.TabIndex = 39;
-            this.checkBox8.Text = "8. Ожирение";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Enabled = false;
-            this.checkBox7.Location = new System.Drawing.Point(469, 271);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(304, 17);
-            this.checkBox7.TabIndex = 37;
-            this.checkBox7.Text = "7. Хроническое неспецифическое заболевание легких";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Enabled = false;
-            this.checkBox6.Location = new System.Drawing.Point(469, 249);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(136, 17);
-            this.checkBox6.TabIndex = 35;
-            this.checkBox6.Text = "6. Инфаркт миокарда";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Enabled = false;
-            this.checkBox5.Location = new System.Drawing.Point(469, 227);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(185, 17);
-            this.checkBox5.TabIndex = 33;
-            this.checkBox5.Text = "5. Варикозное расширение вен";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(470, 205);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(161, 17);
-            this.checkBox4.TabIndex = 31;
-            this.checkBox4.Text = "4. Прием антикоагулянтов";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Enabled = false;
-            this.checkBox3.Location = new System.Drawing.Point(470, 183);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(420, 17);
-            this.checkBox3.TabIndex = 29;
-            this.checkBox3.Text = "3. Венозный тромбоз и ТЭЛА у биологических родственников (тромбофилия)";
-            this.checkBox3.UseVisualStyleBackColor = true;
             // 
             // label6
             // 
@@ -977,17 +859,6 @@
             this.label6.TabIndex = 103;
             this.label6.Text = "Операции:";
             // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(470, 161);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(264, 17);
-            this.checkBox2.TabIndex = 27;
-            this.checkBox2.Text = "2. Постромботическая болезнь (тромбофилия)";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -996,17 +867,6 @@
             this.label7.Size = new System.Drawing.Size(51, 13);
             this.label7.TabIndex = 104;
             this.label7.Text = "Травмы:";
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(470, 139);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(374, 17);
-            this.checkBox1.TabIndex = 25;
-            this.checkBox1.Text = "1. Венозный тромбоз и ТЭЛА в анамнезе у пациента (тромбофилия)";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // label8
             // 
@@ -1868,7 +1728,7 @@
             this.checkBoxIsUpperExtremityJoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsUpperExtremityJoint.Location = new System.Drawing.Point(10, 3);
             this.checkBoxIsUpperExtremityJoint.Name = "checkBoxIsUpperExtremityJoint";
-            this.checkBoxIsUpperExtremityJoint.Size = new System.Drawing.Size(398, 20);
+            this.checkBoxIsUpperExtremityJoint.Size = new System.Drawing.Size(392, 20);
             this.checkBoxIsUpperExtremityJoint.TabIndex = 101;
             this.checkBoxIsUpperExtremityJoint.Text = "Объем движений в суставах верхней конечности";
             this.checkBoxIsUpperExtremityJoint.UseVisualStyleBackColor = true;
@@ -2970,7 +2830,7 @@
             this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label94.Location = new System.Drawing.Point(350, 172);
             this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(209, 16);
+            this.label94.Size = new System.Drawing.Size(202, 16);
             this.label94.TabIndex = 20;
             this.label94.Text = "Дистальнее повреждения:";
             // 
@@ -4397,7 +4257,7 @@
             this.checkBoxIsHandDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsHandDamage.Location = new System.Drawing.Point(10, 2);
             this.checkBoxIsHandDamage.Name = "checkBoxIsHandDamage";
-            this.checkBoxIsHandDamage.Size = new System.Drawing.Size(178, 20);
+            this.checkBoxIsHandDamage.Size = new System.Drawing.Size(173, 20);
             this.checkBoxIsHandDamage.TabIndex = 1;
             this.checkBoxIsHandDamage.Text = "Повреждения кисти";
             this.checkBoxIsHandDamage.UseVisualStyleBackColor = true;
@@ -4411,6 +4271,186 @@
             this.label117.Size = new System.Drawing.Size(28, 13);
             this.label117.TabIndex = 43;
             this.label117.Text = "сек.";
+            // 
+            // groupBoxRiskTeo
+            // 
+            this.groupBoxRiskTeo.Controls.Add(this.checkBoxTeoRisk);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox1);
+            this.groupBoxRiskTeo.Controls.Add(this.comboBoxTeoRisk);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox12);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox11);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox10);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox9);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox8);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox7);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox6);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox5);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox4);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox3);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox2);
+            this.groupBoxRiskTeo.Location = new System.Drawing.Point(440, 135);
+            this.groupBoxRiskTeo.Name = "groupBoxRiskTeo";
+            this.groupBoxRiskTeo.Size = new System.Drawing.Size(466, 253);
+            this.groupBoxRiskTeo.TabIndex = 23;
+            this.groupBoxRiskTeo.TabStop = false;
+            // 
+            // comboBoxTeoRisk
+            // 
+            this.comboBoxTeoRisk.Enabled = false;
+            this.comboBoxTeoRisk.FormattingEnabled = true;
+            this.comboBoxTeoRisk.Items.AddRange(new object[] {
+            "отсутствует",
+            "низкий",
+            "умеренный",
+            "высокий"});
+            this.comboBoxTeoRisk.Location = new System.Drawing.Point(6, 19);
+            this.comboBoxTeoRisk.Name = "comboBoxTeoRisk";
+            this.comboBoxTeoRisk.Size = new System.Drawing.Size(436, 21);
+            this.comboBoxTeoRisk.TabIndex = 121;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Enabled = false;
+            this.checkBox12.Location = new System.Drawing.Point(306, 228);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(136, 17);
+            this.checkBox12.TabIndex = 133;
+            this.checkBox12.Text = "12. Онкозаболевание";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Enabled = false;
+            this.checkBox11.Location = new System.Drawing.Point(150, 228);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(139, 17);
+            this.checkBox11.TabIndex = 132;
+            this.checkBox11.Text = "11. Прием эстрогенов";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Enabled = false;
+            this.checkBox10.Location = new System.Drawing.Point(6, 228);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(132, 17);
+            this.checkBox10.TabIndex = 131;
+            this.checkBox10.Text = "10. Сахарный диабет";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Enabled = false;
+            this.checkBox9.Location = new System.Drawing.Point(6, 205);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(437, 17);
+            this.checkBox9.TabIndex = 130;
+            this.checkBox9.Text = "9. Иммобилизация нижней конечности с пребыванием в постели 3 и более дней";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Enabled = false;
+            this.checkBox8.Location = new System.Drawing.Point(336, 182);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(90, 17);
+            this.checkBox8.TabIndex = 129;
+            this.checkBox8.Text = "8. Ожирение";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Enabled = false;
+            this.checkBox7.Location = new System.Drawing.Point(6, 182);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(304, 17);
+            this.checkBox7.TabIndex = 128;
+            this.checkBox7.Text = "7. Хроническое неспецифическое заболевание легких";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Enabled = false;
+            this.checkBox6.Location = new System.Drawing.Point(6, 160);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(136, 17);
+            this.checkBox6.TabIndex = 127;
+            this.checkBox6.Text = "6. Инфаркт миокарда";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Enabled = false;
+            this.checkBox5.Location = new System.Drawing.Point(6, 138);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(185, 17);
+            this.checkBox5.TabIndex = 126;
+            this.checkBox5.Text = "5. Варикозное расширение вен";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Enabled = false;
+            this.checkBox4.Location = new System.Drawing.Point(6, 116);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(161, 17);
+            this.checkBox4.TabIndex = 125;
+            this.checkBox4.Text = "4. Прием антикоагулянтов";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Enabled = false;
+            this.checkBox3.Location = new System.Drawing.Point(6, 94);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(420, 17);
+            this.checkBox3.TabIndex = 124;
+            this.checkBox3.Text = "3. Венозный тромбоз и ТЭЛА у биологических родственников (тромбофилия)";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Location = new System.Drawing.Point(6, 72);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(264, 17);
+            this.checkBox2.TabIndex = 123;
+            this.checkBox2.Text = "2. Постромботическая болезнь (тромбофилия)";
+            this.checkBox2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Location = new System.Drawing.Point(6, 50);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(374, 17);
+            this.checkBox1.TabIndex = 122;
+            this.checkBox1.Text = "1. Венозный тромбоз и ТЭЛА в анамнезе у пациента (тромбофилия)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxTeoRisk
+            // 
+            this.checkBoxTeoRisk.AutoSize = true;
+            this.checkBoxTeoRisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxTeoRisk.Location = new System.Drawing.Point(9, 0);
+            this.checkBoxTeoRisk.Name = "checkBoxTeoRisk";
+            this.checkBoxTeoRisk.Size = new System.Drawing.Size(84, 17);
+            this.checkBoxTeoRisk.TabIndex = 22;
+            this.checkBoxTeoRisk.Text = "Риск ТЭО";
+            this.checkBoxTeoRisk.UseVisualStyleBackColor = true;
+            this.checkBoxTeoRisk.CheckedChanged += new System.EventHandler(this.checkBoxTeoRisk_CheckedChanged);
             // 
             // MedicalInspectionForm
             // 
@@ -4458,6 +4498,8 @@
             this.groupBoxLeftHand.ResumeLayout(false);
             this.groupBoxLeftHand.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
+            this.groupBoxRiskTeo.ResumeLayout(false);
+            this.groupBoxRiskTeo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -4478,14 +4520,12 @@
         private System.Windows.Forms.ComboBox comboBoxInspectionPlan;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBoxIsPlanEnabled;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox textBoxComplaints;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.RadioButton radioButtonNoLn;
         private System.Windows.Forms.RadioButton radioButtonNewLn;
         private System.Windows.Forms.RadioButton radioButtonLnWithNumber;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBoxTeoRisk;
         private System.Windows.Forms.DateTimePicker dateTimePickerLnFirstStart;
         private System.Windows.Forms.DateTimePicker dateTimePickerLnWithNumberEnd;
         private System.Windows.Forms.DateTimePicker dateTimePickerLnWithNumberStart;
@@ -4513,18 +4553,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.CheckBox checkBox12;
-        private System.Windows.Forms.CheckBox checkBox11;
-        private System.Windows.Forms.CheckBox checkBox10;
-        private System.Windows.Forms.CheckBox checkBox9;
-        private System.Windows.Forms.CheckBox checkBox8;
-        private System.Windows.Forms.CheckBox checkBox7;
-        private System.Windows.Forms.CheckBox checkBox6;
-        private System.Windows.Forms.CheckBox checkBox5;
-        private System.Windows.Forms.CheckBox checkBox4;
-        private System.Windows.Forms.CheckBox checkBox3;
-        private System.Windows.Forms.CheckBox checkBox2;
-        private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
@@ -4802,5 +4830,22 @@
         private System.Windows.Forms.DateTimePicker dateTimePickerDateTrauma;
         private System.Windows.Forms.Label label122;
         private System.Windows.Forms.TextBox textBoxStPraesensOther;
+        private System.Windows.Forms.ComboBox comboBoxTreatmentType;
+        private System.Windows.Forms.Label label123;
+        private System.Windows.Forms.GroupBox groupBoxRiskTeo;
+        private System.Windows.Forms.CheckBox checkBoxTeoRisk;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.ComboBox comboBoxTeoRisk;
+        private System.Windows.Forms.CheckBox checkBox12;
+        private System.Windows.Forms.CheckBox checkBox11;
+        private System.Windows.Forms.CheckBox checkBox10;
+        private System.Windows.Forms.CheckBox checkBox9;
+        private System.Windows.Forms.CheckBox checkBox8;
+        private System.Windows.Forms.CheckBox checkBox7;
+        private System.Windows.Forms.CheckBox checkBox6;
+        private System.Windows.Forms.CheckBox checkBox5;
+        private System.Windows.Forms.CheckBox checkBox4;
+        private System.Windows.Forms.CheckBox checkBox3;
+        private System.Windows.Forms.CheckBox checkBox2;
     }
 }

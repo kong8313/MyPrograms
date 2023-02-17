@@ -32,8 +32,10 @@ namespace SurgeryHelper
 
             checkBoxIsPlanEnabled.Checked = _patientInfo.MedicalInspectionIsPlanEnabled;
             comboBoxInspectionPlan.Text = _patientInfo.MedicalInspectionInspectionPlan;
+            comboBoxTreatmentType.Text = _patientInfo.MedicalInspectionTreatmentType;
             textBoxComplaints.Text = _patientInfo.MedicalInspectionComplaints;
             comboBoxTeoRisk.Text = _patientInfo.MedicalInspectionTeoRisk;
+            checkBoxTeoRisk.Checked = _patientInfo.MedicalInspectionTeoRiskEnabled;
 
             if (_patientInfo.MedicalInspectionExpertAnamnese == 1)
             { 
@@ -64,7 +66,7 @@ namespace SurgeryHelper
             textBoxAnMorbi.Text = _patientInfo.MedicalInspectionAnamneseAnMorbi;
             SetCheckBoxes(groupBoxAnVitae.Controls, _patientInfo.MedicalInspectionAnamneseAnVitae, 13);
             SetTextBoxes(tabPageAnamnes.Controls, _patientInfo.MedicalInspectionAnamneseTextBoxes, 1);
-            SetCheckBoxes(tabPageAnamnes.Controls, _patientInfo.MedicalInspectionAnamneseCheckboxes, 1);
+            SetCheckBoxes(groupBoxRiskTeo.Controls, _patientInfo.MedicalInspectionAnamneseCheckboxes, 1);
 
             SetComboBoxes(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensComboBoxes, 1);
             SetTextBoxes(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensTextBoxes, 9);
@@ -220,8 +222,10 @@ namespace SurgeryHelper
         {
             patientInfo.MedicalInspectionIsPlanEnabled = checkBoxIsPlanEnabled.Checked;
             patientInfo.MedicalInspectionInspectionPlan = comboBoxInspectionPlan.Text;
+            patientInfo.MedicalInspectionTreatmentType = comboBoxTreatmentType.Text;
             patientInfo.MedicalInspectionComplaints = textBoxComplaints.Text;
             patientInfo.MedicalInspectionTeoRisk = comboBoxTeoRisk.Text;
+            patientInfo.MedicalInspectionTeoRiskEnabled = checkBoxTeoRisk.Checked;
 
             if (radioButtonLnWithNumber.Checked)
             {
@@ -255,7 +259,7 @@ namespace SurgeryHelper
             patientInfo.MedicalInspectionAnamneseAnMorbi = textBoxAnMorbi.Text;
             patientInfo.MedicalInspectionAnamneseAnVitae = GetCheckBoxes(groupBoxAnVitae.Controls, 13, 4);
             patientInfo.MedicalInspectionAnamneseTextBoxes = GetTextBoxes(tabPageAnamnes.Controls, 1, 8);
-            patientInfo.MedicalInspectionAnamneseCheckboxes = GetCheckBoxes(tabPageAnamnes.Controls, 1, 12);
+            patientInfo.MedicalInspectionAnamneseCheckboxes = GetCheckBoxes(groupBoxRiskTeo.Controls, 1, 12);
 
             patientInfo.MedicalInspectionStPraesensComboBoxes = GetComboBoxes(tabPageStPraesens.Controls, 1, 4);
             patientInfo.MedicalInspectionStPraesensTextBoxes = GetTextBoxes(tabPageStPraesens.Controls, 9, 17);
@@ -501,6 +505,13 @@ namespace SurgeryHelper
             }
 
             _dbEngine.ConfigEngine.MedicalInspectionFormLocation = Location;
+        }
+
+        private void checkBoxTeoRisk_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxTeoRisk.Enabled = checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = checkBox4.Enabled =
+            checkBox5.Enabled = checkBox6.Enabled = checkBox7.Enabled = checkBox8.Enabled = checkBox9.Enabled =
+            checkBox10.Enabled = checkBox11.Enabled = checkBox12.Enabled = checkBoxTeoRisk.Checked;
         }
     }
 }

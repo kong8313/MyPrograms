@@ -25,11 +25,244 @@ namespace SurgeryHelper.Engines
         private object _missingObject = Type.Missing;
 
         private WaitForm _waitForm;
-        private DbEngine _dbEngine;
+        private DbEngine _dbEngine;        
 
         public WordExportEngine(DbEngine dbEngine)
         {
             _dbEngine = dbEngine;
+        }
+
+        /// <summary>
+        /// Сгенерировать дневник наблюдений
+        /// </summary>
+        /// <param name="patientInfo"></param>
+        public void GenerateDairy(PatientClass patientInfo)
+        {
+/*
+в день поступления - "По дежурству"
+на следующий день - без заголовка
+далее ПН, СР, ПТ (и так до дня выписки)
+в день выписки - без заголовка, но внизу фраза про "выписан..." и "л/н... - если есть"
+если вдруг случилась операция: на следующий день - "1е сутки после операции", далее "2е.." и "3и..." подряд три дневника
+каждый понедельник - "Обход зав. отделением Т.Э. Торно" (если совпадает с послеоперационными, то сначала "обход зав..." потом "...сутки после операции"
+объединяем заголовки, если несколько на один день приходятся
+могут совпадать операция, обход зав. отделением и выписка
+*/
+
+            var nosologyDayryInfo = _dbEngine.GetNosologyByName(patientInfo.Nosology)[0].DairyInfo;
+            var dairyDataGenerator = new DairyDataGenerator(Convert.ToInt32(patientInfo.Age), nosologyDayryInfo);
+
+            _waitForm = new WaitForm();
+
+            CultureInfo oldCi = Thread.CurrentThread.CurrentCulture;
+
+            try
+            {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+
+                _waitForm.Show();
+                System.Windows.Forms.Application.DoEvents();
+
+                _wordApp = new Application();
+
+                _wordDoc = _wordApp.Documents.Add(ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject);
+
+                try
+                {
+                    // Пробуем для 2007 офиса выставить стиль документов 2003 офиса.
+                    // Для других офисов, вероятно, отвалимся с ошибкой, но для них и не
+                    // надо ничего делать.
+                    _wordDoc.ApplyQuickStyleSet("Word 2003");
+                }
+                catch
+                {
+                }
+
+                _waitForm.SetProgress(10);
+
+                _wordDoc.PageSetup.TopMargin = 30;
+                _wordDoc.PageSetup.LeftMargin = 50;
+                _wordDoc.PageSetup.RightMargin = 30;
+                _wordDoc.PageSetup.BottomMargin = 30;
+
+                _wordRange = _wordDoc.Range(ref _missingObject, ref _missingObject);
+                _wordRange.Font.Size = 12;
+                _wordRange.Font.Name = "Times New Roman";
+
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                _paragraph.Range.Text = "По дежурству";
+
+                DateTime date = patientInfo.DeliveryDate.AddDays(1);
+
+                var operationDairyDay = GetOperationDairyDay(patientInfo, date);
+                if (operationDairyDay > -1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph.Range.Font.Bold = 1;
+                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                    _paragraph.Range.Text = $"{operationDairyDay}е сутки после операции";
+                }
+
+                PutGeneralDairyInfo(patientInfo, dairyDataGenerator, date, operationDairyDay);
+                if (ConvertEngine.CompareDateTimes(date, patientInfo.ReleaseDate.Value, false) == 0)
+                {
+                    PutReleaseDairyInfo(patientInfo);
+                }
+
+                PutDoctorInfo(patientInfo);
+
+                // Проходим по всем дням со второго после дня поступления и до сегодняшнего дня (или дня выписки) и генерим на каждую дату запись в дневнике, если надо                
+                date = date.AddDays(1);
+                
+                TimeSpan ts = patientInfo.ReleaseDate.Value - date;
+                var progressShift = 80 / ts.TotalDays;
+                var progress = 10; 
+                while (ConvertEngine.CompareDateTimes(date, patientInfo.ReleaseDate.Value, false) < 1)
+                {
+                    if (date.DayOfWeek == DayOfWeek.Monday)
+                    {
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
+                        _paragraph.Range.Font.Bold = 1;
+                        _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                        _paragraph.Range.Text = $"Совместный осмотр с зав. отделением {_dbEngine.GlobalSettings.BranchManager}";                        
+                    }
+
+                    operationDairyDay = GetOperationDairyDay(patientInfo, date);
+                    if (operationDairyDay > -1)
+                    {
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
+                        _paragraph.Range.Font.Bold = 1;
+                        _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                        _paragraph.Range.Text = $"{operationDairyDay}е сутки после операции";
+                    }
+
+                    if (date.DayOfWeek == DayOfWeek.Monday)
+                    {
+                        PutGeneralDairyInfo(patientInfo, dairyDataGenerator, date, operationDairyDay);
+                        PutDepartmentHeadInfo(patientInfo);
+                        if (ConvertEngine.CompareDateTimes(date, patientInfo.ReleaseDate.Value, false) == 0)
+                        {
+                            PutReleaseDairyInfo(patientInfo);
+                        }
+
+                        PutDoctorAndBranchMasterInfo(patientInfo);
+                    }
+                    else if (operationDairyDay > -1 || date.DayOfWeek == DayOfWeek.Wednesday || date.DayOfWeek == DayOfWeek.Friday ||
+                        ConvertEngine.CompareDateTimes(date, patientInfo.DeliveryDate, false) == 0 ||
+                        ConvertEngine.CompareDateTimes(date, patientInfo.DeliveryDate.AddDays(1), false) == 0 ||
+                        ConvertEngine.CompareDateTimes(date, patientInfo.ReleaseDate.Value, false) == 0)
+                    {
+                        PutGeneralDairyInfo(patientInfo, dairyDataGenerator, date, operationDairyDay);
+                        if (ConvertEngine.CompareDateTimes(date, patientInfo.ReleaseDate.Value, false) == 0)
+                        {
+                            PutReleaseDairyInfo(patientInfo);
+                        }
+
+                        PutDoctorInfo(patientInfo);
+                    }
+
+                    progress = (int)(progress + progressShift);
+                    _waitForm.SetProgress(progress);
+                    date = date.AddDays(1);
+                }
+               
+                _waitForm.SetProgress(100);
+
+                // Переходим к началу документа
+                object unit = WdUnits.wdStory;
+                object extend = WdMovementType.wdMove;
+                _wordApp.Selection.HomeKey(ref unit, ref extend);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                _waitForm.CloseForm();
+
+                ReleaseComObject();
+
+                Thread.CurrentThread.CurrentCulture = oldCi;
+            }
+        }
+
+        private void PutGeneralDairyInfo(PatientClass patientInfo, DairyDataGenerator dairyDataGenerator, DateTime date, int operationDairyDay)
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+            _paragraph.Range.Text = $"\r\n{ConvertEngine.GetRightDateString(date)}{dairyDataGenerator.GetRandomTemperature()}";
+            SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 3, 4, 5 });
+
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Range.Text = dairyDataGenerator.GetDairyText(operationDairyDay);
+        }
+
+        private void PutDepartmentHeadInfo(PatientClass patientInfo)
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Range.Text = "Диагноз: " + patientInfo.Diagnose;
+            SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Range.Text = "Рекомендации: - коррекция терапии не требуется.";
+            SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+        }
+
+        private void PutReleaseDairyInfo(PatientClass patientInfo)
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Range.Text = "\r\n" + GetExpertAnamnes(patientInfo, true) + "\r\nВыписывается на амбулаторное долечивание, рекомендации даны в выписном эпикризе.\r\n";
+        }
+
+        private void PutDoctorInfo(PatientClass patientInfo)
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Range.Text = "Врач: " + patientInfo.DoctorInChargeOfTheCase + "\r\n";
+        }
+
+        private void PutDoctorAndBranchMasterInfo(PatientClass patientInfo)
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Font.Bold = 0;
+            _paragraph.Range.Text = $"Врач: {patientInfo.DoctorInChargeOfTheCase}\t\t\t\t\tЗав. отделением: {_dbEngine.GlobalSettings.BranchManager}\r\n";
+        }
+
+        private int GetOperationDairyDay(PatientClass patientInfo, DateTime date)
+        {
+            DateTime lastOperaionDate = new DateTime();
+            foreach (OperationClass operaion in patientInfo.Operations)
+            {
+                if (operaion.DataOfOperation > lastOperaionDate)
+                {
+                    lastOperaionDate = operaion.DataOfOperation;
+                }
+            }
+
+            for (int i = 1; i < 4; i++)
+            {
+                if (ConvertEngine.CompareDateTimes(date, lastOperaionDate.AddDays(i), false) == 0)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
         }
 
         /// <summary>
@@ -487,109 +720,116 @@ namespace SurgeryHelper.Engines
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Range.Bold = 1;
                 _paragraph.Range.Text = "Результаты исследований:";
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph.Range.Bold = 0;
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = string.Format(
-                    "ОАК({0}): эритроциты-{1}х1012/л, лейкоциты-{2}х109/л, Hb-{3} г/л, СОЭ-{4} мм/ч;",
-                    ConvertEngine.GetRightDateString((patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now)),
-                    patientInfo.DischargeEpicrisOakEritrocits,
-                    patientInfo.DischargeEpicrisOakLekocits,
-                    patientInfo.DischargeEpicrisOakHb,
-                    patientInfo.DischargeEpicrisOakSoe);
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
-
                 _waitForm.SetProgress(50);
 
-                // Возводим в степень 10 в 12-ой и 10 в 9-ой.
-                int charNum = _paragraph.Range.Text.IndexOf("х1012/л");
-                _paragraph.Range.Characters[charNum + 4].Font.Superscript =
-                _paragraph.Range.Characters[charNum + 5].Font.Superscript = 1;
-
-                charNum = _paragraph.Range.Text.IndexOf("х109/л");
-                _paragraph.Range.Characters[charNum + 4].Font.Superscript = 1;
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "Eml отрицательный";
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = string.Format(
-                    "ОАМ({0}): цвет {1}, относит. плотность {2}, эритроциты {3}, лейкоциты {4}",
-                    ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now),
-                    patientInfo.DischargeEpicrisOamColor,
-                    patientInfo.DischargeEpicrisOamDensity,
-                    patientInfo.DischargeEpicrisOamEritrocits,
-                    patientInfo.DischargeEpicrisOamLekocits);
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
-
-                if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakBillirubin) ||
-                    !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakGeneralProtein) ||
-                    !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakPTI) ||
-                    !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakSugar) ||
-                    !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBloodGroup))
+                if (patientInfo.MedicalInspectionInspectionPlan == "обследован амбулаторно")
                 {
                     _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph.Range.Bold = 0;
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "обследован амбулаторно";
+                }
+                else
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph.Range.Bold = 0;
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = string.Format(
+                        "ОАК({0}): эритроциты-{1}х1012/л, лейкоциты-{2}х109/л, Hb-{3} г/л, СОЭ-{4} мм/ч;",
+                        ConvertEngine.GetRightDateString((patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now)),
+                        patientInfo.DischargeEpicrisOakEritrocits,
+                        patientInfo.DischargeEpicrisOakLekocits,
+                        patientInfo.DischargeEpicrisOakHb,
+                        patientInfo.DischargeEpicrisOakSoe);
+                    SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
 
-                    string info = string.Format("БАК({0}): ", ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now));
+                    // Возводим в степень 10 в 12-ой и 10 в 9-ой.
+                    int charNum = _paragraph.Range.Text.IndexOf("х1012/л");
+                    _paragraph.Range.Characters[charNum + 4].Font.Superscript =
+                    _paragraph.Range.Characters[charNum + 5].Font.Superscript = 1;
 
-                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakBillirubin))
+                    charNum = _paragraph.Range.Text.IndexOf("х109/л");
+                    _paragraph.Range.Characters[charNum + 4].Font.Superscript = 1;
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Eml отрицательный";
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = string.Format(
+                        "ОАМ({0}): цвет {1}, относит. плотность {2}, эритроциты {3}, лейкоциты {4}",
+                        ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now),
+                        patientInfo.DischargeEpicrisOamColor,
+                        patientInfo.DischargeEpicrisOamDensity,
+                        patientInfo.DischargeEpicrisOamEritrocits,
+                        patientInfo.DischargeEpicrisOamLekocits);
+                    SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+
+                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakBillirubin) ||
+                        !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakGeneralProtein) ||
+                        !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakPTI) ||
+                        !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakSugar) ||
+                        !string.IsNullOrEmpty(patientInfo.DischargeEpicrisBloodGroup))
                     {
-                        info += "билирубин " + patientInfo.DischargeEpicrisBakBillirubin + " мкмоль/л, ";
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
+                        _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+
+                        string info = string.Format("БАК({0}): ", ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now));
+
+                        if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakBillirubin))
+                        {
+                            info += "билирубин " + patientInfo.DischargeEpicrisBakBillirubin + " мкмоль/л, ";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakGeneralProtein))
+                        {
+                            info += "креатинин " + patientInfo.DischargeEpicrisBakGeneralProtein + " мкмоль/л, ";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakSugar))
+                        {
+                            info += "глюкоза " + patientInfo.DischargeEpicrisBakSugar + " ммоль/л, ";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakPTI))
+                        {
+                            info += "ПТИ " + patientInfo.DischargeEpicrisBakPTI + "%, ";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBloodGroup))
+                        {
+                            info += "группа крови " + patientInfo.DischargeEpicrisBloodGroup + " резус фактор " + patientInfo.DischargeEpicrisRhesusFactor + ", ";
+                        }
+
+                        if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisAdditionalAnalises))
+                        {
+                            info += patientInfo.DischargeEpicrisAdditionalAnalises + ", ";
+                        }
+
+                        _paragraph.Range.Text = info.Substring(0, info.Length - 2);
+                        SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
                     }
 
-                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakGeneralProtein))
-                    {
-                        info += "креатинин " + patientInfo.DischargeEpicrisBakGeneralProtein + " мкмоль/л, ";
-                    }
-
-                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakSugar))
-                    {
-                        info += "глюкоза " + patientInfo.DischargeEpicrisBakSugar + " ммоль/л, ";
-                    }
-
-                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBakPTI))
-                    {
-                        info += "ПТИ " + patientInfo.DischargeEpicrisBakPTI + "%, ";
-                    }
-
-                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisBloodGroup))
-                    {
-                        info += "группа крови " + patientInfo.DischargeEpicrisBloodGroup + " резус фактор " + patientInfo.DischargeEpicrisRhesusFactor + ", ";
-                    }
-
-                    if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisAdditionalAnalises))
-                    {
-                        info += patientInfo.DischargeEpicrisAdditionalAnalises + ", ";
-                    }
-
-                    _paragraph.Range.Text = info.Substring(0, info.Length - 2);
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = string.Format("ЭКГ({0}): {1}",
+                        ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now), patientInfo.DischargeEpicrisEkg);
                     SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
                 }
 
                 _waitForm.SetProgress(60);
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = string.Format("ЭКГ({0}): {1}",
-                    ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate.HasValue ? patientInfo.DischargeEpicrisAnalysisDate.Value : DateTime.Now), patientInfo.DischargeEpicrisEkg);
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
-
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];                
                 _paragraph.Range.Text = "Рентгенконтроль – удовлетворительно.";
-
-                if (patientInfo.Operations.Count > 0)
+                                
+                // Добавляем информацию об операциях
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Bold = 1;
+                _paragraph.Range.Text = "Проведенное лечение:";
+                if (patientInfo.MedicalInspectionTreatmentType == "оперативное" && patientInfo.Operations.Count > 0)
                 {
-                    // Добавляем информацию об операциях
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Bold = 1;
-                    _paragraph.Range.Text = "Проведенное лечение:";
-
                     string textStrFirstLine = string.Empty;
                     var textStr = new StringBuilder();
                     foreach (OperationClass operationInfo in patientInfo.Operations)
@@ -607,7 +847,7 @@ namespace SurgeryHelper.Engines
                     if (textStr.Length > 2)
                     {
                         textStr.Remove(textStr.Length - 2, 2);
-                    }                    
+                    }
 
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -621,25 +861,28 @@ namespace SurgeryHelper.Engines
                         _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                         _paragraph.Range.Text = textStr.ToString();
                     }
-
-                    // Добавляем информацию о консервативном лечении
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "\tконсервативное лечение: " + patientInfo.GetDischargeEpicrisConservativeTherapy();
-                    SetWordsInRangeBold(_paragraph.Range, new[] { 2, 3, 4 });
                 }
 
+                // Добавляем информацию о консервативном лечении
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "\tконсервативное лечение: " + patientInfo.GetDischargeEpicrisConservativeTherapy();
+                SetWordsInRangeBold(_paragraph.Range, new[] { 2, 3, 4 });
+                
                 _waitForm.SetProgress(80);
+
+                if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisAfterOperation))
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = $"После операции: {patientInfo.DischargeEpicrisAfterOperation}";
+                    SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+                }
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];                
                 _paragraph.Range.Text = "Результат лечения: улучшение";
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Bold = 1;
-                _paragraph.Range.Text = "Листок нетрудоспособности:\r\n";
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -845,181 +1088,188 @@ namespace SurgeryHelper.Engines
                     patientInfo.MedicalInspectionAnamneseTextBoxes[3],
                     patientInfo.MedicalInspectionAnamneseTextBoxes[7]);
 
-                    int rowCnt = 7;
-
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Font.Bold = 0;
-                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    _wordRange = _paragraph.Range;
-                    object defaultTableBehavior = WdDefaultTableBehavior.wdWord9TableBehavior;
-                    object autoFitBehavior = WdAutoFitBehavior.wdAutoFitFixed;
-                    _wordTable = _wordDoc.Tables.Add(_wordRange, rowCnt, 6, ref defaultTableBehavior, ref autoFitBehavior);
-
-                    _wordTable.Range.Font.Name = "Times New Roman";
-                    _wordTable.Range.Font.Size = 10;
-                    _wordTable.Range.Font.Bold = 0;
-                    _wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-                    _wordTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
-                    _wordTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
-                    _wordTable.Rows.SetLeftIndent((float)8.5, WdRulerStyle.wdAdjustNone);
-
-                    SetColumnWidths(rowCnt, new[] { 215, 20, 25, 185, 20, 25 });
-                    /*for (int i = 1; i <= _wordTable.Rows.Count; i++)
+                    if (patientInfo.MedicalInspectionTeoRiskEnabled)
                     {
-                        _wordTable.Rows[i].Cells[1].Width = 215;
-                        _wordTable.Rows[i].Cells[2].Width = 20;
-                        _wordTable.Rows[i].Cells[3].Width = 25;
-                        _wordTable.Rows[i].Cells[4].Width = 185;
-                        _wordTable.Rows[i].Cells[5].Width = 20;
-                        _wordTable.Rows[i].Cells[6].Width = 25;
-                    }*/
+                        int rowCnt = 7;
 
-                    _wordTable.Rows[1].Cells[1].Range.Text = "Факторы риска ТГВ и ТЭЛА";
-                    _wordTable.Rows[1].Cells[1].Range.Font.Bold = 1;
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
+                        _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                        _paragraph.Range.Font.Bold = 0;
+                        _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        _wordRange = _paragraph.Range;
+                        object defaultTableBehavior = WdDefaultTableBehavior.wdWord9TableBehavior;
+                        object autoFitBehavior = WdAutoFitBehavior.wdAutoFitFixed;
+                        _wordTable = _wordDoc.Tables.Add(_wordRange, rowCnt, 6, ref defaultTableBehavior, ref autoFitBehavior);
 
-                    _wordTable.Rows[1].Cells[2].Range.Text = "да";
-                    _wordTable.Rows[1].Cells[2].Range.Font.Bold = 1;
+                        _wordTable.Range.Font.Name = "Times New Roman";
+                        _wordTable.Range.Font.Size = 10;
+                        _wordTable.Range.Font.Bold = 0;
+                        _wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                        _wordTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
+                        _wordTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
+                        _wordTable.Rows.SetLeftIndent((float)8.5, WdRulerStyle.wdAdjustNone);
 
-                    _wordTable.Rows[1].Cells[3].Range.Text = "нет";
-                    _wordTable.Rows[1].Cells[3].Range.Font.Bold = 1;
+                        SetColumnWidths(rowCnt, new[] { 215, 20, 25, 185, 20, 25 });
+                        /*for (int i = 1; i <= _wordTable.Rows.Count; i++)
+                        {
+                            _wordTable.Rows[i].Cells[1].Width = 215;
+                            _wordTable.Rows[i].Cells[2].Width = 20;
+                            _wordTable.Rows[i].Cells[3].Width = 25;
+                            _wordTable.Rows[i].Cells[4].Width = 185;
+                            _wordTable.Rows[i].Cells[5].Width = 20;
+                            _wordTable.Rows[i].Cells[6].Width = 25;
+                        }*/
 
-                    _wordTable.Rows[1].Cells[5].Range.Text = "да";
-                    _wordTable.Rows[1].Cells[5].Range.Font.Bold = 1;
+                        _wordTable.Rows[1].Cells[1].Range.Text = "Факторы риска ТГВ и ТЭЛА";
+                        _wordTable.Rows[1].Cells[1].Range.Font.Bold = 1;
 
-                    _wordTable.Rows[1].Cells[6].Range.Text = "нет";
-                    _wordTable.Rows[1].Cells[6].Range.Font.Bold = 1;
+                        _wordTable.Rows[1].Cells[2].Range.Text = "да";
+                        _wordTable.Rows[1].Cells[2].Range.Font.Bold = 1;
 
-                    _wordTable.Rows[2].Cells[1].Range.Text = "1. Венозный тромбоз и ТЭЛА в анамнезе у пациента (тромбофилия)";
-                    _wordTable.Rows[2].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[0])
-                    {
-                        _wordTable.Rows[2].Cells[2].Range.Text = "x";
+                        _wordTable.Rows[1].Cells[3].Range.Text = "нет";
+                        _wordTable.Rows[1].Cells[3].Range.Font.Bold = 1;
+
+                        _wordTable.Rows[1].Cells[5].Range.Text = "да";
+                        _wordTable.Rows[1].Cells[5].Range.Font.Bold = 1;
+
+                        _wordTable.Rows[1].Cells[6].Range.Text = "нет";
+                        _wordTable.Rows[1].Cells[6].Range.Font.Bold = 1;
+
+                        _wordTable.Rows[2].Cells[1].Range.Text = "1. Венозный тромбоз и ТЭЛА в анамнезе у пациента (тромбофилия)";
+                        _wordTable.Rows[2].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[0])
+                        {
+                            _wordTable.Rows[2].Cells[2].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[2].Cells[3].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[2].Cells[4].Range.Text = "7. Хроническое неспецифическое заболевание легких";
+                        _wordTable.Rows[2].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[6])
+                        {
+                            _wordTable.Rows[2].Cells[5].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[2].Cells[6].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[3].Cells[1].Range.Text = "2. Постромботическая болезнь (тромбофилия)";
+                        _wordTable.Rows[3].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[1])
+                        {
+                            _wordTable.Rows[3].Cells[2].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[3].Cells[3].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[3].Cells[4].Range.Text = "8. Ожирение";
+                        _wordTable.Rows[3].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[7])
+                        {
+                            _wordTable.Rows[3].Cells[5].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[3].Cells[6].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[4].Cells[1].Range.Text = "3. Венозный тромбоз и ТЭЛА у биологических родственников (тромбофилия)";
+                        _wordTable.Rows[4].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[2])
+                        {
+                            _wordTable.Rows[4].Cells[2].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[4].Cells[3].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[4].Cells[4].Range.Text = "9. Иммобилизация нижней конечности с пребыванием в постели 3 и более дней";
+                        _wordTable.Rows[4].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[8])
+                        {
+                            _wordTable.Rows[4].Cells[5].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[4].Cells[6].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[5].Cells[1].Range.Text = "4. Прием антикоагулянтов";
+                        _wordTable.Rows[5].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[3])
+                        {
+                            _wordTable.Rows[5].Cells[2].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[5].Cells[3].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[5].Cells[4].Range.Text = "10. Сахарный диабет";
+                        _wordTable.Rows[5].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[9])
+                        {
+                            _wordTable.Rows[5].Cells[5].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[5].Cells[6].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[6].Cells[1].Range.Text = "5. Варикозное расширение вен";
+                        _wordTable.Rows[6].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[4])
+                        {
+                            _wordTable.Rows[6].Cells[2].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[6].Cells[3].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[6].Cells[4].Range.Text = "11. Прием эстрогенов";
+                        _wordTable.Rows[6].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[10])
+                        {
+                            _wordTable.Rows[6].Cells[5].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[6].Cells[6].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[7].Cells[1].Range.Text = "6. Инфаркт миокарда";
+                        _wordTable.Rows[7].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[5])
+                        {
+                            _wordTable.Rows[7].Cells[2].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[7].Cells[3].Range.Text = "x";
+                        }
+
+                        _wordTable.Rows[7].Cells[4].Range.Text = "12. Онкозаболевание";
+                        _wordTable.Rows[7].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                        if (patientInfo.MedicalInspectionAnamneseCheckboxes[11])
+                        {
+                            _wordTable.Rows[7].Cells[5].Range.Text = "x";
+                        }
+                        else
+                        {
+                            _wordTable.Rows[7].Cells[6].Range.Text = "x";
+                        }
                     }
                     else
                     {
-                        _wordTable.Rows[2].Cells[3].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[2].Cells[4].Range.Text = "7. Хроническое неспецифическое заболевание легких";
-                    _wordTable.Rows[2].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[6])
-                    {
-                        _wordTable.Rows[2].Cells[5].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[2].Cells[6].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[3].Cells[1].Range.Text = "2. Постромботическая болезнь (тромбофилия)";
-                    _wordTable.Rows[3].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[1])
-                    {
-                        _wordTable.Rows[3].Cells[2].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[3].Cells[3].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[3].Cells[4].Range.Text = "8. Ожирение";
-                    _wordTable.Rows[3].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[7])
-                    {
-                        _wordTable.Rows[3].Cells[5].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[3].Cells[6].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[4].Cells[1].Range.Text = "3. Венозный тромбоз и ТЭЛА у биологических родственников (тромбофилия)";
-                    _wordTable.Rows[4].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[2])
-                    {
-                        _wordTable.Rows[4].Cells[2].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[4].Cells[3].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[4].Cells[4].Range.Text = "9. Иммобилизация нижней конечности с пребыванием в постели 3 и более дней";
-                    _wordTable.Rows[4].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[8])
-                    {
-                        _wordTable.Rows[4].Cells[5].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[4].Cells[6].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[5].Cells[1].Range.Text = "4. Прием антикоагулянтов";
-                    _wordTable.Rows[5].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[3])
-                    {
-                        _wordTable.Rows[5].Cells[2].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[5].Cells[3].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[5].Cells[4].Range.Text = "10. Сахарный диабет";
-                    _wordTable.Rows[5].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[9])
-                    {
-                        _wordTable.Rows[5].Cells[5].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[5].Cells[6].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[6].Cells[1].Range.Text = "5. Варикозное расширение вен";
-                    _wordTable.Rows[6].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[4])
-                    {
-                        _wordTable.Rows[6].Cells[2].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[6].Cells[3].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[6].Cells[4].Range.Text = "11. Прием эстрогенов";
-                    _wordTable.Rows[6].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[10])
-                    {
-                        _wordTable.Rows[6].Cells[5].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[6].Cells[6].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[7].Cells[1].Range.Text = "6. Инфаркт миокарда";
-                    _wordTable.Rows[7].Cells[1].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[5])
-                    {
-                        _wordTable.Rows[7].Cells[2].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[7].Cells[3].Range.Text = "x";
-                    }
-
-                    _wordTable.Rows[7].Cells[4].Range.Text = "12. Онкозаболевание";
-                    _wordTable.Rows[7].Cells[4].Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    if (patientInfo.MedicalInspectionAnamneseCheckboxes[11])
-                    {
-                        _wordTable.Rows[7].Cells[5].Range.Text = "x";
-                    }
-                    else
-                    {
-                        _wordTable.Rows[7].Cells[6].Range.Text = "x";
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
                     }
                 }
                 else
@@ -1593,33 +1843,16 @@ namespace SurgeryHelper.Engines
 
                 _paragraph.Range.Text = "Рентгенограммы в двух проекциях: " + patientInfo.MedicalInspectionStLocalisRentgen + ".";
 
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "Риск ТЭО: " + patientInfo.MedicalInspectionTeoRisk + ".";
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                string expertAnamnes;
-                if (patientInfo.MedicalInspectionExpertAnamnese == 1)
+                if (patientInfo.MedicalInspectionTeoRiskEnabled)
                 {
-                    expertAnamnes = string.Format(
-                            "л/н выдан амбулаторно с {0} по {1}, всего дней нетрудоспособности {2}",
-                            ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateStart),
-                            ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateEnd),
-                            ConvertEngine.GetDiffInDays(patientInfo.MedicalInspectionLnWithNumberDateEnd, patientInfo.MedicalInspectionLnWithNumberDateStart) + 1);
-                }
-                else if (patientInfo.MedicalInspectionExpertAnamnese == 2)
-                {
-                    expertAnamnes = string.Format(
-                        "л/н открыт первично с {0}",
-                        ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnFirstDateStart));
-                }
-                else
-                {
-                    expertAnamnes = "л/н не требуется.";
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Риск ТЭО: " + patientInfo.MedicalInspectionTeoRisk + ".";
                 }
 
-                _paragraph.Range.Text = "Экспертный анамнез: " + expertAnamnes;
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Экспертный анамнез: " + GetExpertAnamnes(patientInfo);
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -1668,24 +1901,48 @@ namespace SurgeryHelper.Engines
                     _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                     _paragraph.Range.Text = "ПЛАН ОБСЛЕДОВАНИЯ И ЛЕЧЕНИЯ";
 
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Font.Bold = 0;
-                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphJustify;
-                    _paragraph.Range.ListFormat.ApplyNumberDefault(ref _missingObject);
-                    _paragraph.Range.Text = "Обследование: " + patientInfo.MedicalInspectionInspectionPlan + ".\r\n" +
-                        "Оперативное лечение - " + patientInfo.ServiceName + ".\r\n" + 
-                        "Послеоперационное консервативное лечение:\r\n";
-                    _paragraph.Range.ListFormat.ApplyNumberDefaultOld();
-                    _paragraph.Range.ListFormat.ApplyBulletDefault(ref _missingObject);
-                    _paragraph.Range.ParagraphFormat.FirstLineIndent = 0;
-                    object index = 2;
-                    _paragraph.Range.ParagraphFormat.TabStops.get_Item(ref index).Position = 50;
-                    _paragraph.Range.Text = "медикаментозное лечение: анальгетики, антибиотики\r\n" +
-                        "перевязки, ЛФК\r\n";
-                    _paragraph.Range.ListFormat.ApplyBulletDefaultOld();
-                    _paragraph.Range.ParagraphFormat.FirstLineIndent = -18;
-                    _paragraph.Range.Text = "4.\tАмбулаторное долечивание.";
+                    if (patientInfo.MedicalInspectionTreatmentType == "оперативное")
+                    {
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
+                        _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                        _paragraph.Range.Font.Bold = 0;
+                        _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphJustify;
+                        _paragraph.Range.ListFormat.ApplyNumberDefault(ref _missingObject);
+                        _paragraph.Range.Text = "Обследование: " + patientInfo.MedicalInspectionInspectionPlan + ".\r\n" +
+                            "Оперативное лечение - " + patientInfo.ServiceName + ".\r\n" +
+                            "Послеоперационное консервативное лечение:\r\n";
+                        _paragraph.Range.ListFormat.ApplyNumberDefaultOld();
+                        _paragraph.Range.ListFormat.ApplyBulletDefault(ref _missingObject);
+                        _paragraph.Range.ParagraphFormat.FirstLineIndent = 0;
+                        object index = 2;
+                        _paragraph.Range.ParagraphFormat.TabStops.get_Item(ref index).Position = 50;
+                        _paragraph.Range.Text = "медикаментозное лечение: анальгетики, антибиотики\r\n" +
+                            "перевязки, ЛФК\r\n";
+                        _paragraph.Range.ListFormat.ApplyBulletDefaultOld();
+                        _paragraph.Range.ParagraphFormat.FirstLineIndent = -18;
+                        _paragraph.Range.Text = "4.\tАмбулаторное долечивание.";
+                    }
+                    else
+                    {
+                        _wordDoc.Paragraphs.Add(ref _missingObject);
+                        _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                        _paragraph.Range.Font.Bold = 0;
+                        _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphJustify;
+                        _paragraph.Range.ListFormat.ApplyNumberDefault(ref _missingObject);
+                        _paragraph.Range.Text = "Обследование: " + patientInfo.MedicalInspectionInspectionPlan + ".\r\n" +                            
+                            "Консервативное лечение:\r\n";
+                        _paragraph.Range.ListFormat.ApplyNumberDefaultOld();
+                        _paragraph.Range.ListFormat.ApplyBulletDefault(ref _missingObject);
+                        _paragraph.Range.ParagraphFormat.FirstLineIndent = 0;
+                        object index = 2;
+                        _paragraph.Range.ParagraphFormat.TabStops.get_Item(ref index).Position = 50;
+                        _paragraph.Range.Text = " лечебно-охранительный режим\r\n" +
+                            " медикаментозное лечение: анальгетики\r\n" +
+                            " ЛФК, массаж\r\n";
+                        _paragraph.Range.ListFormat.ApplyBulletDefaultOld();
+                        _paragraph.Range.ParagraphFormat.FirstLineIndent = -18;
+                        _paragraph.Range.Text = "3.\tАмбулаторное долечивание.";
+                    }
 
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -1722,6 +1979,37 @@ namespace SurgeryHelper.Engines
 
                 Thread.CurrentThread.CurrentCulture = oldCi;
             }
+        }
+
+        private string GetExpertAnamnes(PatientClass patientInfo, bool forChildren = false)
+        {
+            if (patientInfo.MedicalInspectionExpertAnamnese == 1)
+            {
+                if (forChildren)
+                {
+                    return $"л/н выдан амбулаторно по уходу за ребенком с {ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateStart)} по {ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateEnd)}";
+                }
+
+                return string.Format(
+                        "л/н выдан амбулаторно с {0} по {1}, всего дней нетрудоспособности {2}",
+                        ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateStart),
+                        ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateEnd),
+                        ConvertEngine.GetDiffInDays(patientInfo.MedicalInspectionLnWithNumberDateEnd, patientInfo.MedicalInspectionLnWithNumberDateStart) + 1);
+            }
+            
+            if (patientInfo.MedicalInspectionExpertAnamnese == 2)
+            {
+                if (forChildren)
+                {
+                    return $"л/н по уходу за ребенком открыт первично с {ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnFirstDateStart)}";
+                }
+
+                return string.Format(
+                    "л/н открыт первично с {0}",
+                    ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnFirstDateStart));
+            }
+            
+            return "л/н не требуется.";
         }
 
         /// <summary>
@@ -1913,56 +2201,9 @@ namespace SurgeryHelper.Engines
                 _wordRange.Font.Size = 12;
                 _wordRange.Font.Name = "Times New Roman";
 
-                // Создание плана обследования и лечения, если надо
-                if (patientInfo.IsTreatmentPlanActiveInOperationProtocol)
+                for (int i = 0; i < 10; i++)
                 {
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Font.Bold = 1;
-                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-                    _paragraph.Range.Text = "ПЛАН ОБСЛЕДОВАНИЯ И ЛЕЧЕНИЯ\r\n";
-
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Font.Bold = 0;
-                    _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphJustify;
-                    _paragraph.Range.ListFormat.ApplyNumberDefault(ref _missingObject);
-                    _paragraph.Range.Text = "Обследование: " + patientInfo.TreatmentPlanInspection + ".\r\n" +
-                        "Оперативное лечение.\r\n" +
-                        "Послеоперационное консервативное лечение:\r\n";
-                    _paragraph.Range.ListFormat.ApplyNumberDefaultOld();
-                    _paragraph.Range.ListFormat.ApplyBulletDefault(ref _missingObject);
-                    _paragraph.Range.ParagraphFormat.FirstLineIndent = 0;
-                    object index = 2;
-                    _paragraph.Range.ParagraphFormat.TabStops.get_Item(ref index).Position = 50;
-                    _paragraph.Range.Text = "медикаментозное лечение: анальгетики, антибиотики\r\n" +
-                        "перевязки, ЛФК\r\n";
-                    _paragraph.Range.ListFormat.ApplyBulletDefaultOld();
-                    _paragraph.Range.ParagraphFormat.FirstLineIndent = -18;
-                    _paragraph.Range.Text = "4.\tАмбулаторное долечивание.";
-
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = string.Empty;
-                    _paragraph.Range.ParagraphFormat.FirstLineIndent = 0;
-                    _paragraph.Range.ParagraphFormat.LeftIndent = 0;
-
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "Дата " + ConvertEngine.GetRightDateString(patientInfo.TreatmentPlanDate);
-                    SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
-
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "Лечащий врач " + patientInfo.DoctorInChargeOfTheCase;
-                    SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
                     AddEmptyParagraph();
-                }
-                else
-                {
-                    for (int i = 0; i < 10; i++)
-                    {
-                        AddEmptyParagraph();
-                    }
                 }
 
                 _waitForm.SetProgress(20);
@@ -1977,7 +2218,7 @@ namespace SurgeryHelper.Engines
                 _wordShape = _wordDoc.Shapes.AddTextbox(
                     MsoTextOrientation.msoTextOrientationHorizontal,
                     320,
-                    patientInfo.IsTreatmentPlanActiveInOperationProtocol ? 80 : 50,
+                    50,
                     238,
                     124,
                     ref _missingObject);

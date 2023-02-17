@@ -5,6 +5,8 @@
     /// </summary>
     public class NosologyClass : MedicalClass
     {
+        public string DairyInfo { get; set; }
+
         public NosologyClass()
         {
         }
@@ -13,7 +15,8 @@
         {
             Id = orderlyInfo.Id;
             LastNameWithInitials = orderlyInfo.LastNameWithInitials;
-        }
+            DairyInfo = orderlyInfo.DairyInfo;
+        }        
 
         public static int Compare(NosologyClass nosologyInfo1, NosologyClass nosologyInfo2)
         {

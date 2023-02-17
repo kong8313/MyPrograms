@@ -122,6 +122,7 @@
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Engines\ConfigurationEngine.cs" />
+    <Compile Include="Engines\DairyDataGenerator.cs" />
     <Compile Include="Entities\CureClass.cs" />
     <Compile Include="Engines\DbEngine.cs" />
     <Compile Include="DischargeEpicrisisForm.cs">
@@ -542,6 +543,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ANGEL.ico" />
+    <None Include="Image\Dairy.ico" />
     <None Include="Image\makeLast.ico" />
     <None Include="Image\makeFirst.ico" />
     <None Include="Image\up.ico" />

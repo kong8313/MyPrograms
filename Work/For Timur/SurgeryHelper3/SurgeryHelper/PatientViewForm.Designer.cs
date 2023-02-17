@@ -69,9 +69,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.buttonGenerateFolder = new System.Windows.Forms.Button();
             this.linkLabelPrivateFolder = new System.Windows.Forms.LinkLabel();
-            this.buttonOpen = new System.Windows.Forms.Button();
             this.textBoxPrivateFolder = new System.Windows.Forms.TextBox();
             this.linkLabelNosology = new System.Windows.Forms.LinkLabel();
             this.comboBoxNosology = new System.Windows.Forms.ComboBox();
@@ -101,7 +99,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.buttonDairy = new System.Windows.Forms.Button();
             this.buttonPrescription = new System.Windows.Forms.Button();
+            this.buttonGenerateFolder = new System.Windows.Forms.Button();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonDocuments = new System.Windows.Forms.Button();
             this.buttonOperations = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
@@ -189,7 +190,7 @@
             this.textBoxCaseHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxCaseHistory.Location = new System.Drawing.Point(123, 15);
             this.textBoxCaseHistory.Name = "textBoxCaseHistory";
-            this.textBoxCaseHistory.Size = new System.Drawing.Size(83, 20);
+            this.textBoxCaseHistory.Size = new System.Drawing.Size(123, 20);
             this.textBoxCaseHistory.TabIndex = 0;
             // 
             // textBoxStreet
@@ -213,7 +214,7 @@
             this.textBoxDiagnose.Multiline = true;
             this.textBoxDiagnose.Name = "textBoxDiagnose";
             this.textBoxDiagnose.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxDiagnose.Size = new System.Drawing.Size(428, 93);
+            this.textBoxDiagnose.Size = new System.Drawing.Size(468, 93);
             this.textBoxDiagnose.TabIndex = 0;
             // 
             // dateTimePickerDeliveryDate
@@ -225,7 +226,7 @@
             this.dateTimePickerDeliveryDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateTimePickerDeliveryDate.Location = new System.Drawing.Point(123, 68);
             this.dateTimePickerDeliveryDate.Name = "dateTimePickerDeliveryDate";
-            this.dateTimePickerDeliveryDate.Size = new System.Drawing.Size(141, 20);
+            this.dateTimePickerDeliveryDate.Size = new System.Drawing.Size(181, 20);
             this.dateTimePickerDeliveryDate.TabIndex = 6;
             // 
             // dateTimePickerReleaseDate
@@ -239,7 +240,7 @@
             this.dateTimePickerReleaseDate.Location = new System.Drawing.Point(123, 94);
             this.dateTimePickerReleaseDate.Name = "dateTimePickerReleaseDate";
             this.dateTimePickerReleaseDate.ShowCheckBox = true;
-            this.dateTimePickerReleaseDate.Size = new System.Drawing.Size(141, 20);
+            this.dateTimePickerReleaseDate.Size = new System.Drawing.Size(181, 20);
             this.dateTimePickerReleaseDate.TabIndex = 8;
             // 
             // groupBox1
@@ -561,26 +562,10 @@
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.Location = new System.Drawing.Point(452, 191);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(270, 199);
+            this.groupBox3.Size = new System.Drawing.Size(310, 199);
             this.groupBox3.TabIndex = 10;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Учётные данные";
-            // 
-            // buttonGenerateFolder
-            // 
-            this.buttonGenerateFolder.BackgroundImage = global::SurgeryHelper.Properties.Resources.generate16;
-            this.buttonGenerateFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonGenerateFolder.FlatAppearance.BorderSize = 0;
-            this.buttonGenerateFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGenerateFolder.Location = new System.Drawing.Point(89, 147);
-            this.buttonGenerateFolder.Name = "buttonGenerateFolder";
-            this.buttonGenerateFolder.Size = new System.Drawing.Size(20, 20);
-            this.buttonGenerateFolder.TabIndex = 16;
-            this.buttonGenerateFolder.TabStop = false;
-            this.buttonGenerateFolder.UseVisualStyleBackColor = true;
-            this.buttonGenerateFolder.Click += new System.EventHandler(this.buttonGenerateFolder_Click);
-            this.buttonGenerateFolder.MouseEnter += new System.EventHandler(this.buttonGenerateFolder_MouseEnter);
-            this.buttonGenerateFolder.MouseLeave += new System.EventHandler(this.buttonGenerateFolder_MouseLeave);
             // 
             // linkLabelPrivateFolder
             // 
@@ -596,23 +581,6 @@
             this.linkLabelPrivateFolder.MouseEnter += new System.EventHandler(this.linkLabelPrivateFolder_MouseEnter);
             this.linkLabelPrivateFolder.MouseLeave += new System.EventHandler(this.linkLabelPrivateFolder_MouseLeave);
             // 
-            // buttonOpen
-            // 
-            this.buttonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOpen.BackgroundImage = global::SurgeryHelper.Properties.Resources.open16;
-            this.buttonOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonOpen.FlatAppearance.BorderSize = 0;
-            this.buttonOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOpen.Location = new System.Drawing.Point(244, 147);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(20, 20);
-            this.buttonOpen.TabIndex = 20;
-            this.buttonOpen.TabStop = false;
-            this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
-            this.buttonOpen.MouseEnter += new System.EventHandler(this.buttonOpen_MouseEnter);
-            this.buttonOpen.MouseLeave += new System.EventHandler(this.buttonOpen_MouseLeave);
-            // 
             // textBoxPrivateFolder
             // 
             this.textBoxPrivateFolder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -620,7 +588,7 @@
             this.textBoxPrivateFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxPrivateFolder.Location = new System.Drawing.Point(123, 147);
             this.textBoxPrivateFolder.Name = "textBoxPrivateFolder";
-            this.textBoxPrivateFolder.Size = new System.Drawing.Size(115, 20);
+            this.textBoxPrivateFolder.Size = new System.Drawing.Size(155, 20);
             this.textBoxPrivateFolder.TabIndex = 18;
             this.textBoxPrivateFolder.TextChanged += new System.EventHandler(this.textBoxPrivateFolder_TextChanged);
             // 
@@ -648,7 +616,7 @@
             this.comboBoxNosology.Location = new System.Drawing.Point(123, 41);
             this.comboBoxNosology.MaxDropDownItems = 23;
             this.comboBoxNosology.Name = "comboBoxNosology";
-            this.comboBoxNosology.Size = new System.Drawing.Size(141, 21);
+            this.comboBoxNosology.Size = new System.Drawing.Size(181, 21);
             this.comboBoxNosology.TabIndex = 4;
             // 
             // comboBoxDoctorInChargeOfTheCase
@@ -660,7 +628,7 @@
             this.comboBoxDoctorInChargeOfTheCase.Location = new System.Drawing.Point(123, 120);
             this.comboBoxDoctorInChargeOfTheCase.MaxDropDownItems = 20;
             this.comboBoxDoctorInChargeOfTheCase.Name = "comboBoxDoctorInChargeOfTheCase";
-            this.comboBoxDoctorInChargeOfTheCase.Size = new System.Drawing.Size(141, 21);
+            this.comboBoxDoctorInChargeOfTheCase.Size = new System.Drawing.Size(181, 21);
             this.comboBoxDoctorInChargeOfTheCase.TabIndex = 12;
             // 
             // linkLabelDoctorInCase
@@ -744,7 +712,7 @@
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox4.Location = new System.Drawing.Point(288, 12);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(434, 173);
+            this.groupBox4.Size = new System.Drawing.Size(474, 173);
             this.groupBox4.TabIndex = 2;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "* Диагноз";
@@ -756,7 +724,7 @@
             this.textBoxComplications.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxComplications.Location = new System.Drawing.Point(96, 141);
             this.textBoxComplications.Name = "textBoxComplications";
-            this.textBoxComplications.Size = new System.Drawing.Size(335, 20);
+            this.textBoxComplications.Size = new System.Drawing.Size(375, 20);
             this.textBoxComplications.TabIndex = 60;
             this.textBoxComplications.Text = "нет";
             // 
@@ -778,7 +746,7 @@
             this.textBoxConcomitantDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxConcomitantDiagnose.Location = new System.Drawing.Point(96, 116);
             this.textBoxConcomitantDiagnose.Name = "textBoxConcomitantDiagnose";
-            this.textBoxConcomitantDiagnose.Size = new System.Drawing.Size(335, 20);
+            this.textBoxConcomitantDiagnose.Size = new System.Drawing.Size(375, 20);
             this.textBoxConcomitantDiagnose.TabIndex = 58;
             this.textBoxConcomitantDiagnose.Text = "нет";
             // 
@@ -930,6 +898,23 @@
             this.label16.TabIndex = 79;
             this.label16.Text = "Тип стац.";
             // 
+            // buttonDairy
+            // 
+            this.buttonDairy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonDairy.BackgroundImage = global::SurgeryHelper.Properties.Resources.Dairy;
+            this.buttonDairy.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonDairy.FlatAppearance.BorderSize = 0;
+            this.buttonDairy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonDairy.Location = new System.Drawing.Point(605, 423);
+            this.buttonDairy.Name = "buttonDairy";
+            this.buttonDairy.Size = new System.Drawing.Size(40, 40);
+            this.buttonDairy.TabIndex = 77;
+            this.buttonDairy.TabStop = false;
+            this.buttonDairy.UseVisualStyleBackColor = true;
+            this.buttonDairy.Click += new System.EventHandler(this.buttonDairy_Click);
+            this.buttonDairy.MouseEnter += new System.EventHandler(this.buttonDairy_MouseEnter);
+            this.buttonDairy.MouseLeave += new System.EventHandler(this.buttonDairy_MouseLeave);
+            // 
             // buttonPrescription
             // 
             this.buttonPrescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -937,7 +922,7 @@
             this.buttonPrescription.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonPrescription.FlatAppearance.BorderSize = 0;
             this.buttonPrescription.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonPrescription.Location = new System.Drawing.Point(555, 422);
+            this.buttonPrescription.Location = new System.Drawing.Point(554, 422);
             this.buttonPrescription.Name = "buttonPrescription";
             this.buttonPrescription.Size = new System.Drawing.Size(40, 40);
             this.buttonPrescription.TabIndex = 76;
@@ -946,6 +931,39 @@
             this.buttonPrescription.Click += new System.EventHandler(this.buttonPrescription_Click);
             this.buttonPrescription.MouseEnter += new System.EventHandler(this.buttonPrescription_MouseEnter);
             this.buttonPrescription.MouseLeave += new System.EventHandler(this.buttonPrescription_MouseLeave);
+            // 
+            // buttonGenerateFolder
+            // 
+            this.buttonGenerateFolder.BackgroundImage = global::SurgeryHelper.Properties.Resources.generate16;
+            this.buttonGenerateFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonGenerateFolder.FlatAppearance.BorderSize = 0;
+            this.buttonGenerateFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGenerateFolder.Location = new System.Drawing.Point(89, 147);
+            this.buttonGenerateFolder.Name = "buttonGenerateFolder";
+            this.buttonGenerateFolder.Size = new System.Drawing.Size(20, 20);
+            this.buttonGenerateFolder.TabIndex = 16;
+            this.buttonGenerateFolder.TabStop = false;
+            this.buttonGenerateFolder.UseVisualStyleBackColor = true;
+            this.buttonGenerateFolder.Click += new System.EventHandler(this.buttonGenerateFolder_Click);
+            this.buttonGenerateFolder.MouseEnter += new System.EventHandler(this.buttonGenerateFolder_MouseEnter);
+            this.buttonGenerateFolder.MouseLeave += new System.EventHandler(this.buttonGenerateFolder_MouseLeave);
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpen.BackgroundImage = global::SurgeryHelper.Properties.Resources.open16;
+            this.buttonOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonOpen.FlatAppearance.BorderSize = 0;
+            this.buttonOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOpen.Location = new System.Drawing.Point(284, 147);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(20, 20);
+            this.buttonOpen.TabIndex = 20;
+            this.buttonOpen.TabStop = false;
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            this.buttonOpen.MouseEnter += new System.EventHandler(this.buttonOpen_MouseEnter);
+            this.buttonOpen.MouseLeave += new System.EventHandler(this.buttonOpen_MouseLeave);
             // 
             // buttonDocuments
             // 
@@ -988,7 +1006,7 @@
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOk.Location = new System.Drawing.Point(630, 422);
+            this.buttonOk.Location = new System.Drawing.Point(670, 422);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
             this.buttonOk.TabIndex = 56;
@@ -1005,7 +1023,7 @@
             this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonClose.FlatAppearance.BorderSize = 0;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(682, 422);
+            this.buttonClose.Location = new System.Drawing.Point(722, 422);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(40, 40);
             this.buttonClose.TabIndex = 55;
@@ -1019,7 +1037,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 471);
+            this.ClientSize = new System.Drawing.Size(774, 471);
+            this.Controls.Add(this.buttonDairy);
             this.Controls.Add(this.buttonPrescription);
             this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.groupBox4);
@@ -1033,7 +1052,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(750, 510);
+            this.MinimumSize = new System.Drawing.Size(790, 510);
             this.Name = "PatientViewForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "PatientViewForm";
@@ -1134,5 +1153,6 @@
         private System.Windows.Forms.TextBox textBoxConcomitantDiagnose;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBoxAge;
+        private System.Windows.Forms.Button buttonDairy;
     }
 }

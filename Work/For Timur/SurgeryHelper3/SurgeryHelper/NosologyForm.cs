@@ -29,25 +29,31 @@ namespace SurgeryHelper
         {
             int listCnt = 0;
             int nosologyCnt = 0;
-            while (listCnt < checkedListBoxNosologyes.Items.Count && nosologyCnt < _dbEngine.NosologyList.Count)
+            while (listCnt < NosologiesList.Rows.Count && nosologyCnt < _dbEngine.NosologyList.Count)
             {
-                checkedListBoxNosologyes.Items[listCnt] = _dbEngine.NosologyList[nosologyCnt].LastNameWithInitials;
+                NosologiesList.Rows[listCnt].Cells[0].Value = _dbEngine.NosologyList[nosologyCnt].LastNameWithInitials;
+                NosologiesList.Rows[listCnt].Cells[1].Value = _dbEngine.NosologyList[nosologyCnt].DairyInfo;
                 listCnt++;
                 nosologyCnt++;
             }
 
             if (nosologyCnt == _dbEngine.NosologyList.Count)
             {
-                while (listCnt < checkedListBoxNosologyes.Items.Count)
+                while (listCnt < NosologiesList.Rows.Count)
                 {
-                    checkedListBoxNosologyes.Items.RemoveAt(listCnt);
+                    NosologiesList.Rows.RemoveAt(listCnt);
                 }
             }
             else
             {
                 while (nosologyCnt < _dbEngine.NosologyList.Count)
                 {
-                    checkedListBoxNosologyes.Items.Add(_dbEngine.NosologyList[nosologyCnt].LastNameWithInitials);
+                    var param = new[]
+                    {
+                        _dbEngine.NosologyList[nosologyCnt].LastNameWithInitials,
+                        _dbEngine.NosologyList[nosologyCnt].DairyInfo
+                    };
+                    NosologiesList.Rows.Add(param);
                     nosologyCnt++;
                 }
             }
@@ -71,13 +77,14 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxNosologyes.SelectedIndices.Count == 0)
+            int currentNumber = NosologiesList.CurrentCellAddress.Y;
+            if (currentNumber < 0)
             {
                 MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            new NosologyRemoveForm(_dbEngine, _dbEngine.NosologyList[checkedListBoxNosologyes.SelectedIndex]).ShowDialog();
+            new NosologyRemoveForm(_dbEngine, _dbEngine.NosologyList[currentNumber]).ShowDialog();
             ShowNosologyes();
         }
 
@@ -88,13 +95,14 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxNosologyes.SelectedIndices.Count == 0)
+            int currentNumber = NosologiesList.CurrentCellAddress.Y;
+            if (currentNumber < 0)
             {
                 MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            new NosologyViewForm(_dbEngine, _dbEngine.NosologyList[checkedListBoxNosologyes.SelectedIndex]).ShowDialog();
+            new NosologyViewForm(_dbEngine, _dbEngine.NosologyList[currentNumber]).ShowDialog();
             ShowNosologyes();
         }
 
@@ -105,7 +113,8 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxNosologyes.SelectedItems.Count == 0)
+            int currentNumber = NosologiesList.CurrentCellAddress.Y;
+            if (currentNumber < 0)
             {
                 Close();
                 return;
@@ -113,8 +122,10 @@ namespace SurgeryHelper
 
             try
             {
+                string nosologyName = NosologiesList.Rows[currentNumber].Cells[0].Value.ToString();
+
                 _patientViewForm.PutObjectsToComboBox(_dbEngine.NosologyList.ToArray(), _patientViewForm.comboBoxNosology);
-                _patientViewForm.PutStringToObject("comboBoxNosology", checkedListBoxNosologyes.SelectedItem.ToString());
+                _patientViewForm.PutStringToObject("comboBoxNosology", nosologyName);
                 Close();
             }
             catch (Exception ex)
@@ -128,9 +139,9 @@ namespace SurgeryHelper
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void checkedListBoxNosologyes_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void NosologiesList_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (checkedListBoxNosologyes.SelectedItems.Count != 0)
+            if (e.RowIndex != -1)
             {
                 buttonOk_Click(null, null);
             }

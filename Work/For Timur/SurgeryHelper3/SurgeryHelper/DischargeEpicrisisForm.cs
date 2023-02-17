@@ -181,16 +181,7 @@ namespace SurgeryHelper
         private bool IsFormHasEmptyNeededFields()
         {
             if (string.IsNullOrEmpty(textBoxConservativeTherapy.Text) ||
-                string.IsNullOrEmpty(textBoxAfterOperation.Text) ||
-                string.IsNullOrEmpty(textBoxEkg.Text) ||
-                string.IsNullOrEmpty(textBoxOakErotrocits.Text) ||
-                string.IsNullOrEmpty(textBoxOakLekocits.Text) ||
-                string.IsNullOrEmpty(textBoxOakHb.Text) ||
-                string.IsNullOrEmpty(textBoxOakSoe.Text) ||
-                string.IsNullOrEmpty(textBoxOamErotrocits.Text) ||
-                string.IsNullOrEmpty(textBoxOamLekocits.Text) ||
-                string.IsNullOrEmpty(comboBoxOamColor.Text) ||
-                string.IsNullOrEmpty(textBoxOamDensity.Text))
+                string.IsNullOrEmpty(textBoxEkg.Text))
             {
                 MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return true;

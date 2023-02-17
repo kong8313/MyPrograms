@@ -118,9 +118,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(400, 260);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 13);
+            this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 80;
-            this.label5.Text = "* После операции";
+            this.label5.Text = "После операции";
             // 
             // textBoxAfterOperation
             // 
@@ -148,7 +148,7 @@
             this.groupBoxOak.Size = new System.Drawing.Size(294, 80);
             this.groupBoxOak.TabIndex = 2;
             this.groupBoxOak.TabStop = false;
-            this.groupBoxOak.Text = "* Общий анализ крови";
+            this.groupBoxOak.Text = "Общий анализ крови";
             // 
             // label11
             // 
@@ -242,7 +242,7 @@
             this.groupBoxOam.Size = new System.Drawing.Size(294, 88);
             this.groupBoxOam.TabIndex = 4;
             this.groupBoxOam.TabStop = false;
-            this.groupBoxOam.Text = "* Общий анализ мочи";
+            this.groupBoxOam.Text = "Общий анализ мочи";
             // 
             // comboBoxOamColor
             // 

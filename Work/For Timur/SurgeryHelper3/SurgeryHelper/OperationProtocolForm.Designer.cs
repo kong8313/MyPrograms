@@ -34,12 +34,6 @@
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.checkBoxPlan = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.comboBoxInspectionPlan = new System.Windows.Forms.ComboBox();
-            this.dateTimePickerDatePlan = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBoxStLocalis = new System.Windows.Forms.TextBox();
             this.textBoxStool = new System.Windows.Forms.TextBox();
@@ -75,9 +69,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxOperationCourse = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.checkBoxAntibioticProphylaxis = new System.Windows.Forms.CheckBox();
             this.comboBoxAntibioticProphylaxis = new System.Windows.Forms.ComboBox();
-            this.groupBox1.SuspendLayout();
+            this.checkBoxAntibioticProphylaxis = new System.Windows.Forms.CheckBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownChDD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADSecond)).BeginInit();
@@ -136,72 +129,6 @@
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
             this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
-            // 
-            // checkBoxPlan
-            // 
-            this.checkBoxPlan.AutoSize = true;
-            this.checkBoxPlan.Checked = true;
-            this.checkBoxPlan.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxPlan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxPlan.Location = new System.Drawing.Point(6, 0);
-            this.checkBoxPlan.Name = "checkBoxPlan";
-            this.checkBoxPlan.Size = new System.Drawing.Size(207, 17);
-            this.checkBoxPlan.TabIndex = 1;
-            this.checkBoxPlan.Text = "План обследования и лечения";
-            this.checkBoxPlan.UseVisualStyleBackColor = true;
-            this.checkBoxPlan.CheckedChanged += new System.EventHandler(this.checkBoxPlan_CheckedChanged);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.comboBoxInspectionPlan);
-            this.groupBox1.Controls.Add(this.dateTimePickerDatePlan);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.checkBoxPlan);
-            this.groupBox1.Location = new System.Drawing.Point(457, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(479, 100);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            // 
-            // comboBoxInspectionPlan
-            // 
-            this.comboBoxInspectionPlan.FormattingEnabled = true;
-            this.comboBoxInspectionPlan.Items.AddRange(new object[] {
-            "не планируется",
-            "ОАК ОАМ ЭКГ биохимический анализ крови"});
-            this.comboBoxInspectionPlan.Location = new System.Drawing.Point(9, 39);
-            this.comboBoxInspectionPlan.Name = "comboBoxInspectionPlan";
-            this.comboBoxInspectionPlan.Size = new System.Drawing.Size(464, 21);
-            this.comboBoxInspectionPlan.TabIndex = 2;
-            this.comboBoxInspectionPlan.Text = "ОАК, ОАМ, ЭКГ, биохимический анализ крови";
-            // 
-            // dateTimePickerDatePlan
-            // 
-            this.dateTimePickerDatePlan.CustomFormat = "dd.MM.yyyy";
-            this.dateTimePickerDatePlan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerDatePlan.Location = new System.Drawing.Point(45, 70);
-            this.dateTimePickerDatePlan.Name = "dateTimePickerDatePlan";
-            this.dateTimePickerDatePlan.Size = new System.Drawing.Size(85, 20);
-            this.dateTimePickerDatePlan.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 83;
-            this.label2.Text = "Дата";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 82;
-            this.label1.Text = "Обследование";
             // 
             // groupBox2
             // 
@@ -584,7 +511,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(643, 172);
+            this.label5.Location = new System.Drawing.Point(647, 67);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 81;
@@ -592,23 +519,35 @@
             // 
             // textBoxOperationCourse
             // 
-            this.textBoxOperationCourse.Location = new System.Drawing.Point(457, 191);
+            this.textBoxOperationCourse.Location = new System.Drawing.Point(457, 89);
             this.textBoxOperationCourse.MaxLength = 200000;
             this.textBoxOperationCourse.Multiline = true;
             this.textBoxOperationCourse.Name = "textBoxOperationCourse";
             this.textBoxOperationCourse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOperationCourse.Size = new System.Drawing.Size(479, 239);
+            this.textBoxOperationCourse.Size = new System.Drawing.Size(479, 341);
             this.textBoxOperationCourse.TabIndex = 6;
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.comboBoxAntibioticProphylaxis);
             this.groupBox3.Controls.Add(this.checkBoxAntibioticProphylaxis);
-            this.groupBox3.Location = new System.Drawing.Point(457, 118);
+            this.groupBox3.Location = new System.Drawing.Point(457, 12);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(479, 51);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
+            // 
+            // comboBoxAntibioticProphylaxis
+            // 
+            this.comboBoxAntibioticProphylaxis.FormattingEnabled = true;
+            this.comboBoxAntibioticProphylaxis.Items.AddRange(new object[] {
+            "S. Cefasolini 1,0 - в/в однократно",
+            "S. Amoxicillinum + acidum Clavulanicum 1,0+0,2 в/в однократно"});
+            this.comboBoxAntibioticProphylaxis.Location = new System.Drawing.Point(9, 23);
+            this.comboBoxAntibioticProphylaxis.Name = "comboBoxAntibioticProphylaxis";
+            this.comboBoxAntibioticProphylaxis.Size = new System.Drawing.Size(464, 21);
+            this.comboBoxAntibioticProphylaxis.TabIndex = 3;
+            this.comboBoxAntibioticProphylaxis.Text = "S. Cefasolini 1,0 - в/в однократно";
             // 
             // checkBoxAntibioticProphylaxis
             // 
@@ -624,18 +563,6 @@
             this.checkBoxAntibioticProphylaxis.UseVisualStyleBackColor = true;
             this.checkBoxAntibioticProphylaxis.CheckedChanged += new System.EventHandler(this.checkBoxAntibioticProphylaxis_CheckedChanged);
             // 
-            // comboBoxAntibioticProphylaxis
-            // 
-            this.comboBoxAntibioticProphylaxis.FormattingEnabled = true;
-            this.comboBoxAntibioticProphylaxis.Items.AddRange(new object[] {
-            "S. Cefasolini 1,0 - в/в однократно",
-            "S. Amoxicillinum + acidum Clavulanicum 1,0+0,2 в/в однократно"});
-            this.comboBoxAntibioticProphylaxis.Location = new System.Drawing.Point(9, 23);
-            this.comboBoxAntibioticProphylaxis.Name = "comboBoxAntibioticProphylaxis";
-            this.comboBoxAntibioticProphylaxis.Size = new System.Drawing.Size(464, 21);
-            this.comboBoxAntibioticProphylaxis.TabIndex = 3;
-            this.comboBoxAntibioticProphylaxis.Text = "S. Cefasolini 1,0 - в/в однократно";
-            // 
             // OperationProtocolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -645,7 +572,6 @@
             this.Controls.Add(this.textBoxOperationCourse);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.buttonDocuments);
             this.Controls.Add(this.buttonOk);
             this.Controls.Add(this.buttonClose);
@@ -660,8 +586,6 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OperationProtocolForm_FormClosing);
             this.Load += new System.EventHandler(this.OperationProtocolForm_Load);
             this.LocationChanged += new System.EventHandler(this.OperationProtocolForm_LocationChanged);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownChDD)).EndInit();
@@ -681,12 +605,6 @@
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.Button buttonClose;
         private System.Windows.Forms.ToolTip toolTip1;
-        private System.Windows.Forms.CheckBox checkBoxPlan;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDatePlan;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBoxInspectionPlan;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.ComboBox comboBoxState;
         private System.Windows.Forms.Label label3;

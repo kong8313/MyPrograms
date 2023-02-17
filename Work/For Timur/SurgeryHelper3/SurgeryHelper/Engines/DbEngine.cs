@@ -993,11 +993,12 @@ namespace SurgeryHelper.Engines
         /// Добавить новую нозологию к списку нозологий
         /// </summary>
         /// <param name="nosologyName">Информация по нозологии</param>
-        public void AddNosology(string nosologyName)
+        public void AddNosology(NosologyClass nosologyInfo)
         {
             var newNosologyInfo = new NosologyClass
             {
-                LastNameWithInitials = nosologyName,
+                LastNameWithInitials = nosologyInfo.LastNameWithInitials,
+                DairyInfo = nosologyInfo.DairyInfo,
                 Id = GetNewNosologyId()
             };
             _nosologyList.Add(newNosologyInfo);
@@ -1009,7 +1010,7 @@ namespace SurgeryHelper.Engines
         /// </summary>
         /// <param name="oldNosologyInfo">Информация по нозологии</param>
         /// <param name="newNosologyName">Новое название нозологии</param>
-        public void UpdateNosology(NosologyClass oldNosologyInfo, string newNosologyName)
+        public void UpdateNosology(NosologyClass oldNosologyInfo, NosologyClass newNosologyInfo)
         {
             int n = 0;
             while (_nosologyList[n].Id != oldNosologyInfo.Id)
@@ -1017,9 +1018,10 @@ namespace SurgeryHelper.Engines
                 n++;
             }
 
-            ChangeNosologyForAllPatients(_nosologyList[n].LastNameWithInitials, newNosologyName);
+            ChangeNosologyForAllPatients(_nosologyList[n].LastNameWithInitials, newNosologyInfo.LastNameWithInitials);
 
-            _nosologyList[n].LastNameWithInitials = newNosologyName;
+            _nosologyList[n].LastNameWithInitials = newNosologyInfo.LastNameWithInitials;
+            _nosologyList[n].DairyInfo = newNosologyInfo.DairyInfo;
             SaveNosologys();
         }
 
@@ -1175,9 +1177,6 @@ namespace SurgeryHelper.Engines
                     "DischargeEpicrisAdditionalRecomendations=" + ConvertEngine.ListToString(patientInfo.DischargeEpicrisAdditionalRecomendations) + DataSplitStr +
                     "PrescriptionTherapy=" + ConvertEngine.ListToString(patientInfo.PrescriptionTherapy) + DataSplitStr +
                     "PrescriptionSurveys=" + ConvertEngine.ListToString(patientInfo.PrescriptionSurveys) + DataSplitStr +
-                    "TreatmentPlanDate=" + ConvertEngine.GetRightDateString(patientInfo.TreatmentPlanDate, true) + DataSplitStr +
-                    "TreatmentPlanInspection=" + patientInfo.TreatmentPlanInspection + DataSplitStr +
-                    "IsTreatmentPlanActiveInOperationProtocol=" + patientInfo.IsTreatmentPlanActiveInOperationProtocol + DataSplitStr +
                     "MedicalInspectionAnamneseTraumaDate=" + ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionAnamneseTraumaDate, false) + DataSplitStr +
                     "MedicalInspectionAnamneseAnMorbi=" + patientInfo.MedicalInspectionAnamneseAnMorbi + DataSplitStr +
                     "MedicalInspectionStLocalisDescription=" + patientInfo.MedicalInspectionStLocalisDescription + DataSplitStr +
@@ -1188,6 +1187,7 @@ namespace SurgeryHelper.Engines
                     "MedicalInspectionComplaints=" + patientInfo.MedicalInspectionComplaints + DataSplitStr +
                     "MedicalInspectionExpertAnamnese=" + patientInfo.MedicalInspectionExpertAnamnese + DataSplitStr +
                     "MedicalInspectionInspectionPlan=" + patientInfo.MedicalInspectionInspectionPlan + DataSplitStr +
+                    "MedicalInspectionTreatmentType=" + patientInfo.MedicalInspectionTreatmentType + DataSplitStr +
                     "MedicalInspectionIsAnamneseActive=" + patientInfo.MedicalInspectionIsAnamneseActive + DataSplitStr +
                     "MedicalInspectionIsPlanEnabled=" + patientInfo.MedicalInspectionIsPlanEnabled + DataSplitStr +
                     "MedicalInspectionIsStLocalisPart1Enabled=" + patientInfo.MedicalInspectionIsStLocalisPart1Enabled + DataSplitStr +
@@ -1208,6 +1208,7 @@ namespace SurgeryHelper.Engines
                     "MedicalInspectionStPraesensOthers=" + patientInfo.MedicalInspectionStPraesensOthers + DataSplitStr +
                     "MedicalInspectionStPraesensTextBoxes=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStPraesensTextBoxes) + DataSplitStr +
                     "MedicalInspectionTeoRisk=" + patientInfo.MedicalInspectionTeoRisk + DataSplitStr +
+                    "MedicalInspectionTeoRiskEnabled=" + patientInfo.MedicalInspectionTeoRiskEnabled + DataSplitStr +
                     "PrivateFolder=" + patientInfo.PrivateFolder + OperationSplitStr +
                     operationsStr + ObjSplitStr);
             }
@@ -1354,6 +1355,7 @@ namespace SurgeryHelper.Engines
             {
                 nosologysStr.Append(
                     "Id=" + nosologyInfo.Id + DataSplitStr +
+                    "DairyInfo=" + nosologyInfo.DairyInfo + DataSplitStr +
                     "LastNameWithInitials=" + nosologyInfo.LastNameWithInitials + ObjSplitStr);
             }
 
@@ -1458,7 +1460,7 @@ namespace SurgeryHelper.Engines
 
             foreach (NosologyClass foreignNosologyInfo in foreignNosologies)
             {
-                AddNosology(foreignNosologyInfo.LastNameWithInitials);
+                AddNosology(foreignNosologyInfo);
             }
         }
         #endregion
@@ -1799,15 +1801,6 @@ namespace SurgeryHelper.Engines
                         case "PrescriptionSurveys":
                             patientInfo.PrescriptionSurveys = ConvertEngine.StringToList(keyValue[1]);
                             break;
-                        case "TreatmentPlanInspection":
-                            patientInfo.TreatmentPlanInspection = keyValue[1];
-                            break;
-                        case "TreatmentPlanDate":
-                            patientInfo.TreatmentPlanDate = ConvertEngine.GetDateTimeFromString(keyValue[1]);
-                            break;
-                        case "IsTreatmentPlanActiveInOperationProtocol":
-                            patientInfo.IsTreatmentPlanActiveInOperationProtocol = Convert.ToBoolean(keyValue[1]);
-                            break;
                         case "MedicalInspectionAnamneseTraumaDate":
                             if (!string.IsNullOrEmpty(keyValue[1]))
                             {
@@ -1839,6 +1832,9 @@ namespace SurgeryHelper.Engines
                             break;
                         case "MedicalInspectionInspectionPlan":
                             patientInfo.MedicalInspectionInspectionPlan = keyValue[1];
+                            break;
+                        case "MedicalInspectionTreatmentType":
+                            patientInfo.MedicalInspectionTreatmentType = keyValue[1];
                             break;
                         case "MedicalInspectionStLocalisDescription":
                             patientInfo.MedicalInspectionStLocalisDescription = keyValue[1];
@@ -1905,6 +1901,9 @@ namespace SurgeryHelper.Engines
                             break;
                         case "MedicalInspectionTeoRisk":
                             patientInfo.MedicalInspectionTeoRisk = keyValue[1];
+                            break;
+                        case "MedicalInspectionTeoRiskEnabled":
+                            patientInfo.MedicalInspectionTeoRiskEnabled = Convert.ToBoolean(keyValue[1]);
                             break;
                     }
                 }
@@ -2327,6 +2326,9 @@ namespace SurgeryHelper.Engines
                             break;
                         case "LastNameWithInitials":
                             nosologyInfo.LastNameWithInitials = keyValue[1];
+                            break;
+                        case "DairyInfo":
+                            nosologyInfo.DairyInfo = keyValue[1];
                             break;
                     }
                 }

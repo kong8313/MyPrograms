@@ -52,12 +52,6 @@ namespace SurgeryHelper
             textBoxUrination.Text = _operationInfo.BeforeOperationEpicrisisUrination;
             textBoxWheeze.Text = _operationInfo.BeforeOperationEpicrisisWheeze;
 
-            checkBoxPlan.Checked = _patientInfo.IsTreatmentPlanActiveInOperationProtocol;
-            comboBoxInspectionPlan.Text = _patientInfo.TreatmentPlanInspection;
-            dateTimePickerDatePlan.Value = _patientInfo.TreatmentPlanDate.Year == 1 
-                ? _patientInfo.DeliveryDate 
-                : _patientInfo.TreatmentPlanDate;
-
             checkBoxAntibioticProphylaxis.Checked = _operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
             comboBoxAntibioticProphylaxis.Text = _operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis;
 
@@ -101,16 +95,11 @@ namespace SurgeryHelper
             operationInfo.BeforeOperationEpicrisisUrination = textBoxUrination.Text;
             operationInfo.BeforeOperationEpicrisisWheeze = textBoxWheeze.Text;
 
-            patientInfo.IsTreatmentPlanActiveInOperationProtocol = checkBoxPlan.Checked;
-            patientInfo.TreatmentPlanInspection = comboBoxInspectionPlan.Text;
-            patientInfo.TreatmentPlanDate = dateTimePickerDatePlan.Value;
-
             operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist = checkBoxAntibioticProphylaxis.Checked;
             operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = comboBoxAntibioticProphylaxis.Text;
 
             operationInfo.OperationCourse = textBoxOperationCourse.Text.TrimEnd(new[] { '\r', '\n' });
         }
-
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
@@ -176,16 +165,6 @@ namespace SurgeryHelper
             {
                 e.Cancel = true;
             }
-        }
-
-        /// <summary>
-        /// Разрешение/запрещение на ввод данных для плана обследования и лечения
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void checkBoxPlan_CheckedChanged(object sender, EventArgs e)
-        {
-            comboBoxInspectionPlan.Enabled = dateTimePickerDatePlan.Enabled = checkBoxPlan.Checked;
         }
 
         /// <summary>

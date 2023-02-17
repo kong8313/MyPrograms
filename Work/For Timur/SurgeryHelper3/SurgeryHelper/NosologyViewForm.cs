@@ -40,6 +40,7 @@ namespace SurgeryHelper
                 _nosologyInfo = nosologyInfo;
                 Text = "Редактирование нозологии";
                 textBoxNosologyName.Text = _nosologyInfo.LastNameWithInitials;
+                richTextBoxDairyInfo.Text = _nosologyInfo.DairyInfo;
             }
         }
 
@@ -78,23 +79,35 @@ namespace SurgeryHelper
             {
                 MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            }
-
-            if (_dbEngine.GetNosologyByName(textBoxNosologyName.Text).Count > 0)
-            {
-                MessageBox.Show("Нозология с таким названием уже существует", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            }            
 
             try
             {
+                var newNozology = new NosologyClass()
+                {
+                    LastNameWithInitials = textBoxNosologyName.Text,
+                    DairyInfo = richTextBoxDairyInfo.Text
+                };
+
                 if (_nosologyInfo.Id == 0)
                 {
-                    _dbEngine.AddNosology(textBoxNosologyName.Text);
+                    if (_dbEngine.GetNosologyByName(textBoxNosologyName.Text).Count > 0)
+                    {
+                        MessageBox.Show("Нозология с таким названием уже существует", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    _dbEngine.AddNosology(newNozology);
                 }
                 else
                 {
-                    _dbEngine.UpdateNosology(_nosologyInfo, textBoxNosologyName.Text);
+                    if (_nosologyInfo.LastNameWithInitials != textBoxNosologyName.Text && _dbEngine.GetNosologyByName(textBoxNosologyName.Text).Count > 0)
+                    {
+                        MessageBox.Show("Нозология с таким названием уже существует", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    _dbEngine.UpdateNosology(_nosologyInfo, newNozology);
                 }
 
                 _isFormClosingByButton = true;

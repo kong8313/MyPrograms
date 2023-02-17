@@ -245,6 +245,35 @@ namespace SurgeryHelper
         }
 
         /// <summary>
+        /// Сгенерировать дневник в ворде
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDairy_Click(object sender, EventArgs e)
+        {
+            if (IsFormHasEmptyNeededFields())
+            {
+                MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsDataCorrect())
+            {
+                return;
+            }
+
+            if (!dateTimePickerReleaseDate.Checked)
+            {
+                MessageBox.Show("Для генерации дневника необходимо указать дату выписки.", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            PutDataToPatient(_patientInfo);
+
+            new WordExportEngine(_dbEngine).GenerateDairy(_patientInfo);
+        }
+
+        /// <summary>
         /// Открыть список с документами
         /// </summary>
         /// <param name="sender"></param>
@@ -408,6 +437,22 @@ namespace SurgeryHelper
         }
 
         /// <summary>
+        /// Проверка на то, что введённые данные корректны
+        /// </summary>
+        /// <returns></returns>
+        private bool IsDataCorrect()
+        {
+            if (dateTimePickerReleaseDate.Checked && ConvertEngine.CompareDateTimes(dateTimePickerDeliveryDate.Value, dateTimePickerReleaseDate.Value, false) == 1)
+            {
+                MessageBox.Show("Дата выписки не может быть меньше, чем дата поступления", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            return true;
+        }
+        
+
+        /// <summary>
         /// Сохранить изменения или добавить нового пациента в список пациентов
         /// </summary>
         /// <param name="sender"></param>
@@ -452,6 +497,11 @@ namespace SurgeryHelper
             if (IsFormHasEmptyNeededFields())
             {
                 MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!IsDataCorrect())
+            {
                 return;
             }
 
@@ -914,6 +964,18 @@ namespace SurgeryHelper
             buttonPrescription.FlatStyle = FlatStyle.Flat;
         }
 
+        private void buttonDairy_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Сгенерировать дневник наблюдений", buttonDairy, 15, -20);
+            buttonDairy.FlatStyle = FlatStyle.Popup;
+        }
+
+        private void buttonDairy_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(buttonDairy);
+            buttonDairy.FlatStyle = FlatStyle.Flat;
+        }
+
         private void buttonOk_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.Show("Сохранить изменения", buttonOk, 15, -20);
@@ -1046,6 +1108,6 @@ namespace SurgeryHelper
         {
             toolTip1.Hide(linkLabelServiceName);
         }
-        #endregion       
+        #endregion        
     }
 }

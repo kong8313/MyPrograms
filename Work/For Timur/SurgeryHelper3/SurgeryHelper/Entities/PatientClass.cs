@@ -316,21 +316,6 @@ namespace SurgeryHelper.Entities
         public List<string> DischargeEpicrisAdditionalRecomendations;
 
         /// <summary>
-        /// Обследование пациента
-        /// </summary>
-        public string TreatmentPlanInspection;
-
-        /// <summary>
-        /// Дата написания плана обследования
-        /// </summary>
-        public DateTime TreatmentPlanDate;
-
-        /// <summary>
-        /// Активен ли план обследования в операционном протоколе
-        /// </summary>
-        public bool IsTreatmentPlanActiveInOperationProtocol;
-
-        /// <summary>
         /// Осмотр в отделении, общие данные, включен ли план осмотра в отчёт
         /// </summary>
         public bool MedicalInspectionIsPlanEnabled;
@@ -339,6 +324,11 @@ namespace SurgeryHelper.Entities
         /// Осмотр в отделении, общие данные, обследование
         /// </summary>
         public string MedicalInspectionInspectionPlan;
+
+        /// <summary>
+        /// Тип лечения: консервативный или оперативный
+        /// </summary>
+        public string MedicalInspectionTreatmentType;
 
         /// <summary>
         /// Осмотр в отделении, общие данные, жалобы
@@ -350,6 +340,11 @@ namespace SurgeryHelper.Entities
         /// </summary>
         public string MedicalInspectionTeoRisk;
 
+        /// <summary>
+        /// Осмотр в отделении, общие данные, наличие параметров для риска ТЭО
+        /// </summary>
+        public bool MedicalInspectionTeoRiskEnabled;
+        
         /// <summary>
         /// Осмотр в отделении, общие данные, 1, 2 или 3
         /// </summary>
@@ -673,13 +668,13 @@ namespace SurgeryHelper.Entities
             DischargeEpicrisRecomendations = new List<string> { "notdefined" };
             DischargeEpicrisAdditionalRecomendations = new List<string> { "notdefined" };
             DischargeEpicrisAdditionalAnalises = "анализ крови на ВИЧ - отр.";
-            TreatmentPlanInspection = "ОАК, ОАМ, ЭКГ, биохимический анализ крови";
-            IsTreatmentPlanActiveInOperationProtocol = true;
 
             MedicalInspectionExpertAnamnese = 3;
             MedicalInspectionIsPlanEnabled = true;
             MedicalInspectionInspectionPlan = "ОАК, ОАМ, ЭКГ, биохимический анализ крови";
+            MedicalInspectionTreatmentType = "оперативное";
             MedicalInspectionTeoRisk = "отсутствует";
+            MedicalInspectionTeoRiskEnabled = false;
             MedicalInspectionExpertAnamnese = 3;
             MedicalInspectionStLocalisRentgen = "без костной патологии";
             MedicalInspectionComplaints = "";
@@ -867,10 +862,6 @@ namespace SurgeryHelper.Entities
             PrescriptionTherapy = new List<string>(patientClass.PrescriptionTherapy);
             PrescriptionSurveys = new List<string>(patientClass.PrescriptionSurveys);
 
-            TreatmentPlanInspection = patientClass.TreatmentPlanInspection;
-            TreatmentPlanDate = ConvertEngine.CopyDateTime(patientClass.TreatmentPlanDate);
-            IsTreatmentPlanActiveInOperationProtocol = patientClass.IsTreatmentPlanActiveInOperationProtocol;
-
             MedicalInspectionAnamneseTraumaDate = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionAnamneseTraumaDate);
             MedicalInspectionAnamneseAnMorbi = patientClass.MedicalInspectionAnamneseAnMorbi;
             MedicalInspectionAnamneseAnVitae = CopyBoolArray(patientClass.MedicalInspectionAnamneseAnVitae);
@@ -881,6 +872,7 @@ namespace SurgeryHelper.Entities
             MedicalInspectionStLocalisDescription = patientClass.MedicalInspectionStLocalisDescription;
             MedicalInspectionStLocalisRentgen = patientClass.MedicalInspectionStLocalisRentgen;
             MedicalInspectionInspectionPlan = patientClass.MedicalInspectionInspectionPlan;
+            MedicalInspectionTreatmentType = patientClass.MedicalInspectionTreatmentType;
             MedicalInspectionIsAnamneseActive = patientClass.MedicalInspectionIsAnamneseActive;
             MedicalInspectionIsPlanEnabled = patientClass.MedicalInspectionIsPlanEnabled;
             MedicalInspectionIsStLocalisPart1Enabled = patientClass.MedicalInspectionIsStLocalisPart1Enabled;
@@ -901,6 +893,7 @@ namespace SurgeryHelper.Entities
             MedicalInspectionStPraesensOthers = patientClass.MedicalInspectionStPraesensOthers;
             MedicalInspectionStPraesensTextBoxes = CopyStringArray(patientClass.MedicalInspectionStPraesensTextBoxes);
             MedicalInspectionTeoRisk = patientClass.MedicalInspectionTeoRisk;
+            MedicalInspectionTeoRiskEnabled = patientClass.MedicalInspectionTeoRiskEnabled;
         }
 
         /// <summary>
@@ -986,10 +979,6 @@ namespace SurgeryHelper.Entities
             patientInfo.PrescriptionTherapy = new List<string>(PrescriptionTherapy);
             patientInfo.PrescriptionSurveys = new List<string>(PrescriptionSurveys);
 
-            patientInfo.TreatmentPlanInspection = TreatmentPlanInspection;
-            patientInfo.TreatmentPlanDate = ConvertEngine.CopyDateTime(TreatmentPlanDate);
-            patientInfo.IsTreatmentPlanActiveInOperationProtocol = IsTreatmentPlanActiveInOperationProtocol;
-
             patientInfo.MedicalInspectionAnamneseTraumaDate = ConvertEngine.CopyDateTime(MedicalInspectionAnamneseTraumaDate);
             patientInfo.MedicalInspectionAnamneseAnMorbi = MedicalInspectionAnamneseAnMorbi;
             patientInfo.MedicalInspectionAnamneseAnVitae = CopyBoolArray(MedicalInspectionAnamneseAnVitae);
@@ -1000,6 +989,7 @@ namespace SurgeryHelper.Entities
             patientInfo.MedicalInspectionStLocalisDescription = MedicalInspectionStLocalisDescription;
             patientInfo.MedicalInspectionStLocalisRentgen = MedicalInspectionStLocalisRentgen;
             patientInfo.MedicalInspectionInspectionPlan = MedicalInspectionInspectionPlan;
+            patientInfo.MedicalInspectionTreatmentType = MedicalInspectionTreatmentType;
             patientInfo.MedicalInspectionIsAnamneseActive = MedicalInspectionIsAnamneseActive;
             patientInfo.MedicalInspectionIsPlanEnabled = MedicalInspectionIsPlanEnabled;
             patientInfo.MedicalInspectionIsStLocalisPart1Enabled = MedicalInspectionIsStLocalisPart1Enabled;
@@ -1020,6 +1010,7 @@ namespace SurgeryHelper.Entities
             patientInfo.MedicalInspectionStPraesensOthers = MedicalInspectionStPraesensOthers;
             patientInfo.MedicalInspectionStPraesensTextBoxes = CopyStringArray(MedicalInspectionStPraesensTextBoxes);
             patientInfo.MedicalInspectionTeoRisk = MedicalInspectionTeoRisk;
+            patientInfo.MedicalInspectionTeoRiskEnabled = MedicalInspectionTeoRiskEnabled;
         } 
 
         private static string[] CopyStringArray(string[] fromObj)
