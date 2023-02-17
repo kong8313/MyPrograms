@@ -245,8 +245,12 @@ namespace TimeWatcher
                 {
                     m_SettingInfo.MainFormSize.Height = (int)regKey.GetValue("MainFormSize.Height");
                     m_SettingInfo.MainFormSize.Width = (int)regKey.GetValue("MainFormSize.Width");
-                    m_SettingInfo.MainFormLocation.X = (int)regKey.GetValue("MainFormLocation.X");
-                    m_SettingInfo.MainFormLocation.Y = (int)regKey.GetValue("MainFormLocation.Y");
+                    var temp = (int)regKey.GetValue("MainFormLocation.X");
+                    if (temp > 0 && temp < 2000)
+                        m_SettingInfo.MainFormLocation.X = temp;
+                    temp = (int)regKey.GetValue("MainFormLocation.Y");
+                    if (temp > 0 && temp < 2000)
+                        m_SettingInfo.MainFormLocation.Y = (int)regKey.GetValue("MainFormLocation.Y");
 
                     m_SettingInfo.TimesFormSize.Height = (int)regKey.GetValue("TimesFormSize.Height");
                     m_SettingInfo.TimesFormSize.Width = (int)regKey.GetValue("TimesFormSize.Width");
@@ -320,8 +324,10 @@ namespace TimeWatcher
             {
                 regKey.SetValue("MainFormSize.Height", m_SettingInfo.MainFormSize.Height);
                 regKey.SetValue("MainFormSize.Width", m_SettingInfo.MainFormSize.Width);
-                regKey.SetValue("MainFormLocation.X", m_SettingInfo.MainFormLocation.X);
-                regKey.SetValue("MainFormLocation.Y", m_SettingInfo.MainFormLocation.Y);
+                if(m_SettingInfo.MainFormLocation.X > 0 && m_SettingInfo.MainFormLocation.X < 2000)
+                    regKey.SetValue("MainFormLocation.X", m_SettingInfo.MainFormLocation.X);
+                if (m_SettingInfo.MainFormLocation.Y > 0 && m_SettingInfo.MainFormLocation.Y < 1100)
+                    regKey.SetValue("MainFormLocation.Y", m_SettingInfo.MainFormLocation.Y);
 
                 regKey.SetValue("TimesFormSize.Height", m_SettingInfo.TimesFormSize.Height);
                 regKey.SetValue("TimesFormSize.Width", m_SettingInfo.TimesFormSize.Width);
