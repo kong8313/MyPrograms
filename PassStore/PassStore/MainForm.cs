@@ -380,6 +380,7 @@ namespace PassStore
             passForm.ShowDialog();
 
             if (GetHash(PassStr) == 991202944)
+            //if (GetHash(PassStr) == 39984676) // Anna's pass
             {
                 LoadCredentials();
 
@@ -429,13 +430,13 @@ namespace PassStore
 
         private void LoadCredentials()
         {
+            _credentials = new List<Credential>();
+
             string strAll = ZlibClass.GetSavedString();
             if (strAll == "")
             {
                 return;
             }
-
-            _credentials = new List<Credential>();
 
             string[] rows = strAll.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
             foreach (string row in rows)
@@ -707,7 +708,7 @@ namespace PassStore
         }
 
         /// <summary>
-        /// Сообщение в 6 часов о том, что надо послать письмо про проделанную работу
+        /// Doing some actions 
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -724,12 +725,6 @@ namespace PassStore
             catch (Exception ex)
             {
                 ShowMessage("An error occured during removing of SkypeSetup.exe: " + ex.Message);
-            }
-
-            if (DateTime.Now.DayOfWeek != DayOfWeek.Sunday && DateTime.Now.DayOfWeek != DayOfWeek.Saturday &&
-                DateTime.Now.Hour == 18 && DateTime.Now.Minute == 0)
-            {
-                ShowMessage("Пошли отчёт о проделанной за день работе!");
             }
         }
 
