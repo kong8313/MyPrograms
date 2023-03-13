@@ -80,18 +80,15 @@ namespace PassStore
         /// </summary>
         private void SaveChanges()
         {
-            if (GetHash(PassStr) == 991202944)
+            string strAll = "";
+            foreach (Credential credential in _credentials)
             {
-                string strAll = "";
-                foreach (Credential credential in _credentials)
-                {
-                    strAll += credential.Name + "\t" + credential.Login + "\t" + credential.Password + "\n";
-                }
+                strAll += credential.Name + "\t" + credential.Login + "\t" + credential.Password + "\n";
+            }
 
-                if (strAll != "")
-                {
-                    ZlibClass.SaveString(strAll);
-                }
+            if (strAll != "")
+            {
+                ZlibClass.SaveString(strAll);
             }
         }
 
@@ -379,7 +376,7 @@ namespace PassStore
             var passForm = new PassForm(this);
             passForm.ShowDialog();
 
-            if (GetHash(PassStr) == 991202944)
+            if (GetHash(PassStr) == 991202944) // Grisha's pass
             //if (GetHash(PassStr) == 39984676) // Anna's pass
             {
                 LoadCredentials();
