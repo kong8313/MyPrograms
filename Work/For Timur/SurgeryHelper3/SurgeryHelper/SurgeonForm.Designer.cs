@@ -36,6 +36,7 @@
             this.buttonOk = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.checkedListBoxSurgeons = new System.Windows.Forms.CheckedListBox();
+            this.timerToolBox = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // buttonEdit
@@ -51,9 +52,9 @@
             this.buttonEdit.TabIndex = 68;
             this.buttonEdit.TabStop = false;
             this.buttonEdit.UseVisualStyleBackColor = true;
-            this.buttonEdit.MouseLeave += new System.EventHandler(this.buttonEdit_MouseLeave);
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             this.buttonEdit.MouseEnter += new System.EventHandler(this.buttonEdit_MouseEnter);
+            this.buttonEdit.MouseLeave += new System.EventHandler(this.buttonEdit_MouseLeave);
             // 
             // buttonDelete
             // 
@@ -68,9 +69,9 @@
             this.buttonDelete.TabIndex = 67;
             this.buttonDelete.TabStop = false;
             this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             this.buttonDelete.MouseEnter += new System.EventHandler(this.buttonDelete_MouseEnter);
+            this.buttonDelete.MouseLeave += new System.EventHandler(this.buttonDelete_MouseLeave);
             // 
             // buttonAdd
             // 
@@ -85,9 +86,9 @@
             this.buttonAdd.TabIndex = 66;
             this.buttonAdd.TabStop = false;
             this.buttonAdd.UseVisualStyleBackColor = true;
-            this.buttonAdd.MouseLeave += new System.EventHandler(this.buttonAdd_MouseLeave);
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             this.buttonAdd.MouseEnter += new System.EventHandler(this.buttonAdd_MouseEnter);
+            this.buttonAdd.MouseLeave += new System.EventHandler(this.buttonAdd_MouseLeave);
             // 
             // buttonOk
             // 
@@ -102,9 +103,9 @@
             this.buttonOk.TabIndex = 64;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
             // checkedListBoxSurgeons
             // 
@@ -116,6 +117,11 @@
             this.checkedListBoxSurgeons.Size = new System.Drawing.Size(221, 214);
             this.checkedListBoxSurgeons.TabIndex = 70;
             this.checkedListBoxSurgeons.SelectedIndexChanged += new System.EventHandler(this.checkedListBoxSurgeons_SelectedIndexChanged);
+            this.checkedListBoxSurgeons.MouseMove += new System.Windows.Forms.MouseEventHandler(this.checkedListBoxSurgeons_MouseMove);
+            // 
+            // timerToolBox
+            // 
+            this.timerToolBox.Tick += new System.EventHandler(this.timerToolBox_Tick);
             // 
             // SurgeonForm
             // 
@@ -136,6 +142,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Список хирургов";
             this.Load += new System.EventHandler(this.SurgeonForm_Load);
+            this.MouseEnter += new System.EventHandler(this.SurgeonForm_MouseEnter);
             this.ResumeLayout(false);
 
         }
@@ -148,5 +155,6 @@
         private System.Windows.Forms.Button buttonOk;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckedListBox checkedListBoxSurgeons;
+        private System.Windows.Forms.Timer timerToolBox;
     }
 }

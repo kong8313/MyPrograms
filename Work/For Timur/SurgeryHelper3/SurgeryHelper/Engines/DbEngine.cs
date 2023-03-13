@@ -117,6 +117,7 @@ namespace SurgeryHelper.Engines
                 _globalSettings.DepartmentName = value.DepartmentName;
                 _globalSettings.DischargeEpicrisisHeaderFileName = value.DischargeEpicrisisHeaderFileName;
                 _globalSettings.IsLoggingEnabled = value.IsLoggingEnabled;
+                _globalSettings.BossJobTitle = value.BossJobTitle;
                 SaveGlobalSettings();
             }
         }
@@ -357,6 +358,29 @@ namespace SurgeryHelper.Engines
             {
                 return _surgeonList;
             }
+        }
+
+        /// <summary>
+        /// Возвращает специальность указанного хирурга
+        /// </summary>
+        /// <param name="surgeonName">Имя хирурга</param>
+        /// <returns></returns>
+        public string GetSpecialityBySurgeonName(string surgeonName)
+        {
+            foreach (SurgeonClass surgeonInfo in _surgeonList)
+            {
+                if (surgeonInfo.LastNameWithInitials.Trim(' ') == surgeonName.Trim(' '))
+                {
+                    if (string.IsNullOrEmpty(surgeonInfo.Speciality))
+                    {
+                        return "НЕ УКАЗАНА СПЕЦИАЛЬНОСТЬ ХИРУРГА";
+                    }
+
+                    return surgeonInfo.Speciality;
+                }
+            }
+
+            return "НЕ НАЙДЕН ХИРУРГ \"" + surgeonName + "\" В СПИСКЕ ХИРУРГОВ";
         }
 
         /// <summary>
@@ -1140,6 +1164,7 @@ namespace SurgeryHelper.Engines
                     "Phone=" + patientInfo.Phone + DataSplitStr +
                     "TypeOfKSG=" + patientInfo.TypeOfKSG + DataSplitStr +
                     "MKB=" + patientInfo.MKB + DataSplitStr +
+                    "WWW=" + patientInfo.WWW + DataSplitStr +
                     "ServiceName=" + patientInfo.ServiceName + DataSplitStr +
                     "ServiceCode=" + patientInfo.ServiceCode + DataSplitStr +
                     "KsgCode=" + patientInfo.KsgCode + DataSplitStr +
@@ -1190,22 +1215,17 @@ namespace SurgeryHelper.Engines
                     "MedicalInspectionTreatmentType=" + patientInfo.MedicalInspectionTreatmentType + DataSplitStr +
                     "MedicalInspectionIsAnamneseActive=" + patientInfo.MedicalInspectionIsAnamneseActive + DataSplitStr +
                     "MedicalInspectionIsPlanEnabled=" + patientInfo.MedicalInspectionIsPlanEnabled + DataSplitStr +
+                    "MedicalInspectionWithBoss=" + patientInfo.MedicalInspectionWithBoss + DataSplitStr +
                     "MedicalInspectionIsStLocalisPart1Enabled=" + patientInfo.MedicalInspectionIsStLocalisPart1Enabled + DataSplitStr +
-                    "MedicalInspectionIsStLocalisPart2Enabled=" + patientInfo.MedicalInspectionIsStLocalisPart2Enabled + DataSplitStr +
                     "MedicalInspectionLnFirstDateStart=" + ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnFirstDateStart) + DataSplitStr +
                     "MedicalInspectionLnWithNumberDateEnd=" + ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateEnd) + DataSplitStr +
                     "MedicalInspectionLnWithNumberDateStart=" + ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionLnWithNumberDateStart) + DataSplitStr +
                     "MedicalInspectionStLocalisPart1Fields=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStLocalisPart1Fields) + DataSplitStr +
                     "MedicalInspectionStLocalisPart1OppositionFinger=" + patientInfo.MedicalInspectionStLocalisPart1OppositionFinger + DataSplitStr +
-                    "MedicalInspectionStLocalisPart2ComboBoxes=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStLocalisPart2ComboBoxes) + DataSplitStr +
-                    "MedicalInspectionStLocalisPart2LeftHand=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStLocalisPart2LeftHand) + DataSplitStr +
-                    "MedicalInspectionStLocalisPart2NumericUpDown=" + patientInfo.MedicalInspectionStLocalisPart2NumericUpDown + DataSplitStr +
-                    "MedicalInspectionStLocalisPart2RightHand=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStLocalisPart2RightHand) + DataSplitStr +
-                    "MedicalInspectionStLocalisPart2TextBoxes=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStLocalisPart2TextBoxes) + DataSplitStr +
-                    "MedicalInspectionStLocalisPart2WhichHand=" + patientInfo.MedicalInspectionStLocalisPart2WhichHand + DataSplitStr +
                     "MedicalInspectionStPraesensComboBoxes=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStPraesensComboBoxes) + DataSplitStr +
                     "MedicalInspectionStPraesensNumericUpDowns=" + ConvertEngine.ListIntToString(patientInfo.MedicalInspectionStPraesensNumericUpDowns) + DataSplitStr +
                     "MedicalInspectionStPraesensOthers=" + patientInfo.MedicalInspectionStPraesensOthers + DataSplitStr +
+                    "MedicalInspectionStPraesensTemperature=" + patientInfo.MedicalInspectionStPraesensTemperature + DataSplitStr +
                     "MedicalInspectionStPraesensTextBoxes=" + ConvertEngine.ListToString(patientInfo.MedicalInspectionStPraesensTextBoxes) + DataSplitStr +
                     "MedicalInspectionTeoRisk=" + patientInfo.MedicalInspectionTeoRisk + DataSplitStr +
                     "MedicalInspectionTeoRiskEnabled=" + patientInfo.MedicalInspectionTeoRiskEnabled + DataSplitStr +
@@ -1229,6 +1249,7 @@ namespace SurgeryHelper.Engines
             {
                 surgeonsStr.Append(
                     "Id=" + surgeonInfo.Id + DataSplitStr +
+                    "Speciality=" + surgeonInfo.Speciality + DataSplitStr +
                     "LastNameWithInitials=" + surgeonInfo.LastNameWithInitials + ObjSplitStr);
             }
 
@@ -1371,6 +1392,7 @@ namespace SurgeryHelper.Engines
                 "BranchManager=" + _globalSettings.BranchManager + DataSplitStr +
                 "DischargeEpicrisisHeaderFileName=" + _globalSettings.DischargeEpicrisisHeaderFileName + DataSplitStr +
                 "IsLoggingEnabled=" + _globalSettings.IsLoggingEnabled + DataSplitStr +
+                "BossJobTitle=" + _globalSettings.BossJobTitle + DataSplitStr +
                 "DepartmentName=" + _globalSettings.DepartmentName;
 
             PackedData(globalSettingsStr, _globalSettingsPath);
@@ -1679,6 +1701,9 @@ namespace SurgeryHelper.Engines
                         case "MKB":
                             patientInfo.MKB = keyValue[1];
                             break;
+                        case "WWW":
+                            patientInfo.WWW = keyValue[1];
+                            break;
                         case "ServiceName":
                             patientInfo.ServiceName = keyValue[1];
                             break;
@@ -1848,11 +1873,11 @@ namespace SurgeryHelper.Engines
                         case "MedicalInspectionIsPlanEnabled":
                             patientInfo.MedicalInspectionIsPlanEnabled = Convert.ToBoolean(keyValue[1]);
                             break;
+                        case "MedicalInspectionWithBoss":
+                            patientInfo.MedicalInspectionWithBoss = Convert.ToBoolean(keyValue[1]);
+                            break;
                         case "MedicalInspectionIsStLocalisPart1Enabled":
                             patientInfo.MedicalInspectionIsStLocalisPart1Enabled = Convert.ToBoolean(keyValue[1]);
-                            break;
-                        case "MedicalInspectionIsStLocalisPart2Enabled":
-                            patientInfo.MedicalInspectionIsStLocalisPart2Enabled = Convert.ToBoolean(keyValue[1]);
                             break;
                         case "MedicalInspectionLnFirstDateStart":
                             patientInfo.MedicalInspectionLnFirstDateStart = ConvertEngine.GetDateTimeFromString(keyValue[1]);
@@ -1869,35 +1894,41 @@ namespace SurgeryHelper.Engines
                         case "MedicalInspectionStLocalisPart1OppositionFinger":
                             patientInfo.MedicalInspectionStLocalisPart1OppositionFinger = keyValue[1];
                             break;
-                        case "MedicalInspectionStLocalisPart2ComboBoxes":
-                            patientInfo.MedicalInspectionStLocalisPart2ComboBoxes = ConvertEngine.StringToArray(keyValue[1]);
-                            break;
-                        case "MedicalInspectionStLocalisPart2LeftHand":
-                            patientInfo.MedicalInspectionStLocalisPart2LeftHand = ConvertEngine.StringToArray(keyValue[1]);
-                            break;
-                        case "MedicalInspectionStLocalisPart2NumericUpDown":
-                            patientInfo.MedicalInspectionStLocalisPart2NumericUpDown = Convert.ToInt32(keyValue[1]);
-                            break;
-                        case "MedicalInspectionStLocalisPart2RightHand":
-                            patientInfo.MedicalInspectionStLocalisPart2RightHand = ConvertEngine.StringToArray(keyValue[1]);
-                            break;
-                        case "MedicalInspectionStLocalisPart2TextBoxes":
-                            patientInfo.MedicalInspectionStLocalisPart2TextBoxes = ConvertEngine.StringToArray(keyValue[1]);
-                            break;
-                        case "MedicalInspectionStLocalisPart2WhichHand":
-                            patientInfo.MedicalInspectionStLocalisPart2WhichHand = keyValue[1];
-                            break;
                         case "MedicalInspectionStPraesensComboBoxes":
-                            patientInfo.MedicalInspectionStPraesensComboBoxes = ConvertEngine.StringToArray(keyValue[1]);
+                            ConvertEngine.SetValues(patientInfo.MedicalInspectionStPraesensComboBoxes, ConvertEngine.StringToArray(keyValue[1]));
+                            ConvertEngine.UpdateValues(patientInfo.MedicalInspectionStPraesensComboBoxes, 
+                                new [] {1},
+                                new Dictionary<string, string> 
+                                {
+                                    {"удовлетворительное", "нормальное"},
+                                    {"пониженное", "гипотрофия"},
+                                    {"повышенное", "ожирение"}
+                                });
                             break;
                         case "MedicalInspectionStPraesensNumericUpDowns":
-                            patientInfo.MedicalInspectionStPraesensNumericUpDowns = ConvertEngine.StringToArrayInt(keyValue[1]);
+                            ConvertEngine.SetValues(patientInfo.MedicalInspectionStPraesensNumericUpDowns, ConvertEngine.StringToArrayInt(keyValue[1]));
                             break;
                         case "MedicalInspectionStPraesensOthers":
                             patientInfo.MedicalInspectionStPraesensOthers = keyValue[1];
                             break;
+                        case "MedicalInspectionStPraesensTemperature":
+                            patientInfo.MedicalInspectionStPraesensTemperature = keyValue[1];
+                            break;
                         case "MedicalInspectionStPraesensTextBoxes":
-                            patientInfo.MedicalInspectionStPraesensTextBoxes = ConvertEngine.StringToArray(keyValue[1]);
+                            ConvertEngine.SetValues(patientInfo.MedicalInspectionStPraesensTextBoxes, ConvertEngine.StringToArray(keyValue[1]));
+                            ConvertEngine.UpdateValues(patientInfo.MedicalInspectionStPraesensTextBoxes,
+                                new[] { 9, 16 },
+                                new Dictionary<string, string>
+                                {
+                                    {"безболезненные, в полном объеме", "без патологических изменений"},
+                                    {"участвует в дыхании, мягкий, безболезненный во всех отделах", @"результаты пальпации органов брюшной полости с определением размеров печени и селезенки (перкуторно и пальпаторно в сантиметрах из-под края реберной дуги): пальпация органов брюшной полости безболезненна, печень по краю реберной дуги, селезенка: не пальпируется, иное (при наличии)
+оценка характера стула и кратности дефекации: без особенностей
+наличие симптомов раздражения брюшины: не определяются
+результат пальцевого ректального исследования: не проводилось
+результаты обследования мочеполовой системы: патологических изменений не определяется, область проекции почек внешне не изменена, симптом поколачивания отрицательный
+оценка характера мочеиспускания: свободное, не затруднено
+наличие менингеальных симптомов: не определяются"}
+                                });
                             break;
                         case "MedicalInspectionTeoRisk":
                             patientInfo.MedicalInspectionTeoRisk = keyValue[1];
@@ -2055,6 +2086,9 @@ namespace SurgeryHelper.Engines
                     {
                         case "Id":
                             surgeonInfo.Id = Convert.ToInt32(keyValue[1]);
+                            break;
+                        case "Speciality":
+                            surgeonInfo.Speciality = keyValue[1];
                             break;
                         case "LastNameWithInitials":
                             surgeonInfo.LastNameWithInitials = keyValue[1];
@@ -2369,6 +2403,9 @@ namespace SurgeryHelper.Engines
                         break;
                     case "IsLoggingEnabled":
                         _globalSettings.IsLoggingEnabled = Convert.ToBoolean(keyValue[1]);
+                        break;
+                    case "BossJobTitle":
+                        _globalSettings.BossJobTitle = keyValue[1];
                         break;
                 }
             }

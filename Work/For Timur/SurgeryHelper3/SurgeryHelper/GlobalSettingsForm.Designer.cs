@@ -40,6 +40,8 @@
             this.checkBoxIsLoggingEnabled = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxDischargeEpicrisisHeader = new System.Windows.Forms.TextBox();
+            this.labelJobBossTitle = new System.Windows.Forms.Label();
+            this.comboBoxBossJobTitle = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // textBoxBranchManager
@@ -81,15 +83,15 @@
             this.buttonOk.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonOk.FlatAppearance.BorderSize = 0;
             this.buttonOk.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOk.Location = new System.Drawing.Point(253, 108);
+            this.buttonOk.Location = new System.Drawing.Point(253, 165);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
             this.buttonOk.TabIndex = 10;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
-            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
             this.buttonOk.MouseEnter += new System.EventHandler(this.buttonOk_MouseEnter);
+            this.buttonOk.MouseLeave += new System.EventHandler(this.buttonOk_MouseLeave);
             // 
             // buttonClose
             // 
@@ -98,24 +100,24 @@
             this.buttonClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.buttonClose.FlatAppearance.BorderSize = 0;
             this.buttonClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonClose.Location = new System.Drawing.Point(338, 108);
+            this.buttonClose.Location = new System.Drawing.Point(338, 165);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(40, 40);
             this.buttonClose.TabIndex = 12;
             this.buttonClose.TabStop = false;
             this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
+            this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
             // checkBoxIsLoggingEnabled
             // 
             this.checkBoxIsLoggingEnabled.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.checkBoxIsLoggingEnabled.AutoSize = true;
-            this.checkBoxIsLoggingEnabled.Location = new System.Drawing.Point(12, 121);
+            this.checkBoxIsLoggingEnabled.Location = new System.Drawing.Point(12, 178);
             this.checkBoxIsLoggingEnabled.Name = "checkBoxIsLoggingEnabled";
             this.checkBoxIsLoggingEnabled.Size = new System.Drawing.Size(76, 17);
-            this.checkBoxIsLoggingEnabled.TabIndex = 4;
+            this.checkBoxIsLoggingEnabled.TabIndex = 8;
             this.checkBoxIsLoggingEnabled.Text = "Вести лог";
             this.checkBoxIsLoggingEnabled.UseVisualStyleBackColor = true;
             // 
@@ -133,13 +135,36 @@
             this.textBoxDischargeEpicrisisHeader.Location = new System.Drawing.Point(12, 79);
             this.textBoxDischargeEpicrisisHeader.Name = "textBoxDischargeEpicrisisHeader";
             this.textBoxDischargeEpicrisisHeader.Size = new System.Drawing.Size(439, 20);
-            this.textBoxDischargeEpicrisisHeader.TabIndex = 3;
+            this.textBoxDischargeEpicrisisHeader.TabIndex = 4;
+            // 
+            // labelJobBossTitle
+            // 
+            this.labelJobBossTitle.AutoSize = true;
+            this.labelJobBossTitle.Location = new System.Drawing.Point(15, 117);
+            this.labelJobBossTitle.Name = "labelJobBossTitle";
+            this.labelJobBossTitle.Size = new System.Drawing.Size(173, 13);
+            this.labelJobBossTitle.TabIndex = 70;
+            this.labelJobBossTitle.Text = "* Первичный осмотр проводится";
+            // 
+            // comboBoxBossJobTitle
+            // 
+            this.comboBoxBossJobTitle.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxBossJobTitle.FormattingEnabled = true;
+            this.comboBoxBossJobTitle.Items.AddRange(new object[] {
+            "совместно с заведующим отделением",
+            "совместно с главным врачом"});
+            this.comboBoxBossJobTitle.Location = new System.Drawing.Point(12, 133);
+            this.comboBoxBossJobTitle.Name = "comboBoxBossJobTitle";
+            this.comboBoxBossJobTitle.Size = new System.Drawing.Size(261, 21);
+            this.comboBoxBossJobTitle.TabIndex = 6;
             // 
             // GlobalSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(467, 160);
+            this.ClientSize = new System.Drawing.Size(467, 217);
+            this.Controls.Add(this.comboBoxBossJobTitle);
+            this.Controls.Add(this.labelJobBossTitle);
             this.Controls.Add(this.textBoxDischargeEpicrisisHeader);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.checkBoxIsLoggingEnabled);
@@ -174,5 +199,7 @@
         private System.Windows.Forms.CheckBox checkBoxIsLoggingEnabled;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxDischargeEpicrisisHeader;
+        private System.Windows.Forms.Label labelJobBossTitle;
+        private System.Windows.Forms.ComboBox comboBoxBossJobTitle;
     }
 }

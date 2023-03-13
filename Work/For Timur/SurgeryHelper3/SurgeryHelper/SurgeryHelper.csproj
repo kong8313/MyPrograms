@@ -361,6 +361,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MedicalInspectionForm.resx">
       <DependentUpon>MedicalInspectionForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="PrescriptionForm.resx">
       <DependentUpon>PrescriptionForm.cs</DependentUpon>

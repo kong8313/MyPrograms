@@ -5,6 +5,11 @@
     /// </summary>
     public class SurgeonClass : MedicalClass
     {
+        /// <summary>
+        /// Специальность
+        /// </summary>
+        public string Speciality;
+
         public SurgeonClass()
         {
         }
@@ -13,6 +18,7 @@
         {
             Id = surgeonInfo.Id;
             LastNameWithInitials = surgeonInfo.LastNameWithInitials;
+            Speciality = surgeonInfo.Speciality;
         }
 
         public static int Compare(SurgeonClass surgeonInfo1, SurgeonClass surgeonInfo2)

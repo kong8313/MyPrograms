@@ -57,6 +57,21 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkBoxIsPlanEnabled = new System.Windows.Forms.CheckBox();
             this.tabPageAnamnes = new System.Windows.Forms.TabPage();
+            this.groupBoxRiskTeo = new System.Windows.Forms.GroupBox();
+            this.checkBoxTeoRisk = new System.Windows.Forms.CheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.comboBoxTeoRisk = new System.Windows.Forms.ComboBox();
+            this.checkBox12 = new System.Windows.Forms.CheckBox();
+            this.checkBox11 = new System.Windows.Forms.CheckBox();
+            this.checkBox10 = new System.Windows.Forms.CheckBox();
+            this.checkBox9 = new System.Windows.Forms.CheckBox();
+            this.checkBox8 = new System.Windows.Forms.CheckBox();
+            this.checkBox7 = new System.Windows.Forms.CheckBox();
+            this.checkBox6 = new System.Windows.Forms.CheckBox();
+            this.checkBox5 = new System.Windows.Forms.CheckBox();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.label121 = new System.Windows.Forms.Label();
             this.dateTimePickerDateTrauma = new System.Windows.Forms.DateTimePicker();
             this.groupBoxAnVitae = new System.Windows.Forms.GroupBox();
@@ -84,17 +99,22 @@
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPageStPraesens = new System.Windows.Forms.TabPage();
-            this.label122 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label38 = new System.Windows.Forms.Label();
-            this.textBoxStPraesensOther = new System.Windows.Forms.TextBox();
             this.label37 = new System.Windows.Forms.Label();
+            this.textBoxStPraesensTemperature = new System.Windows.Forms.TextBox();
+            this.numericUpDown6 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown7 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
             this.label36 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.textBox18 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.label122 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.textBoxStPraesensOther = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
@@ -106,7 +126,6 @@
             this.textBox21 = new System.Windows.Forms.TextBox();
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox18 = new System.Windows.Forms.TextBox();
             this.textBox17 = new System.Windows.Forms.TextBox();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.textBox15 = new System.Windows.Forms.TextBox();
@@ -130,7 +149,6 @@
             this.label23 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -239,155 +257,23 @@
             this.label63 = new System.Windows.Forms.Label();
             this.label62 = new System.Windows.Forms.Label();
             this.label111 = new System.Windows.Forms.Label();
-            this.tabPageStLocalis2 = new System.Windows.Forms.TabPage();
-            this.label94 = new System.Windows.Forms.Label();
-            this.groupBoxRightHand = new System.Windows.Forms.GroupBox();
-            this.label119 = new System.Windows.Forms.Label();
-            this.label118 = new System.Windows.Forms.Label();
-            this.label116 = new System.Windows.Forms.Label();
-            this.label105 = new System.Windows.Forms.Label();
-            this.label102 = new System.Windows.Forms.Label();
-            this.comboBox223 = new System.Windows.Forms.ComboBox();
-            this.comboBox222 = new System.Windows.Forms.ComboBox();
-            this.comboBox221 = new System.Windows.Forms.ComboBox();
-            this.comboBox220 = new System.Windows.Forms.ComboBox();
-            this.comboBox219 = new System.Windows.Forms.ComboBox();
-            this.comboBox218 = new System.Windows.Forms.ComboBox();
-            this.comboBox217 = new System.Windows.Forms.ComboBox();
-            this.comboBox216 = new System.Windows.Forms.ComboBox();
-            this.comboBox215 = new System.Windows.Forms.ComboBox();
-            this.comboBox214 = new System.Windows.Forms.ComboBox();
-            this.comboBox213 = new System.Windows.Forms.ComboBox();
-            this.comboBox212 = new System.Windows.Forms.ComboBox();
-            this.comboBox211 = new System.Windows.Forms.ComboBox();
-            this.comboBox210 = new System.Windows.Forms.ComboBox();
-            this.comboBox209 = new System.Windows.Forms.ComboBox();
-            this.comboBox208 = new System.Windows.Forms.ComboBox();
-            this.comboBox207 = new System.Windows.Forms.ComboBox();
-            this.comboBox206 = new System.Windows.Forms.ComboBox();
-            this.comboBox205 = new System.Windows.Forms.ComboBox();
-            this.comboBox204 = new System.Windows.Forms.ComboBox();
-            this.comboBox203 = new System.Windows.Forms.ComboBox();
-            this.comboBox202 = new System.Windows.Forms.ComboBox();
-            this.comboBox201 = new System.Windows.Forms.ComboBox();
-            this.comboBox200 = new System.Windows.Forms.ComboBox();
-            this.label103 = new System.Windows.Forms.Label();
-            this.label104 = new System.Windows.Forms.Label();
-            this.label106 = new System.Windows.Forms.Label();
-            this.label107 = new System.Windows.Forms.Label();
-            this.label109 = new System.Windows.Forms.Label();
-            this.label120 = new System.Windows.Forms.Label();
-            this.textBox110 = new System.Windows.Forms.TextBox();
-            this.groupBoxLeftHand = new System.Windows.Forms.GroupBox();
-            this.label115 = new System.Windows.Forms.Label();
-            this.label114 = new System.Windows.Forms.Label();
-            this.label113 = new System.Windows.Forms.Label();
-            this.label108 = new System.Windows.Forms.Label();
-            this.comboBox123 = new System.Windows.Forms.ComboBox();
-            this.comboBox122 = new System.Windows.Forms.ComboBox();
-            this.comboBox121 = new System.Windows.Forms.ComboBox();
-            this.comboBox120 = new System.Windows.Forms.ComboBox();
-            this.comboBox119 = new System.Windows.Forms.ComboBox();
-            this.comboBox118 = new System.Windows.Forms.ComboBox();
-            this.comboBox117 = new System.Windows.Forms.ComboBox();
-            this.comboBox116 = new System.Windows.Forms.ComboBox();
-            this.comboBox115 = new System.Windows.Forms.ComboBox();
-            this.comboBox114 = new System.Windows.Forms.ComboBox();
-            this.comboBox113 = new System.Windows.Forms.ComboBox();
-            this.comboBox112 = new System.Windows.Forms.ComboBox();
-            this.comboBox111 = new System.Windows.Forms.ComboBox();
-            this.comboBox110 = new System.Windows.Forms.ComboBox();
-            this.comboBox109 = new System.Windows.Forms.ComboBox();
-            this.comboBox108 = new System.Windows.Forms.ComboBox();
-            this.comboBox107 = new System.Windows.Forms.ComboBox();
-            this.comboBox106 = new System.Windows.Forms.ComboBox();
-            this.comboBox105 = new System.Windows.Forms.ComboBox();
-            this.comboBox104 = new System.Windows.Forms.ComboBox();
-            this.comboBox103 = new System.Windows.Forms.ComboBox();
-            this.comboBox102 = new System.Windows.Forms.ComboBox();
-            this.comboBox101 = new System.Windows.Forms.ComboBox();
-            this.comboBox100 = new System.Windows.Forms.ComboBox();
-            this.label95 = new System.Windows.Forms.Label();
-            this.label100 = new System.Windows.Forms.Label();
-            this.label99 = new System.Windows.Forms.Label();
-            this.label98 = new System.Windows.Forms.Label();
-            this.label97 = new System.Windows.Forms.Label();
-            this.label96 = new System.Windows.Forms.Label();
-            this.numericUpDown5 = new System.Windows.Forms.NumericUpDown();
-            this.comboBox16 = new System.Windows.Forms.ComboBox();
-            this.comboBox15 = new System.Windows.Forms.ComboBox();
-            this.textBox109 = new System.Windows.Forms.TextBox();
-            this.textBox108 = new System.Windows.Forms.TextBox();
-            this.textBox107 = new System.Windows.Forms.TextBox();
-            this.textBox106 = new System.Windows.Forms.TextBox();
-            this.textBox105 = new System.Windows.Forms.TextBox();
-            this.textBox104 = new System.Windows.Forms.TextBox();
-            this.textBox103 = new System.Windows.Forms.TextBox();
-            this.textBox102 = new System.Windows.Forms.TextBox();
-            this.textBox101 = new System.Windows.Forms.TextBox();
-            this.textBox100 = new System.Windows.Forms.TextBox();
-            this.comboBox14 = new System.Windows.Forms.ComboBox();
-            this.comboBox13 = new System.Windows.Forms.ComboBox();
-            this.comboBox12 = new System.Windows.Forms.ComboBox();
-            this.comboBox11 = new System.Windows.Forms.ComboBox();
-            this.comboBox10 = new System.Windows.Forms.ComboBox();
-            this.comboBox9 = new System.Windows.Forms.ComboBox();
-            this.comboBox8 = new System.Windows.Forms.ComboBox();
-            this.comboBox7 = new System.Windows.Forms.ComboBox();
-            this.comboBoxWhichHand = new System.Windows.Forms.ComboBox();
-            this.label93 = new System.Windows.Forms.Label();
-            this.label92 = new System.Windows.Forms.Label();
-            this.label91 = new System.Windows.Forms.Label();
-            this.label90 = new System.Windows.Forms.Label();
-            this.label89 = new System.Windows.Forms.Label();
-            this.label88 = new System.Windows.Forms.Label();
-            this.label87 = new System.Windows.Forms.Label();
-            this.label86 = new System.Windows.Forms.Label();
-            this.label85 = new System.Windows.Forms.Label();
-            this.label84 = new System.Windows.Forms.Label();
-            this.label83 = new System.Windows.Forms.Label();
-            this.label82 = new System.Windows.Forms.Label();
-            this.label81 = new System.Windows.Forms.Label();
-            this.label80 = new System.Windows.Forms.Label();
-            this.label79 = new System.Windows.Forms.Label();
-            this.label78 = new System.Windows.Forms.Label();
-            this.label77 = new System.Windows.Forms.Label();
-            this.label76 = new System.Windows.Forms.Label();
-            this.label41 = new System.Windows.Forms.Label();
-            this.checkBoxIsHandDamage = new System.Windows.Forms.CheckBox();
-            this.label117 = new System.Windows.Forms.Label();
-            this.groupBoxRiskTeo = new System.Windows.Forms.GroupBox();
-            this.comboBoxTeoRisk = new System.Windows.Forms.ComboBox();
-            this.checkBox12 = new System.Windows.Forms.CheckBox();
-            this.checkBox11 = new System.Windows.Forms.CheckBox();
-            this.checkBox10 = new System.Windows.Forms.CheckBox();
-            this.checkBox9 = new System.Windows.Forms.CheckBox();
-            this.checkBox8 = new System.Windows.Forms.CheckBox();
-            this.checkBox7 = new System.Windows.Forms.CheckBox();
-            this.checkBox6 = new System.Windows.Forms.CheckBox();
-            this.checkBox5 = new System.Windows.Forms.CheckBox();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.checkBoxTeoRisk = new System.Windows.Forms.CheckBox();
+            this.checkBoxMedicalInspectionWithBoss = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPageGeneral.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBoxPlan.SuspendLayout();
             this.tabPageAnamnes.SuspendLayout();
+            this.groupBoxRiskTeo.SuspendLayout();
             this.groupBoxAnVitae.SuspendLayout();
             this.tabPageStPraesens.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.tabPageStLocalis1.SuspendLayout();
-            this.tabPageStLocalis2.SuspendLayout();
-            this.groupBoxRightHand.SuspendLayout();
-            this.groupBoxLeftHand.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).BeginInit();
-            this.groupBoxRiskTeo.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDocuments
@@ -400,7 +286,7 @@
             this.buttonDocuments.Location = new System.Drawing.Point(26, 434);
             this.buttonDocuments.Name = "buttonDocuments";
             this.buttonDocuments.Size = new System.Drawing.Size(40, 40);
-            this.buttonDocuments.TabIndex = 82;
+            this.buttonDocuments.TabIndex = 72;
             this.buttonDocuments.TabStop = false;
             this.buttonDocuments.UseVisualStyleBackColor = true;
             this.buttonDocuments.Click += new System.EventHandler(this.buttonDocuments_Click);
@@ -417,7 +303,7 @@
             this.buttonOk.Location = new System.Drawing.Point(493, 434);
             this.buttonOk.Name = "buttonOk";
             this.buttonOk.Size = new System.Drawing.Size(40, 40);
-            this.buttonOk.TabIndex = 81;
+            this.buttonOk.TabIndex = 80;
             this.buttonOk.TabStop = false;
             this.buttonOk.UseVisualStyleBackColor = true;
             this.buttonOk.Click += new System.EventHandler(this.buttonOk_Click);
@@ -434,7 +320,7 @@
             this.buttonClose.Location = new System.Drawing.Point(564, 434);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(40, 40);
-            this.buttonClose.TabIndex = 80;
+            this.buttonClose.TabIndex = 81;
             this.buttonClose.TabStop = false;
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
@@ -450,7 +336,6 @@
             this.tabControl1.Controls.Add(this.tabPageAnamnes);
             this.tabControl1.Controls.Add(this.tabPageStPraesens);
             this.tabControl1.Controls.Add(this.tabPageStLocalis1);
-            this.tabControl1.Controls.Add(this.tabPageStLocalis2);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -640,15 +525,18 @@
             this.groupBoxPlan.Controls.Add(this.comboBoxInspectionPlan);
             this.groupBoxPlan.Controls.Add(this.label1);
             this.groupBoxPlan.Controls.Add(this.checkBoxIsPlanEnabled);
+            this.groupBoxPlan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBoxPlan.Location = new System.Drawing.Point(10, 6);
             this.groupBoxPlan.Name = "groupBoxPlan";
             this.groupBoxPlan.Size = new System.Drawing.Size(353, 111);
             this.groupBoxPlan.TabIndex = 1;
             this.groupBoxPlan.TabStop = false;
+            this.groupBoxPlan.Text = "    План обследования и лечения";
             // 
             // comboBoxTreatmentType
             // 
             this.comboBoxTreatmentType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxTreatmentType.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxTreatmentType.FormattingEnabled = true;
             this.comboBoxTreatmentType.Items.AddRange(new object[] {
             "консервативное",
@@ -661,6 +549,7 @@
             // label123
             // 
             this.label123.AutoSize = true;
+            this.label123.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label123.Location = new System.Drawing.Point(6, 68);
             this.label123.Name = "label123";
             this.label123.Size = new System.Drawing.Size(50, 13);
@@ -669,6 +558,7 @@
             // 
             // comboBoxInspectionPlan
             // 
+            this.comboBoxInspectionPlan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxInspectionPlan.FormattingEnabled = true;
             this.comboBoxInspectionPlan.Items.AddRange(new object[] {
             "ОАК ОАМ ЭКГ биохимический анализ крови",
@@ -682,6 +572,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(6, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 13);
@@ -696,9 +587,8 @@
             this.checkBoxIsPlanEnabled.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.checkBoxIsPlanEnabled.Location = new System.Drawing.Point(6, 0);
             this.checkBoxIsPlanEnabled.Name = "checkBoxIsPlanEnabled";
-            this.checkBoxIsPlanEnabled.Size = new System.Drawing.Size(207, 17);
+            this.checkBoxIsPlanEnabled.Size = new System.Drawing.Size(15, 14);
             this.checkBoxIsPlanEnabled.TabIndex = 1;
-            this.checkBoxIsPlanEnabled.Text = "План обследования и лечения";
             this.checkBoxIsPlanEnabled.UseVisualStyleBackColor = true;
             this.checkBoxIsPlanEnabled.CheckedChanged += new System.EventHandler(this.checkBoxIsPlanEnabled_CheckedChanged);
             // 
@@ -734,6 +624,200 @@
             this.tabPageAnamnes.TabIndex = 1;
             this.tabPageAnamnes.Text = "Анамнез";
             this.tabPageAnamnes.UseVisualStyleBackColor = true;
+            // 
+            // groupBoxRiskTeo
+            // 
+            this.groupBoxRiskTeo.Controls.Add(this.checkBoxTeoRisk);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox1);
+            this.groupBoxRiskTeo.Controls.Add(this.comboBoxTeoRisk);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox12);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox11);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox10);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox9);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox8);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox7);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox6);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox5);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox4);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox3);
+            this.groupBoxRiskTeo.Controls.Add(this.checkBox2);
+            this.groupBoxRiskTeo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBoxRiskTeo.Location = new System.Drawing.Point(440, 135);
+            this.groupBoxRiskTeo.Name = "groupBoxRiskTeo";
+            this.groupBoxRiskTeo.Size = new System.Drawing.Size(466, 253);
+            this.groupBoxRiskTeo.TabIndex = 23;
+            this.groupBoxRiskTeo.TabStop = false;
+            this.groupBoxRiskTeo.Text = "     Риск ТЭО";
+            // 
+            // checkBoxTeoRisk
+            // 
+            this.checkBoxTeoRisk.AutoSize = true;
+            this.checkBoxTeoRisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxTeoRisk.Location = new System.Drawing.Point(9, 0);
+            this.checkBoxTeoRisk.Name = "checkBoxTeoRisk";
+            this.checkBoxTeoRisk.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxTeoRisk.TabIndex = 22;
+            this.checkBoxTeoRisk.UseVisualStyleBackColor = true;
+            this.checkBoxTeoRisk.CheckedChanged += new System.EventHandler(this.checkBoxTeoRisk_CheckedChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Enabled = false;
+            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(6, 50);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(374, 17);
+            this.checkBox1.TabIndex = 122;
+            this.checkBox1.Text = "1. Венозный тромбоз и ТЭЛА в анамнезе у пациента (тромбофилия)";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxTeoRisk
+            // 
+            this.comboBoxTeoRisk.Enabled = false;
+            this.comboBoxTeoRisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxTeoRisk.FormattingEnabled = true;
+            this.comboBoxTeoRisk.Items.AddRange(new object[] {
+            "отсутствует",
+            "низкий",
+            "умеренный",
+            "высокий"});
+            this.comboBoxTeoRisk.Location = new System.Drawing.Point(6, 19);
+            this.comboBoxTeoRisk.Name = "comboBoxTeoRisk";
+            this.comboBoxTeoRisk.Size = new System.Drawing.Size(436, 21);
+            this.comboBoxTeoRisk.TabIndex = 121;
+            // 
+            // checkBox12
+            // 
+            this.checkBox12.AutoSize = true;
+            this.checkBox12.Enabled = false;
+            this.checkBox12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox12.Location = new System.Drawing.Point(306, 228);
+            this.checkBox12.Name = "checkBox12";
+            this.checkBox12.Size = new System.Drawing.Size(136, 17);
+            this.checkBox12.TabIndex = 133;
+            this.checkBox12.Text = "12. Онкозаболевание";
+            this.checkBox12.UseVisualStyleBackColor = true;
+            // 
+            // checkBox11
+            // 
+            this.checkBox11.AutoSize = true;
+            this.checkBox11.Enabled = false;
+            this.checkBox11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox11.Location = new System.Drawing.Point(150, 228);
+            this.checkBox11.Name = "checkBox11";
+            this.checkBox11.Size = new System.Drawing.Size(139, 17);
+            this.checkBox11.TabIndex = 132;
+            this.checkBox11.Text = "11. Прием эстрогенов";
+            this.checkBox11.UseVisualStyleBackColor = true;
+            // 
+            // checkBox10
+            // 
+            this.checkBox10.AutoSize = true;
+            this.checkBox10.Enabled = false;
+            this.checkBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox10.Location = new System.Drawing.Point(6, 228);
+            this.checkBox10.Name = "checkBox10";
+            this.checkBox10.Size = new System.Drawing.Size(132, 17);
+            this.checkBox10.TabIndex = 131;
+            this.checkBox10.Text = "10. Сахарный диабет";
+            this.checkBox10.UseVisualStyleBackColor = true;
+            // 
+            // checkBox9
+            // 
+            this.checkBox9.AutoSize = true;
+            this.checkBox9.Enabled = false;
+            this.checkBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox9.Location = new System.Drawing.Point(6, 205);
+            this.checkBox9.Name = "checkBox9";
+            this.checkBox9.Size = new System.Drawing.Size(437, 17);
+            this.checkBox9.TabIndex = 130;
+            this.checkBox9.Text = "9. Иммобилизация нижней конечности с пребыванием в постели 3 и более дней";
+            this.checkBox9.UseVisualStyleBackColor = true;
+            // 
+            // checkBox8
+            // 
+            this.checkBox8.AutoSize = true;
+            this.checkBox8.Enabled = false;
+            this.checkBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox8.Location = new System.Drawing.Point(336, 182);
+            this.checkBox8.Name = "checkBox8";
+            this.checkBox8.Size = new System.Drawing.Size(90, 17);
+            this.checkBox8.TabIndex = 129;
+            this.checkBox8.Text = "8. Ожирение";
+            this.checkBox8.UseVisualStyleBackColor = true;
+            // 
+            // checkBox7
+            // 
+            this.checkBox7.AutoSize = true;
+            this.checkBox7.Enabled = false;
+            this.checkBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox7.Location = new System.Drawing.Point(6, 182);
+            this.checkBox7.Name = "checkBox7";
+            this.checkBox7.Size = new System.Drawing.Size(304, 17);
+            this.checkBox7.TabIndex = 128;
+            this.checkBox7.Text = "7. Хроническое неспецифическое заболевание легких";
+            this.checkBox7.UseVisualStyleBackColor = true;
+            // 
+            // checkBox6
+            // 
+            this.checkBox6.AutoSize = true;
+            this.checkBox6.Enabled = false;
+            this.checkBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox6.Location = new System.Drawing.Point(6, 160);
+            this.checkBox6.Name = "checkBox6";
+            this.checkBox6.Size = new System.Drawing.Size(136, 17);
+            this.checkBox6.TabIndex = 127;
+            this.checkBox6.Text = "6. Инфаркт миокарда";
+            this.checkBox6.UseVisualStyleBackColor = true;
+            // 
+            // checkBox5
+            // 
+            this.checkBox5.AutoSize = true;
+            this.checkBox5.Enabled = false;
+            this.checkBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox5.Location = new System.Drawing.Point(6, 138);
+            this.checkBox5.Name = "checkBox5";
+            this.checkBox5.Size = new System.Drawing.Size(185, 17);
+            this.checkBox5.TabIndex = 126;
+            this.checkBox5.Text = "5. Варикозное расширение вен";
+            this.checkBox5.UseVisualStyleBackColor = true;
+            // 
+            // checkBox4
+            // 
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Enabled = false;
+            this.checkBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox4.Location = new System.Drawing.Point(6, 116);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(161, 17);
+            this.checkBox4.TabIndex = 125;
+            this.checkBox4.Text = "4. Прием антикоагулянтов";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            // 
+            // checkBox3
+            // 
+            this.checkBox3.AutoSize = true;
+            this.checkBox3.Enabled = false;
+            this.checkBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox3.Location = new System.Drawing.Point(6, 94);
+            this.checkBox3.Name = "checkBox3";
+            this.checkBox3.Size = new System.Drawing.Size(420, 17);
+            this.checkBox3.TabIndex = 124;
+            this.checkBox3.Text = "3. Венозный тромбоз и ТЭЛА у биологических родственников (тромбофилия)";
+            this.checkBox3.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Enabled = false;
+            this.checkBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox2.Location = new System.Drawing.Point(6, 72);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(264, 17);
+            this.checkBox2.TabIndex = 123;
+            this.checkBox2.Text = "2. Постромботическая болезнь (тромбофилия)";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // label121
             // 
@@ -996,17 +1080,23 @@
             // 
             // tabPageStPraesens
             // 
-            this.tabPageStPraesens.Controls.Add(this.label122);
-            this.tabPageStPraesens.Controls.Add(this.label39);
-            this.tabPageStPraesens.Controls.Add(this.label38);
-            this.tabPageStPraesens.Controls.Add(this.textBoxStPraesensOther);
+            this.tabPageStPraesens.Controls.Add(this.textBox11);
             this.tabPageStPraesens.Controls.Add(this.label37);
+            this.tabPageStPraesens.Controls.Add(this.textBoxStPraesensTemperature);
+            this.tabPageStPraesens.Controls.Add(this.numericUpDown6);
+            this.tabPageStPraesens.Controls.Add(this.numericUpDown7);
+            this.tabPageStPraesens.Controls.Add(this.numericUpDown5);
             this.tabPageStPraesens.Controls.Add(this.label36);
             this.tabPageStPraesens.Controls.Add(this.label35);
             this.tabPageStPraesens.Controls.Add(this.label34);
             this.tabPageStPraesens.Controls.Add(this.label33);
+            this.tabPageStPraesens.Controls.Add(this.textBox18);
+            this.tabPageStPraesens.Controls.Add(this.label2);
+            this.tabPageStPraesens.Controls.Add(this.comboBox5);
+            this.tabPageStPraesens.Controls.Add(this.label122);
+            this.tabPageStPraesens.Controls.Add(this.label39);
+            this.tabPageStPraesens.Controls.Add(this.textBoxStPraesensOther);
             this.tabPageStPraesens.Controls.Add(this.label32);
-            this.tabPageStPraesens.Controls.Add(this.label31);
             this.tabPageStPraesens.Controls.Add(this.label30);
             this.tabPageStPraesens.Controls.Add(this.label29);
             this.tabPageStPraesens.Controls.Add(this.label28);
@@ -1018,14 +1108,12 @@
             this.tabPageStPraesens.Controls.Add(this.textBox21);
             this.tabPageStPraesens.Controls.Add(this.textBox20);
             this.tabPageStPraesens.Controls.Add(this.textBox19);
-            this.tabPageStPraesens.Controls.Add(this.textBox18);
             this.tabPageStPraesens.Controls.Add(this.textBox17);
             this.tabPageStPraesens.Controls.Add(this.textBox16);
             this.tabPageStPraesens.Controls.Add(this.textBox15);
             this.tabPageStPraesens.Controls.Add(this.textBox14);
             this.tabPageStPraesens.Controls.Add(this.textBox13);
             this.tabPageStPraesens.Controls.Add(this.textBox12);
-            this.tabPageStPraesens.Controls.Add(this.textBox11);
             this.tabPageStPraesens.Controls.Add(this.textBox10);
             this.tabPageStPraesens.Controls.Add(this.textBox9);
             this.tabPageStPraesens.Controls.Add(this.comboBox4);
@@ -1042,7 +1130,6 @@
             this.tabPageStPraesens.Controls.Add(this.label23);
             this.tabPageStPraesens.Controls.Add(this.label22);
             this.tabPageStPraesens.Controls.Add(this.label21);
-            this.tabPageStPraesens.Controls.Add(this.label20);
             this.tabPageStPraesens.Controls.Add(this.label19);
             this.tabPageStPraesens.Controls.Add(this.label18);
             this.tabPageStPraesens.Controls.Add(this.label16);
@@ -1055,32 +1142,172 @@
             this.tabPageStPraesens.Text = "St. praesens";
             this.tabPageStPraesens.UseVisualStyleBackColor = true;
             // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(251, 276);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(15, 13);
+            this.label37.TabIndex = 64;
+            this.label37.Text = "%";
+            // 
+            // textBoxStPraesensTemperature
+            // 
+            this.textBoxStPraesensTemperature.Location = new System.Drawing.Point(96, 271);
+            this.textBoxStPraesensTemperature.Name = "textBoxStPraesensTemperature";
+            this.textBoxStPraesensTemperature.Size = new System.Drawing.Size(41, 20);
+            this.textBoxStPraesensTemperature.TabIndex = 13;
+            this.textBoxStPraesensTemperature.Text = "36,6";
+            // 
+            // numericUpDown6
+            // 
+            this.numericUpDown6.Location = new System.Drawing.Point(313, 272);
+            this.numericUpDown6.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown6.Name = "numericUpDown6";
+            this.numericUpDown6.Size = new System.Drawing.Size(49, 20);
+            this.numericUpDown6.TabIndex = 15;
+            this.numericUpDown6.Value = new decimal(new int[] {
+            170,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown7
+            // 
+            this.numericUpDown7.Location = new System.Drawing.Point(418, 272);
+            this.numericUpDown7.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown7.Name = "numericUpDown7";
+            this.numericUpDown7.Size = new System.Drawing.Size(43, 20);
+            this.numericUpDown7.TabIndex = 16;
+            this.numericUpDown7.Value = new decimal(new int[] {
+            70,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown5
+            // 
+            this.numericUpDown5.Location = new System.Drawing.Point(212, 272);
+            this.numericUpDown5.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.numericUpDown5.Name = "numericUpDown5";
+            this.numericUpDown5.Size = new System.Drawing.Size(37, 20);
+            this.numericUpDown5.TabIndex = 14;
+            this.numericUpDown5.Value = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(372, 274);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(43, 13);
+            this.label36.TabIndex = 59;
+            this.label36.Text = "Масса:";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(275, 274);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(34, 13);
+            this.label35.TabIndex = 58;
+            this.label35.Text = "Рост:";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(143, 274);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(63, 13);
+            this.label34.TabIndex = 57;
+            this.label34.Text = "Сатурация:";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(11, 274);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(86, 13);
+            this.label33.TabIndex = 56;
+            this.label33.Text = "Термоментрия:";
+            // 
+            // textBox18
+            // 
+            this.textBox18.Location = new System.Drawing.Point(596, 47);
+            this.textBox18.MaxLength = 200000;
+            this.textBox18.Multiline = true;
+            this.textBox18.Name = "textBox18";
+            this.textBox18.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox18.Size = new System.Drawing.Size(315, 240);
+            this.textBox18.TabIndex = 28;
+            this.textBox18.Text = resources.GetString("textBox18.Text");
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(11, 242);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 13);
+            this.label2.TabIndex = 54;
+            this.label2.Text = "Глазго:";
+            // 
+            // comboBox5
+            // 
+            this.comboBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox5.FormattingEnabled = true;
+            this.comboBox5.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15"});
+            this.comboBox5.Location = new System.Drawing.Point(59, 238);
+            this.comboBox5.Name = "comboBox5";
+            this.comboBox5.Size = new System.Drawing.Size(38, 21);
+            this.comboBox5.TabIndex = 8;
+            // 
             // label122
             // 
             this.label122.AutoSize = true;
             this.label122.Location = new System.Drawing.Point(482, 359);
             this.label122.Name = "label122";
-            this.label122.Size = new System.Drawing.Size(44, 13);
+            this.label122.Size = new System.Drawing.Size(47, 13);
             this.label122.TabIndex = 52;
-            this.label122.Text = "Прочее";
+            this.label122.Text = "Прочее:";
             // 
             // label39
             // 
             this.label39.AutoSize = true;
             this.label39.Location = new System.Drawing.Point(482, 298);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(110, 39);
+            this.label39.Size = new System.Drawing.Size(103, 39);
             this.label39.TabIndex = 50;
-            this.label39.Text = "Активные движения\r\nв неповрежденных \r\nконечностях";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(482, 265);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(102, 26);
-            this.label38.TabIndex = 49;
-            this.label38.Text = "Нагрузка на кости\r\nтаза, позвоночник";
+            this.label39.Text = "Костно-мышечная \r\nсистема вне зоны \r\nповреждения:";
             // 
             // textBoxStPraesensOther
             // 
@@ -1092,73 +1319,19 @@
             this.textBoxStPraesensOther.Size = new System.Drawing.Size(315, 58);
             this.textBoxStPraesensOther.TabIndex = 46;
             // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(482, 231);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(100, 26);
-            this.label37.TabIndex = 48;
-            this.label37.Text = "Физиологические\r\nотправления:";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(482, 198);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(61, 13);
-            this.label36.TabIndex = 47;
-            this.label36.Text = "Per rectum:";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(482, 162);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(85, 13);
-            this.label35.TabIndex = 46;
-            this.label35.Text = "Перистальтика";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(482, 117);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(85, 26);
-            this.label34.TabIndex = 45;
-            this.label34.Text = "Притупления в \r\nотлогих местах";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(482, 90);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(109, 13);
-            this.label33.TabIndex = 44;
-            this.label33.Text = "Печёночная тупость";
-            // 
             // label32
             // 
             this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(482, 54);
+            this.label32.Location = new System.Drawing.Point(482, 168);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(41, 13);
+            this.label32.Size = new System.Drawing.Size(44, 13);
             this.label32.TabIndex = 43;
-            this.label32.Text = "Живот";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(482, 18);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(24, 13);
-            this.label31.TabIndex = 42;
-            this.label31.Text = "PS:";
+            this.label32.Text = "Живот:";
             // 
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(11, 371);
+            this.label30.Location = new System.Drawing.Point(482, 18);
             this.label30.Name = "label30";
             this.label30.Size = new System.Drawing.Size(75, 13);
             this.label30.TabIndex = 41;
@@ -1167,25 +1340,25 @@
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(11, 335);
+            this.label29.Location = new System.Drawing.Point(11, 371);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(73, 13);
+            this.label29.Size = new System.Drawing.Size(76, 13);
             this.label29.TabIndex = 40;
-            this.label29.Text = "Тоны сердца";
+            this.label29.Text = "Тоны сердца:";
             // 
             // label28
             // 
             this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(11, 302);
+            this.label28.Location = new System.Drawing.Point(11, 338);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(86, 13);
+            this.label28.Size = new System.Drawing.Size(89, 13);
             this.label28.TabIndex = 39;
-            this.label28.Text = "Хрипы в лёгких";
+            this.label28.Text = "Хрипы в лёгких:";
             // 
             // label27
             // 
             this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(321, 273);
+            this.label27.Location = new System.Drawing.Point(321, 309);
             this.label27.Name = "label27";
             this.label27.Size = new System.Drawing.Size(10, 13);
             this.label27.TabIndex = 38;
@@ -1197,7 +1370,7 @@
             this.textBox25.Name = "textBox25";
             this.textBox25.Size = new System.Drawing.Size(315, 20);
             this.textBox25.TabIndex = 44;
-            this.textBox25.Text = "безболезненные, в полном объеме";
+            this.textBox25.Text = "без патологических изменений";
             // 
             // textBox24
             // 
@@ -1206,6 +1379,7 @@
             this.textBox24.Size = new System.Drawing.Size(315, 20);
             this.textBox24.TabIndex = 43;
             this.textBox24.Text = "безболезненная";
+            this.textBox24.Visible = false;
             // 
             // textBox23
             // 
@@ -1214,6 +1388,7 @@
             this.textBox23.Size = new System.Drawing.Size(315, 20);
             this.textBox23.TabIndex = 42;
             this.textBox23.Text = "без особенностей";
+            this.textBox23.Visible = false;
             // 
             // textBox22
             // 
@@ -1222,6 +1397,7 @@
             this.textBox22.Size = new System.Drawing.Size(315, 20);
             this.textBox22.TabIndex = 41;
             this.textBox22.Text = "без патологии";
+            this.textBox22.Visible = false;
             // 
             // textBox21
             // 
@@ -1230,6 +1406,7 @@
             this.textBox21.Size = new System.Drawing.Size(315, 20);
             this.textBox21.TabIndex = 40;
             this.textBox21.Text = "выслушивается";
+            this.textBox21.Visible = false;
             // 
             // textBox20
             // 
@@ -1238,6 +1415,7 @@
             this.textBox20.Size = new System.Drawing.Size(315, 20);
             this.textBox20.TabIndex = 29;
             this.textBox20.Text = "нет";
+            this.textBox20.Visible = false;
             // 
             // textBox19
             // 
@@ -1246,26 +1424,20 @@
             this.textBox19.Size = new System.Drawing.Size(315, 20);
             this.textBox19.TabIndex = 28;
             this.textBox19.Text = "сохранена";
-            // 
-            // textBox18
-            // 
-            this.textBox18.Location = new System.Drawing.Point(596, 51);
-            this.textBox18.Name = "textBox18";
-            this.textBox18.Size = new System.Drawing.Size(315, 20);
-            this.textBox18.TabIndex = 27;
-            this.textBox18.Text = "участвует в дыхании, мягкий, безболезненный во всех отделах";
+            this.textBox19.Visible = false;
             // 
             // textBox17
             // 
-            this.textBox17.Location = new System.Drawing.Point(596, 15);
+            this.textBox17.Location = new System.Drawing.Point(596, 47);
             this.textBox17.Name = "textBox17";
             this.textBox17.Size = new System.Drawing.Size(315, 20);
             this.textBox17.TabIndex = 26;
             this.textBox17.Text = "76 хорошего наполнения и напряжения";
+            this.textBox17.Visible = false;
             // 
             // textBox16
             // 
-            this.textBox16.Location = new System.Drawing.Point(146, 368);
+            this.textBox16.Location = new System.Drawing.Point(596, 15);
             this.textBox16.Name = "textBox16";
             this.textBox16.Size = new System.Drawing.Size(315, 20);
             this.textBox16.TabIndex = 25;
@@ -1273,7 +1445,7 @@
             // 
             // textBox15
             // 
-            this.textBox15.Location = new System.Drawing.Point(146, 299);
+            this.textBox15.Location = new System.Drawing.Point(146, 335);
             this.textBox15.Name = "textBox15";
             this.textBox15.Size = new System.Drawing.Size(315, 20);
             this.textBox15.TabIndex = 23;
@@ -1281,7 +1453,7 @@
             // 
             // textBox14
             // 
-            this.textBox14.Location = new System.Drawing.Point(146, 267);
+            this.textBox14.Location = new System.Drawing.Point(146, 303);
             this.textBox14.Name = "textBox14";
             this.textBox14.Size = new System.Drawing.Size(173, 20);
             this.textBox14.TabIndex = 21;
@@ -1302,14 +1474,17 @@
             this.textBox12.Size = new System.Drawing.Size(315, 20);
             this.textBox12.TabIndex = 6;
             this.textBox12.Text = "не пальпируется";
+            this.textBox12.Visible = false;
             // 
             // textBox11
             // 
             this.textBox11.Location = new System.Drawing.Point(146, 143);
+            this.textBox11.MaxLength = 200000;
+            this.textBox11.Multiline = true;
             this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(315, 20);
+            this.textBox11.Size = new System.Drawing.Size(315, 55);
             this.textBox11.TabIndex = 5;
-            this.textBox11.Text = "розовые, чистые";
+            this.textBox11.Text = "телесного цвета, обычной влажности, без патологических высыпаний";
             // 
             // textBox10
             // 
@@ -1335,7 +1510,7 @@
             "ясные",
             "приглушены",
             "глухие"});
-            this.comboBox4.Location = new System.Drawing.Point(146, 332);
+            this.comboBox4.Location = new System.Drawing.Point(146, 368);
             this.comboBox4.Name = "comboBox4";
             this.comboBox4.Size = new System.Drawing.Size(315, 21);
             this.comboBox4.TabIndex = 24;
@@ -1346,8 +1521,9 @@
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Items.AddRange(new object[] {
             "везикулярное",
+            "пуэрильное",
             "жесткое"});
-            this.comboBox3.Location = new System.Drawing.Point(338, 267);
+            this.comboBox3.Location = new System.Drawing.Point(338, 303);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(123, 21);
             this.comboBox3.TabIndex = 22;
@@ -1357,9 +1533,9 @@
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Items.AddRange(new object[] {
-            "удовлетворительное",
-            "пониженное",
-            "повышенное"});
+            "нормальное",
+            "гипотрофия",
+            "ожирение"});
             this.comboBox2.Location = new System.Drawing.Point(146, 111);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(315, 21);
@@ -1388,7 +1564,7 @@
             0});
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(49, 20);
-            this.numericUpDown4.TabIndex = 20;
+            this.numericUpDown4.TabIndex = 12;
             this.numericUpDown4.Value = new decimal(new int[] {
             70,
             0,
@@ -1406,7 +1582,7 @@
             0});
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(49, 20);
-            this.numericUpDown2.TabIndex = 9;
+            this.numericUpDown2.TabIndex = 10;
             this.numericUpDown2.Value = new decimal(new int[] {
             76,
             0,
@@ -1424,7 +1600,7 @@
             0});
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(49, 20);
-            this.numericUpDown3.TabIndex = 10;
+            this.numericUpDown3.TabIndex = 11;
             this.numericUpDown3.Value = new decimal(new int[] {
             120,
             0,
@@ -1434,7 +1610,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(175, 238);
+            this.numericUpDown1.Location = new System.Drawing.Point(178, 238);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -1442,7 +1618,7 @@
             0});
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(49, 20);
-            this.numericUpDown1.TabIndex = 8;
+            this.numericUpDown1.TabIndex = 9;
             this.numericUpDown1.Value = new decimal(new int[] {
             18,
             0,
@@ -1453,16 +1629,16 @@
             // label26
             // 
             this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(11, 270);
+            this.label26.Location = new System.Drawing.Point(11, 306);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(97, 13);
+            this.label26.Size = new System.Drawing.Size(100, 13);
             this.label26.TabIndex = 12;
-            this.label26.Text = "В лёгких дыхание";
+            this.label26.Text = "В лёгких дыхание:";
             // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(399, 243);
+            this.label25.Location = new System.Drawing.Point(400, 242);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(12, 13);
             this.label25.TabIndex = 11;
@@ -1471,29 +1647,29 @@
             // label24
             // 
             this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(328, 243);
+            this.label24.Location = new System.Drawing.Point(328, 242);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(23, 13);
+            this.label24.Size = new System.Drawing.Size(26, 13);
             this.label24.TabIndex = 10;
-            this.label24.Text = "АД";
+            this.label24.Text = "АД:";
             // 
             // label23
             // 
             this.label23.AutoSize = true;
             this.label23.Location = new System.Drawing.Point(235, 242);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(29, 13);
+            this.label23.Size = new System.Drawing.Size(32, 13);
             this.label23.TabIndex = 9;
-            this.label23.Text = "ЧСС";
+            this.label23.Text = "ЧСС:";
             // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(140, 242);
+            this.label22.Location = new System.Drawing.Point(143, 242);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(33, 13);
+            this.label22.Size = new System.Drawing.Size(36, 13);
             this.label22.TabIndex = 8;
-            this.label22.Text = "ЧДД";
+            this.label22.Text = "ЧДД:";
             // 
             // label21
             // 
@@ -1504,19 +1680,10 @@
             this.label21.TabIndex = 7;
             this.label21.Text = "Лимфатические узлы:";
             // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(11, 181);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(114, 13);
-            this.label20.TabIndex = 6;
-            this.label20.Text = "Щитовидная железа:";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(11, 135);
+            this.label19.Location = new System.Drawing.Point(11, 150);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(134, 39);
             this.label19.TabIndex = 5;
@@ -1525,11 +1692,11 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(11, 109);
+            this.label18.Location = new System.Drawing.Point(11, 107);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(53, 13);
+            this.label18.Size = new System.Drawing.Size(117, 26);
             this.label18.TabIndex = 4;
-            this.label18.Text = "Питание:";
+            this.label18.Text = "Состояние подкожно-\r\nжировой клетчатки:";
             // 
             // label16
             // 
@@ -2767,1696 +2934,26 @@
             this.label111.TabIndex = 104;
             this.label111.Text = "отведение и приведение (F: 30-0-25):";
             // 
-            // tabPageStLocalis2
-            // 
-            this.tabPageStLocalis2.Controls.Add(this.label94);
-            this.tabPageStLocalis2.Controls.Add(this.groupBoxRightHand);
-            this.tabPageStLocalis2.Controls.Add(this.label120);
-            this.tabPageStLocalis2.Controls.Add(this.textBox110);
-            this.tabPageStLocalis2.Controls.Add(this.groupBoxLeftHand);
-            this.tabPageStLocalis2.Controls.Add(this.numericUpDown5);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox16);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox15);
-            this.tabPageStLocalis2.Controls.Add(this.textBox109);
-            this.tabPageStLocalis2.Controls.Add(this.textBox108);
-            this.tabPageStLocalis2.Controls.Add(this.textBox107);
-            this.tabPageStLocalis2.Controls.Add(this.textBox106);
-            this.tabPageStLocalis2.Controls.Add(this.textBox105);
-            this.tabPageStLocalis2.Controls.Add(this.textBox104);
-            this.tabPageStLocalis2.Controls.Add(this.textBox103);
-            this.tabPageStLocalis2.Controls.Add(this.textBox102);
-            this.tabPageStLocalis2.Controls.Add(this.textBox101);
-            this.tabPageStLocalis2.Controls.Add(this.textBox100);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox14);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox13);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox12);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox11);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox10);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox9);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox8);
-            this.tabPageStLocalis2.Controls.Add(this.comboBox7);
-            this.tabPageStLocalis2.Controls.Add(this.comboBoxWhichHand);
-            this.tabPageStLocalis2.Controls.Add(this.label93);
-            this.tabPageStLocalis2.Controls.Add(this.label92);
-            this.tabPageStLocalis2.Controls.Add(this.label91);
-            this.tabPageStLocalis2.Controls.Add(this.label90);
-            this.tabPageStLocalis2.Controls.Add(this.label89);
-            this.tabPageStLocalis2.Controls.Add(this.label88);
-            this.tabPageStLocalis2.Controls.Add(this.label87);
-            this.tabPageStLocalis2.Controls.Add(this.label86);
-            this.tabPageStLocalis2.Controls.Add(this.label85);
-            this.tabPageStLocalis2.Controls.Add(this.label84);
-            this.tabPageStLocalis2.Controls.Add(this.label83);
-            this.tabPageStLocalis2.Controls.Add(this.label82);
-            this.tabPageStLocalis2.Controls.Add(this.label81);
-            this.tabPageStLocalis2.Controls.Add(this.label80);
-            this.tabPageStLocalis2.Controls.Add(this.label79);
-            this.tabPageStLocalis2.Controls.Add(this.label78);
-            this.tabPageStLocalis2.Controls.Add(this.label77);
-            this.tabPageStLocalis2.Controls.Add(this.label76);
-            this.tabPageStLocalis2.Controls.Add(this.label41);
-            this.tabPageStLocalis2.Controls.Add(this.checkBoxIsHandDamage);
-            this.tabPageStLocalis2.Controls.Add(this.label117);
-            this.tabPageStLocalis2.Location = new System.Drawing.Point(4, 22);
-            this.tabPageStLocalis2.Name = "tabPageStLocalis2";
-            this.tabPageStLocalis2.Size = new System.Drawing.Size(917, 403);
-            this.tabPageStLocalis2.TabIndex = 4;
-            this.tabPageStLocalis2.Text = "Изолированные травмы кисти";
-            this.tabPageStLocalis2.UseVisualStyleBackColor = true;
-            // 
-            // label94
-            // 
-            this.label94.AutoSize = true;
-            this.label94.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label94.Location = new System.Drawing.Point(350, 172);
-            this.label94.Name = "label94";
-            this.label94.Size = new System.Drawing.Size(202, 16);
-            this.label94.TabIndex = 20;
-            this.label94.Text = "Дистальнее повреждения:";
-            // 
-            // groupBoxRightHand
-            // 
-            this.groupBoxRightHand.Controls.Add(this.label119);
-            this.groupBoxRightHand.Controls.Add(this.label118);
-            this.groupBoxRightHand.Controls.Add(this.label116);
-            this.groupBoxRightHand.Controls.Add(this.label105);
-            this.groupBoxRightHand.Controls.Add(this.label102);
-            this.groupBoxRightHand.Controls.Add(this.comboBox223);
-            this.groupBoxRightHand.Controls.Add(this.comboBox222);
-            this.groupBoxRightHand.Controls.Add(this.comboBox221);
-            this.groupBoxRightHand.Controls.Add(this.comboBox220);
-            this.groupBoxRightHand.Controls.Add(this.comboBox219);
-            this.groupBoxRightHand.Controls.Add(this.comboBox218);
-            this.groupBoxRightHand.Controls.Add(this.comboBox217);
-            this.groupBoxRightHand.Controls.Add(this.comboBox216);
-            this.groupBoxRightHand.Controls.Add(this.comboBox215);
-            this.groupBoxRightHand.Controls.Add(this.comboBox214);
-            this.groupBoxRightHand.Controls.Add(this.comboBox213);
-            this.groupBoxRightHand.Controls.Add(this.comboBox212);
-            this.groupBoxRightHand.Controls.Add(this.comboBox211);
-            this.groupBoxRightHand.Controls.Add(this.comboBox210);
-            this.groupBoxRightHand.Controls.Add(this.comboBox209);
-            this.groupBoxRightHand.Controls.Add(this.comboBox208);
-            this.groupBoxRightHand.Controls.Add(this.comboBox207);
-            this.groupBoxRightHand.Controls.Add(this.comboBox206);
-            this.groupBoxRightHand.Controls.Add(this.comboBox205);
-            this.groupBoxRightHand.Controls.Add(this.comboBox204);
-            this.groupBoxRightHand.Controls.Add(this.comboBox203);
-            this.groupBoxRightHand.Controls.Add(this.comboBox202);
-            this.groupBoxRightHand.Controls.Add(this.comboBox201);
-            this.groupBoxRightHand.Controls.Add(this.comboBox200);
-            this.groupBoxRightHand.Controls.Add(this.label103);
-            this.groupBoxRightHand.Controls.Add(this.label104);
-            this.groupBoxRightHand.Controls.Add(this.label106);
-            this.groupBoxRightHand.Controls.Add(this.label107);
-            this.groupBoxRightHand.Controls.Add(this.label109);
-            this.groupBoxRightHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxRightHand.Location = new System.Drawing.Point(479, 186);
-            this.groupBoxRightHand.Name = "groupBoxRightHand";
-            this.groupBoxRightHand.Size = new System.Drawing.Size(432, 188);
-            this.groupBoxRightHand.TabIndex = 31;
-            this.groupBoxRightHand.TabStop = false;
-            this.groupBoxRightHand.Text = "Правая рука";
-            // 
-            // label119
-            // 
-            this.label119.AutoSize = true;
-            this.label119.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label119.Location = new System.Drawing.Point(6, 13);
-            this.label119.Name = "label119";
-            this.label119.Size = new System.Drawing.Size(105, 13);
-            this.label119.TabIndex = 81;
-            this.label119.Text = "Активное сгибание";
-            // 
-            // label118
-            // 
-            this.label118.AutoSize = true;
-            this.label118.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label118.Location = new System.Drawing.Point(10, 74);
-            this.label118.Name = "label118";
-            this.label118.Size = new System.Drawing.Size(117, 13);
-            this.label118.TabIndex = 80;
-            this.label118.Text = "Активное разгибание";
-            // 
-            // label116
-            // 
-            this.label116.AutoSize = true;
-            this.label116.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label116.Location = new System.Drawing.Point(10, 132);
-            this.label116.Name = "label116";
-            this.label116.Size = new System.Drawing.Size(108, 26);
-            this.label116.TabIndex = 79;
-            this.label116.Text = "Приведение, \r\nотведение I пальца:";
-            // 
-            // label105
-            // 
-            this.label105.AutoSize = true;
-            this.label105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label105.Location = new System.Drawing.Point(199, 132);
-            this.label105.Name = "label105";
-            this.label105.Size = new System.Drawing.Size(121, 26);
-            this.label105.TabIndex = 78;
-            this.label105.Text = "Сведение/разведение\r\nпальцев:";
-            // 
-            // label102
-            // 
-            this.label102.AutoSize = true;
-            this.label102.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label102.Location = new System.Drawing.Point(199, 163);
-            this.label102.Name = "label102";
-            this.label102.Size = new System.Drawing.Size(37, 13);
-            this.label102.TabIndex = 74;
-            this.label102.Text = "Кожа:";
-            // 
-            // comboBox223
-            // 
-            this.comboBox223.Enabled = false;
-            this.comboBox223.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox223.FormattingEnabled = true;
-            this.comboBox223.Items.AddRange(new object[] {
-            "теплая",
-            "холодная"});
-            this.comboBox223.Location = new System.Drawing.Point(242, 160);
-            this.comboBox223.Name = "comboBox223";
-            this.comboBox223.Size = new System.Drawing.Size(91, 21);
-            this.comboBox223.TabIndex = 73;
-            // 
-            // comboBox222
-            // 
-            this.comboBox222.Enabled = false;
-            this.comboBox222.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox222.FormattingEnabled = true;
-            this.comboBox222.Items.AddRange(new object[] {
-            "розовый",
-            "бледный",
-            "синюшный"});
-            this.comboBox222.Location = new System.Drawing.Point(77, 160);
-            this.comboBox222.Name = "comboBox222";
-            this.comboBox222.Size = new System.Drawing.Size(107, 21);
-            this.comboBox222.TabIndex = 72;
-            // 
-            // comboBox221
-            // 
-            this.comboBox221.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox221.Enabled = false;
-            this.comboBox221.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox221.FormattingEnabled = true;
-            this.comboBox221.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox221.Location = new System.Drawing.Point(330, 136);
-            this.comboBox221.Name = "comboBox221";
-            this.comboBox221.Size = new System.Drawing.Size(47, 21);
-            this.comboBox221.TabIndex = 71;
-            // 
-            // comboBox220
-            // 
-            this.comboBox220.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox220.Enabled = false;
-            this.comboBox220.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox220.FormattingEnabled = true;
-            this.comboBox220.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox220.Location = new System.Drawing.Point(129, 136);
-            this.comboBox220.Name = "comboBox220";
-            this.comboBox220.Size = new System.Drawing.Size(47, 21);
-            this.comboBox220.TabIndex = 70;
-            // 
-            // comboBox219
-            // 
-            this.comboBox219.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox219.Enabled = false;
-            this.comboBox219.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox219.FormattingEnabled = true;
-            this.comboBox219.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox219.Location = new System.Drawing.Point(368, 112);
-            this.comboBox219.Name = "comboBox219";
-            this.comboBox219.Size = new System.Drawing.Size(47, 21);
-            this.comboBox219.TabIndex = 69;
-            // 
-            // comboBox218
-            // 
-            this.comboBox218.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox218.Enabled = false;
-            this.comboBox218.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox218.FormattingEnabled = true;
-            this.comboBox218.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox218.Location = new System.Drawing.Point(300, 112);
-            this.comboBox218.Name = "comboBox218";
-            this.comboBox218.Size = new System.Drawing.Size(47, 21);
-            this.comboBox218.TabIndex = 68;
-            // 
-            // comboBox217
-            // 
-            this.comboBox217.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox217.Enabled = false;
-            this.comboBox217.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox217.FormattingEnabled = true;
-            this.comboBox217.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox217.Location = new System.Drawing.Point(230, 112);
-            this.comboBox217.Name = "comboBox217";
-            this.comboBox217.Size = new System.Drawing.Size(47, 21);
-            this.comboBox217.TabIndex = 67;
-            // 
-            // comboBox216
-            // 
-            this.comboBox216.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox216.Enabled = false;
-            this.comboBox216.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox216.FormattingEnabled = true;
-            this.comboBox216.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox216.Location = new System.Drawing.Point(161, 112);
-            this.comboBox216.Name = "comboBox216";
-            this.comboBox216.Size = new System.Drawing.Size(47, 21);
-            this.comboBox216.TabIndex = 66;
-            // 
-            // comboBox215
-            // 
-            this.comboBox215.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox215.Enabled = false;
-            this.comboBox215.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox215.FormattingEnabled = true;
-            this.comboBox215.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox215.Location = new System.Drawing.Point(95, 112);
-            this.comboBox215.Name = "comboBox215";
-            this.comboBox215.Size = new System.Drawing.Size(47, 21);
-            this.comboBox215.TabIndex = 65;
-            // 
-            // comboBox214
-            // 
-            this.comboBox214.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox214.Enabled = false;
-            this.comboBox214.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox214.FormattingEnabled = true;
-            this.comboBox214.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox214.Location = new System.Drawing.Point(368, 87);
-            this.comboBox214.Name = "comboBox214";
-            this.comboBox214.Size = new System.Drawing.Size(47, 21);
-            this.comboBox214.TabIndex = 64;
-            // 
-            // comboBox213
-            // 
-            this.comboBox213.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox213.Enabled = false;
-            this.comboBox213.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox213.FormattingEnabled = true;
-            this.comboBox213.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox213.Location = new System.Drawing.Point(300, 87);
-            this.comboBox213.Name = "comboBox213";
-            this.comboBox213.Size = new System.Drawing.Size(47, 21);
-            this.comboBox213.TabIndex = 63;
-            // 
-            // comboBox212
-            // 
-            this.comboBox212.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox212.Enabled = false;
-            this.comboBox212.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox212.FormattingEnabled = true;
-            this.comboBox212.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox212.Location = new System.Drawing.Point(230, 87);
-            this.comboBox212.Name = "comboBox212";
-            this.comboBox212.Size = new System.Drawing.Size(47, 21);
-            this.comboBox212.TabIndex = 62;
-            // 
-            // comboBox211
-            // 
-            this.comboBox211.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox211.Enabled = false;
-            this.comboBox211.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox211.FormattingEnabled = true;
-            this.comboBox211.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox211.Location = new System.Drawing.Point(161, 87);
-            this.comboBox211.Name = "comboBox211";
-            this.comboBox211.Size = new System.Drawing.Size(47, 21);
-            this.comboBox211.TabIndex = 61;
-            // 
-            // comboBox210
-            // 
-            this.comboBox210.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox210.Enabled = false;
-            this.comboBox210.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox210.FormattingEnabled = true;
-            this.comboBox210.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox210.Location = new System.Drawing.Point(95, 87);
-            this.comboBox210.Name = "comboBox210";
-            this.comboBox210.Size = new System.Drawing.Size(47, 21);
-            this.comboBox210.TabIndex = 60;
-            // 
-            // comboBox209
-            // 
-            this.comboBox209.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox209.Enabled = false;
-            this.comboBox209.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox209.FormattingEnabled = true;
-            this.comboBox209.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox209.Location = new System.Drawing.Point(368, 51);
-            this.comboBox209.Name = "comboBox209";
-            this.comboBox209.Size = new System.Drawing.Size(47, 21);
-            this.comboBox209.TabIndex = 59;
-            // 
-            // comboBox208
-            // 
-            this.comboBox208.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox208.Enabled = false;
-            this.comboBox208.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox208.FormattingEnabled = true;
-            this.comboBox208.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox208.Location = new System.Drawing.Point(300, 51);
-            this.comboBox208.Name = "comboBox208";
-            this.comboBox208.Size = new System.Drawing.Size(47, 21);
-            this.comboBox208.TabIndex = 58;
-            // 
-            // comboBox207
-            // 
-            this.comboBox207.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox207.Enabled = false;
-            this.comboBox207.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox207.FormattingEnabled = true;
-            this.comboBox207.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox207.Location = new System.Drawing.Point(231, 51);
-            this.comboBox207.Name = "comboBox207";
-            this.comboBox207.Size = new System.Drawing.Size(47, 21);
-            this.comboBox207.TabIndex = 57;
-            // 
-            // comboBox206
-            // 
-            this.comboBox206.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox206.Enabled = false;
-            this.comboBox206.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox206.FormattingEnabled = true;
-            this.comboBox206.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox206.Location = new System.Drawing.Point(162, 51);
-            this.comboBox206.Name = "comboBox206";
-            this.comboBox206.Size = new System.Drawing.Size(47, 21);
-            this.comboBox206.TabIndex = 56;
-            // 
-            // comboBox205
-            // 
-            this.comboBox205.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox205.Enabled = false;
-            this.comboBox205.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox205.FormattingEnabled = true;
-            this.comboBox205.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox205.Location = new System.Drawing.Point(96, 51);
-            this.comboBox205.Name = "comboBox205";
-            this.comboBox205.Size = new System.Drawing.Size(47, 21);
-            this.comboBox205.TabIndex = 55;
-            // 
-            // comboBox204
-            // 
-            this.comboBox204.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox204.Enabled = false;
-            this.comboBox204.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox204.FormattingEnabled = true;
-            this.comboBox204.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox204.Location = new System.Drawing.Point(369, 27);
-            this.comboBox204.Name = "comboBox204";
-            this.comboBox204.Size = new System.Drawing.Size(47, 21);
-            this.comboBox204.TabIndex = 54;
-            // 
-            // comboBox203
-            // 
-            this.comboBox203.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox203.Enabled = false;
-            this.comboBox203.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox203.FormattingEnabled = true;
-            this.comboBox203.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox203.Location = new System.Drawing.Point(300, 27);
-            this.comboBox203.Name = "comboBox203";
-            this.comboBox203.Size = new System.Drawing.Size(47, 21);
-            this.comboBox203.TabIndex = 53;
-            // 
-            // comboBox202
-            // 
-            this.comboBox202.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox202.Enabled = false;
-            this.comboBox202.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox202.FormattingEnabled = true;
-            this.comboBox202.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox202.Location = new System.Drawing.Point(231, 27);
-            this.comboBox202.Name = "comboBox202";
-            this.comboBox202.Size = new System.Drawing.Size(47, 21);
-            this.comboBox202.TabIndex = 52;
-            // 
-            // comboBox201
-            // 
-            this.comboBox201.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox201.Enabled = false;
-            this.comboBox201.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox201.FormattingEnabled = true;
-            this.comboBox201.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox201.Location = new System.Drawing.Point(162, 27);
-            this.comboBox201.Name = "comboBox201";
-            this.comboBox201.Size = new System.Drawing.Size(47, 21);
-            this.comboBox201.TabIndex = 51;
-            // 
-            // comboBox200
-            // 
-            this.comboBox200.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox200.Enabled = false;
-            this.comboBox200.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox200.FormattingEnabled = true;
-            this.comboBox200.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox200.Location = new System.Drawing.Point(96, 27);
-            this.comboBox200.Name = "comboBox200";
-            this.comboBox200.Size = new System.Drawing.Size(47, 21);
-            this.comboBox200.TabIndex = 50;
-            // 
-            // label103
-            // 
-            this.label103.AutoSize = true;
-            this.label103.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label103.Location = new System.Drawing.Point(40, 30);
-            this.label103.Name = "label103";
-            this.label103.Size = new System.Drawing.Size(381, 13);
-            this.label103.TabIndex = 21;
-            this.label103.Text = "ДМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет;";
-            // 
-            // label104
-            // 
-            this.label104.AutoSize = true;
-            this.label104.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label104.Location = new System.Drawing.Point(10, 163);
-            this.label104.Name = "label104";
-            this.label104.Size = new System.Drawing.Size(64, 13);
-            this.label104.TabIndex = 22;
-            this.label104.Text = "Цвет кожи:";
-            // 
-            // label106
-            // 
-            this.label106.AutoSize = true;
-            this.label106.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label106.Location = new System.Drawing.Point(41, 115);
-            this.label106.Name = "label106";
-            this.label106.Size = new System.Drawing.Size(377, 13);
-            this.label106.TabIndex = 24;
-            this.label106.Text = "ПМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет";
-            // 
-            // label107
-            // 
-            this.label107.AutoSize = true;
-            this.label107.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label107.Location = new System.Drawing.Point(39, 91);
-            this.label107.Name = "label107";
-            this.label107.Size = new System.Drawing.Size(378, 13);
-            this.label107.TabIndex = 25;
-            this.label107.Text = "ДМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет";
-            // 
-            // label109
-            // 
-            this.label109.AutoSize = true;
-            this.label109.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label109.Location = new System.Drawing.Point(41, 54);
-            this.label109.Name = "label109";
-            this.label109.Size = new System.Drawing.Size(377, 13);
-            this.label109.TabIndex = 26;
-            this.label109.Text = "ПМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет";
-            // 
-            // label120
-            // 
-            this.label120.AutoSize = true;
-            this.label120.Location = new System.Drawing.Point(790, 375);
-            this.label120.Name = "label120";
-            this.label120.Size = new System.Drawing.Size(53, 26);
-            this.label120.TabIndex = 45;
-            this.label120.Text = "исчезает\r\nчерез";
-            // 
-            // textBox110
-            // 
-            this.textBox110.Enabled = false;
-            this.textBox110.Location = new System.Drawing.Point(677, 378);
-            this.textBox110.Name = "textBox110";
-            this.textBox110.Size = new System.Drawing.Size(109, 20);
-            this.textBox110.TabIndex = 42;
-            this.textBox110.Text = "ногтевую пластинку";
-            // 
-            // groupBoxLeftHand
-            // 
-            this.groupBoxLeftHand.Controls.Add(this.label115);
-            this.groupBoxLeftHand.Controls.Add(this.label114);
-            this.groupBoxLeftHand.Controls.Add(this.label113);
-            this.groupBoxLeftHand.Controls.Add(this.label108);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox123);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox122);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox121);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox120);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox119);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox118);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox117);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox116);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox115);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox114);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox113);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox112);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox111);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox110);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox109);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox108);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox107);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox106);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox105);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox104);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox103);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox102);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox101);
-            this.groupBoxLeftHand.Controls.Add(this.comboBox100);
-            this.groupBoxLeftHand.Controls.Add(this.label95);
-            this.groupBoxLeftHand.Controls.Add(this.label100);
-            this.groupBoxLeftHand.Controls.Add(this.label99);
-            this.groupBoxLeftHand.Controls.Add(this.label98);
-            this.groupBoxLeftHand.Controls.Add(this.label97);
-            this.groupBoxLeftHand.Controls.Add(this.label96);
-            this.groupBoxLeftHand.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBoxLeftHand.Location = new System.Drawing.Point(7, 186);
-            this.groupBoxLeftHand.Name = "groupBoxLeftHand";
-            this.groupBoxLeftHand.Size = new System.Drawing.Size(421, 188);
-            this.groupBoxLeftHand.TabIndex = 30;
-            this.groupBoxLeftHand.TabStop = false;
-            this.groupBoxLeftHand.Text = "Левая рука";
-            // 
-            // label115
-            // 
-            this.label115.AutoSize = true;
-            this.label115.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label115.Location = new System.Drawing.Point(195, 132);
-            this.label115.Name = "label115";
-            this.label115.Size = new System.Drawing.Size(121, 26);
-            this.label115.TabIndex = 77;
-            this.label115.Text = "Сведение/разведение\r\nпальцев:";
-            // 
-            // label114
-            // 
-            this.label114.AutoSize = true;
-            this.label114.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label114.Location = new System.Drawing.Point(6, 13);
-            this.label114.Name = "label114";
-            this.label114.Size = new System.Drawing.Size(108, 13);
-            this.label114.TabIndex = 76;
-            this.label114.Text = "Активное сгибание ";
-            // 
-            // label113
-            // 
-            this.label113.AutoSize = true;
-            this.label113.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label113.Location = new System.Drawing.Point(6, 72);
-            this.label113.Name = "label113";
-            this.label113.Size = new System.Drawing.Size(117, 13);
-            this.label113.TabIndex = 75;
-            this.label113.Text = "Активное разгибание";
-            // 
-            // label108
-            // 
-            this.label108.AutoSize = true;
-            this.label108.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label108.Location = new System.Drawing.Point(195, 163);
-            this.label108.Name = "label108";
-            this.label108.Size = new System.Drawing.Size(37, 13);
-            this.label108.TabIndex = 74;
-            this.label108.Text = "Кожа:";
-            // 
-            // comboBox123
-            // 
-            this.comboBox123.Enabled = false;
-            this.comboBox123.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox123.FormattingEnabled = true;
-            this.comboBox123.Items.AddRange(new object[] {
-            "теплая",
-            "холодная"});
-            this.comboBox123.Location = new System.Drawing.Point(238, 160);
-            this.comboBox123.Name = "comboBox123";
-            this.comboBox123.Size = new System.Drawing.Size(91, 21);
-            this.comboBox123.TabIndex = 73;
-            // 
-            // comboBox122
-            // 
-            this.comboBox122.Enabled = false;
-            this.comboBox122.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox122.FormattingEnabled = true;
-            this.comboBox122.Items.AddRange(new object[] {
-            "розовый",
-            "бледный",
-            "синюшный"});
-            this.comboBox122.Location = new System.Drawing.Point(73, 160);
-            this.comboBox122.Name = "comboBox122";
-            this.comboBox122.Size = new System.Drawing.Size(107, 21);
-            this.comboBox122.TabIndex = 72;
-            // 
-            // comboBox121
-            // 
-            this.comboBox121.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox121.Enabled = false;
-            this.comboBox121.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox121.FormattingEnabled = true;
-            this.comboBox121.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox121.Location = new System.Drawing.Point(324, 136);
-            this.comboBox121.Name = "comboBox121";
-            this.comboBox121.Size = new System.Drawing.Size(47, 21);
-            this.comboBox121.TabIndex = 71;
-            // 
-            // comboBox120
-            // 
-            this.comboBox120.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox120.Enabled = false;
-            this.comboBox120.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox120.FormattingEnabled = true;
-            this.comboBox120.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox120.Location = new System.Drawing.Point(120, 136);
-            this.comboBox120.Name = "comboBox120";
-            this.comboBox120.Size = new System.Drawing.Size(47, 21);
-            this.comboBox120.TabIndex = 70;
-            // 
-            // comboBox119
-            // 
-            this.comboBox119.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox119.Enabled = false;
-            this.comboBox119.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox119.FormattingEnabled = true;
-            this.comboBox119.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox119.Location = new System.Drawing.Point(361, 111);
-            this.comboBox119.Name = "comboBox119";
-            this.comboBox119.Size = new System.Drawing.Size(47, 21);
-            this.comboBox119.TabIndex = 69;
-            // 
-            // comboBox118
-            // 
-            this.comboBox118.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox118.Enabled = false;
-            this.comboBox118.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox118.FormattingEnabled = true;
-            this.comboBox118.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox118.Location = new System.Drawing.Point(293, 111);
-            this.comboBox118.Name = "comboBox118";
-            this.comboBox118.Size = new System.Drawing.Size(47, 21);
-            this.comboBox118.TabIndex = 68;
-            // 
-            // comboBox117
-            // 
-            this.comboBox117.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox117.Enabled = false;
-            this.comboBox117.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox117.FormattingEnabled = true;
-            this.comboBox117.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox117.Location = new System.Drawing.Point(223, 111);
-            this.comboBox117.Name = "comboBox117";
-            this.comboBox117.Size = new System.Drawing.Size(47, 21);
-            this.comboBox117.TabIndex = 67;
-            // 
-            // comboBox116
-            // 
-            this.comboBox116.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox116.Enabled = false;
-            this.comboBox116.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox116.FormattingEnabled = true;
-            this.comboBox116.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox116.Location = new System.Drawing.Point(154, 111);
-            this.comboBox116.Name = "comboBox116";
-            this.comboBox116.Size = new System.Drawing.Size(47, 21);
-            this.comboBox116.TabIndex = 66;
-            // 
-            // comboBox115
-            // 
-            this.comboBox115.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox115.Enabled = false;
-            this.comboBox115.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox115.FormattingEnabled = true;
-            this.comboBox115.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox115.Location = new System.Drawing.Point(88, 111);
-            this.comboBox115.Name = "comboBox115";
-            this.comboBox115.Size = new System.Drawing.Size(47, 21);
-            this.comboBox115.TabIndex = 65;
-            // 
-            // comboBox114
-            // 
-            this.comboBox114.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox114.Enabled = false;
-            this.comboBox114.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox114.FormattingEnabled = true;
-            this.comboBox114.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox114.Location = new System.Drawing.Point(362, 87);
-            this.comboBox114.Name = "comboBox114";
-            this.comboBox114.Size = new System.Drawing.Size(47, 21);
-            this.comboBox114.TabIndex = 64;
-            // 
-            // comboBox113
-            // 
-            this.comboBox113.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox113.Enabled = false;
-            this.comboBox113.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox113.FormattingEnabled = true;
-            this.comboBox113.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox113.Location = new System.Drawing.Point(294, 87);
-            this.comboBox113.Name = "comboBox113";
-            this.comboBox113.Size = new System.Drawing.Size(47, 21);
-            this.comboBox113.TabIndex = 63;
-            // 
-            // comboBox112
-            // 
-            this.comboBox112.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox112.Enabled = false;
-            this.comboBox112.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox112.FormattingEnabled = true;
-            this.comboBox112.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox112.Location = new System.Drawing.Point(224, 87);
-            this.comboBox112.Name = "comboBox112";
-            this.comboBox112.Size = new System.Drawing.Size(47, 21);
-            this.comboBox112.TabIndex = 62;
-            // 
-            // comboBox111
-            // 
-            this.comboBox111.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox111.Enabled = false;
-            this.comboBox111.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox111.FormattingEnabled = true;
-            this.comboBox111.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox111.Location = new System.Drawing.Point(155, 87);
-            this.comboBox111.Name = "comboBox111";
-            this.comboBox111.Size = new System.Drawing.Size(47, 21);
-            this.comboBox111.TabIndex = 61;
-            // 
-            // comboBox110
-            // 
-            this.comboBox110.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox110.Enabled = false;
-            this.comboBox110.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox110.FormattingEnabled = true;
-            this.comboBox110.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox110.Location = new System.Drawing.Point(89, 87);
-            this.comboBox110.Name = "comboBox110";
-            this.comboBox110.Size = new System.Drawing.Size(47, 21);
-            this.comboBox110.TabIndex = 60;
-            // 
-            // comboBox109
-            // 
-            this.comboBox109.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox109.Enabled = false;
-            this.comboBox109.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox109.FormattingEnabled = true;
-            this.comboBox109.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox109.Location = new System.Drawing.Point(362, 51);
-            this.comboBox109.Name = "comboBox109";
-            this.comboBox109.Size = new System.Drawing.Size(47, 21);
-            this.comboBox109.TabIndex = 59;
-            // 
-            // comboBox108
-            // 
-            this.comboBox108.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox108.Enabled = false;
-            this.comboBox108.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox108.FormattingEnabled = true;
-            this.comboBox108.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox108.Location = new System.Drawing.Point(294, 51);
-            this.comboBox108.Name = "comboBox108";
-            this.comboBox108.Size = new System.Drawing.Size(47, 21);
-            this.comboBox108.TabIndex = 58;
-            // 
-            // comboBox107
-            // 
-            this.comboBox107.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox107.Enabled = false;
-            this.comboBox107.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox107.FormattingEnabled = true;
-            this.comboBox107.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox107.Location = new System.Drawing.Point(225, 51);
-            this.comboBox107.Name = "comboBox107";
-            this.comboBox107.Size = new System.Drawing.Size(47, 21);
-            this.comboBox107.TabIndex = 57;
-            // 
-            // comboBox106
-            // 
-            this.comboBox106.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox106.Enabled = false;
-            this.comboBox106.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox106.FormattingEnabled = true;
-            this.comboBox106.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox106.Location = new System.Drawing.Point(156, 51);
-            this.comboBox106.Name = "comboBox106";
-            this.comboBox106.Size = new System.Drawing.Size(47, 21);
-            this.comboBox106.TabIndex = 56;
-            // 
-            // comboBox105
-            // 
-            this.comboBox105.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox105.Enabled = false;
-            this.comboBox105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox105.FormattingEnabled = true;
-            this.comboBox105.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox105.Location = new System.Drawing.Point(90, 51);
-            this.comboBox105.Name = "comboBox105";
-            this.comboBox105.Size = new System.Drawing.Size(47, 21);
-            this.comboBox105.TabIndex = 55;
-            // 
-            // comboBox104
-            // 
-            this.comboBox104.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox104.Enabled = false;
-            this.comboBox104.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox104.FormattingEnabled = true;
-            this.comboBox104.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox104.Location = new System.Drawing.Point(363, 27);
-            this.comboBox104.Name = "comboBox104";
-            this.comboBox104.Size = new System.Drawing.Size(47, 21);
-            this.comboBox104.TabIndex = 54;
-            // 
-            // comboBox103
-            // 
-            this.comboBox103.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox103.Enabled = false;
-            this.comboBox103.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox103.FormattingEnabled = true;
-            this.comboBox103.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox103.Location = new System.Drawing.Point(294, 27);
-            this.comboBox103.Name = "comboBox103";
-            this.comboBox103.Size = new System.Drawing.Size(47, 21);
-            this.comboBox103.TabIndex = 53;
-            // 
-            // comboBox102
-            // 
-            this.comboBox102.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox102.Enabled = false;
-            this.comboBox102.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox102.FormattingEnabled = true;
-            this.comboBox102.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox102.Location = new System.Drawing.Point(225, 27);
-            this.comboBox102.Name = "comboBox102";
-            this.comboBox102.Size = new System.Drawing.Size(47, 21);
-            this.comboBox102.TabIndex = 52;
-            // 
-            // comboBox101
-            // 
-            this.comboBox101.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox101.Enabled = false;
-            this.comboBox101.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox101.FormattingEnabled = true;
-            this.comboBox101.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox101.Location = new System.Drawing.Point(156, 27);
-            this.comboBox101.Name = "comboBox101";
-            this.comboBox101.Size = new System.Drawing.Size(47, 21);
-            this.comboBox101.TabIndex = 51;
-            // 
-            // comboBox100
-            // 
-            this.comboBox100.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox100.Enabled = false;
-            this.comboBox100.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.comboBox100.FormattingEnabled = true;
-            this.comboBox100.Items.AddRange(new object[] {
-            "есть",
-            "нет"});
-            this.comboBox100.Location = new System.Drawing.Point(90, 27);
-            this.comboBox100.Name = "comboBox100";
-            this.comboBox100.Size = new System.Drawing.Size(47, 21);
-            this.comboBox100.TabIndex = 50;
-            // 
-            // label95
-            // 
-            this.label95.AutoSize = true;
-            this.label95.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label95.Location = new System.Drawing.Point(34, 30);
-            this.label95.Name = "label95";
-            this.label95.Size = new System.Drawing.Size(381, 13);
-            this.label95.TabIndex = 21;
-            this.label95.Text = "ДМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет;";
-            // 
-            // label100
-            // 
-            this.label100.AutoSize = true;
-            this.label100.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label100.Location = new System.Drawing.Point(6, 163);
-            this.label100.Name = "label100";
-            this.label100.Size = new System.Drawing.Size(64, 13);
-            this.label100.TabIndex = 22;
-            this.label100.Text = "Цвет кожи:";
-            // 
-            // label99
-            // 
-            this.label99.AutoSize = true;
-            this.label99.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label99.Location = new System.Drawing.Point(6, 132);
-            this.label99.Name = "label99";
-            this.label99.Size = new System.Drawing.Size(108, 26);
-            this.label99.TabIndex = 23;
-            this.label99.Text = "Приведение, \r\nотведение I пальца:";
-            // 
-            // label98
-            // 
-            this.label98.AutoSize = true;
-            this.label98.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label98.Location = new System.Drawing.Point(34, 114);
-            this.label98.Name = "label98";
-            this.label98.Size = new System.Drawing.Size(377, 13);
-            this.label98.TabIndex = 24;
-            this.label98.Text = "ПМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет";
-            // 
-            // label97
-            // 
-            this.label97.AutoSize = true;
-            this.label97.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label97.Location = new System.Drawing.Point(34, 90);
-            this.label97.Name = "label97";
-            this.label97.Size = new System.Drawing.Size(378, 13);
-            this.label97.TabIndex = 25;
-            this.label97.Text = "ДМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет";
-            // 
-            // label96
-            // 
-            this.label96.AutoSize = true;
-            this.label96.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label96.Location = new System.Drawing.Point(35, 54);
-            this.label96.Name = "label96";
-            this.label96.Size = new System.Drawing.Size(377, 13);
-            this.label96.TabIndex = 26;
-            this.label96.Text = "ПМФС: I - есть/нет, II - есть/нет, III - есть/нет, IV - есть/нет, V - есть/нет";
-            // 
-            // numericUpDown5
-            // 
-            this.numericUpDown5.Enabled = false;
-            this.numericUpDown5.Location = new System.Drawing.Point(846, 378);
-            this.numericUpDown5.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.numericUpDown5.Name = "numericUpDown5";
-            this.numericUpDown5.Size = new System.Drawing.Size(38, 20);
-            this.numericUpDown5.TabIndex = 43;
-            this.numericUpDown5.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            this.numericUpDown5.Enter += new System.EventHandler(this.numericUpDown5_Enter);
-            // 
-            // comboBox16
-            // 
-            this.comboBox16.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox16.Enabled = false;
-            this.comboBox16.FormattingEnabled = true;
-            this.comboBox16.Items.AddRange(new object[] {
-            "нет",
-            "есть"});
-            this.comboBox16.Location = new System.Drawing.Point(492, 378);
-            this.comboBox16.Name = "comboBox16";
-            this.comboBox16.Size = new System.Drawing.Size(73, 21);
-            this.comboBox16.TabIndex = 41;
-            // 
-            // comboBox15
-            // 
-            this.comboBox15.Enabled = false;
-            this.comboBox15.FormattingEnabled = true;
-            this.comboBox15.Items.AddRange(new object[] {
-            "не нарушена",
-            "гипестезия",
-            "анестезия",
-            "гиперестезия"});
-            this.comboBox15.Location = new System.Drawing.Point(84, 378);
-            this.comboBox15.Name = "comboBox15";
-            this.comboBox15.Size = new System.Drawing.Size(344, 21);
-            this.comboBox15.TabIndex = 40;
-            // 
-            // textBox109
-            // 
-            this.textBox109.Enabled = false;
-            this.textBox109.Location = new System.Drawing.Point(751, 149);
-            this.textBox109.Name = "textBox109";
-            this.textBox109.Size = new System.Drawing.Size(160, 20);
-            this.textBox109.TabIndex = 29;
-            this.textBox109.Text = "есть";
-            // 
-            // textBox108
-            // 
-            this.textBox108.Enabled = false;
-            this.textBox108.Location = new System.Drawing.Point(344, 149);
-            this.textBox108.Name = "textBox108";
-            this.textBox108.Size = new System.Drawing.Size(252, 20);
-            this.textBox108.TabIndex = 28;
-            this.textBox108.Text = "нет";
-            // 
-            // textBox107
-            // 
-            this.textBox107.Enabled = false;
-            this.textBox107.Location = new System.Drawing.Point(105, 123);
-            this.textBox107.Name = "textBox107";
-            this.textBox107.Size = new System.Drawing.Size(637, 20);
-            this.textBox107.TabIndex = 25;
-            // 
-            // textBox106
-            // 
-            this.textBox106.Enabled = false;
-            this.textBox106.Location = new System.Drawing.Point(51, 73);
-            this.textBox106.MaxLength = 200000;
-            this.textBox106.Multiline = true;
-            this.textBox106.Name = "textBox106";
-            this.textBox106.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox106.Size = new System.Drawing.Size(612, 45);
-            this.textBox106.TabIndex = 22;
-            this.textBox106.Text = "нет";
-            // 
-            // textBox105
-            // 
-            this.textBox105.Enabled = false;
-            this.textBox105.Location = new System.Drawing.Point(823, 47);
-            this.textBox105.Name = "textBox105";
-            this.textBox105.Size = new System.Drawing.Size(88, 20);
-            this.textBox105.TabIndex = 21;
-            this.textBox105.Text = "нет";
-            // 
-            // textBox104
-            // 
-            this.textBox104.Enabled = false;
-            this.textBox104.Location = new System.Drawing.Point(628, 47);
-            this.textBox104.Name = "textBox104";
-            this.textBox104.Size = new System.Drawing.Size(114, 20);
-            this.textBox104.TabIndex = 11;
-            this.textBox104.Text = "не исследовалась";
-            // 
-            // textBox103
-            // 
-            this.textBox103.Enabled = false;
-            this.textBox103.Location = new System.Drawing.Point(444, 47);
-            this.textBox103.Name = "textBox103";
-            this.textBox103.Size = new System.Drawing.Size(88, 20);
-            this.textBox103.TabIndex = 10;
-            this.textBox103.Text = "нет";
-            // 
-            // textBox102
-            // 
-            this.textBox102.Enabled = false;
-            this.textBox102.Location = new System.Drawing.Point(284, 47);
-            this.textBox102.Name = "textBox102";
-            this.textBox102.Size = new System.Drawing.Size(88, 20);
-            this.textBox102.TabIndex = 9;
-            this.textBox102.Text = "нет";
-            // 
-            // textBox101
-            // 
-            this.textBox101.Enabled = false;
-            this.textBox101.Location = new System.Drawing.Point(84, 47);
-            this.textBox101.Name = "textBox101";
-            this.textBox101.Size = new System.Drawing.Size(88, 20);
-            this.textBox101.TabIndex = 8;
-            this.textBox101.Text = "нет";
-            // 
-            // textBox100
-            // 
-            this.textBox100.Enabled = false;
-            this.textBox100.Location = new System.Drawing.Point(768, 21);
-            this.textBox100.Name = "textBox100";
-            this.textBox100.Size = new System.Drawing.Size(143, 20);
-            this.textBox100.TabIndex = 7;
-            this.textBox100.Text = "нет";
-            // 
-            // comboBox14
-            // 
-            this.comboBox14.Enabled = false;
-            this.comboBox14.FormattingEnabled = true;
-            this.comboBox14.Items.AddRange(new object[] {
-            "нет",
-            "артериальное",
-            "венозное",
-            "смешанное"});
-            this.comboBox14.Location = new System.Drawing.Point(105, 148);
-            this.comboBox14.Name = "comboBox14";
-            this.comboBox14.Size = new System.Drawing.Size(176, 21);
-            this.comboBox14.TabIndex = 27;
-            // 
-            // comboBox13
-            // 
-            this.comboBox13.Enabled = false;
-            this.comboBox13.FormattingEnabled = true;
-            this.comboBox13.Items.AddRange(new object[] {
-            "в пределах кожи",
-            "вся толща кожи",
-            "обнажены сухожилия",
-            "обнажены сосуды",
-            "обнажены нервы",
-            "обнажены суставы",
-            "обнажены кости"});
-            this.comboBox13.Location = new System.Drawing.Point(751, 122);
-            this.comboBox13.Name = "comboBox13";
-            this.comboBox13.Size = new System.Drawing.Size(160, 21);
-            this.comboBox13.TabIndex = 26;
-            // 
-            // comboBox12
-            // 
-            this.comboBox12.Enabled = false;
-            this.comboBox12.FormattingEnabled = true;
-            this.comboBox12.Items.AddRange(new object[] {
-            "ровные",
-            "неровные",
-            "осаднены",
-            "ушиблены"});
-            this.comboBox12.Location = new System.Drawing.Point(751, 98);
-            this.comboBox12.Name = "comboBox12";
-            this.comboBox12.Size = new System.Drawing.Size(160, 21);
-            this.comboBox12.TabIndex = 24;
-            // 
-            // comboBox11
-            // 
-            this.comboBox11.Enabled = false;
-            this.comboBox11.FormattingEnabled = true;
-            this.comboBox11.Items.AddRange(new object[] {
-            "линейная",
-            "углообразная",
-            "лоскутная",
-            "\"наждачная\"",
-            "скальпированная"});
-            this.comboBox11.Location = new System.Drawing.Point(751, 71);
-            this.comboBox11.Name = "comboBox11";
-            this.comboBox11.Size = new System.Drawing.Size(160, 21);
-            this.comboBox11.TabIndex = 23;
-            // 
-            // comboBox10
-            // 
-            this.comboBox10.Enabled = false;
-            this.comboBox10.FormattingEnabled = true;
-            this.comboBox10.Items.AddRange(new object[] {
-            "угловое",
-            "по окружности",
-            "ступенеобразное"});
-            this.comboBox10.Location = new System.Drawing.Point(562, 21);
-            this.comboBox10.Name = "comboBox10";
-            this.comboBox10.Size = new System.Drawing.Size(111, 21);
-            this.comboBox10.TabIndex = 6;
-            // 
-            // comboBox9
-            // 
-            this.comboBox9.Enabled = false;
-            this.comboBox9.FormattingEnabled = true;
-            this.comboBox9.Items.AddRange(new object[] {
-            "I",
-            "II",
-            "III",
-            "IV",
-            "V"});
-            this.comboBox9.Location = new System.Drawing.Point(517, 21);
-            this.comboBox9.Name = "comboBox9";
-            this.comboBox9.Size = new System.Drawing.Size(39, 21);
-            this.comboBox9.TabIndex = 5;
-            // 
-            // comboBox8
-            // 
-            this.comboBox8.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox8.Enabled = false;
-            this.comboBox8.FormattingEnabled = true;
-            this.comboBox8.Items.AddRange(new object[] {
-            "нет",
-            "пальцев",
-            "пястных костей"});
-            this.comboBox8.Location = new System.Drawing.Point(406, 21);
-            this.comboBox8.Name = "comboBox8";
-            this.comboBox8.Size = new System.Drawing.Size(107, 21);
-            this.comboBox8.TabIndex = 4;
-            this.comboBox8.SelectedIndexChanged += new System.EventHandler(this.comboBox8_SelectedIndexChanged);
-            // 
-            // comboBox7
-            // 
-            this.comboBox7.Enabled = false;
-            this.comboBox7.FormattingEnabled = true;
-            this.comboBox7.Items.AddRange(new object[] {
-            "чистая",
-            "загрязнена землёй",
-            "смазочными материалами"});
-            this.comboBox7.Location = new System.Drawing.Point(166, 21);
-            this.comboBox7.Name = "comboBox7";
-            this.comboBox7.Size = new System.Drawing.Size(162, 21);
-            this.comboBox7.TabIndex = 3;
-            // 
-            // comboBoxWhichHand
-            // 
-            this.comboBoxWhichHand.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxWhichHand.Enabled = false;
-            this.comboBoxWhichHand.FormattingEnabled = true;
-            this.comboBoxWhichHand.Items.AddRange(new object[] {
-            "правая",
-            "левая",
-            "правая, левая"});
-            this.comboBoxWhichHand.Location = new System.Drawing.Point(49, 21);
-            this.comboBoxWhichHand.Name = "comboBoxWhichHand";
-            this.comboBoxWhichHand.Size = new System.Drawing.Size(70, 21);
-            this.comboBoxWhichHand.TabIndex = 2;
-            this.comboBoxWhichHand.SelectedIndexChanged += new System.EventHandler(this.comboBoxWhichHand_SelectedIndexChanged);
-            this.comboBoxWhichHand.EnabledChanged += new System.EventHandler(this.comboBoxWhichHand_EnabledChanged);
-            // 
-            // label93
-            // 
-            this.label93.AutoSize = true;
-            this.label93.Location = new System.Drawing.Point(570, 375);
-            this.label93.Name = "label93";
-            this.label93.Size = new System.Drawing.Size(103, 26);
-            this.label93.TabIndex = 19;
-            this.label93.Text = "Бледное пятно при\r\n надавливании на ";
-            // 
-            // label92
-            // 
-            this.label92.AutoSize = true;
-            this.label92.Location = new System.Drawing.Point(435, 375);
-            this.label92.Name = "label92";
-            this.label92.Size = new System.Drawing.Size(51, 26);
-            this.label92.TabIndex = 18;
-            this.label92.Text = "Пузыри\r\nна коже:";
-            // 
-            // label91
-            // 
-            this.label91.AutoSize = true;
-            this.label91.Location = new System.Drawing.Point(5, 381);
-            this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(72, 13);
-            this.label91.TabIndex = 17;
-            this.label91.Text = "Иннервация:";
-            // 
-            // label90
-            // 
-            this.label90.AutoSize = true;
-            this.label90.Location = new System.Drawing.Point(602, 152);
-            this.label90.Name = "label90";
-            this.label90.Size = new System.Drawing.Size(143, 13);
-            this.label90.TabIndex = 16;
-            this.label90.Text = "Пульс на лучевой артерии:";
-            // 
-            // label89
-            // 
-            this.label89.AutoSize = true;
-            this.label89.Location = new System.Drawing.Point(287, 152);
-            this.label89.Name = "label89";
-            this.label89.Size = new System.Drawing.Size(56, 13);
-            this.label89.TabIndex = 15;
-            this.label89.Text = "Некрозы:";
-            // 
-            // label88
-            // 
-            this.label88.AutoSize = true;
-            this.label88.Location = new System.Drawing.Point(7, 151);
-            this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(81, 13);
-            this.label88.TabIndex = 14;
-            this.label88.Text = "Кровотечение:";
-            // 
-            // label87
-            // 
-            this.label87.AutoSize = true;
-            this.label87.Location = new System.Drawing.Point(7, 126);
-            this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(92, 13);
-            this.label87.TabIndex = 13;
-            this.label87.Text = "Размеры ран(ы):";
-            // 
-            // label86
-            // 
-            this.label86.AutoSize = true;
-            this.label86.Location = new System.Drawing.Point(671, 101);
-            this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(64, 13);
-            this.label86.TabIndex = 12;
-            this.label86.Text = "Края раны:";
-            // 
-            // label85
-            // 
-            this.label85.AutoSize = true;
-            this.label85.Location = new System.Drawing.Point(669, 74);
-            this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(76, 13);
-            this.label85.TabIndex = 11;
-            this.label85.Text = "Форма раны:";
-            // 
-            // label84
-            // 
-            this.label84.AutoSize = true;
-            this.label84.Location = new System.Drawing.Point(7, 87);
-            this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(40, 13);
-            this.label84.TabIndex = 10;
-            this.label84.Text = "Раны: ";
-            // 
-            // label83
-            // 
-            this.label83.AutoSize = true;
-            this.label83.Location = new System.Drawing.Point(745, 44);
-            this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(78, 26);
-            this.label83.TabIndex = 9;
-            this.label83.Text = "Пружинистая \r\nподвижность:";
-            // 
-            // label82
-            // 
-            this.label82.AutoSize = true;
-            this.label82.Location = new System.Drawing.Point(537, 45);
-            this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(90, 26);
-            this.label82.TabIndex = 8;
-            this.label82.Text = "Патологическая\r\nподвижность:";
-            // 
-            // label81
-            // 
-            this.label81.AutoSize = true;
-            this.label81.Location = new System.Drawing.Point(378, 45);
-            this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(64, 26);
-            this.label81.TabIndex = 7;
-            this.label81.Text = "Боль при \r\nпальпации:";
-            // 
-            // label80
-            // 
-            this.label80.AutoSize = true;
-            this.label80.Location = new System.Drawing.Point(179, 45);
-            this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(102, 26);
-            this.label80.TabIndex = 6;
-            this.label80.Text = "Боль при нагрузке\r\nпо оси:";
-            // 
-            // label79
-            // 
-            this.label79.AutoSize = true;
-            this.label79.Location = new System.Drawing.Point(7, 50);
-            this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(77, 13);
-            this.label79.TabIndex = 5;
-            this.label79.Text = "Деформация:";
-            // 
-            // label78
-            // 
-            this.label78.AutoSize = true;
-            this.label78.Location = new System.Drawing.Point(682, 24);
-            this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(79, 13);
-            this.label78.TabIndex = 4;
-            this.label78.Text = "Дефигурация:";
-            // 
-            // label77
-            // 
-            this.label77.AutoSize = true;
-            this.label77.Location = new System.Drawing.Point(339, 19);
-            this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(64, 26);
-            this.label77.TabIndex = 3;
-            this.label77.Text = "Нарушение\r\nоси:";
-            // 
-            // label76
-            // 
-            this.label76.AutoSize = true;
-            this.label76.Location = new System.Drawing.Point(128, 24);
-            this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(37, 13);
-            this.label76.TabIndex = 2;
-            this.label76.Text = "Кожа:";
-            // 
-            // label41
-            // 
-            this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(7, 24);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(40, 13);
-            this.label41.TabIndex = 1;
-            this.label41.Text = "Кисть:";
-            // 
-            // checkBoxIsHandDamage
-            // 
-            this.checkBoxIsHandDamage.AutoSize = true;
-            this.checkBoxIsHandDamage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxIsHandDamage.Location = new System.Drawing.Point(10, 2);
-            this.checkBoxIsHandDamage.Name = "checkBoxIsHandDamage";
-            this.checkBoxIsHandDamage.Size = new System.Drawing.Size(173, 20);
-            this.checkBoxIsHandDamage.TabIndex = 1;
-            this.checkBoxIsHandDamage.Text = "Повреждения кисти";
-            this.checkBoxIsHandDamage.UseVisualStyleBackColor = true;
-            this.checkBoxIsHandDamage.CheckedChanged += new System.EventHandler(this.checkBoxIsHandDamage_CheckedChanged);
-            // 
-            // label117
-            // 
-            this.label117.AutoSize = true;
-            this.label117.Location = new System.Drawing.Point(883, 381);
-            this.label117.Name = "label117";
-            this.label117.Size = new System.Drawing.Size(28, 13);
-            this.label117.TabIndex = 43;
-            this.label117.Text = "сек.";
-            // 
-            // groupBoxRiskTeo
-            // 
-            this.groupBoxRiskTeo.Controls.Add(this.checkBoxTeoRisk);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox1);
-            this.groupBoxRiskTeo.Controls.Add(this.comboBoxTeoRisk);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox12);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox11);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox10);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox9);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox8);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox7);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox6);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox5);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox4);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox3);
-            this.groupBoxRiskTeo.Controls.Add(this.checkBox2);
-            this.groupBoxRiskTeo.Location = new System.Drawing.Point(440, 135);
-            this.groupBoxRiskTeo.Name = "groupBoxRiskTeo";
-            this.groupBoxRiskTeo.Size = new System.Drawing.Size(466, 253);
-            this.groupBoxRiskTeo.TabIndex = 23;
-            this.groupBoxRiskTeo.TabStop = false;
-            // 
-            // comboBoxTeoRisk
-            // 
-            this.comboBoxTeoRisk.Enabled = false;
-            this.comboBoxTeoRisk.FormattingEnabled = true;
-            this.comboBoxTeoRisk.Items.AddRange(new object[] {
-            "отсутствует",
-            "низкий",
-            "умеренный",
-            "высокий"});
-            this.comboBoxTeoRisk.Location = new System.Drawing.Point(6, 19);
-            this.comboBoxTeoRisk.Name = "comboBoxTeoRisk";
-            this.comboBoxTeoRisk.Size = new System.Drawing.Size(436, 21);
-            this.comboBoxTeoRisk.TabIndex = 121;
-            // 
-            // checkBox12
-            // 
-            this.checkBox12.AutoSize = true;
-            this.checkBox12.Enabled = false;
-            this.checkBox12.Location = new System.Drawing.Point(306, 228);
-            this.checkBox12.Name = "checkBox12";
-            this.checkBox12.Size = new System.Drawing.Size(136, 17);
-            this.checkBox12.TabIndex = 133;
-            this.checkBox12.Text = "12. Онкозаболевание";
-            this.checkBox12.UseVisualStyleBackColor = true;
-            // 
-            // checkBox11
-            // 
-            this.checkBox11.AutoSize = true;
-            this.checkBox11.Enabled = false;
-            this.checkBox11.Location = new System.Drawing.Point(150, 228);
-            this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(139, 17);
-            this.checkBox11.TabIndex = 132;
-            this.checkBox11.Text = "11. Прием эстрогенов";
-            this.checkBox11.UseVisualStyleBackColor = true;
-            // 
-            // checkBox10
-            // 
-            this.checkBox10.AutoSize = true;
-            this.checkBox10.Enabled = false;
-            this.checkBox10.Location = new System.Drawing.Point(6, 228);
-            this.checkBox10.Name = "checkBox10";
-            this.checkBox10.Size = new System.Drawing.Size(132, 17);
-            this.checkBox10.TabIndex = 131;
-            this.checkBox10.Text = "10. Сахарный диабет";
-            this.checkBox10.UseVisualStyleBackColor = true;
-            // 
-            // checkBox9
-            // 
-            this.checkBox9.AutoSize = true;
-            this.checkBox9.Enabled = false;
-            this.checkBox9.Location = new System.Drawing.Point(6, 205);
-            this.checkBox9.Name = "checkBox9";
-            this.checkBox9.Size = new System.Drawing.Size(437, 17);
-            this.checkBox9.TabIndex = 130;
-            this.checkBox9.Text = "9. Иммобилизация нижней конечности с пребыванием в постели 3 и более дней";
-            this.checkBox9.UseVisualStyleBackColor = true;
-            // 
-            // checkBox8
-            // 
-            this.checkBox8.AutoSize = true;
-            this.checkBox8.Enabled = false;
-            this.checkBox8.Location = new System.Drawing.Point(336, 182);
-            this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(90, 17);
-            this.checkBox8.TabIndex = 129;
-            this.checkBox8.Text = "8. Ожирение";
-            this.checkBox8.UseVisualStyleBackColor = true;
-            // 
-            // checkBox7
-            // 
-            this.checkBox7.AutoSize = true;
-            this.checkBox7.Enabled = false;
-            this.checkBox7.Location = new System.Drawing.Point(6, 182);
-            this.checkBox7.Name = "checkBox7";
-            this.checkBox7.Size = new System.Drawing.Size(304, 17);
-            this.checkBox7.TabIndex = 128;
-            this.checkBox7.Text = "7. Хроническое неспецифическое заболевание легких";
-            this.checkBox7.UseVisualStyleBackColor = true;
-            // 
-            // checkBox6
-            // 
-            this.checkBox6.AutoSize = true;
-            this.checkBox6.Enabled = false;
-            this.checkBox6.Location = new System.Drawing.Point(6, 160);
-            this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(136, 17);
-            this.checkBox6.TabIndex = 127;
-            this.checkBox6.Text = "6. Инфаркт миокарда";
-            this.checkBox6.UseVisualStyleBackColor = true;
-            // 
-            // checkBox5
-            // 
-            this.checkBox5.AutoSize = true;
-            this.checkBox5.Enabled = false;
-            this.checkBox5.Location = new System.Drawing.Point(6, 138);
-            this.checkBox5.Name = "checkBox5";
-            this.checkBox5.Size = new System.Drawing.Size(185, 17);
-            this.checkBox5.TabIndex = 126;
-            this.checkBox5.Text = "5. Варикозное расширение вен";
-            this.checkBox5.UseVisualStyleBackColor = true;
-            // 
-            // checkBox4
-            // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(6, 116);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(161, 17);
-            this.checkBox4.TabIndex = 125;
-            this.checkBox4.Text = "4. Прием антикоагулянтов";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3
-            // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Enabled = false;
-            this.checkBox3.Location = new System.Drawing.Point(6, 94);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(420, 17);
-            this.checkBox3.TabIndex = 124;
-            this.checkBox3.Text = "3. Венозный тромбоз и ТЭЛА у биологических родственников (тромбофилия)";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Enabled = false;
-            this.checkBox2.Location = new System.Drawing.Point(6, 72);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(264, 17);
-            this.checkBox2.TabIndex = 123;
-            this.checkBox2.Text = "2. Постромботическая болезнь (тромбофилия)";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Enabled = false;
-            this.checkBox1.Location = new System.Drawing.Point(6, 50);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(374, 17);
-            this.checkBox1.TabIndex = 122;
-            this.checkBox1.Text = "1. Венозный тромбоз и ТЭЛА в анамнезе у пациента (тромбофилия)";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // checkBoxTeoRisk
-            // 
-            this.checkBoxTeoRisk.AutoSize = true;
-            this.checkBoxTeoRisk.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.checkBoxTeoRisk.Location = new System.Drawing.Point(9, 0);
-            this.checkBoxTeoRisk.Name = "checkBoxTeoRisk";
-            this.checkBoxTeoRisk.Size = new System.Drawing.Size(84, 17);
-            this.checkBoxTeoRisk.TabIndex = 22;
-            this.checkBoxTeoRisk.Text = "Риск ТЭО";
-            this.checkBoxTeoRisk.UseVisualStyleBackColor = true;
-            this.checkBoxTeoRisk.CheckedChanged += new System.EventHandler(this.checkBoxTeoRisk_CheckedChanged);
+            // checkBoxMedicalInspectionWithBoss
+            // 
+            this.checkBoxMedicalInspectionWithBoss.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.checkBoxMedicalInspectionWithBoss.AutoSize = true;
+            this.checkBoxMedicalInspectionWithBoss.Checked = true;
+            this.checkBoxMedicalInspectionWithBoss.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxMedicalInspectionWithBoss.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxMedicalInspectionWithBoss.Location = new System.Drawing.Point(72, 446);
+            this.checkBoxMedicalInspectionWithBoss.Name = "checkBoxMedicalInspectionWithBoss";
+            this.checkBoxMedicalInspectionWithBoss.Size = new System.Drawing.Size(132, 17);
+            this.checkBoxMedicalInspectionWithBoss.TabIndex = 70;
+            this.checkBoxMedicalInspectionWithBoss.Text = "Совместно с боссом";
+            this.checkBoxMedicalInspectionWithBoss.UseVisualStyleBackColor = true;
             // 
             // MedicalInspectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(931, 475);
+            this.Controls.Add(this.checkBoxMedicalInspectionWithBoss);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.buttonDocuments);
             this.Controls.Add(this.buttonOk);
@@ -4481,26 +2978,23 @@
             this.groupBoxPlan.PerformLayout();
             this.tabPageAnamnes.ResumeLayout(false);
             this.tabPageAnamnes.PerformLayout();
+            this.groupBoxRiskTeo.ResumeLayout(false);
+            this.groupBoxRiskTeo.PerformLayout();
             this.groupBoxAnVitae.ResumeLayout(false);
             this.groupBoxAnVitae.PerformLayout();
             this.tabPageStPraesens.ResumeLayout(false);
             this.tabPageStPraesens.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.tabPageStLocalis1.ResumeLayout(false);
             this.tabPageStLocalis1.PerformLayout();
-            this.tabPageStLocalis2.ResumeLayout(false);
-            this.tabPageStLocalis2.PerformLayout();
-            this.groupBoxRightHand.ResumeLayout(false);
-            this.groupBoxRightHand.PerformLayout();
-            this.groupBoxLeftHand.ResumeLayout(false);
-            this.groupBoxLeftHand.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown5)).EndInit();
-            this.groupBoxRiskTeo.ResumeLayout(false);
-            this.groupBoxRiskTeo.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -4515,7 +3009,6 @@
         private System.Windows.Forms.TabPage tabPageAnamnes;
         private System.Windows.Forms.TabPage tabPageStPraesens;
         private System.Windows.Forms.TabPage tabPageStLocalis1;
-        private System.Windows.Forms.TabPage tabPageStLocalis2;
         private System.Windows.Forms.GroupBox groupBoxPlan;
         private System.Windows.Forms.ComboBox comboBoxInspectionPlan;
         private System.Windows.Forms.Label label1;
@@ -4559,21 +3052,13 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.Label label36;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label28;
@@ -4585,7 +3070,6 @@
         private System.Windows.Forms.TextBox textBox21;
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox18;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.TextBox textBox16;
         private System.Windows.Forms.TextBox textBox15;
@@ -4700,112 +3184,6 @@
         private System.Windows.Forms.TextBox textBox68;
         private System.Windows.Forms.TextBox textBox67;
         private System.Windows.Forms.TextBox textBox66;
-        private System.Windows.Forms.Label label96;
-        private System.Windows.Forms.Label label97;
-        private System.Windows.Forms.Label label98;
-        private System.Windows.Forms.Label label99;
-        private System.Windows.Forms.Label label100;
-        private System.Windows.Forms.Label label95;
-        private System.Windows.Forms.Label label94;
-        private System.Windows.Forms.Label label93;
-        private System.Windows.Forms.Label label92;
-        private System.Windows.Forms.Label label91;
-        private System.Windows.Forms.Label label90;
-        private System.Windows.Forms.Label label89;
-        private System.Windows.Forms.Label label88;
-        private System.Windows.Forms.Label label87;
-        private System.Windows.Forms.Label label86;
-        private System.Windows.Forms.Label label85;
-        private System.Windows.Forms.Label label84;
-        private System.Windows.Forms.Label label83;
-        private System.Windows.Forms.Label label82;
-        private System.Windows.Forms.Label label81;
-        private System.Windows.Forms.Label label80;
-        private System.Windows.Forms.Label label79;
-        private System.Windows.Forms.Label label78;
-        private System.Windows.Forms.Label label77;
-        private System.Windows.Forms.Label label76;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.ComboBox comboBox14;
-        private System.Windows.Forms.ComboBox comboBox13;
-        private System.Windows.Forms.ComboBox comboBox12;
-        private System.Windows.Forms.ComboBox comboBox11;
-        private System.Windows.Forms.ComboBox comboBox10;
-        private System.Windows.Forms.ComboBox comboBox9;
-        private System.Windows.Forms.ComboBox comboBox8;
-        private System.Windows.Forms.ComboBox comboBox7;
-        private System.Windows.Forms.ComboBox comboBoxWhichHand;
-        private System.Windows.Forms.TextBox textBox109;
-        private System.Windows.Forms.TextBox textBox108;
-        private System.Windows.Forms.TextBox textBox107;
-        private System.Windows.Forms.TextBox textBox106;
-        private System.Windows.Forms.TextBox textBox105;
-        private System.Windows.Forms.TextBox textBox104;
-        private System.Windows.Forms.TextBox textBox103;
-        private System.Windows.Forms.TextBox textBox102;
-        private System.Windows.Forms.TextBox textBox101;
-        private System.Windows.Forms.TextBox textBox100;
-        private System.Windows.Forms.NumericUpDown numericUpDown5;
-        private System.Windows.Forms.ComboBox comboBox16;
-        private System.Windows.Forms.ComboBox comboBox15;
-        private System.Windows.Forms.GroupBox groupBoxLeftHand;
-        private System.Windows.Forms.ComboBox comboBox105;
-        private System.Windows.Forms.ComboBox comboBox104;
-        private System.Windows.Forms.ComboBox comboBox103;
-        private System.Windows.Forms.ComboBox comboBox102;
-        private System.Windows.Forms.ComboBox comboBox101;
-        private System.Windows.Forms.ComboBox comboBox100;
-        private System.Windows.Forms.ComboBox comboBox123;
-        private System.Windows.Forms.ComboBox comboBox122;
-        private System.Windows.Forms.ComboBox comboBox121;
-        private System.Windows.Forms.ComboBox comboBox120;
-        private System.Windows.Forms.ComboBox comboBox119;
-        private System.Windows.Forms.ComboBox comboBox118;
-        private System.Windows.Forms.ComboBox comboBox117;
-        private System.Windows.Forms.ComboBox comboBox116;
-        private System.Windows.Forms.ComboBox comboBox115;
-        private System.Windows.Forms.ComboBox comboBox114;
-        private System.Windows.Forms.ComboBox comboBox113;
-        private System.Windows.Forms.ComboBox comboBox112;
-        private System.Windows.Forms.ComboBox comboBox111;
-        private System.Windows.Forms.ComboBox comboBox110;
-        private System.Windows.Forms.ComboBox comboBox109;
-        private System.Windows.Forms.ComboBox comboBox108;
-        private System.Windows.Forms.ComboBox comboBox107;
-        private System.Windows.Forms.ComboBox comboBox106;
-        private System.Windows.Forms.GroupBox groupBoxRightHand;
-        private System.Windows.Forms.Label label102;
-        private System.Windows.Forms.ComboBox comboBox223;
-        private System.Windows.Forms.ComboBox comboBox222;
-        private System.Windows.Forms.ComboBox comboBox221;
-        private System.Windows.Forms.ComboBox comboBox220;
-        private System.Windows.Forms.ComboBox comboBox219;
-        private System.Windows.Forms.ComboBox comboBox218;
-        private System.Windows.Forms.ComboBox comboBox217;
-        private System.Windows.Forms.ComboBox comboBox216;
-        private System.Windows.Forms.ComboBox comboBox215;
-        private System.Windows.Forms.ComboBox comboBox214;
-        private System.Windows.Forms.ComboBox comboBox213;
-        private System.Windows.Forms.ComboBox comboBox212;
-        private System.Windows.Forms.ComboBox comboBox211;
-        private System.Windows.Forms.ComboBox comboBox210;
-        private System.Windows.Forms.ComboBox comboBox209;
-        private System.Windows.Forms.ComboBox comboBox208;
-        private System.Windows.Forms.ComboBox comboBox207;
-        private System.Windows.Forms.ComboBox comboBox206;
-        private System.Windows.Forms.ComboBox comboBox205;
-        private System.Windows.Forms.ComboBox comboBox204;
-        private System.Windows.Forms.ComboBox comboBox203;
-        private System.Windows.Forms.ComboBox comboBox202;
-        private System.Windows.Forms.ComboBox comboBox201;
-        private System.Windows.Forms.ComboBox comboBox200;
-        private System.Windows.Forms.Label label103;
-        private System.Windows.Forms.Label label104;
-        private System.Windows.Forms.Label label106;
-        private System.Windows.Forms.Label label107;
-        private System.Windows.Forms.Label label109;
-        private System.Windows.Forms.Label label108;
-        private System.Windows.Forms.CheckBox checkBoxIsHandDamage;
         private System.Windows.Forms.CheckBox checkBoxIsUpperExtremityJoint;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBoxRentgen;
@@ -4816,16 +3194,6 @@
         private System.Windows.Forms.Label label112;
         private System.Windows.Forms.Label label111;
         private System.Windows.Forms.Label label110;
-        private System.Windows.Forms.Label label116;
-        private System.Windows.Forms.Label label105;
-        private System.Windows.Forms.Label label115;
-        private System.Windows.Forms.Label label114;
-        private System.Windows.Forms.Label label113;
-        private System.Windows.Forms.TextBox textBox110;
-        private System.Windows.Forms.Label label119;
-        private System.Windows.Forms.Label label118;
-        private System.Windows.Forms.Label label117;
-        private System.Windows.Forms.Label label120;
         private System.Windows.Forms.Label label121;
         private System.Windows.Forms.DateTimePicker dateTimePickerDateTrauma;
         private System.Windows.Forms.Label label122;
@@ -4847,5 +3215,18 @@
         private System.Windows.Forms.CheckBox checkBox4;
         private System.Windows.Forms.CheckBox checkBox3;
         private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.TextBox textBox18;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.TextBox textBoxStPraesensTemperature;
+        private System.Windows.Forms.NumericUpDown numericUpDown6;
+        private System.Windows.Forms.NumericUpDown numericUpDown7;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.CheckBox checkBoxMedicalInspectionWithBoss;
     }
 }

@@ -19,6 +19,7 @@ namespace SurgeryHelper
             textBoxDepartmentName.Text = _dbEngine.GlobalSettings.DepartmentName;
             textBoxDischargeEpicrisisHeader.Text = _dbEngine.GlobalSettings.DischargeEpicrisisHeaderFileName;
             checkBoxIsLoggingEnabled.Checked = _dbEngine.GlobalSettings.IsLoggingEnabled;
+            comboBoxBossJobTitle.Text = _dbEngine.GlobalSettings.BossJobTitle;
         }
 
 
@@ -42,7 +43,8 @@ namespace SurgeryHelper
         {
             if (string.IsNullOrEmpty(textBoxBranchManager.Text) ||
                 string.IsNullOrEmpty(textBoxDepartmentName.Text) ||
-                string.IsNullOrEmpty(textBoxDischargeEpicrisisHeader.Text))
+                string.IsNullOrEmpty(textBoxDischargeEpicrisisHeader.Text) ||
+                string.IsNullOrEmpty(comboBoxBossJobTitle.Text))
             {
                 MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -55,7 +57,8 @@ namespace SurgeryHelper
                     BranchManager = textBoxBranchManager.Text,
                     DepartmentName = textBoxDepartmentName.Text,
                     DischargeEpicrisisHeaderFileName = textBoxDischargeEpicrisisHeader.Text,
-                    IsLoggingEnabled = checkBoxIsLoggingEnabled.Checked
+                    IsLoggingEnabled = checkBoxIsLoggingEnabled.Checked,
+                    BossJobTitle = comboBoxBossJobTitle.Text
                 };
 
                 _dbEngine.GlobalSettings = globalSettings;

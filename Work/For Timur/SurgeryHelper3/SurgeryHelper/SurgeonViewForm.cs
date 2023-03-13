@@ -40,6 +40,7 @@ namespace SurgeryHelper
                 _surgeonInfo = surgeonInfo;
                 Text = "Редактирование хирурга";
                 textBoxSurgeonName.Text = _surgeonInfo.LastNameWithInitials;
+                textBoxSpeciality.Text = _surgeonInfo.Speciality;
             }
         }
 
@@ -75,7 +76,8 @@ namespace SurgeryHelper
         /// <param name="e"></param>
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(textBoxSurgeonName.Text))
+            if (string.IsNullOrEmpty(textBoxSurgeonName.Text) ||
+                string.IsNullOrEmpty(textBoxSpeciality.Text))
             {
                 MessageBox.Show("Поля, отмеченные звёздочкой, обязательны для заполнения", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -84,6 +86,7 @@ namespace SurgeryHelper
             try
             {
                 _surgeonInfo.LastNameWithInitials = textBoxSurgeonName.Text;
+                _surgeonInfo.Speciality = textBoxSpeciality.Text;
 
                 if (_surgeonInfo.Id == 0)
                 {

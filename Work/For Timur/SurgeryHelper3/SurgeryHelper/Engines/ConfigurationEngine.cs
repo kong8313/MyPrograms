@@ -169,6 +169,43 @@ namespace SurgeryHelper.Engines
             }
         }
 
+        private bool IsContains(string[] array, string value)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == value)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Список последних выбранных WWW
+        /// </summary>
+        public string[] PatientViewFormLastWWW
+        {
+            get
+            {
+                if (!IsContains(_appSettings.Settings.AllKeys, "PatientViewFormLastWWW"))
+                {
+                    _appSettings.Settings.Add("PatientViewFormLastWWW", string.Empty);
+                    _config.Save();
+                }
+
+                string[] lastList = _appSettings.Settings["PatientViewFormLastWWW"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["PatientViewFormLastWWW"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+
         /// <summary>
         /// Список последних выбранных сервисов для дневного стационара
         /// </summary>

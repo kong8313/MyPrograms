@@ -635,7 +635,7 @@
             this.MinimumSize = new System.Drawing.Size(440, 230);
             this.Name = "PatientListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Список пациентов";
+            this.Text = "Список пациентов                           Спокойствие, только спокойствие..!";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PatientForm_FormClosing);
             this.Load += new System.EventHandler(this.PatientForm_Load);
             this.Shown += new System.EventHandler(this.PatientForm_Shown);

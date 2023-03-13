@@ -22,12 +22,18 @@
         /// </summary>
         public bool IsLoggingEnabled;
 
+        /// <summary>
+        /// С кем проводится первичный осмотр
+        /// </summary>
+        public string BossJobTitle;
+
         public GlobalSettingsClass()
         {
             DepartmentName = "8";
             BranchManager = "В.А.Калантырская";
             DischargeEpicrisisHeaderFileName = "DischargeEpicrisisHeader.doc";
             IsLoggingEnabled = false;
+            BossJobTitle = "совместно с заведующим отделением";
         }
 
 

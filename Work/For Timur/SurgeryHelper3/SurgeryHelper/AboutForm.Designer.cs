@@ -29,18 +29,18 @@
     private void InitializeComponent()
     {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AboutForm));
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelInfo = new System.Windows.Forms.Label();
             this.buttonOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // label1
+            // labelInfo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 7);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 91);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Программа \"Помощник хирурга\" v. 3.4.0\r\n\r\nПрограммист: Коновалов Григорий\r\nВсе пра" +
+            this.labelInfo.AutoSize = true;
+            this.labelInfo.Location = new System.Drawing.Point(6, 7);
+            this.labelInfo.Name = "labelInfo";
+            this.labelInfo.Size = new System.Drawing.Size(215, 91);
+            this.labelInfo.TabIndex = 1;
+            this.labelInfo.Text = "Программа \"Помощник хирурга\" v. 3.6.0\r\n\r\nПрограммист: Коновалов Григорий\r\nВсе пра" +
     "ва на программу принадлежат \r\nТорно Тимуру Эдуардовичу\r\nПожелания и предложения " +
     "направляйте\r\nпо адресу: torno@mail.ru";
             // 
@@ -66,7 +66,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(291, 112);
             this.Controls.Add(this.buttonOK);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelInfo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -82,7 +82,7 @@
 
     #endregion
 
-    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label labelInfo;
     private System.Windows.Forms.Button buttonOK;
   }
 }

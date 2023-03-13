@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using SurgeryHelper.Engines;
@@ -231,5 +232,45 @@ namespace SurgeryHelper
             buttonOk.FlatStyle = FlatStyle.Flat;
         }
         #endregion
+
+        private string _currentSurgeon;
+        private Point _currentLocation;
+
+        private void checkedListBoxSurgeons_MouseMove(object sender, MouseEventArgs e)
+        {
+            timerToolBox.Enabled = false;
+            _currentSurgeon = string.Empty;
+
+            int index = checkedListBoxSurgeons.IndexFromPoint(e.Location);
+            if (index >= 0 && index < checkedListBoxSurgeons.Items.Count)
+            {
+                _currentSurgeon = checkedListBoxSurgeons.Items[index].ToString();
+                _currentLocation = e.Location;
+                timerToolBox.Enabled = true;
+            }
+            else
+            {
+                toolTip1.Hide(checkedListBoxSurgeons);
+            }
+        }
+
+        private void timerToolBox_Tick(object sender, EventArgs e)
+        {
+            timerToolBox.Enabled = false;
+            if (!string.IsNullOrEmpty(_currentSurgeon))
+            {
+                toolTip1.Show(
+                    _dbEngine.GetSpecialityBySurgeonName(_currentSurgeon),
+                    checkedListBoxSurgeons, 
+                    _currentLocation.X + 15, 
+                    _currentLocation.Y - 20);
+            }
+        }
+
+        private void SurgeonForm_MouseEnter(object sender, EventArgs e)
+        {
+            timerToolBox.Enabled = false;
+            toolTip1.Hide(checkedListBoxSurgeons);
+        }
     }
 }

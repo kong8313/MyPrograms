@@ -31,6 +31,7 @@ namespace SurgeryHelper
             }
 
             checkBoxIsPlanEnabled.Checked = _patientInfo.MedicalInspectionIsPlanEnabled;
+            checkBoxMedicalInspectionWithBoss.Checked = _patientInfo.MedicalInspectionWithBoss;
             comboBoxInspectionPlan.Text = _patientInfo.MedicalInspectionInspectionPlan;
             comboBoxTreatmentType.Text = _patientInfo.MedicalInspectionTreatmentType;
             textBoxComplaints.Text = _patientInfo.MedicalInspectionComplaints;
@@ -72,18 +73,11 @@ namespace SurgeryHelper
             SetTextBoxes(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensTextBoxes, 9);
             SetNumericUpDowns(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensNumericUpDowns, 1);
             textBoxStPraesensOther.Text = _patientInfo.MedicalInspectionStPraesensOthers;
+            textBoxStPraesensTemperature.Text = _patientInfo.MedicalInspectionStPraesensTemperature;
 
             checkBoxIsUpperExtremityJoint.Checked = _patientInfo.MedicalInspectionIsStLocalisPart1Enabled;
             comboBoxOppositionFinger.Text = _patientInfo.MedicalInspectionStLocalisPart1OppositionFinger;
             SetTextBoxes(tabPageStLocalis1.Controls, _patientInfo.MedicalInspectionStLocalisPart1Fields, 26);
-
-            checkBoxIsHandDamage.Checked = _patientInfo.MedicalInspectionIsStLocalisPart2Enabled;
-            comboBoxWhichHand.Text = _patientInfo.MedicalInspectionStLocalisPart2WhichHand;
-            SetComboBoxes(tabPageStLocalis2.Controls, _patientInfo.MedicalInspectionStLocalisPart2ComboBoxes, 7);
-            SetTextBoxes(tabPageStLocalis2.Controls, _patientInfo.MedicalInspectionStLocalisPart2TextBoxes, 100);
-            numericUpDown5.Value = _patientInfo.MedicalInspectionStLocalisPart2NumericUpDown;
-            SetComboBoxes(groupBoxLeftHand.Controls, _patientInfo.MedicalInspectionStLocalisPart2LeftHand, 100);
-            SetComboBoxes(groupBoxRightHand.Controls, _patientInfo.MedicalInspectionStLocalisPart2RightHand, 200);
 
             _stopSaveParameters = false;
         }
@@ -221,6 +215,7 @@ namespace SurgeryHelper
         private void PutDataToPatient(PatientClass patientInfo)
         {
             patientInfo.MedicalInspectionIsPlanEnabled = checkBoxIsPlanEnabled.Checked;
+            patientInfo.MedicalInspectionWithBoss = checkBoxMedicalInspectionWithBoss.Checked;
             patientInfo.MedicalInspectionInspectionPlan = comboBoxInspectionPlan.Text;
             patientInfo.MedicalInspectionTreatmentType = comboBoxTreatmentType.Text;
             patientInfo.MedicalInspectionComplaints = textBoxComplaints.Text;
@@ -261,22 +256,15 @@ namespace SurgeryHelper
             patientInfo.MedicalInspectionAnamneseTextBoxes = GetTextBoxes(tabPageAnamnes.Controls, 1, 8);
             patientInfo.MedicalInspectionAnamneseCheckboxes = GetCheckBoxes(groupBoxRiskTeo.Controls, 1, 12);
 
-            patientInfo.MedicalInspectionStPraesensComboBoxes = GetComboBoxes(tabPageStPraesens.Controls, 1, 4);
+            patientInfo.MedicalInspectionStPraesensComboBoxes = GetComboBoxes(tabPageStPraesens.Controls, 1, 5);
             patientInfo.MedicalInspectionStPraesensTextBoxes = GetTextBoxes(tabPageStPraesens.Controls, 9, 17);
-            patientInfo.MedicalInspectionStPraesensNumericUpDowns = GetNumericUpDowns(tabPageStPraesens.Controls, 1, 4);
+            patientInfo.MedicalInspectionStPraesensNumericUpDowns = GetNumericUpDowns(tabPageStPraesens.Controls, 1, 7);
             patientInfo.MedicalInspectionStPraesensOthers = textBoxStPraesensOther.Text;
+            patientInfo.MedicalInspectionStPraesensTemperature = textBoxStPraesensTemperature.Text;
 
             patientInfo.MedicalInspectionIsStLocalisPart1Enabled = checkBoxIsUpperExtremityJoint.Checked;
             patientInfo.MedicalInspectionStLocalisPart1OppositionFinger = comboBoxOppositionFinger.Text;
             patientInfo.MedicalInspectionStLocalisPart1Fields = GetTextBoxes(tabPageStLocalis1.Controls, 26, 62);
-
-            patientInfo.MedicalInspectionIsStLocalisPart2Enabled = checkBoxIsHandDamage.Checked;
-            patientInfo.MedicalInspectionStLocalisPart2WhichHand = comboBoxWhichHand.Text;
-            patientInfo.MedicalInspectionStLocalisPart2ComboBoxes = GetComboBoxes(tabPageStLocalis2.Controls, 7, 10);
-            patientInfo.MedicalInspectionStLocalisPart2TextBoxes = GetTextBoxes(tabPageStLocalis2.Controls, 100, 11);
-            patientInfo.MedicalInspectionStLocalisPart2NumericUpDown = (int)numericUpDown5.Value;
-            patientInfo.MedicalInspectionStLocalisPart2LeftHand = GetComboBoxes(groupBoxLeftHand.Controls, 100, 24);
-            patientInfo.MedicalInspectionStLocalisPart2RightHand = GetComboBoxes(groupBoxRightHand.Controls, 200, 24);            
         }
 
         /// <summary>
@@ -362,79 +350,6 @@ namespace SurgeryHelper
         }
 
         /// <summary>
-        /// Включение/выключение полей для детальных повреждений левой и правой рук 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBoxWhichHand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            foreach (var component in groupBoxLeftHand.Controls)
-            {
-                if (component is ComboBox)
-                {
-                    if (comboBoxWhichHand.Text == "правая, левая" || comboBoxWhichHand.Text == "левая")
-                    {
-                        ((ComboBox)component).Enabled = comboBoxWhichHand.Enabled;
-                    }
-                    else
-                    {
-                        ((ComboBox)component).Enabled = false;
-                    }
-                }
-            }
-            
-            foreach (var component in groupBoxRightHand.Controls)
-            {
-                if (component is ComboBox)
-                {
-                    if (comboBoxWhichHand.Text == "правая, левая" || comboBoxWhichHand.Text == "правая")
-                    {
-                        ((ComboBox)component).Enabled = comboBoxWhichHand.Enabled;
-                    }
-                    else
-                    {
-                        ((ComboBox)component).Enabled = false;
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Включение/выключение полей для детальных повреждений левой и правой рук
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBoxWhichHand_EnabledChanged(object sender, EventArgs e)
-        {
-            comboBoxWhichHand_SelectedIndexChanged(sender, e);
-        } 
-
-        /// <summary>
-        /// Включение/выключение всех компонентов на вкладке со второй частью локалиса
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void checkBoxIsHandDamage_CheckedChanged(object sender, EventArgs e)
-        {
-            foreach (var component in tabPageStLocalis2.Controls)
-            {
-                if (component is ComboBox)
-                {
-                    ((ComboBox)component).Enabled = checkBoxIsHandDamage.Checked;
-                }
-                else if (component is TextBox)
-                {
-                    ((TextBox)component).Enabled = checkBoxIsHandDamage.Checked;
-                }
-                else if (component is NumericUpDown)
-                {
-                    ((NumericUpDown)component).Enabled = checkBoxIsHandDamage.Checked;
-                }
-            }
-            comboBox8_SelectedIndexChanged(null, null);
-        }
-
-        /// <summary>
         /// Включение/выключение всех компонентов на вкладке с первой частью локалиса
         /// </summary>
         /// <param name="sender"></param>
@@ -451,23 +366,6 @@ namespace SurgeryHelper
                 {
                     ((TextBox)component).Enabled = checkBoxIsUpperExtremityJoint.Checked;
                 }
-            }
-        }
-
-        /// <summary>
-        /// Показ данные по пальцам, если есть нарушение оси
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void comboBox8_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (comboBox8.Text == "нет")
-            {
-                comboBox9.Enabled = comboBox10.Enabled = false;
-            }
-            else
-            {
-                comboBox9.Enabled = comboBox10.Enabled = checkBoxIsHandDamage.Checked;
             }
         }
 
@@ -491,12 +389,7 @@ namespace SurgeryHelper
         {
             numericUpDown4.Select(0, 10);
         }
-
-        private void numericUpDown5_Enter(object sender, EventArgs e)
-        {
-            numericUpDown5.Select(0, 10);
-        }
-
+        
         private void MedicalInspectionForm_LocationChanged(object sender, EventArgs e)
         {
             if (_stopSaveParameters)

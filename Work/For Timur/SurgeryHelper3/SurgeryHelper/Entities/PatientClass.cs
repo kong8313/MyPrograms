@@ -101,6 +101,11 @@ namespace SurgeryHelper.Entities
         public string MKB;
 
         /// <summary>
+        /// Код WWW
+        /// </summary>
+        public string WWW;
+
+        /// <summary>
         /// Название услуги
         /// </summary>
         public string ServiceName;
@@ -321,6 +326,11 @@ namespace SurgeryHelper.Entities
         public bool MedicalInspectionIsPlanEnabled;
 
         /// <summary>
+        /// Осмотр в отделении, общие данные, генерировать осмотр в отделении совместно с начальником
+        /// </summary>
+        public bool MedicalInspectionWithBoss;
+
+        /// <summary>
         /// Осмотр в отделении, общие данные, обследование
         /// </summary>
         public string MedicalInspectionInspectionPlan;
@@ -416,6 +426,11 @@ namespace SurgeryHelper.Entities
         public string MedicalInspectionStPraesensOthers;
 
         /// <summary>
+        /// Осмотр в отделении, st.praesens, температура
+        /// </summary>
+        public string MedicalInspectionStPraesensTemperature;
+
+        /// <summary>
         /// Осмотр в отделении, описание St. localis-а
         /// </summary>
         public string MedicalInspectionStLocalisDescription;
@@ -441,47 +456,12 @@ namespace SurgeryHelper.Entities
         public string MedicalInspectionStLocalisPart1OppositionFinger;
 
         /// <summary>
-        /// Включён ли st.localis часть 2 в общий отчёт
-        /// </summary>
-        public bool MedicalInspectionIsStLocalisPart2Enabled;
-
-        /// <summary>
-        /// Осмотр в отделении, st.localis part2, какая рука(левая/правая/правая, левая)
-        /// </summary>
-        public string MedicalInspectionStLocalisPart2WhichHand;
-
-        /// <summary>
-        /// Осмотр в отделении, st.localis part2, текст боксы
-        /// </summary>
-        public string[] MedicalInspectionStLocalisPart2TextBoxes;
-
-        /// <summary>
-        /// Осмотр в отделении, st.localis part2, комбобоксы
-        /// </summary>
-        public string[] MedicalInspectionStLocalisPart2ComboBoxes;
-
-        /// <summary>
-        /// Осмотр в отделении, st.localis part2, комбобоксы для левой руки
-        /// </summary>
-        public string[] MedicalInspectionStLocalisPart2LeftHand;
-
-        /// <summary>
-        /// Осмотр в отделении, st.localis part2, комбобоксы для правой руки
-        /// </summary>
-        public string[] MedicalInspectionStLocalisPart2RightHand;
-
-        /// <summary>
-        /// Осмотр в отделении, st.localis part2, числовое поле
-        /// </summary>
-        public int MedicalInspectionStLocalisPart2NumericUpDown;
-
-        /// <summary>
-        /// Назначенные препараты для консервативной терапии (с датой назначения после символа &)
+        /// Назначенные препараты для консервативной терапии (с датой назначения после символа &amp;)
         /// </summary>
         public List<string> PrescriptionTherapy;
 
         /// <summary>
-        /// Назначенные дополнительные методы обследования (с датой назначения после символа &)
+        /// Назначенные дополнительные методы обследования (с датой назначения после символа &amp;)
         /// </summary>
         public List<string> PrescriptionSurveys;
 
@@ -671,6 +651,7 @@ namespace SurgeryHelper.Entities
 
             MedicalInspectionExpertAnamnese = 3;
             MedicalInspectionIsPlanEnabled = true;
+            MedicalInspectionWithBoss = true;
             MedicalInspectionInspectionPlan = "ОАК, ОАМ, ЭКГ, биохимический анализ крови";
             MedicalInspectionTreatmentType = "оперативное";
             MedicalInspectionTeoRisk = "отсутствует";
@@ -697,36 +678,47 @@ namespace SurgeryHelper.Entities
             {
                 "ясное",
                 "активное",
-                "розовые, чистые",                
-                "не пальпируется",
+                "телесного цвета, обычной влажности, без патологических высыпаний",                
+                "",
                 "не пальпируются",
                 "проводится во всех отделах",
                 "нет",
                 "правильный",
-                "76 хорошего наполнения и напряжения",
-                "участвует в дыхании, мягкий, безболезненный во всех отделах",
-                "сохранена",
-                "нет",
-                "выслушивается",
-                "без патологий",
-                "без особенностей",
-                "безболезненная",
-                "безболезненные, в полном объеме"
+                "",
+                @"пальпация органов брюшной полости безболезненна, печень по краю реберной дуги, селезенка: не пальпируется
+оценка характера стула и кратности дефекации: без особенностей
+наличие симптомов раздражения брюшины: не определяются
+результат пальцевого ректального исследования: не проводилось
+результаты обследования мочеполовой системы: патологических изменений не определяется, область проекции почек внешне не изменена, симптом поколачивания отрицательный
+оценка характера мочеиспускания: свободное, не затруднено
+наличие менингеальных симптомов: не определяются",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "без патологических изменений"
             };
-            MedicalInspectionStPraesensComboBoxes = new[] // string[4]
+            MedicalInspectionStPraesensComboBoxes = new[] // string[5]
             {
                 "удовлетворительное",
-                "удовлетворительное",
+                "нормальное",
                 "везикулярное",
                 "ясные",
+                "15"
             };
             MedicalInspectionStPraesensNumericUpDowns = new[] // int[4]
             {
                 18,
                 76,
                 120, 
+                70,
+                99,
+                170,
                 70
             };
+            MedicalInspectionStPraesensTemperature = "36,6";
 
             MedicalInspectionStLocalisPart1OppositionFinger = "I";
             MedicalInspectionStLocalisPart1Fields = new string[62];
@@ -734,49 +726,6 @@ namespace SurgeryHelper.Entities
             {
                 MedicalInspectionStLocalisPart1Fields[i] = "N";
             }
-
-            MedicalInspectionStLocalisPart2NumericUpDown = 3;
-            MedicalInspectionStLocalisPart2WhichHand = "левая";
-            MedicalInspectionStLocalisPart2TextBoxes = new[] // string[11] 
-            {
-                "нет",
-                "нет",
-                "нет",
-                "нет",
-                "не исследовалась",
-                "нет",
-                "нет",
-                string.Empty,
-                "нет",
-                "есть",
-                "ногтевую пластинку"
-            };
-            MedicalInspectionStLocalisPart2ComboBoxes = new[] // string[10] 
-            {
-                "чистая",
-                "нет",
-                "I",
-                "угловое",
-                "линейная",
-                "ровные",
-                "в пределах кожи",
-                "нет",
-                "не нарушена",
-                "нет"                
-            };
-            MedicalInspectionStLocalisPart2LeftHand = new string[24];
-            MedicalInspectionStLocalisPart2RightHand = new string[24];
-
-            for (int i = 0; i < 22; i++)
-            {
-                MedicalInspectionStLocalisPart2LeftHand[i] =
-                MedicalInspectionStLocalisPart2RightHand[i] = "есть";
-            }
-
-            MedicalInspectionStLocalisPart2LeftHand[22] =
-            MedicalInspectionStLocalisPart2RightHand[22] = "розовый";
-            MedicalInspectionStLocalisPart2LeftHand[23] =
-            MedicalInspectionStLocalisPart2RightHand[23] = "теплая";
 
             MedicalInspectionLnFirstDateStart = DateTime.Now;
             MedicalInspectionLnWithNumberDateEnd = DateTime.Now;
@@ -804,6 +753,7 @@ namespace SurgeryHelper.Entities
             Phone = patientClass.Phone;
             TypeOfKSG = patientClass.TypeOfKSG;
             MKB = patientClass.MKB;
+            WWW = patientClass.WWW;
             ServiceName = patientClass.ServiceName;
             ServiceCode = patientClass.ServiceCode;
             KsgCode = patientClass.KsgCode;
@@ -875,22 +825,17 @@ namespace SurgeryHelper.Entities
             MedicalInspectionTreatmentType = patientClass.MedicalInspectionTreatmentType;
             MedicalInspectionIsAnamneseActive = patientClass.MedicalInspectionIsAnamneseActive;
             MedicalInspectionIsPlanEnabled = patientClass.MedicalInspectionIsPlanEnabled;
+            MedicalInspectionWithBoss = patientClass.MedicalInspectionWithBoss;
             MedicalInspectionIsStLocalisPart1Enabled = patientClass.MedicalInspectionIsStLocalisPart1Enabled;
-            MedicalInspectionIsStLocalisPart2Enabled = patientClass.MedicalInspectionIsStLocalisPart2Enabled;
             MedicalInspectionLnFirstDateStart = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionLnFirstDateStart);
             MedicalInspectionLnWithNumberDateEnd = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionLnWithNumberDateEnd);
             MedicalInspectionLnWithNumberDateStart = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionLnWithNumberDateStart);
             MedicalInspectionStLocalisPart1Fields = CopyStringArray(patientClass.MedicalInspectionStLocalisPart1Fields);
             MedicalInspectionStLocalisPart1OppositionFinger = patientClass.MedicalInspectionStLocalisPart1OppositionFinger;
-            MedicalInspectionStLocalisPart2ComboBoxes = CopyStringArray(patientClass.MedicalInspectionStLocalisPart2ComboBoxes);
-            MedicalInspectionStLocalisPart2LeftHand = CopyStringArray(patientClass.MedicalInspectionStLocalisPart2LeftHand);
-            MedicalInspectionStLocalisPart2NumericUpDown = patientClass.MedicalInspectionStLocalisPart2NumericUpDown;
-            MedicalInspectionStLocalisPart2RightHand = CopyStringArray(patientClass.MedicalInspectionStLocalisPart2RightHand);
-            MedicalInspectionStLocalisPart2TextBoxes = CopyStringArray(patientClass.MedicalInspectionStLocalisPart2TextBoxes);
-            MedicalInspectionStLocalisPart2WhichHand = patientClass.MedicalInspectionStLocalisPart2WhichHand;
             MedicalInspectionStPraesensComboBoxes = CopyStringArray(patientClass.MedicalInspectionStPraesensComboBoxes);
             MedicalInspectionStPraesensNumericUpDowns = CopyIntArray(patientClass.MedicalInspectionStPraesensNumericUpDowns);
             MedicalInspectionStPraesensOthers = patientClass.MedicalInspectionStPraesensOthers;
+            MedicalInspectionStPraesensTemperature = patientClass.MedicalInspectionStPraesensTemperature;
             MedicalInspectionStPraesensTextBoxes = CopyStringArray(patientClass.MedicalInspectionStPraesensTextBoxes);
             MedicalInspectionTeoRisk = patientClass.MedicalInspectionTeoRisk;
             MedicalInspectionTeoRiskEnabled = patientClass.MedicalInspectionTeoRiskEnabled;
@@ -921,6 +866,7 @@ namespace SurgeryHelper.Entities
             patientInfo.Phone = Phone;
             patientInfo.TypeOfKSG = TypeOfKSG;
             patientInfo.MKB = MKB;
+            patientInfo.WWW = WWW;
             patientInfo.ServiceName = ServiceName;
             patientInfo.ServiceCode = ServiceCode;
             patientInfo.KsgCode = KsgCode;
@@ -992,22 +938,17 @@ namespace SurgeryHelper.Entities
             patientInfo.MedicalInspectionTreatmentType = MedicalInspectionTreatmentType;
             patientInfo.MedicalInspectionIsAnamneseActive = MedicalInspectionIsAnamneseActive;
             patientInfo.MedicalInspectionIsPlanEnabled = MedicalInspectionIsPlanEnabled;
+            patientInfo.MedicalInspectionWithBoss = MedicalInspectionWithBoss;
             patientInfo.MedicalInspectionIsStLocalisPart1Enabled = MedicalInspectionIsStLocalisPart1Enabled;
-            patientInfo.MedicalInspectionIsStLocalisPart2Enabled = MedicalInspectionIsStLocalisPart2Enabled;
             patientInfo.MedicalInspectionLnFirstDateStart = ConvertEngine.CopyDateTime(MedicalInspectionLnFirstDateStart);
             patientInfo.MedicalInspectionLnWithNumberDateEnd = ConvertEngine.CopyDateTime(MedicalInspectionLnWithNumberDateEnd);
             patientInfo.MedicalInspectionLnWithNumberDateStart = ConvertEngine.CopyDateTime(MedicalInspectionLnWithNumberDateStart);
             patientInfo.MedicalInspectionStLocalisPart1Fields = CopyStringArray(MedicalInspectionStLocalisPart1Fields);
             patientInfo.MedicalInspectionStLocalisPart1OppositionFinger = MedicalInspectionStLocalisPart1OppositionFinger;
-            patientInfo.MedicalInspectionStLocalisPart2ComboBoxes = CopyStringArray(MedicalInspectionStLocalisPart2ComboBoxes);
-            patientInfo.MedicalInspectionStLocalisPart2LeftHand = CopyStringArray(MedicalInspectionStLocalisPart2LeftHand);
-            patientInfo.MedicalInspectionStLocalisPart2NumericUpDown = MedicalInspectionStLocalisPart2NumericUpDown;
-            patientInfo.MedicalInspectionStLocalisPart2RightHand = CopyStringArray(MedicalInspectionStLocalisPart2RightHand);
-            patientInfo.MedicalInspectionStLocalisPart2TextBoxes = CopyStringArray(MedicalInspectionStLocalisPart2TextBoxes);
-            patientInfo.MedicalInspectionStLocalisPart2WhichHand = MedicalInspectionStLocalisPart2WhichHand;
             patientInfo.MedicalInspectionStPraesensComboBoxes = CopyStringArray(MedicalInspectionStPraesensComboBoxes);
             patientInfo.MedicalInspectionStPraesensNumericUpDowns = CopyIntArray(MedicalInspectionStPraesensNumericUpDowns);
             patientInfo.MedicalInspectionStPraesensOthers = MedicalInspectionStPraesensOthers;
+            patientInfo.MedicalInspectionStPraesensTemperature = MedicalInspectionStPraesensTemperature;
             patientInfo.MedicalInspectionStPraesensTextBoxes = CopyStringArray(MedicalInspectionStPraesensTextBoxes);
             patientInfo.MedicalInspectionTeoRisk = MedicalInspectionTeoRisk;
             patientInfo.MedicalInspectionTeoRiskEnabled = MedicalInspectionTeoRiskEnabled;

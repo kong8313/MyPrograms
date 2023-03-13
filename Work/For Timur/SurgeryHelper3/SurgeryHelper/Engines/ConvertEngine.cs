@@ -410,5 +410,51 @@ namespace SurgeryHelper.Engines
 
             return "года";
         }
+
+        public static string GetBallString(string ballStr)
+        {
+            int ball;
+            if (!int.TryParse(ballStr, out ball))
+            {
+                return " баллов";
+            }
+
+            if (ball > 1 && ball < 5)
+            {
+                return " балла";
+            }
+
+            if (ball == 1)
+            {
+                return " балл";
+            }
+
+            return " баллов";
+        }
+
+        public static void SetValues<T>(T[] targetArray, T[] values)
+        {
+            for (int i = 0; i < Math.Min(values.Length, targetArray.Length); i++)
+            {
+                targetArray[i] = values[i];
+            }
+        }
+
+        /// <summary>
+        /// Производит замену значений в targetArray на основании старого и нового значений в changeInfo
+        /// </summary>
+        /// <param name="targetArray">Массив, в котором нужно провести замену значений</param>
+        /// <param name="indexes">Список индексов в массиве, которые надо просмотреть</param>
+        /// <param name="changeInfo">Дикшинари, в котором ключом является старое значение, а значенем - новое</param>
+        public static void UpdateValues(string[] targetArray, int[] indexes, Dictionary<string, string> changeInfo)
+        {
+            foreach (int i in indexes)
+            {
+                if (changeInfo.ContainsKey(targetArray[i]))
+                {
+                    targetArray[i] = changeInfo[targetArray[i]];
+                }
+            }
+        }
     }
 }

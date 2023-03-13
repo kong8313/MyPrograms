@@ -44,6 +44,8 @@
             this.dateTimePickerDeliveryDate = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerReleaseDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.comboBoxWWW = new System.Windows.Forms.ComboBox();
             this.textBoxAge = new System.Windows.Forms.TextBox();
             this.linkLabelMKB = new System.Windows.Forms.LinkLabel();
             this.label14 = new System.Windows.Forms.Label();
@@ -69,7 +71,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.buttonGenerateFolder = new System.Windows.Forms.Button();
             this.linkLabelPrivateFolder = new System.Windows.Forms.LinkLabel();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.textBoxPrivateFolder = new System.Windows.Forms.TextBox();
             this.linkLabelNosology = new System.Windows.Forms.LinkLabel();
             this.comboBoxNosology = new System.Windows.Forms.ComboBox();
@@ -101,8 +105,6 @@
             this.label16 = new System.Windows.Forms.Label();
             this.buttonDairy = new System.Windows.Forms.Button();
             this.buttonPrescription = new System.Windows.Forms.Button();
-            this.buttonGenerateFolder = new System.Windows.Forms.Button();
-            this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonDocuments = new System.Windows.Forms.Button();
             this.buttonOperations = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
@@ -128,25 +130,25 @@
             // textBoxLastName
             // 
             this.textBoxLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxLastName.Location = new System.Drawing.Point(78, 19);
+            this.textBoxLastName.Location = new System.Drawing.Point(68, 19);
             this.textBoxLastName.Name = "textBoxLastName";
-            this.textBoxLastName.Size = new System.Drawing.Size(173, 20);
+            this.textBoxLastName.Size = new System.Drawing.Size(196, 20);
             this.textBoxLastName.TabIndex = 1;
             // 
             // textBoxName
             // 
             this.textBoxName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxName.Location = new System.Drawing.Point(78, 44);
+            this.textBoxName.Location = new System.Drawing.Point(68, 44);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(173, 20);
+            this.textBoxName.Size = new System.Drawing.Size(196, 20);
             this.textBoxName.TabIndex = 2;
             // 
             // textBoxPatronymic
             // 
             this.textBoxPatronymic.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxPatronymic.Location = new System.Drawing.Point(78, 69);
+            this.textBoxPatronymic.Location = new System.Drawing.Point(68, 69);
             this.textBoxPatronymic.Name = "textBoxPatronymic";
-            this.textBoxPatronymic.Size = new System.Drawing.Size(173, 20);
+            this.textBoxPatronymic.Size = new System.Drawing.Size(196, 20);
             this.textBoxPatronymic.TabIndex = 3;
             // 
             // textBoxCity
@@ -247,6 +249,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.linkLabel1);
+            this.groupBox1.Controls.Add(this.comboBoxWWW);
             this.groupBox1.Controls.Add(this.textBoxAge);
             this.groupBox1.Controls.Add(this.linkLabelMKB);
             this.groupBox1.Controls.Add(this.label14);
@@ -267,10 +271,34 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Общие данные о пациенте";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.linkLabel1.Location = new System.Drawing.Point(145, 148);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(40, 13);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "WWW";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelWWW_LinkClicked);
+            // 
+            // comboBoxWWW
+            // 
+            this.comboBoxWWW.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.comboBoxWWW.FormattingEnabled = true;
+            this.comboBoxWWW.Location = new System.Drawing.Point(195, 145);
+            this.comboBoxWWW.MaxDropDownItems = 20;
+            this.comboBoxWWW.Name = "comboBoxWWW";
+            this.comboBoxWWW.Size = new System.Drawing.Size(69, 21);
+            this.comboBoxWWW.TabIndex = 10;
+            this.comboBoxWWW.MouseEnter += new System.EventHandler(this.comboBoxWWW_MouseEnter);
+            this.comboBoxWWW.MouseLeave += new System.EventHandler(this.comboBoxWWW_MouseLeave);
+            // 
             // textBoxAge
             // 
             this.textBoxAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxAge.Location = new System.Drawing.Point(78, 121);
+            this.textBoxAge.Location = new System.Drawing.Point(68, 121);
             this.textBoxAge.Name = "textBoxAge";
             this.textBoxAge.ReadOnly = true;
             this.textBoxAge.Size = new System.Drawing.Size(50, 20);
@@ -285,7 +313,7 @@
             this.linkLabelMKB.Location = new System.Drawing.Point(6, 148);
             this.linkLabelMKB.Name = "linkLabelMKB";
             this.linkLabelMKB.Size = new System.Drawing.Size(37, 13);
-            this.linkLabelMKB.TabIndex = 1;
+            this.linkLabelMKB.TabIndex = 7;
             this.linkLabelMKB.TabStop = true;
             this.linkLabelMKB.Text = "* МКБ";
             this.linkLabelMKB.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelMKB_LinkClicked);
@@ -307,7 +335,7 @@
             this.dateTimePickerBirthday.CustomFormat = "dd.MM.yyyy";
             this.dateTimePickerBirthday.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.dateTimePickerBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerBirthday.Location = new System.Drawing.Point(78, 95);
+            this.dateTimePickerBirthday.Location = new System.Drawing.Point(68, 95);
             this.dateTimePickerBirthday.Name = "dateTimePickerBirthday";
             this.dateTimePickerBirthday.Size = new System.Drawing.Size(103, 20);
             this.dateTimePickerBirthday.TabIndex = 5;
@@ -347,7 +375,7 @@
             // 
             this.comboBoxMKB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.comboBoxMKB.FormattingEnabled = true;
-            this.comboBoxMKB.Location = new System.Drawing.Point(78, 145);
+            this.comboBoxMKB.Location = new System.Drawing.Point(68, 145);
             this.comboBoxMKB.MaxDropDownItems = 20;
             this.comboBoxMKB.Name = "comboBoxMKB";
             this.comboBoxMKB.Size = new System.Drawing.Size(69, 21);
@@ -567,6 +595,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Учётные данные";
             // 
+            // buttonGenerateFolder
+            // 
+            this.buttonGenerateFolder.BackgroundImage = global::SurgeryHelper.Properties.Resources.generate16;
+            this.buttonGenerateFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonGenerateFolder.FlatAppearance.BorderSize = 0;
+            this.buttonGenerateFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonGenerateFolder.Location = new System.Drawing.Point(89, 147);
+            this.buttonGenerateFolder.Name = "buttonGenerateFolder";
+            this.buttonGenerateFolder.Size = new System.Drawing.Size(20, 20);
+            this.buttonGenerateFolder.TabIndex = 16;
+            this.buttonGenerateFolder.TabStop = false;
+            this.buttonGenerateFolder.UseVisualStyleBackColor = true;
+            this.buttonGenerateFolder.Click += new System.EventHandler(this.buttonGenerateFolder_Click);
+            this.buttonGenerateFolder.MouseEnter += new System.EventHandler(this.buttonGenerateFolder_MouseEnter);
+            this.buttonGenerateFolder.MouseLeave += new System.EventHandler(this.buttonGenerateFolder_MouseLeave);
+            // 
             // linkLabelPrivateFolder
             // 
             this.linkLabelPrivateFolder.AutoSize = true;
@@ -580,6 +624,23 @@
             this.linkLabelPrivateFolder.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelPrivateFolder_LinkClicked);
             this.linkLabelPrivateFolder.MouseEnter += new System.EventHandler(this.linkLabelPrivateFolder_MouseEnter);
             this.linkLabelPrivateFolder.MouseLeave += new System.EventHandler(this.linkLabelPrivateFolder_MouseLeave);
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonOpen.BackgroundImage = global::SurgeryHelper.Properties.Resources.open16;
+            this.buttonOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.buttonOpen.FlatAppearance.BorderSize = 0;
+            this.buttonOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonOpen.Location = new System.Drawing.Point(284, 147);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(20, 20);
+            this.buttonOpen.TabIndex = 20;
+            this.buttonOpen.TabStop = false;
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            this.buttonOpen.MouseEnter += new System.EventHandler(this.buttonOpen_MouseEnter);
+            this.buttonOpen.MouseLeave += new System.EventHandler(this.buttonOpen_MouseLeave);
             // 
             // textBoxPrivateFolder
             // 
@@ -932,39 +993,6 @@
             this.buttonPrescription.MouseEnter += new System.EventHandler(this.buttonPrescription_MouseEnter);
             this.buttonPrescription.MouseLeave += new System.EventHandler(this.buttonPrescription_MouseLeave);
             // 
-            // buttonGenerateFolder
-            // 
-            this.buttonGenerateFolder.BackgroundImage = global::SurgeryHelper.Properties.Resources.generate16;
-            this.buttonGenerateFolder.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonGenerateFolder.FlatAppearance.BorderSize = 0;
-            this.buttonGenerateFolder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonGenerateFolder.Location = new System.Drawing.Point(89, 147);
-            this.buttonGenerateFolder.Name = "buttonGenerateFolder";
-            this.buttonGenerateFolder.Size = new System.Drawing.Size(20, 20);
-            this.buttonGenerateFolder.TabIndex = 16;
-            this.buttonGenerateFolder.TabStop = false;
-            this.buttonGenerateFolder.UseVisualStyleBackColor = true;
-            this.buttonGenerateFolder.Click += new System.EventHandler(this.buttonGenerateFolder_Click);
-            this.buttonGenerateFolder.MouseEnter += new System.EventHandler(this.buttonGenerateFolder_MouseEnter);
-            this.buttonGenerateFolder.MouseLeave += new System.EventHandler(this.buttonGenerateFolder_MouseLeave);
-            // 
-            // buttonOpen
-            // 
-            this.buttonOpen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOpen.BackgroundImage = global::SurgeryHelper.Properties.Resources.open16;
-            this.buttonOpen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.buttonOpen.FlatAppearance.BorderSize = 0;
-            this.buttonOpen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonOpen.Location = new System.Drawing.Point(284, 147);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(20, 20);
-            this.buttonOpen.TabIndex = 20;
-            this.buttonOpen.TabStop = false;
-            this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
-            this.buttonOpen.MouseEnter += new System.EventHandler(this.buttonOpen_MouseEnter);
-            this.buttonOpen.MouseLeave += new System.EventHandler(this.buttonOpen_MouseLeave);
-            // 
             // buttonDocuments
             // 
             this.buttonDocuments.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -1154,5 +1182,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox textBoxAge;
         private System.Windows.Forms.Button buttonDairy;
+        private System.Windows.Forms.ComboBox comboBoxWWW;
+        private System.Windows.Forms.LinkLabel linkLabel1;
     }
 }

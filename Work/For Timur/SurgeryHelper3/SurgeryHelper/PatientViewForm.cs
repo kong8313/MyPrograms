@@ -81,6 +81,9 @@ namespace SurgeryHelper
             comboBoxMKB.Items.Clear();
             comboBoxMKB.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastMKB);
 
+            comboBoxWWW.Items.Clear();
+            comboBoxWWW.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastWWW);
+
             if (patientInfo == null)
             {
                 Text = "Добавление нового пациента";
@@ -98,6 +101,7 @@ namespace SurgeryHelper
                 textBoxPatronymic.Text = _patientInfo.Patronymic;                
                 dateTimePickerBirthday.Value = _patientInfo.Birthday;
                 comboBoxMKB.Text = _patientInfo.MKB;
+                comboBoxWWW.Text = _patientInfo.WWW;
 
                 textBoxCity.Text = _patientInfo.CityName;
                 textBoxStreet.Text = _patientInfo.StreetName;
@@ -365,6 +369,7 @@ namespace SurgeryHelper
             patientInfo.Phone = textBoxPhone.Text;
             patientInfo.TypeOfKSG = comboBoxTypeKSG.Text;
             patientInfo.MKB = comboBoxMKB.Text;
+            patientInfo.WWW = comboBoxWWW.Text;
             patientInfo.ServiceName = comboBoxServiceName.Text;
             patientInfo.ServiceCode = textBoxServiceCode.Text;
             patientInfo.KsgCode = textBoxKsgCode.Text;
@@ -390,6 +395,7 @@ namespace SurgeryHelper
             patientInfo.PrivateFolder = textBoxPrivateFolder.Text;
 
             SaveLastUsedMKB();
+            SaveLastUsedWWW();
         }
 
         /// <summary>
@@ -412,6 +418,28 @@ namespace SurgeryHelper
             }
 
             _dbEngine.ConfigEngine.PatientViewFormLastMKB = lastMKBList.ToArray();
+        }
+
+        /// <summary>
+        /// Сохранить 20 последних использованных кодов WWW
+        /// </summary>
+        private void SaveLastUsedWWW()
+        {
+            var lastWWWList = new List<string> { comboBoxWWW.Text };
+            foreach (string mkb in comboBoxWWW.Items)
+            {
+                if (lastWWWList.Count >= 20)
+                {
+                    break;
+                }
+
+                if (!lastWWWList.Contains(mkb) && !string.IsNullOrEmpty(mkb))
+                {
+                    lastWWWList.Add(mkb);
+                }
+            }
+
+            _dbEngine.ConfigEngine.PatientViewFormLastWWW = lastWWWList.ToArray();
         }
 
         /// <summary>
@@ -790,6 +818,21 @@ namespace SurgeryHelper
         }
 
         /// <summary>
+        /// Выбрать код WWW из списка всех кодов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabelWWW_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MkbCodeFromMkbSelectForm = "";
+            new MKBSelectForm(this, _dbEngine).ShowDialog();
+            if (!string.IsNullOrEmpty(MkbCodeFromMkbSelectForm))
+            {
+                comboBoxWWW.Text = MkbCodeFromMkbSelectForm;
+            }
+        }
+
+        /// <summary>
         /// Сохранить 20 последних выбранных услуг
         /// </summary>
         /// <param name="currentItem"></param>
@@ -1097,6 +1140,21 @@ namespace SurgeryHelper
         private void comboBoxMKB_MouseLeave(object sender, EventArgs e)
         {
             toolTip1.Hide(comboBoxMKB);
+        }
+
+        private void comboBoxWWW_MouseEnter(object sender, EventArgs e)
+        {
+            string mkbName = _dbEngine.GetMkbName(comboBoxWWW.Text);
+
+            if (!string.IsNullOrEmpty(mkbName))
+            {
+                toolTip1.Show(mkbName, comboBoxWWW, 15, -20);
+            }
+        }
+
+        private void comboBoxWWW_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(comboBoxWWW);
         }
 
         private void linkLabelServiceName_MouseEnter(object sender, EventArgs e)
