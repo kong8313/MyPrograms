@@ -72,6 +72,7 @@
             this.dateTimePickerFilterOperationDateEnd = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerFilterOperationDateStart = new System.Windows.Forms.DateTimePicker();
             this.buttonImportKSG = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PatientList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
             this.SuspendLayout();
@@ -102,8 +103,8 @@
             this.Column2,
             this.Column3,
             this.EmptyColumn});
+            this.PatientList.ContextMenuStrip = this.contextMenuStrip1;
             this.PatientList.Location = new System.Drawing.Point(3, 6);
-            this.PatientList.MultiSelect = false;
             this.PatientList.Name = "PatientList";
             this.PatientList.ReadOnly = true;
             this.PatientList.RowHeadersVisible = false;
@@ -597,6 +598,12 @@
             this.buttonImportKSG.MouseEnter += new System.EventHandler(this.buttonImportKSG_MouseEnter);
             this.buttonImportKSG.MouseLeave += new System.EventHandler(this.buttonImportKSG_MouseLeave);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 26);
+            this.contextMenuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.contextMenuStrip1_ItemClicked);
+            // 
             // PatientListForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -691,5 +698,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmptyColumn;
         private System.Windows.Forms.Button buttonImportKSG;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
     }
 }

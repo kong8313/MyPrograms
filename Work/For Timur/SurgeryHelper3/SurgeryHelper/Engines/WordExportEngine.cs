@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -621,7 +622,8 @@ namespace SurgeryHelper.Engines
                         0,
                         ref previousValue,
                         ref currentValue,
-                        patientInfo);
+                        patientInfo,
+                        false);
                 }
 
                 _waitForm.SetProgress(30);
@@ -2871,15 +2873,15 @@ namespace SurgeryHelper.Engines
 
                 Thread.CurrentThread.CurrentCulture = oldCi;
             }
-
         }
 
         /// <summary>
         /// Открыть в ворде указанный документ и провести замену специальных значений в скобках
         /// </summary>
         /// <param name="filePath">Путь до файла</param>
-        /// <param name="patientInfo">Информация о пациенте</param>        
-        public void ExportAdditionalDocument(object filePath, PatientClass patientInfo)
+        /// <param name="patientInfo">Информация о пациенте</param>
+        ///  <param name="setEmptyMissingObjects">Оставлять пустыми места, если не указан вставляемый параметр</param>
+        public void ExportAdditionalDocument(object filePath, PatientClass patientInfo, bool setEmptyMissingObjects)
         {
             CultureInfo oldCi = Thread.CurrentThread.CurrentCulture;
             _waitForm = new WaitForm();
@@ -2892,9 +2894,18 @@ namespace SurgeryHelper.Engines
 
                 _wordApp = new Application();
 
-                _wordDoc = _wordApp.Documents.OpenOld(ref filePath, ref _missingObject, ref _missingObject,
-                    ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject,
-                    ref _missingObject, ref _missingObject, ref _missingObject);
+                try
+                {
+                    // Пробуем для 2007 офиса выставить стиль документов 2003 офиса.
+                    // Для других офисов, вероятно, отвалимся с ошибкой, но для них и не
+                    // надо ничего делать.
+                    _wordDoc.ApplyQuickStyleSet("Word 2003");
+                }
+                catch
+                {
+                }
+
+                _wordDoc = _wordApp.Documents.Add(filePath);
 
                 _waitForm.SetProgress(10);
                 double shift = 90.0 / (_wordDoc.Content.Paragraphs.Count + _wordDoc.Shapes.Count);
@@ -2910,7 +2921,8 @@ namespace SurgeryHelper.Engines
                         shift,
                         ref previousValue,
                         ref currentValue,
-                        patientInfo);
+                        patientInfo,
+                        setEmptyMissingObjects);
                 }
 
                 foreach (Shape shape in _wordDoc.Shapes)
@@ -2921,7 +2933,8 @@ namespace SurgeryHelper.Engines
                         shift,
                         ref previousValue,
                         ref currentValue,
-                        patientInfo);
+                        patientInfo,
+                        setEmptyMissingObjects);
                 }
 
                 _waitForm.SetProgress(100);
@@ -2930,6 +2943,16 @@ namespace SurgeryHelper.Engines
                 object unit = WdUnits.wdStory;
                 object extend = WdMovementType.wdMove;
                 _wordApp.Selection.HomeKey(ref unit, ref extend);
+
+                var newDocumentPath = GetNewAdditionalDocumentFilePath(filePath.ToString(), patientInfo.GetFullName());
+                /*
+                 Изменение имени документа без сохранения
+                var dialog = _wordApp.Dialogs[WdWordDialog.wdDialogFileSummaryInfo];
+                dialog.GetType().InvokeMember("Title", BindingFlags.Public | BindingFlags.Instance | BindingFlags.SetProperty,
+                    null, dialog, new object[] { newDocumentPath });
+                dialog.Execute();*/
+
+                _wordDoc.SaveAs(newDocumentPath);
             }
             catch (Exception ex)
             {
@@ -2945,13 +2968,33 @@ namespace SurgeryHelper.Engines
             }
         }
 
+        private string GetNewAdditionalDocumentFilePath(string templateFilePath, string newFileName)
+        {
+            FileInfo fileInfo = new FileInfo(templateFilePath);
+            var now = DateTime.Now;
+            string resultDirectory = Path.Combine(fileInfo.DirectoryName ?? "", "Generated"); // now.ToString("yyyy_MM_dd_HH_mm_ss")
+            if (!Directory.Exists(resultDirectory))
+            {
+                Directory.CreateDirectory(resultDirectory);
+            }
+
+            string newFilePath = Path.Combine(resultDirectory, newFileName);
+            if (File.Exists(newFilePath))
+            {
+                File.Delete(newFilePath);
+            }
+
+            return newFilePath;
+        }
+
         private void FindMarkAndReplace(
            string rangeText,
            Shape shape,
            double shift,
            ref double previousValue,
            ref double currentValue,
-           PatientClass patientInfo)
+           PatientClass patientInfo,
+           bool setEmptyMissingObjects)
         {
             int closeBracketNumber = -1;
             bool isTextChanged = false;
@@ -2976,7 +3019,7 @@ namespace SurgeryHelper.Engines
                     int endIndex = closeBracketNumber + 1;
 
                     string bracketText = rangeText.Substring(startIndex, endIndex - startIndex);
-                    string bracketNewText = GetRealParameterInsteadSpecialMark(bracketText, patientInfo);
+                    string bracketNewText = GetRealParameterInsteadSpecialMark(bracketText, patientInfo, setEmptyMissingObjects);
 
                     if (shape == null)
                     {
@@ -3021,9 +3064,10 @@ namespace SurgeryHelper.Engines
         /// Вернуть нужное значение вместо параметра в документе
         /// </summary>
         /// <param name="mark">Метка в документе</param>
-        /// <param name="patientInfo">Информация о пациенте</param>        
+        /// <param name="patientInfo">Информация о пациенте</param>
+        ///  <param name="setEmptyMissingObjects">Оставлять пустыми объекты, если не найдено для них значения</param>
         /// <returns></returns>
-        private string GetRealParameterInsteadSpecialMark(string mark, PatientClass patientInfo)
+        private string GetRealParameterInsteadSpecialMark(string mark, PatientClass patientInfo, bool setEmptyMissingObjects)
         {
             if (!mark.StartsWith("{") || !mark.EndsWith("}"))
             {
@@ -3071,7 +3115,7 @@ namespace SurgeryHelper.Engines
             }
             catch (Exception ex)
             {
-                return "{" + ex.Message.ToUpper() + "}";
+                return setEmptyMissingObjects ? "" : "{" + ex.Message.ToUpper() + "}";
             }
 
             switch (mark)
@@ -3079,7 +3123,7 @@ namespace SurgeryHelper.Engines
                 case "фио пациента":
                     return patientInfo.GetFullName();
                 case "возраст":
-                    return patientInfo.Age.ToString();
+                    return patientInfo.Age;
                 case "адрес":
                     return patientInfo.GetAddress();
                 case "дата рождения":
@@ -3094,7 +3138,7 @@ namespace SurgeryHelper.Engines
                         return ConvertEngine.GetRightDateString(patientInfo.ReleaseDate.Value);
                     }
 
-                    return "{ДАТА ВЫПИСКИ НЕ УКАЗАНА}";
+                    return setEmptyMissingObjects ? "" : "{ДАТА ВЫПИСКИ НЕ УКАЗАНА}";
                 case "койко дни":
                     if (patientInfo.ReleaseDate.HasValue)
                     {
@@ -3102,7 +3146,7 @@ namespace SurgeryHelper.Engines
                         return threatmentPeriod.Days.ToString();
                     }
 
-                    return "{КОЙКО ДНИ НЕВЫЧИСЛИМЫ Т.К. ДАТА ВЫПИСКИ НЕ УКАЗАНА}";
+                    return setEmptyMissingObjects ? "" : "{КОЙКО ДНИ НЕВЫЧИСЛИМЫ Т.К. ДАТА ВЫПИСКИ НЕ УКАЗАНА}";
                 case "диагноз":
                     return patientInfo.Diagnose;
                 case "консервативная терапия":
@@ -3121,28 +3165,28 @@ namespace SurgeryHelper.Engines
                         return patientInfo.ServiceName;
                     }
 
-                    return "{НАЗВАНИЕ УСЛУГИ НЕ УКАЗАНО}";
+                    return setEmptyMissingObjects ? "" : "{НАЗВАНИЕ УСЛУГИ НЕ УКАЗАНО}";
                 case "код услуги":
                     if (!string.IsNullOrEmpty(patientInfo.ServiceCode))
                     {
                         return patientInfo.ServiceCode;
                     }
 
-                    return "{КОД УСЛУГИ НЕ УКАЗАН}";
+                    return setEmptyMissingObjects ? "" : "{КОД УСЛУГИ НЕ УКАЗАН}";
                 case "код ксг":
                     if (!string.IsNullOrEmpty(patientInfo.KsgCode))
                     {
                         return patientInfo.KsgCode;
                     }
 
-                    return "{КОД КСГ НЕ УКАЗАН}";
+                    return setEmptyMissingObjects ? "" : "{КОД КСГ НЕ УКАЗАН}";
                 case "расшифровка ксг":
                     if (!string.IsNullOrEmpty(patientInfo.KsgDecoding))
                     {
                         return patientInfo.KsgDecoding;
                     }
 
-                    return "{РАСШИФРОВКА КСГ НЕ УКАЗАНА}";
+                    return setEmptyMissingObjects ? "" : "{РАСШИФРОВКА КСГ НЕ УКАЗАНА}";
                 case "работа":
                     return patientInfo.WorkPlace;
                 case "паспорт":
@@ -3161,16 +3205,16 @@ namespace SurgeryHelper.Engines
                         return ConvertEngine.ListToString(patientInfo.Operations[0].Surgeons, ",");
                     }
 
-                    return "{ХИРУРГ НЕ НАЙДЕН, Т.К. НЕТ ОПЕРАЦИЙ}";
+                    return setEmptyMissingObjects ? "" : "{ХИРУРГ НЕ НАЙДЕН, Т.К. НЕТ ОПЕРАЦИЙ}";
                 case "анестезиолог":
                     if (patientInfo.Operations.Count > 0)
                     {
                         return patientInfo.Operations[0].HeAnesthetist;
                     }
 
-                    return "{АНЕСТЕЗИОЛОГ НЕ НАЙДЕН, Т.К. НЕТ ОПЕРАЦИЙ}";
+                    return setEmptyMissingObjects ? "" : "{АНЕСТЕЗИОЛОГ НЕ НАЙДЕН, Т.К. НЕТ ОПЕРАЦИЙ}";
                 default:
-                    return "{" + mark.ToUpper() + "}";
+                    return setEmptyMissingObjects ? "" : "{" + mark.ToUpper() + "}";
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using SurgeryHelper.Engines;
 using SurgeryHelper.Entities;
@@ -16,8 +17,12 @@ namespace SurgeryHelper
         private PatientViewForm _addNewPatientForm;
         private readonly MasterKeyEngine _masterKey;
 
+        private readonly string _additionalDocumentsFolderPath;
+
         public PatientListForm(DbEngine dbEngine)
         {
+            _additionalDocumentsFolderPath = Path.Combine(Application.StartupPath, DocumentsForm.AdditionalDocumentsFolderName);
+
             _stopSaveParameters = true;
             InitializeComponent();
 
@@ -94,7 +99,19 @@ namespace SurgeryHelper
             dateTimePickerFilterDeliveryDateEnd.Visible = dateTimePickerFilterReleaseDateEnd.Visible =
             dateTimePickerFilterOperationDateEnd.Visible = textBoxFilterOperationCnt.Visible = true;
 
+            PutAdditionalDocumentNamesToContextMenu();
+
             ShowOrHideFilters();
+        }
+
+        private void PutAdditionalDocumentNamesToContextMenu()
+        {
+            contextMenuStrip1.Items.Clear();
+            var dirInfo = new DirectoryInfo(_additionalDocumentsFolderPath);
+            foreach (FileInfo fileInfo in dirInfo.GetFiles())
+            {
+                contextMenuStrip1.Items.Add(fileInfo.Name);
+            }
         }
 
         /// <summary>
@@ -442,7 +459,13 @@ namespace SurgeryHelper
                 int currentNumber = PatientList.CurrentCellAddress.Y;
                 if (currentNumber < 0)
                 {
-                    MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Нет выделенных записей", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (PatientList.SelectedRows.Count > 1)
+                {
+                    MessageBox.Show("Это действие доступно только для одной выделенной строки", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -467,7 +490,7 @@ namespace SurgeryHelper
         }
 
         /// <summary>
-        ///  Получить выделенного пациента
+        /// Получить выделенного пациента
         /// </summary>
         /// <returns></returns>
         private PatientClass GetSelectedPatient()
@@ -475,6 +498,17 @@ namespace SurgeryHelper
             int currentNumber = PatientList.CurrentCellAddress.Y;
             int id = Convert.ToInt32(PatientList.Rows[currentNumber].Cells[0].Value);
 
+            return GetSelectedPatient(id);
+        }
+
+        /// <summary>
+        /// Получить выделенного пациента
+        /// </summary>
+        /// <param name="id">ID пациента</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        private PatientClass GetSelectedPatient(int id)
+        {
             foreach (PatientClass patientInfo in _dbEngine.PatientList)
             {
                 if (patientInfo.Id == id)
@@ -495,7 +529,13 @@ namespace SurgeryHelper
         {
             if (PatientList.CurrentCellAddress.Y < 0)
             {
-                MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Нет выделенных записей", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (PatientList.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Это действие доступно только для одной выделенной строки", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -522,7 +562,13 @@ namespace SurgeryHelper
             {
                 if (PatientList.CurrentCellAddress.Y < 0)
                 {
-                    MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Нет выделенных записей", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (PatientList.SelectedRows.Count > 1)
+                {
+                    MessageBox.Show("Это действие доступно только для одной выделенной строки", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -1039,6 +1085,20 @@ namespace SurgeryHelper
             _dbEngine.ConfigEngine.PatientFormFilterDirection = _dbEngine.ConfigEngine.PatientFormFilterDirection == SortOrder.Descending
                 ? SortOrder.Ascending
                 : SortOrder.Descending;
+        }
+
+        private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            var wordExportEngine = new WordExportEngine(_dbEngine);
+            var documentPath = Path.Combine(_additionalDocumentsFolderPath, e.ClickedItem.Text);
+
+            foreach (DataGridViewRow patientListSelectedRow in PatientList.SelectedRows)
+            {
+                int id = Convert.ToInt32(patientListSelectedRow.Cells[0].Value);
+                var patientInfo = GetSelectedPatient(id);
+
+                wordExportEngine.ExportAdditionalDocument(documentPath, patientInfo, true);
+            }
         }
     }
 }

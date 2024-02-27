@@ -8,7 +8,7 @@ namespace SurgeryHelper
 {
     public partial class DocumentsForm : Form
     {
-        private const string AdditionalDocumentsFolderName = "AdditionalDocuments";
+        public const string AdditionalDocumentsFolderName = "AdditionalDocuments";
 
         private readonly PatientViewForm _patientViewForm;
         private readonly PatientClass _patientInfo;
@@ -75,7 +75,7 @@ namespace SurgeryHelper
             }
 
             new WordExportEngine(_dbEngine).ExportAdditionalDocument(
-                Path.Combine(_additionalDocumentsFolderPath, comboBoxAdditionalDocuments.Text), _patientInfo);
+                Path.Combine(_additionalDocumentsFolderPath, comboBoxAdditionalDocuments.Text), _patientInfo, false);
 
             Close();
         }
