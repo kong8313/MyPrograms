@@ -22,6 +22,12 @@ namespace SurgeryHelper
             _dbEngine = dbEngine;
             _operationInfo = operationInfo;
             _patientInfo = patientInfo;
+
+            comboBoxAntibioticProphylaxis.Items.Clear();
+            comboBoxAntibioticProphylaxis.Items.AddRange(_dbEngine.ConfigEngine.OperationProtocolFormLastAntibioticProphylaxis);
+
+            comboBoxPremedication.Items.Clear();
+            comboBoxPremedication.Items.AddRange(_dbEngine.ConfigEngine.OperationProtocolFormLastPremedication);
         }
 
         private void OperationProtocolForm_Load(object sender, EventArgs e)
@@ -44,18 +50,18 @@ namespace SurgeryHelper
             comboBoxHeartSounds.Text = _operationInfo.BeforeOperationEpicrisisHeartSounds;
             numericUpDownPulse.Value = _operationInfo.BeforeOperationEpicrisisPulse;
             textBoxStLocalis.Text = _operationInfo.BeforeOperationEpicrisisStLocalis;
-            textBoxStomach.Text = _operationInfo.BeforeOperationEpicrisisStomach;
-            textBoxStool.Text = _operationInfo.BeforeOperationEpicrisisStool;
             textBoxTemperature.Text = _operationInfo.BeforeOperationEpicrisisTemperature;
             comboBoxState.Text = _operationInfo.BeforeOperationEpicrisisState;
 
-            textBoxUrination.Text = _operationInfo.BeforeOperationEpicrisisUrination;
             textBoxWheeze.Text = _operationInfo.BeforeOperationEpicrisisWheeze;
 
             checkBoxAntibioticProphylaxis.Checked = _operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
             comboBoxAntibioticProphylaxis.Text = _operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis;
+            checkBoxPremedication.Checked = _operationInfo.BeforeOperationEpicrisisIsPremedicationExist;
+            comboBoxPremedication.Text = _operationInfo.BeforeOperationEpicrisisPremedication;
 
             textBoxOperationCourse.Text = _operationInfo.OperationCourse;
+            textBoxImplants.Text = ConvertEngine.ListToMultilineString(_operationInfo.Implants);
 
             _stopSaveParameters = false;
         }
@@ -65,7 +71,7 @@ namespace SurgeryHelper
             var tempOperationInfo = new OperationClass(_operationInfo);
             var tempPatientInfo = new PatientClass(_patientInfo);
 
-            PutDataToOperationAndPatient(tempOperationInfo, tempPatientInfo);
+            PutDataToOperation(tempOperationInfo);
 
             new WordExportEngine(_dbEngine).ExportOperationProtocol(tempOperationInfo, tempPatientInfo);
         }
@@ -74,8 +80,7 @@ namespace SurgeryHelper
         /// Положить введённые данные в операцию и пациента
         /// </summary>
         /// <param name="operationInfo">Информация про операцию</param>
-        /// <param name="patientInfo">Информация о пациенте</param>
-        private void PutDataToOperationAndPatient(OperationClass operationInfo, PatientClass patientInfo)
+        private void PutDataToOperation(OperationClass operationInfo)
         {
             operationInfo.BeforeOperationEpicrisisIsDairyEnabled = checkBoxDnevnik.Checked;
 
@@ -89,23 +94,26 @@ namespace SurgeryHelper
             operationInfo.BeforeOperationEpicrisisHeartSounds = comboBoxHeartSounds.Text;
             operationInfo.BeforeOperationEpicrisisPulse = (int)numericUpDownPulse.Value;
             operationInfo.BeforeOperationEpicrisisStLocalis = textBoxStLocalis.Text;
-            operationInfo.BeforeOperationEpicrisisStomach = textBoxStomach.Text;
-            operationInfo.BeforeOperationEpicrisisStool = textBoxStool.Text;
             operationInfo.BeforeOperationEpicrisisTemperature = textBoxTemperature.Text;
-            operationInfo.BeforeOperationEpicrisisUrination = textBoxUrination.Text;
             operationInfo.BeforeOperationEpicrisisWheeze = textBoxWheeze.Text;
 
             operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist = checkBoxAntibioticProphylaxis.Checked;
             operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = comboBoxAntibioticProphylaxis.Text;
+            operationInfo.BeforeOperationEpicrisisIsPremedicationExist = checkBoxPremedication.Checked;
+            operationInfo.BeforeOperationEpicrisisPremedication = comboBoxPremedication.Text;
 
-            operationInfo.OperationCourse = textBoxOperationCourse.Text.TrimEnd(new[] { '\r', '\n' });
+            operationInfo.OperationCourse = textBoxOperationCourse.Text.TrimEnd('\r', '\n');
+            operationInfo.Implants = ConvertEngine.MultilineStringToList(textBoxImplants.Text);
+
+            _dbEngine.ConfigEngine.OperationProtocolFormLastAntibioticProphylaxis = ConvertEngine.GetLastUsedValues(comboBoxAntibioticProphylaxis);
+            _dbEngine.ConfigEngine.OperationProtocolFormLastPremedication = ConvertEngine.GetLastUsedValues(comboBoxPremedication);
         }
 
         private void buttonOk_Click(object sender, EventArgs e)
         {
             try
             {
-                PutDataToOperationAndPatient(_operationInfo, _patientInfo);
+                PutDataToOperation(_operationInfo);
 
                 _isFormClosingByButton = true;
                 Close();
@@ -175,9 +183,9 @@ namespace SurgeryHelper
         private void checkBoxDnevnik_CheckedChanged(object sender, EventArgs e)
         {
             textBoxTemperature.Enabled = textBoxComplaints.Enabled = comboBoxState.Enabled =
-            textBoxUrination.Enabled = textBoxStool.Enabled = textBoxStLocalis.Enabled = 
+            textBoxStLocalis.Enabled = 
             numericUpDownChDD.Enabled = comboBoxBreath.Enabled = textBoxWheeze.Enabled =
-            comboBoxHeartSounds.Enabled = comboBoxHeartRhythm.Enabled = textBoxStomach.Enabled =
+            comboBoxHeartSounds.Enabled = comboBoxHeartRhythm.Enabled = 
             numericUpDownPulse.Enabled = numericUpDownADFirst.Enabled = 
             numericUpDownADSecond.Enabled = checkBoxDnevnik.Checked;
         }
@@ -195,6 +203,49 @@ namespace SurgeryHelper
         private void checkBoxAntibioticProphylaxis_CheckedChanged(object sender, EventArgs e)
         {
             comboBoxAntibioticProphylaxis.Enabled = checkBoxAntibioticProphylaxis.Checked;
+        }
+
+        private void checkBoxPremedication_CheckedChanged(object sender, EventArgs e)
+        {
+            comboBoxPremedication.Enabled = checkBoxPremedication.Checked;
+        }
+
+        /// <summary>
+        /// Открыть список с имплантатами
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabelImplantList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new ImplantsForm(_dbEngine, this, "textBoxImplants").ShowDialog();
+        }
+
+        /// <summary>
+        /// Поместить строку в указанный объект
+        /// </summary>
+        /// <param name="objectName">Название объекта, куда класть текст</param>
+        /// <param name="str">Текст, который надо положить в объект</param>
+        public void PutStringToObject(string objectName, string str)
+        {
+            switch (objectName)
+            {
+                case "textBoxImplants":
+                    if (!string.IsNullOrEmpty(textBoxImplants.Text))
+                    {
+                        if (!textBoxImplants.Text.EndsWith("\r\n"))
+                        {
+                            textBoxImplants.Text += "\r\n";
+                        }
+
+                        textBoxImplants.Text += str;
+                    }
+                    else
+                    {
+                        textBoxImplants.Text = str;
+                    }
+
+                    break;
+            }
         }
     }
 }

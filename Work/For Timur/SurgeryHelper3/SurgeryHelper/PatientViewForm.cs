@@ -81,8 +81,11 @@ namespace SurgeryHelper
             comboBoxMKB.Items.Clear();
             comboBoxMKB.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastMKB);
 
-            comboBoxWWW.Items.Clear();
-            comboBoxWWW.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastWWW);
+            comboBoxConcomitantDiagnoseMKB.Items.Clear();
+            comboBoxConcomitantDiagnoseMKB.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastConcomitantDiagnoseMKB);
+
+            comboBoxComplicationsMKB.Items.Clear();
+            comboBoxComplicationsMKB.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastComplicationsMKB);
 
             if (patientInfo == null)
             {
@@ -101,7 +104,8 @@ namespace SurgeryHelper
                 textBoxPatronymic.Text = _patientInfo.Patronymic;                
                 dateTimePickerBirthday.Value = _patientInfo.Birthday;
                 comboBoxMKB.Text = _patientInfo.MKB;
-                comboBoxWWW.Text = _patientInfo.WWW;
+                comboBoxConcomitantDiagnoseMKB.Text = _patientInfo.ConcomitantDiagnoseMKB;
+                comboBoxComplicationsMKB.Text = _patientInfo.ComplicationsMKB;
 
                 textBoxCity.Text = _patientInfo.CityName;
                 textBoxStreet.Text = _patientInfo.StreetName;
@@ -130,6 +134,7 @@ namespace SurgeryHelper
                 textBoxComplications.Text = patientInfo.Complications;
                 textBoxCaseHistory.Text = _patientInfo.NumberOfCaseHistory;
                 comboBoxNosology.Text = _patientInfo.Nosology;
+                comboBoxHospitalization.Text = _patientInfo.Hospitalization;
                 dateTimePickerDeliveryDate.Value = _patientInfo.DeliveryDate;
                 if (_patientInfo.ReleaseDate.HasValue)
                 {
@@ -369,7 +374,8 @@ namespace SurgeryHelper
             patientInfo.Phone = textBoxPhone.Text;
             patientInfo.TypeOfKSG = comboBoxTypeKSG.Text;
             patientInfo.MKB = comboBoxMKB.Text;
-            patientInfo.WWW = comboBoxWWW.Text;
+            patientInfo.ConcomitantDiagnoseMKB = comboBoxConcomitantDiagnoseMKB.Text;
+            patientInfo.ComplicationsMKB = comboBoxComplicationsMKB.Text;
             patientInfo.ServiceName = comboBoxServiceName.Text;
             patientInfo.ServiceCode = textBoxServiceCode.Text;
             patientInfo.KsgCode = textBoxKsgCode.Text;
@@ -381,6 +387,7 @@ namespace SurgeryHelper
             
             patientInfo.NumberOfCaseHistory = textBoxCaseHistory.Text;
             patientInfo.Nosology = comboBoxNosology.Text;
+            patientInfo.Hospitalization = comboBoxHospitalization.Text;
             patientInfo.DeliveryDate = dateTimePickerDeliveryDate.Value;            
             if (dateTimePickerReleaseDate.Checked)
             {
@@ -394,52 +401,9 @@ namespace SurgeryHelper
             patientInfo.DoctorInChargeOfTheCase = comboBoxDoctorInChargeOfTheCase.Text;
             patientInfo.PrivateFolder = textBoxPrivateFolder.Text;
 
-            SaveLastUsedMKB();
-            SaveLastUsedWWW();
-        }
-
-        /// <summary>
-        /// Сохранить 20 последних использованных кодов МКБ
-        /// </summary>
-        private void SaveLastUsedMKB()
-        {
-            var lastMKBList = new List<string> { comboBoxMKB.Text };
-            foreach (string mkb in comboBoxMKB.Items)
-            {
-                if (lastMKBList.Count >= 20)
-                {
-                    break;
-                }
-
-                if (!lastMKBList.Contains(mkb) && !string.IsNullOrEmpty(mkb))
-                {
-                    lastMKBList.Add(mkb);
-                }
-            }
-
-            _dbEngine.ConfigEngine.PatientViewFormLastMKB = lastMKBList.ToArray();
-        }
-
-        /// <summary>
-        /// Сохранить 20 последних использованных кодов WWW
-        /// </summary>
-        private void SaveLastUsedWWW()
-        {
-            var lastWWWList = new List<string> { comboBoxWWW.Text };
-            foreach (string mkb in comboBoxWWW.Items)
-            {
-                if (lastWWWList.Count >= 20)
-                {
-                    break;
-                }
-
-                if (!lastWWWList.Contains(mkb) && !string.IsNullOrEmpty(mkb))
-                {
-                    lastWWWList.Add(mkb);
-                }
-            }
-
-            _dbEngine.ConfigEngine.PatientViewFormLastWWW = lastWWWList.ToArray();
+            _dbEngine.ConfigEngine.PatientViewFormLastMKB = ConvertEngine.GetLastUsedValues(comboBoxMKB);
+            _dbEngine.ConfigEngine.PatientViewFormLastConcomitantDiagnoseMKB = ConvertEngine.GetLastUsedValues(comboBoxConcomitantDiagnoseMKB);
+            _dbEngine.ConfigEngine.PatientViewFormLastComplicationsMKB = ConvertEngine.GetLastUsedValues(comboBoxComplicationsMKB);
         }
 
         /// <summary>
@@ -456,6 +420,7 @@ namespace SurgeryHelper
                 string.IsNullOrEmpty(textBoxDiagnose.Text) ||
                 string.IsNullOrEmpty(textBoxCaseHistory.Text) ||
                 string.IsNullOrEmpty(comboBoxNosology.Text) ||
+                string.IsNullOrEmpty(comboBoxHospitalization.Text) ||
                 string.IsNullOrEmpty(comboBoxDoctorInChargeOfTheCase.Text))
             {
                 return true;
@@ -803,7 +768,7 @@ namespace SurgeryHelper
         }
 
         /// <summary>
-        /// Выбрать код МКБ из списка всех кодов
+        /// Выбрать код МКБ для диагноза
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -818,17 +783,32 @@ namespace SurgeryHelper
         }
 
         /// <summary>
-        /// Выбрать код WWW из списка всех кодов
+        /// Выбрать код МКБ для сопутствующего диагноза
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void linkLabelWWW_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelConcomitantDiagnoseMKB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MkbCodeFromMkbSelectForm = "";
             new MKBSelectForm(this, _dbEngine).ShowDialog();
             if (!string.IsNullOrEmpty(MkbCodeFromMkbSelectForm))
             {
-                comboBoxWWW.Text = MkbCodeFromMkbSelectForm;
+                comboBoxConcomitantDiagnoseMKB.Text = MkbCodeFromMkbSelectForm;
+            }
+        }
+
+        /// <summary>
+        /// Выбрать код МКБ для осложнений
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabelComplicationsMKB_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MkbCodeFromMkbSelectForm = "";
+            new MKBSelectForm(this, _dbEngine).ShowDialog();
+            if (!string.IsNullOrEmpty(MkbCodeFromMkbSelectForm))
+            {
+                comboBoxComplicationsMKB.Text = MkbCodeFromMkbSelectForm;
             }
         }
 
@@ -1055,12 +1035,12 @@ namespace SurgeryHelper
 
         private void linkLabelNosology_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Выбрать нозологию из списка нозологий", linkLabelDoctorInCase, 15, -20);
+            toolTip1.Show("Выбрать нозологию из списка нозологий", linkLabelNosology, 15, -20);
         }
 
         private void linkLabelNosology_MouseLeave(object sender, EventArgs e)
         {
-            toolTip1.Hide(linkLabelDoctorInCase);
+            toolTip1.Hide(linkLabelNosology);
         }
 
         private void buttonOpen_MouseEnter(object sender, EventArgs e)
@@ -1109,7 +1089,7 @@ namespace SurgeryHelper
                       
         private void linkLabelMKB_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Выбрать код из списка кодов", linkLabelMKB, 15, -20);
+            toolTip1.Show("Выбрать МКБ код диагноза", linkLabelMKB, 15, -20);
         }
 
         private void linkLabelMKB_MouseLeave(object sender, EventArgs e)
@@ -1142,21 +1122,6 @@ namespace SurgeryHelper
             toolTip1.Hide(comboBoxMKB);
         }
 
-        private void comboBoxWWW_MouseEnter(object sender, EventArgs e)
-        {
-            string mkbName = _dbEngine.GetMkbName(comboBoxWWW.Text);
-
-            if (!string.IsNullOrEmpty(mkbName))
-            {
-                toolTip1.Show(mkbName, comboBoxWWW, 15, -20);
-            }
-        }
-
-        private void comboBoxWWW_MouseLeave(object sender, EventArgs e)
-        {
-            toolTip1.Hide(comboBoxWWW);
-        }
-
         private void linkLabelServiceName_MouseEnter(object sender, EventArgs e)
         {
             toolTip1.Show("Выбрать услугу и соответствующий код КСГ из списка услуг", linkLabelServiceName, 15, -20);
@@ -1166,6 +1131,56 @@ namespace SurgeryHelper
         {
             toolTip1.Hide(linkLabelServiceName);
         }
-        #endregion        
+
+        private void linkLabelConcomitantDiagnoseMKB_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Выбрать МКБ код сопутствующего диагноза", linkLabelConcomitantDiagnoseMKB, 15, -20);
+        }
+
+        private void linkLabelConcomitantDiagnoseMKB_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(linkLabelConcomitantDiagnoseMKB);
+        }
+
+        private void linkLabelComplicationsMKB_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Выбрать МКБ код осложнения", linkLabelComplicationsMKB, 15, -20);
+        }
+
+        private void linkLabelComplicationsMKB_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(linkLabelComplicationsMKB);
+        }
+        #endregion
+
+        private void comboBoxConcomitantDiagnoseMKB_MouseEnter(object sender, EventArgs e)
+        {
+            string mkbName = _dbEngine.GetMkbName(comboBoxConcomitantDiagnoseMKB.Text);
+
+            if (!string.IsNullOrEmpty(mkbName))
+            {
+                toolTip1.Show(mkbName, comboBoxConcomitantDiagnoseMKB, 15, -20);
+            }
+        }
+
+        private void comboBoxConcomitantDiagnoseMKB_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(comboBoxConcomitantDiagnoseMKB);
+        }
+
+        private void comboBoxComplicationsMKB_MouseEnter(object sender, EventArgs e)
+        {
+            string mkbName = _dbEngine.GetMkbName(comboBoxComplicationsMKB.Text);
+
+            if (!string.IsNullOrEmpty(mkbName))
+            {
+                toolTip1.Show(mkbName, comboBoxComplicationsMKB, 15, -20);
+            }
+        }
+
+        private void comboBoxComplicationsMKB_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(comboBoxComplicationsMKB);
+        }
     }
 }

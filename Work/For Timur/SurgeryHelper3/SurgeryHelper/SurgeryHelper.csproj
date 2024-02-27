@@ -115,6 +115,19 @@
     <Compile Include="AdditionalDocumentsInfoForm.Designer.cs">
       <DependentUpon>AdditionalDocumentsInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ImplantClass.cs" />
+    <Compile Include="ImplantsViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImplantsViewForm.Designer.cs">
+      <DependentUpon>ImplantsViewForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImplantsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImplantsForm.Designer.cs">
+      <DependentUpon>ImplantsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +160,7 @@
     <Compile Include="Entities\MkbClass.cs" />
     <Compile Include="Entities\ServiceClass.cs" />
     <Compile Include="Entities\SheAnestetistClass.cs" />
+    <Compile Include="Entities\AnesthesiaTypesClass.cs" />
     <Compile Include="GlobalSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +172,18 @@
     </Compile>
     <Compile Include="CureForm.Designer.cs">
       <DependentUpon>CureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnesthesiaTypesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnesthesiaTypesForm.Designer.cs">
+      <DependentUpon>AnesthesiaTypesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AnesthesiaTypeViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AnesthesiaTypeViewForm.Designer.cs">
+      <DependentUpon>AnesthesiaTypeViewForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SurveyForm.cs">
       <SubType>Form</SubType>
@@ -317,6 +343,12 @@
     <EmbeddedResource Include="AdditionalDocumentsInfoForm.resx">
       <DependentUpon>AdditionalDocumentsInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ImplantsViewForm.resx">
+      <DependentUpon>ImplantsViewForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImplantsForm.resx">
+      <DependentUpon>ImplantsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChangePasswordForm.resx">
       <DependentUpon>ChangePasswordForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -331,6 +363,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CureForm.resx">
       <DependentUpon>CureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnesthesiaTypesForm.resx">
+      <DependentUpon>AnesthesiaTypesForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AnesthesiaTypeViewForm.resx">
+      <DependentUpon>AnesthesiaTypeViewForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SurveyForm.resx">
       <DependentUpon>SurveyForm.cs</DependentUpon>

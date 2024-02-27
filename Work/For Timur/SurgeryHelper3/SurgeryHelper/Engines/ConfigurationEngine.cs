@@ -169,6 +169,54 @@ namespace SurgeryHelper.Engines
             }
         }
 
+        /// <summary>
+        /// Список последних выбранных МКБ сопутствующего диагноза
+        /// </summary>
+        public string[] PatientViewFormLastConcomitantDiagnoseMKB
+        {
+            get
+            {
+                if (!IsContains(_appSettings.Settings.AllKeys, "PatientViewFormLastConcomitantDiagnoseMKB"))
+                {
+                    _appSettings.Settings.Add("PatientViewFormLastConcomitantDiagnoseMKB", string.Empty);
+                    _config.Save();
+                }
+
+                string[] lastList = _appSettings.Settings["PatientViewFormLastConcomitantDiagnoseMKB"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["PatientViewFormLastConcomitantDiagnoseMKB"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Список последних выбранных МКБ осложнений
+        /// </summary>
+        public string[] PatientViewFormLastComplicationsMKB
+        {
+            get
+            {
+                if (!IsContains(_appSettings.Settings.AllKeys, "PatientViewFormLastComplicationsMKB"))
+                {
+                    _appSettings.Settings.Add("PatientViewFormLastComplicationsMKB", string.Empty);
+                    _config.Save();
+                }
+
+                string[] lastList = _appSettings.Settings["PatientViewFormLastComplicationsMKB"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["PatientViewFormLastComplicationsMKB"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+
         private bool IsContains(string[] array, string value)
         {
             for (int i = 0; i < array.Length; i++)
@@ -206,6 +254,54 @@ namespace SurgeryHelper.Engines
             }
         }
 
+        /// <summary>
+        /// Список последних выбранных антибиотикопрофилактик
+        /// </summary>
+        public string[] OperationProtocolFormLastAntibioticProphylaxis
+        {
+            get
+            {
+                if (!IsContains(_appSettings.Settings.AllKeys, "OperationProtocolFormLastAntibioticProphylaxis"))
+                {
+                    _appSettings.Settings.Add("OperationProtocolFormLastAntibioticProphylaxis", "S. Cefasolini 1,0 - в/в однократно;S.Amoxicillinum + acidum Clavulanicum 1, 0 + 0, 2 в / в однократно");
+                    _config.Save();
+                }
+
+                string[] lastList = _appSettings.Settings["OperationProtocolFormLastAntibioticProphylaxis"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["OperationProtocolFormLastAntibioticProphylaxis"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Список последних выбранных премедикаций
+        /// </summary>
+        public string[] OperationProtocolFormLastPremedication
+        {
+            get
+            {
+                if (!IsContains(_appSettings.Settings.AllKeys, "OperationProtocolFormLastPremedication"))
+                {
+                    _appSettings.Settings.Add("OperationProtocolFormLastPremedication", "");
+                    _config.Save();
+                }
+
+                string[] lastList = _appSettings.Settings["OperationProtocolFormLastPremedication"].Value.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries);
+                return lastList;
+            }
+
+            set
+            {
+                _appSettings.Settings["OperationProtocolFormLastPremedication"].Value = string.Join(";", value);
+                _config.Save();
+            }
+        }
+        
         /// <summary>
         /// Список последних выбранных сервисов для дневного стационара
         /// </summary>
@@ -376,6 +472,29 @@ namespace SurgeryHelper.Engines
             set
             {
                 _appSettings.Settings["ServiceSelectFormLocation"].Value = GetStringFromPoint(value);
+                _config.Save();
+            }
+        }
+
+        /// <summary>
+        /// Сохранённое значение для поля с типом анестезии
+        /// </summary>
+        public string OperationViewFormComboBoxAnesthesiaType
+        {
+            get
+            {
+                if (!IsContains(_appSettings.Settings.AllKeys, "OperationViewFormComboBoxAnesthesiaType"))
+                {
+                    _appSettings.Settings.Add("OperationViewFormComboBoxAnesthesiaType", string.Empty);
+                    _config.Save();
+                }
+
+                return _appSettings.Settings["OperationViewFormComboBoxAnesthesiaType"].Value;
+            }
+
+            set
+            {
+                _appSettings.Settings["OperationViewFormComboBoxAnesthesiaType"].Value = value;
                 _config.Save();
             }
         }
@@ -736,6 +855,6 @@ namespace SurgeryHelper.Engines
                 _appSettings.Settings["PatientFormFilterDirection"].Value = value.ToString();
                 _config.Save();
             }
-        }         
+        }
     }
 }

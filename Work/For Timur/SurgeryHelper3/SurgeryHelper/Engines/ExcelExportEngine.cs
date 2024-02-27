@@ -532,8 +532,8 @@ namespace SurgeryHelper.Engines
                             _ows.Cells[rowCnt, 21] = ConvertEngine.GetRightTimeString(operationInfo.EndTimeOfOperation);
                             _ows.Cells[rowCnt, 22] = ListToString(operationInfo.Surgeons);
                             _ows.Cells[rowCnt, 23] = ListToString(operationInfo.Assistents);
-                            _ows.Cells[rowCnt, 24] = operationInfo.HeAnaesthetist;
-                            _ows.Cells[rowCnt, 25] = operationInfo.SheAnaesthetist;
+                            _ows.Cells[rowCnt, 24] = operationInfo.HeAnesthetist;
+                            _ows.Cells[rowCnt, 25] = operationInfo.SheAnesthetist;
                             _ows.Cells[rowCnt, 26] = operationInfo.ScrubNurse;
                             _ows.Cells[rowCnt, 27] = operationInfo.Orderly;
                             _ows.Cells[rowCnt, 28] = operationInfo.OperationCourse;

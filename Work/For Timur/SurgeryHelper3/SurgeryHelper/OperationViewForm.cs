@@ -42,14 +42,16 @@ namespace SurgeryHelper
 
             PutObjectsToComboBox(_dbEngine.OrderlyList.ToArray(), comboBoxOrderly);
             PutObjectsToComboBox(_dbEngine.ScrubNurseList.ToArray(), comboBoxScrubNurse);
-            PutObjectsToComboBox(_dbEngine.HeAnestethistList.ToArray(), comboBoxHeAnestethist);
-            PutObjectsToComboBox(_dbEngine.SheAnestethistList.ToArray(), comboBoxSheAnestethist);
+            PutObjectsToComboBox(_dbEngine.AnesthesiaTypesList.ToArray(), comboBoxAnesthesiaType);
+            PutObjectsToComboBox(_dbEngine.HeAnesthetistList.ToArray(), comboBoxHeAnestethist);
+            PutObjectsToComboBox(_dbEngine.SheAnesthetistList.ToArray(), comboBoxSheAnestethist);
 
             if (operationInfo == null)
             {
                 Text = "Добавление операции";
                 _operationInfo = new OperationClass();
 
+                comboBoxAnesthesiaType.Text = _dbEngine.ConfigEngine.OperationViewFormComboBoxAnesthesiaType;
                 textBoxSurgeons.Text = _dbEngine.ConfigEngine.OperationViewFormTextBoxSurgeons;
                 textBoxAssistents.Text = _dbEngine.ConfigEngine.OperationViewFormTextBoxAssistents;
                 comboBoxHeAnestethist.Text = _dbEngine.ConfigEngine.OperationViewFormTextBoxHeAnestethist;
@@ -65,11 +67,13 @@ namespace SurgeryHelper
                 _saveOperationInfo = new OperationClass(operationInfo);
 
                 textBoxName.Text = _operationInfo.Name;
-                textBoxAssistents.Text = ListToMultilineString(_operationInfo.Assistents);
-                textBoxSurgeons.Text = ListToMultilineString(_operationInfo.Surgeons);
+                numericUpDownRiskLevel.Value = operationInfo.RiskLevel;
+                comboBoxAnesthesiaType.Text = _operationInfo.AnesthesiaType;
+                textBoxAssistents.Text = ConvertEngine.ListToMultilineString(_operationInfo.Assistents);
+                textBoxSurgeons.Text = ConvertEngine.ListToMultilineString(_operationInfo.Surgeons);
                 comboBoxScrubNurse.Text = _operationInfo.ScrubNurse;
-                comboBoxSheAnestethist.Text = _operationInfo.SheAnaesthetist;
-                comboBoxHeAnestethist.Text = _operationInfo.HeAnaesthetist;
+                comboBoxSheAnestethist.Text = _operationInfo.SheAnesthetist;
+                comboBoxHeAnestethist.Text = _operationInfo.HeAnesthetist;
                 comboBoxOrderly.Text = _operationInfo.Orderly;
 
                 dateTimePickerDataOfOperation.Value = _operationInfo.DataOfOperation;
@@ -87,40 +91,6 @@ namespace SurgeryHelper
             }
 
             _stopSaveParameters = false;
-        }
-
-        /// <summary>
-        /// Конвертируем список из строк в строку из нескольких строк
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
-        private static string ListToMultilineString(IEnumerable<string> list)
-        {
-            var multilineStr = new StringBuilder();
-            foreach (string str in list)
-            {
-                multilineStr.Append(str + "\r\n");
-            }
-
-            if (multilineStr.Length > 2)
-            {
-                multilineStr.Remove(multilineStr.Length - 2, 2);
-            }
-
-            return multilineStr.ToString();
-        }
-
-
-        /// <summary>
-        /// Конвертируем строку из нескольких строк в список строк
-        /// </summary>
-        /// <param name="multilineStr"></param>
-        /// <returns></returns>
-        private static List<string> MultilineStringToList(string multilineStr)
-        {
-            string[] arrOfStrings = multilineStr.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            return new List<string>(arrOfStrings);
         }
 
         #region Подсказки
@@ -255,6 +225,9 @@ namespace SurgeryHelper
                 case "comboBoxScrubNurse":
                     comboBoxScrubNurse.Text = str;
                     break;
+                case "comboBoxAnesthesiaType":
+                    comboBoxAnesthesiaType.Text = str;
+                    break;
                 case "textBoxSurgeons":
                     if (!string.IsNullOrEmpty(textBoxSurgeons.Text))
                     {
@@ -288,6 +261,17 @@ namespace SurgeryHelper
 
                     break;
             }
+        }
+
+        /// <summary>
+        /// Открыть список с типами анестезий
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabelAnesthesiaTypesList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new AnesthesiaTypesForm(_dbEngine, this).ShowDialog();
+            PutObjectsToComboBox(_dbEngine.AnesthesiaTypesList.ToArray(), comboBoxAnesthesiaType);
         }
 
         /// <summary>
@@ -340,7 +324,7 @@ namespace SurgeryHelper
         private void linkLabelHeAnestethist_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new HeAnestethistForm(_dbEngine, this).ShowDialog();
-            PutObjectsToComboBox(_dbEngine.HeAnestethistList.ToArray(), comboBoxHeAnestethist);
+            PutObjectsToComboBox(_dbEngine.HeAnesthetistList.ToArray(), comboBoxHeAnestethist);
         }    
 
         /// <summary>
@@ -351,7 +335,7 @@ namespace SurgeryHelper
         private void linkLabelSheAnestethistList_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             new SheAnestethistForm(_dbEngine, this).ShowDialog();
-            PutObjectsToComboBox(_dbEngine.SheAnestethistList.ToArray(), comboBoxSheAnestethist);
+            PutObjectsToComboBox(_dbEngine.SheAnesthetistList.ToArray(), comboBoxSheAnestethist);
         }
 
         /// <summary>
@@ -362,7 +346,6 @@ namespace SurgeryHelper
         private void buttonOk_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(textBoxName.Text) ||
-                string.IsNullOrEmpty(textBoxName.Text) ||
                 string.IsNullOrEmpty(textBoxSurgeons.Text) ||
                 string.IsNullOrEmpty(comboBoxScrubNurse.Text) ||
                 string.IsNullOrEmpty(comboBoxScrubNurse.Text))
@@ -412,8 +395,8 @@ namespace SurgeryHelper
                     _operationInfo.Assistents = _saveOperationInfo.Assistents;
                     _operationInfo.Surgeons = _saveOperationInfo.Surgeons;
                     _operationInfo.ScrubNurse = _saveOperationInfo.ScrubNurse;
-                    _operationInfo.SheAnaesthetist = _saveOperationInfo.SheAnaesthetist;
-                    _operationInfo.HeAnaesthetist = _saveOperationInfo.HeAnaesthetist;
+                    _operationInfo.SheAnesthetist = _saveOperationInfo.SheAnesthetist;
+                    _operationInfo.HeAnesthetist = _saveOperationInfo.HeAnesthetist;
                     _operationInfo.Orderly = _saveOperationInfo.Orderly;
                     _operationInfo.DataOfOperation = _saveOperationInfo.DataOfOperation;
                     _operationInfo.StartTimeOfOperation = _saveOperationInfo.StartTimeOfOperation;
@@ -435,11 +418,13 @@ namespace SurgeryHelper
         private void PutDataToOperation(OperationClass operationInfo)
         {
             operationInfo.Name = textBoxName.Text;
-            operationInfo.Assistents = MultilineStringToList(textBoxAssistents.Text);
-            operationInfo.Surgeons = MultilineStringToList(textBoxSurgeons.Text);
+            operationInfo.RiskLevel = (int)numericUpDownRiskLevel.Value;
+            operationInfo.AnesthesiaType = comboBoxAnesthesiaType.Text;
+            operationInfo.Assistents = ConvertEngine.MultilineStringToList(textBoxAssistents.Text);
+            operationInfo.Surgeons = ConvertEngine.MultilineStringToList(textBoxSurgeons.Text);
             operationInfo.ScrubNurse = comboBoxScrubNurse.Text;
-            operationInfo.SheAnaesthetist = comboBoxSheAnestethist.Text;
-            operationInfo.HeAnaesthetist = comboBoxHeAnestethist.Text;
+            operationInfo.SheAnesthetist = comboBoxSheAnestethist.Text;
+            operationInfo.HeAnesthetist = comboBoxHeAnestethist.Text;
             operationInfo.Orderly = comboBoxOrderly.Text;
 
             operationInfo.DataOfOperation = dateTimePickerDataOfOperation.Value;
@@ -496,6 +481,16 @@ namespace SurgeryHelper
             {
                 e.Cancel = true;
             }
+        }
+
+        private void comboBoxAnesthesiaType_TextChanged(object sender, EventArgs e)
+        {
+            if (_stopSaveParameters || Text != "Добавление операции")
+            {
+                return;
+            }
+
+            _dbEngine.ConfigEngine.OperationViewFormComboBoxAnesthesiaType = comboBoxAnesthesiaType.Text;
         }
 
         private void textBoxSurgeons_TextChanged(object sender, EventArgs e)
@@ -556,6 +551,6 @@ namespace SurgeryHelper
             }
 
             _dbEngine.ConfigEngine.OperationViewFormComboBoxOrderly = comboBoxOrderly.Text;
-        }              
+        }
     }
 }

@@ -29,14 +29,14 @@ namespace SurgeryHelper
         {
             int listCnt = 0;
             int sheAnestethistCnt = 0;
-            while (listCnt < checkedListBoxSheAnestethistes.Items.Count && sheAnestethistCnt < _dbEngine.SheAnestethistList.Count)
+            while (listCnt < checkedListBoxSheAnestethistes.Items.Count && sheAnestethistCnt < _dbEngine.SheAnesthetistList.Count)
             {
-                checkedListBoxSheAnestethistes.Items[listCnt] = _dbEngine.SheAnestethistList[sheAnestethistCnt].LastNameWithInitials;
+                checkedListBoxSheAnestethistes.Items[listCnt] = _dbEngine.SheAnesthetistList[sheAnestethistCnt].LastNameWithInitials;
                 listCnt++;
                 sheAnestethistCnt++;
             }
 
-            if (sheAnestethistCnt == _dbEngine.SheAnestethistList.Count)
+            if (sheAnestethistCnt == _dbEngine.SheAnesthetistList.Count)
             {
                 while (listCnt < checkedListBoxSheAnestethistes.Items.Count)
                 {
@@ -45,9 +45,9 @@ namespace SurgeryHelper
             }
             else
             {
-                while (sheAnestethistCnt < _dbEngine.SheAnestethistList.Count)
+                while (sheAnestethistCnt < _dbEngine.SheAnesthetistList.Count)
                 {
-                    checkedListBoxSheAnestethistes.Items.Add(_dbEngine.SheAnestethistList[sheAnestethistCnt].LastNameWithInitials);
+                    checkedListBoxSheAnestethistes.Items.Add(_dbEngine.SheAnesthetistList[sheAnestethistCnt].LastNameWithInitials);
                     sheAnestethistCnt++;
                 }
             }
@@ -82,7 +82,7 @@ namespace SurgeryHelper
                 int currentNumber = checkedListBoxSheAnestethistes.SelectedIndex;
                 if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить анестезистку " + checkedListBoxSheAnestethistes.Items[currentNumber] + "?\r\nДанная операция необратима.", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
-                    _dbEngine.RemoveSheAnestethist(_dbEngine.SheAnestethistList[currentNumber].Id);
+                    _dbEngine.RemoveSheAnestethist(_dbEngine.SheAnesthetistList[currentNumber].Id);
                 }
 
                 ShowSheAnestethistes();
@@ -106,7 +106,7 @@ namespace SurgeryHelper
                 return;
             }
 
-            new SheAnestethistViewForm(_dbEngine, _dbEngine.SheAnestethistList[checkedListBoxSheAnestethistes.SelectedIndex]).ShowDialog();
+            new SheAnestethistViewForm(_dbEngine, _dbEngine.SheAnesthetistList[checkedListBoxSheAnestethistes.SelectedIndex]).ShowDialog();
             ShowSheAnestethistes();
         }
 
@@ -128,7 +128,7 @@ namespace SurgeryHelper
         }
 
         /// <summary>
-        /// Выбор анестезистку двойным кликом
+        /// Выбор анестезистки двойным кликом
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

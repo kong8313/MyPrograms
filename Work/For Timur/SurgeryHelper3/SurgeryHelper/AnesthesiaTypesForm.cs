@@ -4,12 +4,12 @@ using SurgeryHelper.Engines;
 
 namespace SurgeryHelper
 {
-    public partial class HeAnestethistForm : Form
+    public partial class AnesthesiaTypesForm : Form
     {
         private readonly DbEngine _dbEngine;
         private readonly OperationViewForm _operationViewForm;
 
-        public HeAnestethistForm(DbEngine dbEngine, OperationViewForm operationViewForm)
+        public AnesthesiaTypesForm(DbEngine dbEngine, OperationViewForm operationViewForm)
         {
             InitializeComponent();
 
@@ -17,61 +17,61 @@ namespace SurgeryHelper
             _operationViewForm = operationViewForm;
         }
 
-        private void HeAnestethistForm_Load(object sender, EventArgs e)
+        private void AnesthesiaTypesForm_Load(object sender, EventArgs e)
         {
-            ShowHeAnestethistes();
+            ShowAnesthesiaTypes();
         }
 
         /// <summary>
-        /// Показать список анестезиологов
+        /// Показать список типов анестезий
         /// </summary>
-        private void ShowHeAnestethistes()
+        private void ShowAnesthesiaTypes()
         {
             int listCnt = 0;
-            int heAnestethistCnt = 0;
-            while (listCnt < checkedListBoxHeAnestethistes.Items.Count && heAnestethistCnt < _dbEngine.HeAnesthetistList.Count)
+            int orderlyCnt = 0;
+            while (listCnt < checkedListBoxAnesthesiaTypes.Items.Count && orderlyCnt < _dbEngine.AnesthesiaTypesList.Count)
             {
-                checkedListBoxHeAnestethistes.Items[listCnt] = _dbEngine.HeAnesthetistList[heAnestethistCnt].LastNameWithInitials;
+                checkedListBoxAnesthesiaTypes.Items[listCnt] = _dbEngine.AnesthesiaTypesList[orderlyCnt].LastNameWithInitials;
                 listCnt++;
-                heAnestethistCnt++;
+                orderlyCnt++;
             }
 
-            if (heAnestethistCnt == _dbEngine.HeAnesthetistList.Count)
+            if (orderlyCnt == _dbEngine.AnesthesiaTypesList.Count)
             {
-                while (listCnt < checkedListBoxHeAnestethistes.Items.Count)
+                while (listCnt < checkedListBoxAnesthesiaTypes.Items.Count)
                 {
-                    checkedListBoxHeAnestethistes.Items.RemoveAt(listCnt);
+                    checkedListBoxAnesthesiaTypes.Items.RemoveAt(listCnt);
                 }
             }
             else
             {
-                while (heAnestethistCnt < _dbEngine.HeAnesthetistList.Count)
+                while (orderlyCnt < _dbEngine.AnesthesiaTypesList.Count)
                 {
-                    checkedListBoxHeAnestethistes.Items.Add(_dbEngine.HeAnesthetistList[heAnestethistCnt].LastNameWithInitials);
-                    heAnestethistCnt++;
+                    checkedListBoxAnesthesiaTypes.Items.Add(_dbEngine.AnesthesiaTypesList[orderlyCnt].LastNameWithInitials);
+                    orderlyCnt++;
                 }
             }
         }
 
         /// <summary>
-        /// Добавить нового анестезиолога
+        /// Добавить новый тип анестезии
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            new HeAnestethistViewForm(_dbEngine, null).ShowDialog();
-            ShowHeAnestethistes();
+            new AnesthesiaTypeViewForm(_dbEngine, null).ShowDialog();
+            ShowAnesthesiaTypes();
         }
 
         /// <summary>
-        /// Удалить выделенного анестезиолога
+        /// Удалить выделенный тип анестезии
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxHeAnestethistes.SelectedIndices.Count == 0)
+            if (checkedListBoxAnesthesiaTypes.SelectedIndices.Count == 0)
             {
                 MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
@@ -79,13 +79,13 @@ namespace SurgeryHelper
 
             try
             {
-                int currentNumber = checkedListBoxHeAnestethistes.SelectedIndex;
-                if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить анестезиолога " + checkedListBoxHeAnestethistes.Items[currentNumber] + "?\r\nДанная операция необратима.", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                int currentNumber = checkedListBoxAnesthesiaTypes.SelectedIndex;
+                if (DialogResult.Yes == MessageBox.Show("Вы уверены, что хотите удалить тип анестезии " + checkedListBoxAnesthesiaTypes.Items[currentNumber] + "?\r\nДанная операция необратима.", "Вопрос", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 {
-                    _dbEngine.RemoveHeAnestethist(_dbEngine.HeAnesthetistList[currentNumber].Id);
+                    _dbEngine.RemoveAnesthesiaType(_dbEngine.AnesthesiaTypesList[currentNumber].Id);
                 }
 
-                ShowHeAnestethistes();
+                ShowAnesthesiaTypes();
             }
             catch (Exception ex)
             {
@@ -94,56 +94,43 @@ namespace SurgeryHelper
         }
 
         /// <summary>
-        /// Редактировать выделенного анестезиолога
+        /// Редактировать выделенный тип анестезии
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxHeAnestethistes.SelectedIndices.Count == 0)
+            if (checkedListBoxAnesthesiaTypes.SelectedIndices.Count == 0)
             {
                 MessageBox.Show("Нет выделенных записей", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            new HeAnestethistViewForm(_dbEngine, _dbEngine.HeAnesthetistList[checkedListBoxHeAnestethistes.SelectedIndex]).ShowDialog();
-            ShowHeAnestethistes();
+            new AnesthesiaTypeViewForm(_dbEngine, _dbEngine.AnesthesiaTypesList[checkedListBoxAnesthesiaTypes.SelectedIndices[0]]).ShowDialog();
+            ShowAnesthesiaTypes();
         }
 
         /// <summary>
-        /// Отобразить на форме с операциями выбранного анестезиолога
+        /// Отобразить на форме с операциями выбранные типы анестезий
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonOk_Click(object sender, EventArgs e)
         {
-            if (checkedListBoxHeAnestethistes.SelectedItems.Count == 0)
+            if (checkedListBoxAnesthesiaTypes.SelectedItems.Count == 0)
             {
                 Close();
                 return;
             }
 
-            _operationViewForm.PutStringToObject("comboBoxHeAnestethist", checkedListBoxHeAnestethistes.SelectedItem.ToString());
+            _operationViewForm.PutStringToObject("comboBoxAnesthesiaType", checkedListBoxAnesthesiaTypes.SelectedItem.ToString());
             Close();
-        }
-
-        /// <summary>
-        /// Выбор анестезиолога двойным кликом
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void checkedListBoxHeAnestethistes_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            if (checkedListBoxHeAnestethistes.SelectedItems.Count != 0)
-            {
-                buttonOk_Click(null, null);
-            }
         }
 
         #region Подсказки
         private void buttonAdd_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Добавить нового анестезиолога", buttonAdd, 15, -20);
+            toolTip1.Show("Добавить новый тим анестезии", buttonAdd, 15, -20);
             buttonAdd.FlatStyle = FlatStyle.Popup;
         }
 
@@ -155,7 +142,7 @@ namespace SurgeryHelper
 
         private void buttonDelete_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Удалить выбранного анестезиолога", buttonDelete, 15, -20);
+            toolTip1.Show("Удалить выбранный тип анестезии", buttonDelete, 15, -20);
             buttonDelete.FlatStyle = FlatStyle.Popup;
         }
 
@@ -167,7 +154,7 @@ namespace SurgeryHelper
 
         private void buttonEdit_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Редактировать выбранного анестезиолога", buttonEdit, 15, -20);
+            toolTip1.Show("Редактировать выбранный тип анестезии", buttonEdit, 15, -20);
             buttonEdit.FlatStyle = FlatStyle.Popup;
         }
 
@@ -179,7 +166,7 @@ namespace SurgeryHelper
 
         private void buttonOk_MouseEnter(object sender, EventArgs e)
         {
-            toolTip1.Show("Подтвердить выбор анестезиолога", buttonOk, 15, -20);
+            toolTip1.Show("Подтвердить выбор типов анестезии", buttonOk, 15, -20);
             buttonOk.FlatStyle = FlatStyle.Popup;
         }
 
@@ -189,5 +176,19 @@ namespace SurgeryHelper
             buttonOk.FlatStyle = FlatStyle.Flat;
         }
         #endregion
+
+        /// <summary>
+        /// Выбор типа анестезии двойным кликом
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void checkedListBoxAnesthesiaTypes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (checkedListBoxAnesthesiaTypes.SelectedItems.Count != 0)
+            {
+                buttonOk_Click(null, null);
+            }
+        }
+       
     }
 }

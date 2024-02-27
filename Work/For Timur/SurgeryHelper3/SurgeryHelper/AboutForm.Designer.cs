@@ -40,7 +40,7 @@
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(215, 91);
             this.labelInfo.TabIndex = 1;
-            this.labelInfo.Text = "Программа \"Помощник хирурга\" v. 3.6.0\r\n\r\nПрограммист: Коновалов Григорий\r\nВсе пра" +
+            this.labelInfo.Text = "Программа \"Помощник хирурга\" v. 3.7.7\r\n\r\nПрограммист: Коновалов Григорий\r\nВсе пра" +
     "ва на программу принадлежат \r\nТорно Тимуру Эдуардовичу\r\nПожелания и предложения " +
     "направляйте\r\nпо адресу: torno@mail.ru";
             // 

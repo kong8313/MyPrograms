@@ -8,6 +8,7 @@ namespace SurgeryHelper
     public partial class MKBSelectForm : Form
     {
         private readonly PatientViewForm _patientViewForm;
+        private readonly MedicalInspectionForm _medicalInspectionForm;
         private readonly DbEngine _dbEngine;
         private bool _stopSaveParameters;
 
@@ -19,6 +20,16 @@ namespace SurgeryHelper
             _dbEngine = dbEngine;
             _patientViewForm = patientViewForm;
         }
+
+        public MKBSelectForm(MedicalInspectionForm medicalInspectionForm, DbEngine dbEngine)
+        {
+            _stopSaveParameters = true;
+            InitializeComponent();
+
+            _dbEngine = dbEngine;
+            _medicalInspectionForm = medicalInspectionForm;
+        }
+
 
         private void MKBSelectForm_Load(object sender, EventArgs e)
         {
@@ -119,7 +130,16 @@ namespace SurgeryHelper
 
             if (currentNumber >= 0)
             {
-                _patientViewForm.MkbCodeFromMkbSelectForm = MKBCodesList.Rows[currentNumber].Cells[0].Value.ToString();
+                var value = MKBCodesList.Rows[currentNumber].Cells[0].Value.ToString();
+                if (_patientViewForm != null)
+                {
+                    _patientViewForm.MkbCodeFromMkbSelectForm = value;
+                }
+                else
+                {
+                    _medicalInspectionForm.MkbCodeFromMkbSelectForm = value;
+                }
+
                 Close();
             }
             else

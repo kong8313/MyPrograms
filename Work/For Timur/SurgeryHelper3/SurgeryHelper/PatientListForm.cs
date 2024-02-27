@@ -528,6 +528,13 @@ namespace SurgeryHelper
 
                 var newPatientInfo = new PatientClass(GetSelectedPatient()) { Id = 0 };
                 newPatientInfo.Patronymic += " COPY";
+                newPatientInfo.DischargeEpicrisBloodGroup = newPatientInfo.DischargeEpicrisRhesusFactor = 
+                newPatientInfo.DischargeEpicrisBakBillirubin = newPatientInfo.DischargeEpicrisBakGeneralProtein = 
+                newPatientInfo.DischargeEpicrisBakPTI = newPatientInfo.DischargeEpicrisBakSugar =
+                newPatientInfo.DischargeEpicrisOakEritrocits = newPatientInfo.DischargeEpicrisOakHb =
+                newPatientInfo.DischargeEpicrisOakLekocits = newPatientInfo.DischargeEpicrisOakSoe =
+                newPatientInfo.DischargeEpicrisOamColor = newPatientInfo.DischargeEpicrisOamDensity =
+                newPatientInfo.DischargeEpicrisOamEritrocits = newPatientInfo.DischargeEpicrisOamLekocits = "";
                 _dbEngine.AddPatient(newPatientInfo);
                 ShowPatients();
             }

@@ -44,6 +44,16 @@ namespace SurgeryHelper.Entities
         public string Name;
 
         /// <summary>
+        /// Тип анестезии
+        /// </summary>
+        public string AnesthesiaType;
+
+        /// <summary>
+        /// Риск операции
+        /// </summary>
+        public int RiskLevel;
+
+        /// <summary>
         /// Список хирургов
         /// </summary>
         public List<string> Surgeons;
@@ -56,12 +66,12 @@ namespace SurgeryHelper.Entities
         /// <summary>
         /// Анестезист операции
         /// </summary>
-        public string HeAnaesthetist;
+        public string HeAnesthetist;
 
         /// <summary>
         /// Анестезистка операции
         /// </summary>
-        public string SheAnaesthetist;
+        public string SheAnesthetist;
 
         /// <summary>
         /// Операционная мед. сестра
@@ -134,27 +144,12 @@ namespace SurgeryHelper.Entities
         public string BeforeOperationEpicrisisHeartRhythm;
 
         /// <summary>
-        /// Живот пациента
-        /// </summary>
-        public string BeforeOperationEpicrisisStomach;
-
-        /// <summary>
-        /// Мочеиспускание пациента
-        /// </summary>
-        public string BeforeOperationEpicrisisUrination;
-
-        /// <summary>
-        /// Стул пациента
-        /// </summary>
-        public string BeforeOperationEpicrisisStool;
-
-        /// <summary>
         /// St. Localis
         /// </summary>
         public string BeforeOperationEpicrisisStLocalis;
 
         /// <summary>
-        /// Антибиотикопрофилактика
+        /// Проводилась ли  антибиотикопрофилактика
         /// </summary>
         public bool BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
 
@@ -164,15 +159,32 @@ namespace SurgeryHelper.Entities
         public string BeforeOperationEpicrisisAntibioticProphylaxis;
 
         /// <summary>
+        /// Проводилась ли премедикация
+        /// </summary>
+        public bool BeforeOperationEpicrisisIsPremedicationExist;
+
+        /// <summary>
+        /// Премедикация
+        /// </summary>
+        public string BeforeOperationEpicrisisPremedication;
+
+        /// <summary>
         /// Ход операции
         /// </summary>
         public string OperationCourse;
+
+        /// <summary>
+        /// Имплантаты
+        /// </summary>
+        public List<string> Implants;
 
         public OperationClass()
         {
             Id = 0;
             Surgeons = new List<string>();
             Assistents = new List<string>();
+            Implants = new List<string>();
+            RiskLevel = 1;
 
             BeforeOperationEpicrisisIsDairyEnabled = true;
             BeforeOperationEpicrisisTemperature = "N";
@@ -181,15 +193,14 @@ namespace SurgeryHelper.Entities
             BeforeOperationEpicrisisADSecond = 70;
             BeforeOperationEpicrisisChDD = 18;
             BeforeOperationEpicrisisWheeze = "нет";
-            BeforeOperationEpicrisisStomach = "мягкий, безболезненный";
-            BeforeOperationEpicrisisUrination = "свободное, регулярное";
-            BeforeOperationEpicrisisStool = "регулярный, без особенностей";
             BeforeOperationEpicrisisState = "удовлетворительное";
             BeforeOperationEpicrisisBreath = "везикулярное";
             BeforeOperationEpicrisisHeartSounds = "ясные";
             BeforeOperationEpicrisisHeartRhythm = "правильный";
             BeforeOperationEpicrisisIsAntibioticProphylaxisExist = true;
             BeforeOperationEpicrisisAntibioticProphylaxis = "S. Cefasolini 1,0 - в/в однократно";
+            BeforeOperationEpicrisisIsPremedicationExist = true;
+            BeforeOperationEpicrisisPremedication = "не выполнялась";
         }
 
         public OperationClass(OperationClass operationInfo)
@@ -199,16 +210,26 @@ namespace SurgeryHelper.Entities
             StartTimeOfOperation = new DateTime(operationInfo.StartTimeOfOperation.Year, operationInfo.StartTimeOfOperation.Month, operationInfo.StartTimeOfOperation.Day, operationInfo.StartTimeOfOperation.Hour, operationInfo.StartTimeOfOperation.Minute, operationInfo.StartTimeOfOperation.Second);
             EndTimeOfOperation = new DateTime(operationInfo.EndTimeOfOperation.Year, operationInfo.EndTimeOfOperation.Month, operationInfo.EndTimeOfOperation.Day, operationInfo.EndTimeOfOperation.Hour, operationInfo.EndTimeOfOperation.Minute, operationInfo.EndTimeOfOperation.Second);
             Name = operationInfo.Name;
-            HeAnaesthetist = operationInfo.HeAnaesthetist;
-            SheAnaesthetist = operationInfo.SheAnaesthetist;
+            RiskLevel = operationInfo.RiskLevel;
+            AnesthesiaType = operationInfo.AnesthesiaType;
+            HeAnesthetist = operationInfo.HeAnesthetist;
+            SheAnesthetist = operationInfo.SheAnesthetist;
             OperationCourse = operationInfo.OperationCourse;
             BeforeOperationEpicrisisIsAntibioticProphylaxisExist = operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
             BeforeOperationEpicrisisAntibioticProphylaxis = operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis;
+            BeforeOperationEpicrisisIsPremedicationExist = operationInfo.BeforeOperationEpicrisisIsPremedicationExist;
+            BeforeOperationEpicrisisPremedication = operationInfo.BeforeOperationEpicrisisPremedication;
 
             Surgeons = new List<string>();
             foreach (string surgeon in operationInfo.Surgeons)
             {
                 Surgeons.Add(surgeon);
+            }
+            
+            Implants = new List<string>();
+            foreach (string implant in operationInfo.Implants)
+            {
+                Implants.Add(implant);
             }
 
             Assistents = new List<string>();
@@ -231,10 +252,7 @@ namespace SurgeryHelper.Entities
             BeforeOperationEpicrisisIsDairyEnabled = operationInfo.BeforeOperationEpicrisisIsDairyEnabled;
             BeforeOperationEpicrisisPulse = operationInfo.BeforeOperationEpicrisisPulse;
             BeforeOperationEpicrisisStLocalis = operationInfo.BeforeOperationEpicrisisStLocalis;
-            BeforeOperationEpicrisisStomach = operationInfo.BeforeOperationEpicrisisStomach;
-            BeforeOperationEpicrisisStool = operationInfo.BeforeOperationEpicrisisStool;
             BeforeOperationEpicrisisTemperature = operationInfo.BeforeOperationEpicrisisTemperature;
-            BeforeOperationEpicrisisUrination = operationInfo.BeforeOperationEpicrisisUrination;
             BeforeOperationEpicrisisWheeze = operationInfo.BeforeOperationEpicrisisWheeze;
         }
 
@@ -254,16 +272,26 @@ namespace SurgeryHelper.Entities
             operationInfo.StartTimeOfOperation = new DateTime(StartTimeOfOperation.Year, StartTimeOfOperation.Month, StartTimeOfOperation.Day, StartTimeOfOperation.Hour, StartTimeOfOperation.Minute, StartTimeOfOperation.Second);
             operationInfo.EndTimeOfOperation = new DateTime(EndTimeOfOperation.Year, EndTimeOfOperation.Month, EndTimeOfOperation.Day, EndTimeOfOperation.Hour, EndTimeOfOperation.Minute, EndTimeOfOperation.Second);
             operationInfo.Name = Name;
-            operationInfo.HeAnaesthetist = HeAnaesthetist;
-            operationInfo.SheAnaesthetist = SheAnaesthetist;
+            operationInfo.RiskLevel = RiskLevel;
+            operationInfo.AnesthesiaType = AnesthesiaType;
+            operationInfo.HeAnesthetist = HeAnesthetist;
+            operationInfo.SheAnesthetist = SheAnesthetist;
             operationInfo.OperationCourse = OperationCourse;
             operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist = BeforeOperationEpicrisisIsAntibioticProphylaxisExist;
             operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = BeforeOperationEpicrisisAntibioticProphylaxis;
-
+            operationInfo.BeforeOperationEpicrisisIsPremedicationExist = BeforeOperationEpicrisisIsPremedicationExist;
+            operationInfo.BeforeOperationEpicrisisPremedication = BeforeOperationEpicrisisPremedication;
+            
             operationInfo.Surgeons = new List<string>();
             foreach (string surgeon in Surgeons)
             {
                 operationInfo.Surgeons.Add(surgeon);
+            }
+            
+            operationInfo.Implants = new List<string>();
+            foreach (string implant in Implants)
+            {
+                operationInfo.Implants.Add(implant);
             }
 
             operationInfo.Assistents = new List<string>();
@@ -286,13 +314,18 @@ namespace SurgeryHelper.Entities
             operationInfo.BeforeOperationEpicrisisIsDairyEnabled = BeforeOperationEpicrisisIsDairyEnabled;
             operationInfo.BeforeOperationEpicrisisPulse = BeforeOperationEpicrisisPulse;
             operationInfo.BeforeOperationEpicrisisStLocalis = BeforeOperationEpicrisisStLocalis;
-            operationInfo.BeforeOperationEpicrisisStomach = BeforeOperationEpicrisisStomach;
-            operationInfo.BeforeOperationEpicrisisStool = BeforeOperationEpicrisisStool;
             operationInfo.BeforeOperationEpicrisisTemperature = BeforeOperationEpicrisisTemperature;
-            operationInfo.BeforeOperationEpicrisisUrination = BeforeOperationEpicrisisUrination;
             operationInfo.BeforeOperationEpicrisisWheeze = BeforeOperationEpicrisisWheeze;
             operationInfo.OpenedOperationProtocolForm = OpenedOperationProtocolForm;
             operationInfo.OpenedOperationViewForm = OpenedOperationViewForm;
+        }
+
+        public string GetNameFromLowerLetter()
+        {
+            if(string.IsNullOrEmpty(Name))
+                return string.Empty;
+
+            return Name[0].ToString().ToLowerInvariant() + Name.Substring(1);
         }
 
         public static int Compare(OperationClass operationInfo1, OperationClass operationInfo2)

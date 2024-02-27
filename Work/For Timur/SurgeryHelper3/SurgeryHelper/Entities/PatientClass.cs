@@ -101,6 +101,16 @@ namespace SurgeryHelper.Entities
         public string MKB;
 
         /// <summary>
+        /// Код МКБ для сопутствующего диагноза
+        /// </summary>
+        public string ConcomitantDiagnoseMKB;
+
+        /// <summary>
+        /// Код МКБ для осложнений
+        /// </summary>
+        public string ComplicationsMKB;
+
+        /// <summary>
         /// Код WWW
         /// </summary>
         public string WWW;
@@ -164,6 +174,11 @@ namespace SurgeryHelper.Entities
         /// Нозология пациента
         /// </summary>
         public string Nosology;
+
+        /// <summary>
+        /// Тип госпитализации
+        /// </summary>
+        public string Hospitalization;
 
         /// <summary>
         /// Поле с путём до файлов данного пациента
@@ -311,6 +326,11 @@ namespace SurgeryHelper.Entities
         public string DischargeEpicrisEkg;
 
         /// <summary>
+        /// Осмотры врачей-специалистов, консилиумы врачей
+        /// </summary>
+        public string DischargeEpicrisConsultation;
+
+        /// <summary>
         /// Рекомендации при выписке
         /// </summary>
         public List<string> DischargeEpicrisRecomendations;
@@ -379,11 +399,6 @@ namespace SurgeryHelper.Entities
         /// Включён ли анамнез в общий отчёт
         /// </summary>
         public bool MedicalInspectionIsAnamneseActive;
-
-        /// <summary>
-        /// Осмотр в отделении, анамнез, дата травмы (если есть)
-        /// </summary>
-        public DateTime? MedicalInspectionAnamneseTraumaDate;
 
         /// <summary>
         /// Осмотр в отделении, анамнез, AnMorbi
@@ -591,15 +606,7 @@ namespace SurgeryHelper.Entities
         /// <returns></returns>
         public string GetKD()
         {
-            int tempKD;
-            if (ReleaseDate.HasValue && ConvertEngine.CompareDateTimes(ReleaseDate.Value.Date, DateTime.Now.Date, true) <= 0)
-            {
-                tempKD = (ReleaseDate.Value.Date - DeliveryDate.Date).Days;
-            }
-            else
-            {
-                tempKD = (DateTime.Now.Date - DeliveryDate.Date).Days;
-            }
+            var tempKD = ReleaseDate.HasValue ? (ReleaseDate.Value.Date - DeliveryDate.Date).Days : (DateTime.Now.Date - DeliveryDate.Date).Days;
 
             if (NumberOfCaseHistory.ToLower().Contains("д"))
             {
@@ -624,6 +631,7 @@ namespace SurgeryHelper.Entities
             Operations = new List<OperationClass>();
             ConcomitantDiagnose = "нет";
             Complications = "нет";
+            Hospitalization = "плановая";
 
             TransferEpicrisAfterOperationPeriod = "без особенностей";
             TransferEpicrisPlan = "перевязки до заживления ран, ЛФК";
@@ -661,7 +669,7 @@ namespace SurgeryHelper.Entities
             MedicalInspectionComplaints = "";
 
             MedicalInspectionAnamneseAnVitae = new bool[4];
-            MedicalInspectionAnamneseTextBoxes = new[] // string[8]
+            MedicalInspectionAnamneseTextBoxes = new[] // string[10]
             {
                 "отрицает",
                 "не болел",
@@ -670,6 +678,8 @@ namespace SurgeryHelper.Entities
                 "нет",
                 "не выполнялось",
                 "не было",
+                "отрицает",
+                "отрицает",
                 "отрицает"
             };
             MedicalInspectionAnamneseCheckboxes = new bool[12];
@@ -753,6 +763,8 @@ namespace SurgeryHelper.Entities
             Phone = patientClass.Phone;
             TypeOfKSG = patientClass.TypeOfKSG;
             MKB = patientClass.MKB;
+            ConcomitantDiagnoseMKB = patientClass.ConcomitantDiagnoseMKB;
+            ComplicationsMKB = patientClass.ComplicationsMKB;
             WWW = patientClass.WWW;
             ServiceName = patientClass.ServiceName;
             ServiceCode = patientClass.ServiceCode;
@@ -760,6 +772,7 @@ namespace SurgeryHelper.Entities
             KsgDecoding = patientClass.KsgDecoding;
             HomeNumber = patientClass.HomeNumber;
             Nosology = patientClass.Nosology;
+            Hospitalization = patientClass.Hospitalization;
             NumberOfCaseHistory = patientClass.NumberOfCaseHistory;
             StreetName = patientClass.StreetName;
             PrivateFolder = patientClass.PrivateFolder;
@@ -788,6 +801,7 @@ namespace SurgeryHelper.Entities
             DischargeEpicrisAnalysisDate = patientClass.DischargeEpicrisAnalysisDate;
             DischargeEpicrisAfterOperation = patientClass.DischargeEpicrisAfterOperation;            
             DischargeEpicrisEkg = patientClass.DischargeEpicrisEkg;
+            DischargeEpicrisConsultation = patientClass.DischargeEpicrisConsultation;
             DischargeEpicrisOakEritrocits = patientClass.DischargeEpicrisOakEritrocits;
             DischargeEpicrisOakHb = patientClass.DischargeEpicrisOakHb;
             DischargeEpicrisOakLekocits = patientClass.DischargeEpicrisOakLekocits;
@@ -812,7 +826,6 @@ namespace SurgeryHelper.Entities
             PrescriptionTherapy = new List<string>(patientClass.PrescriptionTherapy);
             PrescriptionSurveys = new List<string>(patientClass.PrescriptionSurveys);
 
-            MedicalInspectionAnamneseTraumaDate = ConvertEngine.CopyDateTime(patientClass.MedicalInspectionAnamneseTraumaDate);
             MedicalInspectionAnamneseAnMorbi = patientClass.MedicalInspectionAnamneseAnMorbi;
             MedicalInspectionAnamneseAnVitae = CopyBoolArray(patientClass.MedicalInspectionAnamneseAnVitae);
             MedicalInspectionAnamneseCheckboxes = CopyBoolArray(patientClass.MedicalInspectionAnamneseCheckboxes);
@@ -866,6 +879,8 @@ namespace SurgeryHelper.Entities
             patientInfo.Phone = Phone;
             patientInfo.TypeOfKSG = TypeOfKSG;
             patientInfo.MKB = MKB;
+            patientInfo.ConcomitantDiagnoseMKB = ConcomitantDiagnoseMKB;
+            patientInfo.ComplicationsMKB = ComplicationsMKB;
             patientInfo.WWW = WWW;
             patientInfo.ServiceName = ServiceName;
             patientInfo.ServiceCode = ServiceCode;
@@ -873,6 +888,7 @@ namespace SurgeryHelper.Entities
             patientInfo.KsgDecoding = KsgDecoding;
             patientInfo.HomeNumber = HomeNumber;
             patientInfo.Nosology = Nosology;
+            patientInfo.Hospitalization = Hospitalization;
             patientInfo.NumberOfCaseHistory = NumberOfCaseHistory;
             patientInfo.StreetName = StreetName;
             patientInfo.PrivateFolder = PrivateFolder;
@@ -901,6 +917,7 @@ namespace SurgeryHelper.Entities
             patientInfo.DischargeEpicrisAnalysisDate = DischargeEpicrisAnalysisDate;
             patientInfo.DischargeEpicrisAfterOperation = DischargeEpicrisAfterOperation;
             patientInfo.DischargeEpicrisEkg = DischargeEpicrisEkg;
+            patientInfo.DischargeEpicrisConsultation = DischargeEpicrisConsultation;
             patientInfo.DischargeEpicrisOakEritrocits = DischargeEpicrisOakEritrocits;
             patientInfo.DischargeEpicrisOakHb = DischargeEpicrisOakHb;
             patientInfo.DischargeEpicrisOakLekocits = DischargeEpicrisOakLekocits;
@@ -925,7 +942,6 @@ namespace SurgeryHelper.Entities
             patientInfo.PrescriptionTherapy = new List<string>(PrescriptionTherapy);
             patientInfo.PrescriptionSurveys = new List<string>(PrescriptionSurveys);
 
-            patientInfo.MedicalInspectionAnamneseTraumaDate = ConvertEngine.CopyDateTime(MedicalInspectionAnamneseTraumaDate);
             patientInfo.MedicalInspectionAnamneseAnMorbi = MedicalInspectionAnamneseAnMorbi;
             patientInfo.MedicalInspectionAnamneseAnVitae = CopyBoolArray(MedicalInspectionAnamneseAnVitae);
             patientInfo.MedicalInspectionAnamneseCheckboxes = CopyBoolArray(MedicalInspectionAnamneseCheckboxes);

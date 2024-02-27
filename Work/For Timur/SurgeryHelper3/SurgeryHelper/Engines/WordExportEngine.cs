@@ -626,7 +626,7 @@ namespace SurgeryHelper.Engines
 
                 _waitForm.SetProgress(30);
 
-                var rowCnt = 9;
+                var rowCnt = string.IsNullOrEmpty(patientInfo.WWW) ? 13 : 14;
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -634,25 +634,18 @@ namespace SurgeryHelper.Engines
                 _wordTable = _wordDoc.Tables.Add(_wordRange, rowCnt, 4, ref _missingObject, ref _missingObject);
                 _wordTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleNone;
                 _wordTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleNone;
-                _wordTable.Range.Font.Name = "Arial";
                 _wordTable.Range.Font.Size = 11;
                 _wordTable.Range.Font.Bold = 0;
                 _wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
 
-                //SetColumnWidths(rowCnt, new[] { 25, 160, 160, 55, 55, 30 });
                 object begCell;
                 object endCell;
 
-                for (int i = 1; i <= rowCnt; i++)
+                for (int i = 1; i < 5; i++)
                 {
-                    if (i == 5)
-                        continue;
-
                     begCell = _wordTable.Cell(i, 2).Range.Start;
                     endCell = _wordTable.Cell(i, 4).Range.End;
                     MergeCells(begCell, endCell);
-                    _wordTable.Cell(1, 1).Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                    _wordTable.Cell(1, 1).Range.Font.Bold = 1;
                 }
 
                 _wordTable.Cell(1, 1).Range.Font.Bold = 0;
@@ -666,73 +659,144 @@ namespace SurgeryHelper.Engines
                 _wordTable.Cell(2, 2).Range.Text = ConvertEngine.GetRightDateString(patientInfo.Birthday);
 
                 _wordTable.Cell(3, 1).Range.Font.Bold = 0;
-                _wordTable.Cell(3, 1).Range.Text = "Адрес";
+                _wordTable.Cell(3, 1).Range.Text = "Регистрация по месту жительства";
                 _wordTable.Cell(3, 2).Range.Font.Bold = 1;
                 _wordTable.Cell(3, 2).Range.Text = patientInfo.GetAddress();
 
                 _wordTable.Cell(4, 1).Range.Font.Bold = 0;
-                _wordTable.Cell(4, 1).Range.Text = "Место работы (учебы)";
+                _wordTable.Cell(4, 1).Range.Text = "Поступил в";
                 _wordTable.Cell(4, 2).Range.Font.Bold = 1;
-                _wordTable.Cell(4, 2).Range.Text = patientInfo.WorkPlace;
+                _wordTable.Cell(4, 2).Range.Text = patientInfo.TypeOfKSG == "н" ? "стационар" : "дневной стационар";
 
                 _wordTable.Cell(5, 1).Range.Font.Bold = 0;
                 _wordTable.Cell(5, 1).Range.Text = "Дата поступления";
                 _wordTable.Cell(5, 2).Range.Font.Bold = 1;
-                _wordTable.Cell(5, 2).Range.Text = ConvertEngine.GetRightDateString(patientInfo.DeliveryDate);
-
+                _wordTable.Cell(5, 2).Range.Text = ConvertEngine.GetRightDateString(patientInfo.DeliveryDate, true);
                 _wordTable.Cell(5, 3).Range.Font.Bold = 0;
                 _wordTable.Cell(5, 3).Range.Text = "Дата выписки";
                 _wordTable.Cell(5, 4).Range.Font.Bold = 1;
-                _wordTable.Cell(5, 4).Range.Text = patientInfo.ReleaseDate.HasValue ? ConvertEngine.GetRightDateString(patientInfo.ReleaseDate.Value) : "НЕ УКАЗАНА";
-
-                _wordTable.Cell(6, 1).Range.Font.Bold = 0;
-                _wordTable.Cell(6, 1).Range.Text = "Клинический диагноз:";
-
-                _wordTable.Cell(7, 1).Range.Font.Bold = 0;
-                _wordTable.Cell(7, 1).Range.Text = "\tОсновное\r\n\tзаболевание:";
-                _wordTable.Cell(7, 2).Range.Font.Bold = 1;
-                _wordTable.Cell(7, 2).Range.Text = patientInfo.Diagnose;
-
-                _wordTable.Cell(8, 1).Range.Font.Bold = 0;
-                _wordTable.Cell(8, 1).Range.Text = "\tСопутствующее\r\n\tзаболевание:";
-                _wordTable.Cell(8, 2).Range.Font.Bold = 1;
-                _wordTable.Cell(8, 2).Range.Text = patientInfo.ConcomitantDiagnose;
-
-                _wordTable.Cell(9, 1).Range.Font.Bold = 0;
-                _wordTable.Cell(9, 1).Range.Text = "\tОсложнения:";
-                _wordTable.Cell(9, 2).Range.Font.Bold = 1;
-                _wordTable.Cell(9, 2).Range.Text = patientInfo.Complications;
+                _wordTable.Cell(5, 4).Range.Text = patientInfo.ReleaseDate.HasValue ? ConvertEngine.GetRightDateString(patientInfo.ReleaseDate.Value) + " 14:00" : "НЕ УКАЗАНА";
 
                 _waitForm.SetProgress(40);
 
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Bold = 1;
-                _paragraph.Range.Font.Size = 11;
-                _paragraph.Range.Text = "Анамнез:";
+                begCell = _wordTable.Cell(6, 1).Range.Start;
+                endCell = _wordTable.Cell(6, 3).Range.End;
+                MergeCells(begCell, endCell);
+                _wordTable.Cell(6, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(6, 1).Range.Text = "Количество дней нахождения в медицинской организации";
+                _wordTable.Cell(6, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(6, 2).Range.Text = patientInfo.GetKD();
+
+                _wordTable.Cell(7, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(7, 1).Range.Text = "Исход госпитализации";
+                _wordTable.Cell(7, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(7, 2).Range.Text = "выписан";
+
+                _wordTable.Cell(8, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(8, 1).Range.Text = "Результат госпитализации";
+                _wordTable.Cell(8, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(8, 2).Range.Text = "улучшение";
+
+                begCell = _wordTable.Cell(9, 1).Range.Start;
+                endCell = _wordTable.Cell(9, 3).Range.End;
+                MergeCells(begCell, endCell);
+                _wordTable.Cell(9, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(9, 1).Range.Text = "Форма оказания медицинской помощи";
+                _wordTable.Cell(9, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(9, 2).Range.Text = patientInfo.Hospitalization;
+
+                begCell = _wordTable.Cell(10, 1).Range.Start;
+                endCell = _wordTable.Cell(10, 4).Range.End;
+                MergeCells(begCell, endCell);
+                _wordTable.Cell(10, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(10, 1).Range.Text = "Заключительный диагноз:";
+
+                begCell = _wordTable.Cell(11, 2).Range.Start;
+                endCell = _wordTable.Cell(11, 3).Range.End;
+                MergeCells(begCell, endCell);
+                float middleWidth = _wordTable.Cell(11, 2).Width;
+                float rightWidth = _wordTable.Cell(11, 3).Width;
+                _wordTable.Cell(11, 2).Width = middleWidth + rightWidth / 2;
+                _wordTable.Cell(11, 3).Width = rightWidth / 2;
+                _wordTable.Cell(11, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(11, 1).Range.Text = "\tОсновное\r\n\tзаболевание:";
+                _wordTable.Cell(11, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(11, 2).Range.Text = patientInfo.Diagnose;
+                _wordTable.Cell(11, 3).Range.Font.Bold = 1;
+                _wordTable.Cell(11, 3).Range.Text = patientInfo.MKB;
+
+                _waitForm.SetProgress(50);
+
+                begCell = _wordTable.Cell(12, 2).Range.Start;
+                endCell = _wordTable.Cell(12, 3).Range.End;
+                MergeCells(begCell, endCell);
+                _wordTable.Cell(12, 2).Width = middleWidth + rightWidth / 2;
+                _wordTable.Cell(12, 3).Width = rightWidth / 2;
+                _wordTable.Cell(12, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(12, 1).Range.Text = "\tОсложнения:";
+                _wordTable.Cell(12, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(12, 2).Range.Text = patientInfo.Complications;
+                _wordTable.Cell(12, 3).Range.Font.Bold = 1;
+                _wordTable.Cell(12, 3).Range.Text = patientInfo.ComplicationsMKB;
+
+                begCell = _wordTable.Cell(13, 2).Range.Start;
+                endCell = _wordTable.Cell(13, 3).Range.End;
+                MergeCells(begCell, endCell);
+                _wordTable.Cell(13, 2).Width = middleWidth + rightWidth / 2;
+                _wordTable.Cell(13, 3).Width = rightWidth / 2;
+                _wordTable.Cell(13, 1).Range.Font.Bold = 0;
+                _wordTable.Cell(13, 1).Range.Text = "\tСопутствующее\r\n\tзаболевание:";
+                _wordTable.Cell(13, 2).Range.Font.Bold = 1;
+                _wordTable.Cell(13, 2).Range.Text = patientInfo.ConcomitantDiagnose;
+                _wordTable.Cell(13, 3).Range.Font.Bold = 1;
+                _wordTable.Cell(13, 3).Range.Text = patientInfo.ConcomitantDiagnoseMKB;
+
+                if (!string.IsNullOrEmpty(patientInfo.WWW))
+                {
+                    begCell = _wordTable.Cell(14, 2).Range.Start;
+                    endCell = _wordTable.Cell(14, 3).Range.End;
+                    MergeCells(begCell, endCell);
+                    _wordTable.Cell(14, 2).Width = middleWidth + rightWidth / 2;
+                    _wordTable.Cell(14, 3).Width = rightWidth / 2;
+                    _wordTable.Cell(14, 1).Range.Font.Bold = 0;
+                    _wordTable.Cell(14, 1).Range.Text = "\tВнешняя\r\n\tпричина:";
+                    _wordTable.Cell(14, 2).Range.Font.Bold = 1;
+                    _wordTable.Cell(14, 2).Range.Text = _dbEngine.GetMkbName(patientInfo.WWW);
+                    _wordTable.Cell(14, 3).Range.Font.Bold = 1;
+                    _wordTable.Cell(14, 3).Range.Text = patientInfo.WWW;
+                }
+
+                _waitForm.SetProgress(60);
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Range.Bold = 0;
-                _paragraph.Range.Text = patientInfo.MedicalInspectionAnamneseAnMorbi;
+                _paragraph.Range.Font.Size = 11;
+                _wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                _paragraph.Range.Text = "Дополнительные сведения о заболевании: " + patientInfo.MedicalInspectionAnamneseAnMorbi;
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Bold = 1;
-                _paragraph.Range.Text = "Результаты исследований:";
-                _waitForm.SetProgress(50);
+                _paragraph.Range.Text = "Состояние при поступлении: " + patientInfo.MedicalInspectionStLocalisDescription;
 
-                if (patientInfo.MedicalInspectionInspectionPlan == "обследован амбулаторно")
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Осмотры врачей-специалистов, консилиумы врачей: " + patientInfo.DischargeEpicrisConsultation;
+
+                if (!patientInfo.MedicalInspectionIsPlanEnabled || patientInfo.MedicalInspectionInspectionPlan == "обследован амбулаторно")
                 {
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph.Range.Bold = 0;
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "обследован амбулаторно";
+                    _paragraph.Range.Text = "Результаты медицинского обследования: обследован амбулаторно";
                 }
                 else
                 {
                     _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph.Range.Bold = 0;
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Результаты медицинского обследования:";
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                     _paragraph.Range.Text = string.Format(
                         "ОАК({0}): эритроциты-{1}х1012/л, лейкоциты-{2}х109/л, Hb-{3} г/л, СОЭ-{4} мм/ч;",
@@ -818,16 +882,18 @@ namespace SurgeryHelper.Engines
                     SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
                 }
 
-                _waitForm.SetProgress(60);
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];                
-                _paragraph.Range.Text = "Рентгенконтроль – удовлетворительно.";
-                                
-                // Добавляем информацию об операциях
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Bold = 1;
-                _paragraph.Range.Text = "Проведенное лечение:";
+                _paragraph.Range.Text = "Применение лекарственных препаратов: " + patientInfo.GetDischargeEpicrisConservativeTherapy();
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Трансфузии донорской крови или ее компонентов -не проводились.";
+
+                AddEmptyParagraph();
+
+                _waitForm.SetProgress(70);
+
                 if (patientInfo.MedicalInspectionTreatmentType == "оперативное" && patientInfo.Operations.Count > 0)
                 {
                     string textStrFirstLine = string.Empty;
@@ -840,7 +906,7 @@ namespace SurgeryHelper.Engines
                         }
                         else
                         {
-                            textStr.AppendFormat("\t\t\t{0} - {1}\r\n", ConvertEngine.GetRightDateString(operationInfo.DataOfOperation), operationInfo.Name);
+                            textStr.AppendFormat("\t\t{0} - {1}\r\n", ConvertEngine.GetRightDateString(operationInfo.DataOfOperation), operationInfo.Name);
                         }
                     }
 
@@ -852,8 +918,8 @@ namespace SurgeryHelper.Engines
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                     _paragraph.Range.Bold = 0;
-                    _paragraph.Range.Text = "\tоперация:\t" + textStrFirstLine;
-                    SetWordsInRangeBold(_paragraph.Range, new[] { 2 });
+                    _paragraph.Range.Text = "Операции:\t" + textStrFirstLine;
+                    SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
 
                     if (textStr.Length > 0)
                     {
@@ -863,26 +929,29 @@ namespace SurgeryHelper.Engines
                     }
                 }
 
-                // Добавляем информацию о консервативном лечении
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "\tконсервативное лечение: " + patientInfo.GetDischargeEpicrisConservativeTherapy();
-                SetWordsInRangeBold(_paragraph.Range, new[] { 2, 3, 4 });
-                
                 _waitForm.SetProgress(80);
 
                 if (!string.IsNullOrEmpty(patientInfo.DischargeEpicrisAfterOperation))
                 {
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = $"После операции: {patientInfo.DischargeEpicrisAfterOperation}";
-                    SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+                    _paragraph.Range.Text = $"Дополнительные сведения: {patientInfo.DischargeEpicrisAfterOperation}";
+                }
+
+                var dischargeInfo = string.Empty;
+                if (patientInfo.DischargeEpicrisRecomendations.Count > 0 &&
+                    IsRecommendationReason(patientInfo.DischargeEpicrisRecomendations[0]))
+                {
+                    dischargeInfo = patientInfo.DischargeEpicrisRecomendations[0];
+                }
+                else
+                {
+                    dischargeInfo = "листок нетрудоспособности не требуется";
                 }
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];                
-                _paragraph.Range.Text = "Результат лечения: улучшение";
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Состояние при выписке удовлетворительное, " + dischargeInfo;
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -893,34 +962,39 @@ namespace SurgeryHelper.Engines
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Range.Bold = 0;
 
-                var recomendations = new StringBuilder();
+                var recommendations = new StringBuilder();
                 for (int i = 0; i < patientInfo.DischargeEpicrisRecomendations.Count; i++)
                 {
-                    recomendations.Append(patientInfo.DischargeEpicrisRecomendations[i] + "\r\n");
+                    if (IsRecommendationReason(patientInfo.DischargeEpicrisRecomendations[i]))
+                    {
+                        continue;
+                    }
+
+                    recommendations.AppendLine(patientInfo.DischargeEpicrisRecomendations[i]);
                 }
 
                 for (int i = 0; i < patientInfo.DischargeEpicrisAdditionalRecomendations.Count; i++)
                 {
-                    recomendations.Append(patientInfo.DischargeEpicrisAdditionalRecomendations[i] + "\r\n");
+                    recommendations.AppendLine(patientInfo.DischargeEpicrisAdditionalRecomendations[i]);
                 }
 
-                if (string.IsNullOrEmpty(recomendations.ToString()))
+                if (string.IsNullOrEmpty(recommendations.ToString()))
                 {
                     _paragraph.Range.Text = "\tНет рекомендаций\r\n";
                 }
                 else
                 {
                     _paragraph.Range.ListFormat.ApplyNumberDefault(ref _missingObject);
-                    _paragraph.Range.Text = recomendations.ToString();
+                    _paragraph.Range.Text = recommendations.ToString();
                     _paragraph.Range.ListFormat.ApplyNumberDefaultOld();
                 }
 
-                _waitForm.SetProgress(90);
-
                 _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];                
-                _paragraph.Range.Text = "Примечания: контактов нет, рентгенограммы выданы на руки\r\n";
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Примечания: контактов нет, результаты дополнительных методов обследования выданы на руки\r\n";
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
+
+                _waitForm.SetProgress(90);
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -928,13 +1002,11 @@ namespace SurgeryHelper.Engines
                 _wordTable = _wordDoc.Tables.Add(_wordRange, 1, 4, ref _missingObject, ref _missingObject);
                 _wordTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleNone;
                 _wordTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleNone;
-                _wordTable.Range.Font.Name = "Arial";
-                _wordTable.Range.Font.Size = 11;
                 _wordTable.Range.Font.Bold = 0;
                 
                 _wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
 
-                SetColumnWidths(rowCnt, new[] { 100, 170, 100, 170 });
+                SetColumnWidths(rowCnt, new[] { 110, 160, 110, 160 });
 
                 begCell = _wordTable.Cell(1, 1).Range.Start;
                 endCell = _wordTable.Cell(1, 4).Range.End;
@@ -943,13 +1015,18 @@ namespace SurgeryHelper.Engines
                 _wordRange.Select();
                 _wordApp.Selection.Cells.Height = 20;
 
-                _wordTable.Cell(1, 1).Range.Text = "Лечащий врач";
+                _wordTable.Cell(1, 1).Range.Text = "Лечащий врач, " + _dbEngine.GetSpecialityBySurgeonName(patientInfo.DoctorInChargeOfTheCase);
                 _wordTable.Cell(1, 2).Range.Text = "\t" + patientInfo.DoctorInChargeOfTheCase + "\t";
                 _wordTable.Cell(1, 2).Range.Font.Underline = WdUnderline.wdUnderlineSingle;
-
-                _wordTable.Cell(1, 3).Range.Text = "Зав. отделением";
+                _wordTable.Cell(1, 3).Range.Text = "Зав. отделением, " + _dbEngine.GetSpecialityBySurgeonName(_dbEngine.GlobalSettings.BranchManager);
                 _wordTable.Cell(1, 4).Range.Text = "\t" + _dbEngine.GlobalSettings.BranchManager + "\t";
                 _wordTable.Cell(1, 4).Range.Font.Underline = WdUnderline.wdUnderlineSingle;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = patientInfo.ReleaseDate.HasValue ? 
+                    ConvertEngine.GetRightDateString(patientInfo.ReleaseDate.Value) + " 14:00"
+                    : "НЕ УКАЗАНА";
 
                 _waitForm.SetProgress(100);
 
@@ -970,7 +1047,12 @@ namespace SurgeryHelper.Engines
 
                 Thread.CurrentThread.CurrentCulture = oldCi;
             }
-        }        
+        }
+
+        private bool IsRecommendationReason(string recomendation)
+        {
+            return recomendation.Contains(" № ______");
+        }
 
         /// <summary>
         /// Экспортировать в Word осмотр в отделении
@@ -1055,13 +1137,8 @@ namespace SurgeryHelper.Engines
                     string[] anMorbi = patientInfo.MedicalInspectionAnamneseAnMorbi.Split(new[] { "\r\n" }, 2, StringSplitOptions.None);
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    string traumaDate = string.Empty;
-                    if (patientInfo.MedicalInspectionAnamneseTraumaDate.HasValue)
-                    {
-                        traumaDate += ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionAnamneseTraumaDate.Value, false);
-                    }
 
-                    _paragraph.Range.Text = "Анамнез заболевания: " + traumaDate + " " + anMorbi[0];
+                    _paragraph.Range.Text = "Анамнез заболевания: " + anMorbi[0];
                     SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 3 });
 
                     if (anMorbi.Length > 1)
@@ -1734,24 +1811,15 @@ namespace SurgeryHelper.Engines
                 {
                     _paragraph.Range.ListFormat.RemoveNumbers();
                 }
-                _paragraph.Range.Text = "Назначения: " + patientInfo.GetDischargeEpicrisConservativeTherapy();
+                _paragraph.Range.Text = "Назначения: отражены в листе назначений";
 
                 AddEmptyParagraph();
 
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = string.Format("Врач, {0}: {1}__________________",
-                    _dbEngine.GetSpecialityBySurgeonName(patientInfo.DoctorInChargeOfTheCase),
-                    patientInfo.DoctorInChargeOfTheCase);
+                AddDoctorForSign(patientInfo.DoctorInChargeOfTheCase);
 
-                if(patientInfo.MedicalInspectionWithBoss)
+                if (patientInfo.MedicalInspectionWithBoss)
                 {
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    string bossTitleFormat = _dbEngine.GlobalSettings.BossJobTitle.Contains("главн") ? "Глав. врач, {0}: {1}" : "Зав. отделением, {0}: {1}__________________";
-                    _paragraph.Range.Text = string.Format(bossTitleFormat,
-                        _dbEngine.GetSpecialityBySurgeonName(_dbEngine.GlobalSettings.BranchManager),
-                        _dbEngine.GlobalSettings.BranchManager);
+                    AddBossForSign();
                 }
 
                 AddEmptyParagraph();
@@ -1807,154 +1875,7 @@ namespace SurgeryHelper.Engines
             
             return "л/н не требуется.";
         }
-
-        /// <summary>
-        /// Добавить данные по операции. В отдельной функции, потому что печатается 2 раза
-        /// </summary>
-        /// <param name="operationInfo">Данные по операции</param>
-        /// <param name="patientInfo">Данные о пациенте</param>
-        private void InsertTableForOperation(OperationClass operationInfo, PatientClass patientInfo)
-        {
-            _wordDoc.Paragraphs.Add(ref _missingObject);
-            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-            _paragraph.Range.Font.Bold = 1;
-            _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
-            _paragraph.Range.Text = "ОПЕРАЦИЯ";
-
-            int rowCnt = 11;
-
-            _wordDoc.Paragraphs.Add(ref _missingObject);
-            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-            _paragraph.Range.Font.Bold = 0;
-            _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-            _wordRange = _paragraph.Range;
-            _wordTable = _wordDoc.Tables.Add(_wordRange, rowCnt, 3, ref _missingObject, ref _missingObject);
-
-            _wordTable.Range.Font.Name = "Times New Roman";
-            _wordTable.Range.Font.Size = 12;
-            _wordTable.Range.Font.Bold = 0;
-            _wordTable.Range.ParagraphFormat.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-            _wordTable.Borders.InsideLineStyle = WdLineStyle.wdLineStyleSingle;
-            _wordTable.Borders.OutsideLineStyle = WdLineStyle.wdLineStyleSingle;
-
-            SetColumnWidths(rowCnt, new[] { 250, 100, 130 });
-
-            /*
-            for (int i = 1; i <= _wordTable.Rows.Count; i++)
-            {
-                _wordTable.Rows[i].Cells[1].Width = 250;
-                _wordTable.Rows[i].Cells[2].Width = 100;
-                _wordTable.Rows[i].Cells[3].Width = 130;
-            }
-            */
-
-            int startRowForMerge = operationInfo.Surgeons.Count + operationInfo.Assistents.Count + 5;
-
-            for (int i = startRowForMerge; i <= 11; i++)
-            {
-                object begCell = _wordTable.Cell(i, 1).Range.Start;
-                object endCell = _wordTable.Cell(i, 3).Range.End;
-                MergeCells(begCell, endCell);
-            }
-
-            _wordTable.Rows[1].Cells[1].Range.Text = "Фамилия " + patientInfo.LastName;
-            SetWordsInRangeBold(_wordTable.Rows[1].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[2].Cells[1].Range.Text = "Имя " + patientInfo.Name;
-            SetWordsInRangeBold(_wordTable.Rows[2].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[3].Cells[1].Range.Text = "Отчество " + patientInfo.Patronymic;
-            SetWordsInRangeBold(_wordTable.Rows[3].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[4].Cells[1].Range.Text = "Возраст " + patientInfo.Age;
-            SetWordsInRangeBold(_wordTable.Rows[4].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[5].Cells[1].Range.Text = "№ ист. б-ни " + patientInfo.NumberOfCaseHistory;
-            SetWordsInRangeBold(_wordTable.Rows[5].Cells[1].Range, new[] { 1, 2, 3, 4, 5, 6 });
-
-            _wordTable.Rows[6].Cells[1].Range.Text = "Дата поступления " + ConvertEngine.GetRightDateString(patientInfo.DeliveryDate);
-            SetWordsInRangeBold(_wordTable.Rows[6].Cells[1].Range, new[] { 1, 2 });
-
-            _wordTable.Rows[7].Cells[1].Range.Text = string.Format(
-                "Дата операции {0} {1}-{2}",
-                ConvertEngine.GetRightDateString(operationInfo.DataOfOperation),
-                ConvertEngine.GetRightTimeString(operationInfo.StartTimeOfOperation),
-                ConvertEngine.GetRightTimeString(operationInfo.EndTimeOfOperation));
-            SetWordsInRangeBold(_wordTable.Rows[7].Cells[1].Range, new[] { 1, 2 });
-
-            _wordTable.Rows[8].Cells[1].Range.Text = "Адрес " + patientInfo.GetAddress();
-            SetWordsInRangeBold(_wordTable.Rows[8].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[9].Cells[1].Range.Text = "Диагноз " + patientInfo.Diagnose;
-            SetWordsInRangeBold(_wordTable.Rows[9].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[10].Cells[1].Range.Text = "Операция " + operationInfo.Name;
-            SetWordsInRangeBold(_wordTable.Rows[10].Cells[1].Range, new[] { 1 });
-
-            _wordTable.Rows[11].Cells[1].Range.Text = "Ход операции: " + operationInfo.OperationCourse;
-            SetWordsInRangeBold(_wordTable.Rows[11].Cells[1].Range, new[] { 1, 2 });
-
-            int rowNum = 1;
-            _wordTable.Rows[rowNum].Cells[2].Range.Text = "Хирург";
-            _wordTable.Rows[rowNum].Cells[2].Range.Font.Bold = 1;
-
-            foreach (string surgeoun in operationInfo.Surgeons)
-            {
-                _wordTable.Rows[rowNum].Cells[3].Range.Text = surgeoun;
-                rowNum++;
-            }
-
-            if (operationInfo.Assistents.Count > 0)
-            {
-                _wordTable.Rows[rowNum].Cells[2].Range.Text = "Ассистент";
-                _wordTable.Rows[rowNum].Cells[2].Range.Font.Bold = 1;
-
-                foreach (string assistent in operationInfo.Assistents)
-                {
-                    _wordTable.Rows[rowNum].Cells[3].Range.Text = assistent;
-                    rowNum++;
-                }
-            }
-
-            if (!string.IsNullOrEmpty(operationInfo.HeAnaesthetist))
-            {
-                _wordTable.Rows[rowNum].Cells[2].Range.Text = "Анестезиолог";
-                _wordTable.Rows[rowNum].Cells[2].Range.Font.Bold = 1;
-
-                _wordTable.Rows[rowNum].Cells[3].Range.Text = operationInfo.HeAnaesthetist;
-                rowNum++;
-            }
-
-            _wordTable.Rows[rowNum].Cells[2].Range.Text = "Опер. м/сестра";
-            _wordTable.Rows[rowNum].Cells[2].Range.Font.Bold = 1;
-
-            _wordTable.Rows[rowNum].Cells[3].Range.Text = operationInfo.ScrubNurse;
-            rowNum++;
-
-            if (!string.IsNullOrEmpty(operationInfo.SheAnaesthetist))
-            {
-                _wordTable.Rows[rowNum].Cells[2].Range.Text = "Анестезистка";
-                _wordTable.Rows[rowNum].Cells[2].Range.Font.Bold = 1;
-
-                _wordTable.Rows[rowNum].Cells[3].Range.Text = operationInfo.SheAnaesthetist;
-                rowNum++;
-            }
-
-            _wordTable.Rows[rowNum].Cells[2].Range.Text = "Санитар";
-            _wordTable.Rows[rowNum].Cells[2].Range.Font.Bold = 1;
-
-            _wordTable.Rows[rowNum].Cells[3].Range.Text = operationInfo.Orderly;
-
-            string surgeon = operationInfo.Surgeons.Count > 0 ? operationInfo.Surgeons[0] : "                          ";
-            _wordDoc.Paragraphs.Add(ref _missingObject);
-            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-            _paragraph.Range.Text = string.Format("Дата {0}, {1}\t\t\t\t{2} _________________",
-                ConvertEngine.GetRightDateString(operationInfo.DataOfOperation),
-                ConvertEngine.GetRightTimeString(operationInfo.EndTimeOfOperation.AddMinutes(15)),
-                surgeon);
-            SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
-        }
-
+        
         /// <summary>
         /// Экспортировать в Word протокол операции
         /// </summary>
@@ -1997,11 +1918,6 @@ namespace SurgeryHelper.Engines
                 _wordRange.Font.Size = 12;
                 _wordRange.Font.Name = "Times New Roman";
 
-                for (int i = 0; i < 10; i++)
-                {
-                    AddEmptyParagraph();
-                }
-
                 _waitForm.SetProgress(20);
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
@@ -2010,60 +1926,91 @@ namespace SurgeryHelper.Engines
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
                 _paragraph.Range.Text = "ПРЕДОПЕРАЦИОННЫЙ ЭПИКРИЗ";
 
-                // Создание текст бокса с печатью
-                _wordShape = _wordDoc.Shapes.AddTextbox(
-                    MsoTextOrientation.msoTextOrientationHorizontal,
-                    320,
-                    50,
-                    238,
-                    124,
-                    ref _missingObject);
-
-                _wordShape.TextFrame.TextRange.Font.Name = "Times New Roman";
-                _wordShape.TextFrame.TextRange.Font.Size = 10;
-                _wordShape.TextFrame.TextRange.Font.Bold = 1;
-                _wordShape.TextFrame.TextRange.Font.Spacing = -1;
-                _wordShape.Line.Weight = 2;
-
-                _wordShape.TextFrame.MarginLeft = (float)1.42;
-                _wordShape.TextFrame.MarginRight = (float)1.42;
-                _wordShape.TextFrame.MarginTop = (float)0.85;
-                _wordShape.TextFrame.MarginBottom = (float)0.85;
-
-                _wordShape.WrapFormat.Side = WdWrapSideType.wdWrapLeft;
-                _wordShape.WrapFormat.Type = WdWrapType.wdWrapTight;
-                _wordShape.WrapFormat.DistanceLeft = 3;
-                _wordShape.WrapFormat.DistanceTop = 3;
-
-                _wordShape.TextFrame.TextRange.Text =
-                    "Назначение пяти и более лекарственных средств, назначение десяти и более лекарственных средств в течение месяца, является жизненно необходимым (необходимо для лечения) и  соответствует стандартам качества\r\n\r\n" +
-                    "Заведующий отделением\r\n" +
-                    "(ответственный дежурный врач)\r\n\r\n" +
-                    "Лечащий врач (дежурный врач)";
-
-                _wordShape.TextFrame.TextRange.Paragraphs[1].Alignment = WdParagraphAlignment.wdAlignParagraphJustify;
-                /*_wordShape.TextFrame.TextRange.Paragraphs[2].Range.Font.Size = 8;
-                _wordShape.TextFrame.TextRange.Paragraphs[5].Range.Font.Size = 4;*/
-
-                _waitForm.SetProgress(30);
-
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Range.Font.Bold = 0;
-                _paragraph.Range.Text = "Осмотр зав. отделением";
+                _paragraph.Range.Text = "Осмотр " + _dbEngine.GlobalSettings.BossJobTitle;
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
-                _paragraph.Range.Text = "Пациент " + patientInfo.GetFullName() + ", " + patientInfo.Age + " " + ConvertEngine.GetAgeString(patientInfo.Age);
+                _paragraph.Range.Text = "Дата " + ConvertEngine.GetRightDateString(operationInfo.DataOfOperation) +
+                                        ", " + ConvertEngine.GetRightTimeString(operationInfo.StartTimeOfOperation.AddMinutes(-30));
                 SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = string.Format("Пациент {0}, {1}, ({2})", 
+                    patientInfo.GetFullName(), 
+                    patientInfo.Age + " " + ConvertEngine.GetAgeString(patientInfo.Age),
+                    ConvertEngine.GetRightDateString(patientInfo.Birthday));
+                SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                _paragraph.Range.Text = string.Format("Дата поступления {0}, время поступления {1}",
+                    ConvertEngine.GetRightDateString(patientInfo.DeliveryDate),
+                    ConvertEngine.GetRightTimeString(patientInfo.DeliveryDate));
+                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 9, 10 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Диагноз:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                string[] diagnose = patientInfo.Diagnose.Split(new[] { "\r\n" }, 2, StringSplitOptions.None);
+                _paragraph.Range.Text = "Основное заболевание: " + diagnose[0];
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                if (diagnose.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = diagnose[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Осложнения основного заболевания: " + (string.IsNullOrEmpty(patientInfo.Complications) ? "нет" : patientInfo.Complications);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Внешняя причина при травмах, отравлениях: " + (string.IsNullOrEmpty(patientInfo.WWW) ? "нет" : patientInfo.WWW);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Сопутствующие заболевания: " + (string.IsNullOrEmpty(patientInfo.ConcomitantDiagnose) ? "нет" : patientInfo.ConcomitantDiagnose);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Особенности анамнеза: " + (string.IsNullOrEmpty(patientInfo.MedicalInspectionAnamneseAnMorbi) ? "нет" : patientInfo.MedicalInspectionAnamneseAnMorbi);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Аллергические реакции на лекарственные препараты: " + patientInfo.MedicalInspectionAnamneseTextBoxes[7];
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Постоянный приём лекарственных препаратов: " + patientInfo.MedicalInspectionAnamneseTextBoxes[8];
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Наличие имплантированных медицинских изделий: " + patientInfo.MedicalInspectionAnamneseTextBoxes[9];
+
 
                 if (operationInfo.BeforeOperationEpicrisisIsDairyEnabled)
                 {
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "Температура тела - " + operationInfo.BeforeOperationEpicrisisTemperature +
-                        ". Жалобы: " + operationInfo.BeforeOperationEpicrisisComplaints;
+                    _paragraph.Range.Text = "Жалобы: " + operationInfo.BeforeOperationEpicrisisComplaints;
+
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Температура тела - " + operationInfo.BeforeOperationEpicrisisTemperature;
 
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -2081,13 +2028,7 @@ namespace SurgeryHelper.Engines
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                     _paragraph.Range.Text = "Тоны сердца " + operationInfo.BeforeOperationEpicrisisHeartSounds +
-                        ", ритм " + operationInfo.BeforeOperationEpicrisisHeartRhythm +
-                        ". Живот " + operationInfo.BeforeOperationEpicrisisStomach;
-
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = "Мочеиспускание " + operationInfo.BeforeOperationEpicrisisUrination +
-                        ". Стул " + operationInfo.BeforeOperationEpicrisisStool;
+                        ", ритм " + operationInfo.BeforeOperationEpicrisisHeartRhythm;
 
                     _wordDoc.Paragraphs.Add(ref _missingObject);
                     _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
@@ -2107,37 +2048,20 @@ namespace SurgeryHelper.Engines
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                string[] diagnoseLines = patientInfo.Diagnose.Split(new[] { "\r\n" }, 2, StringSplitOptions.None);
-                _paragraph.Range.Text = "Диагноз: " + diagnoseLines[0];
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
-
-                if (diagnoseLines.Length > 1)
-                {
-                    _wordDoc.Paragraphs.Add(ref _missingObject);
-                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                    _paragraph.Range.Text = diagnoseLines[1];
-                }
+                _paragraph.Range.Text = "Результаты медицинского обследования: общий анализ крови, общий анализ мочи, ЭКГ – без существенной патологии.";
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "Показано оперативное лечение. Планируется операция: " + operationInfo.Name +
-                    ".\r\nПациент согласен на операцию. Противопоказаний нет.";                
+                _paragraph.Range.Text = "Показано оперативное лечение. Планируется операция: " + operationInfo.GetNameFromLowerLetter() +
+                    ", под " + operationInfo.AnesthesiaType + " анестезией";
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "Дата " + ConvertEngine.GetRightDateString(operationInfo.DataOfOperation) +
-                    ", " + ConvertEngine.GetRightTimeString(operationInfo.StartTimeOfOperation.AddMinutes(-30));
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1 });
+                _paragraph.Range.Text = "Оформлено добровольное медицинское согласие на оперативное вмешательство.\r\nПротивопоказаний нет.";
 
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "Зав. отделением\t\t\t\t\t\t\t" + _dbEngine.GlobalSettings.BranchManager;
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 3 });
-
-                _wordDoc.Paragraphs.Add(ref _missingObject);
-                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
-                _paragraph.Range.Text = "Лечащий врач\t\t\t\t\t\t\t" + patientInfo.DoctorInChargeOfTheCase;
-                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2 });
+                AddDoctorForSign(patientInfo.DoctorInChargeOfTheCase);
+                
+                AddBossForSign();
 
                 AddEmptyParagraph();
 
@@ -2169,16 +2093,420 @@ namespace SurgeryHelper.Engines
 
                 _waitForm.SetProgress(50);
 
-                InsertTableForOperation(operationInfo, patientInfo);
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                _paragraph.Range.Text = "ПРОТОКОЛ ОПЕРАТИВНОГО ВМЕШАТЕЛЬСТВА";
 
-                _waitForm.SetProgress(75);
+                AddEmptyParagraph();
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                _paragraph.Range.Text = string.Format("Пациент {0}, {1} {2} ({3})", 
+                    patientInfo.GetFullName(),
+                    patientInfo.Age,
+                    ConvertEngine.GetAgeString(patientInfo.Age),
+                    ConvertEngine.GetRightDateString(patientInfo.Birthday));
+                SetWordsInRangeBold(_paragraph.Range, new[] { 2, 3, 4, 5, 6, 7 });
+
+                DateTime startDateTime = new DateTime(
+                    operationInfo.DataOfOperation.Year, 
+                    operationInfo.DataOfOperation.Month, 
+                    operationInfo.DataOfOperation.Day, 
+                    operationInfo.StartTimeOfOperation.Hour, 
+                    operationInfo.StartTimeOfOperation.Minute, 
+                    0);
+                DateTime endDate = operationInfo.DataOfOperation;
+                if (operationInfo.EndTimeOfOperation.Hour < operationInfo.StartTimeOfOperation.Hour ||
+                    (operationInfo.EndTimeOfOperation.Hour == operationInfo.StartTimeOfOperation.Hour &&
+                     operationInfo.EndTimeOfOperation.Minute < operationInfo.StartTimeOfOperation.Minute))
+                {
+                    endDate = endDate.AddDays(1);
+                }
+
+                DateTime endDateTime = new DateTime(
+                    endDate.Year, endDate.Month, endDate.Day, operationInfo.EndTimeOfOperation.Hour, operationInfo.EndTimeOfOperation.Minute, 0);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = string.Format("Дата и время начала оперативного вмешательства: {0} {1}",
+                    ConvertEngine.GetRightDateString(startDateTime),
+                    ConvertEngine.GetRightTimeString(startDateTime));
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = string.Format("Дата и время окончания оперативного вмешательства: {0} {1}",
+                    ConvertEngine.GetRightDateString(endDateTime),
+                    ConvertEngine.GetRightTimeString(endDateTime));
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Продолжительность оперативного вмешательства: " + 
+                    ConvertEngine.GetRightTimeLengthString(endDateTime - startDateTime);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "Название оперативного вмешательства: " + operationInfo.Name;
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3, 4 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Код услуги: " + patientInfo.ServiceCode;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Диагноз до  оперативного вмешательства:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "Основное заболевание: " + diagnose[0];
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                if (diagnose.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = diagnose[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Осложнения основного заболевания: " + (string.IsNullOrEmpty(patientInfo.Complications) ? "нет" : patientInfo.Complications);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Внешняя причина при травмах, отравлениях: " + (string.IsNullOrEmpty(patientInfo.WWW) ? "нет" : patientInfo.WWW);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Сопутствующие заболевания: " + (string.IsNullOrEmpty(patientInfo.ConcomitantDiagnose) ? "нет" : patientInfo.ConcomitantDiagnose);
+
+                if (operationInfo.BeforeOperationEpicrisisIsPremedicationExist)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Премедикация: " + operationInfo.BeforeOperationEpicrisisPremedication;
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = string.Format("Группа крови: {0}, резус-фактор: {1}", 
+                    string.IsNullOrEmpty(patientInfo.DischargeEpicrisBloodGroup) ? "____" : patientInfo.DischargeEpicrisBloodGroup,
+                    string.IsNullOrEmpty(patientInfo.DischargeEpicrisRhesusFactor) ? "____" : patientInfo.DischargeEpicrisRhesusFactor);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Степень риска оперативного вмешательства: " + operationInfo.RiskLevel;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "План оперативного вмешательства (операции): " + operationInfo.Name;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                string[] operationCourse = operationInfo.OperationCourse.Split(new[] { "\r\n" }, 2, StringSplitOptions.None);
+                _paragraph.Range.Text = "Описание оперативного вмешательства: " + operationCourse[0];
+                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 3, 4 });
+
+                if (operationCourse.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = operationCourse[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = @"Осложнения, возникшие в ходе оперативного вмешательства: нет
+Использование медицинских изделий (оборудования): рентгеновское
+Подсчет операционного материала: инструменты – 10,	   салфетки – 20
+Кровопотеря во время оперативного вмешательства: 50 мл";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Вид анестезиологического пособия: " + operationInfo.AnesthesiaType;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Диагноз после оперативного вмешательства:";
+
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "Основное заболевание: " + diagnose[0];
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                if (diagnose.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = diagnose[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Осложнения основного заболевания: " + (string.IsNullOrEmpty(patientInfo.Complications) ? "нет" : patientInfo.Complications);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Внешняя причина при травмах, отравлениях: " + (string.IsNullOrEmpty(patientInfo.WWW) ? "нет" : patientInfo.WWW);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Сопутствующие заболевания: " + (string.IsNullOrEmpty(patientInfo.ConcomitantDiagnose) ? "нет" : patientInfo.ConcomitantDiagnose);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Имплантированные медицинские изделия: " + (operationInfo.Implants.Count > 0 ? string.Join(", ", operationInfo.Implants.ToArray()) : "нет");
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = @"Назначения: нет
+Операционный материал, взятый для проведения морфологического исследования: нет
+Операционный материал направлен: ---
+Состав оперирующей бригады:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "оперирующий врач – " + string.Join(", ", operationInfo.Surgeons.ToArray());
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "ассистирующий врач – " + string.Join(", ", operationInfo.Assistents.ToArray());
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "операционная медицинская сестра – " + operationInfo.ScrubNurse;
+
+                if (!string.IsNullOrEmpty(operationInfo.Orderly))
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "санитар – " + operationInfo.Orderly;
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "состав бригады анестезиологии-реанимации:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "врач-анестезиолог-реаниматолог – " + operationInfo.HeAnesthetist;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "медицинская сестра-анестезист – " + operationInfo.SheAnesthetist;
+
+                AddEmptyParagraph();
+
+                var timeOfWriting = string.Format("Дата {0}, {1}", 
+                    ConvertEngine.GetRightDateString(endDate), 
+                    ConvertEngine.GetRightTimeString(endDateTime.AddMinutes(60)));
+                AddDoctorForSign(patientInfo.DoctorInChargeOfTheCase, timeOfWriting);
 
                 _wordDoc.Paragraphs.Add(ref _missingObject);
                 _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
                 object typeBreak = WdBreakType.wdPageBreak;
                 _paragraph.Range.InsertBreak(ref typeBreak);
 
-                InsertTableForOperation(operationInfo, patientInfo);
+                _waitForm.SetProgress(75);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphCenter;
+                _paragraph.Range.Text = "ОПЕРАТИВНОЕ ВМЕШАТЕЛЬСТВО №___";
+
+                AddEmptyParagraph();
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                _paragraph.Range.Text = "Номер карты пациента: " + patientInfo.NumberOfCaseHistory;
+                SetWordsInRangeBold(_paragraph.Range, new[] { 5 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Alignment = WdParagraphAlignment.wdAlignParagraphLeft;
+                _paragraph.Range.Text = string.Format("Пациент {0}, {1} {2} ({3})",
+                    patientInfo.GetFullName(),
+                    patientInfo.Age,
+                    ConvertEngine.GetAgeString(patientInfo.Age),
+                    ConvertEngine.GetRightDateString(patientInfo.Birthday));
+                SetWordsInRangeBold(_paragraph.Range, new[] { 2, 3, 4, 5, 6, 7 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = string.Format("Дата и время начала оперативного вмешательства: {0} {1}",
+                    ConvertEngine.GetRightDateString(startDateTime),
+                    ConvertEngine.GetRightTimeString(startDateTime));
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = string.Format("Дата и время окончания оперативного вмешательства: {0} {1}",
+                    ConvertEngine.GetRightDateString(endDateTime),
+                    ConvertEngine.GetRightTimeString(endDateTime));
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Продолжительность оперативного вмешательства: " +
+                    ConvertEngine.GetRightTimeLengthString(endDateTime - startDateTime);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Диагноз до  оперативного вмешательства: ";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "Основное заболевание: " + diagnose[0];
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                if (diagnose.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = diagnose[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Осложнения основного заболевания: " + (string.IsNullOrEmpty(patientInfo.Complications) ? "нет" : patientInfo.Complications);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Внешняя причина при травмах, отравлениях: " + (string.IsNullOrEmpty(patientInfo.WWW) ? "нет" : patientInfo.WWW);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Сопутствующие заболевания: " + (string.IsNullOrEmpty(patientInfo.ConcomitantDiagnose) ? "нет" : patientInfo.ConcomitantDiagnose);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "Название оперативного вмешательства: " + operationInfo.Name;
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3, 4 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Код услуги: " + patientInfo.ServiceCode;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Высокотехнологичная медицинская помощь: нет";
+                SetWordsInRangeBold(_paragraph.Range, new[] { 5 });
+
+                if (operationInfo.BeforeOperationEpicrisisIsPremedicationExist)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "Премедикация: " + operationInfo.BeforeOperationEpicrisisPremedication;
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Вид анестезиологического пособия: " + operationInfo.AnesthesiaType;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Описание оперативного вмешательства: " + operationCourse[0];
+                SetWordsInRangeBold(_paragraph.Range, new[] { 1, 2, 3, 4 });
+
+                if (operationCourse.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = operationCourse[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = @"Исход оперативного вмешательства: благоприятный
+Операционный материал, взятый для проведения морфологического исследования: нет
+Осложнения, возникшие в ходе оперативного вмешательства: нет
+Диагноз после оперативного вмешательства:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "Основное заболевание: " + diagnose[0];
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                if (diagnose.Length > 1)
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = diagnose[1];
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "Осложнения основного заболевания: " + (string.IsNullOrEmpty(patientInfo.Complications) ? "нет" : patientInfo.Complications);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Внешняя причина при травмах, отравлениях: " + (string.IsNullOrEmpty(patientInfo.WWW) ? "нет" : patientInfo.WWW);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Сопутствующие заболевания: " + (string.IsNullOrEmpty(patientInfo.ConcomitantDiagnose) ? "нет" : patientInfo.ConcomitantDiagnose);
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "Состав оперирующей бригады:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 1;
+                _paragraph.Range.Text = "оперирующий врач – " + string.Join(", ", operationInfo.Surgeons.ToArray());
+                SetWordsInRangeRegular(_paragraph.Range, new[] { 1, 2, 3 });
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Font.Bold = 0;
+                _paragraph.Range.Text = "ассистирующий врач – " + string.Join(", ", operationInfo.Assistents.ToArray());
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "операционная медицинская сестра – " + operationInfo.ScrubNurse;
+
+                if (!string.IsNullOrEmpty(operationInfo.Orderly))
+                {
+                    _wordDoc.Paragraphs.Add(ref _missingObject);
+                    _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                    _paragraph.Range.Text = "санитар – " + operationInfo.Orderly;
+                }
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "состав бригады анестезиологии-реанимации:";
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "врач-анестезиолог-реаниматолог – " + operationInfo.HeAnesthetist;
+
+                _wordDoc.Paragraphs.Add(ref _missingObject);
+                _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+                _paragraph.Range.Text = "медицинская сестра-анестезист – " + operationInfo.SheAnesthetist;
+
+                AddEmptyParagraph();
+
+                AddDoctorForSign(patientInfo.DoctorInChargeOfTheCase, timeOfWriting);
 
                 _waitForm.SetProgress(100);
 
@@ -2199,6 +2527,26 @@ namespace SurgeryHelper.Engines
 
                 Thread.CurrentThread.CurrentCulture = oldCi;
             }
+        }
+
+        private void AddDoctorForSign(string doctorInChargeOfTheCase, string endStr = "")
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            _paragraph.Range.Text = string.Format("Врач, {0}: {1}__________________{2}",
+                _dbEngine.GetSpecialityBySurgeonName(doctorInChargeOfTheCase),
+                doctorInChargeOfTheCase,
+                endStr);
+        }
+
+        private void AddBossForSign()
+        {
+            _wordDoc.Paragraphs.Add(ref _missingObject);
+            _paragraph = _wordDoc.Paragraphs[_wordDoc.Paragraphs.Count];
+            string bossTitleFormat = _dbEngine.GlobalSettings.BossJobTitle.Contains("главн") ? "Глав. врач, {0}: {1}__________________" : "Зав. отделением, {0}: {1}__________________";
+            _paragraph.Range.Text = string.Format(bossTitleFormat,
+                _dbEngine.GetSpecialityBySurgeonName(_dbEngine.GlobalSettings.BranchManager),
+                _dbEngine.GlobalSettings.BranchManager);
         }
 
         private void MergeCells(object begCell, object endCell)
@@ -2817,7 +3165,7 @@ namespace SurgeryHelper.Engines
                 case "анестезиолог":
                     if (patientInfo.Operations.Count > 0)
                     {
-                        return patientInfo.Operations[0].HeAnaesthetist;
+                        return patientInfo.Operations[0].HeAnesthetist;
                     }
 
                     return "{АНЕСТЕЗИОЛОГ НЕ НАЙДЕН, Т.К. НЕТ ОПЕРАЦИЙ}";
@@ -2833,18 +3181,18 @@ namespace SurgeryHelper.Engines
         /// <param name="replaceText">Текст для замены</param>
         private void FindAndReplace(string findText, string replaceText)
         {
-            _wordApp.Selection.Find.ClearFormatting();
-            _wordApp.Selection.Find.Text = findText;
+            // Find the first instance of the findText
+            var range = _wordApp.ActiveDocument.Content;
+            range.Find.ClearFormatting();
+            range.Find.Execute(findText);
 
-            _wordApp.Selection.Find.Replacement.ClearFormatting();
-            _wordApp.Selection.Find.Replacement.Text = replaceText;
-
-            object replaceAll = WdReplace.wdReplaceAll;
-
-            _wordApp.Selection.Find.Execute(
-                ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject,
-                ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject,
-                ref replaceAll, ref _missingObject, ref _missingObject, ref _missingObject, ref _missingObject);
+            // Replace all instances of findText with replaceText
+            while (range.Find.Found)
+            {
+                range.Text = replaceText;
+                range.Collapse(WdCollapseDirection.wdCollapseEnd);
+                range.Find.Execute(findText);
+            }
         }
 
         /// <summary>
@@ -2919,6 +3267,22 @@ namespace SurgeryHelper.Engines
                 if (range.Words.Count > wordNumber)
                 {
                     range.Words[wordNumber].Bold = 1;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Сделать обычным переданные номера слов в текущем Range
+        /// </summary>
+        /// <param name="range">Range, в котором выделяем слова</param>
+        /// <param name="wordNumbers">Номера слов в Range, которые надо сделать обычным</param>
+        private void SetWordsInRangeRegular(Range range, IEnumerable<int> wordNumbers)
+        {
+            foreach (int wordNumber in wordNumbers)
+            {
+                if (range.Words.Count > wordNumber)
+                {
+                    range.Words[wordNumber].Bold = 0;
                 }
             }
         }

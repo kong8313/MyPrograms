@@ -36,9 +36,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBoxStLocalis = new System.Windows.Forms.TextBox();
-            this.textBoxStool = new System.Windows.Forms.TextBox();
-            this.textBoxUrination = new System.Windows.Forms.TextBox();
-            this.textBoxStomach = new System.Windows.Forms.TextBox();
             this.comboBoxHeartRhythm = new System.Windows.Forms.ComboBox();
             this.comboBoxHeartSounds = new System.Windows.Forms.ComboBox();
             this.textBoxWheeze = new System.Windows.Forms.TextBox();
@@ -51,9 +48,6 @@
             this.textBoxComplaints = new System.Windows.Forms.TextBox();
             this.textBoxTemperature = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -71,12 +65,18 @@
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboBoxAntibioticProphylaxis = new System.Windows.Forms.ComboBox();
             this.checkBoxAntibioticProphylaxis = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboBoxPremedication = new System.Windows.Forms.ComboBox();
+            this.checkBoxPremedication = new System.Windows.Forms.CheckBox();
+            this.linkLabelImplantList = new System.Windows.Forms.LinkLabel();
+            this.textBoxImplants = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownChDD)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADSecond)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownADFirst)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPulse)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonDocuments
@@ -133,9 +133,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.textBoxStLocalis);
-            this.groupBox2.Controls.Add(this.textBoxStool);
-            this.groupBox2.Controls.Add(this.textBoxUrination);
-            this.groupBox2.Controls.Add(this.textBoxStomach);
             this.groupBox2.Controls.Add(this.comboBoxHeartRhythm);
             this.groupBox2.Controls.Add(this.comboBoxHeartSounds);
             this.groupBox2.Controls.Add(this.textBoxWheeze);
@@ -148,9 +145,6 @@
             this.groupBox2.Controls.Add(this.textBoxComplaints);
             this.groupBox2.Controls.Add(this.textBoxTemperature);
             this.groupBox2.Controls.Add(this.label17);
-            this.groupBox2.Controls.Add(this.label16);
-            this.groupBox2.Controls.Add(this.label15);
-            this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label13);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Controls.Add(this.label11);
@@ -173,43 +167,13 @@
             // 
             this.textBoxStLocalis.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxStLocalis.Location = new System.Drawing.Point(115, 312);
+            this.textBoxStLocalis.Location = new System.Drawing.Point(115, 234);
             this.textBoxStLocalis.MaxLength = 200000;
             this.textBoxStLocalis.Multiline = true;
             this.textBoxStLocalis.Name = "textBoxStLocalis";
             this.textBoxStLocalis.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxStLocalis.Size = new System.Drawing.Size(312, 97);
+            this.textBoxStLocalis.Size = new System.Drawing.Size(312, 175);
             this.textBoxStLocalis.TabIndex = 49;
-            // 
-            // textBoxStool
-            // 
-            this.textBoxStool.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxStool.Location = new System.Drawing.Point(115, 286);
-            this.textBoxStool.Name = "textBoxStool";
-            this.textBoxStool.Size = new System.Drawing.Size(312, 20);
-            this.textBoxStool.TabIndex = 46;
-            this.textBoxStool.Text = "регулярный, без особенностей";
-            // 
-            // textBoxUrination
-            // 
-            this.textBoxUrination.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxUrination.Location = new System.Drawing.Point(115, 260);
-            this.textBoxUrination.Name = "textBoxUrination";
-            this.textBoxUrination.Size = new System.Drawing.Size(312, 20);
-            this.textBoxUrination.TabIndex = 43;
-            this.textBoxUrination.Text = "свободное, регулярное";
-            // 
-            // textBoxStomach
-            // 
-            this.textBoxStomach.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxStomach.Location = new System.Drawing.Point(115, 234);
-            this.textBoxStomach.Name = "textBoxStomach";
-            this.textBoxStomach.Size = new System.Drawing.Size(312, 20);
-            this.textBoxStomach.TabIndex = 39;
-            this.textBoxStomach.Text = "мягкий, безболезненный";
             // 
             // comboBoxHeartRhythm
             // 
@@ -358,38 +322,11 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 345);
+            this.label17.Location = new System.Drawing.Point(6, 307);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(49, 13);
             this.label17.TabIndex = 95;
             this.label17.Text = "St.localis";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(6, 293);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(30, 13);
-            this.label16.TabIndex = 94;
-            this.label16.Text = "Стул";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 265);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(95, 13);
-            this.label15.TabIndex = 93;
-            this.label15.Text = "Мочеиспускание ";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 237);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(41, 13);
-            this.label14.TabIndex = 92;
-            this.label14.Text = "Живот";
             // 
             // label13
             // 
@@ -511,7 +448,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(647, 67);
+            this.label5.Location = new System.Drawing.Point(644, 123);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(77, 13);
             this.label5.TabIndex = 81;
@@ -519,12 +456,12 @@
             // 
             // textBoxOperationCourse
             // 
-            this.textBoxOperationCourse.Location = new System.Drawing.Point(457, 89);
+            this.textBoxOperationCourse.Location = new System.Drawing.Point(457, 142);
             this.textBoxOperationCourse.MaxLength = 200000;
             this.textBoxOperationCourse.Multiline = true;
             this.textBoxOperationCourse.Name = "textBoxOperationCourse";
             this.textBoxOperationCourse.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxOperationCourse.Size = new System.Drawing.Size(479, 341);
+            this.textBoxOperationCourse.Size = new System.Drawing.Size(479, 235);
             this.textBoxOperationCourse.TabIndex = 6;
             // 
             // groupBox3
@@ -540,14 +477,10 @@
             // comboBoxAntibioticProphylaxis
             // 
             this.comboBoxAntibioticProphylaxis.FormattingEnabled = true;
-            this.comboBoxAntibioticProphylaxis.Items.AddRange(new object[] {
-            "S. Cefasolini 1,0 - в/в однократно",
-            "S. Amoxicillinum + acidum Clavulanicum 1,0+0,2 в/в однократно"});
             this.comboBoxAntibioticProphylaxis.Location = new System.Drawing.Point(9, 23);
             this.comboBoxAntibioticProphylaxis.Name = "comboBoxAntibioticProphylaxis";
             this.comboBoxAntibioticProphylaxis.Size = new System.Drawing.Size(464, 21);
             this.comboBoxAntibioticProphylaxis.TabIndex = 3;
-            this.comboBoxAntibioticProphylaxis.Text = "S. Cefasolini 1,0 - в/в однократно";
             // 
             // checkBoxAntibioticProphylaxis
             // 
@@ -563,11 +496,69 @@
             this.checkBoxAntibioticProphylaxis.UseVisualStyleBackColor = true;
             this.checkBoxAntibioticProphylaxis.CheckedChanged += new System.EventHandler(this.checkBoxAntibioticProphylaxis_CheckedChanged);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.comboBoxPremedication);
+            this.groupBox1.Controls.Add(this.checkBoxPremedication);
+            this.groupBox1.Location = new System.Drawing.Point(457, 69);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(479, 51);
+            this.groupBox1.TabIndex = 5;
+            this.groupBox1.TabStop = false;
+            // 
+            // comboBoxPremedication
+            // 
+            this.comboBoxPremedication.FormattingEnabled = true;
+            this.comboBoxPremedication.Location = new System.Drawing.Point(7, 19);
+            this.comboBoxPremedication.Name = "comboBoxPremedication";
+            this.comboBoxPremedication.Size = new System.Drawing.Size(464, 21);
+            this.comboBoxPremedication.TabIndex = 3;
+            // 
+            // checkBoxPremedication
+            // 
+            this.checkBoxPremedication.AutoSize = true;
+            this.checkBoxPremedication.Checked = true;
+            this.checkBoxPremedication.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxPremedication.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.checkBoxPremedication.Location = new System.Drawing.Point(6, 0);
+            this.checkBoxPremedication.Name = "checkBoxPremedication";
+            this.checkBoxPremedication.Size = new System.Drawing.Size(114, 17);
+            this.checkBoxPremedication.TabIndex = 1;
+            this.checkBoxPremedication.Text = "Премедикация";
+            this.checkBoxPremedication.UseVisualStyleBackColor = true;
+            this.checkBoxPremedication.CheckedChanged += new System.EventHandler(this.checkBoxPremedication_CheckedChanged);
+            // 
+            // linkLabelImplantList
+            // 
+            this.linkLabelImplantList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.linkLabelImplantList.AutoSize = true;
+            this.linkLabelImplantList.Location = new System.Drawing.Point(463, 398);
+            this.linkLabelImplantList.Name = "linkLabelImplantList";
+            this.linkLabelImplantList.Size = new System.Drawing.Size(60, 13);
+            this.linkLabelImplantList.TabIndex = 82;
+            this.linkLabelImplantList.TabStop = true;
+            this.linkLabelImplantList.Text = "Импланты";
+            this.linkLabelImplantList.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelImplantList_LinkClicked);
+            // 
+            // textBoxImplants
+            // 
+            this.textBoxImplants.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.textBoxImplants.Location = new System.Drawing.Point(529, 383);
+            this.textBoxImplants.MaxLength = 200000;
+            this.textBoxImplants.Multiline = true;
+            this.textBoxImplants.Name = "textBoxImplants";
+            this.textBoxImplants.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxImplants.Size = new System.Drawing.Size(407, 47);
+            this.textBoxImplants.TabIndex = 83;
+            // 
             // OperationProtocolForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(944, 475);
+            this.Controls.Add(this.linkLabelImplantList);
+            this.Controls.Add(this.textBoxImplants);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.textBoxOperationCourse);
             this.Controls.Add(this.label5);
@@ -594,6 +585,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownPulse)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -613,9 +606,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxOperationCourse;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
@@ -627,7 +617,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownPulse;
         private System.Windows.Forms.TextBox textBoxComplaints;
         private System.Windows.Forms.TextBox textBoxTemperature;
-        private System.Windows.Forms.TextBox textBoxStomach;
         private System.Windows.Forms.ComboBox comboBoxHeartRhythm;
         private System.Windows.Forms.ComboBox comboBoxHeartSounds;
         private System.Windows.Forms.TextBox textBoxWheeze;
@@ -637,10 +626,13 @@
         private System.Windows.Forms.NumericUpDown numericUpDownADSecond;
         private System.Windows.Forms.NumericUpDown numericUpDownADFirst;
         private System.Windows.Forms.TextBox textBoxStLocalis;
-        private System.Windows.Forms.TextBox textBoxStool;
-        private System.Windows.Forms.TextBox textBoxUrination;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboBoxAntibioticProphylaxis;
         private System.Windows.Forms.CheckBox checkBoxAntibioticProphylaxis;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ComboBox comboBoxPremedication;
+        private System.Windows.Forms.CheckBox checkBoxPremedication;
+        private System.Windows.Forms.LinkLabel linkLabelImplantList;
+        private System.Windows.Forms.TextBox textBoxImplants;
     }
 }

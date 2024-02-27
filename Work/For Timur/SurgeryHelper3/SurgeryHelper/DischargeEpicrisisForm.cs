@@ -50,6 +50,7 @@ namespace SurgeryHelper
             }
 
             textBoxEkg.Text = _patientInfo.DischargeEpicrisEkg;
+            textBoxConsultation.Text = _patientInfo.DischargeEpicrisConsultation;
             textBoxOakErotrocits.Text = _patientInfo.DischargeEpicrisOakEritrocits;
             textBoxOakHb.Text = _patientInfo.DischargeEpicrisOakHb;
             textBoxOakLekocits.Text = _patientInfo.DischargeEpicrisOakLekocits;
@@ -242,6 +243,7 @@ namespace SurgeryHelper
             patientInfo.DischargeEpicrisAnalysisDate = dateTimePickerAnalysisDate.Value;
             patientInfo.DischargeEpicrisAfterOperation = textBoxAfterOperation.Text;
             patientInfo.DischargeEpicrisEkg = textBoxEkg.Text;
+            patientInfo.DischargeEpicrisConsultation = textBoxConsultation.Text;
             patientInfo.DischargeEpicrisOakEritrocits = textBoxOakErotrocits.Text;
             patientInfo.DischargeEpicrisOakHb = textBoxOakHb.Text;
             patientInfo.DischargeEpicrisOakLekocits = textBoxOakLekocits.Text;

@@ -102,6 +102,8 @@
             this.buttonDocuments = new System.Windows.Forms.Button();
             this.buttonOk = new System.Windows.Forms.Button();
             this.buttonClose = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxConsultation = new System.Windows.Forms.TextBox();
             this.groupBoxOak.SuspendLayout();
             this.groupBoxOam.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -116,7 +118,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(400, 260);
+            this.label5.Location = new System.Drawing.Point(400, 245);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(90, 13);
             this.label5.TabIndex = 80;
@@ -124,11 +126,11 @@
             // 
             // textBoxAfterOperation
             // 
-            this.textBoxAfterOperation.Location = new System.Drawing.Point(312, 275);
+            this.textBoxAfterOperation.Location = new System.Drawing.Point(312, 261);
             this.textBoxAfterOperation.Multiline = true;
             this.textBoxAfterOperation.Name = "textBoxAfterOperation";
             this.textBoxAfterOperation.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxAfterOperation.Size = new System.Drawing.Size(272, 64);
+            this.textBoxAfterOperation.Size = new System.Drawing.Size(272, 45);
             this.textBoxAfterOperation.TabIndex = 12;
             this.textBoxAfterOperation.Text = "раны заживают первичным натяжением, швы без признаков воспаления";
             // 
@@ -329,7 +331,7 @@
             // 
             // textBoxEkg
             // 
-            this.textBoxEkg.Location = new System.Drawing.Point(312, 360);
+            this.textBoxEkg.Location = new System.Drawing.Point(312, 328);
             this.textBoxEkg.Name = "textBoxEkg";
             this.textBoxEkg.Size = new System.Drawing.Size(272, 20);
             this.textBoxEkg.TabIndex = 14;
@@ -339,7 +341,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(418, 345);
+            this.label7.Location = new System.Drawing.Point(418, 313);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(34, 13);
             this.label7.TabIndex = 84;
@@ -375,7 +377,7 @@
             this.groupBox2.Location = new System.Drawing.Point(590, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(342, 451);
-            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Рекомендации при выписке";
             // 
@@ -712,7 +714,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label16.Location = new System.Drawing.Point(418, 182);
+            this.label16.Location = new System.Drawing.Point(418, 178);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(91, 13);
             this.label16.TabIndex = 85;
@@ -721,12 +723,12 @@
             // textBoxAdditionalAnalises
             // 
             this.textBoxAdditionalAnalises.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxAdditionalAnalises.Location = new System.Drawing.Point(312, 198);
+            this.textBoxAdditionalAnalises.Location = new System.Drawing.Point(312, 194);
             this.textBoxAdditionalAnalises.MaxLength = 20000;
             this.textBoxAdditionalAnalises.Multiline = true;
             this.textBoxAdditionalAnalises.Name = "textBoxAdditionalAnalises";
             this.textBoxAdditionalAnalises.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxAdditionalAnalises.Size = new System.Drawing.Size(272, 57);
+            this.textBoxAdditionalAnalises.Size = new System.Drawing.Size(272, 45);
             this.textBoxAdditionalAnalises.TabIndex = 10;
             this.textBoxAdditionalAnalises.Text = "анализ крови на ВИЧ - отр.";
             // 
@@ -950,7 +952,7 @@
             this.buttonDocuments.Location = new System.Drawing.Point(316, 423);
             this.buttonDocuments.Name = "buttonDocuments";
             this.buttonDocuments.Size = new System.Drawing.Size(40, 40);
-            this.buttonDocuments.TabIndex = 79;
+            this.buttonDocuments.TabIndex = 70;
             this.buttonDocuments.TabStop = false;
             this.buttonDocuments.UseVisualStyleBackColor = true;
             this.buttonDocuments.Click += new System.EventHandler(this.buttonDocuments_Click);
@@ -982,30 +984,51 @@
             this.buttonClose.Location = new System.Drawing.Point(544, 423);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(40, 40);
-            this.buttonClose.TabIndex = 77;
+            this.buttonClose.TabIndex = 79;
             this.buttonClose.TabStop = false;
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             this.buttonClose.MouseEnter += new System.EventHandler(this.buttonClose_MouseEnter);
             this.buttonClose.MouseLeave += new System.EventHandler(this.buttonClose_MouseLeave);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(400, 357);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(78, 13);
+            this.label3.TabIndex = 93;
+            this.label3.Text = "Консультации";
+            // 
+            // textBoxConsultation
+            // 
+            this.textBoxConsultation.Location = new System.Drawing.Point(312, 373);
+            this.textBoxConsultation.Multiline = true;
+            this.textBoxConsultation.Name = "textBoxConsultation";
+            this.textBoxConsultation.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBoxConsultation.Size = new System.Drawing.Size(272, 45);
+            this.textBoxConsultation.TabIndex = 16;
+            // 
             // DischargeEpicrisisForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(940, 469);
+            this.Controls.Add(this.textBoxConsultation);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.dateTimePickerAnalysisDate);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.groupBoxBAK);
             this.Controls.Add(this.groupBoxConservativeTherapy);
             this.Controls.Add(this.textBoxAdditionalAnalises);
             this.Controls.Add(this.label16);
+            this.Controls.Add(this.textBoxAfterOperation);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textBoxEkg);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.groupBoxOam);
             this.Controls.Add(this.groupBoxOak);
-            this.Controls.Add(this.textBoxAfterOperation);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.buttonDocuments);
             this.Controls.Add(this.buttonOk);
@@ -1113,5 +1136,7 @@
         private System.Windows.Forms.ComboBox comboBoxRhesusFactor;
         private System.Windows.Forms.ComboBox comboBoxBloodGroup;
         private System.Windows.Forms.Button buttonPrescription;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxConsultation;
     }
 }

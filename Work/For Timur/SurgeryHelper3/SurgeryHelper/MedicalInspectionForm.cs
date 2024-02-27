@@ -7,6 +7,8 @@ namespace SurgeryHelper
 {
     public partial class MedicalInspectionForm : Form
     {
+        public string MkbCodeFromMkbSelectForm { set; private get; }
+
         private readonly PatientClass _patientInfo;
         private bool _isFormClosingByButton;
         private bool _stopSaveParameters;
@@ -29,6 +31,11 @@ namespace SurgeryHelper
             {
                 Location = _dbEngine.ConfigEngine.MedicalInspectionFormLocation;
             }
+
+            comboBoxWWW.Items.Clear();
+            comboBoxWWW.Items.AddRange(_dbEngine.ConfigEngine.PatientViewFormLastWWW);
+
+            comboBoxWWW.Text = _patientInfo.WWW;
 
             checkBoxIsPlanEnabled.Checked = _patientInfo.MedicalInspectionIsPlanEnabled;
             checkBoxMedicalInspectionWithBoss.Checked = _patientInfo.MedicalInspectionWithBoss;
@@ -58,11 +65,6 @@ namespace SurgeryHelper
             comboBoxRentgen.Text = _patientInfo.MedicalInspectionStLocalisRentgen;
 
             checkBoxIsAnamnezEnabled.Checked = _patientInfo.MedicalInspectionIsAnamneseActive;
-            dateTimePickerDateTrauma.Checked = _patientInfo.MedicalInspectionAnamneseTraumaDate.HasValue;
-            if (_patientInfo.MedicalInspectionAnamneseTraumaDate.HasValue)
-            {
-                dateTimePickerDateTrauma.Value = _patientInfo.MedicalInspectionAnamneseTraumaDate.Value;
-            }
 
             textBoxAnMorbi.Text = _patientInfo.MedicalInspectionAnamneseAnMorbi;
             SetCheckBoxes(groupBoxAnVitae.Controls, _patientInfo.MedicalInspectionAnamneseAnVitae, 13);
@@ -70,14 +72,14 @@ namespace SurgeryHelper
             SetCheckBoxes(groupBoxRiskTeo.Controls, _patientInfo.MedicalInspectionAnamneseCheckboxes, 1);
 
             SetComboBoxes(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensComboBoxes, 1);
-            SetTextBoxes(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensTextBoxes, 9);
+            SetTextBoxes(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensTextBoxes, 209);
             SetNumericUpDowns(tabPageStPraesens.Controls, _patientInfo.MedicalInspectionStPraesensNumericUpDowns, 1);
             textBoxStPraesensOther.Text = _patientInfo.MedicalInspectionStPraesensOthers;
             textBoxStPraesensTemperature.Text = _patientInfo.MedicalInspectionStPraesensTemperature;
 
             checkBoxIsUpperExtremityJoint.Checked = _patientInfo.MedicalInspectionIsStLocalisPart1Enabled;
             comboBoxOppositionFinger.Text = _patientInfo.MedicalInspectionStLocalisPart1OppositionFinger;
-            SetTextBoxes(tabPageStLocalis1.Controls, _patientInfo.MedicalInspectionStLocalisPart1Fields, 26);
+            SetTextBoxes(tabPageStLocalis1.Controls, _patientInfo.MedicalInspectionStLocalisPart1Fields, 126);
 
             _stopSaveParameters = false;
         }
@@ -214,6 +216,7 @@ namespace SurgeryHelper
         /// <param name="patientInfo"></param>
         private void PutDataToPatient(PatientClass patientInfo)
         {
+            patientInfo.WWW = comboBoxWWW.Text;
             patientInfo.MedicalInspectionIsPlanEnabled = checkBoxIsPlanEnabled.Checked;
             patientInfo.MedicalInspectionWithBoss = checkBoxMedicalInspectionWithBoss.Checked;
             patientInfo.MedicalInspectionInspectionPlan = comboBoxInspectionPlan.Text;
@@ -242,29 +245,23 @@ namespace SurgeryHelper
             patientInfo.MedicalInspectionStLocalisRentgen = comboBoxRentgen.Text;
 
             patientInfo.MedicalInspectionIsAnamneseActive = checkBoxIsAnamnezEnabled.Checked;
-            if (dateTimePickerDateTrauma.Checked)
-            {
-                patientInfo.MedicalInspectionAnamneseTraumaDate = dateTimePickerDateTrauma.Value;
-            }
-            else
-            {
-                patientInfo.MedicalInspectionAnamneseTraumaDate = null;
-            }
-            
+
             patientInfo.MedicalInspectionAnamneseAnMorbi = textBoxAnMorbi.Text;
             patientInfo.MedicalInspectionAnamneseAnVitae = GetCheckBoxes(groupBoxAnVitae.Controls, 13, 4);
-            patientInfo.MedicalInspectionAnamneseTextBoxes = GetTextBoxes(tabPageAnamnes.Controls, 1, 8);
+            patientInfo.MedicalInspectionAnamneseTextBoxes = GetTextBoxes(tabPageAnamnes.Controls, 1, 10);
             patientInfo.MedicalInspectionAnamneseCheckboxes = GetCheckBoxes(groupBoxRiskTeo.Controls, 1, 12);
 
             patientInfo.MedicalInspectionStPraesensComboBoxes = GetComboBoxes(tabPageStPraesens.Controls, 1, 5);
-            patientInfo.MedicalInspectionStPraesensTextBoxes = GetTextBoxes(tabPageStPraesens.Controls, 9, 17);
+            patientInfo.MedicalInspectionStPraesensTextBoxes = GetTextBoxes(tabPageStPraesens.Controls, 209, 17);
             patientInfo.MedicalInspectionStPraesensNumericUpDowns = GetNumericUpDowns(tabPageStPraesens.Controls, 1, 7);
             patientInfo.MedicalInspectionStPraesensOthers = textBoxStPraesensOther.Text;
             patientInfo.MedicalInspectionStPraesensTemperature = textBoxStPraesensTemperature.Text;
 
             patientInfo.MedicalInspectionIsStLocalisPart1Enabled = checkBoxIsUpperExtremityJoint.Checked;
             patientInfo.MedicalInspectionStLocalisPart1OppositionFinger = comboBoxOppositionFinger.Text;
-            patientInfo.MedicalInspectionStLocalisPart1Fields = GetTextBoxes(tabPageStLocalis1.Controls, 26, 62);
+            patientInfo.MedicalInspectionStLocalisPart1Fields = GetTextBoxes(tabPageStLocalis1.Controls, 126, 62);
+
+            _dbEngine.ConfigEngine.PatientViewFormLastWWW = ConvertEngine.GetLastUsedValues(comboBoxWWW);
         }
 
         /// <summary>
@@ -330,8 +327,6 @@ namespace SurgeryHelper
                     ((CheckBox)component).Enabled = checkBoxIsAnamnezEnabled.Checked;
                 }
             }
-
-            dateTimePickerDateTrauma.Enabled = checkBoxIsAnamnezEnabled.Checked;
         }
 
         private void checkBoxIsPlanEnabled_CheckedChanged(object sender, EventArgs e)
@@ -405,6 +400,46 @@ namespace SurgeryHelper
             comboBoxTeoRisk.Enabled = checkBox1.Enabled = checkBox2.Enabled = checkBox3.Enabled = checkBox4.Enabled =
             checkBox5.Enabled = checkBox6.Enabled = checkBox7.Enabled = checkBox8.Enabled = checkBox9.Enabled =
             checkBox10.Enabled = checkBox11.Enabled = checkBox12.Enabled = checkBoxTeoRisk.Checked;
+        }
+
+        /// <summary>
+        /// Выбрать код WWW из списка всех кодов
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void linkLabelWWW_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MkbCodeFromMkbSelectForm = "";
+            new MKBSelectForm(this, _dbEngine).ShowDialog();
+            if (!string.IsNullOrEmpty(MkbCodeFromMkbSelectForm))
+            {
+                comboBoxWWW.Text = MkbCodeFromMkbSelectForm;
+            }
+        }
+
+        private void comboBoxWWW_MouseEnter(object sender, EventArgs e)
+        {
+            string mkbName = _dbEngine.GetMkbName(comboBoxWWW.Text);
+
+            if (!string.IsNullOrEmpty(mkbName))
+            {
+                toolTip1.Show(mkbName, comboBoxWWW, 15, -20);
+            }
+        }
+
+        private void comboBoxWWW_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(comboBoxWWW);
+        }
+
+        private void linkLabelWWW_MouseEnter(object sender, EventArgs e)
+        {
+            toolTip1.Show("Выбрать код из списка кодов", linkLabelWWW, 15, -20);
+        }
+
+        private void linkLabelWWW_MouseLeave(object sender, EventArgs e)
+        {
+            toolTip1.Hide(linkLabelWWW);
         }
     }
 }

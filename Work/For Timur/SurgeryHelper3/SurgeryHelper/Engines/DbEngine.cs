@@ -18,10 +18,12 @@ namespace SurgeryHelper.Engines
 
         private readonly List<PatientClass> _patientList;
         private List<SurgeonClass> _surgeonList;
+        private List<AnesthesiaTypesClass> _anesthesiaTypesList;
+        private List<ImplantClass> _implantsList;
         private List<ScrubNurseClass> _scrubNurseList;
         private List<OrderlyClass> _orderlyList;
-        private List<HeAnestethistClass> _heAnestethistList;
-        private List<SheAnestethistClass> _sheAnestethistList;
+        private List<HeAnestethistClass> _heAnesthetistList;
+        private List<SheAnestethistClass> _sheAnesthetistList;
         private readonly List<NosologyClass> _nosologyList;
         private GlobalSettingsClass _globalSettings;
         private readonly List<MkbClass> _mkbList;
@@ -31,10 +33,12 @@ namespace SurgeryHelper.Engines
         private readonly string _dataPath;
         private readonly string _patientPath;
         private readonly string _surgeonPath;
+        private readonly string _anesthesiaTypesPath;
+        private readonly string _implantPath;
         private readonly string _scrubNursePath;
         private readonly string _orderlyPath;
-        private readonly string _heAnestethistPath;
-        private readonly string _sheAnestethistPath;
+        private readonly string _heAnesthetistPath;
+        private readonly string _sheAnesthetistPath;
         private readonly string _nosologyPath;
         private readonly string _globalSettingsPath;
         private readonly string _mkbPath;
@@ -81,10 +85,12 @@ namespace SurgeryHelper.Engines
 
             _patientPath = Path.Combine(_dataPath, "patients.save");
             _surgeonPath = Path.Combine(_dataPath, "surgeons.save");
+            _anesthesiaTypesPath = Path.Combine(_dataPath, "anesthesiaTypes.save");
+            _implantPath = Path.Combine(_dataPath, "implants.save");
             _scrubNursePath = Path.Combine(_dataPath, "scrub_nurses.save");
             _orderlyPath = Path.Combine(_dataPath, "orderlys.save");
-            _heAnestethistPath = Path.Combine(_dataPath, "he_anestethist.save");
-            _sheAnestethistPath = Path.Combine(_dataPath, "she_anestethist.save");
+            _heAnesthetistPath = Path.Combine(_dataPath, "he_anestethist.save");
+            _sheAnesthetistPath = Path.Combine(_dataPath, "she_anestethist.save");
             _nosologyPath = Path.Combine(_dataPath, "nosologys.save");
             _globalSettingsPath = Path.Combine(_dataPath, "global_settings.save");
             _mkbPath = Path.Combine(_dataPath, "mkb.save");
@@ -348,6 +354,156 @@ namespace SurgeryHelper.Engines
 
         #endregion
 
+        #region Работа с имплантатами
+        /// <summary>
+        /// Получить список имплантатов
+        /// </summary>
+        public List<ImplantClass> ImplantList
+        {
+            get
+            {
+                return _implantsList;
+            }
+        }
+
+        /// <summary>
+        /// Сгенерировать новый ID для имплантата
+        /// </summary>
+        /// <returns></returns>
+        private int GetNewImplantId()
+        {
+            int max = 0;
+            foreach (ImplantClass implantInfo in _implantsList)
+            {
+                if (implantInfo.Id > max)
+                {
+                    max = implantInfo.Id;
+                }
+            }
+
+            return max + 1;
+        }
+
+        /// <summary>
+        /// Добавить новый имплантат к списку имплантатов
+        /// </summary>
+        /// <param name="implantInfo">Информация об имплантате</param>
+        public void AddImplant(ImplantClass implantInfo)
+        {
+            var newAnesthesiaTypeInfo = new ImplantClass(implantInfo) { Id = GetNewImplantId() };
+            _implantsList.Add(newAnesthesiaTypeInfo);
+            SaveImplant();
+        }
+
+
+        /// <summary>
+        /// Обновить информацию об имплантате
+        /// </summary>
+        /// <param name="implantInfo">Информация об имплантате</param>
+        public void UpdateImplant(ImplantClass implantInfo)
+        {
+            int n = 0;
+            while (_implantsList[n].Id != implantInfo.Id)
+            {
+                n++;
+            }
+
+            _implantsList[n] = new ImplantClass(implantInfo);
+            SaveImplant();
+        }
+
+        /// <summary>
+        /// Удалить имплантат
+        /// </summary>
+        /// <param name="implantInfoId">ID имплантата</param>
+        public void RemoveImplant(int implantInfoId)
+        {
+            int n = 0;
+            while (_implantsList[n].Id != implantInfoId)
+            {
+                n++;
+            }
+
+            _implantsList.RemoveAt(n);
+            SaveImplant();
+        }
+        #endregion
+
+        #region Работа с типами анестезий
+        /// <summary>
+        /// Получить список типов анестезий
+        /// </summary>
+        public List<AnesthesiaTypesClass> AnesthesiaTypesList
+        {
+            get
+            {
+                return _anesthesiaTypesList;
+            }
+        }
+       
+        /// <summary>
+        /// Сгенерировать новый ID для типа анестезии
+        /// </summary>
+        /// <returns></returns>
+        private int GetNewAnesthesiaTypeId()
+        {
+            int max = 0;
+            foreach (AnesthesiaTypesClass anesthesiaTypeInfo in _anesthesiaTypesList)
+            {
+                if (anesthesiaTypeInfo.Id > max)
+                {
+                    max = anesthesiaTypeInfo.Id;
+                }
+            }
+
+            return max + 1;
+        }
+
+        /// <summary>
+        /// Добавить новый тип анестезии к списку типов анестезий
+        /// </summary>
+        /// <param name="anesthesiaTypeInfo">Информация о типе анестезии</param>
+        public void AddAnesthesiaType(AnesthesiaTypesClass anesthesiaTypeInfo)
+        {
+            var newAnesthesiaTypeInfo = new AnesthesiaTypesClass(anesthesiaTypeInfo) { Id = GetNewAnesthesiaTypeId() };
+            _anesthesiaTypesList.Add(newAnesthesiaTypeInfo);
+            SaveAnesthesiaTypes();
+        }
+
+
+        /// <summary>
+        /// Обновить информацию о типе анестезии
+        /// </summary>
+        /// <param name="anesthesiaTypeInfo">Информация о типе анестезии</param>
+        public void UpdateAnesthesiaType(AnesthesiaTypesClass anesthesiaTypeInfo)
+        {
+            int n = 0;
+            while (_anesthesiaTypesList[n].Id != anesthesiaTypeInfo.Id)
+            {
+                n++;
+            }
+
+            _anesthesiaTypesList[n] = new AnesthesiaTypesClass(anesthesiaTypeInfo);
+            SaveAnesthesiaTypes();
+        }
+
+        /// <summary>
+        /// Удалить тип анестезии
+        /// </summary>
+        /// <param name="anesthesiaTypeInfoId">ID типа анестезии</param>
+        public void RemoveAnesthesiaType(int anesthesiaTypeInfoId)
+        {
+            int n = 0;
+            while (_anesthesiaTypesList[n].Id != anesthesiaTypeInfoId)
+            {
+                n++;
+            }
+
+            _anesthesiaTypesList.RemoveAt(n);
+            SaveAnesthesiaTypes();
+        }
+        #endregion
+
         #region Работа с хирургами
         /// <summary>
         /// Получить список хирургов
@@ -600,11 +756,11 @@ namespace SurgeryHelper.Engines
         /// <summary>
         /// Получить список анестезиологов
         /// </summary>
-        public List<HeAnestethistClass> HeAnestethistList
+        public List<HeAnestethistClass> HeAnesthetistList
         {
             get
             {
-                return _heAnestethistList;
+                return _heAnesthetistList;
             }
         }
 
@@ -615,7 +771,7 @@ namespace SurgeryHelper.Engines
         private int GetNewHeAnestethistId()
         {
             int max = 0;
-            foreach (HeAnestethistClass heAnestethistInfo in _heAnestethistList)
+            foreach (HeAnestethistClass heAnestethistInfo in _heAnesthetistList)
             {
                 if (heAnestethistInfo.Id > max)
                 {
@@ -633,7 +789,7 @@ namespace SurgeryHelper.Engines
         public void AddHeAnestethist(HeAnestethistClass heAnestethistInfo)
         {
             var newHeAnestethistInfo = new HeAnestethistClass(heAnestethistInfo) { Id = GetNewHeAnestethistId() };
-            _heAnestethistList.Add(newHeAnestethistInfo);
+            _heAnesthetistList.Add(newHeAnestethistInfo);
             SaveHeAnestethists();
         }
 
@@ -645,12 +801,12 @@ namespace SurgeryHelper.Engines
         public void UpdateHeAnestethist(HeAnestethistClass heAnestethistInfo)
         {
             int n = 0;
-            while (_heAnestethistList[n].Id != heAnestethistInfo.Id)
+            while (_heAnesthetistList[n].Id != heAnestethistInfo.Id)
             {
                 n++;
             }
 
-            _heAnestethistList[n] = new HeAnestethistClass(heAnestethistInfo);
+            _heAnesthetistList[n] = new HeAnestethistClass(heAnestethistInfo);
             SaveHeAnestethists();
         }
 
@@ -661,12 +817,12 @@ namespace SurgeryHelper.Engines
         public void RemoveHeAnestethist(int heAnestethistInfoId)
         {
             int n = 0;
-            while (_heAnestethistList[n].Id != heAnestethistInfoId)
+            while (_heAnesthetistList[n].Id != heAnestethistInfoId)
             {
                 n++;
             }
 
-            _heAnestethistList.RemoveAt(n);
+            _heAnesthetistList.RemoveAt(n);
             SaveHeAnestethists();
         }
         #endregion
@@ -675,11 +831,11 @@ namespace SurgeryHelper.Engines
         /// <summary>
         /// Получить список анестезисток
         /// </summary>
-        public List<SheAnestethistClass> SheAnestethistList
+        public List<SheAnestethistClass> SheAnesthetistList
         {
             get
             {
-                return _sheAnestethistList;
+                return _sheAnesthetistList;
             }
         }
 
@@ -690,7 +846,7 @@ namespace SurgeryHelper.Engines
         private int GetNewSheAnestethistId()
         {
             int max = 0;
-            foreach (SheAnestethistClass sheAnestethistInfo in _sheAnestethistList)
+            foreach (SheAnestethistClass sheAnestethistInfo in _sheAnesthetistList)
             {
                 if (sheAnestethistInfo.Id > max)
                 {
@@ -708,7 +864,7 @@ namespace SurgeryHelper.Engines
         public void AddSheAnestethist(SheAnestethistClass sheAnestethistInfo)
         {
             var newSheAnestethistInfo = new SheAnestethistClass(sheAnestethistInfo) { Id = GetNewSheAnestethistId() };
-            _sheAnestethistList.Add(newSheAnestethistInfo);
+            _sheAnesthetistList.Add(newSheAnestethistInfo);
             SaveSheAnestethists();
         }
 
@@ -720,12 +876,12 @@ namespace SurgeryHelper.Engines
         public void UpdateSheAnestethist(SheAnestethistClass sheAnestethistInfo)
         {
             int n = 0;
-            while (_sheAnestethistList[n].Id != sheAnestethistInfo.Id)
+            while (_sheAnesthetistList[n].Id != sheAnestethistInfo.Id)
             {
                 n++;
             }
 
-            _sheAnestethistList[n] = new SheAnestethistClass(sheAnestethistInfo);
+            _sheAnesthetistList[n] = new SheAnestethistClass(sheAnestethistInfo);
             SaveSheAnestethists();
         }
 
@@ -736,12 +892,12 @@ namespace SurgeryHelper.Engines
         public void RemoveSheAnestethist(int sheAnestethistInfoId)
         {
             int n = 0;
-            while (_sheAnestethistList[n].Id != sheAnestethistInfoId)
+            while (_sheAnesthetistList[n].Id != sheAnestethistInfoId)
             {
                 n++;
             }
 
-            _sheAnestethistList.RemoveAt(n);
+            _sheAnesthetistList.RemoveAt(n);
             SaveSheAnestethists();
         }
         #endregion
@@ -1109,16 +1265,19 @@ namespace SurgeryHelper.Engines
                 {
                     operationsStr.Append(
                         "Assistents=" + ConvertEngine.ListToString(operationInfo.Assistents) + DataSplitStr +
-                        "HeAnaesthetist=" + operationInfo.HeAnaesthetist + DataSplitStr +
+                        "HeAnaesthetist=" + operationInfo.HeAnesthetist + DataSplitStr +
                         "Id=" + operationInfo.Id + DataSplitStr +
                         "Name=" + operationInfo.Name + DataSplitStr +
+                        "RiskLevel=" + operationInfo.RiskLevel + DataSplitStr +
+                        "AnesthesiaType=" + operationInfo.AnesthesiaType + DataSplitStr +
                         "OperationCourse=" + operationInfo.OperationCourse + DataSplitStr +
+                        "Implants=" + ConvertEngine.ListToString(operationInfo.Implants) + DataSplitStr +
                         "DataOfOperation=" + ConvertEngine.GetRightDateString(operationInfo.DataOfOperation, true) + DataSplitStr +
                         "StartTimeOfOperation=" + ConvertEngine.GetRightDateString(operationInfo.StartTimeOfOperation, true) + DataSplitStr +
                         "EndTimeOfOperation=" + ConvertEngine.GetRightDateString(operationInfo.EndTimeOfOperation, true) + DataSplitStr +
                         "Orderly=" + operationInfo.Orderly + DataSplitStr +
                         "ScrubNurse=" + operationInfo.ScrubNurse + DataSplitStr +
-                        "SheAnaesthetist=" + operationInfo.SheAnaesthetist + DataSplitStr +
+                        "SheAnaesthetist=" + operationInfo.SheAnesthetist + DataSplitStr +
                         "BeforeOperationEpicrisisADFirst=" + operationInfo.BeforeOperationEpicrisisADFirst + DataSplitStr +
                         "BeforeOperationEpicrisisADSecond=" + operationInfo.BeforeOperationEpicrisisADSecond + DataSplitStr +
                         "BeforeOperationEpicrisisBreath=" + operationInfo.BeforeOperationEpicrisisBreath + DataSplitStr +
@@ -1130,13 +1289,12 @@ namespace SurgeryHelper.Engines
                         "BeforeOperationEpicrisisIsDairyEnabled=" + operationInfo.BeforeOperationEpicrisisIsDairyEnabled + DataSplitStr +
                         "BeforeOperationEpicrisisPulse=" + operationInfo.BeforeOperationEpicrisisPulse + DataSplitStr +
                         "BeforeOperationEpicrisisStLocalis=" + operationInfo.BeforeOperationEpicrisisStLocalis + DataSplitStr +
-                        "BeforeOperationEpicrisisStomach=" + operationInfo.BeforeOperationEpicrisisStomach + DataSplitStr +
-                        "BeforeOperationEpicrisisStool=" + operationInfo.BeforeOperationEpicrisisStool + DataSplitStr +
                         "BeforeOperationEpicrisisTemperature=" + operationInfo.BeforeOperationEpicrisisTemperature + DataSplitStr +
-                        "BeforeOperationEpicrisisUrination=" + operationInfo.BeforeOperationEpicrisisUrination + DataSplitStr +
                         "BeforeOperationEpicrisisWheeze=" + operationInfo.BeforeOperationEpicrisisWheeze + DataSplitStr +
                         "BeforeOperationEpicrisisIsAntibioticProphylaxisExist=" + operationInfo.BeforeOperationEpicrisisIsAntibioticProphylaxisExist + DataSplitStr +
                         "BeforeOperationEpicrisisAntibioticProphylaxis=" + operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis + DataSplitStr +
+                        "BeforeOperationEpicrisisIsPremedicationExist=" + operationInfo.BeforeOperationEpicrisisIsPremedicationExist + DataSplitStr +
+                        "BeforeOperationEpicrisisPremedication=" + operationInfo.BeforeOperationEpicrisisPremedication + DataSplitStr +
                         "Surgeons=" + ConvertEngine.ListToString(operationInfo.Surgeons) + OperationSplitStr);
                 }
 
@@ -1159,11 +1317,14 @@ namespace SurgeryHelper.Engines
                     "LastName=" + patientInfo.LastName + DataSplitStr +
                     "Name=" + patientInfo.Name + DataSplitStr +
                     "Nosology=" + patientInfo.Nosology + DataSplitStr +
+                    "Hospitalization=" + patientInfo.Hospitalization + DataSplitStr +
                     "NumberOfCaseHistory=" + patientInfo.NumberOfCaseHistory + DataSplitStr +
                     "Patronymic=" + patientInfo.Patronymic + DataSplitStr +
                     "Phone=" + patientInfo.Phone + DataSplitStr +
                     "TypeOfKSG=" + patientInfo.TypeOfKSG + DataSplitStr +
                     "MKB=" + patientInfo.MKB + DataSplitStr +
+                    "ConcomitantDiagnoseMKB=" + patientInfo.ConcomitantDiagnoseMKB + DataSplitStr +
+                    "ComplicationsMKB=" + patientInfo.ComplicationsMKB + DataSplitStr +
                     "WWW=" + patientInfo.WWW + DataSplitStr +
                     "ServiceName=" + patientInfo.ServiceName + DataSplitStr +
                     "ServiceCode=" + patientInfo.ServiceCode + DataSplitStr +
@@ -1183,6 +1344,7 @@ namespace SurgeryHelper.Engines
                     "DischargeEpicrisAnalysisDate=" + ConvertEngine.GetRightDateString(patientInfo.DischargeEpicrisAnalysisDate, true) + DataSplitStr +
                     "DischargeEpicrisAfterOperation=" + patientInfo.DischargeEpicrisAfterOperation + DataSplitStr +
                     "DischargeEpicrisEkg=" + patientInfo.DischargeEpicrisEkg + DataSplitStr +
+                    "DischargeEpicrisConsultation=" + patientInfo.DischargeEpicrisConsultation + DataSplitStr +
                     "DischargeEpicrisOakEritrocits=" + patientInfo.DischargeEpicrisOakEritrocits + DataSplitStr +
                     "DischargeEpicrisOakHb=" + patientInfo.DischargeEpicrisOakHb + DataSplitStr +
                     "DischargeEpicrisOakLekocits=" + patientInfo.DischargeEpicrisOakLekocits + DataSplitStr +
@@ -1202,7 +1364,6 @@ namespace SurgeryHelper.Engines
                     "DischargeEpicrisAdditionalRecomendations=" + ConvertEngine.ListToString(patientInfo.DischargeEpicrisAdditionalRecomendations) + DataSplitStr +
                     "PrescriptionTherapy=" + ConvertEngine.ListToString(patientInfo.PrescriptionTherapy) + DataSplitStr +
                     "PrescriptionSurveys=" + ConvertEngine.ListToString(patientInfo.PrescriptionSurveys) + DataSplitStr +
-                    "MedicalInspectionAnamneseTraumaDate=" + ConvertEngine.GetRightDateString(patientInfo.MedicalInspectionAnamneseTraumaDate, false) + DataSplitStr +
                     "MedicalInspectionAnamneseAnMorbi=" + patientInfo.MedicalInspectionAnamneseAnMorbi + DataSplitStr +
                     "MedicalInspectionStLocalisDescription=" + patientInfo.MedicalInspectionStLocalisDescription + DataSplitStr +
                     "MedicalInspectionStLocalisRentgen=" + patientInfo.MedicalInspectionStLocalisRentgen + DataSplitStr +
@@ -1236,6 +1397,44 @@ namespace SurgeryHelper.Engines
             PackedData(patientsStr.ToString(), _patientPath);
         }
 
+        /// <summary>
+        /// Сохранить список типов анестезий
+        /// </summary>
+        private void SaveAnesthesiaTypes()
+        {
+            _anesthesiaTypesList.Sort(AnesthesiaTypesClass.Compare);
+
+            var anesthesiaTypesStr = new StringBuilder();
+
+            foreach (AnesthesiaTypesClass anesthesiaTypesInfo in _anesthesiaTypesList)
+            {
+                anesthesiaTypesStr.Append(
+                    "Id=" + anesthesiaTypesInfo.Id + DataSplitStr +
+                    "LastNameWithInitials=" + anesthesiaTypesInfo.LastNameWithInitials + ObjSplitStr);
+            }
+
+            PackedData(anesthesiaTypesStr.ToString(), _anesthesiaTypesPath);
+        }
+
+        /// <summary>
+        /// Сохранить список имплантатов
+        /// </summary>
+        private void SaveImplant()
+        {
+            _implantsList.Sort(ImplantClass.Compare);
+
+            var implantStr = new StringBuilder();
+
+            foreach (ImplantClass implantInfo in _implantsList)
+            {
+                implantStr.Append(
+                    "Id=" + implantInfo.Id + DataSplitStr +
+                    "LastNameWithInitials=" + implantInfo.LastNameWithInitials + ObjSplitStr);
+            }
+
+            PackedData(implantStr.ToString(), _implantPath);
+        }
+        
         /// <summary>
         /// Сохранить список хирургов
         /// </summary>
@@ -1299,18 +1498,18 @@ namespace SurgeryHelper.Engines
         /// </summary>
         private void SaveHeAnestethists()
         {
-            _heAnestethistList.Sort(HeAnestethistClass.Compare);
+            _heAnesthetistList.Sort(HeAnestethistClass.Compare);
 
             var heAnestethistsStr = new StringBuilder();
 
-            foreach (HeAnestethistClass heAnestethistInfo in _heAnestethistList)
+            foreach (HeAnestethistClass heAnestethistInfo in _heAnesthetistList)
             {
                 heAnestethistsStr.Append(
                     "Id=" + heAnestethistInfo.Id + DataSplitStr +
                     "LastNameWithInitials=" + heAnestethistInfo.LastNameWithInitials + ObjSplitStr);
             }
 
-            PackedData(heAnestethistsStr.ToString(), _heAnestethistPath);
+            PackedData(heAnestethistsStr.ToString(), _heAnesthetistPath);
         }
 
         /// <summary>
@@ -1318,18 +1517,18 @@ namespace SurgeryHelper.Engines
         /// </summary>
         private void SaveSheAnestethists()
         {
-            _sheAnestethistList.Sort(SheAnestethistClass.Compare);
+            _sheAnesthetistList.Sort(SheAnestethistClass.Compare);
 
             var sheAnestethistsStr = new StringBuilder();
 
-            foreach (SheAnestethistClass sheAnestethistInfo in _sheAnestethistList)
+            foreach (SheAnestethistClass sheAnestethistInfo in _sheAnesthetistList)
             {
                 sheAnestethistsStr.Append(
                     "Id=" + sheAnestethistInfo.Id + DataSplitStr +
                     "LastNameWithInitials=" + sheAnestethistInfo.LastNameWithInitials + ObjSplitStr);
             }
 
-            PackedData(sheAnestethistsStr.ToString(), _sheAnestethistPath);
+            PackedData(sheAnestethistsStr.ToString(), _sheAnesthetistPath);
         }
 
         /// <summary>
@@ -1535,6 +1734,8 @@ namespace SurgeryHelper.Engines
 
             LoadGlobalSettings();
             LoadPatients(_patientList, _patientPath);
+            LoadAnesthesiaTypes();
+            LoadImplants();
             LoadSurgeons();
             LoadScrubNurses();
             LoadOrderlys();
@@ -1686,6 +1887,9 @@ namespace SurgeryHelper.Engines
                         case "Nosology":
                             patientInfo.Nosology = keyValue[1];
                             break;
+                        case "Hospitalization":
+                            patientInfo.Hospitalization = keyValue[1];
+                            break;
                         case "NumberOfCaseHistory":
                             patientInfo.NumberOfCaseHistory = keyValue[1];
                             break;
@@ -1700,6 +1904,12 @@ namespace SurgeryHelper.Engines
                             break;
                         case "MKB":
                             patientInfo.MKB = keyValue[1];
+                            break;
+                        case "ConcomitantDiagnoseMKB":
+                            patientInfo.ConcomitantDiagnoseMKB = keyValue[1];
+                            break;
+                        case "ComplicationsMKB":
+                            patientInfo.ComplicationsMKB = keyValue[1];
                             break;
                         case "WWW":
                             patientInfo.WWW = keyValue[1];
@@ -1769,6 +1979,9 @@ namespace SurgeryHelper.Engines
                         case "DischargeEpicrisEkg":
                             patientInfo.DischargeEpicrisEkg = keyValue[1];
                             break;
+                        case "DischargeEpicrisConsultation":
+                            patientInfo.DischargeEpicrisConsultation = keyValue[1];
+                            break;
                         case "DischargeEpicrisOakEritrocits":
                             patientInfo.DischargeEpicrisOakEritrocits = keyValue[1];
                             break;
@@ -1826,17 +2039,6 @@ namespace SurgeryHelper.Engines
                         case "PrescriptionSurveys":
                             patientInfo.PrescriptionSurveys = ConvertEngine.StringToList(keyValue[1]);
                             break;
-                        case "MedicalInspectionAnamneseTraumaDate":
-                            if (!string.IsNullOrEmpty(keyValue[1]))
-                            {
-                                patientInfo.MedicalInspectionAnamneseTraumaDate = ConvertEngine.GetDateTimeFromString(keyValue[1]);
-                            }
-                            else
-                            {
-                                patientInfo.MedicalInspectionAnamneseTraumaDate = null;
-                            }
-
-                            break;
                         case "MedicalInspectionAnamneseAnMorbi":
                             patientInfo.MedicalInspectionAnamneseAnMorbi = keyValue[1];
                             break;
@@ -1847,7 +2049,14 @@ namespace SurgeryHelper.Engines
                             patientInfo.MedicalInspectionAnamneseCheckboxes = ConvertEngine.StringToArrayBool(keyValue[1]);
                             break;
                         case "MedicalInspectionAnamneseTextBoxes":
-                            patientInfo.MedicalInspectionAnamneseTextBoxes = ConvertEngine.StringToArray(keyValue[1]);
+                            var temp = ConvertEngine.StringToList(keyValue[1]);
+                            if (temp.Count < 10)
+                            {
+                                temp.Add("отрицает");
+                                temp.Add("отрицает");
+                            }
+
+                            patientInfo.MedicalInspectionAnamneseTextBoxes = temp.ToArray();
                             break;
                         case "MedicalInspectionComplaints":
                             patientInfo.MedicalInspectionComplaints = keyValue[1];
@@ -1960,7 +2169,7 @@ namespace SurgeryHelper.Engines
                                 operationInfo.Assistents = ConvertEngine.StringToList(keyValue[1]);
                                 break;
                             case "HeAnaesthetist":
-                                operationInfo.HeAnaesthetist = keyValue[1];
+                                operationInfo.HeAnesthetist = keyValue[1];
                                 break;
                             case "Id":
                                 operationInfo.Id = Convert.ToInt32(keyValue[1]);
@@ -1968,8 +2177,17 @@ namespace SurgeryHelper.Engines
                             case "Name":
                                 operationInfo.Name = keyValue[1];
                                 break;
+                            case "RiskLevel":
+                                operationInfo.RiskLevel = Convert.ToInt32(keyValue[1]);
+                                break;
+                            case "AnesthesiaType":
+                                operationInfo.AnesthesiaType = keyValue[1];
+                                break;
                             case "OperationCourse":
                                 operationInfo.OperationCourse = keyValue[1];
+                                break;
+                            case "Implants":
+                                operationInfo.Implants = ConvertEngine.StringToList(keyValue[1]);
                                 break;
                             case "DataOfOperation":
                                 operationInfo.DataOfOperation = ConvertEngine.GetDateTimeFromString(keyValue[1]);
@@ -1987,7 +2205,7 @@ namespace SurgeryHelper.Engines
                                 operationInfo.ScrubNurse = keyValue[1];
                                 break;
                             case "SheAnaesthetist":
-                                operationInfo.SheAnaesthetist = keyValue[1];
+                                operationInfo.SheAnesthetist = keyValue[1];
                                 break;
                             case "Surgeons":
                                 operationInfo.Surgeons = ConvertEngine.StringToList(keyValue[1]);
@@ -2025,17 +2243,8 @@ namespace SurgeryHelper.Engines
                             case "BeforeOperationEpicrisisStLocalis":
                                 operationInfo.BeforeOperationEpicrisisStLocalis = keyValue[1];
                                 break;
-                            case "BeforeOperationEpicrisisStomach":
-                                operationInfo.BeforeOperationEpicrisisStomach = keyValue[1];
-                                break;
-                            case "BeforeOperationEpicrisisStool":
-                                operationInfo.BeforeOperationEpicrisisStool = keyValue[1];
-                                break;
                             case "BeforeOperationEpicrisisTemperature":
                                 operationInfo.BeforeOperationEpicrisisTemperature = keyValue[1];
-                                break;
-                            case "BeforeOperationEpicrisisUrination":
-                                operationInfo.BeforeOperationEpicrisisUrination = keyValue[1];
                                 break;
                             case "BeforeOperationEpicrisisWheeze":
                                 operationInfo.BeforeOperationEpicrisisWheeze = keyValue[1];
@@ -2046,6 +2255,12 @@ namespace SurgeryHelper.Engines
                             case "BeforeOperationEpicrisisAntibioticProphylaxis":
                                 operationInfo.BeforeOperationEpicrisisAntibioticProphylaxis = keyValue[1];
                                 break;
+                            case "BeforeOperationEpicrisisIsPremedicationExist":
+                                operationInfo.BeforeOperationEpicrisisIsPremedicationExist = Convert.ToBoolean(keyValue[1]);
+                                break;
+                            case "BeforeOperationEpicrisisPremedication":
+                                operationInfo.BeforeOperationEpicrisisPremedication = keyValue[1];
+                                break;
                         }
                     }
 
@@ -2053,6 +2268,88 @@ namespace SurgeryHelper.Engines
                 }
 
                 patientList.Add(patientInfo);
+            }
+        }
+
+        /// <summary>
+        /// Загрузить список анестезий
+        /// </summary>
+        private void LoadAnesthesiaTypes()
+        {
+            if (GetHash(PassStr) != ConfigEngine.InternalData)
+            {
+                Environment.Exit(0);
+            }
+
+            _anesthesiaTypesList = new List<AnesthesiaTypesClass>();
+            string allDataStr = GetPackedData(_anesthesiaTypesPath);
+
+            // Получаем набор объектов
+            string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+            // Проходим по всем объектам
+            foreach (string objectStr in objectsStr)
+            {
+                // Для каждого объекта получаем список значений
+                string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+                var anesthesiaTypesInfo = new AnesthesiaTypesClass();
+                foreach (string dataStr in datasStr)
+                {
+                    string[] keyValue = dataStr.Split(new[] { '=' }, 2);
+                    switch (keyValue[0])
+                    {
+                        case "Id":
+                            anesthesiaTypesInfo.Id = Convert.ToInt32(keyValue[1]);
+                            break;
+                        case "LastNameWithInitials":
+                            anesthesiaTypesInfo.LastNameWithInitials = keyValue[1];
+                            break;
+                    }
+                }
+
+                _anesthesiaTypesList.Add(anesthesiaTypesInfo);
+            }
+        }
+
+        /// <summary>
+        /// Загрузить список имплантатов
+        /// </summary>
+        private void LoadImplants()
+        {
+            if (GetHash(PassStr) != ConfigEngine.InternalData)
+            {
+                Environment.Exit(0);
+            }
+
+            _implantsList = new List<ImplantClass>();
+            string allDataStr = GetPackedData(_implantPath);
+
+            // Получаем набор объектов
+            string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+            // Проходим по всем объектам
+            foreach (string objectStr in objectsStr)
+            {
+                // Для каждого объекта получаем список значений
+                string[] datasStr = objectStr.Split(new[] { DataSplitStr }, StringSplitOptions.RemoveEmptyEntries);
+
+                var implantInfo = new ImplantClass();
+                foreach (string dataStr in datasStr)
+                {
+                    string[] keyValue = dataStr.Split(new[] { '=' }, 2);
+                    switch (keyValue[0])
+                    {
+                        case "Id":
+                            implantInfo.Id = Convert.ToInt32(keyValue[1]);
+                            break;
+                        case "LastNameWithInitials":
+                            implantInfo.LastNameWithInitials = keyValue[1];
+                            break;
+                    }
+                }
+
+                _implantsList.Add(implantInfo);
             }
         }
 
@@ -2192,8 +2489,8 @@ namespace SurgeryHelper.Engines
                 Environment.Exit(0);
             }
 
-            _heAnestethistList = new List<HeAnestethistClass>();
-            string allDataStr = GetPackedData(_heAnestethistPath);
+            _heAnesthetistList = new List<HeAnestethistClass>();
+            string allDataStr = GetPackedData(_heAnesthetistPath);
 
             // Получаем набор объектов
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
@@ -2219,7 +2516,7 @@ namespace SurgeryHelper.Engines
                     }
                 }
 
-                _heAnestethistList.Add(heAnestetistInfo);
+                _heAnesthetistList.Add(heAnestetistInfo);
             }
         }
 
@@ -2233,8 +2530,8 @@ namespace SurgeryHelper.Engines
                 Environment.Exit(0);
             }
 
-            _sheAnestethistList = new List<SheAnestethistClass>();
-            string allDataStr = GetPackedData(_sheAnestethistPath);
+            _sheAnesthetistList = new List<SheAnestethistClass>();
+            string allDataStr = GetPackedData(_sheAnesthetistPath);
 
             // Получаем набор объектов
             string[] objectsStr = allDataStr.Split(new[] { ObjSplitStr }, StringSplitOptions.RemoveEmptyEntries);
@@ -2260,7 +2557,7 @@ namespace SurgeryHelper.Engines
                     }
                 }
 
-                _sheAnestethistList.Add(sheAnestethistInfo);
+                _sheAnesthetistList.Add(sheAnestethistInfo);
             }
         }
 

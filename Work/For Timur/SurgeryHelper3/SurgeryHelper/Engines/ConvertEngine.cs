@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace SurgeryHelper.Engines
 {
@@ -198,15 +199,7 @@ namespace SurgeryHelper.Engines
         public static List<string> StringToList(string data, StringSplitOptions splitOption = StringSplitOptions.RemoveEmptyEntries)
         {
             string[] parts = data.Split(new[] { DbEngine.ListSplitStr }, splitOption);
-
-            var list = new List<string>();
-
-            foreach (string part in parts)
-            {
-                list.Add(part);
-            }
-
-            return list;
+            return new List<string>(parts);
         }
 
         /// <summary>
@@ -455,6 +448,80 @@ namespace SurgeryHelper.Engines
                     targetArray[i] = changeInfo[targetArray[i]];
                 }
             }
+        }
+
+        /// <summary>
+        /// Сконвертировать временной отрезок в строку вида 'X ч ХХ мин'. Если часов нет - то только 'ХХ мин'
+        /// </summary>
+        /// <param name="timeLength">Временной отрезок</param>
+        /// <returns></returns>
+        public static string GetRightTimeLengthString(TimeSpan timeLength)
+        {
+            string result = string.Empty;
+            if (timeLength.Hours > 0)
+            {
+                result += timeLength.Hours + " ч ";
+            }
+
+            return result + timeLength.Minutes + " мин";
+        }
+
+        /// <summary>
+        /// Вернуть последние использованные записи в комбобоксе
+        /// </summary>
+        /// <param name="comboBox">Комбобокс</param>
+        /// <param name="maxCnt">Максимальное количество последних записей. 20 по умолчанию</param>
+        /// <returns></returns>
+        public static string[] GetLastUsedValues(ComboBox comboBox, int maxCnt = 20)
+        {
+            var lastValuesList = new List<string> { comboBox.Text };
+            foreach (string mkb in comboBox.Items)
+            {
+                if (lastValuesList.Count >= maxCnt)
+                {
+                    break;
+                }
+
+                if (!lastValuesList.Contains(mkb) && !string.IsNullOrEmpty(mkb))
+                {
+                    lastValuesList.Add(mkb);
+                }
+            }
+
+            return lastValuesList.ToArray();
+        }
+
+        /// <summary>
+        /// Конвертируем строку из нескольких строк в список строк
+        /// </summary>
+        /// <param name="multilineStr"></param>
+        /// <returns></returns>
+        public static List<string> MultilineStringToList(string multilineStr)
+        {
+            string[] arrOfStrings = multilineStr.Split(new[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+
+            return new List<string>(arrOfStrings);
+        }
+
+        /// <summary>
+        /// Конвертируем список из строк в строку из нескольких строк
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static string ListToMultilineString(IEnumerable<string> list)
+        {
+            var multilineStr = new StringBuilder();
+            foreach (string str in list)
+            {
+                multilineStr.Append(str + "\r\n");
+            }
+
+            if (multilineStr.Length > 2)
+            {
+                multilineStr.Remove(multilineStr.Length - 2, 2);
+            }
+
+            return multilineStr.ToString();
         }
     }
 }
