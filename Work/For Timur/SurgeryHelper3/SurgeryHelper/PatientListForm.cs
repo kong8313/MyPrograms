@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using SurgeryHelper.Engines;
 using SurgeryHelper.Entities;
@@ -107,6 +108,7 @@ namespace SurgeryHelper
         private void PutAdditionalDocumentNamesToContextMenu()
         {
             contextMenuStrip1.Items.Clear();
+            contextMenuStrip1.Items.Add("Журнал операций");
             var dirInfo = new DirectoryInfo(_additionalDocumentsFolderPath);
             foreach (FileInfo fileInfo in dirInfo.GetFiles())
             {
@@ -1090,14 +1092,31 @@ namespace SurgeryHelper
         private void contextMenuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             var wordExportEngine = new WordExportEngine(_dbEngine);
-            var documentPath = Path.Combine(_additionalDocumentsFolderPath, e.ClickedItem.Text);
-
-            foreach (DataGridViewRow patientListSelectedRow in PatientList.SelectedRows)
+            if (e.ClickedItem.Text == "Журнал операций")
             {
-                int id = Convert.ToInt32(patientListSelectedRow.Cells[0].Value);
-                var patientInfo = GetSelectedPatient(id);
+                var patientInfos = new List<PatientClass>();
+                foreach (DataGridViewRow patientListSelectedRow in PatientList.SelectedRows)
+                {
+                    int id = Convert.ToInt32(patientListSelectedRow.Cells[0].Value);
+                    patientInfos.Add(GetSelectedPatient(id));
+                }
 
-                wordExportEngine.ExportAdditionalDocument(documentPath, patientInfo, true);
+                wordExportEngine.ExportOperationProtocols(patientInfos);
+            }
+            else
+            {
+                var documentPath = Path.Combine(_additionalDocumentsFolderPath, e.ClickedItem.Text);
+
+                foreach (DataGridViewRow patientListSelectedRow in PatientList.SelectedRows)
+                {
+                    int id = Convert.ToInt32(patientListSelectedRow.Cells[0].Value);
+                    var patientInfo = GetSelectedPatient(id);
+
+                    wordExportEngine.ExportAdditionalDocument(documentPath, patientInfo, true);
+                }
+
+                string resultDirectory = Path.Combine(_additionalDocumentsFolderPath, "Generated");
+                MessageBox.Show($"Генерация документов завершена. Файлы находятся в папке '{resultDirectory}'", "Сообщение", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
     }

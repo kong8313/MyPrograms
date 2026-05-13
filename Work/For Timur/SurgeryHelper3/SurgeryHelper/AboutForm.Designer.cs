@@ -38,9 +38,9 @@
             this.labelInfo.AutoSize = true;
             this.labelInfo.Location = new System.Drawing.Point(6, 7);
             this.labelInfo.Name = "labelInfo";
-            this.labelInfo.Size = new System.Drawing.Size(215, 91);
+            this.labelInfo.Size = new System.Drawing.Size(213, 91);
             this.labelInfo.TabIndex = 1;
-            this.labelInfo.Text = "Программа \"Помощник хирурга\" v. 3.8.0\r\n\r\nПрограммист: Коновалов Григорий\r\nВсе пра" +
+            this.labelInfo.Text = "Программа \"Помощник хирурга\" v. x.x.x\r\n\r\nПрограммист: Коновалов Григорий\r\nВсе пра" +
     "ва на программу принадлежат \r\nТорно Тимуру Эдуардовичу\r\nПожелания и предложения " +
     "направляйте\r\nпо адресу: torno@mail.ru";
             // 
@@ -75,6 +75,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "О программе";
+            this.Shown += new System.EventHandler(this.AboutForm_Shown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

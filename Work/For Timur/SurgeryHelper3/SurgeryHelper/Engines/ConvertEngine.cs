@@ -8,6 +8,16 @@ namespace SurgeryHelper.Engines
     public class ConvertEngine
     {
         /// <summary>
+        /// Убирает время из объекта с датой и временем
+        /// </summary>
+        /// <param name="dateTime">Объект с для получения даты</param>
+        /// <returns></returns>
+        public static DateTime TrimTime(DateTime dateTime)
+        {
+            return new DateTime(dateTime.Year, dateTime.Month, dateTime.Day);
+        }
+
+        /// <summary>
         /// Сравнивает две переменные типа DateTime. 
         /// Возвращает 1, если первая больше второй, -1 - если первая меньше второй, 0 - если равны
         /// </summary>

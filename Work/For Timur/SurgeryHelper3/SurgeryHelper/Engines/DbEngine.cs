@@ -272,11 +272,14 @@ namespace SurgeryHelper.Engines
         /// Добавить нового пациента к списку пациентов
         /// </summary>
         /// <param name="patientInfo">Информация о пациенте</param>
-        public void AddPatient(PatientClass patientInfo)
+        public void AddPatient(PatientClass patientInfo, bool needToSave = true)
         {
-            var newPationInfo = new PatientClass(patientInfo) { Id = GetNewPatientId() };
-            _patientList.Add(newPationInfo);
-            SavePatients();
+            var newPatientInfo = new PatientClass(patientInfo) { Id = GetNewPatientId() };
+            _patientList.Add(newPatientInfo);
+            if (needToSave)
+            {
+                SavePatients();
+            }
         }
 
 
@@ -710,7 +713,7 @@ namespace SurgeryHelper.Engines
         /// <summary>
         /// Добавить нового санитара к списку санитаров
         /// </summary>
-        /// <param name="orderlyInfo">Информация о санитре</param>
+        /// <param name="orderlyInfo">Информация о санитаре</param>
         public void AddOrderly(OrderlyClass orderlyInfo)
         {
             var newOrderlyInfo = new OrderlyClass(orderlyInfo) { Id = GetNewOrderlyId() };
@@ -1173,7 +1176,7 @@ namespace SurgeryHelper.Engines
         /// Добавить новую нозологию к списку нозологий
         /// </summary>
         /// <param name="nosologyName">Информация по нозологии</param>
-        public void AddNosology(NosologyClass nosologyInfo)
+        public void AddNosology(NosologyClass nosologyInfo, bool needToSave = true)
         {
             var newNosologyInfo = new NosologyClass
             {
@@ -1182,7 +1185,11 @@ namespace SurgeryHelper.Engines
                 Id = GetNewNosologyId()
             };
             _nosologyList.Add(newNosologyInfo);
-            SaveNosologys();
+
+            if (needToSave)
+            {
+                SaveNosologys();
+            }
         }
 
         /// <summary>
@@ -1674,15 +1681,18 @@ namespace SurgeryHelper.Engines
         /// <param name="foreignNosologies">Список нозологий из внешней базы, которые надо добавить в нашу базу</param>
         public void ImportData(List<PatientClass> foreignPatients, List<NosologyClass> foreignNosologies)
         {
-            foreach (PatientClass foreignPatientInfo in foreignPatients)
-            {
-                AddPatient(foreignPatientInfo);
-            }
-
             foreach (NosologyClass foreignNosologyInfo in foreignNosologies)
             {
-                AddNosology(foreignNosologyInfo);
+                AddNosology(foreignNosologyInfo, false);
             }
+
+            foreach (PatientClass foreignPatientInfo in foreignPatients)
+            {
+                AddPatient(foreignPatientInfo, false);
+            }
+
+            SaveNosologys();
+            SavePatients();
         }
         #endregion
 

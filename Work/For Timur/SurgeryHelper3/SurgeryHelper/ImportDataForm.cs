@@ -26,6 +26,8 @@ namespace SurgeryHelper
             {
                 _patientForm.ShowPatients();
             }
+
+            folderBrowserDialog1.SelectedPath = Directory.GetParent(Application.ExecutablePath)?.FullName ?? string.Empty;
         }
 
         /// <summary>
@@ -52,8 +54,8 @@ namespace SurgeryHelper
 
                 _dbEngine.ImportData(importedPatientList, importedNosologyList);
 
-                MessageBox.Show("Импорт данных успешно завершён", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 _patientForm.ShowPatients();
+                MessageBox.Show("Импорт данных успешно завершён", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Close();
             }
             catch (Exception ex)
@@ -133,6 +135,8 @@ namespace SurgeryHelper
                 else
                 {
                     buttonOk.Enabled = true;
+                    checkBoxSelectAllPatients.Checked = true;
+                    checkBoxSelectAllNosologies.Checked = true;
                 }
             }
             catch (Exception ex)
@@ -188,7 +192,23 @@ namespace SurgeryHelper
         {
             toolTip1.Hide(buttonGetData);
             buttonGetData.FlatStyle = FlatStyle.Flat;
-        }        
+        }
         #endregion
+
+        private void checkBoxSelectAllPatients_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBoxForeignPatients.Items.Count; i++)
+            {
+                checkedListBoxForeignPatients.SetItemCheckState(i, checkBoxSelectAllPatients.Checked ? CheckState.Checked : CheckState.Unchecked);
+            }
+        }
+
+        private void checkBoxSelectAllNosologies_CheckedChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < checkedListBoxForeignNosology.Items.Count; i++)
+            {
+                checkedListBoxForeignNosology.SetItemCheckState(i, checkBoxSelectAllNosologies.Checked ? CheckState.Checked : CheckState.Unchecked);
+            }
+        }
     }
 }
