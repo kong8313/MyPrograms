@@ -1,11 +1,17 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{16D1FD4C-2142-4005-84E7-143505B6CE21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FromServerClass", "FromServerClass\FromServerClass.csproj", "{DDB17562-2AA8-4A18-B433-FA1065121E7F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FromClientClass", "FromClientClass\FromClientClass.csproj", "{B0CFEF29-3431-46D4-9D4E-FB2CFB988260}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToeTests", "TicTacToeTests\TicTacToeTests.csproj", "{EAF275AC-3B76-4261-85FD-A1DE36FF8666}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldForTests", "FieldForTests\FieldForTests.csproj", "{643DBA76-BE3A-4116-8807-D773428ADEF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +31,19 @@ Global
 		{B0CFEF29-3431-46D4-9D4E-FB2CFB988260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0CFEF29-3431-46D4-9D4E-FB2CFB988260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0CFEF29-3431-46D4-9D4E-FB2CFB988260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAF275AC-3B76-4261-85FD-A1DE36FF8666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAF275AC-3B76-4261-85FD-A1DE36FF8666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAF275AC-3B76-4261-85FD-A1DE36FF8666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAF275AC-3B76-4261-85FD-A1DE36FF8666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{643DBA76-BE3A-4116-8807-D773428ADEF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{643DBA76-BE3A-4116-8807-D773428ADEF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{643DBA76-BE3A-4116-8807-D773428ADEF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{643DBA76-BE3A-4116-8807-D773428ADEF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34DD5E8B-B365-47C1-8378-E382B1218CBC}
 	EndGlobalSection
 EndGlobal

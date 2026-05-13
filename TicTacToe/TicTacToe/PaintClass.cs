@@ -7,7 +7,7 @@ namespace TicTacToe
     public class PaintClass
     {
         public const int BitmapWidth = 601;
-        public const int BitmapHeight = 501;
+        public const int BitmapHeight = 601;
         public const int CellSize = 30;
 
         private int m_LastX;
@@ -35,13 +35,12 @@ namespace TicTacToe
         {
             using (Graphics g = Graphics.FromImage(m_FieldBitmap))
             {
-                var pen = new Pen(Color.Black, 1);
+                var pen = new Pen(Color.DarkGray, 1);
 
                 g.Clear(Color.White);
                 for (int i = 0; i < BitmapWidth; i += CellSize)
                 {
                     g.DrawLine(pen, i, 0, i, BitmapHeight);
-
                 }
 
                 for (int j = 0; j < BitmapHeight; j += CellSize)
@@ -88,37 +87,35 @@ namespace TicTacToe
                 m_LastY = y;
             }
 
-            var drawedObject = new Bitmap(CellSize, CellSize);
+            var drewObject = new Bitmap(CellSize, CellSize);
+            using (Graphics gCell = Graphics.FromImage(drewObject))
+            {
+                gCell.Clear(Color.White);
+                gCell.DrawRectangle(new Pen(Color.Black), 0, 0, CellSize, CellSize);
+            }
+
             if (objectType == ObjectType.Cross)
             {
-                using (Graphics gCell = Graphics.FromImage(drawedObject))
+                using (Graphics gCell = Graphics.FromImage(drewObject))
                 {
-                    int lx = (CellSize - Properties.Resources.cross.Width) / 2;
-                    int ly = (CellSize - Properties.Resources.cross.Height) / 2;                    
-                    gCell.DrawImage(Properties.Resources.cross, lx, ly);
+                    int lx = (CellSize - Properties.Resources.cross.Height) / 2;
+                    int ly = (CellSize - Properties.Resources.cross.Width) / 2;                    
+                    gCell.DrawImage(Properties.Resources.cross, ly, lx);
                 }
             }
             else if (objectType == ObjectType.Nil)
             {
-                using (Graphics gCell = Graphics.FromImage(drawedObject))
+                using (Graphics gCell = Graphics.FromImage(drewObject))
                 {
-                    int lx = (CellSize - Properties.Resources.nil.Width) / 2;
-                    int ly = (CellSize - Properties.Resources.nil.Height) / 2;
-                    gCell.DrawImage(Properties.Resources.nil, lx, ly);
-                }
-            }
-            else
-            {
-                using (Graphics gCell = Graphics.FromImage(drawedObject))
-                {
-                    gCell.Clear(Color.White);
-                    gCell.DrawRectangle(new Pen(Color.Black), 0, 0, CellSize, CellSize);
+                    int lx = (CellSize - Properties.Resources.nil.Height) / 2;
+                    int ly = (CellSize - Properties.Resources.nil.Width) / 2;
+                    gCell.DrawImage(Properties.Resources.nil, ly, lx);
                 }
             }
 
             using (Graphics g = Graphics.FromImage(m_FieldBitmap))
             {
-                g.DrawImage(drawedObject, x * CellSize, y * CellSize);
+                g.DrawImage(drewObject, y * CellSize, x * CellSize);
             }
         }
 

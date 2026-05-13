@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Linq;
 
 namespace TicTacToe
 {
@@ -70,6 +70,48 @@ namespace TicTacToe
         public int StepCntToWin;
     }
 
+    /// <summary>
+    /// Структура, содержащая список параметров одного состояния для исследования позиции вглубь 
+    /// </summary>
+    [DebuggerDisplay("Step={Step != null ? Step[0] : -1}:{Step != null ? Step[1] : -1} WhoStep={WhoStep} WhoWin={WhoWin} TwinNumber={TwinNumber} Field={Field}")]
+    public class NodeNew
+    {
+        /// <summary>
+        /// Позиция в виде текста
+        /// </summary>
+        public string Field;
+
+        /// <summary>
+        /// Кто сейчас ходит
+        /// </summary>
+        public ObjectType WhoStep;
+
+        /// <summary>
+        /// Ход, который привёл к этой позиции
+        /// </summary>
+        public int[] Step;
+
+        /// <summary>
+        /// Есть ли дети у данного узла
+        /// </summary>
+        public bool HasChild;
+
+        /// <summary>
+        /// Номера дочерних узлов в следующем уровне ходов. Номер первого узла и их количество
+        /// </summary>
+        public KeyValuePair<int, int> ChildNumbers;
+
+        /// <summary>
+        /// Номер стоблца позиции-двойника, если она есть
+        /// </summary>
+        public int? TwinNumber;
+
+        /// <summary>
+        /// Если понятно, что кто-то выиграл - то указать кто
+        /// </summary>
+        public ObjectType? WhoWin;
+    }
+
     public class ComputerClass
     {
         /// <summary>
@@ -94,28 +136,24 @@ namespace TicTacToe
         /// <summary>
         /// Поле с текущей позицией
         /// </summary>
-        private ObjectType[,] m_Field;
+        private ObjectType[,] _field;
 
         /// <summary>
         /// Количество строк на поле
         /// </summary>
-        private int m_RowsCnt;
+        private int _rowsCnt;
 
         /// <summary>
         /// Количество столбцов на поле
         /// </summary>
-        private int m_ColumnsCnt;
+        private int _columnsCnt;
 
         /// <summary>
         /// Кто сейчас ходит
         /// </summary>
-        private ObjectType m_WhoStep;
+        private ObjectType _whoStep;
 
-        /// <summary>
-        /// Поле для рисования
-        /// </summary>
-        private PaintClass m_PaintClass;
-
+        private FieldConverter _fieldConverter;
 
         #region Разные вспомогательные функции
         /// <summary>
@@ -177,39 +215,34 @@ namespace TicTacToe
         /// <param name="rowsCnt">Количество строк</param>
         /// <param name="columnsCnt">Количество столбцов</param>
         /// <param name="whoStep">Кто делает ход</param>
-        /// <param name="paintClass">Ссылка на класс для рисования</param>
         /// <returns></returns>
-        private int[] DoStepNotStatic(ObjectType[,] field, int rowsCnt, int columnsCnt, ObjectType whoStep, PaintClass paintClass)
+        private int[] DoStepNotStatic(ObjectType[,] field, int rowsCnt, int columnsCnt, ObjectType whoStep)
         {
-            m_Field = field;
-            m_RowsCnt = rowsCnt;
-            m_ColumnsCnt = columnsCnt;
-            m_WhoStep = whoStep;
-            m_PaintClass = paintClass;
-
-            //m_PaintClass.ClearCoefficients(m_RowsCnt, m_ColumnsCnt);            
+            _fieldConverter = new FieldConverter();
+            _field = field;
+            _rowsCnt = rowsCnt;
+            _columnsCnt = columnsCnt;
+            _whoStep = whoStep;
 
             // Проверить, если поле пустое - то вернуть ячейку по центру
             int[] stepCoordinates = GetFirstStep();
             if (stepCoordinates.Length != 0)
             {
-                MessageBox.Show("Первый ход");
                 return stepCoordinates;
             }
 
             // Найти оптимальное место под новый символ для атаки
-            stepCoordinates = InvestigateForseAttack();
+            stepCoordinates = InvestigateForceAttackNew();
             if (stepCoordinates.Length != 0)
             {
                 return stepCoordinates;
             }
-
+            
             // Если нету форсированных выигрышей или необходимости защищаться от форсированного
             // выигрыша - то поставить новый объект по какому-то алгоритму
-            stepCoordinates = FindAttackStep();
+            stepCoordinates = FindAttackStepNew();
             if (stepCoordinates.Length != 0)
             {
-                MessageBox.Show("Просто атакующий ход");
                 return stepCoordinates;
             }
 
@@ -222,14 +255,14 @@ namespace TicTacToe
         /// Сделать ход за компьютер
         /// </summary>
         /// <param name="field">Текущая позиция</param>
-        /// <param name="rowsCnt">Количество строк</param>
-        /// <param name="columnsCnt">Количество столбцов</param>
         /// <param name="whoStep">Кто делает ход</param>
-        /// <param name="paintClass">Ссылка на класс для рисования</param>
         /// <returns></returns>
-        public static int[] DoStep(ObjectType[,] field, int rowsCnt, int columnsCnt, ObjectType whoStep, PaintClass paintClass)
+        public static int[] DoStep(ObjectType[,] field, ObjectType whoStep)
         {
-            return new ComputerClass().DoStepNotStatic(field, rowsCnt, columnsCnt, whoStep, paintClass);
+            int rowsCnt = field.GetLength(0);
+            int columnsCnt = field.GetLength(1);
+
+            return new ComputerClass().DoStepNotStatic(field, rowsCnt, columnsCnt, whoStep);
         }
 
 
@@ -242,22 +275,22 @@ namespace TicTacToe
         {
             bool isThisFieldEmpty = true;
 
-            for (int i = 0; i < m_RowsCnt; i++)
+            for (int i = 0; i < _rowsCnt; i++)
             {
-                for (int j = 0; j < m_ColumnsCnt; j++)
+                for (int j = 0; j < _columnsCnt; j++)
                 {
-                    if (m_Field[i, j] != ObjectType.Empty)
+                    if (_field[i, j] != ObjectType.Empty)
                     {
                         isThisFieldEmpty = false;
                         goto ex;
                     }
                 }
             }
-        ex:
+            ex:
 
             if (isThisFieldEmpty)
             {
-                return new[] { m_RowsCnt / 2, m_ColumnsCnt / 2 };
+                return new[] { _rowsCnt / 2, _columnsCnt / 2 };
             }
 
             return new int[0];
@@ -513,7 +546,7 @@ namespace TicTacToe
                 {
                     if (tree[treeNumber][i].WhoWin == ObjectType.Empty && !tree[treeNumber][i].HasChild)
                     {
-                        List<List<Node>> newPositionsTree = InvestigateFieldClass.FindPositionsForLine(tree[treeNumber][i], i, m_Field, m_RowsCnt, m_ColumnsCnt);
+                        List<List<Node>> newPositionsTree = InvestigateFieldClass.FindPositionsForLine(tree[treeNumber][i], i, _field, _rowsCnt, _columnsCnt);
 
                         if (newPositionsTree.Count == 0)
                         {
@@ -558,21 +591,269 @@ namespace TicTacToe
             return SelectWinSteps(tree, WhoDoesntStep(firstNode.WhoStep));
         }
 
+        /// <summary>
+        /// Дерево из форсированных ходов
+        /// </summary>
+        private List<List<NodeNew>> _forceNodes;
 
+        /// <summary>
+        /// Рекурсивная функция для обхода дерева форсированных ходов и выставления победителей
+        /// </summary>
+        /// <param name="row">Номер строки в дереве</param>
+        /// <param name="column">Номер столбца</param>
+        private void SetWinners(int row, int column)
+        {
+            var node = _forceNodes[row][column];
+            if (node.WhoWin != null)
+            {
+                return;
+            }
+
+            if (!node.HasChild)
+            {
+                if (node.TwinNumber != null)
+                {
+                    node.WhoWin = _forceNodes[row][node.TwinNumber.Value].WhoWin;
+                }
+                else
+                {
+                    node.WhoWin = ObjectType.Empty;
+                }
+
+                return;
+            }
+
+            // Выставляем победителя во все дочерние узлы
+            for (int i = node.ChildNumbers.Key; i < node.ChildNumbers.Key + node.ChildNumbers.Value; i++)
+            {
+                SetWinners(row + 1, i);
+            }
+
+            // Проходим по всем ходам нашего узла (по дочерним узлам) и смотрим, кто там победил.
+            // Если есть хотя бы один ход, где победил ходивший - то ставим его победителем в нашем узле.
+            // Если во всех ходах победил противник - то ставим его победителем 
+            // В противном случае ставим пустого для пометки, что победитель определялся и не выявлен
+            ObjectType firstWinner = _forceNodes[row + 1][node.ChildNumbers.Key].WhoWin.Value;
+            bool allWinnersAreTheSame = true;
+            for (int i = node.ChildNumbers.Key; i < node.ChildNumbers.Key + node.ChildNumbers.Value; i++)
+            {
+                if (node.WhoStep == _forceNodes[row + 1][i].WhoWin)
+                {
+                    node.WhoWin = node.WhoStep;
+                    return;
+                }
+
+                if (firstWinner != _forceNodes[row + 1][i].WhoWin)
+                {
+                    allWinnersAreTheSame = false;
+                }
+            }
+
+            if (allWinnersAreTheSame && firstWinner != ObjectType.Empty)
+            {
+                node.WhoWin = firstWinner;
+            }
+            else
+            {
+                node.WhoWin = ObjectType.Empty;
+            }
+        }
 
         /// <summary>
         /// Исследование форсированных выигрышей за крестики и за нолики
         /// </summary>
         /// <returns></returns>
-        private int[] InvestigateForseAttack()
+        private int[] InvestigateForceAttackNew()
+        {
+            var currentNode = new NodeNew
+            {
+                WhoStep = _whoStep,
+                WhoWin = null,
+                Field = _fieldConverter.FieldToText(_field)
+            };
+
+            _forceNodes = new List<List<NodeNew>> { new List<NodeNew>() };
+            _forceNodes[0] = new List<NodeNew> { currentNode };
+            for (int i = 1; i < 5; i++)
+            {
+                _forceNodes.Add(new List<NodeNew>());
+                int newNodesCount = 0;
+                for (int j = 0; j < _forceNodes[i - 1].Count; j++)
+                {
+                    var node = _forceNodes[i - 1][j];
+                    if (node.WhoWin != null)
+                    {
+                        continue;
+                    }
+
+                    if (NotUniqueNode(i, j, out var twinNumber))
+                    {
+                        node.TwinNumber = twinNumber;
+                        continue;
+                    }
+
+                    var newNodes = FindForceNodes(node);
+                    if (newNodes.Count > 0)
+                    {
+                        _forceNodes[i].AddRange(newNodes);
+                        node.HasChild = true;
+                        node.ChildNumbers = new KeyValuePair<int, int>(newNodesCount, newNodes.Count);
+                        newNodesCount += newNodes.Count;
+                    }
+                }
+            }
+
+            // Просмотр всех узлов для выставления победителей в те узлы, в которые можно
+            SetWinners(0, 0);
+
+            // Возвращаем ход, приводящий к победителю в корневом узле
+            for (int i = 0; i < _forceNodes[1].Count; i++)
+            {
+                if (_forceNodes[1][i].WhoWin == _forceNodes[0][0].WhoWin)
+                {
+                    return _forceNodes[1][i].Step;
+                }
+            }
+
+            return new int[0];
+        }
+
+        /// <summary>
+        /// Проверка, нет ли на том же уровне дерева такой же позиции, для которой уже были найдены ходы
+        /// Если есть - то не ищем ходы для этого узла.
+        /// Потом, при обратном ходе возьмём победителя из узла двойника
+        /// </summary>
+        /// <param name="i">Номер строки в дерево</param>
+        /// <param name="j">Номер стоблца в дереве</param>
+        /// <param name="twinNumber">Номер столбца позиции двойника, если она есть</param>
+        /// <returns></returns>
+        private bool NotUniqueNode(int i, int j, out int? twinNumber)
+        {
+            var field = _forceNodes[i - 1][j].Field;
+            for (int n = 0; n < j; n++)
+            {
+                if (field == _forceNodes[i - 1][n].Field)
+                {
+                    twinNumber = n;
+                    return true;
+                }
+            }
+
+            twinNumber = null;
+            return false;
+        }
+
+        /// <summary>
+        /// Поиск форсированных ходов за в переданной позиции (атакующих для победы или защитных от поражения)
+        /// </summary>        
+        /// <param name="initNode">Узел, позицию которого надо исследовать</param>
+        /// <returns></returns>
+        private List<NodeNew> FindForceNodes(NodeNew initNode)
+        {
+            var field = _fieldConverter.TextToField(initNode.Field, _rowsCnt, _columnsCnt);
+            var result = new List<NodeNew>();
+
+            // Найти ход приводящий к победе (пятый в ряду)
+            int[] step = InvestigateFieldClassNew.FindOneWinStep(field, initNode.WhoStep);
+            if (step.Length > 0)
+            {
+                return new List<NodeNew> { CreateNewNode(field, initNode.WhoStep, step, initNode.WhoStep) };
+            }
+
+            // Найти ход приводящий к победе противника (пятый в ряду)
+            // Это будет наш единственный вынужденный защитный ход
+            step = InvestigateFieldClassNew.FindOneWinStep(field, WhoDoesntStep(initNode.WhoStep));
+            if (step.Length > 0)
+            {
+                return new List<NodeNew> { CreateNewNode(field, initNode.WhoStep, step) };
+            }
+
+            // Найти ходы приводящие к победе на следующем ходу (четыре в ряд с пустыми краями)
+            // Возьмём первый
+            List<int[]> steps = InvestigateFieldClassNew.FindFourInLineWinStep(field, initNode.WhoStep);
+            if (steps.Count > 0)
+            {
+                return new List<NodeNew> { CreateNewNode(field, initNode.WhoStep, steps[0], initNode.WhoStep) };
+            }
+
+            // Найти ходы приводящие к победе противника на следующем ходу (четыре в ряд с пустыми краями)
+            // Будем ставить на эти поля делающий ход объект для защиты
+            steps = InvestigateFieldClassNew.FindFourInLineWinStep(field, WhoDoesntStep(initNode.WhoStep));
+            if (steps.Count > 0)
+            {
+                foreach (var oneStep in steps)
+                {
+                    result.Add(CreateNewNode(field, initNode.WhoStep, oneStep));
+                }
+
+                return result;
+            }
+
+            // Поиск атакующих ходов. Отдельно, чтобы два раза не вызывать
+            var whoStepAttackSteps = InvestigateFieldClassNew.FindThreeInLineAttackSteps(field, initNode.WhoStep);
+
+            // Найти ходы приводящие к победе на следующем ходу (пересечение линий 3 в ряд)
+            // Возьмём первый
+            steps = InvestigateFieldClassNew.FindCrossThreeInLineWinStep(whoStepAttackSteps);
+            if (steps.Count > 0)
+            {
+                return new List<NodeNew> { CreateNewNode(field, initNode.WhoStep, steps[0], initNode.WhoStep) };
+            }
+
+            // Поиск атакующих ходов противника. Отдельно, чтобы два раза не вызывать
+            var whoDoesNotStepAttackSteps = InvestigateFieldClassNew.FindThreeInLineAttackSteps(field, WhoDoesntStep(initNode.WhoStep));
+
+            // Найти ходы приводящие к победе противника на следующем ходу (пересечение линий 3 в ряд)
+            // Будем ставить на эти поля делающий ход объект для защиты
+            steps = InvestigateFieldClassNew.FindCrossThreeInLineWinStep(whoDoesNotStepAttackSteps);
+            foreach (var oneStep in steps)
+            {
+                result.Add(CreateNewNode(field, initNode.WhoStep, oneStep));
+            }
+
+            // Найти все атакующие ходы с тремя в ряд (возможно с разрывами)
+            foreach (var oneStep in whoStepAttackSteps)
+            {
+                result.Add(CreateNewNode(field, initNode.WhoStep, oneStep));
+            }
+
+            // Найти все защитные ходы против трех в ряд (возможно с разрывами)
+            foreach (var oneStep in whoDoesNotStepAttackSteps)
+            {
+                result.Add(CreateNewNode(field, initNode.WhoStep, oneStep));
+            }
+
+            return result;
+        }
+
+        private NodeNew CreateNewNode(ObjectType[,] field, ObjectType whoStep, int[] step, ObjectType? whoWin = null)
+        {
+            field[step[0], step[1]] = whoStep;
+            NodeNew node = new NodeNew
+            {
+                WhoStep = WhoDoesntStep(whoStep),
+                Field = _fieldConverter.FieldToText(field),
+                WhoWin = whoWin,
+                Step = step
+            };
+
+            field[step[0], step[1]] = ObjectType.Empty;
+           return node;
+        }
+
+        /// <summary>
+        /// Исследование форсированных выигрышей за крестики и за нолики
+        /// </summary>
+        /// <returns></returns>
+        private int[] InvestigateForceAttack()
         {
             // Исследуем атаку компа. Исследуем все ходы, которые приводят к появлению
-            // трёх и более объектов, через которые можно в итоге построить 5 в ряд
+            // трех и более объектов, через которые можно в итоге построить 5 в ряд
             // В результате получаем ход, который показывает, куда надо сходить и через сколько
             // ходов мы победим
             var currentNode = new Node
             {
-                WhoStep = WhoDoesntStep(m_WhoStep),
+                WhoStep = WhoDoesntStep(_whoStep),
                 WhoWin = ObjectType.Empty,
                 ParentNodeNumber = -1,
                 StepsInfo = new List<StepInfo>()
@@ -580,41 +861,38 @@ namespace TicTacToe
 
             List<Node> attackStepInfo = FindForceSteps(currentNode, false);                        
             
-            currentNode.WhoStep = m_WhoStep;
-            List<Node> defenceStepInfo = FindForceSteps(currentNode, false);
+            currentNode.WhoStep = _whoStep;
+            List<Node> defenseStepInfo = FindForceSteps(currentNode, false);
 
-            if (attackStepInfo.Count == 0 && defenceStepInfo.Count == 0)
+            if (attackStepInfo.Count == 0 && defenseStepInfo.Count == 0)
             {
                 return new int[0];
             }
 
-            if (attackStepInfo.Count != 0 && defenceStepInfo.Count != 0)
+            if (attackStepInfo.Count != 0 && defenseStepInfo.Count != 0)
             {
-                if (attackStepInfo[0].StepCntToWin <= defenceStepInfo[0].StepCntToWin)
+                if (attackStepInfo[0].StepCntToWin <= defenseStepInfo[0].StepCntToWin)
                 {
-                    MessageBox.Show("Форсированный атакующий ход");
                     return SelectRandomFromGoodSteps(attackStepInfo);
                 }
-                if (defenceStepInfo.Count > 1)
+                if (defenseStepInfo.Count > 1)
                 {
-                    defenceStepInfo = FindForceSteps(currentNode, true);
+                    defenseStepInfo = FindForceSteps(currentNode, true);
                 }
-                MessageBox.Show("Форсированный защитный ход");
-                return SelectRandomFromGoodSteps(defenceStepInfo);
+                return SelectRandomFromGoodSteps(defenseStepInfo);
             }
 
             if (attackStepInfo.Count != 0)
             {
-                MessageBox.Show("Форсированный атакующий ход");
                 return SelectRandomFromGoodSteps(attackStepInfo);
             }
 
-            if (defenceStepInfo.Count > 1)
+            if (defenseStepInfo.Count > 1)
             {
-                defenceStepInfo = FindForceSteps(currentNode, true);
+                defenseStepInfo = FindForceSteps(currentNode, true);
             }
-            MessageBox.Show("Форсированный защитный ход");
-            return SelectRandomFromGoodSteps(defenceStepInfo);
+            
+            return SelectRandomFromGoodSteps(defenseStepInfo);
         }
         #endregion
 
@@ -639,7 +917,7 @@ namespace TicTacToe
             int ci1 = x - 1;
             int cj1 = y;
             int cnt = 1;
-            while (ci1 >= 0 && m_Field[ci1, cj1] != WhoDoesntStep(whoStep))
+            while (ci1 >= 0 && _field[ci1, cj1] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 ci1--;
@@ -647,7 +925,7 @@ namespace TicTacToe
 
             int ci2 = x + 1;
             int cj2 = y;
-            while (ci2 < m_RowsCnt && m_Field[ci2, cj2] != WhoDoesntStep(whoStep))
+            while (ci2 < _rowsCnt && _field[ci2, cj2] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 ci2++;
@@ -659,7 +937,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x - 1;
                 cj1 = y;
-                while (ci1 >= 0 && m_Field[ci1, cj1] == whoStep)
+                while (ci1 >= 0 && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     ci1--;
@@ -670,7 +948,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x + 1;
                 cj1 = y;
-                while (ci1 < m_RowsCnt && m_Field[ci1, cj1] == whoStep)
+                while (ci1 < _rowsCnt && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     ci1++;
@@ -683,7 +961,7 @@ namespace TicTacToe
             ci1 = x;
             cj1 = y - 1;
             cnt = 1;
-            while (cj1 >= 0 && m_Field[ci1, cj1] != WhoDoesntStep(whoStep))
+            while (cj1 >= 0 && _field[ci1, cj1] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 cj1--;
@@ -691,7 +969,7 @@ namespace TicTacToe
 
             ci2 = x;
             cj2 = y + 1;
-            while (cj2 < m_ColumnsCnt && m_Field[ci2, cj2] != WhoDoesntStep(whoStep))
+            while (cj2 < _columnsCnt && _field[ci2, cj2] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 cj2++;
@@ -703,7 +981,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x;
                 cj1 = y - 1;
-                while (cj1 >= 0 && m_Field[ci1, cj1] == whoStep)
+                while (cj1 >= 0 && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     cj1--;
@@ -714,7 +992,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x;
                 cj1 = y + 1;
-                while (cj1 < m_ColumnsCnt && m_Field[ci1, cj1] == whoStep)
+                while (cj1 < _columnsCnt && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     cj1++;
@@ -727,7 +1005,7 @@ namespace TicTacToe
             ci1 = x - 1;
             cj1 = y - 1;
             cnt = 1;
-            while (ci1 >= 0 && cj1 >= 0 && m_Field[ci1, cj1] != WhoDoesntStep(whoStep))
+            while (ci1 >= 0 && cj1 >= 0 && _field[ci1, cj1] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 ci1--;
@@ -736,7 +1014,7 @@ namespace TicTacToe
 
             ci2 = x + 1;
             cj2 = y + 1;
-            while (ci2 < m_RowsCnt && cj2 < m_ColumnsCnt && m_Field[ci2, cj2] != WhoDoesntStep(whoStep))
+            while (ci2 < _rowsCnt && cj2 < _columnsCnt && _field[ci2, cj2] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 ci2++;
@@ -749,7 +1027,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x - 1;
                 cj1 = y - 1;
-                while (ci1 >= 0 && cj1 >= 0 && m_Field[ci1, cj1] == whoStep)
+                while (ci1 >= 0 && cj1 >= 0 && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     ci1--;
@@ -761,7 +1039,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x + 1;
                 cj1 = y + 1;
-                while (ci1 < m_RowsCnt && cj1 < m_ColumnsCnt && m_Field[ci1, cj1] == whoStep)
+                while (ci1 < _rowsCnt && cj1 < _columnsCnt && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     ci1++;
@@ -775,7 +1053,7 @@ namespace TicTacToe
             ci1 = x - 1;
             cj1 = y + 1;
             cnt = 1;
-            while (ci1 >= 0 && cj1 < m_ColumnsCnt && m_Field[ci1, cj1] != WhoDoesntStep(whoStep))
+            while (ci1 >= 0 && cj1 < _columnsCnt && _field[ci1, cj1] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 ci1--;
@@ -784,7 +1062,7 @@ namespace TicTacToe
 
             ci2 = x + 1;
             cj2 = y - 1;
-            while (ci2 < m_RowsCnt && cj2 >= 0 && m_Field[ci2, cj2] != WhoDoesntStep(whoStep))
+            while (ci2 < _rowsCnt && cj2 >= 0 && _field[ci2, cj2] != WhoDoesntStep(whoStep))
             {
                 cnt++;
                 ci2++;
@@ -797,7 +1075,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x - 1;
                 cj1 = y + 1;
-                while (ci1 >= 0 && cj1 < m_ColumnsCnt && m_Field[ci1, cj1] == whoStep)
+                while (ci1 >= 0 && cj1 < _columnsCnt && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     ci1--;
@@ -810,7 +1088,7 @@ namespace TicTacToe
                 cnt = 0;
                 ci1 = x + 1;
                 cj1 = y - 1;
-                while (ci1 < m_RowsCnt && cj1 >= 0 && m_Field[ci1, cj1] == whoStep)
+                while (ci1 < _rowsCnt && cj1 >= 0 && _field[ci1, cj1] == whoStep)
                 {
                     cnt++;
                     ci1++;
@@ -822,6 +1100,10 @@ namespace TicTacToe
             return coeff;
         }
 
+        private int[] FindAttackStepNew()
+        {
+            return new int[0];
+        }
 
         /// <summary>
         /// Поиск наилучшего хода, если не надо защищаться или атаковать наверняка
@@ -832,19 +1114,19 @@ namespace TicTacToe
             const double e = 0.2;
             const double q = 0.5;
 
-            var defenceField = new double[m_RowsCnt, m_ColumnsCnt];
-            for (int i = 0; i < m_RowsCnt; i++)
+            var defenceField = new double[_rowsCnt, _columnsCnt];
+            for (int i = 0; i < _rowsCnt; i++)
             {
-                for (int j = 0; j < m_ColumnsCnt; j++)
+                for (int j = 0; j < _columnsCnt; j++)
                 {
-                    if (m_Field[i, j] != ObjectType.Empty)
+                    if (_field[i, j] != ObjectType.Empty)
                     {
                         defenceField[i, j] = 0;
                         continue;
                     }
 
-                    double whoStepCoeff = GetCellCoeff(i, j, m_WhoStep);
-                    double whoDoesntStepCoeff = GetCellCoeff(i, j, WhoDoesntStep(m_WhoStep));
+                    double whoStepCoeff = GetCellCoeff(i, j, _whoStep);
+                    double whoDoesntStepCoeff = GetCellCoeff(i, j, WhoDoesntStep(_whoStep));
                     defenceField[i, j] = whoStepCoeff + q * whoDoesntStepCoeff;
                 }
             }
@@ -852,9 +1134,9 @@ namespace TicTacToe
             // Найти самый высокий коэффициент
             int x = 0;
             int y = 0;
-            for (int i = 0; i < m_RowsCnt; i++)
+            for (int i = 0; i < _rowsCnt; i++)
             {
-                for (int j = 0; j < m_ColumnsCnt; j++)
+                for (int j = 0; j < _columnsCnt; j++)
                 {
                     if (defenceField[i, j] > defenceField[x, y])
                     {
@@ -873,9 +1155,9 @@ namespace TicTacToe
             // Получаем все ячейки с самым большим значением для защиты
             var rightFields = new List<int[]>();
 
-            for (int i = 0; i < m_RowsCnt; i++)
+            for (int i = 0; i < _rowsCnt; i++)
             {
-                for (int j = 0; j < m_ColumnsCnt; j++)
+                for (int j = 0; j < _columnsCnt; j++)
                 {
                     if (Math.Abs(defenceField[i, j] - defenceField[x, y]) < e)
                     {
@@ -888,7 +1170,7 @@ namespace TicTacToe
             var rand = new Random();
             int val = rand.Next(rightFields.Count);
 
-            //m_PaintClass.DrawCoefficients(m_RowsCnt, m_ColumnsCnt, defenceField);
+            //m_PaintClass.DrawCoefficients(_rowsCnt, _columnsCnt, defenceField);
             return rightFields[val];
         }
         #endregion
@@ -905,12 +1187,10 @@ namespace TicTacToe
             int y;
             do
             {
-                x = rand.Next(m_RowsCnt);
-                y = rand.Next(m_ColumnsCnt);
+                x = rand.Next(_rowsCnt);
+                y = rand.Next(_columnsCnt);
             }
-            while (m_Field[x, y] != ObjectType.Empty);
-
-            MessageBox.Show("Случайный ход");
+            while (_field[x, y] != ObjectType.Empty);
 
             return new[] { x, y };
         }

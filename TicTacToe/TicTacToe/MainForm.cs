@@ -1034,7 +1034,7 @@ namespace TicTacToe
 
             var getCompStep = new GetComputerStepDelegate(ComputerClass.DoStep);
             var callBack = new AsyncCallback(GetComputerStepCallBack);
-            getCompStep.BeginInvoke(m_Field, m_RowsCnt, m_ColumnsCnt, m_WhoStep, m_PaintClass, callBack, null);
+            getCompStep.BeginInvoke(m_Field, m_WhoStep, callBack, null);
         }
 
 
@@ -1042,7 +1042,7 @@ namespace TicTacToe
         /// Делегат для организации получения хода компьютера (чтобы время компьютера изменялось)
         /// </summary>
         /// <returns></returns>
-        private delegate int[] GetComputerStepDelegate(ObjectType[,] field, int rowsCnt, int columnsCnt, ObjectType whoStep, PaintClass paintClass);
+        private delegate int[] GetComputerStepDelegate(ObjectType[,] field, ObjectType whoStep);
         /// <summary>
         /// Получение и совершение хода компьютера
         /// </summary>
