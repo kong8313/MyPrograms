@@ -49,7 +49,7 @@
     "monaco-json": "3.2.1",
     "monaco-languages": "2.1.1",
     "monaco-typescript": "4.1.1",
-    "playwright": "1.3.0",
+    "playwright": "1.55.1",
     "rimraf": "^3.0.2",
     "style-loader": "^1.2.1",
     "typedoc": "^0.19.1",
