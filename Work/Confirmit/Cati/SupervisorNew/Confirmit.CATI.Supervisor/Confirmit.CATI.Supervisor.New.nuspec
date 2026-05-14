@@ -1,0 +1,32 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Confirmit.CATI.Supervisor.New</id>
+    <version>18.0.0.0</version>
+    <authors>Confirmit</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Supervisor to run from new SPA</description>
+  </metadata>
+  <files>
+    <file src="..\..\assemblies\SupervisorNew\**\*.*" target="" />
+    <file src="HelpPages\**\*.*" target="HelpPages" exclude="**\*.mcwebhelp;**\*.mclog;**\*.snag"/>
+    <file src="images\**\*.*" target="images" />
+    <file src="ig_res\**\*.*" target="ig_res" exclude="**\*.wsl"/>
+
+    <file src="..\..\OctopusDeploy\SupervisorNewDeploy.ps1" target="Deploy.ps1" />
+    <file src="..\..\OctopusDeploy\PostDeploy.ps1" target="" />
+    <file src="..\..\OctopusDeploy\Installation\DeployFunctions.ps1" target="Installation" />
+    <file src="..\..\OctopusDeploy\Installation\InitialInitializations.ps1" target="Installation" />
+    <file src="..\..\OctopusDeploy\Installation\PreDeployFunctions.ps1" target="Installation" />
+    <file src="..\..\OctopusDeploy\Installation\ConfigurationFileUtils.ps1" target="Installation" />
+
+    <file src="..\..\assemblies\Installation\CustomActionLibrary.dll" target="Installation" />
+    <file src="..\..\assemblies\Installation\CatiInstallation.dll" target="Installation" />
+    <file src="..\..\assemblies\Installation\BootstrapperLibrary.dll" target="Installation" />
+    <file src="..\..\assemblies\Installation\Confirmit.CATI.Installation.Common.dll" target="Installation" />
+    <file src="..\..\assemblies\Installation\CryptographicUtility.exe" target="Installation" />
+    <file src="..\..\assemblies\Installation\CryptographicUtility.exe.config" target="Installation" />
+    <file src="..\..\assemblies\Installation\Confirmit.Security.Crypto.Web.dll" target="Installation" />
+    <file src="..\..\assemblies\Installation\Confirmit.Security.Crypto.dll" target="Installation" />
+  </files>
+</package>

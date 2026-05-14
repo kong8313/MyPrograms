@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://firmglobal.com/Confirmit/webservices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://firmglobal.com/Confirmit/webservices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://firmglobal.com/Confirmit/webservices/">
+      <s:element name="DeployProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DatabaseType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Production" />
+          <s:enumeration value="Test" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DeployProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeployProjectResult" type="tns:TaskStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="TaskStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Queue" />
+          <s:enumeration value="Executing" />
+          <s:enumeration value="Aborted" />
+          <s:enumeration value="Error" />
+          <s:enumeration value="Complete" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="DeployProjectWithDotNetSurvey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeployProjectWithDotNetSurveyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeployProjectWithDotNetSurveyResult" type="tns:TaskStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompileDB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="1" maxOccurs="1" name="rebuild" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="deleteOld" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CompileDBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CompileDBResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateWI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateWIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GenerateWIResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateWINet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GenerateWINetResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GenerateWINetResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchSurveyAt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="1" maxOccurs="1" name="generateDBOption" type="tns:GenerateDbOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="generateWIOption" type="tns:GenerateWiOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateSchedule" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="GenerateDbOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="DontGenerate" />
+          <s:enumeration value="Rebuild" />
+          <s:enumeration value="CreateNewDatabase" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="GenerateWiOptions">
+        <s:restriction base="s:string">
+          <s:enumeration value="DontGenerate" />
+          <s:enumeration value="WiNet" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="LaunchSurveyAtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LaunchSurveyAtResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchSurveyAtWithQA">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="1" maxOccurs="1" name="generateDBOption" type="tns:GenerateDbOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="generateWIOption" type="tns:GenerateWiOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="dateSchedule" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="enableExternalTest" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="isExternalQuicktest" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchSurveyAtWithQAResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LaunchSurveyAtWithQAResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchSurvey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="1" maxOccurs="1" name="generateDBOption" type="tns:GenerateDbOptions" />
+            <s:element minOccurs="1" maxOccurs="1" name="generateWiOption" type="tns:GenerateWiOptions" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LaunchSurveyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LaunchSurveyResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+	  <s:element name="LaunchSurveyWithInstantAnalyticsReport">
+		<s:complexType>
+		  <s:sequence>
+			<s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+			<s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+			<s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+			<s:element minOccurs="1" maxOccurs="1" name="generateDbOption" type="tns:GenerateDbOptions" />
+			<s:element minOccurs="1" maxOccurs="1" name="generateWiOption" type="tns:GenerateWiOptions" />
+		  </s:sequence>
+		</s:complexType>
+	  </s:element>
+	  <s:element name="LaunchSurveyWithInstantAnalyticsReportResponse">
+		<s:complexType>
+		  <s:sequence>
+			<s:element minOccurs="1" maxOccurs="1" name="LaunchSurveyWithInstantAnalyticsReportResult" type="s:long" />
+		  </s:sequence>
+		</s:complexType>
+	  </s:element>
+      <s:element name="SendEmails">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeLink" type="tns:LinkType" />
+            <s:element minOccurs="1" maxOccurs="1" name="mailFormat" type="tns:MailFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="bodyFormat" type="tns:BodyFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="customText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPanel" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="encoding" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentFilter" type="tns:RespondentFilter" />
+            <s:element minOccurs="1" maxOccurs="1" name="activateLogging" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="LinkType">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoLink" />
+          <s:enumeration value="RegularLink" />
+          <s:enumeration value="SecureLink" />
+          <s:enumeration value="Url" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="MailFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="Mime" />
+          <s:enumeration value="Text" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="BodyFormat">
+        <s:restriction base="s:string">
+          <s:enumeration value="HTML" />
+          <s:enumeration value="Text" />
+          <s:enumeration value="Both" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="RespondentFilter">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:RespondentStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldValues" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="PanelFields" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="PanelFieldValues" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="RespondentStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="NotSet" />
+          <s:enumeration value="NoAnswer" />
+          <s:enumeration value="Incomplete" />
+          <s:enumeration value="Complete" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendEmailsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendEmailsResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailsExtended">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sender" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="subject" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="body" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeLink" type="tns:LinkType" />
+            <s:element minOccurs="1" maxOccurs="1" name="mailFormat" type="tns:MailFormat" />
+            <s:element minOccurs="1" maxOccurs="1" name="bodyFormat" type="tns:BodyFormat" />
+            <s:element minOccurs="0" maxOccurs="1" name="customText" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPanel" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="encoding" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentFilter" type="tns:RespondentFilter" />
+            <s:element minOccurs="1" maxOccurs="1" name="activateLogging" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="extendedKeyValueArgs" type="tns:ArrayOfExtendedKeyValuePair" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfExtendedKeyValuePair">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ExtendedKeyValuePair" nillable="true" type="tns:ExtendedKeyValuePair" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtendedKeyValuePair">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Value" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SendEmailsExtendedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendEmailsExtendedResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailsByEmailObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="emailObjectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentFilter" type="tns:RespondentFilter" />
+            <s:element minOccurs="1" maxOccurs="1" name="schedulingTime" nillable="true" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailsByEmailObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendEmailsByEmailObjectResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailsByPanelEmailObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="panelEmailObjectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentFilter" type="tns:RespondentFilter" />
+            <s:element minOccurs="1" maxOccurs="1" name="schedulingTime" nillable="true" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendEmailsByPanelEmailObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SendEmailsByPanelEmailObjectResult" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskLogEntries">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskLogEntriesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTaskLogEntriesResult" type="tns:ArrayOfTaskLogEntry" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTaskLogEntry">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaskLogEntry" nillable="true" type="tns:TaskLogEntry" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaskLogEntry">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="LogType" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="LogTypeImage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExceptionMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Timestamp" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TaskId" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTaskStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTaskStatusResult" type="tns:TaskStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskPercentageCompleted">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTaskPercentageCompletedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTaskPercentageCompletedResult" type="s:short" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="DeployProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:DeployProject" />
+  </wsdl:message>
+  <wsdl:message name="DeployProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:DeployProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeployProjectWithDotNetSurveySoapIn">
+    <wsdl:part name="parameters" element="tns:DeployProjectWithDotNetSurvey" />
+  </wsdl:message>
+  <wsdl:message name="DeployProjectWithDotNetSurveySoapOut">
+    <wsdl:part name="parameters" element="tns:DeployProjectWithDotNetSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="CompileDBSoapIn">
+    <wsdl:part name="parameters" element="tns:CompileDB" />
+  </wsdl:message>
+  <wsdl:message name="CompileDBSoapOut">
+    <wsdl:part name="parameters" element="tns:CompileDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateWISoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateWI" />
+  </wsdl:message>
+  <wsdl:message name="GenerateWISoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateWIResponse" />
+  </wsdl:message>
+  <wsdl:message name="GenerateWINetSoapIn">
+    <wsdl:part name="parameters" element="tns:GenerateWINet" />
+  </wsdl:message>
+  <wsdl:message name="GenerateWINetSoapOut">
+    <wsdl:part name="parameters" element="tns:GenerateWINetResponse" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveyAtSoapIn">
+    <wsdl:part name="parameters" element="tns:LaunchSurveyAt" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveyAtSoapOut">
+    <wsdl:part name="parameters" element="tns:LaunchSurveyAtResponse" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveyAtWithQASoapIn">
+    <wsdl:part name="parameters" element="tns:LaunchSurveyAtWithQA" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveyAtWithQASoapOut">
+    <wsdl:part name="parameters" element="tns:LaunchSurveyAtWithQAResponse" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveySoapIn">
+    <wsdl:part name="parameters" element="tns:LaunchSurvey" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveySoapOut">
+    <wsdl:part name="parameters" element="tns:LaunchSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveyWithInstantAnalyticsReportSoapIn">
+	<wsdl:part name="parameters" element="tns:LaunchSurveyWithInstantAnalyticsReport" />
+  </wsdl:message>
+  <wsdl:message name="LaunchSurveyWithInstantAnalyticsReportSoapOut">
+	<wsdl:part name="parameters" element="tns:LaunchSurveyWithInstantAnalyticsReportResponse" />
+  </wsdl:message>  
+  <wsdl:message name="SendEmailsSoapIn">
+    <wsdl:part name="parameters" element="tns:SendEmails" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsSoapOut">
+    <wsdl:part name="parameters" element="tns:SendEmailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsExtendedSoapIn">
+    <wsdl:part name="parameters" element="tns:SendEmailsExtended" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsExtendedSoapOut">
+    <wsdl:part name="parameters" element="tns:SendEmailsExtendedResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsByEmailObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:SendEmailsByEmailObject" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsByEmailObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:SendEmailsByEmailObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsByPanelEmailObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:SendEmailsByPanelEmailObject" />
+  </wsdl:message>
+  <wsdl:message name="SendEmailsByPanelEmailObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:SendEmailsByPanelEmailObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskLogEntriesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskLogEntries" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskLogEntriesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskLogEntriesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskPercentageCompletedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTaskPercentageCompleted" />
+  </wsdl:message>
+  <wsdl:message name="GetTaskPercentageCompletedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTaskPercentageCompletedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SurveyDeployerSoap">
+    <wsdl:operation name="DeployProject">
+      <wsdl:input message="tns:DeployProjectSoapIn" />
+      <wsdl:output message="tns:DeployProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeployProjectWithDotNetSurvey">
+      <wsdl:input message="tns:DeployProjectWithDotNetSurveySoapIn" />
+      <wsdl:output message="tns:DeployProjectWithDotNetSurveySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CompileDB">
+      <wsdl:input message="tns:CompileDBSoapIn" />
+      <wsdl:output message="tns:CompileDBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateWI">
+      <wsdl:input message="tns:GenerateWISoapIn" />
+      <wsdl:output message="tns:GenerateWISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GenerateWINet">
+      <wsdl:input message="tns:GenerateWINetSoapIn" />
+      <wsdl:output message="tns:GenerateWINetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurveyAt">
+      <wsdl:input message="tns:LaunchSurveyAtSoapIn" />
+      <wsdl:output message="tns:LaunchSurveyAtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurveyAtWithQA">
+      <wsdl:input message="tns:LaunchSurveyAtWithQASoapIn" />
+      <wsdl:output message="tns:LaunchSurveyAtWithQASoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurvey">
+      <wsdl:input message="tns:LaunchSurveySoapIn" />
+      <wsdl:output message="tns:LaunchSurveySoapOut" />
+    </wsdl:operation>
+	<wsdl:operation name="LaunchSurveyWithInstantAnalyticsReport">
+	  <wsdl:input message="tns:LaunchSurveyWithInstantAnalyticsReportSoapIn" />
+	  <wsdl:output message="tns:LaunchSurveyWithInstantAnalyticsReportSoapOut" />
+	</wsdl:operation>
+    <wsdl:operation name="SendEmails">
+      <wsdl:input message="tns:SendEmailsSoapIn" />
+      <wsdl:output message="tns:SendEmailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsExtended">
+      <wsdl:input message="tns:SendEmailsExtendedSoapIn" />
+      <wsdl:output message="tns:SendEmailsExtendedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsByEmailObject">
+      <wsdl:input message="tns:SendEmailsByEmailObjectSoapIn" />
+      <wsdl:output message="tns:SendEmailsByEmailObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsByPanelEmailObject">
+      <wsdl:input message="tns:SendEmailsByPanelEmailObjectSoapIn" />
+      <wsdl:output message="tns:SendEmailsByPanelEmailObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskLogEntries">
+      <wsdl:input message="tns:GetTaskLogEntriesSoapIn" />
+      <wsdl:output message="tns:GetTaskLogEntriesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskStatus">
+      <wsdl:input message="tns:GetTaskStatusSoapIn" />
+      <wsdl:output message="tns:GetTaskStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPercentageCompleted">
+      <wsdl:input message="tns:GetTaskPercentageCompletedSoapIn" />
+      <wsdl:output message="tns:GetTaskPercentageCompletedSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SurveyDeployerSoap" type="tns:SurveyDeployerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeployProject">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/DeployProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeployProjectWithDotNetSurvey">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/DeployProjectWithDotNetSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompileDB">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/CompileDB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateWI">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/GenerateWI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateWINet">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/GenerateWINet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurveyAt">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurveyAt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurveyAtWithQA">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurveyAtWithQA" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurvey">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+	<wsdl:operation name="LaunchSurveyWithInstantAnalyticsReport">
+	  <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurveyWithInstantAnalyticsReport" style="document" />
+	  <wsdl:input>
+		<soap:body use="literal" />
+	  </wsdl:input>
+	  <wsdl:output>
+		<soap:body use="literal" />
+	  </wsdl:output>
+	</wsdl:operation>
+    <wsdl:operation name="SendEmails">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsExtended">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmailsExtended" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsByEmailObject">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmailsByEmailObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsByPanelEmailObject">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmailsByPanelEmailObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskLogEntries">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/GetTaskLogEntries" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskStatus">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/GetTaskStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPercentageCompleted">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/GetTaskPercentageCompleted" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SurveyDeployerSoap12" type="tns:SurveyDeployerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeployProject">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/DeployProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeployProjectWithDotNetSurvey">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/DeployProjectWithDotNetSurvey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CompileDB">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/CompileDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateWI">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/GenerateWI" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GenerateWINet">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/GenerateWINet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurveyAt">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurveyAt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurveyAtWithQA">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurveyAtWithQA" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSurvey">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurvey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+	<wsdl:operation name="LaunchSurveyWithInstantAnalyticsReport">
+	  <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/LaunchSurveyWithInstantAnalyticsReport" style="document" />
+	  <wsdl:input>
+		<soap12:body use="literal" />
+	  </wsdl:input>
+	  <wsdl:output>
+		<soap12:body use="literal" />
+	  </wsdl:output>
+	</wsdl:operation>
+    <wsdl:operation name="SendEmails">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsExtended">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmailsExtended" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsByEmailObject">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmailsByEmailObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendEmailsByPanelEmailObject">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/SendEmailsByPanelEmailObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskLogEntries">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/GetTaskLogEntries" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskStatus">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/GetTaskStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTaskPercentageCompleted">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/GetTaskPercentageCompleted" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SurveyDeployer">
+    <wsdl:port name="SurveyDeployerSoap" binding="tns:SurveyDeployerSoap">
+      <soap:address location="http://localhost/confirmit/webservices/current/surveydeployer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SurveyDeployerSoap12" binding="tns:SurveyDeployerSoap12">
+      <soap12:address location="http://localhost/confirmit/webservices/current/surveydeployer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

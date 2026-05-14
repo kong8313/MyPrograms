@@ -1,0 +1,18 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DialerCommon.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="MonitorRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\Interviews</Value>
+    </Setting>
+    <Setting Name="UrlRoot" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/Interviews/</Value>
+    </Setting>
+    <Setting Name="FileNamePattern" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{0:D10}*.wav</Value>
+    </Setting>
+    <Setting Name="LogHealthCheckPeriodInMinutes" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

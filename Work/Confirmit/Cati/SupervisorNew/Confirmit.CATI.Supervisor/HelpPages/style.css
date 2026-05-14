@@ -1,0 +1,43 @@
+body, table, td
+{
+    color: black;
+    font-size: 12px;
+    font-family: Arial;
+}
+table
+{
+    border-collapse: collapse;
+}
+td
+{
+    border: solid 1px black;
+    padding: 0px 5px 0px 5px;
+    text-aling: left;
+}
+.title
+{
+    color: #f78f1e;
+    font-size: 22px;
+}
+.header
+{
+    color: #f78f1e;
+    font-size: 18px;
+    font-style: italic;
+    margin-top: 30px;
+}
+ol, ul
+{
+    margin-top: 2px;
+}
+P
+{
+	margin-left: 6px;
+	margin-right: 6px;
+}
+
+li
+{
+	margin:3px;
+}
+

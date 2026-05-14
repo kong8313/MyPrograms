@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimulatorScenario xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <GenerateRequestCalls>true</GenerateRequestCalls>
+  <DialerCallerId>d26102097</DialerCallerId>
+  <RequestFrequency>00:00:00.100</RequestFrequency>
+  <MaxRequestTime>00:00:01</MaxRequestTime>
+  <CallsCountPerInterviewer>5</CallsCountPerInterviewer>
+  <LoginResultCode>Success</LoginResultCode>
+  <SetCampaignResultCode>Success</SetCampaignResultCode>
+  <GoNotReadyNotificationDelay>0</GoNotReadyNotificationDelay>
+  <SendNotReadyNotificationOnLogin>false</SendNotReadyNotificationOnLogin>
+  <CallOutcomeDistributionScenario>
+    <!-- If telephone number starts from this prefix simulator tries to convert remaining digists to outcome.
+         For example, for number 555432113 outcome will be 13 (Completed).
+         If remaining number is not existed outcome 29 (TelephonyFailure) will be returned
+         See CallOutcome enum to see existed outcomes -->
+    <OutcomePhonePrefix>5554321</OutcomePhonePrefix>
+    
+    <!-- Possible values are Random and Sequence -->
+    <GenerationMethod>Random</GenerationMethod>
+    
+    <OutcomeList CallOutcome="Connected" ProcessingTime="1-3" DistributionWeight="100"/>
+    <!--<OutcomeList CallOutcome="Busy" ProcessingTime="3-10" DistributionWeight="10"/>-->
+    <OutcomeMetadataList Key="connection_quality" Value="good"/>
+  </CallOutcomeDistributionScenario>
+
+  <GenerateInboundCalls>false</GenerateInboundCalls>
+  <InboundCallRequestFrequency>00:00:01</InboundCallRequestFrequency>
+  <InboundCallsQueueLimit>100</InboundCallsQueueLimit>
+  <!--Incommig telephone number-->
+  <DdiNumber>33-99-777</DdiNumber>
+  <!--Respondent telephone number-->
+  <CliNumber>9988773</CliNumber>
+  
+  <IvrAnswerDelayInSeconds>6</IvrAnswerDelayInSeconds>
+  
+<!-- To use the static answers uncomment and configure the <IvrStaticAnswers> section
+  <IvrStaticAnswers>
+    <item QuestionId="q1" Answer="5"/>
+  </IvrStaticAnswers>-->
+  <AudioFolderName>audio</AudioFolderName>
+  <!-- set valid full DNS server name, default is System.Net.Dns.GetHostEntry("").HostName -->
+  <AudioServerName></AudioServerName>
+  <!-- set http or https, default is http -->
+  <AudioServerSchema>http</AudioServerSchema>
+</SimulatorScenario>

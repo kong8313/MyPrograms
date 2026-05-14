@@ -1,0 +1,1 @@
+﻿CREATE INDEX [IX_BvHistory_SurveyId_InterviewId_FiredTime] ON [dbo].[BvHistory] ([SurveyId], [InterviewId], [FiredTime])

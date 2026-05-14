@@ -1,0 +1,282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EB15DD04-FED9-4333-B159-664D501A6932}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.IntegrationTests.Framework</RootNamespace>
+    <AssemblyName>Confirmit.CATI.IntegrationTests.Framework</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Confirmit.Common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confirmit.Common.8.1.0\lib\netstandard2.0\Confirmit.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Configuration.Bootstrap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confirmit.Configuration.Bootstrap.4.3.11\lib\net462\Confirmit.Configuration.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confirmit.Logging.11.0.0\lib\netstandard2.0\Confirmit.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Security.Crypto.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confirmit.Security.Crypto.Web.1.0.2\lib\net45\Confirmit.Security.Crypto.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.SurveyVoiceXml.Service.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confirmit.SurveyVoiceXml.Service.Client.1.4.1\lib\net472\Confirmit.SurveyVoiceXml.Service.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ConfirmitDialerInterface, Version=3.7.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\assemblies\Telephony\Confirmit Open Dialer Interface\ConfirmitDialerInterface.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.12\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="microsoft.sqlserver.batchparser, Version=14.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_3rdpart\Smo\microsoft.sqlserver.batchparser.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.BatchParserClient, Version=14.100.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.BatchParserClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.Smo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\Consoles\ConsoleController.cs" />
+    <Compile Include="Controllers\Consoles\ConsoleControllerExtensions.cs" />
+    <Compile Include="Controllers\Consoles\ConsolesControllerExtensions.cs" />
+    <Compile Include="Controllers\Mocks\VoiceXmlServiceController.cs" />
+    <Compile Include="Controllers\PredictiveControllerExtensions.cs" />
+    <Compile Include="Controllers\AutomaticControllerExtensions.cs" />
+    <Compile Include="Controllers\AutomaticDialerController.cs" />
+    <Compile Include="Controllers\PredictiveDialerController.cs" />
+    <Compile Include="Data\BaseTestData.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="ControllerExtensions\InterviewControllerCallHistoryExtensions.cs" />
+    <Compile Include="Controllers\Consoles\AutomaticConsoleController.cs" />
+    <Compile Include="Controllers\Consoles\BaseConsoleController.cs" />
+    <Compile Include="Controllers\Consoles\IvrConsoleController.cs" />
+    <Compile Include="Controllers\Consoles\ManualModeConsoleController.cs" />
+    <Compile Include="Controllers\Consoles\PredictiveConsoleController.cs" />
+    <Compile Include="DatasetEngine.cs" />
+    <Compile Include="Data\ArrayController.cs" />
+    <Compile Include="Data\Builders\BaseObjectBuilder.cs" />
+    <Compile Include="Data\Builders\CallCenterDataBuilder.cs" />
+    <Compile Include="Data\Builders\CallGroupDataBuilder.cs" />
+    <Compile Include="Data\Builders\DialerDataBuilder.cs" />
+    <Compile Include="Data\Builders\AlertDataBuilder.cs" />
+    <Compile Include="Data\Builders\ExternalNumberBuilder.cs" />
+    <Compile Include="Data\Builders\FilterDataBuilder.cs" />
+    <Compile Include="Data\Builders\InboundCallHistoryDataBuilder.cs" />
+    <Compile Include="Data\Builders\IObjectBuilder.cs" />
+    <Compile Include="Data\Builders\ISurveyDatabaseBuilder.cs" />
+    <Compile Include="Data\Builders\PersonDataBuilder.cs" />
+    <Compile Include="Data\Builders\PersonGroupDataBuilder.cs" />
+    <Compile Include="Data\Builders\ScriptDataBuilder.cs" />
+    <Compile Include="Data\Builders\StateDataBuilder.cs" />
+    <Compile Include="Data\Builders\SupervisorDataBuilder.cs" />
+    <Compile Include="Data\Builders\SurveyDatabaseBuilder.cs" />
+    <Compile Include="Data\Builders\SurveyDataBuilder.cs" />
+    <Compile Include="Data\Builders\SystemSettingsBuilder.cs" />
+    <Compile Include="Data\Builders\TelephoneBlackListBuilder.cs" />
+    <Compile Include="Data\Builders\TestDataBuilder.cs" />
+    <Compile Include="Data\Builders\TestSurveyDatabaseBuilder.cs" />
+    <Compile Include="Controllers\DialerController.cs" />
+    <Compile Include="Data\IControllerCollection.cs" />
+    <Compile Include="Data\Mock\MockAuthoringService.cs" />
+    <Compile Include="Data\PredictiveDialTypes.cs" />
+    <Compile Include="Data\TestData.cs" />
+    <Compile Include="Data\TestDataContext.cs" />
+    <Compile Include="Data\TestDataMocker.cs" />
+    <Compile Include="Dialer\DialerBehaviorController.cs" />
+    <Compile Include="Dialer\ITestDialer.cs" />
+    <Compile Include="Dialer\ReplyType.cs" />
+    <Compile Include="Dialer\TestDialer.cs" />
+    <Compile Include="Dialer\TestDialerHelper.cs" />
+    <Compile Include="Encryption\FakeCatiSymmetricEncryptor.cs" />
+    <Compile Include="Fakes\FakeAsyncManager.cs" />
+    <Compile Include="Fakes\FakeSchedulingObjectValidator.cs" />
+    <Compile Include="IntegrationTestingFramework.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLocatorRegistry\TestCallCenterProvider.cs" />
+    <Compile Include="ServiceLocatorRegistry\TestRegistry.cs" />
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Stubs.cs" />
+    <Compile Include="Tools\BackendTools.cs" />
+    <Compile Include="Tools\CallCenterTools.cs" />
+    <Compile Include="Tools\CallTools.cs" />
+    <Compile Include="Tools\CatiWsHelper.cs" />
+    <Compile Include="Tools\ConfirmitTools.cs" />
+    <Compile Include="Tools\Constants.cs" />
+    <Compile Include="Tools\DataGenerator.cs" />
+    <Compile Include="Tools\DateTimeExtensions.cs" />
+    <Compile Include="Tools\DateTimeMocker.cs" />
+    <Compile Include="Tools\FakeRespondentBatchObtainer.cs" />
+    <Compile Include="Tools\FusionLibTestTools.cs" />
+    <Compile Include="Tools\InterviewUrlComparer.cs" />
+    <Compile Include="Tools\PersonTools.cs" />
+    <Compile Include="Tools\PredictiveCall.cs" />
+    <Compile Include="Tools\PredictiveTools.cs" />
+    <Compile Include="Tools\RespondentTools.cs" />
+    <Compile Include="Tools\SqlObjectCreator.cs" />
+    <Compile Include="Tools\TestAssert.cs" />
+    <Compile Include="Tools\TestCati2.cs" />
+    <Compile Include="Tools\TestCatiConsole.cs" />
+    <Compile Include="Tools\TestCollectionAssert.cs" />
+    <Compile Include="Tools\TestConnectionUnscope.cs" />
+    <Compile Include="Tools\TestQuota.cs" />
+    <Compile Include="Tools\TestScript.cs" />
+    <Compile Include="Tools\TestTimeService.cs" />
+    <Compile Include="Wrappers\CallCenterWrapper.cs" />
+    <Compile Include="Wrappers\PersonWrapper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.Backend\Confirmit.CATI.Backend.csproj">
+      <Project>{A505B6CE-3EF7-49A8-83B8-4A01F9D54114}</Project>
+      <Name>Confirmit.CATI.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Monitoring.Common\Confirmit.CATI.Monitoring.Common.csproj">
+      <Project>{452C0EB9-7E5E-4E35-BFE5-3531D79647A5}</Project>
+      <Name>Confirmit.CATI.Monitoring.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Telephony\CommonDialerAPI\DialerCommon\DialerCommon.csproj">
+      <Project>{8B02686A-CAA0-416C-BF94-BD28C7A61432}</Project>
+      <Name>DialerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFakes\Generated\Confirmit.Cati.Backend\Confirmit.Cati.Backend.Fakes.csproj">
+      <Project>{AAD1FFD9-1CD0-D7F9-6A4E-F406C7A85F69}</Project>
+      <Name>Confirmit.Cati.Backend.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFakes\Generated\Confirmit.Cati.Core\Confirmit.Cati.Core.Fakes.csproj">
+      <Project>{3296BE72-F1FC-1AC1-8A7C-0B96388600D6}</Project>
+      <Name>Confirmit.Cati.Core.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFakes\Generated\confirmit.surveyvoicexml.service.client\confirmit.surveyvoicexml.service.client.Fakes.csproj">
+      <Project>{56502E10-47DF-457E-8DDD-92D00A3552E6}</Project>
+      <Name>confirmit.surveyvoicexml.service.client.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFakes\Generated\DialerCommon\DialerCommon.Fakes.csproj">
+      <Project>{547590D6-2C71-CC7D-0DB3-873E658ACA13}</Project>
+      <Name>DialerCommon.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Supervisor\Confirmit.CATI.Supervisor.Core\Confirmit.CATI.Supervisor.Core.csproj">
+      <Project>{7B612F3B-66F3-48BE-B67B-EDC43DA1AA37}</Project>
+      <Name>Confirmit.CATI.Supervisor.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

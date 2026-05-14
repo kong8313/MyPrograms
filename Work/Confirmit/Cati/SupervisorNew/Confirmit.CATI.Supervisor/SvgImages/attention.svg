@@ -1,0 +1,5 @@
+﻿<svg class="comd-icon comd-icon-high-risk" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-labelledby="{0}" width="24" height="24">
+  <title id="{0}">{1}</title>
+  <rect width="100%" height="100%" class="comd-icon-high-risk__bg"></rect>
+  <text class="comd-icon-high-risk__text" x="12" y="19" text-anchor="middle">!</text>
+</svg>

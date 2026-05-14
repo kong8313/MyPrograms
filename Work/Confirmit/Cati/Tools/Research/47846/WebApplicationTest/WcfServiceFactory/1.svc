@@ -1,0 +1,155 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="WcfServiceLibrary.WcfTestService"  Factory="MyFactory" %>
+
+using System;
+using System.ServiceModel;
+using System.ServiceModel.Description;
+using System.ServiceModel.Activation;
+using System.ServiceModel.Channels;
+using System.Collections.Generic;
+using WcfServiceLibrary;
+
+public class MyFactory : ServiceHostFactory 
+	{
+
+        Dictionary<string, Binding> bindings = new Dictionary<string, Binding>();
+
+        protected Binding GetBindingByScheme(string scheme)
+        {
+            Binding b = null;
+            if (bindings.TryGetValue(scheme, out b)) return (b);
+
+            switch (scheme)
+            { 
+                case "http": b = new WSHttpBinding();                    
+                    break;
+                case "https": b = new WSHttpBinding();
+                    break;
+                default: b = null;
+                    break;                                    
+            }
+            if (b != null) bindings.Add(scheme, b);
+            return (b);        
+        }
+
+        Dictionary<string, Binding> mexBindings = new Dictionary<string, Binding>();
+        protected Binding GetMexBindingByScheme(string scheme)
+        {
+            Binding b = null;
+            if (mexBindings.TryGetValue(scheme, out b)) return (b);
+
+            switch (scheme)
+            {
+                case "http": b= MetadataExchangeBindings.CreateMexHttpBinding();
+                    break;
+                case "https": b = MetadataExchangeBindings.CreateMexHttpsBinding();
+                    break;
+                default: b = null;
+                    break;
+            }
+            if (b != null) mexBindings.Add(scheme, b);
+            return (b);
+        }
+
+
+            
+		/*protected override ServiceHost CreateServiceHost( Type t, Uri[] baseAddresses ) 
+		{
+            return base.CreateServiceHost(t, baseAddresses); 
+		}*/
+
+		//Then in the CreateServiceHost method, we can do all of the
+		//things that we can do in a self-hosted case:
+		public override ServiceHostBase CreateServiceHost
+				(string service, Uri[] baseAddresses)
+
+		{
+            // The service parameter is ignored here because we know our service.
+            ServiceHost host = new ServiceHost(typeof(WcfTestService)
+                //,new Uri("http://localhost:5555/1.svc"));
+                //,baseAddresses);
+                );
+            //new[]{ baseAddresses[0], new Uri(httpsAddress)});
+
+            ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
+            host.Description.Behaviors.Add(behavior);            
+            
+            foreach (Uri uri in baseAddresses)
+            {
+                UriBuilder addressBuilder = new UriBuilder(uri);
+                WSHttpBinding binding = GetBindingByScheme(addressBuilder.Scheme) as WSHttpBinding;
+                if (binding == null) continue;
+                
+                if (addressBuilder.Scheme.Equals(Uri.UriSchemeHttps, StringComparison.CurrentCultureIgnoreCase))
+                {
+
+                    binding.Security.Mode = SecurityMode.Transport;
+                    binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+
+                }
+
+                if (addressBuilder.Scheme.Equals(Uri.UriSchemeHttp, StringComparison.CurrentCultureIgnoreCase))
+                {
+
+                    binding.Security.Mode = SecurityMode.None;
+                    binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;                    
+
+                }
+                // define the service endpoints
+                host.AddServiceEndpoint(typeof(IWcfTestService),
+                    binding, "urn:test:test",
+                    addressBuilder.Uri);
+
+                
+                Binding mexBinding = GetMexBindingByScheme(addressBuilder.Scheme);
+                if (addressBuilder.Scheme.Equals("https", StringComparison.CurrentCultureIgnoreCase))
+                {
+                    behavior.HttpsGetEnabled = true;
+                    behavior.HttpsGetUrl = new Uri(addressBuilder.Uri, "1.svc/get");
+                    host.AddServiceEndpoint(typeof(IMetadataExchange),
+                        mexBinding, "urn:mex", new Uri(addressBuilder.Uri, "1.svc/get/mex"));
+                }
+                else
+                {
+                    behavior.HttpGetEnabled = true;
+                    behavior.HttpGetUrl = new Uri(addressBuilder.Uri, "1.svc/get");
+                    host.AddServiceEndpoint(typeof(IMetadataExchange),
+                        mexBinding, "urn:mex", new Uri(addressBuilder.Uri, "1.svc/get/mex"));            
+                    
+                }
+                
+                          
+            
+            }
+                        
+            /*
+            UriBuilder httpsAddressBuilder = new UriBuilder(baseAddresses[1]);
+            httpsAddressBuilder.Scheme = "https";
+            
+
+            WSHttpBinding binding = new WSHttpBinding();
+            binding.Security.Mode = SecurityMode.Transport;
+            binding.Security.Transport.ClientCredentialType = HttpClientCredentialType.None;
+            // define the service endpoints
+            host.AddServiceEndpoint(typeof(IWcfTestService),
+                binding, "urn:test:test",
+                httpsAddressBuilder.Uri);
+
+            
+            //string mexAddress = baseAddresses[0].Host + baseAddresses[0].PathAndQuery;
+            UriBuilder mexAddressBuilder = new UriBuilder(baseAddresses[0]);
+            mexAddressBuilder.Scheme = "http";
+            
+            ServiceMetadataBehavior behavior = new ServiceMetadataBehavior();
+            behavior.HttpGetEnabled = true;
+            behavior.HttpGetUrl = new Uri(mexAddressBuilder.Uri, "1.svc/get");            
+
+            host.Description.Behaviors.Add(behavior);
+            host.AddServiceEndpoint(typeof(IMetadataExchange),
+                MetadataExchangeBindings.CreateMexHttpBinding(), "urn:mex", new Uri(mexAddressBuilder.Uri, "1.svc/get/mex"));            
+            
+            */
+			return host;
+
+		}
+
+	}

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(SolutionDir)CodiVersion.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8B02686A-CAA0-416C-BF94-BD28C7A61432}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DialerCommon</RootNamespace>
+    <AssemblyName>DialerCommon</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\CatiCommonILoggerToCodiILogger.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\IDialerAuthorizationKeyEncryptor.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerAuthorizationKeyEncryptor.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerExceptions\DialerWsInvalidCredentialsException.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerExceptions\DialerWsNotInitializedException.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerEventNotificationSenders.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\IDialerEventNotificationsSender.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerEventNotificationsSender.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\IDialerEvent.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerEvents.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerEventsHandlerServiceChannelFactoryWrapperConfiguration.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerEventsHandlerServiceInternalChannelFactoryWrapperConfiguration.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerEventsServiceClient.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerParameters\DialerParameter.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerParameters\DialerParametersSerializer.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerParameters\DialerParametersException.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\DialerServicePerformanceCounters.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\IDialerAPI.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\IDialerEventsHandlerWcfService.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\IDialerRecordingAPI.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\ICommonLogger.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\IUtcOffsetSource.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\Logger.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\LogFileGetter.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\LogFileNameGenerator.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\NotificationsSenderInitializer.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\INotificationsSenderInitializer.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\LoggerHealthChecker.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\NLoggerWrapper.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\UtcOffsetSource.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\UtcOffsetString.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\OutcomeTranslationTable.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Properties\AssemblyInfo.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionRootDir)\DialerCommon\EventNotifications\IServiceStartedNotificationSender.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\EventNotifications\ServiceStartedNotificationSender.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerServiceAppDataPath.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\RequestCounter.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\RequestId.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\DailerServiceErrorSender.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\ErrorReportingServiceChannelFactoryWrapperConfiguration.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\ErrorReportingServiceInternalChannelFactoryWrapperConfiguration.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\IErrorSender.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\TraceListeners\TextToLogFileTraceListener.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\Logging\TraceListeners\WsReportingTraceListener.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\IDialerEventsHandler.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerCommonSettings.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\IDialerCommonSettings.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\ILoggerHealthChecker.cs" />
+    <Compile Include="$(CodiLatestVersionRootDir)DialerCommon\DialerFeatures.cs">
+      <Link>DialerFeatures.cs</Link>
+    </Compile>
+    <Compile Include="..\..\OpenDialer\v.3.7\DialerCommon\CodiVersionInfo.cs">
+      <Link>DialerCommon\CodiVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="DialerInitializeResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+    <None Include="$(CodiLatestVersionRootDir)DialerCommon\app.config" />
+    <None Include="$(CodiLatestVersionRootDir)DialerCommon\Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)MSBuild\NFakes\NFakesConsole.exe" "$(SolutionDir)assemblies\DialerCommon.dll" "$(SolutionDir)Confirmit.CATI.Telephony\CommonDialerAPI\DialerCommon\DialerCommon.csproj" "$(SolutionDir)NFakes\Generated" "$(SolutionDir)ConfirmitKeyPair.snk"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

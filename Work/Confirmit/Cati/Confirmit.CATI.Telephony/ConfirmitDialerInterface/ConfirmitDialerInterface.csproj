@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(SolutionDir)CodiVersion.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConfirmitDialerInterface</RootNamespace>
+    <AssemblyName>ConfirmitDialerInterface</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\assemblies\Telephony\Confirmit Open Dialer Interface\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\assemblies\Telephony\Confirmit Open Dialer Interface\ConfirmitDialerInterface.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\assemblies\Telephony\Confirmit Open Dialer Interface\ConfirmitDialerInterface.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(CodiLatestVersionDir)AgentState.cs">
+      <Link>AgentState.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)AgentTaskChoiceMode.cs">
+      <Link>AgentTaskChoiceMode.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)AudioRecordInfo.cs">
+      <Link>AudioRecordInfo.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)AudioRecordingMode.cs">
+      <Link>AudioRecordingMode.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)BulkAudioResult.cs">
+      <Link>BulkAudioResult.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)CallInfo.cs">
+      <Link>CallInfo.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)CallOutcome.cs">
+      <Link>CallOutcome.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)CallsSelectionAlgorithm.cs">
+      <Link>CallsSelectionAlgorithm.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)CampaignInterviewIdentity.cs">
+      <Link>CampaignInterviewIdentity.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerErrorCode.cs">
+      <Link>DialerErrorCode.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerExceptions\DialerException.cs">
+      <Link>DialerException.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerExceptions\DialerIsNotInitializedException.cs">
+      <Link>DialerIsNotInitializedException.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerExceptions\ExtensionIsAlreadyInUseException.cs">
+      <Link>ExtensionIsAlreadyInUseException.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerParameterError.cs">
+      <Link>DialerParameterError.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerState.cs">
+      <Link>DialerState.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialingMode.cs">
+      <Link>DialingMode.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)IDialerCoreApi.cs">
+      <Link>IDialerCoreApi.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)IDialerEvents.cs">
+      <Link>IDialerEvents.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)IDialerRecordingApi.cs">
+      <Link>IDialerRecordingApi.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)ILogger.cs">
+      <Link>ILogger.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)DialerExceptions\ParametersException.cs">
+      <Link>ParametersException.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)InterviewStatus.cs">
+      <Link>InterviewStatus.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)ResourceBindingType.cs">
+      <Link>ResourceBindingType.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)StopRecordingMode.cs">
+      <Link>StopRecordingMode.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)TrunkLineStateAndAlarms.cs">
+      <Link>TrunkLineStateAndAlarms.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\Properties\AssemblyInfo.cs">
+      <Link>AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\..\CatiBuildNumber.cs">
+      <Link>CatiBuildNumber.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\CodiVersionInfo.cs">
+      <Link>CodiVersionInfo.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\AgentType.cs">
+      <Link>AgentType.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\AudioMessageDescriptor.cs">
+      <Link>AudioMessageDescriptor.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\AudioSourceType.cs">
+      <Link>AudioSourceType.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\InboundDdiNumber.cs">
+      <Link>InboundDdiNumber.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\AudioMessageType.cs">
+      <Link>AudioMessageType.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\ConnectionState.cs">
+      <Link>ConnectionState.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\TargetType.cs">
+      <Link>TargetType.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\TransferType.cs">
+      <Link>TransferType.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\InitiatorState.cs">
+      <Link>InitiatorState.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\TargetOutcome.cs">
+      <Link>TargetOutcome.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\TargetState.cs">
+      <Link>TargetState.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\TransferState.cs">
+      <Link>TransferState.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\MonitorMode.cs">
+      <Link>MonitorMode.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\IDialerFeatures.cs">
+      <Link>IDialerFeatures.cs</Link>
+    </Compile>
+    <Compile Include="$(CodiLatestVersionDir)\AudioFile.cs">
+      <Link>AudioFile.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Documentation\ConfirmitDialerInterface.shfbproj" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy "$(TargetPath)" "$(ProjectDir)\..\SimulatorDialerDriverDemo\"
+copy "$(OutDir)ConfirmitDialerInterface.dll" "$(SolutionDir)assemblies\Telephony\Confirmit Open Dialer Interface\"
+"$(SolutionDir)MSBuild\NFakes\NFakesConsole.exe" "$(SolutionDir)assemblies\Telephony\Confirmit Open Dialer Interface\ConfirmitDialerInterface.dll" "$(SolutionDir)Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj" "$(SolutionDir)NFakes\Generated" "$(SolutionDir)ConfirmitKeyPair.snk"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

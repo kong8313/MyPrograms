@@ -1,0 +1,24 @@
+﻿
+.Read call history information from Nordic site with filters
+
+----
+// Read configuration parameters
+var companyId = int.Parse(ConfigurationManager.AppSettings.Get("CompanyId"));
+var user = ConfigurationManager.AppSettings.Get("UserName");
+var password = ConfigurationManager.AppSettings.Get("Password");
+
+// Create and configure LogOn service proxy class
+var logonClient = Environments.Nordic.CreateLogOnSoapClient();
+
+// Log on and generate xConfirmitApiKey
+var xConfirmitApiKey = logonClient.LogOnUser(user, password);
+
+// Create RestClient class
+var client = Environments.Nordic.CreateCatiRestClient(xConfirmitApiKey, companyId);
+
+// Create service class
+ICallHistoryService callHistoryService = new CallHistoryService(client);
+
+// Get all call history data
+var data = await callHistoryService.GetAsync("$filter=CallCenterId eq 1 and InterviewId eq 11");
+----

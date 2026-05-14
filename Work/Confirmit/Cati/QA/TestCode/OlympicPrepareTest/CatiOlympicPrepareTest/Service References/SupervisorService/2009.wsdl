@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://www.confirmit.com/supervisorService/05/05/2009" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.confirmit.com/supervisorService/05/05/2009" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.confirmit.com/supervisorService/05/05/2009/Imports">
+      <xsd:import namespace="http://www.confirmit.com/supervisorService/05/05/2009" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Mail.Feedback" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.DAL.Generated.Entity.Table" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Tasks" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.ConsoleService.Abstract" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.CodeDom.Compiler" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Services.PersonImport" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Logging" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Telephony" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/DialerCommon" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="supervisorService_SendMessage_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessage" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SendMessage_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SendMessage_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q1:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_OpenSurvey_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSurvey" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_OpenSurvey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_OpenSurvey_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q2:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CloseSurvey_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseSurvey" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CloseSurvey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CloseSurvey_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q3:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ShutdownSurvey_InputMessage">
+    <wsdl:part name="parameters" element="tns:ShutdownSurvey" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ShutdownSurvey_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ShutdownSurveyResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ShutdownSurvey_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q4:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_TerminateTaskByPerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:TerminateTaskByPerson" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_TerminateTaskByPerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TerminateTaskByPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_TerminateTaskByPerson_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q5:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_TerminateTasksByDialerId_InputMessage">
+    <wsdl:part name="parameters" element="tns:TerminateTasksByDialerId" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_TerminateTasksByDialerId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:TerminateTasksByDialerIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_TerminateTasksByDialerId_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q6:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_EnableDialer_InputMessage">
+    <wsdl:part name="parameters" element="tns:EnableDialer" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_EnableDialer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EnableDialerResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_EnableDialer_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q7:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_DisableDialer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisableDialer" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_DisableDialer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisableDialerResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_DisableDialer_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q8:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetPersonParentGroups_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetPersonParentGroups" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetPersonParentGroups_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetPersonParentGroupsResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetPersonParentGroups_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q9:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_DeletePerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePerson" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_DeletePerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_DeletePerson_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q10:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LockPersonBySupervisor_InputMessage">
+    <wsdl:part name="parameters" element="tns:LockPersonBySupervisor" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LockPersonBySupervisor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LockPersonBySupervisorResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LockPersonBySupervisor_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q11:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_IsDialerOperational_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsDialerOperational" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_IsDialerOperational_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsDialerOperationalResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_IsDialerOperational_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q12:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SaveSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveSchedule" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SaveSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SaveSchedule_SchedulingScriptSyntaxErrorExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q13:SchedulingScriptSyntaxErrorExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SaveSchedule_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q14:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LaunchSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:LaunchSchedule" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LaunchSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LaunchScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LaunchSchedule_SchedulingScriptSyntaxErrorExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q15:SchedulingScriptSyntaxErrorExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_LaunchSchedule_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q16:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CheckSchedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckSchedule" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CheckSchedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CheckSchedule_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q17:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_Schedule_InputMessage">
+    <wsdl:part name="parameters" element="tns:Schedule" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_Schedule_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ScheduleResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_Schedule_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q18:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_StartMonitor_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartMonitor" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_StartMonitor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartMonitorResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_StartMonitor_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q19:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_StopMonitor_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopMonitor" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_StopMonitor_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopMonitorResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_StopMonitor_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q20:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CreateOrUpdatePerson_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrUpdatePerson" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CreateOrUpdatePerson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrUpdatePersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_CreateOrUpdatePerson_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q21:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetInterviewRecordings_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInterviewRecordings" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetInterviewRecordings_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInterviewRecordingsResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetInterviewRecordings_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q22:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_AreRecordsExists_InputMessage">
+    <wsdl:part name="parameters" element="tns:AreRecordsExists" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_AreRecordsExists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AreRecordsExistsResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_AreRecordsExists_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q23:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetDialerDefaultSurveyParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDialerDefaultSurveyParameters" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetDialerDefaultSurveyParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDialerDefaultSurveyParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetDialerDefaultSurveyParameters_DialerParametersExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" name="detail" element="q24:DialerParametersExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ValidateDialerSurveyParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateDialerSurveyParameters" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ValidateDialerSurveyParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateDialerSurveyParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ValidateDialerSurveyParameters_DialerParametersExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" name="detail" element="q25:DialerParametersExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetDialerSurveyParameters_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetDialerSurveyParameters" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetDialerSurveyParameters_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetDialerSurveyParametersResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_SetDialerSurveyParameters_DialerParametersExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" name="detail" element="q26:DialerParametersExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ImportPersons_InputMessage">
+    <wsdl:part name="parameters" element="tns:ImportPersons" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ImportPersons_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ImportPersonsResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ImportPersons_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q27:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ConfigureInboundDdiNumbers_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConfigureInboundDdiNumbers" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ConfigureInboundDdiNumbers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConfigureInboundDdiNumbersResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_ConfigureInboundDdiNumbers_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q28:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetLogFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFiles" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetLogFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetLogFiles_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q29:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetLogFileBodyZipped_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileBodyZipped" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetLogFileBodyZipped_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLogFileBodyZippedResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetLogFileBodyZipped_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q30:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetDialerVersion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDialerVersion" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetDialerVersion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDialerVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetDialerVersion_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q31:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetAvailableExtendedFunctionality_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableExtendedFunctionality" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetAvailableExtendedFunctionality_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAvailableExtendedFunctionalityResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetAvailableExtendedFunctionality_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q32:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetDialerSupportedFeatures_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDialerSupportedFeatures" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetDialerSupportedFeatures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDialerSupportedFeaturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetDialerSupportedFeatures_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q33:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetOverridenDialerSupportedFeatures_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOverridenDialerSupportedFeatures" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetOverridenDialerSupportedFeatures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOverridenDialerSupportedFeaturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_GetOverridenDialerSupportedFeatures_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q34:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_UpdateOverridenDialerSupportedFeature_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOverridenDialerSupportedFeature" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_UpdateOverridenDialerSupportedFeature_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateOverridenDialerSupportedFeatureResponse" />
+  </wsdl:message>
+  <wsdl:message name="supervisorService_UpdateOverridenDialerSupportedFeature_UserMessageExceptionDetailsFault_FaultMessage">
+    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" name="detail" element="q35:UserMessageExceptionDetails" />
+  </wsdl:message>
+  <wsdl:portType name="supervisorService">
+    <wsdl:operation name="SendMessage">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SendMessage" message="tns:supervisorService_SendMessage_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SendMessageResponse" message="tns:supervisorService_SendMessage_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SendMessageUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_SendMessage_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="OpenSurvey">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/OpenSurvey" message="tns:supervisorService_OpenSurvey_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/OpenSurveyResponse" message="tns:supervisorService_OpenSurvey_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/OpenSurveyUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_OpenSurvey_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseSurvey">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CloseSurvey" message="tns:supervisorService_CloseSurvey_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CloseSurveyResponse" message="tns:supervisorService_CloseSurvey_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CloseSurveyUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_CloseSurvey_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ShutdownSurvey">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ShutdownSurvey" message="tns:supervisorService_ShutdownSurvey_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ShutdownSurveyResponse" message="tns:supervisorService_ShutdownSurvey_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ShutdownSurveyUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_ShutdownSurvey_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TerminateTaskByPerson">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTaskByPerson" message="tns:supervisorService_TerminateTaskByPerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTaskByPersonResponse" message="tns:supervisorService_TerminateTaskByPerson_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTaskByPersonUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_TerminateTaskByPerson_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="TerminateTasksByDialerId">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTasksByDialerId" message="tns:supervisorService_TerminateTasksByDialerId_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTasksByDialerIdResponse" message="tns:supervisorService_TerminateTasksByDialerId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTasksByDialerIdUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_TerminateTasksByDialerId_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EnableDialer">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/EnableDialer" message="tns:supervisorService_EnableDialer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/EnableDialerResponse" message="tns:supervisorService_EnableDialer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/EnableDialerUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_EnableDialer_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DisableDialer">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DisableDialer" message="tns:supervisorService_DisableDialer_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DisableDialerResponse" message="tns:supervisorService_DisableDialer_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DisableDialerUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_DisableDialer_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetPersonParentGroups">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetPersonParentGroups" message="tns:supervisorService_SetPersonParentGroups_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetPersonParentGroupsResponse" message="tns:supervisorService_SetPersonParentGroups_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetPersonParentGroupsUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_SetPersonParentGroups_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerson">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DeletePerson" message="tns:supervisorService_DeletePerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DeletePersonResponse" message="tns:supervisorService_DeletePerson_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DeletePersonUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_DeletePerson_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LockPersonBySupervisor">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LockPersonBySupervisor" message="tns:supervisorService_LockPersonBySupervisor_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LockPersonBySupervisorResponse" message="tns:supervisorService_LockPersonBySupervisor_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LockPersonBySupervisorUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_LockPersonBySupervisor_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDialerOperational">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/IsDialerOperational" message="tns:supervisorService_IsDialerOperational_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/IsDialerOperationalResponse" message="tns:supervisorService_IsDialerOperational_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/IsDialerOperationalUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_IsDialerOperational_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveSchedule">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SaveSchedule" message="tns:supervisorService_SaveSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SaveScheduleResponse" message="tns:supervisorService_SaveSchedule_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SaveScheduleSchedulingScriptSyntaxErrorExceptionDetailsFault" name="SchedulingScriptSyntaxErrorExceptionDetailsFault" message="tns:supervisorService_SaveSchedule_SchedulingScriptSyntaxErrorExceptionDetailsFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SaveScheduleUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_SaveSchedule_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSchedule">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LaunchSchedule" message="tns:supervisorService_LaunchSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LaunchScheduleResponse" message="tns:supervisorService_LaunchSchedule_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LaunchScheduleSchedulingScriptSyntaxErrorExceptionDetailsFault" name="SchedulingScriptSyntaxErrorExceptionDetailsFault" message="tns:supervisorService_LaunchSchedule_SchedulingScriptSyntaxErrorExceptionDetailsFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LaunchScheduleUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_LaunchSchedule_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckSchedule">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CheckSchedule" message="tns:supervisorService_CheckSchedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CheckScheduleResponse" message="tns:supervisorService_CheckSchedule_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CheckScheduleUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_CheckSchedule_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/Schedule" message="tns:supervisorService_Schedule_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ScheduleResponse" message="tns:supervisorService_Schedule_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ScheduleUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_Schedule_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartMonitor">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StartMonitor" message="tns:supervisorService_StartMonitor_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StartMonitorResponse" message="tns:supervisorService_StartMonitor_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StartMonitorUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_StartMonitor_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopMonitor">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StopMonitor" message="tns:supervisorService_StopMonitor_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StopMonitorResponse" message="tns:supervisorService_StopMonitor_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StopMonitorUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_StopMonitor_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrUpdatePerson">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CreateOrUpdatePerson" message="tns:supervisorService_CreateOrUpdatePerson_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CreateOrUpdatePersonResponse" message="tns:supervisorService_CreateOrUpdatePerson_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CreateOrUpdatePersonUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_CreateOrUpdatePerson_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInterviewRecordings">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetInterviewRecordings" message="tns:supervisorService_GetInterviewRecordings_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetInterviewRecordingsResponse" message="tns:supervisorService_GetInterviewRecordings_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetInterviewRecordingsUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetInterviewRecordings_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AreRecordsExists">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/AreRecordsExists" message="tns:supervisorService_AreRecordsExists_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/AreRecordsExistsResponse" message="tns:supervisorService_AreRecordsExists_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/AreRecordsExistsUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_AreRecordsExists_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDialerDefaultSurveyParameters">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerDefaultSurveyParameters" message="tns:supervisorService_SetDialerDefaultSurveyParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerDefaultSurveyParametersResponse" message="tns:supervisorService_SetDialerDefaultSurveyParameters_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerDefaultSurveyParametersDialerParametersExceptionDetailsFault" name="DialerParametersExceptionDetailsFault" message="tns:supervisorService_SetDialerDefaultSurveyParameters_DialerParametersExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateDialerSurveyParameters">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ValidateDialerSurveyParameters" message="tns:supervisorService_ValidateDialerSurveyParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ValidateDialerSurveyParametersResponse" message="tns:supervisorService_ValidateDialerSurveyParameters_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ValidateDialerSurveyParametersDialerParametersExceptionDetailsFault" name="DialerParametersExceptionDetailsFault" message="tns:supervisorService_ValidateDialerSurveyParameters_DialerParametersExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetDialerSurveyParameters">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerSurveyParameters" message="tns:supervisorService_SetDialerSurveyParameters_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerSurveyParametersResponse" message="tns:supervisorService_SetDialerSurveyParameters_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerSurveyParametersDialerParametersExceptionDetailsFault" name="DialerParametersExceptionDetailsFault" message="tns:supervisorService_SetDialerSurveyParameters_DialerParametersExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ImportPersons">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ImportPersons" message="tns:supervisorService_ImportPersons_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ImportPersonsResponse" message="tns:supervisorService_ImportPersons_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ImportPersonsUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_ImportPersons_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfigureInboundDdiNumbers">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ConfigureInboundDdiNumbers" message="tns:supervisorService_ConfigureInboundDdiNumbers_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ConfigureInboundDdiNumbersResponse" message="tns:supervisorService_ConfigureInboundDdiNumbers_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ConfigureInboundDdiNumbersUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_ConfigureInboundDdiNumbers_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFiles">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFiles" message="tns:supervisorService_GetLogFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFilesResponse" message="tns:supervisorService_GetLogFiles_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFilesUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetLogFiles_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFileBodyZipped">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFileBodyZipped" message="tns:supervisorService_GetLogFileBodyZipped_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFileBodyZippedResponse" message="tns:supervisorService_GetLogFileBodyZipped_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFileBodyZippedUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetLogFileBodyZipped_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDialerVersion">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerVersion" message="tns:supervisorService_GetDialerVersion_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerVersionResponse" message="tns:supervisorService_GetDialerVersion_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerVersionUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetDialerVersion_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableExtendedFunctionality">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetAvailableExtendedFunctionality" message="tns:supervisorService_GetAvailableExtendedFunctionality_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetAvailableExtendedFunctionalityResponse" message="tns:supervisorService_GetAvailableExtendedFunctionality_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetAvailableExtendedFunctionalityUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetAvailableExtendedFunctionality_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDialerSupportedFeatures">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerSupportedFeatures" message="tns:supervisorService_GetDialerSupportedFeatures_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerSupportedFeaturesResponse" message="tns:supervisorService_GetDialerSupportedFeatures_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerSupportedFeaturesUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetDialerSupportedFeatures_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOverridenDialerSupportedFeatures">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetOverridenDialerSupportedFeatures" message="tns:supervisorService_GetOverridenDialerSupportedFeatures_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetOverridenDialerSupportedFeaturesResponse" message="tns:supervisorService_GetOverridenDialerSupportedFeatures_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetOverridenDialerSupportedFeaturesUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_GetOverridenDialerSupportedFeatures_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOverridenDialerSupportedFeature">
+      <wsdl:input wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/UpdateOverridenDialerSupportedFeature" message="tns:supervisorService_UpdateOverridenDialerSupportedFeature_InputMessage" />
+      <wsdl:output wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/UpdateOverridenDialerSupportedFeatureResponse" message="tns:supervisorService_UpdateOverridenDialerSupportedFeature_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/UpdateOverridenDialerSupportedFeatureUserMessageExceptionDetailsFault" name="UserMessageExceptionDetailsFault" message="tns:supervisorService_UpdateOverridenDialerSupportedFeature_UserMessageExceptionDetailsFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>

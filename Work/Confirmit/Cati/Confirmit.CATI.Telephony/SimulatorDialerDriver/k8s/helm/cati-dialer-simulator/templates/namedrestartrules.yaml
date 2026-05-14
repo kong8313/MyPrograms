@@ -1,0 +1,32 @@
+{{- range $index, $rule := .Values.namedRestartRules }}
+apiVersion: horizons.confirmit.com/v1
+kind: NamedQueryThresholdRestartRule
+metadata:
+  name: {{ template "cati-dialer-simulator.fullname" $ }}-{{ $index }}
+  labels: {{ include "cati-dialer-simulator.labels" $ | nindent 4 }}
+{{- if $.Values.annotations }}
+  annotations: {{ toYaml $.Values.annotations | nindent 4 }}
+{{- end }}
+spec:
+  targetName: {{ template "cati-dialer-simulator.fullname" $ }}
+{{- if $rule.targetKind }}
+  targetKind: {{ $rule.targetKind }}
+{{- end }}
+  queryName: {{ $rule.queryName }}
+  threshold: {{ $rule.threshold }}
+  comparisonOperator: {{ $rule.comparisonOperator }}
+{{- if $rule.stabilizationWindowSeconds }}
+  stabilizationWindowSeconds: {{ $rule.stabilizationWindowSeconds }}
+{{- end }}
+{{- if $rule.dryRun }}
+  dryRun: {{ $rule.dryRun }}
+{{- end }}
+{{- if $rule.args }}
+  args:
+{{- range $rule.args }}
+  - name: {{ .name }}
+    value: {{ tpl .value $ }}
+{{- end }}
+{{- end }}
+---
+{{- end }}

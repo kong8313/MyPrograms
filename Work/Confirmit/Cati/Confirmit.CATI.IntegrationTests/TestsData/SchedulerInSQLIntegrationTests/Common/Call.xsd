@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CallDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CallDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="CallDataSet" msprop:Generator_DataSetName="CallDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Call" msprop:Generator_UserTableName="Call" msprop:Generator_RowDeletedName="CallRowDeleted" msprop:Generator_RowChangedName="CallRowChanged" msprop:Generator_RowClassName="CallRow" msprop:Generator_RowChangingName="CallRowChanging" msprop:Generator_RowEvArgName="CallRowChangeEvent" msprop:Generator_RowEvHandlerName="CallRowChangeEventHandler" msprop:Generator_TableClassName="CallDataTable" msprop:Generator_TableVarName="tableCall" msprop:Generator_RowDeletingName="CallRowDeleting" msprop:Generator_TablePropName="Call">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="callID" msprop:Generator_UserColumnName="callID" msprop:Generator_ColumnVarNameInTable="columncallID" msprop:Generator_ColumnPropNameInRow="callID" msprop:Generator_ColumnPropNameInTable="callIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="apptID" msprop:Generator_UserColumnName="apptID" msprop:Generator_ColumnVarNameInTable="columnapptID" msprop:Generator_ColumnPropNameInRow="apptID" msprop:Generator_ColumnPropNameInTable="apptIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="surveySid" msprop:Generator_UserColumnName="surveySid" msprop:Generator_ColumnVarNameInTable="columnsurveySid" msprop:Generator_ColumnPropNameInRow="surveySid" msprop:Generator_ColumnPropNameInTable="surveySidColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="iid" msprop:Generator_UserColumnName="iid" msprop:Generator_ColumnVarNameInTable="columniid" msprop:Generator_ColumnPropNameInRow="iid" msprop:Generator_ColumnPropNameInTable="iidColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="CallState" msprop:Generator_UserColumnName="CallState" msprop:Generator_ColumnVarNameInTable="columnCallState" msprop:Generator_ColumnPropNameInRow="CallState" msprop:Generator_ColumnPropNameInTable="CallStateColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="roleID" msprop:Generator_UserColumnName="roleID" msprop:Generator_ColumnVarNameInTable="columnroleID" msprop:Generator_ColumnPropNameInRow="roleID" msprop:Generator_ColumnPropNameInTable="roleIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="shiftID" msprop:Generator_UserColumnName="shiftID" msprop:Generator_ColumnVarNameInTable="columnshiftID" msprop:Generator_ColumnPropNameInRow="shiftID" msprop:Generator_ColumnPropNameInTable="shiftIDColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="priority" msprop:Generator_UserColumnName="priority" msprop:Generator_ColumnVarNameInTable="columnpriority" msprop:Generator_ColumnPropNameInRow="priority" msprop:Generator_ColumnPropNameInTable="priorityColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="timeInShift" msdata:DateTimeMode="Utc" msprop:Generator_UserColumnName="timeInShift" msprop:Generator_ColumnVarNameInTable="columntimeInShift" msprop:Generator_ColumnPropNameInRow="timeInShift" msprop:Generator_ColumnPropNameInTable="timeInShiftColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="timeToExpire" msdata:DateTimeMode="Utc" msprop:Generator_UserColumnName="timeToExpire" msprop:Generator_ColumnVarNameInTable="columntimeToExpire" msprop:Generator_ColumnPropNameInRow="timeToExpire" msprop:Generator_ColumnPropNameInTable="timeToExpireColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="resource" msprop:Generator_UserColumnName="resource" msprop:Generator_ColumnVarNameInTable="columnresource" msprop:Generator_ColumnPropNameInRow="resource" msprop:Generator_ColumnPropNameInTable="resourceColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="resource_type" msprop:Generator_UserColumnName="resource_type" msprop:Generator_ColumnVarNameInTable="columnresource_type" msprop:Generator_ColumnPropNameInRow="resource_type" msprop:Generator_ColumnPropNameInTable="resource_typeColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

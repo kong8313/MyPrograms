@@ -1,0 +1,521 @@
+
+[[_definitions]]
+== Definitions
+
+[[_breakhistory]]
+=== BreakHistory
+Class representing information about interviewer break
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**BreakTypeId** +
+__required__|Unique identifier of a break type|integer (int32)
+|**BreakTypeName** +
+__optional__|Name of the break type|string
+|**CallCenterId** +
+__required__|Unique identifier of a call center|integer (int32)
+|**Duration** +
+__optional__|Duration of the break in seconds|integer (int32)
+|**Id** +
+__required__|Unique identifier of the break|integer (int32)
+|**InterviewerId** +
+__required__|Unique identifier of an interviewer|integer (int32)
+|**IsPaid** +
+__optional__|A flag indicating if the break is paid|boolean
+|**SurveyId** +
+__optional__|Unique identifier of a survey|string
+|**Time** +
+__required__|Time when the break was started|string (date-time)
+|===
+
+
+[[_callhistory]]
+=== CallHistory
+Class representing information about the call attempt
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**CallCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**Duration** +
+__optional__|Duration of the call attempt in seconds|integer (int32)
+|**ExtendedStatus** +
+__optional__|Extended status that has been assigned to the interview after the call attempt|integer (int32)
+|**Id** +
+__required__|Unique identifier of the call|integer (int32)
+|**InterviewId** +
+__optional__|Unique identifier of the interview|integer (int32)
+|**InterviewerId** +
+__optional__|Unique identifier of the interviewer|integer (int32)
+|**SurveyId** +
+__optional__|Unique identifier of the survey (pXXXXXXXX)|string
+|**TelephoneNumber** +
+__optional__|Telephone number|string
+|**Time** +
+__required__|Time of the call attempt|string (date-time)
+|**WaitingTime** +
+__optional__|Waiting time (in seconds) before the call has started|integer (int32)
+|===
+
+
+[[_callhistorywithvariables]]
+=== CallHistoryWithVariables
+Class representing information about the call attempt including survey fields
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**CallCenterId** +
+__optional__|Unique identifier of the call center|integer (int32)
+|**Duration** +
+__optional__|Duration of the call attempt in seconds|integer (int32)
+|**ExtendedStatus** +
+__optional__|Extended status that has been assigned to the interview after the call attempt|integer (int32)
+|**Id** +
+__optional__|Unique identifier of the call|integer (int32)
+|**InterviewId** +
+__optional__|Unique identifier of the interview|integer (int32)
+|**InterviewerId** +
+__optional__|Unique identifier of the interviewer|integer (int32)
+|**InterviewerName** +
+__optional__|Interviewer name|string
+|**NumberInOrder** +
+__required__|Unique number of entity|integer (int32)
+|**SurveyId** +
+__optional__|Unique identifier of the survey (pXXXXXXXX)|string
+|**SurveyName** +
+__optional__|Survey name|string
+|**TelephoneNumber** +
+__optional__|Telephone number|string
+|**Time** +
+__optional__|Time of the call|string (date-time)
+|**WaitingTime** +
+__optional__|Waiting time (in seconds) before the call has started|integer (int32)
+|===
+
+
+[[_group]]
+=== Group
+Class representing information about the group of interviewers
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**Description** +
+__required__|Description of the group|string
+|**GroupId** +
+__optional__|Unique identifier of the group
+Required for 'PUT' requests but should be omitted for 'POST' requests.|integer (int32)
+|**Name** +
+__required__|Name of the group|string
+|**ParentGroups** +
+__optional__|List of unique identifiers of parent group. Deprecated in the new design.|< integer (int32) > array
+|===
+
+
+[[_interviewer]]
+=== Interviewer
+Class representing information about the interviewer
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**AllowedChoices** +
+__optional__|Available task choices if [ManualSelection] is Choice mode (3).
+Can have one or several values from Automatic, Manual or SurveyAssignment.|enum (Automatic, Manual, SurveyAssignment)
+|**AssignmentsListMode** +
+__required__|Identifies which calls are to be commenced|enum (AssignedCallsOnly, AllCalls)
+|**Attribute1** +
+__optional__|Additional interviewer's attribute 1|string
+|**Attribute2** +
+__optional__|Additional interviewer's attribute 2|string
+|**Attribute3** +
+__optional__|Additional interviewer's attribute 3|string
+|**Attribute4** +
+__optional__|Additional interviewer's attribute 4|string
+|**Attribute5** +
+__optional__|Additional interviewer's attribute 5|string
+|**AutomaticSurveyId** +
+__optional__|Unique identifier of the survey to be logged into automatically if [ManualSelection] is the survey assignment mode (2)|string
+|**CallCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**CallGroupId** +
+__optional__|Unique identifier of the call group.
+For an interviewer to be delivered calls automatically for a survey where Call Groups are enabled, the interviewer must be a member of a Call Group.
+If they are not a member of a Call Group, no calls will be delivered automatically.
+An interviewer can be a member of one Call Group only.This can be changed at any time, and any changes will take effect on the next call delivered.
+Interviewers who are working as a member of a call group must have the "Survey Selection" task choice, otherwise Call Groups cannot be used.
+When working as a member of a Call Group, calls are delivered based on the Extended Statuses in that Call Group.|integer (int32)
+|**Description** +
+__optional__|Description of the interviewer|string
+|**DialTypeId** +
+__optional__|Dial type of the interviewer: 0 - Automatic, 1 - Manual|integer (int32)
+|**DisplayName** +
+__optional__|Display name of the interviewer|string
+|**HasNewMessage** +
+__optional__|Flag to show that there is a new message from supervisor for the interviewer|boolean
+|**InterviewerId** +
+__required__|Unique identifier of the interviewer|integer (int32)
+|**IsLocked** +
+__required__|Flag to mark the locked interviewer|boolean
+|**Location** +
+__optional__|The location field is an optional property that can be used to associate the interviewer with a localized dialer gateway.
+Please note that only valid location names (as specified in the dialer gateway configuration settings) should be entered here.|string
+|**LockedDate** +
+__optional__|Date and time when the user was locked|string (date-time)
+|**ManualSelection** +
+__required__|Task choice: 0 - Automatic, 1 - Manual, 2 - SurveyAssignment and 3 - Choice.
+If [AllowedChoices] is not null the system decides that this field has Choice mode (3)
+but in reality it can have any value in this case.|integer (int32)
+|**Name** +
+__required__|Name of the interviewer|string
+|**PwdSetDate** +
+__required__|Date of the last password change|string (date-time)
+|===
+
+
+[[_interviewerproperties]]
+=== InterviewerProperties
+Class representing extended information about the interviewer
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**AllowedTaskChoice** +
+__required__|Available task choices if [Mode] is choice mode.
+Can have one or several values from Automatic, Manual or SurveyAssignment.|< enum (Automatic, Manual, SurveyAssignment) > array
+|**AssignmentsListMode** +
+__optional__|Identifies which calls are to be commenced|enum (AssignedCallsOnly, AllCalls)
+|**Attribute1** +
+__optional__|Additional interviewer's attribute 1|string
+|**Attribute2** +
+__optional__|Additional interviewer's attribute 2|string
+|**Attribute3** +
+__optional__|Additional interviewer's attribute 3|string
+|**Attribute4** +
+__optional__|Additional interviewer's attribute 4|string
+|**Attribute5** +
+__optional__|Additional interviewer's attribute 5|string
+|**AutomaticSurveyId** +
+__optional__|Unique identifier of the survey to automatically login to if [Mode] is survey assignment|string
+|**CallCenterId** +
+__optional__|Unique identifier of the call center|integer (int32)
+|**CallGroupId** +
+__optional__|Unique identifier of the call group|integer (int32)
+|**Description** +
+__required__|Description of the interviewer|string
+|**DialType** +
+__optional__|Dial type of the interviewer|enum (Automatic, Manual)
+|**DisplayName** +
+__optional__|Display name of the interviewer|string
+|**InterviewerId** +
+__optional__|Unique identifier of the interviewer.
+Required for 'PUT' requests but should be omitted for 'POST' requests.|integer (int32)
+|**Location** +
+__optional__|The location field is an optional property that can be used to associate the interviewer with a localized dialer gateway.
+Please note that only valid location names (as specified in the dialer gateway configuration settings) should be entered here.|string
+|**Mode** +
+__optional__|Task choice. This value is ignored if AllowedTaskChoice is specified.|enum (Automatic, Manual, SurveyAssignment, Choice)
+|**Name** +
+__required__|Name of the interviewer|string
+|**ParentGroups** +
+__required__|List of unique identifiers of the parent groups of the interviewer|< integer (int32) > array
+|**Password** +
+__optional__|Encrypted password of the interviewer|string
+|===
+
+
+[[_interviewersessionhistory]]
+=== InterviewerSessionHistory
+Class representing information about the history of the interviewer session
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**CallCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**CompanyId** +
+__required__|Unique identifier of the company|integer (int32)
+|**InterviewerId** +
+__required__|Unique identifier of the interviewer|integer (int32)
+|**LoginTime** +
+__required__|Date and time of the login|string (date-time)
+|**LogoutTime** +
+__optional__|Date and time of the logout|string (date-time)
+|**SessionId** +
+__required__|Unique identifier of the session|integer (int32)
+|===
+
+
+[[_link]]
+=== Link
+A link to a node
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**href** +
+__optional__|Relative url to node|string
+|**method** +
+__optional__|Defines the http method to use|string
+|**rel** +
+__optional__|Description of relation|string
+|===
+
+
+[[_odataresponse_list_breakhistory]]
+=== ODataResponse[List[BreakHistory]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_breakhistory,BreakHistory>> > array
+|===
+
+
+[[_odataresponse_list_callhistorywithvariables]]
+=== ODataResponse[List[CallHistoryWithVariables]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_callhistorywithvariables,CallHistoryWithVariables>> > array
+|===
+
+
+[[_odataresponse_list_callhistory]]
+=== ODataResponse[List[CallHistory]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_callhistory,CallHistory>> > array
+|===
+
+
+[[_odataresponse_list_group]]
+=== ODataResponse[List[Group]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_group,Group>> > array
+|===
+
+
+[[_odataresponse_list_interviewersessionhistory]]
+=== ODataResponse[List[InterviewerSessionHistory]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_interviewersessionhistory,InterviewerSessionHistory>> > array
+|===
+
+
+[[_odataresponse_list_interviewer]]
+=== ODataResponse[List[Interviewer]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_interviewer,Interviewer>> > array
+|===
+
+
+[[_odataresponse_list_resourceassignment]]
+=== ODataResponse[List[ResourceAssignment]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_resourceassignment,ResourceAssignment>> > array
+|===
+
+
+[[_odataresponse_list_surveyassignment]]
+=== ODataResponse[List[SurveyAssignment]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_surveyassignment,SurveyAssignment>> > array
+|===
+
+
+[[_odataresponse_list_survey]]
+=== ODataResponse[List[Survey]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_survey,Survey>> > array
+|===
+
+
+[[_odataresponse_list_telephoneblacklistitem]]
+=== ODataResponse[List[TelephoneBlacklistItem]]
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**@odata.context** +
+__optional__|string
+|**value** +
+__optional__|< <<_telephoneblacklistitem,TelephoneBlacklistItem>> > array
+|===
+
+
+[[_resourceassignment]]
+=== ResourceAssignment
+The class presents information about the assignment of interviewers and interviewer groups
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**AssignedCallsCount** +
+__required__|The number of explicitly assigned calls|integer (int32)
+|**IsGroup** +
+__required__|Flag to show that this resource is a group|boolean
+|**Name** +
+__required__|Name of the interviewer or the interviewer group|string
+|**ResourceId** +
+__required__|Unique identifier of the interviewer or the interviewer group|integer (int32)
+|===
+
+
+[[_survey]]
+=== Survey
+The class presents general information about the survey
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**SampleSize** +
+__required__|Size of sample for the survey|integer (int32)
+|**State** +
+__required__|Current survey state|enum (Closed, Open, SoftDeleted)
+|**SurveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|**SurveyName** +
+__required__|Name of the survey|string
+|===
+
+
+[[_surveyassignment]]
+=== SurveyAssignment
+The class presents information about assignments to a survey
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**AssignedCallsCount** +
+__required__|Count of the calls assigned to the survey|integer (int32)
+|**AssignmentType** +
+__required__|Type of the assignment|enum (Implicit, Explicit, ImplicitToSurveyCalls)
+|**SurveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+[[_surveybasicproperties]]
+=== SurveyBasicProperties
+The class presents some basic properties of the survey
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**CallDeliveryMode** +
+__required__|Call delivery mode of the survey|enum (InOrder, Random)
+|**CallGroups** +
+__required__|A flag indicating that survey uses call groups|boolean
+|**ExtendedStatusGroup** +
+__required__|Name of the extended status codes group assigned to the survey|string
+|**Scheduling** +
+__required__|Name of the scheduling script assigned to the survey|string
+|**SurveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+[[_telephoneblacklistitem]]
+=== TelephoneBlacklistItem
+Class representing information about the item in the blacklist
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**Id** +
+__optional__|Unique identifier of the blacklist item.
+Required for 'PUT' requests but should be omitted for 'POST' requests.|integer (int32)
+|**TelephoneNumber** +
+__required__|Telephone number|string
+|**Type** +
+__optional__|Type of the telephone number|enum (Equal, StartWith)
+|===
+
+
+[[_telephoneblacklistitems]]
+=== TelephoneBlacklistItems
+Class for importing list of the telephone numbers to the blacklist
+
+__Type__ : object
+
+
+[[_variable]]
+=== Variable
+The class presents information about survey field
+
+
+[options="header", cols=".^3a,.^11a,.^4a"]
+|===
+|Name|Description|Schema
+|**Name** +
+__optional__|The name of the field|string
+|**Value** +
+__optional__|The value of the field|string
+|===
+
+

@@ -1,0 +1,12 @@
+using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("CATI Supervisor")]
+[assembly: AssemblyDescription("CATI Supervisor application allows person supervise CATI interviewing process")]
+[assembly: InternalsVisibleTo("Confirmit.CATI.Backend.UnitTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b900a6faa24e303228ff621eb394983c9471ccf803a1caaf380d3b87b4744f1ad5bf1889b9b3ee7ac5cee6a3f10d42e7fbb3f858f8d7140426469d35d847faddcda0efbc3366fc52779195ff64ff4b02633cb1c8a7ef02e00a48357b54970a35c26088e51d35919b7f111fa1ad5ce539f17e2fb323d0660e4220500416347bc8")]
+[assembly: InternalsVisibleTo("Confirmit.CATI.Supervisor.UnitTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b900a6faa24e303228ff621eb394983c9471ccf803a1caaf380d3b87b4744f1ad5bf1889b9b3ee7ac5cee6a3f10d42e7fbb3f858f8d7140426469d35d847faddcda0efbc3366fc52779195ff64ff4b02633cb1c8a7ef02e00a48357b54970a35c26088e51d35919b7f111fa1ad5ce539f17e2fb323d0660e4220500416347bc8")]

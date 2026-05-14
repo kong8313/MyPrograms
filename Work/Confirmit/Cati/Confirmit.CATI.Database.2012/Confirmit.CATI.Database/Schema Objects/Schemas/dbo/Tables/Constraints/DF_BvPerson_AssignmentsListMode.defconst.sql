@@ -1,0 +1,1 @@
+﻿ALTER TABLE [dbo].[BvPerson] ADD CONSTRAINT [DF_BvPerson_AssignmentsListMode] DEFAULT 0 FOR [AssignmentsListMode]

@@ -1,0 +1,2 @@
+﻿Version 2020.4.634
+    - Add CallHistoryWithVariablesService that allows to get call history information combined with the values of CATI survey variables

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>Confirmit.CATI.Dialer.AWSConnect</id>
+    <version>1.0.0</version>
+    <authors>Forsta</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>AWS Connect dialer</description>
+  </metadata>
+  <files>
+    <file src="..\..\assemblies\Telephony\DialerService\DialerService.svc" target="" />
+    <file src="..\..\assemblies\Telephony\DialerService\Web.config" target="" />
+    <file src="..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.dll" target="bin" />
+    <file src="..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.Contract.dll" target="bin" />
+    <file src="..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.pdb" target="bin" />
+    <file src="..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.Contract.pdb" target="bin" />      
+    <file src="..\..\assemblies\Telephony\AwsConnectDialerWS\**\*.dll" target="bin" />
+    <file src="..\..\assemblies\Telephony\AwsConnectDialerWS\**\*.pdb" target="bin" />
+  </files>
+</package>

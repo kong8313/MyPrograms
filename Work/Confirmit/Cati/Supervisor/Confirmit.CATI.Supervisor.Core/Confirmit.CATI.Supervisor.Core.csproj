@@ -1,0 +1,587 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7B612F3B-66F3-48BE-B67B-EDC43DA1AA37}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.Supervisor.Core</RootNamespace>
+    <AssemblyName>Confirmit.CATI.Supervisor.Core</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+    <DocumentationFile>
+    </DocumentationFile>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+    <CodeAnalysisRules>
+    </CodeAnalysisRules>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Azure.Identity, Version=1.13.2.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Azure.Identity.1.13.2\lib\netstandard2.0\Azure.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="confirmit.common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\confirmit.common.8.0.1\lib\netstandard2.0\confirmit.common.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Configuration, Version=27.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Configuration.27.0.8\lib\net472\Confirmit.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Configuration.Bootstrap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Configuration.Bootstrap.4.3.11\lib\net462\Confirmit.Configuration.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.DataServices.RDataAccess, Version=29.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.DataServices.RDataAccess.29.0.3\lib\net472\Confirmit.DataServices.RDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Identity.AccessTokenValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Identity.AccessTokenValidation.14.4.0\lib\net472\Confirmit.Identity.AccessTokenValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Identity.Sdk, Version=13.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Identity.Sdk.13.2.0\lib\net472\Confirmit.Identity.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.IPLockdown, Version=3.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.IPLockdown.3.0.4\lib\net472\Confirmit.IPLockdown.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Logging.11.0.0\lib\netstandard2.0\Confirmit.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Rest, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Rest.7.0.0\lib\net472\Confirmit.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Rest.Client, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Rest.Client.11.0.0\lib\net472\Confirmit.Rest.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Security.Crypto, Version=24.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Security.Crypto.24.0.9\lib\net462\Confirmit.Security.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Security.Crypto.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.Security.Crypto.Web.1.0.2\lib\net45\Confirmit.Security.Crypto.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=1.0.1825.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_3rdpart\OpenXML\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Firmglobal.Confirmit.DevUtils, Version=18.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Confirmit.DevUtils.19.1.8\lib\net45\Firmglobal.Confirmit.DevUtils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Firmglobal.Framework.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Firmglobal.Framework.Security.1.2.1\lib\net472\Firmglobal.Framework.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="FlexCel, Version=3.7.0.2, Culture=neutral, PublicKeyToken=3b4004b85c62843e">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_3rdpart\TMS\FlexCel.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\IdentityModel.Signed.1.11.0\lib\net45\IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\IdentityServer3.AccessTokenValidation.Signed.2.10.4\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IPAddressRange, Version=6.0.0.0, Culture=neutral, PublicKeyToken=578e3c3d17e7c751, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\IPAddressRange.6.0.0\lib\net462\IPAddressRange.dll</HintPath>
+    </Reference>
+    <Reference Include="Konscious.Security.Cryptography.Argon2, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Konscious.Security.Cryptography.Argon2.Signed.1.3.0\lib\net46\Konscious.Security.Cryptography.Argon2.dll</HintPath>
+    </Reference>
+    <Reference Include="Konscious.Security.Cryptography.Blake2, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Konscious.Security.Cryptography.Blake2.Signed.1.1.0\lib\net46\Konscious.Security.Cryptography.Blake2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.67.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Identity.Client.4.67.2\lib\net472\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=4.67.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Identity.Client.Extensions.Msal.4.67.2\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=7.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Abstractions.7.0.3\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.JsonWebTokens.6.17.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=7.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Logging.7.0.3\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.4.403061554\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Protocols.6.17.0\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=2.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.2.1.5\lib\net451\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.IdentityModel.Tokens.6.17.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.Jwt.3.1.0\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.Security.OpenIdConnect.3.1.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Polly.7.2.3\lib\net472\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Configuration.ConfigurationManager.7.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.4.403061554\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.8\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Remoting" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.ProtectedData.4.7.0\lib\net461\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Permissions.7.0.0\lib\net462\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessToken\AccessToken.cs" />
+    <Compile Include="AccessToken\AccessTokenService.cs" />
+    <Compile Include="AccessToken\IAccessTokenService.cs" />
+    <Compile Include="Activity\ActivityManager.cs" />
+    <Compile Include="Activity\AllowNegativeAttribute.cs" />
+    <Compile Include="CatiSupervisorApi\CatiSupervisorApiService.cs" />
+    <Compile Include="CatiSupervisorApi\ICatiSupervisorApiService.cs" />
+    <Compile Include="Common\CatiServerNameProvider.cs" />
+    <Compile Include="Common\DialTypeOptions.cs" />
+    <Compile Include="Common\ICatiServerNameProvider.cs" />
+    <Compile Include="Common\StartPages.cs" />
+    <Compile Include="Common\SupervisorPageProvider.cs" />
+    <Compile Include="ConfigurationsApi\IConfigurationApiService.cs" />
+    <Compile Include="ConfigurationsApi\ConfigurationApiService.cs" />
+    <Compile Include="ConfigurationsApi\LanguagesModel.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\BalancingAdditionalColumnsBuilder.cs" />
+    <Compile Include="Confirmit\SearchableFieldOrderedForSelection.cs" />
+    <Compile Include="Management\VersionInfo.cs" />
+    <Compile Include="Management\VersionInfoProvider.cs" />
+    <Compile Include="Messaging\ISendMessageManager.cs" />
+    <Compile Include="Messaging\MessageRecipientType.cs" />
+    <Compile Include="News\INewsApiService.cs" />
+    <Compile Include="News\NewsApiService.cs" />
+    <Compile Include="News\NewsModel.cs" />
+    <Compile Include="Security\ISupervisorIdentityService.cs" />
+    <Compile Include="Security\SupervisorIdentityService.cs" />
+    <Compile Include="SupervisorSettings\SupervisorSettingsManager.cs" />
+    <Compile Include="Security\AuthoringUtil.cs" />
+    <Compile Include="Security\OidcManager.cs" />
+    <Compile Include="SupervisorSettings\ActivityViews\ColumnDescription.cs" />
+    <Compile Include="Activity\CustomizableColumns\CustomizableViews.cs" />
+    <Compile Include="Activity\CustomizableColumns\GridColumnSetting.cs" />
+    <Compile Include="Activity\IActivityManager.cs" />
+    <Compile Include="Activity\InterviewerPerformanceInfo.cs" />
+    <Compile Include="Activity\SingleAlertConstraint.cs" />
+    <Compile Include="Activity\AlertValidator.cs" />
+    <Compile Include="Activity\AppointmentActivityInfo.cs" />
+    <Compile Include="Activity\BaseAlertInfo.cs" />
+    <Compile Include="Activity\BvThresholdType.cs" />
+    <Compile Include="Activity\DoubleAlertConstraint.cs" />
+    <Compile Include="Activity\IAlertConstraint.cs" />
+    <Compile Include="Activity\StatusAlertInfo.cs" />
+    <Compile Include="Activity\StatusInfo.cs" />
+    <Compile Include="Activity\SurveyActivityInfo.cs" />
+    <Compile Include="Activity\SurveyAlertInfo.cs" />
+    <Compile Include="Activity\SurveyAppointmentCountInfo.cs" />
+    <Compile Include="Activity\SystemWideInfo.cs" />
+    <Compile Include="Activity\TaskActivityInfo.cs" />
+    <Compile Include="Assignment\AssignmentManager.cs" />
+    <Compile Include="Assignment\AssignmentWithEventLoggingPerformer.cs" />
+    <Compile Include="Assignment\IAssignmentManager.cs" />
+    <Compile Include="Assignment\IAssignmentWithEventLoggingPerformer.cs" />
+    <Compile Include="Assignment\PersonAssignmentInfoItem.cs" />
+    <Compile Include="Assignment\PersonAssignmentInfoItemWithGroupName.cs" />
+    <Compile Include="Assignment\SurveyAssignmentInfoItem.cs" />
+    <Compile Include="BlackList\BlackListService.cs" />
+    <Compile Include="BlackList\IBlackListService.cs" />
+    <Compile Include="CallCenters\ICallCenterProvider.cs" />
+    <Compile Include="CallCenters\CachedConfirmitSupervisorProvider.cs" />
+    <Compile Include="CallCenters\ICachedConfirmitSupervisorProvider.cs" />
+    <Compile Include="CallCenters\IChangeCallCenter.cs" />
+    <Compile Include="Common\ICompanyInfoProvider.cs" />
+    <Compile Include="CallCenters\ISuperToCallCenterAssignmentProvider.cs" />
+    <Compile Include="CallCenters\ISurveyToCallCenterAssignmentProvider.cs" />
+    <Compile Include="CallCenters\SuperToCallCenterAssignmentProvider.cs" />
+    <Compile Include="CallCenters\SupervisorCallCenterManager.cs" />
+    <Compile Include="CallCenters\SupervisorCallCentersRegistry.cs" />
+    <Compile Include="CallCenters\SupervisorToCallCenterAssignment.cs" />
+    <Compile Include="CallCenters\SurveyToCallCenterAssignmentProvider.cs" />
+    <Compile Include="Common\BaseMethods.cs" />
+    <Compile Include="Common\Config.cs" />
+    <Compile Include="Common\ScriptUrlGenerator.cs" />
+    <Compile Include="Common\CommonComparer.cs" />
+    <Compile Include="Common\CommonMultiComparer.cs" />
+    <Compile Include="Common\IResourceWrapper.cs" />
+    <Compile Include="Common\Message.cs" />
+    <Compile Include="Common\ResourceWrapper.cs" />
+    <Compile Include="Common\StringHelper.cs" />
+    <Compile Include="Common\SupervisorCompanyInfoProvider.cs" />
+    <Compile Include="Confirmit\ConfirmitrQuestionsProvider.cs" />
+    <Compile Include="Confirmit\ExtraQuotaCounterTypes.cs" />
+    <Compile Include="Confirmit\IConfirmitQuestionsProvider.cs" />
+    <Compile Include="Confirmit\QuotaDetails.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\AggregateQuotaViewAdditionalColumnsBuilder.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\AdditionalColumnsBuilderFactory.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\UsedCallsAdditionalColumnsBuilder.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\ExtraCounterAdditionalColumnsBuilder.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\IQuotaViewAdditionalColumnsBuilder.cs" />
+    <Compile Include="Confirmit\QuotaManager.cs" />
+    <Compile Include="Confirmit\QuotaViewExtension\OptimisticAdditionalColumnsBuilder.cs" />
+    <Compile Include="Confirmit\SearchableFieldForSelection.cs" />
+    <Compile Include="Confirmit\SingleVarWithAnswers.cs" />
+    <Compile Include="Confirmit\VariableInfo.cs" />
+    <Compile Include="Exceptions\DiallerConfigurationException.cs" />
+    <Compile Include="Exceptions\FilterIsUsedException.cs" />
+    <Compile Include="Exceptions\GroupNotEmptyException.cs" />
+    <Compile Include="Exceptions\InteviewNotExistsException.cs" />
+    <Compile Include="Exceptions\ITSNotFoundException.cs" />
+    <Compile Include="Exceptions\PersonLoggedInException.cs" />
+    <Compile Include="Export\CallListExport\CallListExportManager.cs" />
+    <Compile Include="Export\CollectionProvider\CollectionExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\ObjectExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\SpecificProvider\AppointmentActivityExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\SpecificProvider\AppointmentActivityRecordExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\SpecificProvider\InterviewerPerformanceListExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\SpecificProvider\InterviewerActivityExportProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Export\CollectionProvider\SpecificProvider\InterviewerActivityRecordProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Export\CollectionProvider\SpecificProvider\SurveyActivityExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\SpecificProvider\SurveyActivityRecordExportProvider.cs" />
+    <Compile Include="Export\CollectionProvider\SpecificProvider\StatusInfoExportProvider.cs" />
+    <Compile Include="Export\ColumnProperty.cs" />
+    <Compile Include="Export\DataTableProvider\DataTableExportProvider.cs" />
+    <Compile Include="Export\DataTableProvider\DataTableExportRecordProvider.cs" />
+    <Compile Include="Export\ExportManager.cs" />
+    <Compile Include="Export\IExportDataProvider.cs" />
+    <Compile Include="Export\ExportItem.cs" />
+    <Compile Include="Export\IExportRecordProvider.cs" />
+    <Compile Include="Export\Parse\ExcelTemplateParser.cs" />
+    <Compile Include="Export\Parse\LexemeInfo.cs" />
+    <Compile Include="Export\Tools\ExcelColumnName.cs" />
+    <Compile Include="Export\Tools\OpenXmlHelper.cs" />
+    <Compile Include="Filters\FilterManager.cs" />
+    <Compile Include="Filters\FilterVariablesProvider.cs" />
+    <Compile Include="Filters\IFilterManager.cs" />
+    <Compile Include="Filters\IFilterVariablesProvider.cs" />
+    <Compile Include="PersonGroups\IPersonGroupManager.cs" />
+    <Compile Include="PersonGroups\PersonGroupManager.cs" />
+    <Compile Include="Persons\CatiUserItem.cs" />
+    <Compile Include="Persons\ChangeAutomaticSurveyService.cs" />
+    <Compile Include="Persons\ICatiPersonItem.cs" />
+    <Compile Include="Persons\IChangeAutomaticSurveyService.cs" />
+    <Compile Include="Persons\ISetDialType.cs" />
+    <Compile Include="Persons\SetDialType.cs" />
+    <Compile Include="PriorityGroups\IPriorityGroupsManager.cs" />
+    <Compile Include="PriorityGroups\PriorityGroupsManager.cs" />
+    <Compile Include="ITSs\StateGroupsManager.cs" />
+    <Compile Include="Messaging\Message.cs" />
+    <Compile Include="Messaging\SendMessageManager.cs" />
+    <Compile Include="Monitoring\AudioIdentityObject.cs" />
+    <Compile Include="Monitoring\DeferredIdentityInfo.cs" />
+    <Compile Include="Monitoring\IdentityInfo.cs" />
+    <Compile Include="Persons\CatiGroupItem.cs" />
+    <Compile Include="Persons\Import\EmptyXlsSheetException.cs" />
+    <Compile Include="Persons\Import\ErrorReadingXlsFileException.cs" />
+    <Compile Include="Persons\Import\ExcelDataProvider.cs" />
+    <Compile Include="Persons\PersonAndGroupInfoItem.cs" />
+    <Compile Include="Persons\PersonGroupInfo.cs" />
+    <Compile Include="Persons\PersonGroupInfoItem.cs" />
+    <Compile Include="Persons\PersonInfoItem.cs" />
+    <Compile Include="Persons\PersonManager.cs" />
+    <Compile Include="Persons\PersonsListRow.cs" />
+    <Compile Include="PriorityGroups\PriorityGroupStatus.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Quotas\IQuotaNameProvider.cs" />
+    <Compile Include="Quotas\IQuotaSettingsProvider.cs" />
+    <Compile Include="Quotas\QuotaNameProvider.cs" />
+    <Compile Include="Quotas\QuotaSettingsProvider.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchableFields\SearchableFieldsProvider.cs" />
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Security\SurveyPermissionProvider.cs" />
+    <Compile Include="Security\ISurveyPermissionProvider.cs" />
+    <Compile Include="ServiceRegistration\SupervisorCoreRegistry.cs" />
+    <Compile Include="SupervisorSettings\CallManagement\CallManagementViews.cs" />
+    <Compile Include="SupervisorSettings\CallManagement\CallManagementViewsProvider.cs" />
+    <Compile Include="SupervisorSettings\CallManagement\ICallManagementViewsProvider.cs" />
+    <Compile Include="Surveys\CallManager.cs" />
+    <Compile Include="Surveys\CallOperation.cs" />
+    <Compile Include="Surveys\CallOperationsProvider.cs" />
+    <Compile Include="Surveys\ConfirmitStatusInfo.cs" />
+    <Compile Include="Surveys\ICallOperationsProvider.cs" />
+    <Compile Include="Surveys\ISurveyQuotasExportInfoProvider.cs" />
+    <Compile Include="Surveys\ShiftType.cs" />
+    <Compile Include="Common\HttpContextSupervisorNameProvider.cs" />
+    <Compile Include="Surveys\SurveyInfo.cs" />
+    <Compile Include="Surveys\SurveyInfoItem.cs" />
+    <Compile Include="Surveys\SurveyManager.cs" />
+    <Compile Include="Surveys\SurveyQuotasInfoProvider.cs" />
+    <Compile Include="Surveys\SurveyQuotasReportGenerator.cs" />
+    <Compile Include="Timezone\CachedLocalTimezoneManager.cs" />
+    <Compile Include="Timezone\ICachedLocalTimezoneManager.cs" />
+    <Compile Include="SupervisorSettings\CallManagement\ColumnSetting.cs" />
+    <Compile Include="SupervisorSettings\ISupervisorSettingsRepository.cs" />
+    <Compile Include="SupervisorSettings\Quota\QuotaPageViewSettings.cs" />
+    <Compile Include="SupervisorSettings\SupervisorSettingsRepository.cs" />
+    <Compile Include="SupervisorSettings\SupervisorSettingType.cs" />
+    <Compile Include="SupervisorSettings\CallManagement\CallManagementColumnSettings.cs" />
+    <Compile Include="UsersApi\ConfirmitUser.cs" />
+    <Compile Include="UsersApi\IUsersApiService.cs" />
+    <Compile Include="UsersApi\ResourceCollection.cs" />
+    <Compile Include="UsersApi\UsersApiService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Monitoring.Common\Confirmit.CATI.Monitoring.Common.csproj">
+      <Project>{452c0eb9-7e5e-4e35-bfe5-3531d79647a5}</Project>
+      <Name>Confirmit.CATI.Monitoring.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.TelephonyProblemStates\Confirmit.TelephonyProblemStates.csproj">
+      <Project>{f795738a-b45b-4ebf-89b6-efb3a807433a}</Project>
+      <Name>Confirmit.TelephonyProblemStates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Supervisor.Resources\Confirmit.CATI.Supervisor.Resources.csproj">
+      <Project>{CD4E0865-7E1B-46B7-8D08-4A443A3C1539}</Project>
+      <Name>Confirmit.CATI.Supervisor.Resources</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Export\OpenXML\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)MSBuild\NFakes\NFakesConsole.exe" "$(SolutionDir)assemblies\Confirmit.CATI.Supervisor.Core.dll" "$(SolutionDir)Supervisor\Confirmit.CATI.Supervisor.Core\Confirmit.CATI.Supervisor.Core.csproj" "$(SolutionDir)NFakes\Generated" "$(SolutionDir)ConfirmitKeyPair.snk"
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

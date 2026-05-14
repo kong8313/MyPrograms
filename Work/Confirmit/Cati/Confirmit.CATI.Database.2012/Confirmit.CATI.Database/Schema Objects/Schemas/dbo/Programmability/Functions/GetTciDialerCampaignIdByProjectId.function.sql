@@ -1,0 +1,6 @@
+﻿CREATE FUNCTION GetTciDialerCampaignIdByProjectId(@ProjectId NVARCHAR(MAX))
+RETURNS BIGINT
+BEGIN
+    --4294967295 is UInt32.MaxValue
+    RETURN CAST( STUFF(@ProjectId, 1, 1, '') AS BIGINT ) % 4294967296
+END

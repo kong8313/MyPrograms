@@ -1,0 +1,4 @@
+﻿CREATE TYPE BvIntArrayType AS TABLE
+(
+	Value INT NOT NULL
+)

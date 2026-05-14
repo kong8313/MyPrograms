@@ -1,0 +1,8 @@
+<#+
+public class NoMetadataException : Exception
+{
+	public NoMetadataException(string message) : base(message)
+	{
+	}
+}
+#>

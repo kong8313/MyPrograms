@@ -1,0 +1,61 @@
+.pbar {
+    margin-top: 10px;
+}
+.pbar .progresscell {
+    height: 9px;
+    border-top: 1px solid #85a4e2;
+    border-bottom: 1px solid #0b3c9f;
+    border-left: 1px solid #0b3c9f;
+    background: transparent url(../images/progressbar-blue.gif) repeat-x;
+}
+.pbar .progressbarbg{
+    height:5px;
+    border-top:1px solid #accff6;
+    border-right:1px solid #4e4e81;
+    border-bottom:1px solid #4e4e81;
+    background:transparent url(../images/progressbar-bg-blue.gif) repeat-x;
+}
+    .progress-bar__title {
+        white-space: normal !important;
+    }
+.pbar .progressbarlog{
+    width:100%;
+    margin-top:8px;
+}
+.pbar .timeelapsed{
+    color:grey;
+}
+.pbar .progressbarblock{
+    display:none;
+    width:460px;
+    margin-top:10px;
+    color:#1d4eac;
+    font-family:verdana;
+}
+.pbar .progressbar,.pbar .progressbarscale{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+}
+.pbar .progressbarscale{
+    margin-bottom:0;
+}
+.pbar .progressbarscale td{
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+.pbar .progressbar td{
+    padding:0;
+}
+.pbar .progressbarleft{
+    visibility:hidden;
+    margin-left:0;
+    overflow:hidden;
+}
+.pbar .progressbarright{
+    visibility:hidden;
+    height:1px;
+    margin-right:0;
+    overflow:hidden;
+}

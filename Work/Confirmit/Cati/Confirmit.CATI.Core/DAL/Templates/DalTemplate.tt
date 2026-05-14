@@ -1,0 +1,13 @@
+<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="cs" #>
+
+<#@ include file="DalGenerator.tt" #>
+
+<# 
+DalGenerator dalGenerator = new DalGenerator();
+dalGenerator.DatabaseEngine.DatabaseName = "ConfirmitCATIV15_BUILD";
+dalGenerator.DatabaseEngine.Login = "sa";
+dalGenerator.DatabaseEngine.Password =  "firm";
+
+dalGenerator.Run();
+#>

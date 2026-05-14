@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+        <UI>
+            <Dialog Id="DlgDumpSettings" Width="370" Height="270" Title="!(loc.DumpSettings_Title)">
+                <Control Id="DumpOptions" Type="RadioButtonGroup" X="15" Y="50" Width="200" Height="45" Property="DUMP_CREATION_OPTIONS">
+                    <RadioButtonGroup Property="DUMP_CREATION_OPTIONS">
+                        <RadioButton Value="DoNotModifyCurrentOptions" X="0" Y="0" Width="260" Height="16" Text="!(loc.DumpSettingsDoNotModifyCurrentOptions)" />
+                        <RadioButton Value="DoNotCreateDump" X="0" Y="15" Width="260" Height="16" Text="!(loc.DumpSettingsDoNotCreateDumpDumpCreation)" />
+                        <RadioButton Value="CreateDump" X="0" Y="30" Width="260" Height="16" Text="!(loc.DumpSettingsCreateDumpDumpCreation)" />
+                    </RadioButtonGroup>
+                </Control>
+                <Control Id="ProcDumpPathText" Type="Text" Width="280" Height="12" X="30" Y="100" Text="!(loc.DumpSettingsProcDumpPath)">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                </Control>
+                <Control Id="ProcDumpPathEdit" Type="Edit" Width="280" Height="15" X="30" Y="115" Property="PROCDUMP_FILE_PATH">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                </Control>
+                <Control Id="SelectPathButton" Type="PushButton" X="315" Y="114" Width="50" Height="17" Text="!(loc.DumpSettingsBrowse)">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                    <Publish Event="DoAction" Value="SelectProcDumpExecutablePathCustomAction" Order="1">1</Publish>
+                    <Publish Property="PROCDUMP_FILE_PATH" Value="[PROCDUMP_FILE_PATH]" Order="2">1</Publish>
+                </Control>
+                <Control Id="ProcDumpLogFolderPathText" Type="Text" Width="280" Height="12" X="30" Y="145" Text="!(loc.DumpSettingsProcDumpLogFolderPath)">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                </Control>
+                <Control Id="ProcDumpLogFolderPathEdit" Type="Edit" Width="280" Height="15" X="30" Y="160" Property="PROCDUMP_LOG_FOLDER_PATH">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                </Control>
+                <Control Id="SelectLogFolderButton" Type="PushButton" X="315" Y="159" Width="50" Height="17" Text="!(loc.DumpSettingsBrowse)">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                    <Publish Event="DoAction" Value="SelectProcDumpLogFolderCustomAction" Order="1">1</Publish>
+                    <Publish Property="PROCDUMP_LOG_FOLDER_PATH" Value="[PROCDUMP_LOG_FOLDER_PATH]" Order="2">1</Publish>
+                </Control>
+                <Control Id="ProcDumpAdditionalParametersText" Type="Text" Width="280" Height="12" X="30" Y="190" Text="!(loc.DumpSettingsAdditionalParameters)">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                </Control>
+                <Control Id="ProcDumpAdditionalParametersEdit" Type="Edit" Width="280" Height="15" X="30" Y="205" Property="PROCDUMP_ADDITIONAL_PARAMETERS">
+                    <Condition Action="enable">DUMP_CREATION_OPTIONS~="CreateDump"</Condition>
+                    <Condition Action="disable"><![CDATA[DUMP_CREATION_OPTIONS<>"CreateDump"]]></Condition>
+                </Control>
+                <Control Id="Back" Type="PushButton" X="180" Y="243" Width="56" Height="17" Text="!(loc.WixUIBack)" />
+                <Control Id="Next" Type="PushButton" X="236" Y="243" Width="56" Height="17" Default="yes" Text="!(loc.WixUINext)">
+                    <Publish Event="DoAction" Value="VerifyProcDumpParametersCustomAction" Order="1">1</Publish>
+                </Control>
+                <Control Id="Cancel" Type="PushButton" X="304" Y="243" Width="56" Height="17" Cancel="yes" Text="!(loc.WixUICancel)">
+                    <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+                </Control>
+                <Control Id="BannerBitmap" Type="Bitmap" X="0" Y="0" Width="370" Height="44" TabSkip="no" Text="!(loc.DumpSettingsBannerBitmap)" />
+                <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+                <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="2" />
+                <Control Id="Description" Type="Text" X="25" Y="23" Width="280" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.DumpSettingsDescription)" />
+                <Control Id="Title" Type="Text" X="15" Y="6" Width="297" Height="15" Transparent="yes" NoPrefix="yes" Text="!(loc.DumpSettings_Title)" />
+            </Dialog>
+        </UI>
+	</Fragment>
+</Wix>

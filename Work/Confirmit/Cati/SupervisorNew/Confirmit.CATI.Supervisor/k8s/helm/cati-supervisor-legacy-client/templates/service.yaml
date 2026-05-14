@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "cati-supervisor-legacy-client.fullname" . }}
+  labels: {{ include "cati-supervisor-legacy-client.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http-app
+      protocol: TCP
+      name: http
+{{- if and $.Values.global.metrics.enabled $.Values.metrics.enabled }}
+    - port: {{ $.Values.metrics.port }}
+      targetPort: http-app
+      protocol: TCP
+      appProtocol: http
+      name: http-metrics
+{{- end }}
+  selector: {{- include "cati-supervisor-legacy-client.serviceSelectorLabels" . | nindent 4 }}

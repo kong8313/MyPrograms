@@ -1,0 +1,2338 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Confirmit.CATI.Backend</name>
+    </assembly>
+    <members>
+        <member name="F:Confirmit.CATI.Backend.BackendWin32Service.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.BackendWin32Service.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.BackendWin32Service.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.Threads.IPeriodicalThreadsManager.Start(System.Collections.Generic.IEnumerable{Confirmit.CATI.Core.Threading.IPeriodicalThread})">
+            <summary>
+            Starts all passed in periodical threads.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.Threads.IPeriodicalThreadsManager.Stop">
+            <summary>
+            Stops all started previously periodical threads.
+            If exception occured while stopping particular thread then
+            logs and stops other threads.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.Threads.PeriodicalThreadsManager.Start(System.Collections.Generic.IEnumerable{Confirmit.CATI.Core.Threading.IPeriodicalThread})">
+            <summary>
+            Starts all passed in periodical threads.
+            </summary>
+            <param name="threads">
+            Threads to start.
+            </param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.Threads.PeriodicalThreadsManager.Stop">
+            <summary>
+            Stops all passed in periodical threads.
+            If exception occured while stopping particular thread then
+            logs and stops other threads
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleStateServiceHttp">
+            <summary>
+            Temporary class to support http protocol of ConsoleStateService
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleVersionValidator.IsLatestVersion(System.String)">
+            <summary>
+            Detects if supplied version of Interviewer Console is the latest one
+            </summary>
+            <param name="version">Version</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.IConsoleServiceHelper.LogoutProcess(System.Int32,System.String,Confirmit.CATI.Common.LoginState,System.Boolean,System.String,System.Int32)">
+            <summary>
+            The person a logout process.
+            This internal method runs in a separate thread.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.IConsoleServiceHelper.ContinueWorkAfterBreak(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvTasksEntity,System.Int32)">
+            <summary>
+            This method is called from console when person is returning from break;
+            Console retries this method if communication error has occured.
+            It can be in several cases: 
+                1) this method was not called
+                2) this method threw exception but this exception didn't reach the console 'cause communication problem (console got communication error)
+                3) this method was successfully completed but console got communication error
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleWsRequestsAuthoriser.AuthoriseRequest(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvPersonEntity@)">
+            <summary>
+             Authorizes an interviewer. Do not checks that tasks exists.
+            </summary>
+            <param name="interviewer">Interviewer entity.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleWsRequestsAuthoriser.AuthoriseRequest(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvPersonEntity@,Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvTasksEntity@)">
+            <summary>
+            Authorizes an interviewer and checks that tasks exists,
+            </summary>
+            <param name="interviewer">Interviewer entity.</param>
+            <param name="task">Task entity.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.IConsoleWsRequestsAuthoriser.AuthoriseRequest(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvPersonEntity@)">
+            <summary>
+             Authorizes an interviewer. Do not checks that tasks exists.
+            </summary>
+            <param name="interviewer">Interviewer entity.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.IConsoleWsRequestsAuthoriser.AuthoriseRequest(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvPersonEntity@,Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvTasksEntity@)">
+            <summary>
+            Authorizes an interviewer and checks that tasks exists,
+            </summary>
+            <param name="interviewer">Interviewer entity.</param>
+            <param name="task">Task entity.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.IConsoleWsRequestsAuthoriser.AuthoriseRequest">
+             <summary>
+              Just authorizes an interviewer
+             </summary>
+            <returns>Interviewer entity.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.IConsoleWsRequestsAuthoriser.AuthoriseRequest(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvPersonEntity@,Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvTasksEntity@,System.Boolean)">
+            <summary>
+            Authorizes an interviewer and checks that tasks exists, if taskMustExist parameter is set.
+            </summary>
+            <param name="interviewer">Interviewer entity.</param>
+            <param name="task">Task entity.</param>
+            <param name="taskMustExist"></param>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.LanguageBuilder">
+            <summary>
+            Represents survey language. This class is wrapper for Confirmit 
+            Language class.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.LanguageBuilder.GetLanguage(Confirmit.CATI.Core.AuthoringService.Language)">
+            <summary>
+            Initializes new instance of Language class and fills it with given data.
+            </summary>
+            <param name="language">Confirmit language.</param>
+            <exception cref="T:System.ArgumentNullException">language in null.</exception>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.LanguageBuilder.GetLanguageCollection(System.Collections.Generic.IEnumerable{Confirmit.CATI.Core.AuthoringService.Language})">
+            <summary>
+            Initializes new instance of LanguageCollection and fills it with specified data.
+            </summary>
+            <param name="languages">Collection of Confirmit languages.</param>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleStateService">
+            <summary>
+            WCF service for CATI console. Contains methods that does not require SSL encryption.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleStateService.GetState">
+            <summary>
+            It is the request for the current interview and interviewer state.
+            </summary>
+            <remarks>
+            CATI console calls this method to find out:
+            - the login state of the interviewer
+            - the login to dialer state of the interviewer
+            - the previously started by <code>StartInterview</code> method interview and obtain 
+            the interview URL in order to start it on Confirmit
+            - that another a new interview was started
+            - that there are no calls for the interviewer 
+            - ...
+            </remarks>
+            <returns>
+            The state parameters are returned. 
+            </returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleStateService.KeepAlive">
+            <summary>
+            CATI console must call this function each "KeepAliveTimeout" seconds.
+            (CATI console obtains "KeepAliveTimeout" from ConsoleService at login).
+            It allows Fusion realize that CATI console user is alive.
+            </summary>
+            <example>
+            User didn't log out via "Logout" but closed the CATI console or turned off the computer.
+            So in "KeepAliveTimeout" seconds ConsoleService will find out that user does not keep alive and ConsoleService
+            will logout the user automatically.
+            </example>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.QuestionHistoryBuilder.GetQuestionHistory(Confirmit.CATI.Core.AuthoringService.InterviewHistoryEntry)">
+            <summary>
+            Initializes new instance of QuestionHistory class and fills it with given data.
+            </summary>
+            <param name="entry">History entry.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.QuestionHistoryBuilder.GetQuestionHistoryCollection(System.Collections.Generic.IEnumerable{Confirmit.CATI.Core.AuthoringService.InterviewHistoryEntry})">
+            <summary>
+            Initializes new instance of QuestionHistoryCollection and fills it with given data.
+            </summary>
+            <param name="historyEntries">History entries.</param>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService">
+            <summary>
+            Stateless CATI Console WCF Web Service.
+            
+            One of the main ConsoleService tasks is to provide CATI console with 
+            interview URLs using CATI task table. CATI console uses the result URLs
+            in order to start interviews on Confirmit. 
+            
+            Interviewer authentication is being done during each call of service method.
+            Interviewer login and password are transfered via ServiceSecurityContext and validated in 
+            CustomUserNameValidator class.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.Login(System.String,Confirmit.CATI.Common.ConsoleService.Abstract.ConsoleDescription,Confirmit.CATI.Common.ConsoleService.Abstract.PersonInfo@,Confirmit.CATI.Common.ConsoleService.Abstract.DiallerInfo@,Confirmit.CATI.Common.ConsoleService.Abstract.CatiConsolePropertiesContainer@)">
+            <summary>
+            Login to ConsoleService service.
+            </summary>
+            <param name="stationId">Station identifier.</param>
+            <param name="consoleDescription">Console description.</param>
+            <param name="diallerInfo">Contains information about dialler</param>
+            <param name="personInfo">Contains information about interviewer</param>
+            <param name="catiConsoleProperties">The properties required for CATI console.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.LoginToDialer(System.String,System.String,System.Boolean@)">
+            <summary>
+            The method initiates an interviewer login to the dialler.
+            CATI console calls this method if there is a dialer in the system.
+            </summary>
+            <param name="extensionNumber">The interviewer extension phone number.</param>
+            <param name="surveyId">Survey Id can be null or empty for AUTOMATIC users.</param>
+            <param name="isPredictive"> </param>
+            <remarks>
+            Confirmit surveyId like pNNNNNNN is used.
+            Login to dialer operation is asynchronous. CATI console must call GetState method 
+            to find out if login to MN dialer has finished.
+            </remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetPersonMode">
+            <summary>
+            Returns the mode of the logged in person.
+            Throws "ThePersonIsNotLoggedIn" exception if there is no logged in person.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.SetPendingLogout(System.Boolean)">
+            <summary>
+            Notifies Fusion if the logged in person wants to logout.
+            If the person has no active interviews then the function initiates logout process.
+            </summary>
+            <param name="logout">true if the person wants to logout, false if the person wants to continue his/her session</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.ConfirmLogout">
+            <summary>
+            CATI console calls the method at the end of the interviewer session.
+            CATI console must call it if and only if the interviewer login state becomes NOT_LOGGED_IN
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.UpdatePersonMode(System.Int32)">
+            <summary>
+            Updates person task choice mode
+            Uses when interviwer has "CHOICE" mode
+            </summary>
+            <remarks>
+            Updates bvPerson table
+            </remarks>
+            <param name="personMode">New PersonMode</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.StartInterview(System.String,System.Int32)">
+             <summary>
+             It is the request to start an interview for the logged in person.
+             </summary>
+             <param name="surveyId">Survey id like pNNNNNNN</param>
+            <param name="interviewId">Unique identifier of the interview</param>
+             <remarks>
+             The function is used for persons in any mode: AUTOMATIC, SURVEY_ASSIGNMENT or MANUAL.
+             if surveyId == null and interviewId == 0
+             then ConsoleService considers the user is in AUTOMATIC mode.
+             if surveyId != null and interviewId == 0
+             then ConsoleService considers the user is in SURVEY_ASSIGNMENT mode.
+             if surveyId != null and interviewId != 0
+             then ConsoleService considers the user is in MANUAL mode.
+             
+             Confirmit surveyId like pNNNNNNN is used.
+             
+             CATI console uses GetState method in order to obtain 
+             startup interview parameters and interviewer/interview state.
+             </remarks>
+             <returns>
+             true if the system successfully started searching for an interview for the interviewer,
+             or if there is no need to search for a new interview.
+             false otherwise.
+             </returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.CreateNewInterview(System.String)">
+            <summary>
+            It is the request to create a new interview for the logged in person.
+            Can be used only in MANUAL mode
+            </summary>
+            <param name="surveyId">Survey id like pNNNNNNN</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetOpenedSurveys">
+            <summary>
+            Returns the array of opened surveys available for the logged in person.
+            The function is used for persons in MANUAL and SURVEY_ASSIGNMENT modes.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetSurveyInterviews(System.String,Confirmit.CATI.Common.ConsoleService.Abstract.SearchParameter[])">
+            <summary>
+            Returns the list of available interviews for a survey. The function is used for
+            persons in MANUAL mode.
+            </summary>        
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.CheckTextSpelling(System.Int32,System.String)">
+            <summary>
+            Returns the array of spell errors.
+            </summary>
+            <param name="textBlock">Text block for check spelling.</param>
+            <param name="languageId">Text block language identifier.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetInterviewAppointmentList(System.String,System.Int32)">
+            <summary>
+            Returns the list of available appointments for a concrete interview.
+            </summary>
+            <returns>
+            The array of <seealso cref="T:Confirmit.CATI.Common.ConsoleService.Abstract.Appointment"/>.
+            </returns>
+            <remarks>
+            CATI console calls the function only while an interview is in progress.
+            </remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetInternalTransferTargets">
+            <summary>
+            Returns list of availaable tragets for internal transferring 
+            </summary>
+            <returns>List of availaable tragets for internal transferring </returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.SetInterviewAppointmentList(System.String,System.Int32,Confirmit.CATI.Common.ConsoleService.Abstract.Appointment[],System.Boolean)">
+            <summary>
+            Sets an appointment list for a definite interview.
+            (All previously set appointments for the interview are being deleted).
+            </summary>
+            <remarks>
+            CATI console calls the function only while an interview is in progress.
+            </remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetAllAppointmentList">
+            <summary>
+            Returns the list of all available appointments.
+            </summary>
+            <returns>
+            The array of <seealso cref="T:Confirmit.CATI.Common.ConsoleService.Abstract.Appointment"/>.
+            </returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetMessages">
+            <summary>
+            Returns the list of all available messages for current interviewer
+            </summary>
+            <returns>
+            The array of Messages objects/>.
+            </returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.GetForceOpenendReview(System.Int32)">
+            <summary>
+            If openend review is available for the survey the interviewer currently works on then
+            the function switches the interviewer into openend review mode and returns true.
+            The function returns false otherwise.
+            </summary>
+            <param name="attemptNumber"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.Dial(System.String,System.Int32,System.Int32)">
+            <summary>
+            The method initiates dial process.
+            CATI console can call this method only if there is a dialer in the system.
+            </summary>
+            <param name="phoneNumber"> The respondent telephone number </param>
+            <param name="initiator"> 0 - script, 1 - telephone menu </param>
+            <param name="attemptNumber"></param>
+            <returns>
+            <c>true</c> if dialing process was successfully st<c>false</c>, false otherwise.
+            </returns>
+            <remarks>
+            Dial operation is asynchronous. CATI console must call GetState method 
+            to find out if dialing process has finished.
+            </remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.CancelDialing">
+            <summary>
+            The method cancels the dial process.
+            CATI console can call this method only if there is a dialer in the system.
+            </summary>
+            <returns>
+            <c>true</c> if cancel dialing process was successfully st<c>false</c>, <c>false</c> otherwise.
+            </returns>
+            <remarks>
+            CancelDialing operation is asynchronous. CATI console must call GetState method 
+            to find out if dialing process has finished.
+            
+            !The function is not supported for the moment. It is reserved for future needs.
+            </remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.Hangup(System.Int32)">
+            <summary>
+            Respondent hangup.
+            CATI console can call this method only if there is a dialer in the system.
+            </summary>
+            <param name="initiator"> 0 - script, 1 - telephone menu, 2 - dial cancellation </param>
+            <returns>
+            <c>true</c> if hangup succeeded, <c>false</c> if an error occurred during hangup.
+            </returns>
+            <remarks>
+            We suppose Hangup operation is synchronous.
+            </remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleService.WrapUp(System.Int32,System.Boolean,System.Int32,Confirmit.CATI.Common.ConsoleService.Abstract.CompletedInterviewDetails)">
+            <summary>
+            CATI console must call this method at the moment when an interview is finished.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleServiceHelper.LogoutProcess(System.Int32,System.String,Confirmit.CATI.Common.LoginState,System.Boolean,System.String,System.Int32)">
+            <summary>
+            The person a logout process.
+            This internal method runs in a separate thread.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleServiceHelper.IsPersonModeAllowed(ConfirmitDialerInterface.AgentTaskChoiceMode,Confirmit.CATI.Common.TaskChoicePermissions)">
+            <summary>
+            Checks is person mode allowed by permissions
+            </summary>
+            <param name="mode">Person mode</param>
+            <param name="persmissions"><see cref="T:Confirmit.CATI.Common.TaskChoicePermissions"/></param>
+            <returns>Returns <c>true</c> if person mode is allowed; <c>false</c> otherwise</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleService.ConsoleServiceHelper.ContinueWorkAfterBreak(Confirmit.CATI.Core.DAL.Generated.Entity.Table.BvTasksEntity,System.Int32)">
+            <summary>
+            This method is called from console when person is returning from break;
+            Console retries this method if communication error has occured.
+            It can be in several cases: 
+                1) this method was not called
+                2) this method threw exception but this exception didn't reach the console 'cause communication problem (console got communication error)
+                3) this method was successfully completed but console got communication error
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.IAudioRecordsManager.GetAudioRecord(System.Int32,System.Int32,System.DateTime)">
+            <summary>
+            Gets audio record of interview's call.
+            </summary>
+            <param name="surveyId">Survey ID</param>
+            <param name="interviewId">Interview ID</param>
+            <param name="deferredMonitoringRecordTimeStamp">TimeStamp</param>
+            <returns>Audio record of an interview's call. Null, if none.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.IAudioRecordsManager.GetInterviewAudioRecords(System.Int32,System.Int32)">
+            <summary>
+            Returns information about audio records for interview.
+            </summary>
+            <param name="surveyId">Survey ID.</param>
+            <param name="interviewId">Interview ID</param>
+            <returns>Array of objects with information about audio records for interview.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.IAudioRecordsManager.GetAudioRecords(System.Int32,System.Int32,System.DateTime,System.Int32)">
+            <summary>
+            Returns information about audio records for interview.
+            </summary>
+            <param name="surveyId">Survey ID.</param>
+            <param name="interviewId">Interview ID</param>
+            <param name="deferredMonitoringRecordTimeStamp">TimeStamp</param>
+            <param name="interviewDuration">Interview duration</param>
+            <returns>Array of objects with information about audio records for interview.</returns>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.InterviewAudioRecord">
+            <summary>
+            Class describes audio record of interview.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.InterviewAudioRecord.TimeStamp">
+            <summary>
+            Gets or sets moment of starting of audio file.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.InterviewAudioRecord.URI">
+            <summary>
+            Gets or sets location of audio file.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.InterviewAudioRecord.Name">
+            <summary>
+            Gets or sets name of audio file.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.AudioRecordsManager">
+            <summary>
+            Dialler manager for a dialer.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.AudioRecordsManager.GetAudioRecord(System.Int32,System.Int32,System.DateTime)">
+            <summary>
+            Gets audio record of interview's call.
+            </summary>
+            <param name="surveyId">Survey ID</param>
+            <param name="interviewId">Interview ID</param>
+            <param name="deferredMonitoringRecordTimeStamp">TimeStamp</param>
+            <returns>Audio record of an interview's call. Null, if none.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.AudioRecordsManager.GetAudioRecords(System.Int32,System.Int32,System.DateTime,System.Int32)">
+            <summary>
+            Returns information about audio records for interview.
+            </summary>
+            <param name="surveyId">Survey ID.</param>
+            <param name="interviewId">Interview ID</param>
+            <param name="deferredMonitoringRecordTimeStamp">TimeStamp</param>
+            <param name="interviewDuration">Interview duration</param>
+            <returns>Array of objects with information about audio records for interview.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.AudioRecordsManager.GetInterviewAudioRecords(System.Int32,System.Int32)">
+            <summary>
+            Returns information about audio records for interview.
+            </summary>
+            <param name="surveyId">Survey ID.</param>
+            <param name="interviewId">Interview ID</param>
+            <returns>Array of objects with information about audio records for interview.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.AudioRecordsManager.GetFileNameFromUri(System.String)">
+            <summary>
+            Returns file name from URI.
+            </summary>
+            <param name="uri">URI string.</param>
+            <returns>File name from URI. Null on any error.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.IDeferredMonitoringManager.DeferredMonitoringRequested(Confirmit.CATI.Monitoring.Common.Contracts.IdentityObject)">
+            <summary>
+            Returns if deferred monitoring requested.
+            </summary>
+            <param name="identity">Identity object.</param>
+            <returns>True, if deferred monitoring is requested; false, otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException">Identity object is null.</exception>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.IDeferredMonitoringManager.CheckSupervisorNamePassword(System.Int32,System.String,System.Int32)">
+            <summary>
+            Checks if supervisor is valid for getting deferred monitoring record.
+            </summary>
+            <param name="interviewerId">ID of interviewer.</param>
+            <param name="supervisorName">Name of supervisor.</param>
+            <param name="monitoringRecordId">ID of deferred monitoring record.</param>
+            <returns>True, if supervisor is valid for getting deferred monitoring record; false, otherwise.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.IDeferredMonitoringManager.ProcessEvents(Confirmit.CATI.Monitoring.Common.Contracts.IdentityObject,System.Byte[],System.Boolean,System.DateTime,System.DateTime)">
+            <summary>
+            Processes events for deferred monitoring.
+            </summary>
+            <param name="identity">Identity object.</param>
+            <param name="packet">Array of events from CATI console.</param>
+            <param name="hasFinishedMessage"></param>
+            <param name="firstEventTimeUtc">Utc time of the fist event in the packet</param>
+            <param name="clientTimeUtc">Client Utc time</param>
+            <exception cref="T:System.ArgumentNullException">Identity object is null.</exception>
+            <exception cref="T:System.ArgumentException">There is no data for deferred monitoring.</exception>
+            <exception cref="T:System.InvalidOperationException">Object is disposed.</exception>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringFileCreator">
+            <summary>
+            Class creating deferred monitoring files.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringFileCreator.CreateFiles(Confirmit.CATI.Core.DAL.Handmade.Entity.Table.BvPersonDeferredMonitoringPartEntity)">
+            <summary>
+            Creates data files for deferred monitoring.
+            </summary>
+            <remarks>You can call this method only once. Next type it will raise InvalidOperationException.</remarks>
+            <exception cref="T:System.InvalidOperationException">There is no deferred monitoring record with given ID.</exception>
+            <exception cref="T:System.InvalidOperationException">Object is disposed.</exception>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringManager">
+            <summary>
+            Facade class for work with deferred monitoring.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringManager.DeferredMonitoringRequested(Confirmit.CATI.Monitoring.Common.Contracts.IdentityObject)">
+            <summary>
+            Returns if deferred monitoring requested.
+            </summary>
+            <param name="identity">Identity object.</param>
+            <returns>True, if deferred monitoring is requested; false, otherwise.</returns>
+            <exception cref="T:System.ArgumentNullException">Identity object is null.</exception>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringManager.CheckSupervisorNamePassword(System.Int32,System.String,System.Int32)">
+            <summary>
+            Checks if supervisor is valid for getting deferred monitoring record.
+            </summary>
+            <param name="interviewerId">ID of interviewer.</param>
+            <param name="supervisorName">Name of supervisor.</param>
+            <param name="monitoringRecordId">ID of deferred monitoring record.</param>
+            <returns>True, if supervisor is valid for getting deferred monitoring record; false, otherwise.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringManager.ProcessEvents(Confirmit.CATI.Monitoring.Common.Contracts.IdentityObject,System.Byte[],System.Boolean,System.DateTime,System.DateTime)">
+            <summary>
+            Processes events for deferred monitoring.
+            </summary>
+            <param name="identity">Identity object.</param>
+            <param name="packet">Array of events from CATI console.</param>
+            <param name="hasFinishedMessage"></param>
+            <param name="firstEventTimeUtc">Utc time of the fist event in the packet</param>
+            <param name="clientTimeUtc">Client Utc time</param>
+            <exception cref="T:System.ArgumentNullException">Identity object is null.</exception>
+            <exception cref="T:System.ArgumentException">There is no data for deferred monitoring.</exception>
+            <exception cref="T:System.InvalidOperationException">Object is disposed.</exception>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringService">
+            <summary>
+            Represents services for support of deferred monitoring.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringService.StringToIdentityInfo(System.String)">
+            <summary>
+            Deserializes a deferred identity info from string.
+            </summary>
+            <param name="str">String presentation of deferred identity info.</param>
+            <returns>Deferred identity info.</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringService.IdentityInfoToString(Confirmit.CATI.Monitoring.Common.Contracts.DeferredIdentityInfo)">
+            <summary>
+            Serializes a deferred identity info into string.
+            </summary>
+            <param name="info">Deferred identity info.</param>
+            <returns>String presentation of deferred identity info.</returns>
+            <exception cref="T:System.ArgumentNullException">Deferred identity info can't be null.</exception>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.FusionInteraction.DeferredMonitoringService.CreateAudioEvent(System.TimeSpan,Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Diallers.InterviewAudioRecord)">
+            <summary>
+            Creates audio event.
+            </summary>
+            <param name="clientServerDifference">It is a difference between client UTC time and server UTC time (Client-Server).</param>
+            <param name="audioRecord">Audio record description.</param>
+            <exception cref="T:System.ArgumentNullException">List of events is null.</exception>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Configuration.DistributionObjectSection">
+            <summary>
+            Settings of distribution object.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Configuration.DistributionObjectSection.MaxWaitTime">
+            <summary>
+            Maximum waiting time for events return.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Configuration.DistributionObjectSection.SleepTime">
+            <summary>
+            Sleep time for events return.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Configuration.DistributionObjectSection.MaxEventsSize">
+            <summary>
+            Maximum size in bytes of events to return.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Configuration.MonitoringSection">
+            <summary>
+            Main configuration section for monitoring service configuration.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Configuration.MonitoringSection.DistributionObject">
+            <summary>
+            Settings of events queues.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.ContractImplementation.InterviewerProcessor">
+            <summary>
+            Class for processing interviewer calls.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.ContractImplementation.InterviewerProcessor.SaveLiveMonitoringEvents(Confirmit.CATI.Monitoring.Common.Contracts.IdentityObject,System.Byte[])">
+            <summary>
+            Saves state events of CATI Console to service internal storage.
+            </summary>
+            <param name="identity">CATI Console identity.</param>
+            <param name="packet"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.ContractImplementation.InterviewerProcessor.SaveDeferredMonitoringEvents(Confirmit.CATI.Monitoring.Common.Contracts.IdentityObject,System.Byte[],System.Boolean,System.DateTime,System.DateTime)">
+            <summary>
+            Saves state events of CATI Console to service internal storage.
+            </summary>
+            <param name="identity">CATI Console identity.</param>
+            <param name="packet"></param>
+            <param name="hasFinishedMessage">If the packet contains one of the finishing events</param>
+            <param name="firstEventTimeUtc">Time of the first event in the packet</param>
+            <param name="clientTimeUtc">Current client time</param>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.ContractImplementation.SupervisorProcessor">
+            <summary>
+            Class for processing supervisor calls.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.ContractImplementation.SupervisorProcessor.GetInterviewerEvents">
+            <summary>
+            Returns array of CATI Console events stored in service internal storage.
+            </summary>        
+            <returns>
+            Array of CATI Console events.
+            If there are no events of given CATI Console stored null will be returned.
+            </returns>
+            <remarks>This method removes all events of given CATI Console from internal storage.</remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.ContractImplementation.SupervisorProcessor.GetVideoFile(System.Int64,System.Int32,System.Int32)">
+            <summary>
+            Returns data of deferred monitoring video file.
+            </summary>
+            <param name="recordId">ID of deferred monitoring.</param>
+            <param name="from">Starting byte of video file.</param>
+            <param name="count">Number of bytes of video file to return.</param>
+            <returns>Data of deferred monitoring video file.</returns>
+            <remarks>
+            Set 'count' parameter to 0 to get only real size of file.
+            </remarks>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Globals">
+            <summary>
+            Class with global data.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.External.MonitoringService.Globals.Settings">
+            <summary>
+            Settings of Monitoring service.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.ConsoleAuthorizationService.ConsoleAuthorizationService">
+            <summary>
+            WCF Service called first by CATI Console to authorize user and to get CATI company id
+            (that is needed to call right ConsoleService)
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleAuthorizationService.ConsoleAuthorizationService.AuthorizeAndReturnCompanyId(System.String,System.String,System.String,System.String)">
+            <summary>
+            Gets CATI company id for authorized user.
+            Throws InvalidInterviewerCredentialsException if no such CATI company found or user not found or user is not authorized.
+            Throws PasswordExpiredException if user password is expired.
+            Throws UserAlreadyLoggedInException if user is already logged in from another computer.
+            </summary>
+            <param name="interviewerName">User name</param>
+            <param name="interviewerPassword">Password</param>
+            <param name="catiCompanyAlias">CATI company alias</param>
+            <param name="stationId"></param>
+            <returns>CATI company id</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleAuthorizationService.ConsoleAuthorizationService.IsLatestVersion(System.String)">
+            <summary>
+            Detects if supplied version of Interviewer Console is the latest one
+            </summary>
+            <param name="version">Version</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.ConsoleAuthorizationService.ConsoleAuthorizationService.ChangePersonPassword(System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Changes CATI interviewer password. 
+            Returns nothing.
+            Throws InvalidInterviewerCredentialsException if no such CATI company found or user not found or user old password is incorrect.
+            Throws UserAlreadyLoggedInException if user is already logged in from another computer.
+            Throws TheSamePasswordException if newPassword equals to oldPassword.
+            Throws TooShortPasswordException if newPassword is shorter then it is allowed by CATI system settings.
+            Throws PasswordDoesNotSatisfyRulesException if newPassword does not satisfy password rules.
+            The method can be called both when interviewer is logged in to CATI console and when not.
+            </summary>
+            <param name="interviewerName"></param>
+            <param name="oldPassword"></param>
+            <param name="newPassword"></param>
+            <param name="catiCompanyAlias"></param>
+            <param name="stationId"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.DialerEventsHandlerService.DialerEventsHandlerService.NotifyUserState(System.Int32,System.String,System.String,System.String,System.Int64,System.String,System.String)">
+            <summary>
+            This function is used to pass back information about the status of the User. 
+            It is especially needed for asynchronous functions like login, logout, go ready, etc. 
+            </summary>
+            <param name="dialerId"></param>
+            <param name="requestId"></param>
+            <param name="sessionId"></param>
+            <param name="companyId"></param>
+            <param name="surveyId"></param>
+            <param name="userId"></param>
+            <param name="userState"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.DialerEventsHandlerService.DialerEventsHandlerService.NotifyOutcome(System.Int32,System.String,System.String,System.String,System.Int64,System.String,System.String,System.Int32,System.String,System.String,System.String)">
+            <summary>
+            This function is used to pass back call outcome information.
+            </summary>
+            <param name="dialerId"></param>
+            <param name="requestId"></param>
+            <param name="sessionId"></param>
+            <param name="companyId"></param>
+            <param name="surveyId"></param>
+            <param name="userId"></param>
+            <param name="contactId"></param>
+            <param name="callId"></param>
+            <param name="outcomeType"></param>
+            <param name="outcomeCode"></param>
+            <param name="dialerAccompanyingCallInfo">Some accompanying info received from dialer. PROTSInternalFlag in case of PROTS.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.DialerEventsHandlerService.DialerEventsHandlerService.ScreenPop(System.Int32,System.String,System.String,System.String,System.Int64,System.String,System.String,System.Int32,ConfirmitDialerInterface.DialingMode)">
+            <summary>
+            This method is called when dialer ready to call for specified interview.
+            </summary>
+            <param name="dialerId"></param>
+            <param name="requestId"></param>
+            <param name="sessionId"></param>
+            <param name="companyId"></param>
+            <param name="surveyId"></param>
+            <param name="userId"></param>
+            <param name="contactId"></param>
+            <param name="callId"></param>
+            <param name="callDialingMode"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.DialerEventsHandlerService.DialerEventsHandlerService.NotifyDialerState(System.Int32,System.String,ConfirmitDialerInterface.DialerState)">
+            <summary>
+            This function is used to pass back information about state of the Dialer. 
+            </summary>
+            <param name="dialerId"></param>
+            <param name="companyId"></param>
+            <param name="dialerState"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.External.DialerEventsHandlerService.DialerEventsHandlerService.RequestCalls(System.Int32,System.String,System.String,System.String,System.Int64,System.Nullable{System.Int32},ConfirmitDialerInterface.CallsSelectionAlgorithm,System.Int32)">
+            <summary>
+            Dialler requests for calls (predictive)
+            </summary>
+            <param name="dialerId"></param>
+            <param name="requestId"></param>
+            <param name="sessionId"></param>
+            <param name="companyId"></param>
+            <param name="surveyId"></param>
+            <param name="groupId"></param>
+            <param name="callsSelectionAlgorithm"></param>
+            <param name="callCount">amount of calls the dialer requests for</param>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.External.ErrorReportingService.ErrorReportingService">
+            <summary>
+            Logs the error message from the client on the server.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.Internal.InstanceManagementService.InstanceManagementServiceDescription">
+            <summary>
+            Provides description for the Instance Management Wcf Service.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.AddSurvey(System.String,System.String,System.String,System.String)">
+            <summary>
+            It creates a survey if it was not created.
+            </summary>
+            <param name="confirmitProjectID">The confirmit project ID.</param>
+            <param name="confirmitSurveyName">Name of the confirmit survey.</param>
+            <param name="cfSqlServerConnectionString">The survey DB SQL server connection string. Without login and password.</param>
+            <param name="userName">User name.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.UpdateSurveyReplicationScheme(System.String,Confirmit.CATI.Core.Services.ReplicationServiceImplementation.TableInfo[])">
+            <summary>
+            Updates the survey data replication scheme.
+            </summary>
+            <param name="projectId">Confirmit project ID.</param>
+            <param name="tables">Array of <see cref="T:Confirmit.CATI.Core.Services.ReplicationServiceImplementation.TableInfo"/> objects with list of columns to replicate data.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.UpdateSurveyReplicationStatus(System.String,System.Boolean)">
+            <summary>
+            Updates the survey replication status.
+            </summary>
+            <param name="projectId">Confirmit project ID.</param>
+            <param name="isReplicationEnabled">If set to <c>true</c> CATI will replicate data for specified survey.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetCATIInterviewerName(System.Int32)">
+            <summary>
+            Gets cati interviewer name.
+            Returns null if no cati interviewer with specified id exist.
+            </summary>
+            <param name="catiInterviewerId">CATI interviewer ID</param>
+            <returns>Name of CATI interviewer</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetCATIStationId(System.Int32)">
+            <summary>
+            Gets cati station id.
+            </summary>
+            <param name="catiInterviewerId">CATI interviewer ID</param>
+            <returns>StationId of CATI interviewer</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetCATIAppointmentTime(System.String,System.Int32)">
+            <summary>
+            Gets appointment time for the respondent.
+            Returns null if no appointment exist for the respondent.
+            </summary>
+            <param name="projectId">Project ID</param>
+            <param name="respondentId">Respondent ID</param>
+            <returns>Time in the respondent time zone of the appointment set for this interview in CATI</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.StopRecording(System.String,System.Int32,System.String)">
+            <summary>
+            Stops interview recording.
+            </summary>
+            <param name="projectId">Project ID</param>
+            <param name="respondentId">Respondent ID</param>
+            <param name="stopRecordingMode">
+            StopRecordingMode: stop whole interview recording, or sectional or both?
+            </param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.StartRecording(System.String,System.Int32,System.String)">
+            <summary>
+            Starts open-end or sectional audio recording of the interview.
+            </summary>
+            <param name="projectId">The project ID (pXXXXXXX).</param>
+            <param name="respondentId">The respondent ID (interview ID in CATI).</param>
+            <param name="label">The label. It will be included in the name of the recorded audio file.</param>
+            <remarks>It should work both if whole interview recording is enabled or not.
+            If whole interview recording if in process when this method is called - it will be automatically paused.</remarks>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetDialingMode(System.String,System.Int32)">
+            <summary>
+            Method returns dialing mode of interview. If interview hasn't specific dialing
+            mode survey dialing mode will be return.
+            </summary>
+            <param name="projectId"></param>
+            <param name="respondentId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetExtendedStatus(System.String,System.Int32)">
+            <summary>
+            Returns transient state of interview.
+            </summary>
+            <param name="projectId"></param>
+            <param name="respondentId"></param>
+            <returns>Transient state of interview</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.AddToCATIBlacklist(System.String)">
+            <summary>
+            Adds telephone number to the CATI Blacklist of this company.
+            </summary>
+            <param name="telephoneNumber">Telephone number to ad in the blacklist</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetInterviewerActivityEventsList">
+            <summary>
+            Method returns of EventDetails objects
+            containing interviewer activity events.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.GetManagmentActivityEventsList">
+            <summary>
+            Method returns of EventDetails objects
+            containing management activity events.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.ManagementService.ManagementService.BackupSurveyToArchive(System.String)">
+            <summary>
+            return archive data of specific survey
+            </summary>
+            <param name="projectId">The project ID (pXXXXXXX).</param>
+            <returns>Archive data</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.SupervisorService.SupervisorService.EnsureIsExecutedInBackendInstance">
+            <summary>
+            Ensures that operation is executed in backend instance service.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Supervisor service could be executed only in the context of backend service.</exception>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.SupervisorService.SupervisorService.SetDialerDefaultSurveyParameters(System.Collections.Generic.IEnumerable{DialerCommon.DialerParameters.DialerParameter})">
+            <summary>
+            Sets dialer default survey parameters.
+            </summary>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.Internal.SupervisorService.SupervisorService.SetDialerSurveyParameters(System.Int32,System.Collections.Generic.IEnumerable{DialerCommon.DialerParameters.DialerParameter})">
+            <summary>
+            Sets dialer parameters for the specified survey.
+            </summary>
+            <param name="surveySid"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription">
+            <summary>
+            WCF service description.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription.ServiceName">
+            <summary>
+            Gets service name.
+            Service name used in logging only so should be just user readable.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription.Uri">
+            <summary>
+            Gets the service base Uri used to publish service.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription.ServiceType">
+            <summary>
+            Gets type service is implemented in.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription.IsExternal">
+            <summary>
+            Gets a value indicating whether service is external (called from internet) or internal (called from confirmit network only).
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription.RequireSchemaIndependentEndpointAddress">
+            <summary>
+            Gets a value indicating whether service is must be secured with SSL(HTTPS) or not.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.IWcfServicesManager.Start(System.Collections.Generic.IEnumerable{Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription})">
+            <summary>
+            Creates, initializes and publishes ServiceHost for all Wcf services provided in the constructor.
+            </summary>
+            <param name="serviceDescriptions">
+            The service descriptions to start.
+            </param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.IWcfServicesManager.Stop">
+            <summary>
+            Closes all started wcf services.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.WcfServicesManager.Start(System.Collections.Generic.IEnumerable{Confirmit.CATI.Backend.WcfServices.IWcfServiceDescription})">
+            <summary>
+            Creates, initializes and publishes ServiceHost for all Wcf services provided.
+            </summary>
+            <param name="serviceDescriptions">
+            The service descriptions to start.
+            </param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.WcfServicesManager.Stop">
+            <summary>
+            Closes all started wcf services.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WcfServices.WcfServicesManager.AdjustServiceEndpointLogicalAddress(System.ServiceModel.ServiceHost)">
+            <summary>
+            endpoint.Address property actually contains Logical address.
+            ListenUri is real address endpoint is listening on.
+            So, we should change Address to the something that is not
+            depend on port number or URI scheme. To have the same Logical address
+            in case when SSL Accelerator installed or not.
+            In the same time we should leave ListenUri without changes.
+            PS:
+            See http://msdn.microsoft.com/en-us/magazine/cc163412.aspx
+            </summary>
+            <param name="service">The service to adjust logical address.</param>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.CallHistoryWithVariablesController.GetCallHistoryWithVariables(System.String,System.Boolean,System.Boolean,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.String)">
+            <summary>
+            Get call history including replicated variables
+            </summary>
+            <param name="surveyIds">List of unique identifier of the surveys (pXXXXXXXX) separated by comma or semicolon. If null - return history for all surveys</param>
+            <param name="includeBreakTimes">Include time of breaks to the result or not</param>
+            <param name="includeLoginLogoutInfo">Include login/logout information to the result or not</param>
+            <param name="startTime">Get history from current date and time</param>
+            <param name="endTime">Get until current date and time</param>
+            <param name="variables">Replicated variables which can be included to the result</param>
+            <returns>List of CallHistoryWithVariables objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.CallHistoryWithVariablesController.ConvertProjectIdsToSurveyIds(System.String)">
+            <summary>
+            Convert a string with project sids delimited by comma or semicolon to a string with survey ids delimited by comma
+            </summary>
+            <param name="surveyIds">Project sids delimited by comma or semicolon</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewerSessionHistoryController.Get(System.Web.OData.Query.ODataQueryOptions{Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory})">
+            <summary>
+            Get history of interviewer sessions using OData filter
+            </summary>
+            <param name="options">OData query object</param>
+            <returns>List of InterviewerSessionHistory objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.HealthzController.Ready">
+            <summary>
+            Check that CATI REST API is ready to work
+            </summary>
+            <returns>true value</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.HealthzController.Live">
+            <summary>
+            Check that CATI REST API is alive
+            </summary>
+            <returns>true value</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.Get(System.Web.OData.Query.ODataQueryOptions{Confirmit.CATI.Backend.WebApiServices.Models.Survey})">
+            <summary>
+            Get surveys using OData filter
+            </summary>
+            <param name="options"></param>
+            <returns>List of Survey objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.Get(System.String)">
+            <summary>
+            Get survey by survey ID
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>Survey object</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.GetAssignments(System.String,System.Int32)">
+            <summary>
+            Get all assignment information related to the specified survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="callCenterId"></param>
+            <returns>List of ResourceAssignment objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.Open(System.String)">
+            <summary>
+            Open the survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>true - if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.Close(System.String)">
+            <summary>
+            Close the survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>true - if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.Shutdown(System.String)">
+            <summary>
+            Shutdown the survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>true - if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.CleanAssignments(System.String,System.Int32)">
+            <summary>
+            Remove all assignments related to the specified survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns>true - if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.GetBasicProperties(System.String)">
+            <summary>
+            Get basic properties of the survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>SurveyBasicProperties object</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.SurveysController.PutBasicProperties(System.String,System.String)">
+            <summary>
+            Update basic properties of the survey
+            </summary>
+            <param name="key">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="properties">Json serialized string of SurveyBasicProperties object</param>
+            <returns>true - if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.Get(System.Web.OData.Query.ODataQueryOptions{Confirmit.CATI.Backend.WebApiServices.Models.Interviewer})">
+            <summary>
+            Get interviewers list using OData filter
+            </summary>
+            <param name="options"></param>
+            <returns>List of Interviewer objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.Get(System.Int32)">
+            <summary>
+            Get a specific interviewer by id
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <returns>Interviewer object</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.GetGroups(System.Int32)">
+            <summary>
+            Get list of groups which contains the specified interviewer
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <returns>List of Group objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.GetAssignments(System.Int32)">
+            <summary>
+            Get all assignment information related to the specified interviewer
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <returns>List of SurveyAssignment objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.AssignOnSurvey(System.Int32,System.String)">
+            <summary>
+            Assign the specified interviewer to the specified survey
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>true if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.DeAssignFromSurvey(System.Int32,System.String)">
+            <summary>
+            Unassign the specified interviewer from the specified survey
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns>true if success</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.AssignOnCall(System.Int32,System.String,System.Int32)">
+            <summary>
+            Assign the specified interviewer to the specified call
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="interviewId">Unique identifier of the interview</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.DeAssignFromCalls(System.Int32,System.String)">
+            <summary>
+            Unassign the specified interviewer from all calls on the specified survey
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewersController.CleanAssignments(System.Int32)">
+            <summary>
+            Remove all assignments from the specified interviewer
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.Get(System.Web.OData.Query.ODataQueryOptions{Confirmit.CATI.Backend.WebApiServices.Models.Group})">
+            <summary>
+            Get groups using OData filter
+            </summary>
+            <param name="options">OData query object</param>
+            <returns>List of Group objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.Get(System.Int32)">
+            <summary>
+            Get a specific group by an identifier
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <returns>Group object</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.Post(Confirmit.CATI.Backend.WebApiServices.Models.Group)">
+            <summary>
+            Create a new interviewer group
+            </summary>
+            <param name="group">The instance of the group object</param>
+            <returns>Unique identifier of the new interviewer group</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.Put(System.Int32,Confirmit.CATI.Backend.WebApiServices.Models.Group)">
+            <summary>
+            Update an existing interviewer group
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="group">The instance of the group object</param>
+            <returns>Unique identifier of the interviewer group</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.Delete(System.Int32)">
+            <summary>
+            Delete an existing interviewer group
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.GetInterviewers(System.Int32,System.Int32)">
+            <summary>
+            Get all interviewers belonging to the specified group
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns>List of Interviewer objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.GetAssignments(System.Int32,System.Int32)">
+            <summary>
+            Get all assignment information related to the specified group
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns>List of SurveyAssignment objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.AssignOnSurvey(System.Int32,System.String,System.Int32)">
+            <summary>
+            Assign the specified group to the specified survey
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.DeAssignFromSurvey(System.Int32,System.String,System.Int32)">
+            <summary>
+            Unassign the specified group from the specified survey
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.AssignOnCall(System.Int32,System.String,System.Int32,System.Int32)">
+            <summary>
+            Assign the specified group to the specified call
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="interviewId">Unique identifier of the interview</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.GroupsController.DeAssignFromCalls(System.Int32,System.String,System.Int32)">
+            <summary>
+            Unassign the specified group from all calls on the specified survey
+            </summary>
+            <param name="key">Unique identifier of the group</param>
+            <param name="surveyId">Unique identifier of the survey (pXXXXXXXX)</param>
+            <param name="callCenterId">Unique identifier of the call center</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewerPropertiesController.Post(Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties)">
+            <summary>
+            Create a new interviewer
+            </summary>
+            <param name="interviewerProperties">The instance of the InterviewerProperties object</param>
+            <returns>Unique identifier of the new interviewer</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewerPropertiesController.Put(System.Int32,Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties)">
+            <summary>
+            Update an existing interviewer
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <param name="interviewerProperties">The instance of the InterviewerProperties object</param>
+            <returns>Unique identifier of the new interviewer</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.InterviewerPropertiesController.Delete(System.Int32)">
+            <summary>
+            Delete an existing interviewer
+            </summary>
+            <param name="key">Unique identifier of the interviewer</param>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.BreakHistoryController.Get(System.Web.OData.Query.ODataQueryOptions{Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory})">
+            <summary>
+            Get history of breaks using OData filter
+            </summary>
+            <param name="options">OData query object</param>
+            <returns>List of BreakHistory objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.BreakHistoryController.Get(System.Int32)">
+            <summary>
+            Get a specific break history entity by id
+            </summary>
+            <param name="key">Unique identifier of the break history entity</param>
+            <returns>BreakHistory object</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.CallHistoryController.Get(System.Web.OData.Query.ODataQueryOptions{Confirmit.CATI.Backend.WebApiServices.Models.CallHistory})">
+            <summary>
+            Get history of calls using OData filter
+            </summary>
+            <param name="options">OData query object</param>
+            <returns>List of CallHistory objects</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.CallHistoryController.Get(System.Int32)">
+            <summary>
+            Get a specific call history entity by id
+            </summary>
+            <param name="key">Unique identifier of the call history entity</param>
+            <returns>CallHistory object</returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.WebApiServices.Controllers.RootController.GetOperations">
+            <summary>
+            Return all used API URLs
+            </summary>
+            <returns>List of url information</returns>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.Uri">
+            <example>
+            Confirmit.Authoring.RestService/projects/p1015570/ProjectInfo?view=Content
+            </example>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.Application">
+            <example>
+            Author
+            TaskSystem
+            </example>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.UnitOfWork">
+             <example>        
+             SurveyDesigner:209030377
+             LaunchSurvey:18
+             confirm/authoring/Confirmit.aspx:11404313
+             SurveyEngineSynchronizationBase:DownloadSurveyPackage:442805034        
+            </example>>        
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.Method">
+            <example>
+            GET
+            PUT
+            POST
+            </example>>        
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.StatusCode">
+             <example>
+             200
+             404 
+            </example>>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.ContentType">
+            <example>
+            application/xml
+            application/zip
+            application/json
+            </example>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.ResourceCollectionName">
+             <example>
+             projects
+             featuretoggles
+             surveylayouts
+            </example>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.ResourceIdentifier">
+             <example>
+             If ResourceCollectionName = 
+             projects:
+                 p3123455 
+                 p1335454
+             featuretoggles:
+                 SmartHub_SmartHub
+                 Authoring_TextAnalytics
+             surveylayouts:
+                 1
+                 12
+            </example>>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Logging.RestApiMonitorInfo.AuthenticationHeaderType">
+            <summary>
+            Get/set Authentication Type
+            </summary>        
+            <remarks>
+            In CF AuthenticationHeaderType enum is used, so it cannot be arbitrary filled 
+            because some filters in UI can rely on this enum
+            </remarks>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables">
+            <summary>
+            Class representing information about the call attempt including survey fields
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.NumberInOrder">
+            <summary>
+            Unique number of entity
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.Id">
+            <summary>
+            Unique identifier of the call
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.Time">
+            <summary>
+            Time of the call
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.SurveyId">
+            <summary>
+            Unique identifier of the survey (pXXXXXXXX)
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.SurveyName">
+            <summary>
+            Survey name
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.InterviewId">
+            <summary>
+            Unique identifier of the interview
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.InterviewerId">
+            <summary>
+            Unique identifier of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.InterviewerName">
+            <summary>
+            Interviewer name
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.TelephoneNumber">
+            <summary>
+            Telephone number
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.ExtendedStatus">
+            <summary>
+            Extended status that has been assigned to the interview after the call attempt
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.Duration">
+            <summary>
+            Duration of the call attempt in seconds
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.WaitingTime">
+            <summary>
+            Waiting time (in seconds) before the call has started
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.CallCenterId">
+            <summary>
+            Unique identifier of the call center
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistoryWithVariables.Variables">
+            <summary>
+            List of survey fields
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.DialType">
+            <summary>
+            Enum with possible dial types
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.DialType.Automatic">
+            <summary>
+            Automatic dial type - indicates that interview or interviewer can use automatic dialing modes (Predictive or Automatic)
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.DialType.Manual">
+            <summary>
+            Manual dial type - indicates that interview or interviewer can only use Manual or Preview dialing modes
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.AssignmentListMode">
+            <summary>
+            Enum with possible assignment list modes
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.AssignmentListMode.AssignedCallsOnly">
+            <summary>
+            Flag to select assigned calls only 
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.AssignmentListMode.AllCalls">
+            <summary>
+            Flag to select all calls
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory">
+            <summary>
+            Class representing information about the history of the interviewer session
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory.SessionId">
+            <summary>
+            Unique identifier of the session
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory.CompanyId">
+            <summary>
+            Unique identifier of the company
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory.CallCenterId">
+            <summary>
+            Unique identifier of the call center
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory.InterviewerId">
+            <summary>
+            Unique identifier of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory.LoginTime">
+            <summary>
+            Date and time of the login
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerSessionHistory.LogoutTime">
+            <summary>
+            Date and time of the logout
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.SurveyBasicProperties">
+            <summary>
+            Class representing some basic properties of the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyBasicProperties.SurveyId">
+            <summary>
+            Unique identifier of the survey (pXXXXXXXX)
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyBasicProperties.ExtendedStatusGroup">
+            <summary>
+            Name of the extended status codes group assigned to the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyBasicProperties.Scheduling">
+            <summary>
+            Name of the scheduling script assigned to the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyBasicProperties.CallDeliveryMode">
+            <summary>
+            Call delivery mode of the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyBasicProperties.CallGroups">
+            <summary>
+            A flag indicating that survey use call groups
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.SurveyState">
+            <summary>
+            Enum with possible survey states
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.SurveyState.Closed">
+            <summary>
+            Closed state
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.SurveyState.Open">
+            <summary>
+            Open state
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.SurveyState.SoftDeleted">
+            <summary>
+            Survey has been marked for deletion and is not available for users
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.TaskChoiceMode">
+            <summary>
+            Enum with possible task choice modes of interviewer
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.TaskChoiceMode.Automatic">
+            <summary>
+            Automatic task choice mode.
+            The interviewer cannot select an interview; the system allocates them.
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.TaskChoiceMode.Manual">
+            <summary>
+            Manual task choice mode.
+            The interviewer can select the interview that is to be started from all the available surveys.
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.TaskChoiceMode.SurveyAssignment">
+            <summary>
+            Survey assignment task choice mode.
+            After logging in, the interviewer can select the survey they wish to work with.
+            The system then allocates interviews to the interviewer from the selected survey only.
+            </summary>
+        </member>
+        <member name="F:Confirmit.CATI.Backend.WebApiServices.Models.TaskChoiceMode.Choice">
+            <summary>
+            Choice task choice mode.
+            After logging in, the interviewer can select the mode in which they wish to work.
+            The interviewer can select the mode from all available task choice permissions.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.Variable">
+            <summary>
+            Class representing information about survey field
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Variable.Name">
+            <summary>
+            The name of the field
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Variable.Value">
+            <summary>
+            The value of the field
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.ResourceAssignment">
+            <summary>
+            Class represent information about assignment of interviewers and interviewer groups
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.ResourceAssignment.ResourceId">
+            <summary>
+            Unique identifier of the interviewer or the interviewer group
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.ResourceAssignment.Name">
+            <summary>
+            Name of the interviewer or the interviewer group
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.ResourceAssignment.IsGroup">
+            <summary>
+            Flag to show that this recourse is a group
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.ResourceAssignment.AssignedCallsCount">
+            <summary>
+            Count of the assigned calls to the resource
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.SurveyAssignment">
+            <summary>
+            Class represent information about assignment to a survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyAssignment.SurveyId">
+            <summary>
+            Unique identifier of the survey (pXXXXXXXX)
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyAssignment.AssignedCallsCount">
+            <summary>
+            Count of the calls assigned to the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.SurveyAssignment.AssignmentType">
+            <summary>
+            Type of the assignment
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory">
+            <summary>
+            Class representing information about interviewer break
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.Id">
+            <summary>
+            Unique identifier of the break
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.Time">
+            <summary>
+            Time when the break was started
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.SurveyId">
+            <summary>
+            Unique identifier of a survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.Duration">
+            <summary>
+            Duration of the break in seconds
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.InterviewerId">
+            <summary>
+            Unique identifier of an interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.CallCenterId">
+            <summary>
+            Unique identifier of a call center
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.BreakTypeId">
+            <summary>
+            Unique identifier of a break type
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.IsPaid">
+            <summary>
+            A flag indicating if the break is paid
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.BreakHistory.BreakTypeName">
+            <summary>
+            Name of the break type
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory">
+            <summary>
+            Class representing information about the call attempt
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.Id">
+            <summary>
+            Unique identifier of the call
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.Time">
+            <summary>
+            Time of the call attempt
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.SurveyId">
+            <summary>
+            Unique identifier of the survey (pXXXXXXXX)
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.InterviewId">
+            <summary>
+            Unique identifier of the interview
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.InterviewerId">
+            <summary>
+            Unique identifier of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.TelephoneNumber">
+            <summary>
+            Telephone number
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.ExtendedStatus">
+            <summary>
+            Extended status that has been assigned to the interview after the call attempt
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.Duration">
+            <summary>
+            Duration of the call attempt in seconds
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.WaitingTime">
+            <summary>
+            Waiting time (in seconds) before the call has started
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.CallHistory.CallCenterId">
+            <summary>
+            Unique identifier of the call center
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.Group">
+            <summary>
+            Class representing information about the group of interviewers
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Group.GroupId">
+            <summary>
+            Unique identifier of the group
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Group.Name">
+            <summary>
+            Name of the group
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Group.Description">
+            <summary>
+            Description of the group
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Group.ParentGroups">
+            <summary>
+            List of unique identifiers of parent group. Deprecated in the new design.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties">
+            <summary>
+            Class representing extended information about the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.InterviewerId">
+            <summary>
+            Unique identifier of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.Name">
+            <summary>
+            Name of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.Description">
+            <summary>
+            Description of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.Password">
+            <summary>
+            Encrypted password of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.Location">
+            <summary>
+            The location field is an optional property that can be used to associate the interviewer with a localized dialer gateway.
+            Please note that only valid location names (as specified in the dialer gateway configuration settings) should be entered here.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.Mode">
+            <summary>
+            Task choice: manual, automatic, survey assignment and choice
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.AssignmentsListMode">
+            <summary>
+            The mode to identify which calls should be proceeded
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.AllowedTaskChoice">
+            <summary>
+            Available task choices if [Mode] is choice mode
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.ParentGroups">
+            <summary>
+            List of unique identifiers of the parent group of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.AutomaticSurveyId">
+            <summary>
+            Unique identifier of the survey to automatic login if [Mode] is survey assignment mode
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.CallGroupId">
+            <summary>
+            Unique identifier of the parent group of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.CallCenterId">
+            <summary>
+            Unique identifier of the call center
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.InterviewerProperties.DialType">
+            <summary>
+            Dial type of the interviewer
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer">
+            <summary>
+            Class representing information about the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.InterviewerId">
+            <summary>
+            Unique identifier of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.Name">
+            <summary>
+            Name of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.Description">
+            <summary>
+            Description of the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.ManualSelection">
+            <summary>
+            Task choice: manual, automatic, survey assignment and choice
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.HasNewMessage">
+            <summary>
+            Flag to show that there is a new message from supervisor for the interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.AutomaticSurveyId">
+            <summary>
+            Unique identifier of the survey to automatic login if [ManualSelection] is survey assignment mode
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.AllowedChoices">
+            <summary>
+            Available task choices if [ManualSelection] is choice mode
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.IsLocked">
+            <summary>
+            Flag to mark the locked interviewer
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.LockedDate">
+            <summary>
+            Date and time when the user was locked
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.AssignmentsListMode">
+            <summary>
+            The mode to identify which calls should be proceeded
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.CallGroupId">
+            <summary>
+            Unique identifier of the call group.
+            For an interviewer to be delivered calls automatically for a survey where Call Groups are enabled, the interviewer must be a member of a Call Group.
+            If they are not a member of a Call Group, no calls will be delivered automatically.
+            An interviewer can be a member of one Call Group only.This can be changed at any time, and any changes take effect on the next call delivered.
+            Interviewers who are working as a member of a call group must have the "Survey Selection" task choice, otherwise Call Groups cannot be used.
+            When working as a member of a Call Group, calls are delivered based on the Extended Statuses in that Call Group.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.CallCenterId">
+            <summary>
+            Unique identifier of the call center
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.Location">
+            <summary>
+            The location field is an optional property that can be used to associate the interviewer with a localized dialer gateway.
+            Please note that only valid location names (as specified in the dialer gateway configuration settings) should be entered here.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.PwdSetDate">
+            <summary>
+            Date of the last password change
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Interviewer.DialTypeId">
+            <summary>
+            Dial type of the interviewer
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Models.Survey">
+            <summary>
+            Class representing general information about the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Survey.SurveyId">
+            <summary>
+            Unique identifier of the survey (pXXXXXXXX)
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Survey.SurveyName">
+            <summary>
+            Name of the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Survey.SampleSize">
+            <summary>
+            Size of sample for the survey
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Models.Survey.State">
+            <summary>
+            Current survey state
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Link">
+            <summary>
+            A link to a node
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Link.Rel">
+            <summary>
+            Description of relation
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Link.Method">
+            <summary>
+            Defines the http method to use
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Link.HRef">
+            <summary>
+            Relative url to node
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.WebApiServices.Resources.Messages">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.ClientKeyInvalid">
+            <summary>
+              Looks up a localized string similar to Client key {0}: {1} is invalid.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.HeaderXConfirmitApiKeyMustBeSet">
+            <summary>
+              Looks up a localized string similar to Header XConfirmitApiKey must be set.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.InternalServerError">
+            <summary>
+              Looks up a localized string similar to Internal Server Error.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.InterviewerNotFound">
+            <summary>
+              Looks up a localized string similar to Interviewer not found.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.RequireApiAccess">
+            <summary>
+              Looks up a localized string similar to User account requires SYSTEM_ API_ACCESS permission.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.RequireSystemAdministrate">
+            <summary>
+              Looks up a localized string similar to User account requires SYSTEM_CATI_ADMINISTRATE permission.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.WebApiServices.Resources.Messages.SurveyNotFound">
+            <summary>
+              Looks up a localized string similar to Survey not found.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.ProcessInitializers.CatiProcessInitializer">
+            <summary>
+            Initializes service process (cati instance) for the companies with CATI addon enabled.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.ProcessInitializers.CatiProcessInitializer.InitializeService">
+            <summary>
+            Initializes process as Cati instance.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.ProcessInitializers.DefaultProcessInitializer">
+            <summary>
+            Initializes service process for the default instance.
+            Default instance is only responsible for other instances management.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.ProcessInitializers.DefaultProcessInitializer.InitializeService">
+            <summary>
+            Initialize as Default instance
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.ProcessInitializers.IProcessInitializer">
+            <summary>
+            Interface have to be used to initialize all process types.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.ProcessInitializers.IProcessInitializer.PeriodicalThreads">
+            <summary>
+            Gets periodical threads process use.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.ProcessInitializers.IProcessInitializer.WcfServices">
+            <summary>
+            Gets wcf services process use.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.ProcessInitializers.IProcessInitializer.InitializeService">
+            <summary>
+            Called inside Service thread.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.ProcessInitializers.IProcessInitializer.UninitializeService">
+            <summary>
+            Called inside Service thread.
+            </summary>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.Program.IsInDebugMode">
+            <summary>
+            returns TRUE if DebugDbsStartup registry value not equal to 0
+            means that service in debug mode
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Confirmit.CATI.Backend.Program.Main(System.String[])">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="T:Confirmit.CATI.Backend.Resources.Strings">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.CantCreateDefaultFusionRoot">
+            <summary>
+              Looks up a localized string similar to Can&apos;t create IPtBvRoot instance for default company..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.CantCreateInstanceRegistrator">
+            <summary>
+              Looks up a localized string similar to Can&apos;t create Fusion instance registrator..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.CantCreateSpecificFusionRoot">
+            <summary>
+              Looks up a localized string similar to Can&apos;t create IPtBvRoot instance for company &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.CantGetCompanyCLSID">
+            <summary>
+              Looks up a localized string similar to Can&apos;t get CLSID for company &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.ConnectionObjectCreated">
+            <summary>
+              Looks up a localized string similar to Connection object is created..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.DistributionObjectCreated">
+            <summary>
+              Looks up a localized string similar to Distribution object is created..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.GroupsRolesAreDifferent">
+            <summary>
+              Looks up a localized string similar to Groups &apos;{0}&apos; and &apos;{1}&apos; have different roles.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InstanceDoesNotExist">
+            <summary>
+              Looks up a localized string similar to There is no BVFEE instance with name &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InternalError">
+            <summary>
+              Looks up a localized string similar to Internal error..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InternalErrorManagement">
+            <summary>
+              Looks up a localized string similar to Internal error ocurred, input parameters:.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InterviewerDoesNotBelongToGroup">
+            <summary>
+              Looks up a localized string similar to Interviewer &apos;{0}&apos; does not belong to group &apos;{1}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InterviewerDoesNotExist">
+            <summary>
+              Looks up a localized string similar to There is no interviewer with name &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InterviewersGroupDoesNotExists">
+            <summary>
+              Looks up a localized string similar to There is no interviewer&apos;s group with name &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InvalidArgument">
+            <summary>
+              Looks up a localized string similar to Invalid argument &apos;{0}&apos;, zero length array is not valid argument.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InvalidAuthenticationKey">
+            <summary>
+              Looks up a localized string similar to Invalid authentication key..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InvalidUsernameOrPassword">
+            <summary>
+              Looks up a localized string similar to Invalid user name or password..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.InvalidUserNamePassword">
+            <summary>
+              Looks up a localized string similar to Invalid user name or password..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.MonitoringSessionIsClosed">
+            <summary>
+              Looks up a localized string similar to Monitoring session is closed or supervisor doesn&apos;t exist. Supervisor name={0}, Session Id = {1}..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.NoConnectionString">
+            <summary>
+              Looks up a localized string similar to There is no connection string with name &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.NoConnectionStringName">
+            <summary>
+              Looks up a localized string similar to Name of connection string is not set..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.NoDatabaseSettings">
+            <summary>
+              Looks up a localized string similar to There are no database settings..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.NoIdentity">
+            <summary>
+              Looks up a localized string similar to CATI Console Identity is not specified..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.PasswordExpired">
+            <summary>
+              Looks up a localized string similar to User password is expired..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.PauseOrResumePlaybackError">
+            <summary>
+              Looks up a localized string similar to Error pausing or resuming playback voice file.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.RoleDoesNotExist">
+            <summary>
+              Looks up a localized string similar to There is no role {0}.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.RouteArgumentIsEmpty">
+            <summary>
+              Looks up a localized string similar to Route agrument should not be empty.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.ServerDoesNotExists">
+            <summary>
+              Looks up a localized string similar to There is no server for project with name &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.ServerDoesNotLinks">
+            <summary>
+              Looks up a localized string similar to The server with name &apos;{0}&apos; for project with name &apos;{1}&apos; on fusion instance with name &apos;{2}&apos; does not links..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.StartPlaybackError">
+            <summary>
+              Looks up a localized string similar to Error starting playback voice file.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.StopPlaybackError">
+            <summary>
+              Looks up a localized string similar to Error stopping playback voice file.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.SurveyDoesNotExist">
+            <summary>
+              Looks up a localized string similar to There is no survey with name &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.TemplateSurveyDoesNotExist">
+            <summary>
+              Looks up a localized string similar to There is no tempplate survey with name &apos;{0}&apos;.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.ThePersonIsNotLoggedIn">
+            <summary>
+              Looks up a localized string similar to The person is not logged in..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.ToggleInterviewerListensToPlaybackOrRespondentError">
+            <summary>
+              Looks up a localized string similar to Error toggling voice source.
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.UnknownFusionInterviewer">
+            <summary>
+              Looks up a localized string similar to Interviewer is not a valid Fusion user..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.UnknownSupervisor">
+            <summary>
+              Looks up a localized string similar to Supervisor is not valid..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.WrongInterviewer">
+            <summary>
+              Looks up a localized string similar to Wrong interviewer..
+            </summary>
+        </member>
+        <member name="P:Confirmit.CATI.Backend.Resources.Strings.WrongLiveMonitoringSessionIdentities">
+            <summary>
+              Looks up a localized string similar to Wrong live monitoring session identities: Supervisor name={0}, Session Id = {1}..
+            </summary>
+        </member>
+    </members>
+</doc>

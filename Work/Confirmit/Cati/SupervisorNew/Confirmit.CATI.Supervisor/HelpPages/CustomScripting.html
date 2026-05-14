@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+	span.scsh_keyword { color: #0000FF; }
+	span.scsh_string { color: #A31515; }
+	span.scsh_type { color: #2B91AF; }
+	span.scsh_comment { color: #008000; }
+	span.scsh_directive { color: #0000FF; }
+	h3 { margin-left:25px; margin-bottom: 0; font-family: Verdana, Arial, Helvetica, Western, Lucida, Tahoma; }
+</style>
+</head>
+<body>
+<pre>
+	<h3>Executing&nbsp;Scheduling&nbsp;Script&nbsp;Actions</h3>
+	<span class="scsh_keyword">void</span>&nbsp;ExecuteAction(Actions.RestorePreviousCallState)
+	<span class="scsh_keyword">void</span>&nbsp;ExecuteAction(Actions.AcceptInboundCall)
+	&nbsp;
+	<span class="scsh_keyword">void</span>&nbsp;ExecuteAction(Actions.AssignMultipleGroups,&nbsp;<span class="scsh_keyword">string</span>&nbsp;parameter)
+	<span class="scsh_keyword">void</span>&nbsp;ExecuteAction(Actions.DeassignMultipleGroups,&nbsp;<span class="scsh_keyword">string</span>&nbsp;parameter)
+	<span class="scsh_keyword">void</span>&nbsp;ExecuteAction(Actions.RecallAfterNumberOfMinutes,&nbsp;<span class="scsh_keyword">string</span>&nbsp;parameter)
+	<span class="scsh_keyword">void</span>&nbsp;ExecuteAction(Actions.RecallAfterNumberOfShifts,&nbsp;<span class="scsh_keyword">string</span>&nbsp;parameter)
+	&nbsp;
+	<h3>Accessing&nbsp;survey&nbsp;variables</h3>
+	ExprObj&nbsp;f(<span class="scsh_keyword">string</span>&nbsp;formID,&nbsp;<span class="scsh_keyword">params</span>&nbsp;<span class="scsh_keyword">object</span>[]&nbsp;loopQualifyer)
+	&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;ExprObj
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;CODED
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;DICHOTOMY
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;COMPOUND
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;OPEN
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;DATE
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;BOOL
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;EXTERNAL
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;NUMERIC
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;label()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;text()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;instruction()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;get();
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;setValue(<span class="scsh_keyword">string</span>&nbsp;sval);
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;setValue(<span class="scsh_keyword">object</span>&nbsp;sval);
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">double</span>&nbsp;toNumber()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;increment()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;decrement()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;reset()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>?&nbsp;toDate()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;toInt()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;toBoolean()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;toString()
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;value()
+	}
+	&nbsp;
+	<span class="scsh_comment">// Gets the specified background variable</span>
+	<span class="scsh_keyword">object</span>&nbsp;GetRespondentValue(<span class="scsh_keyword">string</span>&nbsp;fieldName)
+	&nbsp;
+	<span class="scsh_comment">// Sets the specified background variable</span>
+	<span class="scsh_keyword">void</span>&nbsp;SetRespondentValue(<span class="scsh_keyword">string</span>&nbsp;fieldName,&nbsp;<span class="scsh_keyword">object</span>&nbsp;value)
+	&nbsp;
+	<h3>Accessing&nbsp;scheduling&nbsp;script&nbsp;parameters</h3>
+	<span class="scsh_comment">// Gets a numeric value of the scheduling script parameter by ID.</span>
+	<span class="scsh_comment">// This may be either the default value defined in the scheduling script</span>
+	<span class="scsh_comment">// or overridden value defined in the settings of a survey using this scheduling script.</span>
+	<span class="scsh_keyword">string</span>&nbsp;GetParamNumeric(<span class="scsh_keyword">int</span>&nbsp;paramID)
+	&nbsp;
+	<span class="scsh_comment">// Gets a numeric value of the scheduling script parameter by name.</span>
+	<span class="scsh_comment">// This may be either the default value defined in the scheduling script</span>
+	<span class="scsh_comment">// or overridden value defined in the settings of a survey using this scheduling script.</span>
+	<span class="scsh_keyword">string</span>&nbsp;GetParamNumeric(<span class="scsh_keyword">string</span>&nbsp;name)
+	&nbsp;
+	<span class="scsh_comment">// Gets a string value of the scheduling script parameter by ID.</span>
+	<span class="scsh_comment">// This may be either the default value defined in the scheduling script</span>
+	<span class="scsh_comment">// or overridden value defined in the settings of a survey using this scheduling script.</span>
+	<span class="scsh_keyword">string</span>&nbsp;GetParamValue(<span class="scsh_keyword">int</span>&nbsp;paramID)
+	&nbsp;
+	<span class="scsh_comment">// Gets a string value of the scheduling script parameter by name.</span>
+	<span class="scsh_comment">// This may be either the default value defined in the scheduling script</span>
+	<span class="scsh_comment">// or overridden value defined in the settings of a survey using this scheduling script.</span>
+	<span class="scsh_keyword">string</span>&nbsp;GetParamValue(<span class="scsh_keyword">string</span>&nbsp;name)
+	&nbsp;
+	<h3>Identifying&nbsp;what&nbsp;caused&nbsp;scheduling&nbsp;script&nbsp;execution</h3>
+	SchedulingScriptExecutionReason&nbsp;Scheduling.ExecutionReason
+	&nbsp;
+	<span class="scsh_keyword">enum</span>&nbsp;SchedulingScriptExecutionReason
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;Unspecified&nbsp;=&nbsp;0,
+	&nbsp;&nbsp;&nbsp;&nbsp;Expired&nbsp;=&nbsp;1,
+	&nbsp;&nbsp;&nbsp;&nbsp;NotConnected&nbsp;=&nbsp;2,
+	&nbsp;&nbsp;&nbsp;&nbsp;Processed&nbsp;=&nbsp;3,
+	&nbsp;&nbsp;&nbsp;&nbsp;MovedAndRescheduled&nbsp;=&nbsp;4,
+	&nbsp;&nbsp;&nbsp;&nbsp;Added&nbsp;=&nbsp;5,
+	&nbsp;&nbsp;&nbsp;&nbsp;Terminated&nbsp;=&nbsp;6,
+	&nbsp;&nbsp;&nbsp;&nbsp;TelephonyError&nbsp;=&nbsp;7,
+	&nbsp;&nbsp;&nbsp;&nbsp;AddedBySample&nbsp;=&nbsp;8,
+	&nbsp;&nbsp;&nbsp;&nbsp;Inbound&nbsp;=&nbsp;9
+	}
+	&nbsp;
+	ProcessSampleMode&nbsp;Scheduling.ProcessSampleMode
+	&nbsp;
+	<span class="scsh_keyword">enum</span>&nbsp;ProcessSampleMode
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;Add&nbsp;=&nbsp;0,
+	&nbsp;&nbsp;&nbsp;&nbsp;Update&nbsp;=&nbsp;1,
+	&nbsp;&nbsp;&nbsp;&nbsp;Merge&nbsp;=&nbsp;2
+	}
+	&nbsp;
+	<h3>Working&nbsp;with&nbsp;current&nbsp;call&nbsp;and&nbsp;interview</h3>
+	<span class="scsh_comment">// Gets timezone ID for the current interview</span>
+	<span class="scsh_keyword">int</span>&nbsp;TimezoneID
+	&nbsp;
+	<span class="scsh_comment">// Gets time of last call for the current interview</span>
+	<span class="scsh_type">DateTime</span>&nbsp;LastCallTime
+	&nbsp;
+	<span class="scsh_comment">// Ensures that a new call (Scheduling.NewCall) is created</span>
+	<span class="scsh_keyword">void</span>&nbsp;CallShouldBeCreated()
+	&nbsp;
+	<span class="scsh_comment">// Gets a value indicating whether scheduling has been invoked due to a call expiry event</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsCallExpired()
+	&nbsp;
+	<span class="scsh_comment">// Gets a value indicating whether the last call for current interview has been expired within the specified timeout (in minutes)</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsSoftExpired(<span class="scsh_keyword">int</span>&nbsp;timeout)
+	&nbsp;
+	<span class="scsh_comment">// Gets a value indicating whether the interviewer assigned on the last call for current interview is currently logged in</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsPreviousResourceLoggedIn()
+	&nbsp;
+	<span class="scsh_comment">// Gets a value indicating whether the last call for current interview has been expired</span>
+	<span class="scsh_comment">// within the specified timeout (in minutes) and interviewer is currently logged in</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsCallExpiredWithResourceLoggedIn(<span class="scsh_keyword">int</span>&nbsp;timeout)
+	&nbsp;
+	<span class="scsh_comment">// Gets a value indicating whether interview extended status has not been changed during current scheduling script execution</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsITSNotChanged()
+	&nbsp;
+	<span class="scsh_comment">// Checks if there are any logged-in interviewers associated with the current survey. Note that dial type won't be checked.</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsAnyoneLoggedIntoSurvey()
+	&nbsp;
+	<span class="scsh_comment">// Checks if there are any logged-in interviewers associated with the current survey. Note that dial type won't be checked.</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsAnyoneLoggedIntoSurvey(<span class="scsh_keyword">AgentType</span>&nbsp;agentType)
+	&nbsp;
+	<span class="scsh_keyword">enum</span>&nbsp;AgentType
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;Live = 0,
+	&nbsp;&nbsp;&nbsp;&nbsp;Ivr = 1
+	}	
+	&nbsp;
+	<span class="scsh_comment">// Checks if there are any ready-for-call interviewers associated with the current survey.</span>
+	<span class="scsh_comment">// Interviewer is ready for call if he has NoCalls, Selecting or Waiting state. Note that dial type won't be checked.</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsAnyoneReadyForCallInSurvey(<span class="scsh_keyword">AgentType</span>&nbsp;agentType)
+	&nbsp;
+	<span class="scsh_comment">// Checks if there are any logged-in interviewers associated with the supplied resource ID</span> 
+	<span class="scsh_comment">// and the same survey id as the current interview. The resource ID can be either an individual interviewer ID</span> 
+	<span class="scsh_comment">// or an interviewer group ID. Note that dial type won't be checked.</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsResourceLoggedIntoSurvey(<span class="scsh_keyword">int</span>&nbsp;resourceId)
+	&nbsp;
+	<span class="scsh_comment">// Checks if there are any ready-for-call interviewers associated with the supplied resource ID</span>
+	<span class="scsh_comment">// and the same survey id as the current interview. Interviewer is ready for call if he has NoCalls, Selecting or Waiting state.</span>
+	<span class="scsh_comment">// The resource ID can be either an individual interviewer ID or an interviewer group ID. Note that dial type won't be checked.</span>
+	<span class="scsh_keyword">bool</span>&nbsp;IsResourceReadyForCallInSurvey(<span class="scsh_keyword">int</span>&nbsp;resourceId)
+	&nbsp;
+	<span class="scsh_keyword">string</span>&nbsp;Scheduling.CliNumber
+	&nbsp;
+	BvInterviewWithOriginEntity&nbsp;Scheduling.Interview
+	&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;BvInterviewWithOriginEntity&nbsp;:&nbsp;BvInterviewEntity
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;BvInterviewEntity&nbsp;Origin
+	}
+	&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;BvInterviewEntity
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;SurveySID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;TelephoneNumber
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;RespondentName
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>?&nbsp;TimezoneID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;TransientState
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>?&nbsp;LastCallTime
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>?&nbsp;LastCallPersonSID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>?&nbsp;Duration
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;ExtensionNumber
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">byte</span>&nbsp;LastChannelID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">byte</span>&nbsp;DialingMode
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;DialerId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;IsSentToReview
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">byte</span>&nbsp;DialTypeId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">byte</span>&nbsp;ReviewStatus
+	}
+	&nbsp;
+	BvCallEntity&nbsp;Scheduling.LastCall
+	BvCallEntity&nbsp;Scheduling.NewCall
+	&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;BvCallEntity
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;CallID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;SurveySID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;InterviewID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;CallState
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ShiftID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>?&nbsp;TimeInShift
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>?&nbsp;TimeToExpire
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;Priority
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;Status
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;Resource
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ApptID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">bool</span>&nbsp;Lock
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;TimeZoneID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;TzTimeInShift
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ResourceType
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">Guid</span>&nbsp;RuleNumber
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;OldPriority
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ConditionValue
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;CellId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">byte</span>&nbsp;DialTypeId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">byte</span>&nbsp;<span class="scsh_type">Type</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;DialerId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">long</span>&nbsp;ActiveDialId
+	}
+	&nbsp;
+	<span class="scsh_comment">// Information about latest dialing attempt during current interviewing attempt.</span>
+	<span class="scsh_type">DialingAttempt</span>&nbsp;Scheduling.LastDialingAttempt
+	<span class="scsh_comment">// Array with information about all dialing attempts during current interviewing attempt.</span>
+	<span class="scsh_type">DialingAttempt</span>[]&nbsp;Scheduling.LastCallDialingAttempts
+	&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;DialingAttempt
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">long</span>&nbsp;DialId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;TelephoneNumber
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>?&nbsp;DialerCallOutcome
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Caller ID (CLI) used by the dialer when calling the respondent.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;DialerCallerId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Time in seconds between the start of dialing and the time the call is connected/dropped.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>?&nbsp;RingTime
+	&nbsp;
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Returns additional dialer call outcome metadata by a given key. Returns null in case there is no metadata with such key.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;GetMetadata(<span class="scsh_keyword">string</span>&nbsp;key)
+	}
+  &nbsp;
+	<span class="scsh_comment">// Returns an array with all call attempts. Newest-first order.</span>
+	<span class="scsh_type">CallAttempt</span>[]&nbsp;Scheduling.GetCallHistory()
+	<span class="scsh_comment">// Returns an array of call attempts whose status matches the supplied value. Newest-first order.</span>
+	<span class="scsh_comment">// @param callStatus - Call status to filter by.</span>
+	<span class="scsh_type">CallAttempt</span>[]&nbsp;Scheduling.GetCallHistory(<span class="scsh_type">ExtendedStatus</span> callStatus)
+	<span class="scsh_comment">// Returns an array of call attempts whose status matches the supplied value. Newest-first order.</span>
+	<span class="scsh_comment">// @param callStatus - Call status to filter by.</span>
+	<span class="scsh_comment">// @param withinLastN - Restrict search to the specified number of most recent call attempts.</span>
+	<span class="scsh_type">CallAttempt</span>[]&nbsp;Scheduling.GetCallHistory(<span class="scsh_type">ExtendedStatus</span> callStatus, <span class="scsh_keyword">int</span> withinLastN)
+	<span class="scsh_comment">// Returns an array of call attempts whose telephone number matches the supplied value. Newest-first order.</span>
+	<span class="scsh_comment">// @param telephoneNumbe - telephone number to filter by.</span>
+	<span class="scsh_type">CallAttempt</span>[]&nbsp;Scheduling.GetCallHistory(<span class="scsh_keyword">string</span> telephoneNumber)
+	&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;CallAttempt
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Sequence number of the call attempt during the interview.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Corresponds to the 'CallAttemptCount' respondent field at the time of the call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Can be used to link call history data with survey data from the "call history" loop.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;AttemptNumber
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent telephone number.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;TelephoneNumber
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Time when the call attempt started (UTC).</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;StartTimeUtc
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Time when the call attempt started (respondent's timezone).</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;StartTimeRespondent
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Time when the call attempt ended (UTC).</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;EndTimeUtc
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Time when the call attempt ended (respondent's timezone).</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;EndTimeRespondent
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Duration of the call attempt, in seconds.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;Duration
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Interviewer identifier. 0 - the call was automatically disposed by the dialer.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;InterviwerId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Extended status assigned to the interview after the call attempt.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">ExtendedStatus</span>&nbsp;ExtendedStatus
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// AAPOR code based on the extended status of the call attempt.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">string</span>&nbsp;AaporCode
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Duration of open-ended review time, in seconds.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;OpenEndReviewDuration
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// The difference in seconds between the interview start time and the first time the phone connection was established within the interview. Only applicable for Preview interviews.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;PreviewTime
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// The difference in seconds between the first time the phone connection was established within the interview and the last time the phone connection was disconnected within the interview.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ConnectedTime
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Time difference in seconds between the final disconnection and the start of the open-end review</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// (if enabled), or the interview end (if not enabled).</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;WrapTime
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Waiting time in seconds before the interview started.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Includes the time taken by the dialer or system to find and/or connect the call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// May also include the time the interviewer spent on the survey or interview selection screen.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;WaitingTime
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Unique identifier of the call center.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;CallCenterId
+	}
+	&nbsp;
+	<span class="scsh_comment">// Predefined interview extended statuses</span>
+	<span class="scsh_keyword">enum</span>&nbsp;ExtendedStatus
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Interview abandoned with an appointment time captured to call the respondent back.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Appointment = 1,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent is already on a call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Busy = 2,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent did not answer.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;NoReply = 3,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// The quota target for the respondent has already been fulfilled.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;QuotaFail = 4,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent refused to be interviewed.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Refusal = 5,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call abandoned before completion.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Terminated = 6,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was answered by an answering machine or voicemail.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;AnswerMachine = 7,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call reached a modem.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Modem = 8,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call reached a fax machine.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Fax = 9,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Network congestion occurred during the call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Congestion = 10,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Invalid or unreachable number.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Unobtainable = 11,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent hung up before the interviewer received the call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Nuisance = 12,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Interview was successfully completed.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Completed = 13,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent was screened out based on interview criteria.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Screened = 14,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call returned from the dialer without a dial attempt (specific to predictive mode).</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;ReturnedNotDialled = 15,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent is new and awaiting interview. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;FreshSample = 16,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent’s number is on the telephone blacklist. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Blacklist = 17,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was manually dialed. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;NotAutomaticallyDialled = 18,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent was reassigned to a web interview.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;TransferToWeb = 20,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent was reassigned to computer-assisted telephone interviewing.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;TransferToCati = 21,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent was reassigned to computer-assisted personal interviewing. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;TransferToCapi = 22,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent was reassigned to an interactive voice-response system.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;TransferToIvr = 23,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was aborted by the interviewer. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;InterruptedByInterviewer = 24,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was returned after dial expiration (specific to predictive mode). </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;ReturnedDiallerExpired = 25,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was interrupted by the system. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;InterruptedBySystem = 26,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call removed from the queue due to quota being full.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;FilteredByCallDelivery = 27,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was stopped by the dialer. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Stopped = 28,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Technical issue prevented the call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;TelephonyFailure = 29,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// An error occurred during the call.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;Error = 30,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// An incoming call handled by the system. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;InboundCall = 1000,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Respondent disconnected an incoming call. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;InboundCallDroppedByRespondent = 1001,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was transferred from an IVR agent to a live interviewer or between live interviewers. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;InternalTransfer = 1010,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was transferred to an external number. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;ExternalTransfer = 1011,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Interviewer canceled the transfer. </span>
+	&nbsp;&nbsp;&nbsp;&nbsp;CanceledTransfer = 1012,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Call was interrupted while dialing.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;DialingInterrupted = 1020,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Number was validated by an external service.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;ExternallyValidatedNumber = 1021,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// An error occurred in the survey script.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;SurveyScriptError = 1051,
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Record was manually synchronized from the survey respondent list.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;SynchronizedSample = 1052
+	}
+	&nbsp;
+	&nbsp;
+	<h3>Working&nbsp;with&nbsp;shifts</h3>
+	<span class="scsh_type">DateTime</span>&nbsp;Scheduling.Shifts.GetMatchingTime(<span class="scsh_type">DateTime</span>&nbsp;utcNowTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetMatchingShift(<span class="scsh_type">DateTime</span>&nbsp;utcTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetNextShift(MatchingShift&nbsp;currentShift,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID,&nbsp;<span class="scsh_keyword">out</span>&nbsp;<span class="scsh_keyword">int</span>&nbsp;countSkipShifts);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetShiftAfterNumberOfShifts(MatchingShift&nbsp;curentShift,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID,&nbsp;<span class="scsh_keyword">int</span>&nbsp;numberOfShifts,&nbsp;<span class="scsh_keyword">bool</span>&nbsp;isTakingExclusionIntoAccount);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetExactShift(<span class="scsh_type">DateTime</span>&nbsp;utcNowTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetNextShift(ShiftService.MatchingShift&nbsp;currentShift,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetShiftAfterNumberOfMinutes(<span class="scsh_type">DateTime</span>&nbsp;utcNowTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID,&nbsp;<span class="scsh_keyword">int</span>&nbsp;countMinutes);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetShiftAfterNumberOfShifts(<span class="scsh_type">DateTime</span>&nbsp;utcNowTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID,&nbsp;<span class="scsh_keyword">int</span>&nbsp;numberOfShifts);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetNextShiftOfSpecifiedType(<span class="scsh_type">DateTime</span>&nbsp;utcTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID,&nbsp;<span class="scsh_keyword">int</span>&nbsp;scriptShiftTypeID);
+	&nbsp;
+	MatchingShift&nbsp;Scheduling.Shifts.GetNextShiftByID(<span class="scsh_type">DateTime</span>&nbsp;utcTime,&nbsp;<span class="scsh_keyword">int</span>&nbsp;tzID,&nbsp;<span class="scsh_keyword">int</span>&nbsp;scriptShiftID);
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<span class="scsh_keyword">class</span>&nbsp;MatchingShift
+	{
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Internal shift ID</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Public shift Id, which is shown in UI.</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ShiftId
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_comment">// Timezone ID of Shift</span>
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;TzID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_keyword">int</span>&nbsp;ShiftTypeID
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;StartDate
+	&nbsp;&nbsp;&nbsp;&nbsp;<span class="scsh_type">DateTime</span>&nbsp;FinishDate
+	}
+	
+	</pre>
+</body>
+</html>

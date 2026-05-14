@@ -1,0 +1,4 @@
+**
+!artifacts/*.nupkg
+!artifacts/Database
+!Docker.resources/

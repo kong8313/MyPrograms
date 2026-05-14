@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\..\assemblies\Telephony\Confirmit Open Dialer Interface</OutputPath>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>ConfirmitDialerInterface</RootNamespace>
+    <AssemblyName>ConfirmitDialerInterface.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{616a3166-e491-06c2-0090-55302642ad96}</ProjectGuid>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubIDialerCoreApi.cs" />
+    <compile Include=".\StubIDialerEvents.cs" />
+    <compile Include=".\StubIDialerFeatures.cs" />
+    <compile Include=".\StubIDialerRecordingApi.cs" />
+    <compile Include=".\StubILogger.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

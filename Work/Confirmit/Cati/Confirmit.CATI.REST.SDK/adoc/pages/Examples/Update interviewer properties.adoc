@@ -1,0 +1,46 @@
+﻿
+.Update interviewer properties
+
+----
+// Read configuration parameters
+var companyId = int.Parse(ConfigurationManager.AppSettings.Get("CompanyId"));
+var user = ConfigurationManager.AppSettings.Get("UserName");
+var password = ConfigurationManager.AppSettings.Get("Password");
+
+// Create RestClient class
+var client = Environments.Nordic.CreateCatiRestClient(user, password, companyId);
+
+// Create service classes
+var interviewerService = new InterviewerService(client);
+var surveyService = new SurveyService(client);
+
+// Create new interviewer in the new group
+var interviewerProperties = new InterviewerProperties
+{
+    Name = "TestInter_" + Guid.NewGuid(), Location = "Foo", Password = "123"
+};
+var interviewerId = await interviewerService.Create(interviewerProperties);
+
+// Change interviewer properties
+interviewerProperties.InterviewerId = interviewerId;
+interviewerProperties.Name = "TestInterNew_" + Guid.NewGuid();
+interviewerProperties.Location = "FooNew";
+interviewerProperties.Password = "123New";
+interviewerProperties.Description = "Test interviewer";
+interviewerProperties.Mode = TaskChoiceMode.Manual;
+interviewerProperties.AssignmentsListMode = AssignmentListMode.AssignedCallsOnly;
+interviewerProperties.AllowedTaskChoice = new List<TaskChoicePermissions>
+{
+    TaskChoicePermissions.Automatic,
+    TaskChoicePermissions.Manual,
+    TaskChoicePermissions.SurveyAssignment
+};
+string surveyId = (await surveyService.GetAsync("")).First().SurveyId;
+interviewerProperties.AutomaticSurveyId = surveyId;
+interviewerProperties.CallGroupId = 0;
+interviewerProperties.CallCenterId = 1;
+interviewerProperties.DialType = DialType.Manual;
+
+// Update interviewer properties
+await interviewerService.Update(interviewerProperties);
+----

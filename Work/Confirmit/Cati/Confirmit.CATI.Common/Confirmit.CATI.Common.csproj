@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.Common</RootNamespace>
+    <AssemblyName>Confirmit.CATI.Common</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_3rdpart\Unity 2.1\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Annotations.cs" />
+    <Compile Include="ConsoleService\Abstract\Appointment.cs" />
+    <Compile Include="ConsoleService\Abstract\ConsoleConnectionState.cs" />
+    <Compile Include="ConsoleService\Abstract\ExternalTransferTarget.cs" />
+    <Compile Include="ConsoleService\Abstract\InternalTransferTarget.cs" />
+    <Compile Include="ConsoleService\Abstract\BreakType.cs" />
+    <Compile Include="ConsoleService\Abstract\Messages.cs" />
+    <Compile Include="ConsoleService\Abstract\CatiConsolePropertiesContainer.cs" />
+    <Compile Include="ConsoleService\Abstract\CompletedInterviewDetails.cs" />
+    <Compile Include="ConsoleService\Abstract\ConsoleDescription.cs" />
+    <Compile Include="ConsoleService\Abstract\DiallerInfo.cs" />
+    <Compile Include="ConsoleService\Abstract\InterviewControlData.cs" />
+    <Compile Include="ConsoleService\Abstract\Language.cs" />
+    <Compile Include="ConsoleService\Abstract\PersonInfo.cs" />
+    <Compile Include="ConsoleService\Abstract\QuestionHistory.cs" />
+    <Compile Include="ConsoleService\Abstract\SearchParameter.cs" />
+    <Compile Include="ConsoleService\Abstract\SpellError.cs" />
+    <Compile Include="ConsoleService\Abstract\State.cs" />
+    <Compile Include="ConsoleService\Abstract\Survey.cs" />
+    <Compile Include="ConsoleService\Abstract\Timezone.cs" />
+    <Compile Include="ConsoleService\Abstract\TransferConnectionState.cs" />
+    <Compile Include="ConsoleService\Abstract\TransferParticipant.cs" />
+    <Compile Include="ConsoleService\Abstract\ConsoleTransferState.cs" />
+    <Compile Include="ConsoleService\Abstract\TransferOptions.cs" />
+    <Compile Include="ConsoleService\IConsoleService.cs" />
+    <Compile Include="ConsoleService\IConsoleStateService.cs" />
+    <Compile Include="Contracts\ErrorReportingService\ErrorMessage.cs" />
+    <Compile Include="Exceptions\CreateNewInterviewException.cs" />
+    <Compile Include="Exceptions\DialerStartCampaignException.cs" />
+    <Compile Include="Exceptions\InternalErrorException.cs" />
+    <Compile Include="Exceptions\NotSupportedOsException.cs" />
+    <Compile Include="Exceptions\HealthStateExceptionHandler.cs" />
+    <Compile Include="Exceptions\PasswordDoesNotSatisfyRulesException.cs" />
+    <Compile Include="Exceptions\PasswordExpiredException.cs" />
+    <Compile Include="Exceptions\SchedulingExecutionException.cs" />
+    <Compile Include="Exceptions\TheSamePasswordException.cs" />
+    <Compile Include="Exceptions\TooShortPasswordException.cs" />
+    <Compile Include="Exceptions\UserAlreadyLoggedInException.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Health\HealthCheckHandler.cs" />
+    <Compile Include="Logging\DummyEventDetails.cs" />
+    <Compile Include="Logging\IEventDetails.cs" />
+    <Compile Include="Logging\EventDetailsScope.cs" />
+    <Compile Include="DsvManager.cs" />
+    <Compile Include="Encryption\ICatiSecretKeyHasher.cs" />
+    <Compile Include="Logging\LogFileInfo.cs" />
+    <Compile Include="Monitoring\LaunchFileType.cs" />
+    <Compile Include="Monitoring\MonitoringIdentityInfo.cs" />
+    <Compile Include="Monitoring\MonitoringLaunchInfo.cs" />
+    <Compile Include="Monitoring\OfflineMonitoringLaunchInfo.cs" />
+    <Compile Include="PerformanceCounters\PerformanceCounter.cs" />
+    <Compile Include="PerformanceCounters\PerformanceCounterFactory.cs" />
+    <Compile Include="PerformanceCounters\IPerformanceCounter.cs" />
+    <Compile Include="PerformanceCounters\IPerformanceCounterFactory.cs" />
+    <Compile Include="PerformanceCounters\IPerformanceCategoryCreator.cs" />
+    <Compile Include="PerformanceCounters\PerformanceCategoryCreator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="CallStates.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Contracts\ConsoleAuthorizationService\IConsoleAuthorizationService.cs" />
+    <Compile Include="Contracts\ErrorReportingService\IErrorReportingService.cs" />
+    <Compile Include="Encoding\HttpUtilitySafe.cs" />
+    <Compile Include="Encryption\CatiSecretKeyHasher.cs" />
+    <Compile Include="Encryption\CatiSymmetricEncryptor.cs" />
+    <Compile Include="Encryption\ICatiSymmetricEncryptor.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Exceptions\CatiException.cs" />
+    <Compile Include="Exceptions\SpellCheckerLanguageIsNotSupportedException.cs" />
+    <Compile Include="Exceptions\InvalidInterviewerCredentialsException.cs" />
+    <Compile Include="Exceptions\ExceptionManager.cs" />
+    <Compile Include="Exceptions\LoginToInactiveDialerException.cs" />
+    <Compile Include="Exceptions\InterviewerNotLoggedInException.cs" />
+    <Compile Include="Exceptions\ManualUserInPredictiveModeException.cs" />
+    <Compile Include="Exceptions\PredictiveSurveyWithoutDialerException.cs" />
+    <Compile Include="Exceptions\QuotaNotInSyncException.cs" />
+    <Compile Include="Exceptions\SchedulingScriptExecutionException.cs" />
+    <Compile Include="Exceptions\SchedulingScriptSyntaxErrorException.cs" />
+    <Compile Include="Exceptions\StateServiceSessionExpiredException.cs" />
+    <Compile Include="Exceptions\StateServiceSessionExpiredExceptionDetails.cs" />
+    <Compile Include="Exceptions\SurveyInManualDialingModeException.cs" />
+    <Compile Include="Exceptions\UserMessageException.cs" />
+    <Compile Include="Exceptions\HttpRequestFailedException.cs" />
+    <Compile Include="ILogger.cs" />
+    <Compile Include="PersonAssignmentListMode.cs" />
+    <Compile Include="Random\Randomizer.cs" />
+    <Compile Include="ServiceLocation\FactoryLifetimeManager.cs" />
+    <Compile Include="ServiceLocation\IServiceInitializer.cs" />
+    <Compile Include="ServiceLocation\IServiceLocator.cs" />
+    <Compile Include="ServiceLocation\IServiceLocatorRegistry.cs" />
+    <Compile Include="ServiceLocation\IServiceRegistrator.cs" />
+    <Compile Include="ServiceLocation\IServiceResolver.cs" />
+    <Compile Include="ServiceLocation\ServiceLocator.cs" />
+    <Compile Include="ServiceLocation\ServiceLocatorException.cs" />
+    <Compile Include="SideBySide\ISideBySideManager.cs" />
+    <Compile Include="SideBySide\SideBySideManager.cs" />
+    <Compile Include="SideBySide\SideBySide.cs" />
+    <Compile Include="Types\FixedSizeQueue.cs" />
+    <Compile Include="Types\Range.cs" />
+    <Compile Include="Validators\IInputParameterValidator.cs" />
+    <Compile Include="Validators\ParameterValidator.cs" />
+    <Compile Include="Validators\InputParameterValidator.cs" />
+    <Compile Include="WcfTools\ChannelFactoryWrapper.cs" />
+    <Compile Include="WcfTools\ChannelFactoryWrapperFactory.cs" />
+    <Compile Include="WcfTools\ConsoleMessageHeader\AuthorizationMessageHeaderBehavior.cs" />
+    <Compile Include="Security\DataValidationManager.cs" />
+    <Compile Include="WcfTools\ConsoleMessageHeader\AuthorizationMessageHeaderConstants.cs" />
+    <Compile Include="WcfTools\ConsoleMessageHeader\AuthorizationMessageHeaderReader.cs" />
+    <Compile Include="WcfTools\ConsoleMessageHeader\CookieMessagingBehavior.cs" />
+    <Compile Include="WcfTools\ConsoleMessageHeader\IAuthorizationMessageHeaderReader.cs" />
+    <Compile Include="WcfTools\CookieManager\CookieManager.cs" />
+    <Compile Include="WcfTools\CookieManager\CookieManagerElement.cs" />
+    <Compile Include="WcfTools\ErrorContextHandler\ErrorContextLogger.cs" />
+    <Compile Include="WcfTools\ErrorContextHandler\ErrorContext.cs" />
+    <Compile Include="WcfTools\ErrorContextHandler\ErrorHandlingInvoker.cs" />
+    <Compile Include="WcfTools\ErrorContextHandler\HideParameterValueWhileLoggingAttribute.cs" />
+    <Compile Include="WcfTools\ErrorContextHandler\ErrorContextHandlerAttribute.cs" />
+    <Compile Include="WcfTools\ErrorContextHandler\LogExceptionAndNotRethrowAttribute.cs" />
+    <Compile Include="WcfTools\ErrorServiceMessageHeader\ErrorServiceMessageHeaderBehavior.cs" />
+    <Compile Include="WcfTools\ErrorServiceMessageHeader\ILoginPasswordAuthenticationDataProvider.cs" />
+    <Compile Include="WcfTools\ErrorServiceMessageHeader\LoginPasswordAuthenticationDataProvider.cs" />
+    <Compile Include="WcfTools\IChannelFactoryWrapper.cs" />
+    <Compile Include="WcfTools\IChannelFactoryWrapperConfiguration.cs" />
+    <Compile Include="WcfTools\IChannelFactoryWrapperFactory.cs" />
+    <Compile Include="WcfTools\IMessageHeaderAccessor.cs" />
+    <Compile Include="WcfTools\MessageHeaderAccessor.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\AsyncResult.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\ChainedAsyncResult.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\ChannelMessageInterceptor.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\InterceptingBindingElement.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\InterceptingChannelBase.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\InterceptingChannelFactory.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\InterceptingChannelListener.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\InterceptingDuplexChannel.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\InterceptingElement.cs" />
+    <Compile Include="WcfTools\MessageInterceptor\TimeoutHelper.cs" />
+    <Compile Include="WcfTools\PseudoHttpsTransport\PseudoHttpsTransportBindingElement.cs" />
+    <Compile Include="WcfTools\PseudoHttpsTransport\PseudoHttpsTransportElement.cs" />
+    <Compile Include="WcfTools\PseudoHttpsTransport\SecurityCapabilities.cs" />
+    <Compile Include="WcfTools\WcfExecutor.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{d68a6b1f-92ba-4305-b802-ff6b35d7a6d2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)MSBuild\NFakes\NFakesConsole.exe" "$(SolutionDir)assemblies\Confirmit.Cati.Common.dll" "$(SolutionDir)Confirmit.Cati.Common\Confirmit.Cati.Common.csproj" "$(SolutionDir)NFakes\Generated" "$(SolutionDir)ConfirmitKeyPair.snk"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

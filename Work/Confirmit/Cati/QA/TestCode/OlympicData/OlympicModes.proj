@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Modes" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)..\..\..\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+ 
+ <UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <ParameterGroup>
+    <InputFilename ParameterType="System.String" Required="true" />
+    <OutputFilename ParameterType="System.String" Required="true" />
+    <MatchExpression ParameterType="System.String" Required="true" />
+    <ReplacementText ParameterType="System.String" Required="true" />
+  </ParameterGroup>
+  <Task>
+    <Reference Include="System.Core" />
+    <Using Namespace="System" />
+    <Using Namespace="System.IO" />
+    <Using Namespace="System.Text.RegularExpressions" />
+    <Code Type="Fragment" Language="cs">
+      <![CDATA[
+            File.WriteAllText(
+                OutputFilename,
+                Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+                );
+          ]]>
+    </Code>
+  </Task>
+ </UsingTask>
+
+ <Target Name="AddCompanyNameToTestNames">
+
+    <Message Text="Set company name for $(CompanyName) Prepare test" />
+
+    <ReplaceFileText 
+      InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      MatchExpression="OlympicPrepareSurveyTest"
+      ReplacementText="Olympic$(CompanyName)PrepareSurveyTest" />
+
+    <ReplaceFileText 
+      InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      MatchExpression="OlympicCloseSurveyTest"
+      ReplacementText="OlympicCloseSurvey$(CompanyName)Test" />
+
+    <ReplaceFileText 
+      InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      MatchExpression="OlympicCheck"
+      ReplacementText="OlympicCheck$(CompanyName)" />
+
+  </Target>
+
+  <Target Name="RestoreTestNames" AfterTargets="Modes">
+
+    <Message Text="Remove company name for Prepare test" />
+
+    <ReplaceFileText 
+      InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      MatchExpression="Olympic$(CompanyName)PrepareSurveyTest"
+      ReplacementText="OlympicPrepareSurveyTest" />
+
+    <ReplaceFileText 
+      InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      MatchExpression="OlympicCloseSurvey$(CompanyName)Test"
+      ReplacementText="OlympicCloseSurveyTest" />
+
+    <ReplaceFileText 
+      InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+      MatchExpression="OlympicCheck$(CompanyName)"
+      ReplacementText="OlympicCheck" />
+
+  </Target>
+
+  <Target Name="NoDialerMode">
+    <Message Text="Olympic No Dialer mode is active" />
+
+    <MSBuild Projects="OlympicActions.proj" 
+             Properties="OlympicMode=NoDialer;CompanyName=$(CompanyName);CompanyId=$(CompanyId);Server=$(Server);
+                         catiServerName=$(catiServerName);wsServerName=$(wsServerName);IsAutopilotMode=$(IsAutopilotMode);
+                         CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);DataSource=$(DataSource)" />
+
+  </Target>
+
+  <Target Name="PreviewDialerMode">
+    <Message Text="Olympic preview Dialer mode is active" />
+
+    <MSBuild Projects="OlympicActions.proj" 
+             Properties="OlympicMode=PreviewDialer;CompanyName=$(CompanyName);CompanyId=$(CompanyId);Server=$(Server);
+                         catiServerName=$(catiServerName);wsServerName=$(wsServerName);IsAutopilotMode=$(IsAutopilotMode);
+                         CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);DataSource=$(DataSource)" />
+
+  </Target>
+
+  <Target Name="PredictiveMode">
+    <Message Text="Olympic predictive mode is active, server is $(Server)" />
+	
+    <MSBuild Projects="OlympicActions.proj" 
+             Properties="OlympicMode=Predictive;CompanyName=$(CompanyName);CompanyId=$(CompanyId);Server=$(Server);
+                        catiServerName=$(catiServerName);wsServerName=$(wsServerName);IsAutopilotMode=$(IsAutopilotMode);
+                        CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);DataSource=$(DataSource)"/>
+
+  </Target>
+
+  <Target Name="PreviewInPredictiveMode">
+    <Message Text="Olympic preview in predictive mode is active" />
+
+    <MSBuild Projects="OlympicActions.proj" 
+             Properties="OlympicMode=PreviewInPredictive;CompanyName=$(CompanyName);CompanyId=$(CompanyId);Server=$(Server);
+                         catiServerName=$(catiServerName);wsServerName=$(wsServerName);IsAutopilotMode=$(IsAutopilotMode);
+                         CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);DataSource=$(DataSource)"/>
+
+  </Target>
+
+  <Target Name="Modes" DependsOnTargets="AddCompanyNameToTestNames;NoDialerMode;PreviewDialerMode;PredictiveMode;PreviewInPredictiveMode">
+    <OnError ExecuteTargets="RestoreTestNames"/>
+  </Target>
+
+
+</Project>

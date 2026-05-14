@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunOlympicTests" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <CatiConsoleLocationFolder>$(MSBuildThisFileDirectory)\..\..\..\assemblies\OlympicTest\</CatiConsoleLocationFolder>
+    <IsAutopilotMode Condition="'$(IsAutopilotMode)' == ''">True</IsAutopilotMode> 
+    <RunInstallationTest Condition="'$(RunInstallationTest)' == ''">True</RunInstallationTest> 
+  </PropertyGroup>
+  <PropertyGroup>
+	<Server Condition="'$(Server)' == ''">master</Server>
+    <catiServerName Condition="'$(Server)'=='master'">cati.build.testlab.firmglobal.net</catiServerName>
+    <catiServerName Condition="'$(Server)'=='feature1'">co-osl-tenta07.firmglobal.com</catiServerName>
+    <catiServerName Condition="'$(Server)'=='feature2'">co-osl-tenta05.firmglobal.com</catiServerName>      
+    <catiServerName Condition="'$(Server)'=='release'">Cati.testlab.firmglobal.net</catiServerName>
+    <wsServerName Condition="'$(Server)'=='master'">author-cati.build.testlab.firmglobal.net</wsServerName>
+    <wsServerName Condition="'$(Server)'=='feature1'">co-osl-tenta07.firmglobal.com</wsServerName>
+    <wsServerName Condition="'$(Server)'=='feature2'">co-osl-tenta05.firmglobal.com</wsServerName>
+    <wsServerName Condition="'$(Server)'=='release'">author.testlab.firmglobal.net</wsServerName>
+    <DataSource Condition="'$(Server)'=='master'">CO-OSL-TENTA203\CATI</DataSource>
+    <DataSource Condition="'$(Server)'=='feature1'">CO-OSL-TENTA07</DataSource>
+    <DataSource Condition="'$(Server)'=='feature2'">CO-OSL-TENTA05</DataSource>
+    <DataSource Condition="'$(Server)'=='release'">CO-OSL-TENTA263\CATI</DataSource>
+    <CompanyName Condition="'$(Server)'=='master'">CATICompany</CompanyName>
+    <CompanyName Condition="'$(Server)'=='release'">Confirmit</CompanyName>
+    <CompanyName Condition="'$(Server)'=='feature1'">Confirmit</CompanyName>
+    <CompanyName Condition="'$(Server)'=='feature2'">Confirmit</CompanyName>
+    <CompanyId Condition="'$(Server)'=='master'">2</CompanyId>
+    <CompanyId Condition="'$(Server)'=='release'">1</CompanyId>
+    <CompanyId Condition="'$(Server)'=='feature1'">1</CompanyId>
+    <CompanyId Condition="'$(Server)'=='feature2'">1</CompanyId>
+    <ApiUser Condition="'$(Server)'=='master'">cati_api</ApiUser>
+    <ApiUser Condition="'$(Server)'=='release'">cati_api</ApiUser>
+    <ApiUser Condition="'$(Server)'=='feature1'">administrator</ApiUser>
+    <ApiUser Condition="'$(Server)'=='feature2'">administrator</ApiUser>
+    <ApiUserPwd Condition="'$(Server)'=='master'">Password123$</ApiUserPwd>
+    <ApiUserPwd Condition="'$(Server)'=='release'">Password123$</ApiUserPwd>
+    <ApiUserPwd Condition="'$(Server)'=='feature1'">administrator</ApiUserPwd>
+    <ApiUserPwd Condition="'$(Server)'=='feature2'">administrator</ApiUserPwd>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)..\..\..\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+
+
+  <Target Name="ConsolePreparations">
+    <Message Text="CATI console preparations" />
+
+    <MSBuild Projects="RunConsoleTest.proj" Targets="ConsolePreparations" Properties="catiServerName=$(catiServerName);CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);DataSource=$(DataSource)" />
+
+  </Target>
+
+  <Target Name="ActionConfirmit">
+    <Message Text="Tests for $(CompanyName) company" />
+    <!-- for Debug - Read input from the user and uppercase it all -->
+    <!--MSBuild.ExtensionPack.UI.Console TaskAction="ReadLine" UserPrompt="Paused... press any key" ToUpper="true">
+            <Output TaskParameter="UserResponse" PropertyName="Line"/>
+    </MSBuild.ExtensionPack.UI.Console-->
+
+    <MSBuild Projects="OlympicModes.proj" Properties="CompanyName=$(CompanyName);CompanyId=$(CompanyId);Server=$(Server);catiServerName=$(catiServerName);wsServerName=$(wsServerName);
+	IsAutopilotMode=$(IsAutopilotMode);CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);DataSource=$(DataSource);ApiUser=$(ApiUser);ApiUserPwd=$(ApiUserPwd)" />
+
+  </Target>
+
+
+  <Target Name="ConsoleInstallationTest" Condition="$(RunInstallationTest) == 'True'">
+    <Message Text="Go to Console Click Once installation test" />
+
+    <MSBuild Projects="..\ConsoleData\BuildAndRunConsoleTest.proj" Properties="Server=$(Server)" />
+  </Target>
+  
+  <Target Name="RunOlympicTests" DependsOnTargets="ConsoleInstallationTest;ActionConfirmit;">
+    <OnError ExecuteTargets="PublishTRX"/>
+  </Target>
+  
+  <Target Name="PublishTRX" AfterTargets="RunOlympicTests">
+    <ItemGroup>
+      <SpecificFiles Include="$(MSBuildThisFileDirectory)\..\..\..\QA\TestCode\OlympicData\TestResults\*.trx;$(MSBuildThisFileDirectory)\..\..\..\QA\TestCode\ConsoleData\TestResults\*.trx" />
+    </ItemGroup>
+
+    <Message Text="##teamcity[importData type='mstest' path='%(SpecificFiles.Identity)']" Importance="high" />
+  </Target>
+  <Target Name="help">
+    <Message Text="How to run Olympic tests on master"/>
+    <Message Text="Use: msbuild OlympicBuildAndRun.proj /p:server=master"/>
+	<Message Text=" "/>
+    <Message Text="How to run Olympic tests on release"/>
+    <Message Text="Use: msbuild OlympicBuildAndRun.proj /p:server=release"/>
+  </Target>
+  
+</Project>

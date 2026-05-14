@@ -1,0 +1,1 @@
+﻿CREATE INDEX [IX_BvTasks_SurveySID_InterviewId] ON [dbo].[BvTasks] ([SurveySID], [InterviewID])

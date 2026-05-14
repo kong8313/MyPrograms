@@ -1,0 +1,4 @@
+﻿CREATE TYPE BvBigIntArrayType AS TABLE
+(
+	Value BIGINT NOT NULL
+)

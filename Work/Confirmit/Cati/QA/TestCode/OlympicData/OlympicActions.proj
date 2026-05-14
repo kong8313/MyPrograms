@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Action" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)..\..\..\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+
+ <UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <ParameterGroup>
+    <InputFilename ParameterType="System.String" Required="true" />
+    <OutputFilename ParameterType="System.String" Required="true" />
+    <MatchExpression ParameterType="System.String" Required="true" />
+    <ReplacementText ParameterType="System.String" Required="true" />
+  </ParameterGroup>
+  <Task>
+    <Reference Include="System.Core" />
+    <Using Namespace="System" />
+    <Using Namespace="System.IO" />
+    <Using Namespace="System.Text.RegularExpressions" />
+    <Code Type="Fragment" Language="cs">
+      <![CDATA[
+            File.WriteAllText(
+                OutputFilename,
+                Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+                );
+          ]]>
+    </Code>
+  </Task>
+ </UsingTask>
+
+  <Target Name="Action">
+    <Message Text="Before build solution prepare Data Driven XML: copy Olympic$(OlympicMode)Data.xml to TestData\OlympicData.xml"/>
+    <MSBuild.ExtensionPack.FileSystem.RoboCopy Source="$(MSBuildThisFileDirectory)" Destination="..\TestData" Files="*$(OlympicMode)Data.xml" Options="/V"/>
+    <MSBuild.ExtensionPack.FileSystem.File TaskAction="Move" Path="..\TestData\Olympic$(OlympicMode)Data.xml" TargetPath="..\TestData\OlympicData.xml"/>
+	
+    <CallTarget Targets="ArrangeCatiWsServers"/>
+
+    <CallTarget Targets="SetUserCompanyFCD"/>  
+
+
+    <MSBuild Projects="RunPrepareTest.proj" Properties="CompanyName=$(CompanyName);OlympicMode=$(OlympicMode);DataSource=$(DataSource)"/>
+
+    <MSBuild Projects="RunConsoleTest.proj" Properties="CatiConsoleLocationFolder=$(CatiConsoleLocationFolder);CompanyName=$(CompanyName);OlympicMode=$(OlympicMode);DataSource=$(DataSource);IsAutopilotMode=$(IsAutopilotMode)"/>
+
+    <MSBuild Projects="RunCloseSurveyTest.proj" Properties="CompanyName=$(CompanyName);OlympicMode=$(OlympicMode)"/>
+
+    <MSBuild Projects="RunCheckFCDinterviewStatusesCallStatesTest.proj" Properties="CompanyName=$(CompanyName);OlympicMode=$(OlympicMode);DataSource=$(DataSource)"/>
+
+
+  </Target>
+
+  <Target Name="SetUserCompanyFCD" >
+    <Message Text="Set data for $(CompanyName) company in $(OlympicMode) mode, $(ApiUser), $(ApiUserPass)" />
+
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="cati_api"
+      ReplacementText="$(ApiUser)" />
+
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="password>Password123%24"
+      ReplacementText="password>$(ApiUserPass)" />
+
+
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="companyId>2"
+      ReplacementText="companyId>$(CompanyId)" />
+
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="CATICompany"
+      ReplacementText="$(CompanyName)" />
+
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="fcdBehaviorType>0"
+      ReplacementText="fcdBehaviorType>1" />
+
+  </Target>
+
+  <Target Name="ArrangeCatiWsServers" > 
+    <Message Text="Replacing cati and ws server names and connection string in data source" />
+
+    
+    <ReplaceFileText
+      InputFilename="..\TestData\OlympicData.xml"
+      OutputFilename="..\TestData\OlympicData.xml"
+      MatchExpression="catiServer>Cati.build.testlab.firmglobal.net"
+      ReplacementText="catiServer>$(catiServerName)" />
+
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="wsServer>author-cati.build.testlab.firmglobal.net" 
+      ReplacementText="wsServer>$(wsServerName)" />   
+
+  </Target>
+
+</Project>

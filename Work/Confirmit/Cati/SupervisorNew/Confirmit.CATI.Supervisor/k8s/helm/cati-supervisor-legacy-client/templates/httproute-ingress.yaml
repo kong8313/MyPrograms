@@ -1,0 +1,18 @@
+{{- if and .Values.global.httpRouteIngress.enabled .Values.httpRouteIngress.enabled -}}
+{{- $hostnames := (default .Values.global.httpRouteIngress.hostnames .Values.httpRouteIngress.hostnames) -}}
+{{- if .Values.global.httpRouteIngress.enableIngressHostnamesFallback -}}
+{{- $hostnames = default (default .Values.global.ingress.hosts .Values.global.httpRouteIngress.hostnames) (default .Values.ingress.hosts .Values.httpRouteIngress.hostnames) -}}
+{{- end -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ template "cati-supervisor-legacy-client.fullname" . }}-ingress
+  labels: {{ include "cati-supervisor-legacy-client.labels" . | nindent 4 }}
+    app.confirmit.com/traffic-type: ingress
+spec:
+  parentRefs: {{ (default .Values.global.httpRouteIngress.parentRefs .Values.httpRouteIngress.parentRefs) | toYaml | nindent 2 }}
+{{- if $hostnames }}
+  hostnames: {{ $hostnames | toYaml | nindent 2 }}
+{{- end }}
+  rules: {{ tpl (.Values.httpRouteIngress.rules | toYaml) . | nindent 2 }}
+{{- end }}

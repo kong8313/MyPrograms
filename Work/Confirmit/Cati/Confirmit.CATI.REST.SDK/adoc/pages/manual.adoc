@@ -1,0 +1,64 @@
+﻿﻿
+= Manual
+
+== Getting started
+The Forsta Cati REST API is a pure REST/JSON API. Please note that it is not a WCF service, so there is no WSDL available. 
+The API ships with an integration SDK. The SDK is a .NET assembly, so if you use Java or JavaScript you cannot currently use the SDK. 
+The SDK contains a set of service and model classes to simplify integration. 
+The Forsta CATI REST API is an add-on, if you do not have this add-on, you will receive a 503 (Service Unavailable) error when attempting to use it.
+How to use an SDK Nuget package:
+
+* Contact Forsta Support to get CATI Rest SDK;
+* Save package in a local Nuget feed;
+* Add SDK to the project by right-clicking the project and then choosing Manage Nuget Packages. Search for Confirmit.Cati.Rest.Sdk and click Install.
+
+image::InstallNugetPackage.png["Adding the CATI Rest SDK to a project"]
+
+Now you can start using the SDK in your application.
+ 
+== Using the API SDK
+The SDK is a single .NET assembly Confirmit.CATI.REST.SDK. The assembly compiled for the .NET 4.5 framework. 
+SDK contains service and model classes. Service classes act as proxy classes, model classes are mainly POCO classes used in the JSON serialization/deserialization. 
+Service classes are located in the "Confirmit.CATI.REST.SDK.Client" namespace. Here is a list of the service classes: 
+
+* BreakHistoryService
+* CallHistoryService
+* CallHistoryWithVariablesService
+* SurveyService
+* InterviewerService
+* InterviewerSessionHistoryService
+* GroupService
+* BlackListService
+
+All service classes implement corresponding interfaces. Service classes gets single parameter in the constructor - IRestClient. 
+All service methods are asynchronous and returns Task object. In .NET 4.5 you can use the await keyword to wait for the task to complete. 
+Please refer to study code examples.
+ 
+=== Security
+To access the API you first need to have xConfirmitApiKey. To get the key you need to call Forsta LogOn SOAP web service. In the Confirmit.CATI.REST.SDK.LogOn namespace there is a proxy class that can be used to access the LogOn web service.
+ 
+=== Permissions
+To be able to call the API the user needs to have SYSTEM_API_ACCESS and SYSTEM_CATI_ADMINISTRATE permissions. Otherwise, a 403 Forbidden error code will be returned.
+ 
+=== Forsta environment configuration
+We suggest using the Nordic site to test the Rest API.
+
+* cati.nordic.confirmit.com - for the RestClient constructor address parameter;
+* ws.nordic.confirmit.com - to configure LogOnSoapClient (please see the sample in API SDK)
+
+To access the Forsta SaaS environment please use the following addresses:
+
+* cati.euro.confirmit.com or cati.us.confirmit.com - for the RestClient constructor address parameter
+* ws.confirmit.com or ws.euro.confirmit.com - to configure LogOnSoapClient (please see the sample in Using the API SDK)
+
+Site info is published here: https://extranet.confirmit.com/library/saas-info.aspx. You can also use the Environments class to create LogOnSoapClient and RestClient instances for different Forsta environments without specifying the URLs manually.
+ 
+=== ODATA support
+All services have a GetAsync method that returns a list of corresponding records (list of surveys, interviewers, groups, call history entries, break history entries). 
+GetAsync methods are gateways to the OData endpoints. GetAsync gets a single parameter - OData query string. Using a query string, you can filter the result lists.
+The API supports the OData V4 specification. To filter the result set by the column - use the column name (entity field name) in the filter. 
+For the sample, see http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options#examples.
+The only exception is CallHistoryWithVariablesService which does not use OData query.
+ 
+=== Paging
+By default OData endpoints return just the first page of the result set. The page size is 10000 records. To get subsequent pages use the $skip OData option.

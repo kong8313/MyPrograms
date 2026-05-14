@@ -1,0 +1,215 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ConfirmitDialerInterface
+{
+    /// <summary>
+    /// Dialer notification (dialer events) interface.
+    /// Dialer notifies Forsta CATI about different dialer/agent states, call outcomes etc.
+    /// </summary>
+    public interface IDialerEvents
+    {
+        /// <summary>
+        /// Notifies Forsta CATI about the dialer state
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="dialerState">State of dialer</param>
+        void NotifyDialerState(
+            int companyId, 
+            int dialerId, 
+            DialerState dialerState);
+
+        /// <summary>
+        /// Notifies Forsta CATI about the agent state.
+        /// Forsta CATI (asynchronously) waits for this event after calling <see cref="IDialerCoreApi.Login"/>. 
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="agentId">The unique identifier of the Agent.</param>
+        /// <param name="agentState">Current agent state</param>
+        void NotifyAgentState(
+            int companyId, 
+            int dialerId, 
+            long campaignId, 
+            int agentId, 
+            AgentState agentState);
+
+        /// <summary>
+        /// Notifies Forsta CATI about the call outcome.
+        /// Forsta CATI (asynchronously) waits for this event after calling the next methods:
+        /// - <see cref="IDialerCoreApi.SendNumberToAgent"/>. 
+        /// - <see cref="IDialerCoreApi.SendNumbers"/>
+        /// - <see cref="IDialerCoreApi.CompletePreview"/>
+        /// - <see cref="IDialerCoreApi.FlushNumbers"/>
+        /// - <see cref="IDialerCoreApi.ConnectInboundCall"/>
+        /// - <see cref="IDialerCoreApi.ConnectInboundCallToAgent"/>
+        /// - <see cref="IDialerCoreApi.TransferSetTarget"/> for <see cref="TransferType.InternalWarm"/>
+        /// - <see cref="IDialerCoreApi.TransferComplete"/> for <see cref="TransferType.InternalCold"/> with non-predictive dialing mode.
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="agentId">The unique identifier of the Agent.</param>
+        /// <param name="interviewId">The unique identifier of the interview connected to the call</param>
+        /// <param name="callId">The unique identifier of the call</param>
+        /// <param name="outcome">The call outcome</param>
+        /// <param name="callerId">Caller ID (CLI) used by the dialer when calling the respondent</param>
+        /// <param name="ringTime">The amount of time between the start of dialing and the time the call is connected/dropped.</param>
+        /// <param name="callOutcomeMetadata">Dictionary with any additional call outcome metadata</param>
+        /// <param name="correlationId">Randomly generated identifier of the dialing request</param>
+        void NotifyOutcome(
+            int companyId,
+            int dialerId,
+            long campaignId,
+            int agentId,
+            int interviewId,
+            long callId,
+            CallOutcome outcome,
+            string callerId,
+            TimeSpan ringTime,
+            Dictionary<string, string> callOutcomeMetadata,
+            string correlationId);
+
+        /// <summary>
+        /// For internal use only
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="agentId">The unique identifier of the Agent.</param>
+        /// <param name="interviewId">The unique identifier of the interview connected to the call</param>
+        /// <param name="callId">The unique identifier of the call</param>
+        /// <param name="callOutcome">The call outcome</param>
+        void NotifyCustomIvrInterviewEnd(
+            int companyId,
+            int dialerId,
+            long campaignId,
+            int agentId,
+            int interviewId,
+            long callId,
+            CallOutcome callOutcome);
+        
+        /// <summary>
+        /// Notifies Forsta CATI about a new inbound call.
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="ddiNumber">The unique identifier of the inbound line</param>
+        /// <param name="cliNumber">Caller phone number</param>
+        /// <param name="inboundCallId">The unique identifier of the inbound call (generated by dialer)</param>
+        void NotifyInboundCall(
+            int companyId,
+            int dialerId,
+            string ddiNumber,
+            string cliNumber,
+            string inboundCallId);
+
+        /// <summary>
+        /// Notifies Forsta CATI that call is dropped by respondent.
+        /// Should not be called if the call has been disconnected by agent (e.g. via <see cref="IDialerCoreApi.Hangup"/>).
+        /// It should also be used for inbound calls that have already been connected to agent
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="agentId">The unique identifier of the Agent.</param>
+        /// <param name="callId">The unique identifier of the call</param>
+        void NotifyCallDroppedByRespondent(
+            int companyId,
+            int dialerId,
+            long campaignId,
+            int agentId,
+            long callId);
+
+        /// <summary>
+        /// Notifies Forsta CATI that inbound call is dropped by respondent. Should only be used for inbound calls when respondent
+        /// dropped before <see cref="IDialerCoreApi.ConnectInboundCall"/> or <see cref="IDialerCoreApi.ConnectInboundCallToAgent"/>
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="inboundCallId">The unique identifier of the inbound call id (generated by dialer)</param>
+        void NotifyInboundCallDroppedByRespondent(
+            int companyId,
+            int dialerId,
+            string inboundCallId);
+
+        /// <summary>
+        /// This method is called when dialer ready to call for specified interview.
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="agentId">The unique identifier of the Agent.</param>
+        /// <param name="interviewId">The unique identifier of the interview connected to the call</param>
+        /// <param name="callId">The unique identifier of the call</param>
+        /// <param name="callDialingMode">The call dialing mode</param>
+        void ScreenPop(
+            int companyId, 
+            int dialerId, 
+            long campaignId, 
+            int agentId, 
+            int interviewId, 
+            long callId, 
+            DialingMode callDialingMode);
+
+        /// <summary>
+        /// Dialer requests calls for predictive dialing.
+        /// Forsta CATI answers to each <see cref="RequestCalls"/> request via <see cref="IDialerCoreApi.SendNumbers"/> call.
+        /// If Forsta CATI does not have any calls ready for dialing it still answers via <see cref="IDialerCoreApi.SendNumbers"/> but with an empty call list.
+        /// </summary>
+        /// <param name="requestId">
+        ///   Identity for the request. Forsta CATI includes this id into the <see cref="IDialerCoreApi.SendNumbers"/> answer.
+        ///   So the dialer recognizes what request the <see cref="IDialerCoreApi.SendNumbers"/> answer belongs to.
+        /// </param>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="groupId">Identifier of the agent group which dialer requests calls for</param>
+        /// <param name="callsSelectionAlgorithm">Forsta CATI can select calls using two selection algorithms: 'by campaign' or 'by agent group'</param>
+        /// <param name="callCount">Amount of calls the dialer requests for</param>
+        void RequestCalls(
+            string requestId, 
+            int companyId, 
+            int dialerId, 
+            long campaignId, 
+            int groupId, 
+            CallsSelectionAlgorithm callsSelectionAlgorithm, 
+            int callCount);
+
+        /// <summary>
+        /// Notifies Forsta CATI about IVR form submission.
+        /// </summary>
+        /// <param name="companyId">Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="campaignId">The unique identifier of the Campaign.</param>
+        /// <param name="agentId">The unique identifier of the Agent.</param>
+        /// <param name="variables">Key value pairs</param>
+        void NotifyIvrSubmit(
+            int companyId,
+            int dialerId,
+            long campaignId,
+            int agentId,
+            KeyValuePair<string, string>[] variables);
+
+        /// <summary>
+        /// Notifies Forsta CATI about current transfer session state.
+        /// This notification should be sent when any change to the transfer state has been made.
+        /// The transferState object is allocated and maintained by the dialer.
+        /// It makes sense to allocate it during the <see cref="IDialerCoreApi.TransferStart"/> call and associate with a specific transferId.
+        /// All fields in a transferState object should have correct values reflecting current state of transfer session.
+        /// Even if the field value has not been changed – it should have correct value.
+        /// Some values may be set to NotDefined only if it does not make sense at a certain point of transfer session (for example <see cref="TargetOutcome"/> can be NotDefined before the target has been set).
+        /// </summary>
+        /// <param name="companyId">>Forsta company id</param>
+        /// <param name="dialerId">Dialer id</param>
+        /// <param name="transferId">>A string containing unique transfer session ID</param>
+        /// <param name="transferState">The current state of a call transfer session</param>
+        void NotifyTransferState(
+            int companyId,
+            int dialerId,
+            string transferId,
+            TransferState transferState);
+    }
+}

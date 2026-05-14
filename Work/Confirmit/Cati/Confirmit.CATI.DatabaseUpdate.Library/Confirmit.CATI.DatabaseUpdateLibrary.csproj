@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C8F3E8E8-2DB7-4BBC-947F-BB3495E1765F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.DatabaseUpdateLibrary</RootNamespace>
+    <AssemblyName>Confirmit.CATI.DatabaseUpdateLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Management.Automation_PowerShell_3.0.6.3.9600.17400\lib\net40\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Configuration.cs" />
+    <Compile Include="DatabaseUpdate.cs" />
+    <Compile Include="DatabaseUpdateEngine.cs" />
+    <Compile Include="DatabaseUserAccess.cs" />
+    <Compile Include="DatabaseWorker.cs" />
+    <Compile Include="Interfaces\IConfiguration.cs" />
+    <Compile Include="Interfaces\IDatabaseUpdateEngine.cs" />
+    <Compile Include="Interfaces\IDatabaseWorker.cs" />
+    <Compile Include="Interfaces\IPowerShellScriptExecutor.cs" />
+    <Compile Include="Interfaces\IQueryExecutor.cs" />
+    <Compile Include="Interfaces\IResources.cs" />
+    <Compile Include="Interfaces\IUpdateScriptDatabaseWorker.cs" />
+    <Compile Include="Interfaces\IUpdateScriptsProvider.cs" />
+    <Compile Include="Interfaces\IValidator.cs" />
+    <Compile Include="PowerShellApi\ApiConfiguration.cs" />
+    <Compile Include="PowerShellApi\ApiDatabases.cs" />
+    <Compile Include="PowerShellApi\ApiHost.cs" />
+    <Compile Include="PowerShellApi\ApiSql.cs" />
+    <Compile Include="PowerShellScriptExecutor.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QueryExecutor.cs" />
+    <Compile Include="UpdateScriptDatabaseWorker.cs" />
+    <Compile Include="UpdateScriptInfo.cs" />
+    <Compile Include="UpdateScriptsProvider.cs" />
+    <Compile Include="Validator.cs" />
+    <Compile Include="Resources.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Installation.Common\Confirmit.CATI.Installation.Common.csproj">
+      <Project>{180DD67A-0841-40A6-A0C3-060707A2494D}</Project>
+      <Name>Confirmit.CATI.Installation.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)MSBuild\NFakes\NFakesConsole.exe" "$(SolutionDir)assemblies\Confirmit.CATI.DatabaseUpdateLibrary.dll" "$(SolutionDir)Confirmit.CATI.DatabaseUpdate.Library\Confirmit.CATI.DatabaseUpdateLibrary.csproj" "$(SolutionDir)NFakes\Generated" "$(SolutionDir)ConfirmitKeyPair.snk"</PostBuildEvent>
+  </PropertyGroup>
+  <UsingTask TaskName="StaticTeamCityBuildEngine.DBUpdateResorceFileGenerator" AssemblyFile="..\MSBuild\StaticTeamCityBuildEngine.dll" />
+  <Target Name="BeforeBuild">
+    <DBUpdateResorceFileGenerator />
+  </Target>
+</Project>

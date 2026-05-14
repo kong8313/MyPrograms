@@ -1,0 +1,28 @@
+<DotNetScript>
+	<SourceFiles>
+		<SourceFile Name="initialize.js" Language="JScript.Net">
+			<![CDATA[{0}]]>
+		</SourceFile>
+		<SourceFile Name="wrapper.js" Language="JScript.Net">
+			<![CDATA[{1}]]>
+		</SourceFile>
+		<SourceFile Name="interpreter.js" Language="JScript.Net">
+			<![CDATA[{2}]]>
+		</SourceFile>
+	</SourceFiles>
+	<References>
+		<Reference ref="{{DotNetFrameworkPath}}\System.dll" />
+    <Reference ref="{{DotNetFrameworkPath}}\System.Runtime.Serialization.dll" />
+    <Reference ref="{{BackEndPath}}\Confirmit.CATI.Core.dll" />
+    <Reference ref="{{BackEndPath}}\Confirmit.CATI.Common.dll" />
+    <Reference ref="{{BackEndPath}}\ConfirmitDialerInterface.dll" />
+  </References>
+	<EntryPoint namespace="Interpreter" class="Initializer" method="Execute">
+		<Params>
+			<Param name="BvEvent" />
+			<Param name="BvEventHub" />
+			<Param name="BvResult" />
+			<Param name="BvQSLTranslator" />
+		</Params>
+	</EntryPoint>
+</DotNetScript>

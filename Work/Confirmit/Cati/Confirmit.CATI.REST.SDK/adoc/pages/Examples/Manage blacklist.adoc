@@ -1,0 +1,46 @@
+﻿
+.Manage blacklist
+
+----
+// Read configuration parameters
+var companyId = int.Parse(ConfigurationManager.AppSettings.Get("CompanyId"));
+var user = ConfigurationManager.AppSettings.Get("UserName");
+var password = ConfigurationManager.AppSettings.Get("Password");
+
+// Create RestClient class
+var client = Environments.Nordic.CreateCatiRestClient(user, password, companyId);
+
+// Create service class
+var blacklistService = new BlacklistService(client);
+		   
+//Add new number to the blacklist
+var newBlackListNumberId = await blacklistService.AddAsync(new TelephoneBlacklistItem
+	{ TelephoneNumber = "123123123", Type = BlacklistPatternType.Equal });
+
+//Get blacklist item by specific id = newBlackListNumberId after adding
+var blacklistItemById = await blacklistService.GetAsync(newBlackListNumberId);
+
+//Get blacklist item by specific telephone number and type
+var filteredBlacklistItem = (await blacklistService.GetAsync("$filter=TelephoneNumber eq '123123123' and Type eq 'Equal'")).FirstOrDefault();
+
+//Update blacklistItem which was received above
+await blacklistService.PutAsync(filteredBlacklistItem.Id, new TelephoneBlacklistItem
+{
+	Id = filteredBlacklistItem.Id,
+	TelephoneNumber = "12345",
+	Type = BlacklistPatternType.StartWith
+});
+
+//Delete blacklist item
+await blacklistService.DeleteAsync(filteredBlacklistItem.Id);
+
+//Import blacklist items
+await blacklistService.ImportAsync(new TelephoneBlacklistItems
+{
+	Items = new List<TelephoneBlacklistItem>
+	{
+		new TelephoneBlacklistItem {TelephoneNumber = "123", Type = BlacklistPatternType.StartWith},
+		new TelephoneBlacklistItem {TelephoneNumber = "99999999", Type = BlacklistPatternType.Equal}
+	}
+});
+----

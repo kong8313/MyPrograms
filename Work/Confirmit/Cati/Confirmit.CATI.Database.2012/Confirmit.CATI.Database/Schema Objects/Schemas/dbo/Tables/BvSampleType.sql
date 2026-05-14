@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[BvDialType]
+(
+	[Id] INT NOT NULL,
+	[Name] NVARCHAR(MAX) NOT NULL
+)

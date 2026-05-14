@@ -1,0 +1,610 @@
+18.00\18.00.Main.00.sql Add Call Centers Support
+18.00\18.00.Main.01.sql Call delivery optimization( Use BvLoginGroup insted of BvPersonRel ). sync algoritm of BvLoginGroup table was refactored.
+18.00\18.00.Main.02.sql readpast
+18.00\18.00.Main.04.sql SurveySqlServerName column has been added to BvSurvey
+18.00\18.00.Main.05.sql Make Sample Status summary update async
+18.00\18.00.Main.06.sql Bug fixing(72197,72210)
+18.00\18.00.Main.07.sql DialerAvailability improvement
+18.00\18.00.Main.08.sql remove scheduling procedure
+18.00\18.00.Main.09.sql BvSpLogin_Spinup remove tablockx
+18.00\18.00.Main.10.sql Adding BvViewInnerShiftType view
+18.00\18.00.Main.11.sql Improve AddSample operation
+18.00\18.00.Main.12.sql Implement delay on receiving from the async trigger queue.
+18.00\18.00.Main.13.sql Update timezones info
+18.00\18.00.Main.14.sql report optimization
+18.00\18.00.Main.15.sql Support CallCenter column in the async operations
+18.00\18.00.Main.16.sql Update intexes
+18.00\18.00.Main.17.sql Fix index on BvAppointment table
+18.00\18.00.Main.18.sql Adding call group id to persons list page
+18.00\18.00.Main.19.sql New setting in dialer group - WaitDialerNotificationAtEnableDialerCommandTimeoutInMs
+18.00\18.00.Main.20.sql Deferred monitoring optimization
+18.00\18.00.Main.21.sql BvDialerState.DialerNotificationExpirationTime field is introduced
+18.00\18.00.Main.22.sql Async operations framework improvements
+18.00\18.00.Main.23.sql Add calls sent to dialer distribution support
+18.00\18.00.Main.24.sql Call delivering in auto mode
+18.00\18.00.Main.25.sql Set regenerate flag for Scheduling script
+18.00\18.00.Main.26.sql Add stored procedure for Active Calls View
+18.00\18.00.Main.27.sql Fix call delivery for deassigned surveys from CC
+18.00\18.00.Main.28.sql Fix BvDialerState synch issue
+18.00\18.00.Main.29.sql Fix deasign group from survey in call center
+18.00\18.00.Main.30.sql Fix migration scripts and remove unused indexes on BvAppointment table
+18.00\18.00.Main.31.sql Fixing BvSpAssignment_List procedure - now it returns assignments from given call center only
+18.00\18.00.Main.32.sql Fix for BvSpAsyncOperations_ListPage, now it returns names of call centers
+18.00\18.00.Main.33.sql Optimization of RecalculateAppointment
+18.00\18.00.Main.34.sql Fix BvSpAlert_RecalculateAll
+18.00\18.00.Main.35.sql Fix call delivering for predictive AND aggregate history data
+18.00\18.00.Main.36.sql Fox BvHistoryDelta
+18.00\18.00.Main.37.sql Fix deadlocks(PersonLogin<->PersonLogin, GetCallsForPredicitve<->MoveAndRescheduleOperation )
+18.00\18.00.Main.38.sql Add DialMode column for SurveyList grid
+18.00\18.00.Main.39.sql Fix of list of person assignment on survey
+18.00\18.00.Main.40.sql Fix of delete person assignment from disabled calls
+18.00\18.00.Main.41.sql Now survey to call center assignment table is joined with user permissions table
+18.00\18.00.Main.42.sql Fix for BvSpInterviewerProductivityReport procedure
+18.00\18.00.Main.43.sql Bug 76556 "CATI Supervisor: Survey overview report isn't filter by interviewers." was fixed
+18.00\18.00.Main.44.sql Fix reports
+18.00\18.00.Main.45.sql Add RestoreSurveySqlTimeout system setting
+18.00\18.00.Main.46.sql Clean BvSurveyAssignmentOnCallCenter table on delete survey
+18.00\18.00.Main.47.sql Remove SQLServer.TemplateDBFileName system settings
+18.00\18.00.Main.48.sql FIx "interviewer task disapepars from activity view if close survey, console stays on "waiting for interview""
+18.00\18.00.Main.49.sql Bug 78260 "CATI: Super see empty records in Call management|all records for deleted respondents"
+18.00\18.00.Main.50.sql Optimization of work with users/groups
+18.00\18.00.Main.51.sql Revert CallCenterId to 0 (zero) for CAPI interviewers
+18.00\18.00.Main.52.sql Bug 78897 "An internal server error occurs during removing of a sheduling script"
+18.00\18.00.Main.53.sql Add telerik table creation script
+18.00\18.00.Main.54.sql Time break history per survey
+18.00\18.00.!PasswordsExpiration.00.sql Cati interviewer password expiration settings are added.
+18.00\18.00.!PasswordsExpiration.01.sql PwdSetDate field is added into BvPerson table
+18.00\18.00.Main.55.sql BvPerson.PwdSetDate field is now not nullable.
+18.00\18.00.Main.56.sql DF_BvPerson_TotalSampleSize_PwdSetDate constraint added.
+18.00\18.00.Main.57.sql Fix time break issue.
+18.00\18.00.Main.58.sql Changing stored procedures for reports sql data source
+18.00\18.00.!HistoryWS.00.sql  New WebApi service to export call history data
+18.00\18.00.Main.59.sql Quota clustering( part I )
+18.00\18.00.Main.60.sql Fix ITs
+18.00\18.00.Main.61.sql Block call delivery for call group extended status with priority 0
+18.00\18.00.ParametersAddition.00.sql Change description of system settings
+18.00\2014-07-02_09.21.45.sql Add new setup parameter for Redis support
+18.00\2014-07-06_12.45.00.sql REST Services
+18.00\2014-07-21_13.17.02.sql Optimization of GetOpenedSurveys SP
+18.00\2014-07-15_10.33.10.sql Alert for interviewers not working (add EndOfLastActivity field into BvTasks table)
+18.00\2014-07-28_20.36.49.sql Optimization of call delivery for survey with clustered quota
+18.00\2014-08-15_12.21.40.sql BE optimization. BvSvyScheduleRuntimeStatistics was implemented.
+18.00\2014-08-18_10.00.00.sql New Rest API implemented
+18.00\2014-08-18_11.37.34.sql Add system searchable fields to CATI Console
+18.00\2014-08-19_16.13.46.sql Optimization GetOpenedSurveys through using BvSvyScheduleRuntimeStatistics table
+18.00\2014-08-20_10.00.00.sql Regenerate scheduling scripts
+18.00\2014-08-28_10.16.37.sql Assign cluster group when a call is created eg. Activation from suspended, Add call.
+18.00\2014-09-07_10.00.00.sql WS explicit call center id's  & rename API to use survey instead of project
+18.00\2014-09-10_11.38.06.sql increment  clustered counter of live cell for person in manual mode
+18.00\2014-07-28_13.19.21.sql Add GetUtcNow function
+18.00\2014-09-19_13.23.16.sql New FCD behavior with enabling\disabling calls was implemented
+18.00\2014-09-23_15.33.13.sql Ability to choose behaviour of filtered call delivery for calls with appointment times set
+18.00\2014-09-26_08.10.43.sql Saving order of inserted rows during telephone blacklist import
+18.00\2014-09-26_11.24.04.sql Ability to choose behaviour of filtered call delivery for calls with appointment times set
+18.00\2014-10-01_13.39.55.sql Ability to choose behaviour of filtered call delivery for calls with appointment times set. Duplicate settings for new state group.
+18.00\2014-10-08_10.06.55.sql Remove BvSpGetVersion
+18.00\2014-10-19_00.48.46.sql CATI-82 alter 4 SP to be able filter reports by survey data filter
+18.00\2014-10-22_13.24.09.sql Add sequence for BvTelephoneBlacklist to keep row orde during import
+18.00\2014-11-11_09.49.11.sql CATI-354 When "call disabled mode" is selected for FCD we do not FLUSH numbers from a dialler (predictive surveys)
+18.00\2014-11-07_11.11.23.sql Show redial button in Interviewer Console
+18.00\2014-11-13_10.46.46.sql CATI-445 Ignore null or zero timezoneId coming from Confirmit respondent
+18.05\2014-11-24_08.19.23.sql CATI-415 Redial button setting visibility toggle
+18.05\2014-11-28_13.58.13.sql CATI-34 79356 Login/Logout time
+18.05\2014-12-05_16.49.56.sql CATI-44 Allow for the user for custom Extended Status Lists to be able to be assigned to call groups
+18.05\2014-12-16_18.59.56.sql CATI-451 CAPI code cleanup
+18.05\2014-12-19_18.02.10.sql CATI-479 Deadlock in BvSpGetSurveyInterviews - modify existing index - new index IX_BvSvySchedule_SurveySID_CallState...
+18.05\2015-01-14_00.09.13.sql CATI-479 modify BvSpDialer_Reset - join to BvSurvey
+18.05\2015-01-21_09.35.30.sql CATI-535 Added extra join to BvUserSurveyPermission in BvSpGetListSurveyTasks to filter surveys super does not have permission to
+18.05\2015-01-19_14.31.38.sql CATI-522 When shutting down a survey automatically move call state from -2 to 2
+18.05\2015-02-06_11.06.36.sql CATI-246 View login and logout events for interviewers
+18.05\2015-02-06_15.10.52.sql CATI-246 View login and logout events for interviewers. Fixes after review
+18.05\2015-02-02_23.14.16.sql CATI-480 Ability to filter productivity reports by a set time period within a wider time range. Modified report SPs
+18.05\2015-02-07_21.07.46.sql CATI-480 fixed BvSpInterviewerProductivityReport when reducing break time if it exceeds the end of shift
+18.05\2015-02-10_14.24.28.sql CATI-246 View login and logout events for interviewers. Rename stored procedure
+18.05\2015-02-12_14.14.29.sql CATI-568 Internal server error occurs on attempt to load Interviewer sessions report
+18.05\2015-02-26_16.09.52.sql CATI-477 77663 CATI Ability to use GetCallAttemptCount() in a scheduling script
+18.05\2015-02-25_12.49.43.sql CATI-557 Ability to separate dialing of mobile numbers to be manually dial when using an autodialer
+18.05\2015-03-03_17.01.21.sql CATI-565 Ability to include replicated variables in the Call History export
+18.05\2015-03-06_13.44.34.sql CATI-557 Remove 'CallManagament.SpecificPreviewEnabled' system settings
+18.05\2015-01-26_12.31.56.sql CATI-494 Update system settings for implement maintenance actions.
+18.05\2015-03-16_18.06.47.sql CATI-502 Ability to expire calls sent to the dialer in predictive surveys(BE part)
+18.05\2015-03-06_11.40.10.sql CATI-606 Remove parameters for confirmit server names to get these parameters from "confirm" database
+18.05\2015-03-20_17.34.19.sql CATI-631 The index "IX_BvMembership_ObjectSID" on table "BvMembership" cannot be reorganized because page level locking is disabled
+18.05\2015-03-27_12.19.40.sql CATI-630 Deadlock on attempt to update statistics during database maintenance
+18.05\2015-04-02_11.07.27.sql CATI-527 Russian and Australian timezones were not updated after clock change for DST
+18.05\2015-04-01_15.51.14.sql CATI-648 Allow to use DNS to restrict communcations with dialer WS
+18.05\2015-04-03_12.48.05.sql CATI-530 Ability to view the most high priority calls of the moment (active list)
+18.05\2015-04-14_18.14.51.sql CATI-530 Remove unnecessary  join in GetHighPriorityCalls
+18.05\2015-04-16_14.50.25.sql CATI-530 GetCallsPerGroup function has been added
+18.05\2015-04-22_15.18.59.sql CATI-663 Move DB maintenance thread into the default instance
+18.05\2015-04-27_14.58.53.sql CATI-663 Add additional Routine Maintenance setting for rebuild indexes action.
+18.05\2015-02-25_07.37.00.sql CATI-548 Non-disruptive deployment. Change some installation settings
+18.05\2015-04-27_18.45.09.sql CATI-680 New function [GetTopCallsForShiftTypeGroupCell], [GetCallsPerGroup] modified to call new function
+18.05\2015-05-14_15.04.02.sql CATI-683 Ability for CATI Administrator to assign call centres to a Sytel dialer entity
+18.05\2015-06-04_16.23.25.sql CATI-683 Change [BvSpSurvey_GetCountOfLoggedPerson]. Now it returns count of persons for all task choice mode
+18.05\2015-06-16_11.43.25.sql CATI-652 Ability to supply an individual Caller ID (CLID) per respondent
+18.05\2015-07-03_12.13.43.sql CATI-754 Ignore Extended Statuses 15 and 25 in BvSpNumberOfAttemptsReport
+18.05\2015-07-09_16.44.11.sql CATI-696 Remove unused installation parameters
+18.05\2015-07-10_11.05.14.sql CATI-591 In BvSpNumberOfAttemptsReport getting sample size from BvInterview and not BvSample
+18.05\2015-06-16_16.08.44.sql CATI-468 Multiple assignments implementation
+18.05\2015-07-14_17.14.50.sql CATI-468 Fix SetGroups for multiple assignments
+18.05\2015-07-16_18.06.15.sql CATI-468 Create indexes on BvAssignmentResourceItem table
+18.05\2015-05-20_13.39.39.sql CATI-697 Avoid of usages of certificates from store. Use only test certificates or certificates from files
+18.05\2015-07-28_17.19.58.sql CATI-739 When deleting groups that are used in multiple assignments the assignments should also be deleted.
+18.05\2015-07-30_18.48.49.sql CATI-792 Cleaned out from BvAssignmentResource vitrual groups are sent in SetGroups
+18.05\2015-07-28_12.45.19.sql CATI-715 Ability to disable Interviewer console toolbar buttons at the site level
+18.05\2015-08-05_13.26.11.sql CATI-715 Remove Console.ShowRedialButton system setting
+18.05\2015-08-10_13.41.50.sql CATI-739 When deleting groups that are used in multiple assignments the assignments should also be deleted
+18.05\2015-08-18_11.52.33.sql CATI-684 Ability to prevent Interviewers working on a survey if they don't have the latest console update installed
+18.05\2015-09-01_12.37.54.sql CATI-800 Ability to combine Call Groups with regular Interviewer/Group assignments
+19.00\2015-10-14_14.04.07.sql CATI-527 Time zones were not updated after clock change for DST
+19.00\2015-10-14_19.30.07.sql CATI-527 Time zones were not updated after clock change for DST( update Tz, additional FIX of Converter, additional ITs )
+18.05\2015-09-01_12.10.29.sql CATI-476 CATI Recorded Interviews playing back the wrong interview
+18.05\2015-10-08_12.18.48.sql CATI-476 IX_BvPersonDeferredMonitoring_CallID is made UNIQUE
+19.00\2015-10-19_23.21.01.sql CATI-747 Add new 'Toggle.EnableSaveHistoryOptimization' setting
+19.00\2015-11-25_14.05.03.sql CATI-961 Add SurveyID to BvInterviewerPerformance
+19.00\2015-12-24_15.33.33.sql CATI-1009 Add parameter activeSurveysOnly to BvSpGetInterviewerPerformanceList
+19.00\2016-01-28_16.26.50.sql CATI-1036 Return SurveyID from BvSpGetInterviewerPerformanceList
+19.00\2016-02-09_12.47.59.sql CATI-1075 Seamless survey switching. [NewSurveySID] field is added to the BvTasks.
+19.00\2016-02-11_16.20.00.sql CATI-1001 Add BvSpPerson_SetAutomaticSurvey
+19.00\2016-02-18_17.37.42.sql CATI-1097 [BvSpTasks_UpdateSurveySid] and [BvSpTasks_UpdateNewSurveySid] procedures are added
+19.00\2016-03-01_07.45.32.sql CATI-1001 Alter BvSpPerson_SetAutomaticSurvey
+19.00\2016-03-01_15.00.00.sql CATI-1001 Add settings for seamless switching
+19.00\2016-03-02_16.44.57.sql CATI-1001 Alter BvSpPerson_SetAutomaticSurvey	
+19.00\2016-03-08_15.07.17.sql CATI-746 Added handling a CONTEXT_INFO data in BvSvySchedule UPDATE trigger, added Table valued function to read OperationID, OperationType, CallCenterID from CONTEXT_INFO 
+19.00\2016-03-21_16.48.08.sql CATI-746 BvSpCall_MoveToIts handle the case when some interviews do not have calls
+19.00\2016-03-30_16.01.31.sql CATI-1159 Fix "double" logging of disable call operation for already disabled calls
+19.00\2016-03-31_12.24.47.sql CATI-746 Alter FiredTime in BvCallHistory from smalldatetime to datetime
+19.00\2016-04-12_01.40.38.sql CATI-1169 Alter BvSpPerson_SetAutomaticSurvey. (LoggedInToDialerState = LOGGED_IN) condition is removed
+19.00\2016-04-22_16.37.26.sql CATI-1206 BvSpSurveyProductivityReport optimisation
+19.00\2016-04-20_17.41.01.sql CATI-927 Support reviewer in CATI
+19.00\2016-04-27_01.28.46.sql CATI-1178 BvSpSampleUtilisationReport and GetCountsForSample
+19.00\2016-05-19_13.25.42.sql CATI-1230 Add Reviewer.RestApiUrl setting to BvSystemSettings table
+19.00\2016-05-24_14.01.10.sql CATI-1231 Remove Reviewer.WebServiceUrl setting from BvSystemSettings
+19.00\2016-05-26_14.45.38.sql CATI-1268 Improve async notifications
+19.00\2016-05-27_18.39.52.sql CATI-273 Suggested ability to filter the Appointment Activity View by Extended Status
+19.00\2016-06-04_12.56.22.sql CATI-1192 Add stub parameter in to the [BvSpInterview_UpdateRespondentFields] so we could pass it from Confirmit
+19.00\2016-06-06_10.29.05.sql CATI-1178 Handling null values if all records are deleted in a batch
+19.00\2016-06-06_14.54.42.sql CATI-1197 Change sample addition to handle new dialing mode specifically to support TCPA scenario
+19.00\2016-06-06_15.39.48.sql CATI-1192 Add SampleType implementation
+19.00\2016-06-07_13.32.00.sql CATI-1230 Add Toggle.EnableTCPA setting to BvSystemSettings table
+19.00\2016-06-10_16.29.30.sql CATI-1180 Change LookupByPerson calls to retrieve calls based on parameter
+19.00\2016-06-10_17.54.38.sql CATI-1180 Rename SampleTypeId to DailTypeId column
+19.00\2016-06-13_17.20.10.sql CATI-1180 BvSvySch_Insert is modified to accept DialTypeId parameter
+19.00\2016-06-11_23.16.57.sql CATI-1249 New DialTypeId in BvCallHistory and corresponding change in BvSpGetExtendedCallHistory
+19.00\2016-06-13_08.16.38.sql CATI-1242 Ability to apply interviewer property DialTypeId
+19.00\2016-06-14_17.36.09.sql CATI-1249 BvSpCall_MoveToITS modified to add DialTypeId when we insert to BvCallHistory
+19.00\2016-06-15_12.01.11.sql CATI-1242 Rename stored procedure to BvSpPerson_UpdateBatched
+19.00\2016-06-16_13.09.35.sql CATI-1180 BvSvySch_Insert - first try to get DialTypeId from BvInterview 
+19.00\2016-06-16_15.32.28.sql CATI-1242 Alter view RestView_Interviewer
+19.00\2016-06-17_15.01.54.sql CATI-1301 Make it possible to filter by DialType in the tasks list
+19.00\2016-06-24_15.56.59.sql CATI-1305 Change IX_BvSvySchedule_Rel index to optimize call delivery for Automatic task choose
+19.00\2016-06-27_10.02.00.sql CATI-1192 Return default parameter
+19.00\2016-07-06_11.36.41.sql CATI-1309 New supervisor settings table BvSupervisorSettings
+19.00\2016-07-04_14.54.39.sql CATI-1319 Support recent survey list
+20.00\2016-07-12_00.21.05.sql CATI-237  Get appointment statuses from BvAppointmentsAlertStatus
+20.00\2016-08-02_14.40.09.sql CATI-1276 CATI timezone 60 incorrect
+20.00\2016-08-12_13.57.28.sql CATI-1337 Add SampleType column to the BvSamples table
+20.00\2016-08-11_11.21.46.sql CATI-1401 Blacklist support in Sample utilisation report
+20.00\2016-08-17_09.30.28.sql CATI-1416 Add sp BvSpSvyShedule_DeleteCallsByBlacklist
+20.00\2016-08-23_13.37.34.sql CATI-1425 Update (GMT+02:00) Cairo TZ
+20.00\2016-08-11_11.51.50.sql CATI-1393 Remove using of blacklist cache from backend
+20.00\2016-09-07_16.05.47.sql CATI-1337 Add feature toogle for update sample operation
+20.00\2016-08-28_11.47.48.sql CATI-1407 BvSampleStatusSummaryByQuestionReport
+20.00\2016-10-05_12.51.46.sql CATI-1286 Check enable call operation for calls which were disabled by FCD
+20.00\2016-09-28_10.24.05.sql CATI-1462 New [IsSampleUpdateRuleSet] column in the BvSchedule table to support new sample update
+20.00\2016-10-10_09.36.29.sql CATI-1419 Add feature toogle to stop logins from SO Windows XP or later
+20.00\2016-10-28_12.21.54.sql CATI-1552 Update "(GMT+03:00) Istanbul" timezone
+20.00\2016-11-09_12.23.53.sql CATI-1013 Ability to distinguish (and filter) calls that were disabled by FCD(General upgrade script)
+20.00\2016-11-21_12.03.24.sql CATI-1565 Create ITs for "CATI-1013 Ability to distinguish (and filter) calls that were disabled by FCD"( Small fixes)
+20.00\2016-11-22_17.09.26.sql CATI-1585 Increase number of parameters in scheduling script
+20.00\2016-11-25_16.05.27.sql CATI-1570 Configuration settings for retrying service
+20.00\2016-12-01_16.07.48.sql CATI-1528 Do not update survey specific scheduling script parameters when we re-launch the script.
+20.00\2016-12-27_10.19.04.sql CATI-1435 Add CallManagement.MaximumConfirmitVariables setting
+20.00\2017-01-13_12.55.59.sql CATI-1666 Update TZs
+20.00\2017-02-06_10.50.53.sql CATI-770 BvSpPerson_GetAssignments modified to fix person assignmens bug
+20.00\2016-08-19_17.25.45.sql CATI-1412 Virtual IVR agents support
+20.00\2016-09-09_13.45.33.sql CATI-1413 Virtual IVR console support
+20.00\2017-02-07_16.51.41.sql CATI-1633 Setting to disable the alternative number dialing feature in the redial menu
+20.00\2017-02-16_14.04.29.sql CATI-1636 Open end review timings support in bvhistory, bvtasks and activity view
+20.00\2017-02-25_09.51.34.sql CATI-1634 Setting to disable the option to allow appointments to be created outside of the defined shifts
+20.00\2017-02-28_15.52.26.sql CATI-1723 Added BvSpGetNextAvailableDialer, DialerId column to BvSurvey, IsActive and LastSelected to BvDialer ...
+22.00\2017-03-07_22.54.43.sql CATI-1723 Return dialer id in BvSpGetListSurveyTasks
+22.00\2017-03-10_14.15.54.sql CATI-1723 Multi-dialer support. Add Dialer.IgnoreDialerIdFromStationId system setting.
+22.00\2017-03-13_14.37.57.sql CATI-1723 Multi-dialer support. Fix bug in the BvSpGetNextAvailableDialer.
+22.00\2017-03-27_14.03.44.sql CATI-1783 Update timezones
+22.00\2017-03-23_07.58.09.sql CATI-1699 Add Toggle.EnableIVR setting to BvSystemSettings table.
+22.00\2017-03-22_16.17.02.sql CATI-1774 Added BvSpQuotaProgressReport 
+22.00\2017-04-14_15.56.33.sql CATI-1774 BvSpQuotaProgressReport - fix to make sure we calculate progress for target date
+22.00\2017-04-17_18.57.08.sql CATI-1774 BvSpQuotaProgressReport handle case for prevously launched surveys
+22.00\2017-04-17_14.30.12.sql CATI-1793 Add 'Type' field to BvSpGetListSurveyTasksEntity                                               	
+22.00\2017-04-19_16.54.13.sql CATI-1793 Add 'Type' field to BvSpGetPersonsListPageEntity
+22.00\2017-05-17_15.50.46.sql CATI-1408 BvSpAppointmentUpdate fix for return value
+22.00\2017-05-10_18.51.59.sql CATI-1910 BvSpAlertsHistoryReport - fix handling of nullability for SurveyIds
+22.00\2017-06-16_13.41.01.sql CATI-1978 BvSpReportSampleStatusSummaryForDatesRange added
+22.00\2017-06-23_11.19.55.sql CATI-1978 BvSpReportSampleStatusSummaryForDatesRange - reading its from BvCallHistory, adding [IX_BvCallHistoryFiredTime_SurveyId_i_its] to BvCallHistory
+22.00\2017-06-29_16.24.42.sql CATI-1992 Implement new System setting to toggle inbound feature: Toggle.Inbound.
+22.00\2017-07-04_13.42.15.sql CATI-2020 Fix TZ ITs
+22.00\2017-07-06_10.49.00.sql CATI-1994 implement handler of inbound notification in BE. we should complete inbound call in all cases, if Toggle.Inbound is off.
+22.00\2017-07-06_16.03.59.sql CATI-1997 Added BvInboundCallsHistory table and BvSpGetInboundCallsReport_ListPage SP
+22.00\2017-07-04_10.46.24.sql CATI-1355 Add SettingType column to BvSupervisorSettings and make SurveyId nullable
+U22.00\2017-07-04_15.18.18.sql CATI-1985 Extend ITS statuses. we should add following ITS: "INBOUND CALL"(1000), "INBOUND CALL DROP BY RESPONDENT"(1001)
+22.00\2017-07-14_11.58.54.sql CATI-2031 Setting to enable ability to cancel dialing process
+22.00\2017-07-17_14.18.56.sql CATI-1876 Add ReviewStatus into BvInterview & add BvSystemState table
+22.00\2017-07-20_13.53.08.sql CATI-1876 Alter BvSpInterviews_UpdateIsSentToReview_Batch update ReviewStatus column
+22.00\2017-08-16_16.45.35.sql CATI-2072 Alter BvTask add CallType column
+22.00\2017-08-17_15.22.36.sql CATI-2072 Alter BvInboundCallsHistory ADD InboundCallId, add IX_BvInboundCallsHistory_SurveyId_InterviewId
+22.00\2017-08-16_15.03.28.sql CATI-989 Investigate bug where WrapUp is performed after using Redo from page with Internal Error. Add SurveyScriptError status with code 1051
+22.00\2017-04-05_14.08.46.sql CATI-1750 Remove Toggle.StopUsingXp setting from BvSystemSettings table.
+22.00\2017-09-21_17.38.40.sql CATI-2132 Modified BvSpQuotaProgressReport to show estimated quota cell completion
+22.00\2017-09-28_17.02.52.sql CATI-2125 Extend TCPA mode to support "limited/manual" dialer
+22.00\2017-10-10_23.31.14.sql CATI-2132 Fix days calculation in BvSpQuotaProgressReport
+22.00\2017-09-15_00.00.11.sql CATI-812 TZ balancing support
+22.00\2017-10-18_23.27.26.sql CATI-2169 Add Target column to BvSurvey, BvSpGetSurveyActivityWithAlerts, BvSpSurvey_Update
+22.00\2017-10-27_17.21.38.sql CATI-2199 Fix deadlock involving BvSpPersonMonitoring_Stop and BvSpPersonMonitoring_InsertEvent
+22.00\2017-10-23_15.51.25.sql CATI-2171 Ability to map special columns in surveys activity view to extended statuses
+22.00\2017-11-02_15.16.03.sql CATI-2172 Ability to view stats in Survey Activity view based on one hour in addition to 15 min
+22.00\2017-11-10_10.04.33.sql CATI-2171 Change BvSpGetSurveyActivityWithAlerts to return 0 instead null for ITS alerts
+22.00\2017-09-07_15.14.20.sql CATI-2095 Security scheduling script. Add new system settings
+22.00\2017-11-03_12.30.03.sql CATI-2202 'Dialer.InboundAudioMessages' system setting is added
+22.00\2017-11-22_12.37.38.sql CATI-2234 Fix TimeToday in ActivityView
+23.00\2017-11-28_10.39.24.sql CATI-2094 Rename "Dialer.InboundAudioMessages" system setting to "Dialer.InboundAudioMessagesJson"
+23.00\2017-12-11_10.57.59.sql CATI-2254 BvSpSetNextInterviewForPerson and linked interview fields in BvTasks
+23.00\2017-12-11_15.16.19.sql CATI-2270 Update TZs
+23.00\2017-11-30_11.33.59.sql CATI-2202 [AudioMessagesJson] field is added to the [BvInboundTelephoneNumber] table
+23.00\2017-12-20_15.13.14.sql CATI-2282 Implement getinterviews method for linked surveys
+23.00\2017-12-18_18.15.01.sql CATI-2278 Add LinkedInterviewSeesionId in BvHistory, add BvSpHistory_GetLinkedInterviews
+23.00\2017-12-19_16.42.07.sql CATI-2282 Fix TZs
+23.00\2017-12-27_23.32.16.sql CATI-2289 Added BvInterviewTypeOrdered, BvSpGetInterviews
+23.00\2017-12-28_14.40.38.sql CATI-2254 HAndle assignments in SetNextInterview
+23.00\2017-12-28_18.45.18.sql CATI-2291 Modify BvSpGetListSurveyTasks to output CallType and LinkedChain
+23.00\2018-01-09_13.58.34.sql CATI-2293 Fix timezones
+23.00\2017-12-19_14.54.45.sql CATI-2142 Add a new toggle "Console.EnablePersistentConnectionClosing"
+23.00\2017-12-25_16.57.17.sql CATI-2284 Start new interview with FreshSample in inbound
+23.00\2018-01-09_15.11.32.sql CATI-2288 Implement borrow workflow in NotifyOutcome for console BE.
+23.00\2018-01-24_14.28.18.sql CATI-1718 Change default value of "SchedulingScript.UseDirectDbAccess","MultipleAssignments.Enabled" and "QuotaClustering.Enabled"
+23.00\2018-02-16_10.59.55.sql CATI-2091 Option to delete record from BvAppLock on app lock release
+23.00\2018-02-26_14.33.05.sql CATI-2360 Update timezones
+23.00\2018-03-21_15.42.42.sql CATI-2161 Add BvSpAssignment_IsLoggedIn stored procedure and remove BvCallExpired table with related stored procedures
+23.00\2018-04-03_13.49.39.sql CATI-2406 Add foreign key from BvInboundTelephoneNumber to BvSurvey
+23.00\2018-04-06_15.56.43.sql CATI-2161 Fix BvSpCall_GetExpiredAndLock stored procedure
+23.00\2018-03-19_14.38.58.sql CATI-2351 "Inbound productivity report"
+23.00\2018-03-23_09.51.14.sql CATI-2375 Fix Inbound Call Summary report stored procedure to generate proper adapter
+23.00\2018-04-02_14.51.44.sql CATI-2398 "Inbound productivity report" remove unused SPs
+23.00\2018-04-03_18.58.15.sql CATI-2364 Ability to see additional call counts in the survey summary
+23.00\2018-04-10_15.09.47.sql CATI-2366 Ability to exclude fresh sample count from the summary tab
+23.00\2018-04-18_15.38.40.sql CATI-2161 Small fix in BvSpCall_GetExpiredAndLock stored procedure to avoid of deadlock
+23.00\2018-04-05_09.27.38.sql CATI-2403 Implement support for pgp data encryption in the CATI supervisor UI
+23.00\2018-04-24_13.55.30.sql CATI-2447 Update Timezones
+23.00\2018-05-28_18.51.08.sql CATI-2489 Update BvSpCall_GetExpiredAndLock procedure and update timezones
+23.00\2018-04-28_12.31.19.sql CATI-2443 Implement support for wildcard filtering in the Blacklist
+23.00\2018-04-26_16.33.18.sql CATI-2413 Add IsRespondentsDynamicCreationAllowed column to BvSurvey table
+23.00\2018-05-03_16.44.30.sql CATI-2385 Connection status indicator in the CATI console
+23.00\2018-05-22_16.25.36.sql CATI-2417 Interview duration alert added
+23.00\2018-05-21_18.03.09.sql CATI-2483 Update timezones
+23.00\2018-06-15_11.20.58.sql CATI-2464 Change stored procedure BvSpGetSystemWideInfo
+23.00\2018-06-18_17.30.50.sql CATI-2498 Balcklist: wildcard support - deadlock on attemt to input value with wildcard into blacklist
+23.00\2018-06-27_13.55.40.sql CATI-2502 Add a new toggle "Console.UseHttpsForConsoleStateService"
+23.00\2018-07-04_17.16.09.sql CATI-2535 Each number added to blacklist generates DeleteCalls tasks for all surveys
+23.00\2018-07-24_15.29.44.sql CATI-2567 Update timezones
+23.00\2018-07-18_08.43.13.sql CATI-2530 Add Ivr settings to BvSystemSettings
+23.00\2018-08-03_11.20.38.sql CATI-2567 Update timezones
+23.00\2018-07-20_10.03.20.sql CATI-2557 Clean up names and descriptions of system settings
+23.00\2018-08-09_11.18.21.sql CATI-2566 Add SQL server hint for call delivery
+23.00\2018-08-09_17.31.13.sql CATI-2568 Don't show soft deleted surveys in the recent survey list
+23.00\2018-08-21_10.29.12.sql CATI-2582 Remove obsolete system settings
+23.00\2018-07-27_17.08.54.sql CATI-2215 Back end support for quota balancing support for multiple quotas
+24.00\2018-08-28_10.43.41.sql CATI-2560 Change stored procedure BvSpSampleStatusSummaryByQuestionReport
+24.00\2018-09-11_16.26.18.sql CATI-2596 Add BvCallTransferSessions table
+24.00\2018-09-27_11.19.03.sql CATI-2596 Add InternalTransfer threshold
+24.00\2018-10-01_13.19.24.sql CATI-2624 Set "true" to "Console.UseHttpsForConsoleStateService" property
+24.00\2018-10-01_16.26.44.sql CATI-2629 Add NoCallsTimeout system setting
+24.00\2018-10-12_13.38.06.sql CATI-2643 Change Call's TimezoneId, if interview Tz is changed
+24.00\2018-10-02_16.11.36.sql CATI-2628 Change description for dropped call its
+24.00\2018-10-19_13.35.55.sql CATI-2598 Extend the dialer simulator to support the new dialer API changes for call transfers
+24.00\2018-10-29_11.54.53.sql CATI-2671 Show the status of a call dropped by the respondent in the interviewer list activity view
+24.00\2018-10-29_14.43.25.sql CATI-2658 Person group options to allow inbound and transfered calls from another survey
+24.00\2018-11-30_10.47.56.sql CATI-2662 Update timezones
+24.00\2018-10-31_11.48.44.sql CATI-2578 Make BvBreakType table
+24.00\2018-11-12_11.50.46.sql CATI-2655 Console changes to support break types
+24.00\2018-11-15_11.51.30.sql CATI-2654 Support break types for CallHistoryExport and Rest.Api
+24.00\2018-11-21_08.05.02.sql CATI-2656 Show the selected break type in activity view and reports
+24.00\2018-11-27_09.57.13.sql CATI-2656 Fix BvSpInterviewerProductivityReport to treat break records as Paid if break type was deleted
+24.00\2018-11-28_09.06.59.sql CATI-2656 BvSpInterviewerProductivityReport optimization
+24.00\2018-11-19_17.46.49.sql CATI-2694 Ability to define external transfer target numbers in the CATI supervisor
+24.00\2018-11-13_17.23.26.sql CATI-2690 Backend changes to support internal cold transfer UI
+24.00\2018-11-14_16.23.59.sql CATI-2597 Add Console.EnableInternalCallTransferToolbarButton and Console.EnableExternalCallTransferToolbarButton settings
+24.00\2018-11-22_15.40.31.sql CATI-2556 Update Toggle.EnableInternalTransfer setting; Add Toggle.EnableExternalTransfer settings
+24.00\2018-12-03_17.23.15.sql CATI-2690 Backend changes to support internal cold transfer UI( Change BvSpTransfer_GetInternalTargets )
+24.00\2018-12-17_11.02.41.sql CATI-2766 Update timezones
+24.00\2018-12-04_16.21.10.sql CATI-2659 Remove old records from BvCallHistory table
+24.00\2018-12-17_13.34.11.sql CATI-248 Add DialerConfigurationTypeId column into BvDialers table
+24.00\2019-01-10_11.04.18.sql CATI-2771 Update timezones
+24.00\2018-12-28_13.34.27.sql CATI-2687 Refactoring - track outbound calls active on dialer in BvActiveDial
+24.00\2018-12-28_08.07.39.sql CATI-2741 Break duration alert added
+24.00\2019-01-17_12.39.06.sql CATI-2754 Survey setting to configure transfer type
+24.00\2019-01-25_10.56.28.sql CATI-2752 BvActiveDial add column JsonTransferState and add index for TransferId
+24.00\2019-01-28_14.04.43.sql CATI-2752 BvActiveDial add column TransferType
+24.00\2019-02-06_17.30.44.sql CATI-2752 Change call delivery SPs
+24.00\2019-03-06_18.38.38.sql CATI-2833 Transfer call:warm call transfer dialog display incorrect state of interviewer on a brake
+24.00\2019-02-20_09.09.54.sql CATI-1659 Fix issue with recordings not working after using the redial feature
+24.00\2019-03-18_15.25.51.sql CATI-399 Update timezones
+24.00\2019-03-13_16.20.27.sql CATI-2718 Remove linked server from BvSpCall_MoveToITS stored procedure
+24.00\2019-03-19_17.46.40.sql CATI-2749 Remove UseHttpsForConsoleStateService feature toggle
+24.00\2019-03-01_09.02.23.sql CATI-2817 Backend changes to support explicit consent for monitoring and recording
+24.00\2019-03-28_08.08.07.sql CATI-2851 Remove BvSpGetCatiPersonSessionHistory and BvSpInterviewerSessionsReport stored procedures
+24.00\2019-04-08_18.56.40.sql CATI-2715 Replace linked server usage in CLR
+24.00\2019-04-11_09.33.40.sql CATI-2817 Backend changes to support explicit consent for monitoring and recording
+24.00\2019-04-15_12.52.49.sql CATI-2881 Update timezones
+24.00\2019-04-15_13.16.34.sql CATI-2879 Add new extended status Externally validated number
+24.00\2019-04-19_10.23.36.sql CATI-2796 Add new settings Monitoring.AllowCoachingMode and Monitoring.AllowBargingMode and feature toggles for these settings
+24.00\2019-04-17_14.26.15.sql CATI-2716 Quota support for Azure. Change [BvSpQuotaProgressReport] procedure.
+24.00\2019-04-18_14.12.14.sql CATI-2805 Add new IVR system setting: transfer timeout
+24.00\2019-04-22_13.47.13.sql CATI-2793 Feature toggle to choose which version of the supervisor UI is served up to users
+24.00\2019-05-17_11.08.36.ps1 CATI-2864 Migrate existing CATI surveys to use new way of reading quotas without linked server(migrate) 
+24.00\2019-05-17_11.08.37.sql CATI-2864 Migrate existing CATI surveys to use new way of reading quotas without linked server(cleanup)
+24.00\2019-05-23_14.37.56.sql CATI-2830 Changes in PersonsList and GroupsList pages of Supervisor
+24.00\2019-05-17_09.05.22.sql CATI-2897 CATI: Use hidden field instead of recording start time from backend (step 2)
+24.00\2019-05-29_16.56.50.sql CATI-1104 Fix incorrect total count on recorded interviews list page
+25.00\2019-06-05_09.21.03.sql CATI-2908 Add Invade dialer survey settings to settings template
+25.00\2019-06-11_13.40.33.sql CATI-2907 Add Simulator dialer survey settings to settings template
+25.00\2019-06-14_14.06.04.sql CATI-2830 Changes in PersonsList and GroupsList pages of Supervisor
+25.00\2019-06-14_15.31.06.sql CATI-2930 Add release number and release date settings
+24.00\2019-05-08_12.32.21.sql CATI-2678 InboundCallDroppedByRespondent history record is not recorded in callHistory
+25.00\2019-06-18_10.07.34.sql CATI-2937 Add InboundCliMatching column to survey
+24.00\2019-06-04_17.19.18.sql CATI-2917 Supervisor UI to display a list of dialer features
+25.00\2019-06-26_15.24.15.sql CATI-2894 Added new stored procedure for copy to default state group action in new supervisor
+25.00\2019-07-03_17.14.34.sql CATI-1786 When an interviewer/group is de-assigned from a survey, also remove the survey from the Auto Assignment option if it was set
+25.00\2019-07-03_13.23.52.sql CATI-2912 Added changes to stored procedure to change extended status during activate call
+25.00\2019-07-26_14.56.00.sql CATI-2912 Fix bug in activate call stored procedure
+25.00\2019-07-30_16.55.23.sql CATI-2912 Fix incorrect update BvInterview in activate call stored procedure
+25.00\2019-07-29_12.25.30.sql CATI-2933 Added changes to call attempts report stored procedure to show disposed by dialer attempts
+25.00\2019-08-08_14.07.50.sql CATI-2933 Changed value which will be displayed in interviewer column in call attempts report for disposed by dialer attempts
+25.00\2019-08-05_13.19.29.sql CATI-2995 Move ExportCallsLimit setting from Supervisor web.config to CATI system settings
+25.00\2019-08-12_17.46.01.sql CATI-3008 Created a new table for customization templates for interviewer productivity report
+25.00\2019-08-26_09.19.57.sql CATI-2815 Add Email.FeedbackSupportEmailAddress setting
+25.00\2019-08-21_09.39.31.sql CATI-3008 Added a new column 'ReadOnly' for BvInterviewerProductivityReportTemplate table
+25.00\2019-08-28_13.26.29.sql CATI-3010 Remove WebApi.Enabled system setting
+25.00\2019-09-12_19.37.06.sql CATI-1786 Add BvSpPerson_GetPersonsWithWrongAutomaticSurvey stored procedure
+25.00\2019-09-02_10.32.06.sql CATI-3008 Added changes to BvInterviewerProductivityReportTemplate table (added columns for creator info and access type)
+25.00\2019-10-03_09.15.42.sql CATI-2990 Changed join for BvTimezone in BvSpGetListSurveyTasks procedure
+25.00\2019-11-25_17.00.00.sql CATI-3085 Added Toggle.EnableInboundForPreviewInPredictiveMode system setting
+25.00\2019-10-29_12.51.32.sql CATI-3077 Internal server error on loading list of interviewers
+25.00\2019-10-18_12.06.53.sql CATI-3058 Ability to make random sample delivery the default setting for all surveys
+25.00\2019-11-05_09.57.41.sql CATI-3100 Add new system setting Supervisor.SurveyList.ShowTciDialerCampaignIdColumn
+25.00\2019-11-22_12.38.24.sql CATI-3135 Add new system setting Reports.InterviewerProductivityReportTemplateId
+25.00\2019-11-29_12.16.23.sql CATI-3135 Set ShowDialerAttempts = 1 for system template
+25.00\2019-12-06_10.41.13.sql CATI-3135 Update setting Reports.ScheduledInterviewerProductivityReportTemplateId = 0 if NULL
+25.00\2019-12-12_13.01.27.sql CATI-3104 Added Supervisor.AlwaysOpenNewUI system setting and removed Toggle.EnableNewSupervisor
+25.00\2019-12-10_13.56.40.sql CATI-3185 Extended interview delivery in automatic mode
+25.00\2020-01-13_17.32.44.sql CATI-3218 Add Setup.BackendVersion system setting
+25.00\2020-01-22_15.51.14.sql CATI-3206 Change BvSpGetLoggedInPersonsCount stored procedure not to count IVR agents
+25.00\2020-02-04_15.47.34.sql CATI-1576 Return duration of interview from BvSpGetDeferredMonitoringListPage stored procedure
+25.00\2020-02-07_10.37.32.sql CATI-2332 Add RecordCreationTime column to BvPersonDeferredMonitoring table
+25.00\2020-02-12_18.07.18.sql CATI-3228 Add new system setting Console.ForceUpdateToNewVersion
+25.00\2020-02-14_10.01.36.sql CATI-2745 Add YellowThreshold and RedThreshold columns to BvBreakTypes table, add udf_AlertDurationStatus_INT function and change BvSpGetListSurveyTasks stored procedure
+26.00\2020-04-03_11.31.56.sql CATI-3316 Add Toggle.EnableBBCCLogin setting
+26.00\2020-04-09_16.58.32.sql CATI-3311 Update [BvSpCall_Activate] procedure
+26.00\2020-04-20_08.50.42.sql CATI-3345 Do not generate KeepAlive alerts in activity view for BBCC interviewers
+26.00\2020-04-29_17.00.22.sql CATI-3392 Remove not used EnableBBCCNotification settinng
+26.00\2020-05-18_14.36.05.sql CATI-3422 BBCC - Store BBCC state in a new column in BvTasks
+26.00\2020-05-22_11.03.47.sql CATI-3395 Introduce new CATI system setting Console.LinkedInterviewsLimit
+26.00\2020-06-03_15.00.00.sql CATI-3456 Change DisplayName and Description for EnableBBCCLogin setting
+26.00\2020-06-02_21.12.58.sql CATI-3358 Introduce new CATI system settings AutoLogout.AutoLogoutWebConsoleThreadSleepPeriod and AutoLogout.AutoLogoutWebConsoleTimeout 
+26.00\2020-06-04_14.41.27.sql CATI-3427 Changed order of surveys which return BvSpGetOpenedSurveys procedure
+26.00\2020-06-23_17.14.52.sql CATI-3443 Remove Setup.IsNonDisruptiveUpdateModeEnabled system settings
+26.00\2020-08-04_11.03.50.sql CATI-3463 Add ImproperLogoutBBCC column for person table
+26.00\2020-08-06_11.43.17.sql CATI-3410 Add Setup.InterviewerAPIVersion and Setup.BBCCVersion settings
+26.00\2020-08-19_14.16.21.sql CATI-889  Add SchedulingScript.MaxActionsToExecute system setting
+26.00\2020-08-19_14.28.49.sql CATI-3409 BvSpGetListSurveyTasks add LastKeepAliveTimeAlert for WebConsole 
+26.00\2020-08-19_12.08.09.sql CATI-3529 Add sample size and last touch time to information for survey cleaning service
+26.00\2020-09-01_15.37.56.sql CATI-3424 Add attribute SampleUpdate to rules which have SampleUpdate description
+26.00\2020-09-08_17.09.37.sql CATI-3601	Add AccountLocking.MaxFailedLoginAttemptsForced system setting to prevent password bruteforce for companies with disabled account locking
+26.00\2020-09-21_11.45.05.sql CATI-3521 Support SetCampaign for IVR and live interviewers working in Automatic task choice
+26.00\2020-09-23_16.49.31.sql CATI-3600 Update default system settings for new supervisor UI and sample update
+26.00\2020-10-16_10.37.18.sql CATI-3524 Add WebApi.EnableSwagger system settings
+26.00\2020-11-11_18.24.22.sql CATI-3510 Add "All hours v2" scheduling script
+26.00\2020-11-19_13.13.27.sql CATI-3510 Add "Horizons Example Schedule" scheduling script
+26.00\2020-11-25_15.45.06.sql CATI-3604 Updated [BvSpGetSurveyInterviews] to check for DialTypeId
+26.00\2021-01-15_10.24.49.sql CATI-3668 Add new Toggle.BBCC.EnableCallTransfer system setting
+26.00\2020-12-29_14.10.39.sql CATI-3651 Add [DisplayTime] column to [BvHistory] table
+26.00\2021-01-11_17.21.43.sql CATI-3651 Updated [BvSpGetCallAttemptsReport_ListPage]
+26.00\2021-01-21_11.55.47.sql CATI-3696 Enable [Toggle.EnableAutomaticSetCampaign] by default
+26.00\2021-01-14_11.38.34.sql CATI-3728 Update BvSpCallHistory_List stored procedure
+26.00\2021-01-15_14.53.28.sql CATI-3665 BBCC - provide a way for interviewers to logout from "telephony problem" state
+26.00\2021-01-28_12.12.19.sql CATI-3174 Add new Toggle.BBCC.EnableScriptErrorsLogging system setting
+26.00\2021-02-04_16.38.58.sql CATI-3728 Added settings for messaging in BBCC
+26.00\2021-02-16_17.50.33.sql CATI-3792 Adding support for one way messaging
+26.00\2021-04-02_20.24.20.sql CATI-3856 Add system setting for 'ServiceBrokerObjectsCleanup' maintenance action
+26.00\2021-04-12_15.28.32.sql CATI-1353 Increase the limit of variables that can be included in call management
+27.00\2021-04-20_19.10.00.sql CATI-3871 Add System.CreateCompanyDatabasesFromBackup setting
+27.00\2021-04-26_11.07.13.sql CATI-3863 System setting to disable/enable the ability to switch to the classic style supervisor
+27.00\2021-05-19_13.34.00.sql CATI-3765 Added entities for 2 way messaging
+27.00\2021-05-21_11.53.28.sql CATI-3868 Ability to hide external transfer numbers from interviewers
+27.00\2021-06-04_13.05.06.sql CATI-3765 Remove TitleForInterviewer Column from BvConversations
+27.00\2021-06-08_00.40.42.sql CATI-3765 Add EnableTwoWayMessaging system setting
+27.00\2021-06-24_21.05.48.sql CATI-3879 Added new setting for Softphone integration and SSO property to interviewers
+27.00\2021-06-23_14.59.21.sql CATI-3176 Added Console.CompanyLogoUrl system setting
+27.00\2021-08-09_17.20.01.sql CATI-3950 Add Toggle.EnableDesktopConsoleLogin system setting
+27.00\2021-09-01_11.31.50.sql CATI-3934 Ability to define a custom time zone
+27.00\2021-09-22_11.30.14.sql CATI-3985 Scheduling stops working if delete Tz with id=1 ((GMT+00:00) Dublin, Edinburgh, Lisbon, London)
+27.00\2021-09-27_20.55.20.sql CATI-3995 Adding Console.BBCC.OptimisticConcurrency system setting
+27.00\2021-10-12_14.04.07.sql CATI-3981 Use disabled calls as linked interviews
+27.00\2021-10-04_15.07.00.sql CATI-1059 Add new extended status
+27.00\2021-12-13_12.30.36.sql CATI-4016 Trim non-digits when validating telephone numbers against blacklist
+27.00\2022-01-13_12.04.34.sql CATI-4030 Change BvSpTelephoneBlacklist_GetSurveysToDeleteCalls procedure to avoid selecting soft deleted surveys
+27.00\2021-12-16_11.25.39.sql CATI-3906 Delete Toggle.EnableBBCCLogin setting
+27.00\2022-01-25_12.21.46.sql CATI-4071 Add MonitorMode to dbo.AudioMonitoring
+27.00\2022-01-28_01.42.00.sql CATI-4046 Alter BvSpAttemptsByDispositionReport procedure
+27.00\2022-01-28_09.06.29.sql CATI-4031 New interviews added with different scheduling mode(simple or full) will have different shift types
+27.00\2022-03-01_00.46.51.sql CATI-4074 Add Resolved column to BvConversation
+27.00\2022-03-03_13.33.44.sql CATI-4100 Added SchedulingScript.ErrorLogSize system setting, Added BvScheduleError Table
+27.00\2022-03-05_14.02.23.sql CATI-4081 Add dialer reconection timespan ExpectedState column to BvDialers
+27.00\2022-03-16_09.37.07.sql CATI-4123 Add Toggle.DisableClrForFcd system setting
+27.00\2022-03-28_10.03.44.sql CATI-4115 Show duration for events like selecting and no calls in the Interviewer List activity view
+27.00\2022-03-31_14.02.43.sql CATI-4082 TECH: Replace pooling with RabbitMQ for monitoring events
+27.00\2022-04-05_14.38.16.sql CATI-4131 Add DisableClrForFcd column to BvSurvey table, DisableClrForFcd param added to BvSpSurvey_Update, BvInterviewQuotaCell table added
+27.00\2022-04-13_13.43.10.sql CATI-4149 Add IsOpen column to BvSurveyQuotaCell table
+27.00\2022-05-06_16.44.17.sql CATI-4149 Add BvSurveyQuotaCellType
+27.00\2022-05-11_13.26.22.sql CATI-4123 Add Toggle.DoNotUseSMO system setting
+27.00\2022-05-23_14.08.52.sql CATI-4181 Clr disabling added, new sps without clr added 
+27.00\2022-06-01_08.48.05.sql CATI-4181 No Clr queries fix 
+27.00\2022-06-01_13.22.12.sql CATI-4181 No Clr queries fix
+27.00\2022-06-02_13.17.56.sql CATI-4181 No Clr queries fix  
+27.00\2022-06-14_17.43.41.sql CATI-4139 Add Toggle.EnableDeferredMonitoringMode system setting
+27.00\2022-06-30_11.25.12.sql CATI-2232 add BvAsyncOperationQueue table to RoutineMaintenance.Actions.DatabaseMaintenance.UpdateStatisticTables system setting
+27.00\2022-07-01_10.43.43.sql CATI-2232 IX_BvAsyncOperationQueue_State index extended to IX_BvAsyncOperationQueue_State_Priority_Id
+27.00\2022-07-04_15.33.02.sql CATI-4024 NotificationSent column added to BvScheduleError
+27.00\2022-07-27_15.03.03.sql CATI-4181 CallActivate CallEnable SvySch_Insert Stored Procedures fix 
+27.00\2022-07-28_09.35.29.sql CATI-4181 CallEnable SvySch_Insert Stored Procedures fix 
+27.00\2022-08-01_09.35.25.sql CATI-4194 Create system settings to switch background tasks between cati-backend and cati-agent
+27.00\2022-08-02_17.30.00.sql CATI-2310 Update BvSpSurveyProductivityReport stored procedure
+27.00\2022-08-10_16.00.28.sql CATI-3741 BvSchedulingScriptLog table added, system settings for routine mainatanance cleaning added 
+27.00\2022-08-16_10.01.30.sql CATI-4152 IsCati column added to BvSampleStatusSummary table. Sps update 
+27.00\2022-09-12_15.44.19.sql CATI-4152 BvSpSampleStatusSummary_Get sp fix
+27.00\2022-09-27_16.26.19.sql CATI-4231 Add [IsOldInterface] column to [BvPersonDeferredMonitoring]
+27.00\2022-10-06_12.03.00.sql CATI-4181 refresh modules fix
+27.00\2022-10-11_16.06.44.sql CATI-4253 Add Toggle.UseReactSurveyList system setting
+27.00\2022-08-18_11.37.51.sql CATI-4161 Add RecordedInterviews.IsOldStyleEnabled system setting
+27.00\2022-11-17_15.13.51.sql CATI-4320 Set default value of Toggle.EnableDeferredMonitoringMode to true
+27.00\2022-11-25_10.25.26.sql CATI-4153 Add column to call center table to save information about PII hidding
+27.00\2023-01-11_12.02.52.sql CATI-4332 Add Console.EnableAppointmentTimeZoneAdjustment system setting
+27.00\2023-01-25_15.10.52.sql CATI-4371 Change FCD.BehaviorType default value and keep the previous value for instance databases if needed
+27.00\2023-01-31_08.40.41.sql CATI-4405 Add Supervisor.SurveysListOldStyleEnabled system setting
+27.00\2023-02-01_16.50.42.sql CATI-4392 Add RecordedInterviews.MaxSaved system setting
+27.00\2023-02-12_20.48.56.sql CATI-4403 Add IsRetained and Comment column to BvPersonDeferredMonitoring
+27.00\2023-02-14_15.14.36.sql CATI-4388 Update default values of some agent feature toggles
+27.00\2023-03-06_14.29.01.sql CATI-4318 Set true to Console.EnableAppointmentTimeZoneAdjustment system setting
+27.00\2023-04-05_09.58.14.sql CATI-4465 OpenEndReview added to CallHistory in CallManagement 
+27.00\2023-03-24_14.41.23.sql CATI-4223 BvSpSurveyOverviewReportForAllPersons and BvSpSurveyOverviewReport update
+27.00\2023-03-31_10.02.41.sql CATI-4223 IncludeOpenEndReviewTimeInInterviewDuration system setting added
+27.00\2023-04-04_21.29.32.sql CATI-4449 Remove All Hours scheduling script. Rename and copy Horizons Example scheduling script
+27.00\2023-04-10_10.51.44.sql CATI-4505 Toggle.RabbitMqCacheInvalidation system setting added
+27.00\2023-04-11_09.31.40.sql CATI-4450 Remove some feature toggles
+27.00\2023-05-08_13.59.03.sql CATI-4513 Include break time in logon duration in the Survey Overview report
+27.00\2023-05-29_17.01.49.sql CATI-4555 Add Toggle.EnableAlertsConfiguration system setting
+27.00\2023-06-08_12.46.03.sql CATI-4552 Add BvSupervisorsActive table
+27.00\2023-05-25_16.43.51.sql CATI-4150 Add Toggle.Supervisor.EnableScriptErrorsLogging system setting
+27.00\2023-07-24_01.06.28.sql CATI-4571 Add table and system settings for scheduling error alert
+27.00\2023-08-17_11.13.51.sql CATI-4567 Update extended status names
+27.00\2023-08-03_16.52.04.sql CATI-4611 Add Toggle.EnableDesktopLiveMonitoring system setting
+27.00\2023-07-31_00.34.05.sql CATI-4572 Add system settings for waiting state alerts
+27.00\2023-09-27_14.20.46.sql CATI-4736 Add Dialer.OpenSurveysOnDialersIndividually system setting
+27.00\2023-10-09_14.26.11.sql CATI-4759 update description of Console.IncludeOpenEndReviewTimeInInterviewDuration
+27.00\2023-10-09_18.54.05.sql CATI-4713 Add BvDialerToCallCenter table and update BvSpGetNextAvailableDialer
+27.00\2023-10-03_14.00.48.sql CATI-4751 fix BvSpCall_Activate and BvSpSvySch_Insert sps
+27.00\2023-10-17_03.59.30.sql CATI-4746 Decrease default RoutineMaintenance.Actions.SchedulingScriptLogTableCleanup.ExpirationPeriod value to 60 days
+27.00\2023-10-07_01.40.42.sql CATI-4713 Add ability to set multiple dialer ids to a callcenter
+27.00\2023-10-17_16.14.42.sql CATI-4752 Add RoutineMaintenance.Actions.LargeObjectHeapFragmentation.ShiftType system setting
+27.00\2023-11-21_15.33.34.sql CATI-4450 Set true to Toggle.DisableClrForFcd setting
+27.00\2023-11-13_12.25.09.sql CATI-4667 Add PreviewTime, ConnectedTime, WrapTime columns to BvHistory table, update BvSpCallHistory_List and BvSpGetCallAttemptsReport_ListPage
+27.00\2023-11-20_09.29.45.sql CATI-4667 Ad OpenEndReviewTime to BvSpGetCallAttemptsReport_ListPage
+27.00\2023-11-22_13.00.39.sql CATI-4740 Add CallManagement.PageSize to set number of calls in a single Call Management page
+27.00\2023-11-27_08.30.13.sql CATI-4707 Add Toggle.DirectlyInsertResponses system setting
+27.00\2023-12-18_10.16.11.sql CATI-4820 Set Toggle.RabbitMqCacheInvalidation to true, Set Toggle.DisableClrForFcd to true, launching migration for disabling clr for all surveys
+27.00\2023-12-14_12.13.39.sql CATI-4784 Add Toggle.UseNewDialerApi system setting
+27.00\2024-01-15_15.23.50.sql CATI-4800 Update Dialer.SettingsTemplatesJson and Dialer.DefaultSurveyParameters system settings
+27.00\2024-01-24_14.29.30.sql CATI-4560 Add 3 new columns to BvDialers table to keep information about dialer version
+27.00\2024-01-18_11.51.52.sql CATI-4821 Add CallCenterId parameter to BvSpSurveyProductivityReport, BvSpAttemptsByDispositionReport, BvSpNumberOfAttemptsReport, BvSpSurveyOverviewReport, BvSpSurveyOverviewReportForAllPersons 
+27.00\2024-01-30_14.55.59.sql CATI-4857 Add Supervisor.ActivityViewPageSize system setting
+27.00\2024-01-17_13.22.08.sql CATI-2579 Add ApporCode column to BvState and alter sps
+27.00\2024-01-31_15.49.58.sql CATI-4853 Removing code from stored procedures that use the BvSurvey.DisableClrForFcd field
+27.00\2024-01-25_15.42.29.sql CATI-4861 Add Toggle.ReadInterviewLanguageDirectly system setting
+27.00\2024-02-15_16.30.11.sql CATI-4875 Enable Toggle.DirectlyInsertResponses for all companies
+27.00\2024-02-19_10.25.50.sql CATI-4771 Remove WebServiceUrl.DictionaryApi CATI system setting
+27.00\2024-02-12_14.59.05.sql CATI-4674 Update BvSpGetListSurveyTasks procedure
+27.00\2024-03-01_13.44.10.sql CATI-2913 Add Console.EnableAutomaticScrolling system setting
+27.00\2024-03-12_13.49.22.sql CATI-4887 Remove clr assembly
+27.00\2024-03-19_12.50.50.sql CATI-4891 Add Console.OrderInterviewsByPriority, Console.EnableInterviewsRandomization, Console.EnableInterviewsRandomization system settings
+27.00\2024-04-02_22.29.08.sql CATI-4910 Add Toggle.EnforceCatiHostNameForSurveys system setting
+27.00\2024-04-15_21.52.56.sql CATI-4887 Add Comment column to BvSurvey
+27.00\2024-04-09_20.16.13.sql CATI-4920 Add break type check for predictive call lookups when requested by dialer
+27.00\2024-04-29_10.50.49.sql CATI-4976 Add Console.ManualCallsInsideShiftOnly admin setting
+27.00\2024-04-23_14.53.39.sql CATI-4864 Add Toggle.SendGoNotReadyImmediately system setting
+28.00\2024-05-02_15.23.37.sql CATI-4977 Add Console.AllowTransferToAssignedSurveysOnly system setting
+27.00\2024-05-08_08.26.51.sql CATI-4981 Add PasswordNeedsChange column for BvPerson
+28.00\2024-06-18_10.03.18.sql CATI-5043 Set true to Toggle.SendGoNotReadyImmediately system setting
+28.00\2024-07-02_20.39.33.sql CATI-5059 Add system setting and new column to BvPerson
+28.00\2024-07-25_08.56.30.sql CATI-5105 Add column to Bvperson to preserve task choice choice on login
+28.00\2024-07-14_09.15.59.sql CATI-5046 Add settings for interviewer performance metrics
+28.00\2024-07-30_08.30.09.sql CATI-5046 Add toggle setting for metrics configuration
+28.00\2024-07-08_10.23.01.sql CATI-5062 Add DialTypeId column to BvHistory
+28.00\2024-07-08_13.08.44.sql CATI-5062 Add DialTypeId column to BvTimeBreaksHistory
+28.00\2024-07-19_10.03.37.sql CATI-5067 Add CallAttemptNumber column to BvHistory table
+28.00\2024-08-07_15.45.52.sql CATI-5111 Change BvSpSurveyOverviewReportForAllPersons and BvSpSurveyOverviewReport stored procedures
+28.00\2024-09-09_13.23.08.sql CATI-5187 update IX_BvSvySchedule_SurveySid_CallState_i_InterviewID_Priority_TimeInShift_ExplicitSID
+28.00\2024-09-16_11.15.21.sql CATI-5153 Add Supervisor.TablesPreserveSelectionState system setting
+28.00\2024-10-09_10.36.53.sql CATI-5241 Add Toggle.EnableHttpKeepAliveForDialer
+28.00\2024-10-01_15.53.37.sql CATI-5031 add SplitBySurvey column to BvInterviewerProductivityReportTemplate
+28.00\2024-10-17_10.18.00.sql CATI-5241 Add System.BackendMinThreadPoolSize
+28.00\2024-10-15_14.39.02.sql CATI-5229 Update Indexes for BvPersonDeferredMonitoring, BvPerson, BvUserSurveyPermission
+28.00\2024-11-06_09.36.44.sql CATI-5287 Add Supervisor.ActivityViewLoadTest system setting
+28.00\2024-11-07_09.49.30.sql CATI-5292 use IX_BvSvyScheduleMain in GetCallsForPredictiveMode
+28.00\2024-11-04_09.36.12.sql CATI-5276 add indexes to BvPersonDeferredMonitoring
+28.00\2024-11-15_11.19.30.sql CATI-5265 Change some stored procedure not to change ExpireTime for a call
+28.00\2024-11-13_11.24.17.sql CATI-5273 fix survey activity update procedure
+28.00\2024-10-02_13.48.20.sql CATI-3504 Add new columns to telephone blacklist table
+28.00\2024-10-31_12.56.24.sql CATI-4967 Add comparison performance metric settings
+28.00\2024-10-17_13.55.02.sql CATI-5234 add IsAdministrative column to BvPersonGroup table 
+28.00\2024-11-29_14.44.03.sql CATI-5234 upload stored procedures for administrative groups 
+28.00\2024-12-09_12.42.36.sql CATI-4967 Turn on Toggle.EnableInterviewerMetricsConfiguration system setting
+28.00\2025-01-14_11.55.14.sql CATI-5361 Update incorrect timestamps for telephony black list
+28.00\2025-01-13_10.11.21.sql CATI-5326 Add TimeRepresentationType column to BvInterviewerProductivityReportTemplate
+28.00\2025-01-14_17.01.09.sql CATI-5281 Update Dialer.SettingsTemplatesJson system setting
+28.00\2025-01-15_09.37.09.sql CATI-5156 Add CallAttemptNumber to BvSpCallHistory_List
+28.00\2024-12-06_09.49.16.sql CATI-5220 Add BvSpActiveDial_DeleteSingle, update BvSpActiveDial_Delete
+28.00\2024-12-12_14.10.53.sql CATI-5220 Add IX_BvTasks_SurveySID_InterviewId, update BvSpInterviewsAndAppointments_Delete_Batch, BvSpLookUpByPerson
+28.00\2025-01-28_09.31.04.sql CATI-5374 Return ProjectId from BvSpGetReplicatedTable
+28.00\2025-02-05_16.15.21.sql CATI-5271 Add WebApi.RateLimiting system setting
+28.00\2025-02-12_09.43.58.sql CATI-5374 Set ReplicationStatus=1 for all Surveys. do not update replication status in BvSpCfUpdateSurveyReplicationStatus
+28.00\2025-02-17_12.15.59.sql CATI-5384 Add improved logging for BvSpCheckCallOnShifts
+28.00\2025-02-14_13.27.34.sql CATI-5312 Add Dialer.RespondentVariablesToSend system setting
+28.00\2025-02-25_10.35.34.sql CATI-5360 Add Features column to BvDialers
+28.00\2025-02-18_11.53.51.sql CATI-5378 Add BvSearchableFieldsOrdered table
+28.00\2025-03-07_16.22.55.sql CATI-5389 Add IsStateLocked column to BvSurvey table
+28.00\2025-03-13_12.30.01.sql CATI-5389 Update survey SP to include IsStateLocked
+28.00\2025-04-23_14.34.32.sql CATI-5462 Add SessionId columns to History tables
+28.00\2025-04-08_11.03.18.sql CATI-5408 Add CallOutcomeMetadata columns To BvActiveDial and BvDialHistory Tables
+28.00\2025-04-22_10.39.35.sql CATI-5408 Add DialerCallOutcome column to BvDialHistory Table
+28.00\2025-04-23_10.30.13.sql CATI-5408 Add DialerCallOutcome column to ActiveDial Table
+28.00\2025-04-28_11.26.10.sql CATI-5405 Remove obsolete data from BvSearchableFields table and usage of HiddenSearchableFields column
+28.00\2025-04-29_18.12.17.sql CATI-5405 Remove UseMode column form key of BvSearchableFields table
+28.00\2025-06-03_15.17.23.sql CATI-5396 Remove RecordedInterviews.IsOldStyleEnabled system setting
+28.00\2025-06-02_17.02.22.sql CATI-5489 Add Toggle.EnableDesktopMonitoringConsole
+28.00\2025-06-10_15.52.52.sql CATI-5405 Remove UseMode and HiddenSearchableFields columns
+28.00\2025-06-24_18.28.03.sql CATI-5507 Don't change call priority when changing survey status group
+28.00\2025-07-21_12.32.28.sql CATI-5507 Remove HiddenSearchableFields from BvSurvey_Update procedure
+28.00\2025-07-18_15.23.30.sql CATI-5525 Add Toggle.NewCallManagement system setting
+28.00\2025-07-17_10.32.36.sql CATI-5538 Upadate system setting CallManagement.PageSize
+28.00\2025-07-25_14.28.26.sql CATI-5564 Exclude assignments to soft-deleted surveys
+28.00\2025-08-14_09.24.51.sql CATI-5578 Add BvHistoryCustomFields table
+28.00\2025-08-22_15.12.56.sql CATI-5598 Add PK_BvHistoryCustomFields name for pk contraint in BvHistoryCustomFields table
+28.00\2025-04-15_12.01.00.sql CATI-5168 Add system settings for hub data synchronization
+28.00\2025-05-19_15.21.23.sql CATI-5168 Add [BvHubDataChangeTracking] and Primary Key to CallHistory
+28.00\2025-08-14_17.47.10.sql CATI-5168 Add routine maintainance action for data synchronization
+28.00\2025-08-21_16.58.04.sql CATI-5168 Add missing default constraints to BvHubChangetracking
+28.00\2025-08-20_11.10.01.sql CATI-5497 Add index IX_BvHistory_SurveyId_InterviewId_FiredTime
+28.00\2025-09-11_11.29.12.sql CATI-5610 Add Toggle.EnableCustomCallAttemptFields
+28.00\2025-08-22_10.58.03.sql CATI-5565 Add FCD.InterviewQuotaCellsTransactionThreshold system setting
+28.00\2025-10-16_16.00.19.sql CATI-5597 Add [Description] to BvSpPerson_ListByParent
+28.00\2025-09-18_14.31.32.sql CATI-5619 Add IsActive to BvHistoryCustomFields
+28.00\2025-10-30_13.49.46.sql CATI-5657 Add AnsMachineDetect dialer setting to AWS dialer
+28.00\2025-10-15_10.00.24.sql CATI-4971 Add 5 attribute fields for person and InterviewerProperties.AttributesList system setting
+28.00\2025-11-26_08.49.00.sql CATI-4971 Change RestView_Interviewer view to support new interviewer's fields in the CATI REST API
+28.00\2025-12-03_07.43.40.sql CATI-5641 Create BvCallHistoryEx table and use it instead of BvCallHistory
+28.00\2025-11-07_11.39.55.sql CATI-5634 Altering Function [dbo].[BvFnPerson_Get]
+28.00\2025-11-10_13.05.33.sql CATI-5634 Altering Procedure [dbo].[BvSpGetListSurveyTasks]
+28.00\2025-10-15_16.41.56.sql CATI-5579 Add Custom fields for BvHistory
+28.00\2026-02-23_14.46.07.sql CATI-5761 remove TABLOCKX from BvSpLogin_SpinUp
+28.00\2026-01-21_17.09.07.sql CATI-5694 Add Toggle.EnableAgentAssistedDialling
+28.00\2026-01-23_16.06.29.sql CATI-5694 Add Assisted to BvDialType
+28.00\2026-02-25_14.37.13.sql CATI-5750 Add DialType parameter to BvSpGetCachedCallsForPredictive sps
+28.00\2026-03-23_12.47.28.sql CATI-5773 Remove Setup.IsEventlogLoggingEnabled and Setup.IsDatabaseLoggingEnabled system settings
+28.00\2026-03-30_13.22.43.sql CATI-5818 Remove unused sql stored procedures and functions
+28.00\2026-04-17_15.32.56.sql CATI-5833 Add filtering for Assisted dialtype in GetOpenedSurveys sproc
+28.00\2026-04-22_14.17.47.sql CATI-5843 Add Toggle.BvSvyScheduleDeadlockReduction system setting
+28.00\2026-04-22_14.55.27.sql CATI-5844 add UpdateActiveDialInBvSvySchedule parameter to BvSpActiveDial_ stored procedures 
+28.00\2026-04-28_15.00.38.sql CATI-5358 Refactoring of BvSpTask_UpdateActiveQuestion stored procedure
+28.00\2026-04-20_11.55.01.sql CATI-5832 Remove some extra indexes and stored procedures
+28.00\2026-04-29_14.19.33.sql CATI-5854 Add Add Toggle.SendConsoleStateInRmqPayload
+28.00\2026-05-13_13.54.57.sql CATI-5875 Change RemoveNonNumericCharacters function

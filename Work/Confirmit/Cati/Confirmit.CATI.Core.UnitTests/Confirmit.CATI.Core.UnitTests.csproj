@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C7B9102E-DF4A-4A60-8907-22F966C98BB5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.Core.UnitTests</RootNamespace>
+    <AssemblyName>Confirmit.CATI.Core.UnitTests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsNotAsErrors>612,618</WarningsNotAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Confirmit.SurveyVoiceXml.Service.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\Confirmit.SurveyVoiceXml.Service.Client.1.4.1\lib\net472\Confirmit.SurveyVoiceXml.Service.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="IPAddressRange, Version=6.0.0.0, Culture=neutral, PublicKeyToken=578e3c3d17e7c751, processorArchitecture=MSIL">
+      <HintPath>..\packages\IPAddressRange.6.0.0\lib\net462\IPAddressRange.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=7.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Abstractions.7.0.3\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.JsonWebTokens.6.17.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=7.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Logging.7.0.3\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.Tokens.6.17.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Rest.ClientRuntime.2.3.12\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.Smo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.4.0.4.403061554\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting, Version=15.1.21.616, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <Private>True</Private>
+      <SpecificVersion>true</SpecificVersion>
+      <HintPath>..\_3rdpart\Telerik\Telerik.Reporting.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityLogging\ActivityEventsLoaderTests.cs" />
+    <Compile Include="ActivityLogging\ActivityLoggingTest.cs" />
+    <Compile Include="ActivityLogging\EventDetailsScopeTest.cs" />
+    <Compile Include="ActivityLogging\ManagementActivityEventDetailsLoggingTests.cs" />
+    <Compile Include="Backend\ManagementServiceTests.cs" />
+    <Compile Include="BaseTest.cs" />
+    <Compile Include="BvCallHandlerRootTest.cs" />
+    <Compile Include="CallManagement\CallQueueServiceTest.cs" />
+    <Compile Include="DAL\SystemSettingCacheTest.cs" />
+    <Compile Include="EmailReports\BaseReportBuilderTest.cs" />
+    <Compile Include="EmailReports\FeedbackTest.cs" />
+    <Compile Include="EmailReports\EmailReportsTest.cs" />
+    <Compile Include="EmailReports\CustomInterviewerProductivityReportBuilderTest.cs" />
+    <Compile Include="EmailReports\SurveyOverviewReportBuilderTest.cs" />
+    <Compile Include="EmailReports\SurveyProductivityReportBuilderTest.cs" />
+    <Compile Include="Export\PackagingTest.cs" />
+    <Compile Include="IpAndDnsFiltering\IpAndDnsFilteringTest.cs" />
+    <Compile Include="Logger\TestTraceListener.cs" />
+    <Compile Include="Misc\AsyncManagerTest.cs" />
+    <Compile Include="Misc\DelimitedStringCleanerTests.cs" />
+    <Compile Include="Misc\LanguageVariableProviderTest.cs" />
+    <Compile Include="Misc\RedialNumberSaverTest.cs" />
+    <Compile Include="Misc\DataRecordExtensionTest.cs" />
+    <Compile Include="PersonImport\InvalidSymbolsRepairerTests.cs" />
+    <Compile Include="PersonLogin\LicenseServiceTest.cs" />
+    <Compile Include="PersonLogin\StationIdParserTest.cs" />
+    <Compile Include="PersonLogin\StationInfoFactoryTest.cs" />
+    <Compile Include="PersonServiceTest.cs" />
+    <Compile Include="Repositories\SurveyRepositoryTest.cs" />
+    <Compile Include="RoutineMaintenance\Actions\RebuildIndexesActionTests.cs" />
+    <Compile Include="Scheduling\BvDotNetScript\ObjectDiffBuilderTests.cs" />
+    <Compile Include="Scheduling\BvDotNetScript\StriptObjects\FormDescValidatorTest.cs" />
+    <Compile Include="Scheduling\SchedulingScriptNotificatorTest\SchedulingScriptNotificatorExceptionDescriptionTest.cs" />
+    <Compile Include="Scheduling\SchedulingScriptSecurityValidatorTest.cs" />
+    <Compile Include="SearchManagerTest.cs" />
+    <Compile Include="DAL\DALTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Scheduling\BvDotNetScript\ExtendedSchedulingAPITest.cs" />
+    <Compile Include="Scheduling\BvDotNetScript\StriptObjects\ExprObjTest.cs" />
+    <Compile Include="Scheduling\CustomParameterCollectionTest.cs" />
+    <Compile Include="Scheduling\ExclusionDataTest.cs" />
+    <Compile Include="Scheduling\RuleTest.cs" />
+    <Compile Include="Scheduling\ScheduleCreator.cs" />
+    <Compile Include="Scheduling\ScheduleTest.cs" />
+    <Compile Include="Scheduling\SchedulingScriptNotificatorTest\SchedulingScriptNotificatorTest.cs" />
+    <Compile Include="Scheduling\SchedulingUtilitiesTest.cs" />
+    <Compile Include="Scheduling\ShiftCollectionTest.cs" />
+    <Compile Include="Scheduling\ShiftDataTest.cs" />
+    <Compile Include="Scheduling\ShiftTest.cs" />
+    <Compile Include="Scheduling\ShiftTypeCollectionTest.cs" />
+    <Compile Include="Scheduling\ShiftTypeTest.cs" />
+    <Compile Include="Scheduling\SubRuleActionTest.cs" />
+    <Compile Include="Scheduling\SubRuleTest.cs" />
+    <Compile Include="Scheduling\TestUtility.cs" />
+    <Compile Include="ServiceLocation\HttpContextTests.cs" />
+    <Compile Include="Security\PasswordHashTest.cs" />
+    <Compile Include="ServiceLocation\ServiceLocatorTests.cs" />
+    <Compile Include="ServiceLocation\ServicesRegistryInitializerTests.cs" />
+    <Compile Include="ServiceLocation\UnitTestsServiceLocatorInitializer.cs" />
+    <Compile Include="Services\ConfirmitAuthoringMailSenderTest.cs" />
+    <Compile Include="Services\DialerEmailNotificationServiceTest.cs" />
+    <Compile Include="Services\EmailNotificationServiceTest.cs" />
+    <Compile Include="Services\InterviewFormDataDatabaseSourceServiceTest.cs" />
+    <Compile Include="Services\InterviewFormDataWebSourceServiceTest.cs" />
+    <Compile Include="Services\PersonServiceImplementation\PasswordRulesCheckerTest.cs" />
+    <Compile Include="Services\ReplicationSchemaServiceTest.cs" />
+    <Compile Include="Services\ScheduleServiceTest.cs" />
+    <Compile Include="Services\SearchableFieldsRepositoryTest.cs" />
+    <Compile Include="Services\ShiftServiceTests.cs" />
+    <Compile Include="RoutineMaintenance\Framework\RoutineMaintenanceShiftServiceTest.cs" />
+    <Compile Include="Services\SurveyDatabaseEngineTests.cs" />
+    <Compile Include="Services\TokenCacheServiceTests.cs" />
+    <Compile Include="Telephony\AudioMessageDescriptorContext.cs" />
+    <Compile Include="Telephony\DialerCollectionTest.cs" />
+    <Compile Include="Telephony\DialersInstanceTest.cs" />
+    <Compile Include="Telephony\InboundAudioMessagesTest.cs" />
+    <Compile Include="Telephony\InboundCallServiceTest.cs" />
+    <Compile Include="Telephony\InterviewRecordingManagerTest.cs" />
+    <Compile Include="Telephony\IvrVariablesProviderTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.Backend\Confirmit.CATI.Backend.csproj">
+      <Project>{a505b6ce-3ef7-49a8-83b8-4a01f9d54114}</Project>
+      <Name>Confirmit.CATI.Backend</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.IntegrationTests.Framework\Confirmit.CATI.IntegrationTests.Framework.csproj">
+      <Project>{EB15DD04-FED9-4333-B159-664D501A6932}</Project>
+      <Name>Confirmit.CATI.IntegrationTests.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.IntegrationTests\Confirmit.CATI.IntegrationTests.csproj">
+      <Project>{FA7B8DFA-A6E5-45D8-AE4F-836B4EB8AA9C}</Project>
+      <Name>Confirmit.CATI.IntegrationTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Telephony\CommonDialerAPI\DialerCommon\DialerCommon.csproj">
+      <Project>{8B02686A-CAA0-416C-BF94-BD28C7A61432}</Project>
+      <Name>DialerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.Test.Common\Confirmit.Test.Common.csproj">
+      <Project>{a8831f8a-03d5-4381-b0b2-50e83887dacd}</Project>
+      <Name>Confirmit.Test.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFakes\Generated\Confirmit.Cati.Core\Confirmit.Cati.Core.Fakes.csproj">
+      <Project>{3296be72-f1fc-1ac1-8a7c-0b96388600d6}</Project>
+      <Name>Confirmit.Cati.Core.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NFakes\Generated\DialerCommon\DialerCommon.Fakes.csproj">
+      <Project>{547590D6-2C71-CC7D-0DB3-873E658ACA13}</Project>
+      <Name>DialerCommon.Fakes</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Resources\Actions.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Schedule.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

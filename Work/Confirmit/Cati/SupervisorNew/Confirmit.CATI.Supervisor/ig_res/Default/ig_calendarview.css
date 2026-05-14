@@ -1,0 +1,96 @@
+.igcv_Control
+{
+	border:solid 1px #B4B4B4;
+}
+
+
+.igcv_CaptionHeader
+{
+	background-color:Gainsboro;
+	font-size:8pt;
+	padding:3px;
+	width: 100%;
+	white-space: nowrap;
+	color:Black;
+	text-align:center;
+}
+
+
+.igcv_DayHeader
+{
+	background-color:White;
+	background-repeat:repeat-x;
+	font-size:10px;
+	border-bottom:solid 1px Silver;
+	height: 16px;
+	color:Black;
+}
+
+
+.igcv_Day
+{
+	background-color:White;
+	font-size:11px;
+	border-width:0px;
+}
+
+
+.igcv_Footer
+{
+	background-color:#EEEEEE;
+	font-size:8pt;
+	padding:3px;
+	white-space: nowrap;
+	cursor:pointer;
+	text-align:center;
+}
+
+
+.igcv_DropDown
+{
+	font-size:8pt;
+}
+
+
+.igcv_OtherMonthDay
+{
+	background-color:White;
+	color:#B3B3B3;
+}
+
+
+.igcv_WeekendDay
+{
+	background-color:#FAFAFA;
+}
+
+
+.igcv_NavigationButton
+{
+	background-color:Gainsboro;
+	padding-right:3px;
+	padding-left:3px;
+	cursor:pointer;
+}
+
+
+.igcv_TodayDay
+{
+	border:solid 1px #000000;
+}
+
+
+.igcv_ActivityDay
+{
+	font-weight:bold;
+}
+
+
+.igcv_ActiveDay
+{
+	background-color:#C3C3C3;
+	background-image:none;
+	border-color:Black;
+}
+
+

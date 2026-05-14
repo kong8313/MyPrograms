@@ -1,0 +1,526 @@
+project
+begin
+  projectid = {6585BE61-A44C-4087-9A21-694A089F2ED6}
+  target
+  begin
+    name = Default
+    targetid = {09E859F1-618E-44B4-975E-890AA8CE9251}
+    rootaction
+    begin
+      action.switch
+      begin
+        allowblankvalue = true
+        id = {59E52B83-3D1B-4904-A833-28A752BBD77C}
+        switchvalue = %target%
+        action.case
+        begin
+          casevalue = CleanInstall
+          expandactionlogtitle = false
+          id = {0CC64187-5D2A-45C5-9F9C-2810BB695510}
+          useregex = false
+          action.target.execute
+          begin
+            actionlistid = {24FB12E4-AF0D-4DB0-B4DE-D00B3F776B78}
+            description = "Run Target [CleanInstall]"
+            failifactionlistempty = false
+            id = {11CAAF40-C16D-4F93-BE74-9A5FCE04D84F}
+            resetdependencychain = false
+          end
+        end
+        action.case
+        begin
+          casevalue = Update
+          expandactionlogtitle = false
+          id = {04F735BC-F66F-45AF-A558-33B67E8F6B52}
+          useregex = false
+          action.target.execute
+          begin
+            actionlistid = {58D7E036-CC71-4E1B-9B8B-A6533D96AD18}
+            description = "Run Target [Update]"
+            failifactionlistempty = false
+            id = {A1876FF1-8B0D-46CB-93D3-FCA6F67EAD87}
+            resetdependencychain = false
+          end
+        end
+        action.case
+        begin
+          casevalue = Clean
+          expandactionlogtitle = false
+          id = {83917697-75CE-40FF-8B14-8AB4BFE363E4}
+          useregex = false
+          action.target.execute
+          begin
+            actionlistid = {DA891164-58B3-4D99-AF9F-EDAEF827A40F}
+            description = "Run Target [Clean]"
+            failifactionlistempty = false
+            id = {685B8E3F-B885-453B-9A20-D6F9BC8C41E9}
+            resetdependencychain = false
+          end
+        end
+        action.else
+        begin
+          id = {8453A100-625C-42CC-9D3F-001E80D99C7B}
+          action.target.execute
+          begin
+            actionlistid = {24FB12E4-AF0D-4DB0-B4DE-D00B3F776B78}
+            description = "Run Target [CleanInstall]"
+            failifactionlistempty = false
+            id = {3324F03D-4A51-465C-94B7-F31FB112C495}
+            resetdependencychain = false
+          end
+        end
+      end
+    end
+  end
+  target
+  begin
+    name = Update
+    targetid = {58D7E036-CC71-4E1B-9B8B-A6533D96AD18}
+    rootaction
+    begin
+      action.doscmd.execute
+      begin
+        captureoutput = true
+        command = StopServices.bat
+        description = "Stop CATI Services"
+        enablelivecapture = true
+        enablereturncodecheck = true
+        enabletimeout = false
+        expandimpersonationtoken = false
+        hidewindow = true
+        id = {601E2E0D-D024-4600-B94E-26761A39B0E7}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        logoutput = true
+        logprocessparameters = true
+        params = StopServices.bat
+        processoraffinity = 0
+        processpriority = tpNormal
+        redirectstderr = true
+        returncodecomparator = rcEqualTo
+        returncodetocheck = 0
+        startindir = %FBPROJECTDIR%\\Actions\\
+        terminateontimeout = false
+        timeoutlength = 0
+        useerrordialogmonitor = false
+        waitforcompletion = true
+      end
+      action.powershell.execute-script
+      begin
+        actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+        customactionname = "Execute Powershell Script"
+        description = "Copy Backend Files"
+        enabletimeout = false
+        id = {E61FB33A-A063-4F80-A31D-D1468973C645}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.isfromfile = True
+        as.filename = %FBPROJECTDIR%\\Actions\\CopyDllAndExeBackendFiles.ps1
+        as.inputformat = 0
+        as.outputformat = 0
+        as.useprofile = True
+        as.use64bit = False
+        as.threadapartment = 0
+        as.version = 0
+        as.executionpolicy = 0
+        as.waitforcompletion = True
+      end
+      action.powershell.execute-script
+      begin
+        actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+        customactionname = "Execute Powershell Script"
+        description = "Update CATI Databases"
+        enabletimeout = false
+        id = {9DF2C8FD-ADB4-49BB-9DC4-A0C3BA0B1817}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.isfromfile = True
+        as.filename = %FBPROJECTDIR%\\Actions\\UpdateCatiDatabases.ps1
+        as.inputformat = 0
+        as.outputformat = 0
+        as.useprofile = True
+        as.use64bit = False
+        as.threadapartment = 0
+        as.version = 0
+        as.executionpolicy = 0
+        as.waitforcompletion = True
+      end
+      action.doscmd.execute
+      begin
+        captureoutput = true
+        command = StartServices.bat
+        description = "Start CATI Services"
+        enablelivecapture = true
+        enablereturncodecheck = true
+        enabletimeout = false
+        expandimpersonationtoken = false
+        hidewindow = true
+        id = {05F76138-2171-40D0-A92F-6F71B90853F7}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        logoutput = true
+        logprocessparameters = true
+        params = StartServices.bat
+        processoraffinity = 0
+        processpriority = tpNormal
+        redirectstderr = true
+        returncodecomparator = rcEqualTo
+        returncodetocheck = 0
+        startindir = %FBPROJECTDIR%\\Actions\\
+        terminateontimeout = false
+        timeoutlength = 0
+        useerrordialogmonitor = false
+        waitforcompletion = true
+      end
+    end
+  end
+  target
+  begin
+    name = CleanInstall
+    targetid = {24FB12E4-AF0D-4DB0-B4DE-D00B3F776B78}
+    rootaction
+    begin
+      action.powershell.execute-script
+      begin
+        actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+        customactionname = "Execute Powershell Script"
+        description = "Check external repos"
+        enabletimeout = false
+        id = {7B33DCF2-2867-40EC-BF48-83F3F904D741}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.isfromfile = True
+        as.filename = %FBPROJECTDIR%\\Actions\\CheckExternalRepos.ps1
+        as.inputformat = 0
+        as.outputformat = 0
+        as.useprofile = True
+        as.use64bit = True
+        as.threadapartment = 0
+        as.version = 0
+        as.executionpolicy = 0
+        as.waitforcompletion = True
+      end
+      action.group.parallel
+      begin
+        description = "All CATI Repositories Async Build"
+        disableasync = false
+        id = {ED20D4B0-126F-400B-AE96-6E318E3A0FB5}
+        limitthreads = false
+        maxthreads = 2
+        threadstartdelay = 0
+        action.group
+        begin
+          description = "Main CATI Build"
+          id = {46BC7166-A075-456B-A087-FEE0E48C8F34}
+          action.doscmd.execute
+          begin
+            captureoutput = true
+            command = %FBPROJECTDIR%\\Actions\\_buildCode.cmd
+            description = "Build cati.proj code"
+            enablelivecapture = true
+            enablereturncodecheck = true
+            enabletimeout = false
+            expandimpersonationtoken = false
+            hidewindow = true
+            id = {80EA8B02-00AF-4CA8-B53D-A85DF0A06C89}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            logoutput = true
+            logprocessparameters = true
+            params = %FBPROJECTDIR%\\Actions\\_buildCode.cmd
+            processoraffinity = 0
+            processpriority = tpNormal
+            redirectstderr = true
+            returncodecomparator = rcEqualTo
+            returncodetocheck = 0
+            startindir = %FBPROJECTDIR%\\..\\MSBuild\\
+            terminateontimeout = false
+            timeoutlength = 0
+            useerrordialogmonitor = false
+            waitforcompletion = true
+          end
+          action.doscmd.execute
+          begin
+            captureoutput = true
+            command = %FBPROJECTDIR%\\Actions\\_buildDB.cmd
+            description = "Build cati.proj database"
+            enablelivecapture = true
+            enablereturncodecheck = true
+            enabletimeout = false
+            expandimpersonationtoken = false
+            hidewindow = true
+            id = {D36E5805-ECB2-468E-89BD-65BF714674E9}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            logoutput = true
+            logprocessparameters = true
+            params = %FBPROJECTDIR%\\Actions\\_buildDB.cmd
+            processoraffinity = 0
+            processpriority = tpNormal
+            redirectstderr = true
+            returncodecomparator = rcEqualTo
+            returncodetocheck = 0
+            startindir = %FBPROJECTDIR%\\..\\MSBuild\\
+            terminateontimeout = false
+            timeoutlength = 0
+            useerrordialogmonitor = false
+            waitforcompletion = true
+          end
+          action.doscmd.execute
+          begin
+            captureoutput = true
+            command = %FBPROJECTDIR%\\Actions\\_makeNugetPackages.cmd
+            description = "Make nuget packages"
+            enablelivecapture = true
+            enablereturncodecheck = true
+            enabletimeout = false
+            expandimpersonationtoken = false
+            hidewindow = true
+            id = {F12C3630-7102-4F59-BC9B-FE8E4FD37B0F}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            logoutput = true
+            logprocessparameters = true
+            params = %FBPROJECTDIR%\\Actions\\_makeNugetPackages.cmd
+            processoraffinity = 0
+            processpriority = tpNormal
+            redirectstderr = true
+            returncodecomparator = rcEqualTo
+            returncodetocheck = 0
+            startindir = %FBPROJECTDIR%\\..\\MSBuild\\
+            terminateontimeout = false
+            timeoutlength = 0
+            useerrordialogmonitor = false
+            waitforcompletion = true
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Install Backend"
+            enabletimeout = false
+            id = {DB1C715C-3537-468F-8E2C-44DCA84EE07A}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\InstallBackend.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Setup Multimode Parameters"
+            enabletimeout = false
+            id = {DD190A09-4FBF-48C8-AE58-76912B33E53C}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\SetupMultimodeParameters.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Configure Identity"
+            enabletimeout = false
+            id = {2C0C5276-ADEA-43F3-A501-050AE1006536}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\ConfigureIdentity.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Prepare Simulator"
+            enabletimeout = false
+            id = {582973AB-03F9-4D69-9707-B889089EBFBE}
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\PrepareSimulator.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+        end
+        action.group
+        begin
+          description = "Build Other CATI Repositories"
+          id = {7154C65A-450E-4598-8CF8-A2D025266E82}
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Install CATI Supervisor Api"
+            enabletimeout = false
+            id = {6692617A-B017-4F9D-85EE-AD5101275A79}
+            ignorefailure = true
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\InstallCatiSupervisorApi.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Install CATI Supervisor Client"
+            enabletimeout = false
+            id = {A7F4A09B-7E84-4756-8AC3-6AF5217B8E92}
+            ignorefailure = true
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\InstallCatiSupervisorClient.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Install CATI Interviewer Api"
+            enabletimeout = false
+            id = {8FE40AEE-4D18-409F-83E3-F1F7EA31EF23}
+            ignorefailure = true
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\InstallCatiInterviewerApi.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+          action.powershell.execute-script
+          begin
+            actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+            customactionname = "Execute Powershell Script"
+            description = "Install CATI Interviewer Client"
+            enabletimeout = false
+            id = {00A17854-3E45-49DB-93AB-CD6BB2FCAFF6}
+            ignorefailure = true
+            impersonateusenetcredonly = false
+            impersonateuser = false
+            terminateontimeout = true
+            timeoutlength = 2
+            as.isfromfile = True
+            as.filename = %FBPROJECTDIR%\\Actions\\InstallCatiInterviewerClient.ps1
+            as.inputformat = 0
+            as.outputformat = 0
+            as.useprofile = True
+            as.use64bit = True
+            as.threadapartment = 0
+            as.version = 0
+            as.executionpolicy = 0
+            as.waitforcompletion = True
+          end
+        end
+      end
+    end
+  end
+  target
+  begin
+    name = Clean
+    targetid = {DA891164-58B3-4D99-AF9F-EDAEF827A40F}
+    rootaction
+    begin
+      action.powershell.execute-script
+      begin
+        actiontypeid = {1FE0057F-D583-40DE-93A0-01279CFA2A6C}
+        customactionname = "Execute Powershell Script"
+        description = "Remove CATI"
+        enabletimeout = false
+        id = {7003D52A-D929-4103-8C1E-F76E0EF78A49}
+        impersonateusenetcredonly = false
+        impersonateuser = false
+        terminateontimeout = true
+        timeoutlength = 2
+        as.isfromfile = True
+        as.filename = %FBPROJECTDIR%\\Actions\\Clean.ps1
+        as.inputformat = 0
+        as.outputformat = 0
+        as.useprofile = True
+        as.use64bit = True
+        as.threadapartment = 0
+        as.version = 0
+        as.executionpolicy = 0
+        as.waitforcompletion = True
+      end
+    end
+  end
+  variable
+  begin
+    name = target
+    variablescope = vtProject
+  end
+end

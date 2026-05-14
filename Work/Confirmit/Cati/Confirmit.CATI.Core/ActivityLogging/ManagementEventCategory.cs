@@ -1,0 +1,34 @@
+namespace Confirmit.CATI.Core.ActivityLogging
+{
+    public enum ManagementEventCategory
+    {
+        Survey,
+        Call,
+        Interviewer,
+        System,
+        Blacklist,
+        Timezone,
+        SystemSettings,
+        InterviewerSession,
+        Assignment,
+        BreakType,
+        Report,
+        CallCenter,
+        CallGroup,
+        DdiNumber,
+        Dialer,
+        DialerCommunication,
+        BackgroundTasks,
+        ExternalTransferNumber,
+        CallManagementUI,
+        IvrSettings,
+        InboundNotification,
+        PublicApi,
+        RecordedInterview,
+        View,
+        Quota,
+        Messaging,
+        SchedulingScript,
+        StateGroup
+    }
+}

@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8E3884D-1196-40CF-8259-268BE99814C5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.Telephony.DialerLibrary</RootNamespace>
+    <AssemblyName>DialerLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="CodiVersion30CoreProxy.cs" />
+    <Compile Include="CodiVersion30FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion30RecordingProxy.cs" />
+    <Compile Include="CodiVersion32CoreProxy.cs" />
+    <Compile Include="CodiVersion32FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion32RecordingProxy.cs" />
+    <Compile Include="CodiVersion33CoreProxy.cs" />
+    <Compile Include="CodiVersion33FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion33RecordingProxy.cs" />
+    <Compile Include="CodiVersion34CoreProxy.cs" />
+    <Compile Include="CodiVersion34FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion34RecordingProxy.cs" />
+    <Compile Include="CodiVersion35CoreProxy.cs" />
+    <Compile Include="CodiVersion35FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion35RecordingProxy.cs" />
+    <Compile Include="CodiVersion37RecordingProxy.cs" />
+    <Compile Include="CodiVersion37FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion37CoreProxy.cs" />
+    <Compile Include="CodiVersion36CoreProxy.cs" />
+    <Compile Include="CodiVersion36FacilitiesProxy.cs" />
+    <Compile Include="CodiVersion36RecordingProxy.cs" />
+    <Compile Include="CodiVersionDetector.cs" />
+    <Compile Include="CodiVersionProxyFactory.cs" />
+    <Compile Include="ConnectionParameters.cs" />
+    <Compile Include="DialerChannelFactoryWrapperConfiguration.cs" />
+    <Compile Include="DialerFeaturesFactory.cs" />
+    <Compile Include="DialerLibrary.cs" />
+    <Compile Include="DialerLibraryBase.cs" />
+    <Compile Include="GenericConfigurationParameters.cs" />
+    <Compile Include="ICodiVersionFacilitiesProxy.cs" />
+    <Compile Include="ICodiVersionRecordingProxy.cs" />
+    <Compile Include="ICodiVersionCoreProxy.cs" />
+    <Compile Include="IReleaseDialerChannel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonDialerAPI\DialerCommon\DialerCommon.csproj">
+      <Project>{8B02686A-CAA0-416C-BF94-BD28C7A61432}</Project>
+      <Name>DialerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.Contract.csproj">
+      <Project>{2426566C-7CB2-47AE-BF97-2DC53539653A}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.0\ConfirmitDialerInterface\Confirmit.CATI.DialerInterface.3.0.csproj">
+      <Project>{08a919f9-5651-45a3-bff3-1a80b6849e9c}</Project>
+      <Name>Confirmit.CATI.DialerInterface.3.0</Name>
+      <Aliases>CodiV30</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.0\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.3.0.Contract.csproj">
+      <Project>{c6db63ca-1892-4e6c-a6f4-f3a71f2dff24}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.3.0.Contract</Name>
+      <Aliases>CodiV30</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.2\Confirmit.CATI.DialerInterface.3.2\Confirmit.CATI.DialerInterface.3.2.csproj">
+      <Project>{7625dd00-10d7-4cc0-8566-e2d49546d350}</Project>
+      <Name>Confirmit.CATI.DialerInterface.3.2</Name>
+      <Aliases>CodiV32</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.2\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.3.2.Contract.csproj">
+      <Project>{b71e77b1-f497-464e-be2b-33a8c1bb7762}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.3.2.Contract</Name>
+      <Aliases>CodiV32</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.3\Confirmit.CATI.DialerInterface.3.3\Confirmit.CATI.DialerInterface.3.3.csproj">
+      <Project>{68eee97d-e162-43f4-aff9-c564680d7247}</Project>
+      <Name>Confirmit.CATI.DialerInterface.3.3</Name>
+      <Aliases>CodiV33</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.3\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.3.3.Contract.csproj">
+      <Project>{6cfcf17b-5925-4d80-8543-f30844973308}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.3.3.Contract</Name>
+      <Aliases>CodiV33</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.4\Confirmit.CATI.DialerInterface.3.4\Confirmit.CATI.DialerInterface.3.4.csproj">
+      <Project>{01b9ec14-60a8-427b-a359-0e7bb0779a61}</Project>
+      <Name>Confirmit.CATI.DialerInterface.3.4</Name>
+      <Aliases>CodiV34</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.4\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.3.4.Contract.csproj">
+      <Project>{ae28cef6-f176-4c06-ac5b-6f73a79f1189}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.3.4.Contract</Name>
+      <Aliases>CodiV34</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.5\Confirmit.CATI.DialerInterface.3.5\Confirmit.CATI.DialerInterface.3.5.csproj">
+      <Project>{5e2d1b7a-c2d1-4fc1-b5fd-a677217114cd}</Project>
+      <Name>Confirmit.CATI.DialerInterface.3.5</Name>
+      <Aliases>CodiV35</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.5\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.3.5.Contract.csproj">
+      <Project>{3e7c6384-1f49-40c6-8064-9bd8d01df368}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.3.5.Contract</Name>
+      <Aliases>CodiV35</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.6\Confirmit.CATI.DialerInterface.3.6\Confirmit.CATI.DialerInterface.3.6.csproj">
+      <Project>{7e39caa8-e0e3-430c-95da-02e9a4025eb1}</Project>
+      <Name>Confirmit.CATI.DialerInterface.3.6</Name>
+      <Aliases>CodiV36</Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\OpenDialer\v.3.6\DialerService.Contract\Confirmit.CATI.Telephony.DialerService.3.6.Contract.csproj">
+      <Project>{679061dc-842d-4375-af5e-2b0b0d80c763}</Project>
+      <Name>Confirmit.CATI.Telephony.DialerService.3.6.Contract</Name>
+      <Aliases>CodiV36</Aliases>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,7 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <CodiVersion>3.7</CodiVersion>
+    <CodiLatestVersionRootDir>$(SolutionDir)Confirmit.CATI.Telephony\OpenDialer\v.$(CodiVersion)\</CodiLatestVersionRootDir>
+    <CodiLatestVersionDir>$(CodiLatestVersionRootDir)Confirmit.CATI.DialerInterface.$(CodiVersion)\</CodiLatestVersionDir>
+  </PropertyGroup>
+</Project>

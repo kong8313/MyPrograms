@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServerConfigurations>
+  <ServerConfiguration name="master">
+    <SqlServerName>co-osl-tenta197</SqlServerName>
+    <SqlLoginName>sa</SqlLoginName>
+    <SqlPassword>firm</SqlPassword>
+  </ServerConfiguration>
+
+  <ServerConfiguration name="release">
+    <SqlServerName>CO-OSL-TENTA264\SYSTEM</SqlServerName>
+    <SqlLoginName>sa</SqlLoginName>
+    <SqlPassword>%1firm</SqlPassword>    
+  </ServerConfiguration>
+
+  <ServerConfiguration name="ltu">
+    <SqlServerName>CO-OSL-COSQL01</SqlServerName>
+    <SqlLoginName>sa</SqlLoginName>
+    <SqlPassword>firm</SqlPassword>
+  </ServerConfiguration>
+  
+</ServerConfigurations>
+  

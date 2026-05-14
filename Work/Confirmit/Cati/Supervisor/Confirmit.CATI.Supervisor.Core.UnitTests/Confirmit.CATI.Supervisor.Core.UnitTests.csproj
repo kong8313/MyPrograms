@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FFD1AE24-4291-4D72-BAC0-AF265CFE2295}</ProjectGuid>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.Supervisor.Core.UnitTests</RootNamespace>
+    <AssemblyName>Confirmit.CATI.Supervisor.Core.UnitTests</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Confirmit.Identity.Sdk, Version=13.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Confirmit.Identity.Sdk.13.1.4\lib\net472\Confirmit.Identity.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=1.0.1825.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\_3rdpart\OpenXML\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Firmglobal.Framework.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Firmglobal.Framework.Security.1.2.1\lib\net472\Firmglobal.Framework.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActivityManagerTest.cs" />
+    <Compile Include="AlertValidatorTest.cs" />
+    <Compile Include="BaseMethodsTest.cs" />
+    <Compile Include="CachedLocalTimezoneManagerTest.cs" />
+    <Compile Include="CallManagementViewProviderTest.cs" />
+    <Compile Include="CallManagerTest.cs" />
+    <Compile Include="FilterVariablesProviderTest.cs" />
+    <Compile Include="Export\DsvManagerTest.cs" />
+    <Compile Include="FilterManagerTest.cs" />
+    <Compile Include="QuotaManagerTest.cs" />
+    <Compile Include="Export\ExportManagerTest.cs" />
+    <Compile Include="Export\ExcelTemplateParserTest.cs" />
+    <Compile Include="Export\CollectionExportProviderTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotaSettingsProviderTest.cs" />
+    <Compile Include="ReportManagerTest.cs" />
+    <Compile Include="ScriptUrlGeneratorTest.cs" />
+    <Compile Include="SupervisorIdentityServiceTest.cs" />
+    <Compile Include="SurveyQuotasExportInfoProviderStub.cs" />
+    <Compile Include="SurveyQuotasReportGeneratorTest.cs" />
+    <Compile Include="SuperToCallCenterAssignmentProviderTest.cs" />
+    <Compile Include="SurveyPermissionProviderTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Core.UnitTests\Confirmit.CATI.Core.UnitTests.csproj">
+      <Project>{C7B9102E-DF4A-4A60-8907-22F966C98BB5}</Project>
+      <Name>Confirmit.CATI.Core.UnitTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.IntegrationTests.Framework\Confirmit.CATI.IntegrationTests.Framework.csproj">
+      <Project>{EB15DD04-FED9-4333-B159-664D501A6932}</Project>
+      <Name>Confirmit.CATI.IntegrationTests.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.IntegrationTests\Confirmit.CATI.IntegrationTests.csproj">
+      <Project>{FA7B8DFA-A6E5-45D8-AE4F-836B4EB8AA9C}</Project>
+      <Name>Confirmit.CATI.IntegrationTests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.TelephonyProblemStates\Confirmit.TelephonyProblemStates.csproj">
+      <Project>{f795738a-b45b-4ebf-89b6-efb3a807433a}</Project>
+      <Name>Confirmit.TelephonyProblemStates</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Confirmit.Test.Common\Confirmit.Test.Common.csproj">
+      <Project>{a8831f8a-03d5-4381-b0b2-50e83887dacd}</Project>
+      <Name>Confirmit.Test.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NFakes\Generated\Confirmit.Cati.Core\Confirmit.Cati.Core.Fakes.csproj">
+      <Project>{3296be72-f1fc-1ac1-8a7c-0b96388600d6}</Project>
+      <Name>Confirmit.Cati.Core.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\NFakes\Generated\Confirmit.CATI.Supervisor.Core\Confirmit.CATI.Supervisor.Core.Fakes.csproj">
+      <Project>{e4701c59-38fe-ee82-97d1-6bcb16ef90f0}</Project>
+      <Name>Confirmit.CATI.Supervisor.Core.Fakes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\SupervisorNew\Confirmit.CATI.Supervisor\Confirmit.CATI.Supervisor.csproj">
+      <Project>{75a635fa-e905-4fab-9c77-9ccb188a2af2}</Project>
+      <Name>Confirmit.CATI.Supervisor</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Supervisor.Core\Confirmit.CATI.Supervisor.Core.csproj">
+      <Project>{7B612F3B-66F3-48BE-B67B-EDC43DA1AA37}</Project>
+      <Name>Confirmit.CATI.Supervisor.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Confirmit.CATI.Supervisor.UnitTests\Confirmit.CATI.Supervisor.UnitTests.csproj">
+      <Project>{cd359fe5-eda7-4512-960f-547d532efc21}</Project>
+      <Name>Confirmit.CATI.Supervisor.UnitTests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

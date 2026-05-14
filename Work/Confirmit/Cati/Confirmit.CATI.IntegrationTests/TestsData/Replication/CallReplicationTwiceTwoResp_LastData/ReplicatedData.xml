@@ -1,0 +1,63 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <BvReplicatedData>
+    <q1>330</q1>
+    <key>330</key>
+    <respid>3</respid>
+    <CallAttemptCount>70</CallAttemptCount>
+    <q3>333</q3>
+    <q4>333</q4>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <q1>440</q1>
+    <key>440</key>
+    <respid>4</respid>
+    <CallAttemptCount>8</CallAttemptCount>
+    <q3>444</q3>
+    <q4>444</q4>
+  </BvReplicatedData>
+<BvReplicatedData>
+	<q1>55</q1>
+	<key>55</key>
+	<respid>5</respid>
+	<CallAttemptCount>5</CallAttemptCount>
+</BvReplicatedData>
+<BvReplicatedData>
+	<respid>7</respid>
+	<CallAttemptCount>7</CallAttemptCount>
+</BvReplicatedData>
+<BvReplicatedData>
+	<respid>8</respid>
+	<CallAttemptCount>8</CallAttemptCount>
+</BvReplicatedData>
+  <BvReplicatedData>
+    <q1>99</q1>
+    <key>99</key>
+    <respid>9</respid>
+    <CallAttemptCount>5</CallAttemptCount>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <respid>10</respid>
+    <CallAttemptCount>60</CallAttemptCount>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <respid>11</respid>
+    <CallAttemptCount>7</CallAttemptCount>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <respid>12</respid>
+    <CallAttemptCount>8</CallAttemptCount>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <respid>13</respid>
+    <CallAttemptCount>5</CallAttemptCount>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <respid>14</respid>
+    <CallAttemptCount>6</CallAttemptCount>
+  </BvReplicatedData>
+  <BvReplicatedData>
+    <respid>15</respid>
+    <CallAttemptCount>7</CallAttemptCount>
+  </BvReplicatedData>
+</DocumentElement>

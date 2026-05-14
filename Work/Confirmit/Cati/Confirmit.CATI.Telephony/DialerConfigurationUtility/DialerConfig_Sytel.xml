@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DialersConfiguration>
+  <DialerType>Generic</DialerType>
+
+  <Generic>
+    <Dialer>
+      <Id>1</Id>
+      
+      <Name>SPECIFY A DIALER NAME HERE</Name>
+      
+      <DialerConnectionParameters>
+        <ServiceAddress>http://LOCALHOST/GenericDialerService/DialerService.svc</ServiceAddress>
+        <ServiceEndpoint>DialerServiceEndpointHttp</ServiceEndpoint>
+        <AuthorizationKeyForOutgoingRequests>0275E046-7FFF-495B-ACFE-09B439DB4902</AuthorizationKeyForOutgoingRequests>
+      </DialerConnectionParameters>
+      
+      <DialerConfigurationParameters>
+        <SupportedPersonModes>Manual,CampaignAssignment</SupportedPersonModes>
+        <IsReloginNeededOnCampaignChange>True</IsReloginNeededOnCampaignChange>
+        <IsHangUpSupported>True</IsHangUpSupported>
+        <IsPauseOrResumePlaybackSupported>False</IsPauseOrResumePlaybackSupported>
+        <IsToggleAgentListensToPlaybackOrRespondentSupported>False</IsToggleAgentListensToPlaybackOrRespondentSupported>
+        <IsDynamicExtensionNumberAllowedForLocalAgents>False</IsDynamicExtensionNumberAllowedForLocalAgents>
+        <IsDynamicExtensionNumberAllowedForRemoteAgents>True</IsDynamicExtensionNumberAllowedForRemoteAgents>
+      </DialerConfigurationParameters>
+    </Dialer>
+
+    <DialerSurveyParameters>
+      <DialerParameter>
+        <Id>AbandonRate</Id>
+        <Name>Abandon Call Target Percentage Rate</Name>
+        <Value>1.0</Value>
+        <Type>System.String</Type>
+        <MinValue>1.0</MinValue>
+        <MaxValue>5.0</MaxValue>
+        <Visible>True</Visible>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>RNAtimeout</Id>
+        <Name>Ring No Answer Timeout in seconds</Name>
+        <Type>System.Int32</Type>
+        <Value>20</Value>
+        <MinValue>15</MinValue>
+        <MaxValue>42</MaxValue>
+        <Visible>True</Visible>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AnsMachineDetect</Id>
+        <Name>Answer Machine Detection</Name>
+        <Value>True</Value>
+        <Type>System.Boolean</Type>
+        <Visible>True</Visible>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AnsMachineAudioMessageUrl</Id>
+        <Name>Answer Machine Audio Message URL</Name>
+        <Type>System.String</Type>
+        <Value></Value>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>CallProgressToneDetection</Id>
+        <Name>Call Progress Tone Detection</Name>
+        <Value>True</Value>
+        <Type>System.Boolean</Type>
+        <Visible>True</Visible>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AbandonMessageName</Id>
+        <Name>Abandon Message Name</Name>
+        <Value>ABANDON</Value>
+        <Type>System.String</Type>
+        <Visible>True</Visible>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>CTIName</Id>
+        <Name>CTI Name is an optional parameter to specify the default CTI name</Name>
+        <Value/>
+        <Type>System.String</Type>
+        <Visible>True</Visible>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>CLI</Id>
+        <Name>Calling Line Identity value can be "allowed", "blocked", or a number to display.</Name>
+        <Value>allowed</Value>
+        <Type>System.String</Type>
+        <Visible>True</Visible>
+      </DialerParameter>
+    </DialerSurveyParameters>
+  </Generic>
+
+</DialersConfiguration>

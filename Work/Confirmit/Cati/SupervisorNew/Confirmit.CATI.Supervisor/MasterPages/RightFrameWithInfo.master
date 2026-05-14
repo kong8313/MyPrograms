@@ -1,0 +1,88 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPages/Main.Master" AutoEventWireup="true"
+    CodeBehind="RightFrameWithInfo.master.cs" Inherits="Confirmit.CATI.Supervisor.MasterPages.RightFrameWithInfo" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+    <script type="text/javascript">
+        function setInfoFrameUrl(url) {
+            document.getElementById("infoFrame").src = url;
+        }
+        function getInfoFrame() {
+            return document.getElementById("infoFrame");
+        }
+        function closeInfoFrame() {
+            var listSplitter = $find("<%=listSplitter.ClientID%>");
+            try {
+                listSplitter.getPaneAt(1).set_collapsed(true);
+            } catch (e) { }
+            fireInfoFrameResize();
+        }
+
+        function openInfoFrame() {
+            document.getElementById('<%=buttonExpandLess.ClientID %>').disabled = true;
+            var listSplitter = $find("<%=listSplitter.ClientID%>");
+            var pane = listSplitter.getPaneAt(1);
+            pane.set_collapsed(false);
+
+            if (!window.listSplitterInitialized && pane.get_size() == 10) {
+                pane.set_size(listSplitter.get_element().clientHeight / 2);
+                window.listSplitterInitialized = true;
+            }
+
+            fireInfoFrameResize();
+        }
+
+        function toggleInfoTab(isMaximized) {
+            var listSplitter = $find("<%=listSplitter.ClientID%>");
+            var gridPane = listSplitter.getPaneAt(0);
+            gridPane.set_collapsed(isMaximized);
+
+            document.getElementById('<%=buttonExpandMore.ClientID %>').disabled = isMaximized;
+            document.getElementById('<%=buttonExpandLess.ClientID %>').disabled = !isMaximized;
+        }
+
+        function openAndSetInfoFrame(url) {
+            openInfoFrame();
+            setInfoFrameUrl(url);
+        }
+        function refreshListFrame() {
+            Common.updatePanel("<%=rightListContentUpdatePanel.ClientID%>");
+        }
+
+        function refreshInfoFrame() {
+            document.getElementById("infoFrame").src += "";
+        }
+
+        function fireInfoFrameResize() {
+            Common.fireGlobalEvent('InfoFrameResized');
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Content" runat="server">
+    <ig_layout:WebSplitter runat="server" ID="listSplitter" Orientation="Horizontal" Height="100%"
+        Width="100%" DynamicResize="true" ResizeWithBrowser="true">
+        <Panes>
+            <ig_layout:SplitterPane runat="server" Size="100%" CollapsedDirection="None" ScrollBars="Hidden">
+                <Template>
+                    <controls:UpdatePanel ID="rightListContentUpdatePanel" runat="server" style="height: 100%; position: relative">
+                        <ContentTemplate>
+                            <asp:ContentPlaceHolder ID="RightFrameContent" runat="server" />
+                        </ContentTemplate>
+                    </controls:UpdatePanel>
+                </Template>
+            </ig_layout:SplitterPane>
+            <ig_layout:SplitterPane runat="server" Size="0px" MinSize="10px" CollapsedDirection="NextPane"
+                ScrollBars="Hidden" Collapsed="true" CssClass="bottom-pane">
+                <Template>
+                    <div class="max-min-frame-controls">
+                        <controls:ImageButton ID="buttonExpandMore" runat="server" OnClientClick="toggleInfoTab(true); return false;" ToolTip="Maximize" ImageName="expand_less" IsSubmit="False" />
+                        <controls:ImageButton ID="buttonExpandLess" runat="server" OnClientClick="toggleInfoTab(false); return false;" ToolTip="Minimize" ImageName="expand_more" IsSubmit="False" />
+                    </div>
+                    <iframe src="about:blank" id="infoFrame" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+                </Template>
+            </ig_layout:SplitterPane>
+        </Panes>
+        <ClientEvents SplitterBarPositionChanged="fireInfoFrameResize"></ClientEvents>
+    </ig_layout:WebSplitter>
+</asp:Content>

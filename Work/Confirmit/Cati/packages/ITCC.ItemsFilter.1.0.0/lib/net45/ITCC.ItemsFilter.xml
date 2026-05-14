@@ -1,0 +1,1051 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ITCC.ItemsFilter</name>
+    </assembly>
+    <members>
+        <member name="T:ITCC.ItemsFilter.ColumnFilter">
+            <summary>
+                Represent BolapanControls.PropertyFilter.ColumnFilter control, which show filter View for associated Model.
+                If defined as part of System.Windows.Controls.Primitives.DataGridColumnHeader template, represent filter View for
+                current column.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ColumnFilter.OnApplyTemplate">
+            <summary>
+                When overridden in a derived class, is invoked whenever application code or internal processes (such as a
+                rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate" />.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ColumnFilter.CreateModel">
+            <summary>
+                Initializes the filter view model.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.ColumnFilter.BindingPathProperty">
+            <summary>
+                BindingPath Attached Dependency Property
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ColumnFilter.GetBindingPath(System.Windows.DependencyObject)">
+            <summary>
+                Gets the BindingPath property. This dependency property
+                indicates path to the property in ParentCollection.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ColumnFilter.SetBindingPath(System.Windows.DependencyObject,System.String)">
+            <summary>
+                Sets the BindingPath property. This dependency property
+                indicates path to the property in ParentCollection.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.ColumnFilter.InitializersProperty">
+            <summary>
+                Initializers Attached Dependency Property
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ColumnFilter.GetInitializers(System.Windows.DependencyObject)">
+            <summary>
+                Gets the FilterInitializersManager  that used for generate ColumnFilter.Model.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ColumnFilter.SetInitializers(System.Windows.DependencyObject,System.Boolean)">
+            <summary>
+                Sets the FilterInitializersManager that used for generate ColumnFilter.Model.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.FilterCommand">
+            <summary>
+                Define Filter commands.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterCommand.Show">
+            <summary>
+                Gets the value that represents the Show filter routed command.
+                The Items.Show default gesture KeyGesture(Key.F, ModifierKeys.Control | ModifierKeys.Alt).
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterCommand.Clear">
+            <summary>
+                Gets the value that represents the Clear filter routed command.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterCommand.GetParent``1(System.Windows.DependencyObject)">
+            <summary>
+                Seek first parent of type T in visual tree.
+            </summary>
+            <typeparam name="T">Type of the parent.</typeparam>
+            <returns>First parent of type T in visual tree or null, if not exist. </returns>
+        </member>
+        <member name="T:ITCC.ItemsFilter.FilterControl">
+            <summary>
+                Common Filter control that represent collection of Filters in UI.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.FilterControl.State">
+            <summary>
+                Visual states of FilterControl.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.State.Disable">
+            <summary>
+                FilterControl is disable.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.State.Enable">
+            <summary>
+                FilterControl is enable.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.State.Open">
+            <summary>
+                DropDown part is show.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.State.Active">
+            <summary>
+                Filter is active.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.filterPresenter">
+            <summary>
+                Instance of FilterPresenter that attached to FilterControl.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.#ctor">
+            <summary>
+                Create new instance of FilterControl.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.CreateModel">
+            <summary>
+                Create model for FilterControl, if it is possible in current state.
+            </summary>
+            <returns>Instance of FilterControlVm or null.</returns>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.ParentCollectionProperty">
+            <summary>
+                Parent Dependency Property
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterControl.ParentCollection">
+            <summary>
+                Gets or sets the source collection for filtering.
+                May be ICollectionView or any IEnumerable.
+                If Parent is ICollectionView, FilterControl bind to Parent itself;
+                otherwise, FilterControl bind to default collection view for the given source collection.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnParentCollectionChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                Handles changes to the Parent property.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnParentCollectionChanged(System.Collections.IEnumerable,System.Collections.IEnumerable)">
+            <summary>
+                Trying to load a model and provides derived classes an opportunity to handle changes to the Parent property.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.KeyProperty">
+            <summary>
+                Key Dependency Property
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterControl.Key">
+            <summary>
+                Gets or sets the key for the identification filter (the filter set) in the parent collection view filters.
+                The key and initializers from FilterInitializersManager define a set of filters that ItemsPresenter provides into a
+                view model for the  FilterControl.
+                If multiple instances of the Filter Control have the same key and FilterInitializer in FilterInitializersManager,
+                then these instances  will display the same filter in the view model.
+                Derived classes can give an additional meaning to the value of the properties Key.
+                For example, the class ColumnFilter uses key value as name of the item property.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnKeyChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                Handles changes to the Key property.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnKeyChanged(System.String,System.String)">
+            <summary>
+                Provides derived classes an opportunity to handle changes to the Key property.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.FilterInitializersManagerProperty">
+            <summary>
+                FilterInitializersManager Dependency Property
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterControl.FilterInitializersManager">
+            <summary>
+                Gets or sets the FilterInitializersManager.
+                FilterInitializersManager contains a set of initializers determines the composition of the filters in the view
+                model.
+                If FIlterInitializersManager is null, it used default FilterInitialisersManager that provided by
+                FilterInitializersManager.Default static property.
+                FilterInitializersManager.Default included EqualFilterInitializer, LessOrEqualFilterInitializer,
+                GreaterOrEqualFilterInitializer,
+                RangeFilterInitializer(), StringFilterInitializer(), EnumFilterInitializer().
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnFilterInitializersManagerChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                Handles changes to the FilterInitializersManager property.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnFilterInitializersManagerChanged(ITCC.ItemsFilter.Initializer.FilterInitializersManager,ITCC.ItemsFilter.Initializer.FilterInitializersManager)">
+            <summary>
+                Provides derived classes an opportunity to handle changes to the FilterInitializersManager property.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterControl.ModelPropertyKey">
+            <summary>
+                Model Read-Only Dependency Property
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterControl.Model">
+            <summary>
+                Gets the FilterControlVm.
+            </summary>
+            <return>Instance of FilterControlVm if FilterControl was successfully attached to ParentCollection, otherwise null.</return>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnModelChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                Handles changes to the Model property.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterControl.OnModelChanged(ITCC.ItemsFilter.ViewModel.FilterControlVm)">
+            <summary>
+                Provides derived classes an opportunity to handle changes to the Model property.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.FilterDataGrid">
+            <summary>
+                Define a standard DataGrid with the included ColumnFilter in the column header template.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.FilteredEventArgs">
+            <summary>
+                Provides data for the <see cref="!:Filtered" /> event
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilteredEventArgs.CollectionView">
+            <summary>
+                Filtered CollectionView.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.FilterEventArgs">
+            <summary>
+                Provides information and event data that is associated with the BolapanControl.ItemsFilter.FilterPresenter.Filter
+                event.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterEventArgs.Accepted">
+            <summary>
+                Gets or sets a value that indicates whether the item passes the filter.
+                Returns:
+                true if the item passes the filter; otherwise, false. The default is true.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterEventArgs.Item">
+            <summary>
+                Gets the object that the filter should test.
+                Returns:
+                The object that the filter should test. The default is null.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.EnumFilterInitializer">
+            <summary>
+                Filter initializer for EnumFilter.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.EnumFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Generate new instance of EnumFilter class, if it is possible for a pair of filterPresenter and propertyInfo.
+            </summary>
+            <param name="filterPresenter">FilterPresenter, which can be attached Filter</param>
+            <param name="key">Key, used as the name for binding property in filterPresenter.Parent collection.</param>
+            <returns>Instance of EnumFilter class or null.</returns>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.PropertyFilterInitializer">
+            <summary>
+                Base class for PropertyFilter initialiser.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.PropertyFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.Object)">
+            <summary>
+                Generate new instance of Filter class, if it is possible for filterPresenter and key.
+            </summary>
+            <param name="filterPresenter">FilterPresenter, which can be attached Filter</param>
+            <param name="key">
+                Key for generated Filter. For PropertyFilter, key used as the name for binding property in
+                filterPresenter.Parent collection.
+            </param>
+            <returns>Instance of Filter class or null.</returns>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.PropertyFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Create instance of PropertyFilter for  filterPresenter and key, if it is possible.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.ValueFilterInitializer">
+            <summary>
+                Define ValueFilter initializer.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.ValueFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.Object)">
+            <summary>
+                Generate new instance of Filter class, if it is possible for filterPresenter and key.
+            </summary>
+            <param name="filterPresenter">FilterPresenter, which can be attached Filter</param>
+            <param name="key">
+                Key for generated Filter. For PropertyFilter, key used as the name for binding property in
+                filterPresenter.Parent collection.
+            </param>
+            <returns>Instance of Filter class or null.</returns>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.EqualFilterInitializer">
+            <summary>
+                Define EqualFilter initializer.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.EqualFilterInitializer.GetAvailableValuesQuery(ITCC.ItemsFilter.FilterPresenter,System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Returns a query that returns the unique item property values in the ItemsSource collection..
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.FilterInitializer">
+            <summary>
+                Base class for filter initializer.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.FilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.Object)">
+            <summary>
+                Generate new instance of Filter class, if it is possible for filterPresenter and key.
+            </summary>
+            <param name="filterPresenter">FilterPresenter, which can be attached Filter</param>
+            <param name="key">
+                Key for generated Filter. For PropertyFilter, key used as the name for binding property in
+                filterPresenter.Parent collection.
+            </param>
+            <returns>Instance of Filter class or null.</returns>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.FilterInitializersManager">
+            <summary>
+                Define a class that represent set of filter initializers.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.FilterInitializersManager.#ctor">
+            <summary>
+                Create empty instance of FilterInitializersManager.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.FilterInitializersManager.#ctor(System.Collections.Generic.IEnumerable{ITCC.ItemsFilter.Initializer.FilterInitializer})">
+            <summary>
+                Create instance of FilterInitializersManager and add initializers.
+            </summary>
+            <param name="initializers">Enumerable of IFilterInitializer to add.</param>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Initializer.FilterInitializersManager.Default">
+            <summary>
+                Represent default instance of FilterInitializersManager that include common used initializers.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.GreaterOrEqualFilterInitializer">
+            <summary>
+                Define GreaterOrEqualFilter Initializer.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ITCC.ItemsFilter.Initializer.GreaterOrEqualFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.ComponentModel.ItemPropertyInfo)" -->
+        <member name="T:ITCC.ItemsFilter.Initializer.LessOrEqualFilterInitializer">
+            <summary>
+                Define LessOrEqualFilter initializer.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.LessOrEqualFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Create LessOrEqualFilter for instance of FilterPresenter, if it is possible.
+            </summary>
+            <param name="filterPresenter">FilterPresenter, which can be attached Filter</param>
+            <param name="key">ItemPropertyInfo for binding to property.</param>
+            <returns>Instance of LessOrEqualFilter class or null</returns>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.RangeFilterInitializer">
+            <summary>
+                Define RangeFilter initializer.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Initializer.StringFilterInitializer">
+            <summary>
+                Represent initializer for StringFilter.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Initializer.StringFilterInitializer.NewFilter(ITCC.ItemsFilter.FilterPresenter,System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Create new instance of StringFilter, if it is possible for filterPresenter in current state and key.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.EnumFilter`1">
+            <summary>
+                Define the logic for Enum values filter.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.EnumFilter`1.AvailableValues">
+            <summary>
+                TryGet list of defined enum values.
+                Throw <exception cref="T:System.NotImplementedException" /> if attempt to set value.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EnumFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Create new instance of EnumFilter.
+            </summary>
+            <param name="propertyInfo">propertyInfo, used to access a property of the collection item</param>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.EqualFilter">
+            <summary>
+                Base class for filter that using list of values.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EqualFilter.#ctor">
+            <summary>
+                Initialize new instance of EqualFilter from deriver class.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.EqualFilter`1">
+            <summary>
+                Defines the logic for equality filter.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.EqualFilter`1.AvailableValues">
+            <summary>
+                Set of available values that can be include in filter.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EqualFilter`1.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Determines whether the specified target is a match.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EqualFilter`1.#ctor(System.Func{System.Object,System.Object})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.EqualFilter`1" /> class.
+            </summary>
+            <param name="getter">Func that return from item values to compare.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EqualFilter`1.#ctor(System.Func{System.Object,System.Object},System.Collections.IEnumerable)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.EqualFilter`1" /> class.
+            </summary>
+            <param name="getter">Func that return values to compare from item.</param>
+            <param name="availableValues">Predefined set of available values.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EqualFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.EqualFilter`1" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.EqualFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo,System.Collections.IEnumerable)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.EqualFilter`1" /> class
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+            <param name="availableValues">Predefined set of available values.</param>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.Filter">
+            <summary>
+                Base class for a filter.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.Filter.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Represent action that determine is item match filter.
+            </summary>
+            <param name="sender">FilterPresenter that contains filter.</param>
+            <param name="e">FilterEventArgs include Item and Accepted fields.</param>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.Filter.IsActive">
+            <summary>
+                Get or set value, determines is filter IsMatch action include in parentCollection filter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.Filter.FilterPresenter">
+            <summary>
+                Get attached FilterPresenter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.Filter.Name">
+            <summary>
+                Get or set Name of filter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.Filter.CountAttachedFilterControls">
+            <summary>
+                Number attached to filter instances FilterControlVm.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.Filter.OnAttachPresenter(ITCC.ItemsFilter.FilterPresenter)">
+            <summary>
+                Provides class handling for the AttachPresenter event that occurs when FilterPresenter is attached.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.Filter.OnDetachPresenter(ITCC.ItemsFilter.FilterPresenter)">
+            <summary>
+                Provides class handling for the DetachPresenter event that occurs when FilterPresenter is detached.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.Filter.OnIsActiveChanged">
+            <summary>
+                Provide derived class IsActiveChanged event.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.Filter.RaiseFilterChanged">
+            <summary>
+                Report attached listeners that filter changed.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.GreaterOrEqualFilter`1">
+            <summary>
+                Defines the greater or equal filter.
+            </summary>
+            <typeparam name="T">IComparable structure.</typeparam>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.GreaterOrEqualFilter`1.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Determines whether the specified target is a match.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.GreaterOrEqualFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Initializes a new instance of the <see cref="!:GreaterOrEqualFilter" /> class.
+            </summary>
+            <param name="getter">Func that return from item IComparable value to compare.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.GreaterOrEqualFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo,`0)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.GreaterOrEqualFilter`1" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+            <param name="compareTo">The compare to initial value.</param>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IComparableFilter">
+            <summary>
+                Define the contract for compare property filter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IComparableFilter.CompareTo">
+            <summary>
+                Gets or sets the value used in the comparison.
+            </summary>
+            <value>The compare to.</value>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IComparableFilter`1">
+            <summary>
+                Defines the contract for a compare filter.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IComparableFilter`1.CompareTo">
+            <summary>
+                Gets or sets the value used in the comparison.
+            </summary>
+            <value>The compare to.</value>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IFilter">
+            <summary>
+                Defines the contract for a filter used by the FilteredCollection
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IFilter.IsActive">
+            <summary>
+                Get or set value that indicates are filter include in filter function.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.IFilter.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Determines whether the specified target is matching the criteria.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IMultiValueFilter">
+            <summary>
+                Define a filter that  using a collection of values ​​for the selection criteria.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IMultiValueFilter.SelectedValues">
+            <summary>
+                Collection of values ​​involved in composition the selection criteria.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.IMultiValueFilter.SelectedValuesChanged(System.Object,System.Windows.Controls.SelectionChangedEventArgs)">
+            <summary>
+                Receive SelectionChanged event for synchronize the collection SelectedValues.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IPropertyFilter">
+            <summary>
+                Defines the contract for Property filter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IPropertyFilter.PropertyInfo">
+            <summary>
+                Gets the property info that use to get property value from item.
+            </summary>
+            <value>The property info.</value>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IRangeFilter">
+            <summary>
+                Defines the contract for a range filter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IRangeFilter.CompareFrom">
+            <summary>
+                Gets or sets the minimum value.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IRangeFilter.CompareTo">
+            <summary>
+                Gets or sets the maximum value.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IRangeFilter`1">
+            <summary>
+                Defines the contract for a range filter.
+            </summary>
+            <typeparam name="T">Comparable value Type.</typeparam>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IRangeFilter`1.CompareFrom">
+            <summary>
+                Gets or sets the minimum value.
+            </summary>
+            <value>From.</value>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IRangeFilter`1.CompareTo">
+            <summary>
+                Gets or sets the maximum value.
+            </summary>
+            <value>To.</value>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.IStringFilter">
+            <summary>
+                Defines the contract for a string filter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IStringFilter.Mode">
+            <summary>
+                Get or set string filter compare mode.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.IStringFilter.Value">
+            <summary>
+                Gets or sets the value to look for.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.LessOrEqualFilter`1">
+            <summary>
+                Define LessOrEqual filter.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.LessOrEqualFilter`1.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Determines whether the specified target is a match.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.LessOrEqualFilter`1.CompareTo">
+            <summary>
+                Get or set the value used in the comparison. If assign null, filter deactivated.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.LessOrEqualFilter`1.#ctor(System.Func{System.Object,`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.EqualFilter`1" /> class.
+            </summary>
+            <param name="getter">Func that return from item IComparable value to compare.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.LessOrEqualFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.LessOrEqualFilter`1" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.LessOrEqualFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo,`0)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.LessOrEqualFilter`1" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+            <param name="compareTo">The compare to.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.LessOrEqualFilter`1.OnIsActiveChanged">
+            <summary>
+                Provide derived clases IsActiveChanged event.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.PropertyFilter">
+            <summary>
+                Base class for filter that use property of item.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.PropertyFilter.PropertyInfo">
+            <summary>
+                Gets the property info whose property name is filtered.
+            </summary>
+            <value>The property info.</value>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.RangeFilter`1">
+            <summary>
+                Defines the range filter.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.RangeFilter`1.CompareFrom">
+            <summary>
+                Get or set the minimum value used in the comparison.
+                If CompareFrom and CompareTo is null, filter deactivated.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.RangeFilter`1.CompareTo">
+            <summary>
+                Get or set the maximum value used in the comparison.
+                If CompareFrom and CompareTo is null, filter deactivated.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.RangeFilter`1.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Determines whether the specified target is a match.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.RangeFilter`1.#ctor(System.Func{System.Object,`0})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.EqualFilter`1" /> class.
+            </summary>
+            <param name="getter">Func that return from item values to compare.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.RangeFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.RangeFilter`1" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.RangeFilter`1.#ctor(System.ComponentModel.ItemPropertyInfo,`0,`0)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.RangeFilter`1" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+            <param name="CompareFrom">Minimum value.</param>
+            <param name="CompareTo">Maximum value.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.RangeFilter`1.OnIsActiveChanged">
+            <summary>
+                Provide derived clases IsActiveChanged event.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.StringFilter">
+            <summary>
+                Defines a string filter
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.StringFilter.Mode">
+            <summary>
+                Gets or sets the string filter mode.
+            </summary>
+            <value>The mode.</value>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Model.StringFilter.Value">
+            <summary>
+                Gets or sets the value to look for.
+            </summary>
+            <value>The value.</value>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.StringFilter.IsMatch(ITCC.ItemsFilter.FilterPresenter,ITCC.ItemsFilter.FilterEventArgs)">
+            <summary>
+                Determines whether the specified target is a match.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.StringFilter.#ctor(System.Func{System.Object,System.String})">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.StringFilter" /> class.
+            </summary>
+            <param name="getter">Func that return from item string value to compare.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.StringFilter.#ctor(System.ComponentModel.ItemPropertyInfo,ITCC.ItemsFilter.Model.StringFilterMode)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.StringFilter" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+            <param name="filterMode">The filter mode.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.StringFilter.#ctor(System.ComponentModel.ItemPropertyInfo,ITCC.ItemsFilter.Model.StringFilterMode,System.String)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.Model.StringFilter" /> class.
+            </summary>
+            <param name="propertyInfo">The property info.</param>
+            <param name="filterMode">The filter mode.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.Model.StringFilter.OnIsActiveChanged">
+            <summary>
+                Provide derived clases IsActiveChanged event.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.StringFilterMode">
+            <summary>
+                String filter compare mode.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Model.ViewAttribute">
+            <summary>
+                Specify the [ModelView] class that present model.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.FilterPresenter.Filtered">
+            <summary>
+                Occurs after filtration when changing the filter conditions.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterPresenter.IsFilterActive">
+            <summary>
+                Get or set a value that indicates whether the defined filter set to attached ItemsControl.Items.PropertyFilter.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.FilterPresenter.ItemProperties">
+            <summary>
+                Gets a collection that contains information about the properties that are
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterPresenter.TryGetFilter(System.String,ITCC.ItemsFilter.Initializer.FilterInitializer)">
+            <summary>
+                Retrieves  or tries to create the filter model, using as a key pair {viewKey, initializer}.
+            </summary>
+            <param name="viewKey">A string representing a key of the set of filters.</param>
+            <param name="initializer">Initialiser filter that defines filter in the collection of filters.</param>
+            <returns>FilterPresenter instance, if it is possible provide for couples viewKey and initializer. Otherwise, null.</returns>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterPresenter.DeferRefresh">
+            <summary>
+                Enters a defer cycle that you can use to change filter of the view and delay automatic refresh.
+            </summary>
+            <returns> An System.IDisposable object that you can use to dispose of the calling object. </returns>
+        </member>
+        <member name="M:ITCC.ItemsFilter.FilterPresenter.ReceiveFilterChanged(ITCC.ItemsFilter.Model.IFilter)">
+            <summary>
+                Receives notice of the change filter conditions and IsActive property.
+            </summary>
+            <param name="filter"></param>
+        </member>
+        <member name="T:ITCC.ItemsFilter.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.ViewModel.FilterControlVm">
+            <summary>
+                View model for <c>FilterControl</c>.
+                FilterControlVm is IEnumerable&lt;Filter&gt;.
+                An instance of FilterControlVm not created directly. Instead, the procedure
+                FilterPresenter.TryGetFilterControlVm(string viewKey, IEnumerable&lt;FilterInitializer&gt; filterInitializers)
+                prepares a model for FilterControl, as IEnumerable&lt;Filter&gt;, where each Filter instance bound to
+                FilterControlVm for the transmission of changes.
+                Usually, instance of FilterControlVm created by FilterControl when it need this and disposed on raise Unload event.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.ViewModel.FilterControlVm.Dispose">
+            <summary>
+                Detach FilterControlVm from all filters and remove all filters from collection.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.ViewModel.FilterControlVm.State">
+            <summary>
+                Get FilterControl state.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.ViewModel.FilterControlVm.IsEnable">
+            <summary>
+                Get or set FilterControl.IsEnabled.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.ViewModel.FilterControlVm.IsOpen">
+            <summary>
+                Gets or sets whether the popup is currently displaying on the screen.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.ViewModel.FilterControlVm.IsActive">
+            <summary>
+                Get or set whether filter is active.
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.ViewModel.FilterControlVm.IsDisposed">
+            <summary>
+                Gets whether Dispose has been called.
+            </summary>
+        </member>
+        <member name="E:ITCC.ItemsFilter.ViewModel.FilterControlVm.StateChanged">
+            <summary>
+                Provede FilterControlStateChanged event.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.ViewModel.ViewModel">
+            <summary>
+                Provide INotifyPropertyChanged implementation for derived class.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.ComparableFilterView">
+            <summary>
+                Defile View control for IComparableFilter model.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.ComparableFilterView.#ctor">
+            <summary>
+                Create new instance of ComparableFilterView.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.ComparableFilterView.#ctor(System.Object)">
+            <summary>
+                Create new instance of ComparableFilterView and accept model.
+            </summary>
+            <param name="model">IComparableFilter model</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.ComparableFilterView.OnApplyTemplate">
+            <summary>
+                When overridden in a derived class, is invoked whenever application code or internal processes (such as a
+                rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate" />.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.Converters.SimplePropertyConverter">
+            <summary>
+                Provide IValueConverter for common ValueTypes.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.ModelViewAttribute">
+            <summary>
+                Indicate that class can be use as View, have property Model and constructor width single parameter Model.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.FilterViewBase`1">
+            <summary>
+                Provide base class for filter View that include Filter as Model property.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.FilterViewBase`1.OnApplyTemplate">
+            <summary>
+                When overridden in a derived class, is invoked whenever application code or internal processes (such as a
+                rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate" />.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.FilterViewBase`1.InitializeBindings">
+            <summary>
+                Initializes the bindings.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.View.FilterViewBase`1.ModelProperty">
+            <summary>
+                Model Dependency Property
+            </summary>
+        </member>
+        <member name="P:ITCC.ItemsFilter.View.FilterViewBase`1.Model">
+            <summary>
+                Gets or sets the VievModel.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.FilterViewBase`1.OnModelChanged(System.Windows.DependencyObject,System.Windows.DependencyPropertyChangedEventArgs)">
+            <summary>
+                Handles changes to the VievModel.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.FilterViewBase`1.OnModelChanged(`0,`0)">
+            <summary>
+                Provides derived classes an opportunity to handle changes to the Model property.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.MultiValueFilterView">
+            <summary>
+                Defile View control for IMultiValueFilter model.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.MultiValueFilterView.#ctor">
+            <summary>
+                Create new instance of MultiValueFilterView;
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.MultiValueFilterView.#ctor(System.Object)">
+            <summary>
+                Create new instance of MultiValueFilterView and accept model.
+            </summary>
+            <param name="model">IMultiValueFilter model</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.MultiValueFilterView.OnModelChanged(ITCC.ItemsFilter.Model.IMultiValueFilter,ITCC.ItemsFilter.Model.IMultiValueFilter)">
+            <summary>
+                Provides derived classes an opportunity to handle changes to the Model property.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.MultiValueFilterView.OnApplyTemplate">
+            <summary>
+                When overridden in a derived class, is invoked whenever application code or internal processes (such as a
+                rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate" />.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.RangeFilterView">
+            <summary>
+                Defile View control for IRangeFilter model.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.RangeFilterView.#ctor">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.View.RangeFilterView" /> class.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.RangeFilterView.#ctor(System.Object)">
+            <summary>
+                Initializes a new instance of the <see cref="T:ITCC.ItemsFilter.View.RangeFilterView" /> class and accept model.
+            </summary>
+            <param name="model">IRangeFilter model</param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.RangeFilterView.OnApplyTemplate">
+            <summary>
+                When overridden in a derived class, is invoked whenever application code or internal processes (such as a
+                rebuilding layout pass) call <see cref="M:System.Windows.Controls.Control.ApplyTemplate" />.
+            </summary>
+        </member>
+        <member name="T:ITCC.ItemsFilter.View.StringFilterView">
+            <summary>
+                Defile View control for IStringFilter model.
+            </summary>
+        </member>
+        <member name="F:ITCC.ItemsFilter.View.StringFilterView._selectorFilterType">
+            <summary>
+                Instance of a selector allowing to choose the filtering mode
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.StringFilterView.#ctor">
+            <summary>
+                Create new instance of StringFilterView.
+            </summary>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.StringFilterView.#ctor(System.Object)">
+            <summary>
+                Create new instance of StringFilterView and accept IStringFilter model.
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:ITCC.ItemsFilter.View.StringFilterView.OnApplyTemplate">
+            <summary>
+                Called when the control template is applied to this control
+            </summary>
+        </member>
+    </members>
+</doc>

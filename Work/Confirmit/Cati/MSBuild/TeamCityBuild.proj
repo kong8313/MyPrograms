@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- DO NOT EDIT the project element - the ToolsVersion specified here does not prevent the solutions 
+     and projects in the SolutionToBuild item group from targeting other versions of the .NET framework. 
+     -->
+<Project DefaultTargets="DesktopBuild" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="3.5">
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(SolutionRoot)\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+  
+  <!-- Do not edit this -->
+  <!--<Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\TeamBuild\Microsoft.TeamFoundation.Build.targets" />-->
+  <Import Project="$(SolutionRoot)\_3rdpart\MSBuildExtentionPack\4.0\MSBuild.ExtensionPack.tasks" />
+
+  <!--
+    ServersWithThreads property example ("Localhost" should be located at the end)
+    <ItemGroup>
+        <ServersAndThreads Include="AdditionalBuildServer1:5,6,7,8" />
+        <ServersAndThreads Include="AdditionalBuildServer2:9-12" />
+        <ServersAndThreads Include="localhost:0-4" />            
+    </ItemGroup>
+    -->
+  
+  <PropertyGroup>
+    <DefaultSideBySideName>Rel</DefaultSideBySideName>
+    <SqlInstanceName></SqlInstanceName>
+
+    <DoNotRunTests>False</DoNotRunTests>
+
+    <UnitTestExitCode>0</UnitTestExitCode>
+    <IntTestExitCode>0</IntTestExitCode>
+    <IntTestExitCodeWith0>0</IntTestExitCodeWith0>
+    <SetupTestExitCode>0</SetupTestExitCode>
+
+    <RemoveDbSqlFile>RemoveDB.sql</RemoveDbSqlFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--  CONFIGURATIONS
+         The list of configurations to build. To add/delete configurations, edit this value. For example, 
+         to add a new configuration, add the following lines:
+         
+             <ConfigurationToBuild Include="Debug|x86">
+                 <FlavorToBuild>Debug</FlavorToBuild>
+                 <PlatformToBuild>x86</PlatformToBuild>
+             </ConfigurationToBuild>
+
+         The Include attribute value should be unique for each ConfigurationToBuild node.
+        -->
+    <ConfigurationToBuild Include="Debug|Any CPU">
+      <FlavorToBuild>Debug</FlavorToBuild>
+      <PlatformToBuild>Any CPU</PlatformToBuild>
+    </ConfigurationToBuild>
+
+  </ItemGroup>
+
+  <UsingTask AssemblyFile="StaticTeamCityBuildEngine.dll" TaskName="StaticTeamCityBuildEngine.BuildVersionExtractor"/>
+  <UsingTask AssemblyFile="$(SolutionRoot)\assemblies\TeamCityBuildEngine.dll" TaskName="TeamCityBuildEngine.RunTestInParallelMode"/>
+  <UsingTask AssemblyFile="$(SolutionRoot)\assemblies\TeamCityBuildEngine.dll" TaskName="TeamCityBuildEngine.InstallationGuide"/>
+  <UsingTask AssemblyFile="$(SolutionRoot)\assemblies\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
+  
+  <Target Name="RunBuild"
+      Condition="$(TriggeredBy.Contains('Retry Build Trigger')) == false or $(BranchName) == 'master' or $(BranchName.Contains('release/cd')) == true"
+      DependsOnTargets="InstallCertificates;CatiBuild" />  
+
+  <Target Name="InstallCertificates">
+    <MSBuild.ExtensionPack.Security.Certificate TaskAction="GetInfo" Thumbprint="3795feb40d4c80a46709243ea274f1ca117349d8" ContinueOnError="true">
+      <Output TaskParameter="CertInfo" ItemName="ICertInfo" />
+    </MSBuild.ExtensionPack.Security.Certificate>
+
+    <Message Text="SubjectName: %(ICertInfo.SubjectName)"/>
+    <Message Text="Thumbprint: %(ICertInfo.Thumbprint)"/>
+
+    <MSBuild.ExtensionPack.Security.Certificate
+        TaskAction="Add"
+        FileName="$(SolutionRoot)\Certificates\CatiClickOnce.pfx"
+        CertPassword="Cati99ClickOnce543Password8"
+        Condition="'%(ICertInfo.Thumbprint)' == ''" />
+  </Target>
+    
+  <Target Name="CatiBuild">
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Start cati build time: $(MyTime)"/>
+
+    <BuildVersionExtractor BuildNumber="$(BuildNumber)" BranchName="$(BranchName)" >
+      <Output TaskParameter="MajorVersion" PropertyName="MajorVersion"/>
+      <Output TaskParameter="MinorVersion" PropertyName="MinorVersion"/>
+      <Output TaskParameter="NugetPackageVersion" PropertyName="NugetPackageVersion"/>
+      <Output TaskParameter="MsiVersion" PropertyName="MsiVersion"/>
+    </BuildVersionExtractor>
+    
+    <Message Text="TriggeredBy: $(TriggeredBy)"/>
+    <Message Text="BranchName: $(BranchName)"/>
+    <Message Text="BuildNumber: $(BuildNumber)"/>
+    <Message Text="MajorVersion: $(MajorVersion)"/>
+    <Message Text="MinorVersion: $(MinorVersion)"/>
+    <Message Text="NugetPackageVersion: $(NugetPackageVersion)"/>
+    <Message Text="MsiVersion: $(MsiVersion)"/>
+    
+    <Message Text="##teamcity[setParameter name='system.NugetPackageVersion' value='$(NugetPackageVersion)']" />
+    <Message Text="##teamcity[setParameter name='system.MsiVersion' value='$(MsiVersion)']" />
+    
+    <Exec Command="SC QUERY state= all |FINDSTR Confirmit.CATI.Backend.Test |FINDSTR SERVICE_NAME > srvs.txt" ContinueOnError="true" />
+    <Exec Command="for /f &quot;tokens=2&quot; %%A in (srvs.txt) do ( SC STOP %%A)" ContinueOnError="true" />
+      
+    <Exec Command="sc start MSSQLSERVER" ContinueOnError="true" />
+
+    <MSBuild Projects="$(SolutionRoot)\MSBuild\cati.proj" Targets="Build" Properties="DefaultSideBySideName=$(DefaultSideBySideName);BuildNumber=$(BuildNumber);SignManifests=false;IsLocalBuild=false;NugetPackageVersion=$(NugetPackageVersion)" />
+
+    <Exec Command="$(SolutionRoot)\assemblies\Tools\DotNetXmlToAdocConverter.exe $(SolutionRoot)\assemblies\REST.SDK\Confirmit.CATI.REST.SDK.xml $(SolutionRoot)\assemblies\REST.SDK\adoc" />
+
+    <Exec Command="$(SolutionRoot)\_3rdpart\7z\7z.exe a -tzip $(SolutionRoot)\assemblies\REST.SDK\asciidoc.zip $(SolutionRoot)\assemblies\REST.SDK\adoc\* " ContinueOnError="true" />
+
+    <Exec Command="$(SolutionRoot)\_3rdpart\7z\7z.exe a -tzip $(SolutionRoot)\assemblies\AllBuild.zip $(SolutionRoot)\Temp.testsettings $(SolutionRoot)\assemblies\* " ContinueOnError="true" />
+          
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Finish cati build time: $(MyTime)"/>
+  </Target>
+
+  <Target Name="RunIntegrationTests" DependsOnTargets="IntegrationTests;PublishTestsInTeamCity" />
+
+  <Target Name="RunIntegrationTestsxUnit" Condition="'$(DoNotRunTests)' != 'True'">
+    <Message Text="SolutionRoot: $(SolutionRoot)"/>
+    
+    <Message Text="Remove all CATI and confirmit databases on localhost"/>
+    <MSBuild.ExtensionPack.SqlServer.SqlExecute
+      TaskAction="Execute" Files="$(RemoveDbSqlFile)" ConnectionString="Data Source=localhost;User ID=sa;Password=firm" ContinueOnError="true" />
+
+    <Copy SourceFiles="$(SolutionRoot)\assemblies\Temp.testsettings" DestinationFolder="$(SolutionRoot)" />
+    <Exec Command="&quot;$(SolutionRoot)\_3rdpart\Microsoft\gacutil.exe&quot; /i &quot;$(SolutionRoot)\_3rdpart\Smo\x86\microsoft.sqlserver.batchparser.dll&quot;" />
+    
+    <xunit Assemblies="$(SolutionRoot)\assemblies\Confirmit.CATI.IntegrationTests.XUnit.dll" ShadowCopy="false" TeamCity="" MaxParallelThreads="2"/>
+  </Target>
+
+  <Target Name="RunIntegrationTestsxUnitWithShard" Condition="'$(DoNotRunTests)' != 'True'">
+    <Message Text="SolutionRoot: $(SolutionRoot)"/>
+    <Message Text="ShardName: $(ShardName)"/>
+    
+    <Message Text="Remove all CATI and confirmit databases on localhost"/>
+    <MSBuild.ExtensionPack.SqlServer.SqlExecute
+            TaskAction="Execute" Files="$(RemoveDbSqlFile)" ConnectionString="Data Source=localhost;User ID=sa;Password=firm" ContinueOnError="true" />
+
+    <Copy SourceFiles="$(SolutionRoot)\assemblies\Temp.testsettings" DestinationFolder="$(SolutionRoot)" />
+    <Exec Command="&quot;$(SolutionRoot)\_3rdpart\Microsoft\gacutil.exe&quot; /i &quot;$(SolutionRoot)\_3rdpart\Smo\x86\microsoft.sqlserver.batchparser.dll&quot;" />
+    
+    <xunit Assemblies="$(SolutionRoot)\assemblies\Confirmit.CATI.IntegrationTests.XUnit.dll" ShadowCopy="false" TeamCity="" IncludeTraits="shard=$(ShardName)" />
+  </Target>
+  
+  <Target Name="IntegrationTests" Condition="'$(DoNotRunTests)' != 'True'">
+    <Message Text="ThreadCount: $(ThreadCount)"/>
+    <Message Text="ServersAndThreads: $(ServersAndThreads)"/>
+    <Message Text="SqlInstanceName: $(SqlInstanceName)"/>
+    <Message Text="SolutionRoot: $(SolutionRoot)"/>
+    <Message Text="DoNotRunTests: $(DoNotRunTests)"/>
+      
+    <Message Text="Remove all CATI and confirmit databases on localhost"/>
+    <MSBuild.ExtensionPack.SqlServer.SqlExecute 
+      TaskAction="Execute" Files="$(RemoveDbSqlFile)" ConnectionString="Data Source=localhost;User ID=sa;Password=firm" ContinueOnError="true" />
+    
+    <Copy SourceFiles="$(SolutionRoot)\assemblies\Temp.testsettings" DestinationFolder="$(SolutionRoot)" />	    
+	
+    <RunTestInParallelMode
+        SolutionRoot="$(SolutionRoot)"
+        ServersAndThreads="$(ServersAndThreads)"
+        TestlabInstallerPassword="$(TestlabInstallerPassword)"
+        ThreadCount="$(ThreadCount)"
+        SqlInstanceName="$(SqlInstanceName)">
+      <Output TaskParameter="ExitCode" PropertyName="IntTestExitCode" />
+    </RunTestInParallelMode>
+
+    <Message Text="IntTestExitCode: $(IntTestExitCode)"/>
+
+    <Exec Command="SC QUERY state= all |FINDSTR Confirmit.CATI.Backend.Test |FINDSTR SERVICE_NAME > srvs.txt" ContinueOnError="true" />
+    <Exec Command="for /f &quot;tokens=2&quot; %%A in (srvs.txt) do ( SC STOP %%A)" ContinueOnError="true" />
+
+    <Exec Command="$(SolutionRoot)\_3rdpart\7z\7z.exe a -tzip $(SolutionRoot)\assemblies\TestResults.zip $(SolutionRoot)\TestResults\* " ContinueOnError="true" />
+    
+    <OnError ExecuteTargets="PublishTestsInTeamCity"/>
+  </Target>  
+
+  <Target Name="BuildInstallations"
+      Condition="$(TriggeredBy.Contains('Retry Build Trigger')) == false or $(BranchName) == 'master' or $(BranchName.Contains('release/cd')) == true"          
+      DependsOnTargets="KitBuild;PublishTestsInTeamCity;DialerHelpGeneration" />  
+    
+  <Target Name="KitBuild">
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Start installation build time: $(MyTime)"/>
+    
+    <MSBuild Projects="$(SolutionRoot)\MSBuild\kit.proj" Targets="Build" Properties="OutDir=$(SolutionRoot)\Assemblies\Installation\;DefaultSideBySideName=$(DefaultSideBySideName);BuildNumber=$(BuildNumber);MsiVersion=$(MsiVersion);SignManifests=false;NugetPackageVersion=$(NugetPackageVersion)" />
+    
+    <ItemGroup>
+      <FilesToDelete Include="$(SolutionRoot)\Assemblies\NugetPackages\Confirmit.CATI*Console*.nupkg"/>
+    </ItemGroup>
+    <Delete Files="@(FilesToDelete)" />
+
+    <RunTestInParallelMode
+      SolutionRoot="$(SolutionRoot)"
+      ServersAndThreads="localhost:1"
+      TestContainerMask="Confirmit.CATI.Setup.*.dll"
+      TestlabInstallerPassword="$(TestlabInstallerPassword)"
+      ThreadCount="1"
+      SqlInstanceName="$(SqlInstanceName)">
+      <Output TaskParameter="ExitCode" PropertyName="SetupTestExitCode" />
+    </RunTestInParallelMode>
+
+    <Message Text="SetupTestExitCode: $(SetupTestExitCode)"/>
+      
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Finish installation build time: $(MyTime)"/>
+
+    <OnError ExecuteTargets="PublishTestsInTeamCity"/>
+  </Target>
+
+  <Target Name="DialerHelpGeneration">
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Start generation of dialer simulator help information time: $(MyTime)"/>
+
+    <PropertyGroup>
+      <DialerInfoFolder>$(SolutionRoot)\assemblies\Telephony\Open Dialer Interface Kit</DialerInfoFolder>
+    </PropertyGroup>
+
+    <MSBuild Projects="$(SolutionRoot)\Confirmit.CATI.Telephony\ConfirmitDialerInterface\Documentation\ConfirmitDialerInterface.shfbproj" />
+
+    <MakeDir Directories="$(DialerInfoFolder)\bin\lib"/>
+    <MakeDir Directories="$(DialerInfoFolder)\bin\Web Service"/>
+    <MakeDir Directories="$(DialerInfoFolder)\doc"/>
+    <MakeDir Directories="$(DialerInfoFolder)\src\SimulatorDialerDriver"/>
+
+    <Copy SourceFiles="$(SolutionRoot)\assemblies\Telephony\Confirmit Open Dialer Interface\Forsta Open Dialer Interface.chm"
+          DestinationFiles="$(DialerInfoFolder)\doc\Forsta Open Dialer Interface API.chm" />
+
+    <Copy SourceFiles="$(SolutionRoot)\_3rdpart\Open Dialer Interface Documentation\Forsta Open Dialer Interface.pdf"
+          DestinationFiles="$(DialerInfoFolder)\doc\Forsta Open Dialer Interface.pdf" />
+		  
+	<Copy SourceFiles="$(SolutionRoot)\_3rdpart\Open Dialer Interface Documentation\Forsta Open Dialer API. Call Transfers Support.pdf"
+          DestinationFiles="$(DialerInfoFolder)\doc\Forsta Open Dialer API. Call Transfers Support.pdf" />
+
+    <Copy SourceFiles="$(SolutionRoot)\assemblies\Telephony\Confirmit Open Dialer Interface\ConfirmitDialerInterface.dll"
+          DestinationFolder="$(DialerInfoFolder)\bin\lib" />
+
+    <Copy SourceFiles="$(SolutionRoot)\assemblies\Installation\exe\x64\Confirmit CATI Simulator (G) Dialer Web Service $(DefaultSideBySideName) $(MsiVersion) x64.exe;$(SolutionRoot)\assemblies\Installation\exe\x86\Confirmit CATI Simulator (G) Dialer Web Service $(DefaultSideBySideName) $(MsiVersion) x86.exe"
+          DestinationFolder="$(DialerInfoFolder)\bin\Web Service" />
+
+    <Copy SourceFiles="$(SolutionRoot)\Confirmit.CATI.Telephony\OpenDialer\ReleaseNotes.txt"
+          DestinationFolder="$(DialerInfoFolder)" />
+    
+    <Exec Command="xcopy &quot;$(SolutionRoot)\Confirmit.CATI.Telephony\SimulatorDialerDriverDemo&quot; &quot;$(DialerInfoFolder)\src\SimulatorDialerDriver&quot; /I /S"/>
+    <Delete Files="$(DialerInfoFolder)\src\SimulatorDialerDriver\SimulatorDialerDriverCodiDemo.csproj;$(DialerInfoFolder)\src\SimulatorDialerDriver\SimulatorDialerDriverCodiDemo.csproj.vspscc" />
+    <RemoveDir Directories="$(DialerInfoFolder)\src\SimulatorDialerDriver\obj" />
+
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy">
+      <Output TaskParameter="Result" PropertyName="MyDate"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+
+    <MSBuild.ExtensionPack.Framework.Assembly TaskAction="GetInfo" NetAssembly="$(SolutionRoot)\assemblies\Telephony\Confirmit Open Dialer Interface\ConfirmitDialerInterface.dll">
+      <Output TaskParameter="OutputItems" ItemName="ConfirmitDialerInterfaceInfo"/>
+    </MSBuild.ExtensionPack.Framework.Assembly>
+
+    <Message Text="ConfirmitDialerInterface AssemblyVersion: %(ConfirmitDialerInterfaceInfo.AssemblyVersion)" />
+
+    <WriteLinesToFile File="$(DialerInfoFolder)\VersionInfo.txt" Lines="Date: $(MyDate)" Overwrite="true" />
+    <WriteLinesToFile File="$(DialerInfoFolder)\VersionInfo.txt" Lines="CATI Version: $(BuildNumber)" Overwrite="false" />
+    <WriteLinesToFile File="$(DialerInfoFolder)\VersionInfo.txt" Lines="CODI Major Version: %(ConfirmitDialerInterfaceInfo.AssemblyVersion)" Overwrite="false" />
+    <WriteLinesToFile File="$(DialerInfoFolder)\VersionInfo.txt" Lines="CODI Full Version: %(ConfirmitDialerInterfaceInfo.AssemblyInformationalVersion)" Overwrite="false" />
+    
+    <Exec Command="$(SolutionRoot)\_3rdpart\7z\7z.exe a -tzip &quot;$(DialerInfoFolder)\Forsta_Open_Dialer_Interface_$(BuildNumber)_$(MyDate).zip&quot; &quot;$(DialerInfoFolder)\*&quot;" />
+
+    <Exec Command="powershell -NoLogo -NoProfile -Command ^
+  Compress-Archive -LiteralPath ^
+    '$(SolutionRoot)\assemblies\Installation\exe\x64\Confirmit CATI Generic Dialer Web Service Rel $(BuildNumber) x64.exe', ^
+    '$(SolutionRoot)\assemblies\Installation\exe\x86\Confirmit CATI Generic Dialer Web Service Rel $(BuildNumber) x86.exe' ^
+  -DestinationPath '$(SolutionRoot)\assemblies\Installation\exe\Confirmit_CATI_Generic_Dialer_Web_Service_$(BuildNumber)_$(MyDate).zip' -Force" />
+  
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Finish generation of dialer simulator help information time: $(MyTime)"/>
+  </Target>    
+
+  <Target Name="TestMsiInstallations" Condition="$(BranchName)=='master'">
+    <!--ComputersList should be a list separated by semicolon: serverName1;serverName2;serverName3
+        An automatic installation will be installed on these servers
+        All products will be updated for the master branch and Dialer Web Services for other branches
+        On co-osl-tenta203 will be updated Confirmit CATI LTU Simulator (G) Dialer Web Service only (fix InstallationGuide if name of co-osl-tenta203 will be changed)-->
+    <PropertyGroup>
+      <ComputersList>co-osl-tenta202;co-osl-tenta203</ComputersList>
+    </PropertyGroup>    
+    <Message Text="ComputersList: $(ComputersList)"/>
+    
+    <InstallationGuide BuildNumber="$(MsiVersion)" Computers="$(ComputersList)" SideBySideName="$(DefaultSideBySideName)"
+                       BranchName="$(BranchName)" TestlabInstallerPassword="$(TestlabInstallerPassword)" />
+  </Target>
+   
+  <Target Name="RunSystemTests"
+    Condition="$(TriggeredBy.Contains('Retry Build Trigger')) == false or $(BranchName) == 'master' or $(BranchName.Contains('release/cd')) == true"
+    DependsOnTargets="SystemTests;PublishTestsInTeamCity" />
+
+   <Target Name="SystemTests" Condition="'$(DoNotRunTests)' != 'True'">
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Start system tests time: $(MyTime)"/>
+       
+    <Message Text="SYSTEM TESTS STARTED"/>
+    <PropertyGroup>        
+      <ConfirmitSqlServer Condition="$(BranchName)=='master'">co-osl-tenta197</ConfirmitSqlServer>
+      <Branch Condition="$(BranchName)=='master'">master</Branch>
+
+      <ConfirmitSqlServer Condition="$(BranchName.Contains('release/cd')) == true">CO-OSL-TENTA264\SYSTEM</ConfirmitSqlServer>
+      <Branch Condition="$(BranchName.Contains('release/cd')) == true">release</Branch>
+    </PropertyGroup>   
+       
+    <Message Text="BranchName=$(BranchName)"/>
+    <Message Text="ConfirmitSqlServer=$(ConfirmitSqlServer)"/>
+    <Message Text="Branch=$(Branch)"/>
+
+    <MSBuild Projects="$(SolutionRoot)\Tools\BuildServerRegistrator\BuildServerRegistrator.csproj" Properties="SolutionDir=$(SolutionRoot)" />
+
+    <Exec Command="$(SolutionRoot)\assemblies\Tools\BuildServerRegistrator\BuildServerRegistrator.exe /Action register /Branch $(Branch) /Config &quot;$(SolutionRoot)\assemblies\Tools\BuildServerRegistrator\Configs\ServerConfiguration.xml&quot;" />
+     
+    <MSBuild Projects="$(SolutionRoot)\MSBuild\test.proj" Targets="System" Properties="ConfigFolderName=$(ConfirmitSqlServer)" />
+    
+    <Exec Command="$(SolutionRoot)\assemblies\Tools\BuildServerRegistrator\BuildServerRegistrator.exe /Action unregister /Branch $(Branch) /Config &quot;$(SolutionRoot)\assemblies\Tools\BuildServerRegistrator\Configs\ServerConfiguration.xml&quot;" />
+       
+    <Message Text="SYSTEM TESTS FINISHED"/>
+
+    <MSBuild.ExtensionPack.Framework.DateAndTime TaskAction="Get" Format="dd.MM.yyyy HH:mm:ss">
+      <Output TaskParameter="Result" PropertyName="MyTime"/>
+    </MSBuild.ExtensionPack.Framework.DateAndTime>
+    <Message Text="Finish system tests time: $(MyTime)"/>
+
+    <OnError ExecuteTargets="PublishTestsInTeamCity"/>
+  </Target>
+
+  <Target Name="PublishTestsInTeamCity">
+    <Message
+      Condition="$(UnitTestExitCode) &gt; 1 or $(IntTestExitCode) &gt; 1 or $(SetupTestExitCode) &gt; 1"
+      Text="##teamcity[buildProblem description='A problem with running tests has occured. Need to investigate it in a build log.']" />
+      
+    <ItemGroup>    
+      <SpecificFiles Include="$(SolutionRoot)\assemblies\..\TestResults\*.trx" />
+    </ItemGroup>
+
+    <Message Text="##teamcity[importData type='mstest' path='%(SpecificFiles.Identity)' parseOutOfDate='true']" Importance="high" />
+  </Target>    
+
+</Project>

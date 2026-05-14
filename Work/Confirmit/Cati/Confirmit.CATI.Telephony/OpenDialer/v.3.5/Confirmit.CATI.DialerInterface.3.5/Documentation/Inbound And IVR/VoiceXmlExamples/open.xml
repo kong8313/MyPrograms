@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vxml version="2.1" xml:lang="en-US" xmlns="http://www.w3.org/2001/vxml">
+  <form>
+    <property name="termchar" value="#" />
+    <var name="__prevPageProgress" expr="'0.75;0.25'" />
+    <var name="__pagemasterid" expr="'321'" />
+    <var name="__theme" expr="'Main+theme'" />
+    <var name="l" expr="'9'" />
+    <var name="__sres" expr="'0|0'" />
+    <var name="__sid__" expr="'8AQchCgSQdGLG6-OT18KG__uY7sueYQDqIZ4iGtFQYUjKGt6cm6-9Xaw_hUUTyVOi2tmX_XbiNN9jlX-7lFEBys5H-48CiA8YpTBm5r4q4t9aFUtSVOFy6BRkx_Zppj3w-6Rh_93xHWLDAg9JQs3IAwMed3Fd_qgmHtchz15OZXOP-3pngkeOMZzw-WtUvjgmMUrqiidHa0rXqRmsslWwA2'" />
+    <record name="q3" type="audio/x-wav" beep="true" maxtime="20s" finalsilence="10s" dtmfterm="true">
+      <prompt>
+        <audio src="http://localhost/isa/PYAMLMFAKKOYIBEYNHKRJRBIMIEALXOH/p1000191/q3.wav">Please, say something</audio>
+      </prompt>
+      <filled>
+        <submit namelist="q3 __prevPageProgress __pagemasterid __theme l __sres __sid__" />
+      </filled>
+    </record>
+  </form>
+</vxml>

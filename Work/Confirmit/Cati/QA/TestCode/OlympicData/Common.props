@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <MsTestPath Condition="Exists('c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\MSTest.exe')">c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\MSTest.exe</MsTestPath>
+    <MsTestPath Condition="Exists('c:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\MSTest.exe')">c:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\MSTest.exe</MsTestPath>
+    <MsTestPath Condition="Exists('c:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\MSTest.exe')">c:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\MSTest.exe</MsTestPath>
+
+    <VsTestConsolePath Condition="Exists('c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">c:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsolePath>
+    <VsTestConsolePath Condition="Exists('c:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">c:\Program Files (x86)\Microsoft Visual Studio\2019\Professional\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsolePath>
+    <VsTestConsolePath Condition="Exists('c:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe')">c:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\CommonExtensions\Microsoft\TestWindow\vstest.console.exe</VsTestConsolePath>
+  </PropertyGroup>
+</Project>

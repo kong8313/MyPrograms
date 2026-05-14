@@ -1,0 +1,15 @@
+@import "../styles/common.scss";
+
+.filter-field {
+    color: $text-blue-color;
+    font-weight: bold;
+}
+
+.filter-value {
+    color: $text-green-color;
+    font-weight: bold;
+}
+
+.filter-text {
+    color:$text-gray-color;
+}

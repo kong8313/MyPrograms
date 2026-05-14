@@ -1,0 +1,14 @@
+<Library Name="InfragisticsStyleLibrary">
+  <StyleSets>
+    <StyleSet>
+      <Name>Default</Name>
+      <DisplayName>Default</DisplayName>
+      <Description>
+      </Description>
+      <Version>2011.1</Version>
+      <Author>Infragistics, Inc.</Author>
+      <Copyright>Copyright(c) 2010 Infragistics, Inc. </Copyright>
+      <Company>Infragistics, Inc.</Company>
+    </StyleSet>
+  </StyleSets>
+</Library>

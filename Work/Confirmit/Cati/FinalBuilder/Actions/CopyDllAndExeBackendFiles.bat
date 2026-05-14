@@ -1,0 +1,2 @@
+dir "C:\Program Files\Confirmit CATI Rel\*.exe" "C:\Program Files\Confirmit CATI Rel\*.dll" "C:\Program Files\Confirmit CATI Rel\*.pdb" "C:\Program Files\Confirmit CATI Rel\*.xml" /B /A:-D > %TEMP%\files.txt
+for /f "tokens=*" %%B in (%TEMP%\files.txt) do ( COPY /Y ..\..\assemblies\%%B "C:\Program Files\Confirmit CATI Rel" )

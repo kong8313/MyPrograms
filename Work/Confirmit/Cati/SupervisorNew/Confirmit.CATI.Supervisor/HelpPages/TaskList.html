@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <title>CATI Supervisor Help</title>
+    <link href="style.css" rel="Stylesheet"" type="text/css"  />	
+</head>
+<body>	
+		<h1 class="title">
+			Interviewer Activity View Dialog Help
+		</h1>
+		<p>
+			The Interviewer List window contains the list of interviewers currently logged into
+			the system. All columns are sortable by clicking on the column headers. The list
+			can be filtered by selected surveys, and alerts can be defined which may result
+			in highlighting of certain interviewers. When “Alerts on top” is checked, any alerted
+			interviewers are always placed at the top of the list irrespective of the column
+			sort order.
+		</p>
+		<p>
+			The columns contain the following information:
+			<ul>
+				<li>ID – Respondent ID.</li>
+				<li>Survey ID – ID of the survey the interviewer is working on.</li>
+				<li>Survey Name – Name of the survey the interviewer is working on.</li>
+				<li>Interviewer – Interviewer login name.</li>
+				<li>Question – Name of the currently active question.</li>
+				<li>Last submission – Time used to submit the last answer (in seconds).</li>
+				<li>Duration – Duration time of the current state (in HH-MM-SS format).</li>
+				<li>Delivered – Timestamp indicating when the current interview was delivered to the
+					interviewer, or when the break started (format determined by the system locale).</li>
+				<li>Timezone – Respondent time zone.</li>
+				<li>Login – Current interviewer's status ("Yes" indicates the interviewer is logged
+					in and working, "On break" indicates the interviewer is logged in but has left the
+					desk and will be back shortly).</li>
+				<li>State – The current state of the CATI Interviewer Console (the interviewer may be
+					selecting a survey/respondent, conducting an interview, waiting for a call to be
+					assigned, etc…).</li>
+				<li>Keep Alive – Timestamp of the last successful server-to-interviewer-station query,
+					indicates that the current interviewer session is considered as still continuing
+					(when time interval between the last successful keep-alive query and the last unsuccessful
+					query exceeds the limit, the interviewer is automatically logged out).</li>
+				<li>Dialer – Indicates whether the interviewer is logged into the dialer or not.</li>
+				<li>Dialing mode – The dialing mode which the interviewer is currently working in.</li>
+				<li>Problem – Displays a corresponding error message in case a telephony problem occurs.</li>
+				<li>Station ID – The station ID for the console the interviewer is logged into.</li>
+			</ul>
+		</p>
+		<p>
+			Action buttons exist to terminate the interviewer’s session, send a message to the
+			interviewer or launch live monitoring. When an interviewer logs out of the system,
+			or when they are logged out by the system automatically for any reason (this is
+			also the case when an interviewer's job is terminated by the supervisor), their
+			entry is removed from the Interviewer List. The refresh interval for the list can
+			be defined from the dropdown, and it can be refreshed on demand by clicking on the
+			“Refresh” button. Clicking “Export” will export the current Interviewer List to
+			Excel file-format.
+		</p>	
+</body>
+</html>

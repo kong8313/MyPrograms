@@ -1,0 +1,253 @@
+.igeb_Control
+{
+	background-color:Transparent;
+	font-size:10px;
+	font-weight:bold;
+	font-family: Verdana, Arial, Helvetica, Western, Lucida, Tahoma;
+	overflow-x: hidden;
+	border: 0px;
+	_overflow: hidden!important;
+	color:Black;
+}
+
+
+.igeb_Group
+{
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#739CD6, endColorstr=#2152AD);
+    background: -webkit-gradient(linear, left top, left bottom, from(#739CD6), to(#2152AD)); /* for webkit browsers */
+    background: -moz-linear-gradient(top,  #739CD6,  #2152AD); /* for firefox 3.6+ */
+	
+	display: block;
+	height: 25px;
+	overflow: hidden;
+	line-height: 25px;
+	color:White;
+	vertical-align:middle;
+	cursor:pointer;
+	text-indent:2px;
+}
+
+
+.igeb_GroupSelected
+{
+    filter:;
+    background:;
+	background-repeat:repeat-x;
+	background-position:0px -25px ;
+	background-image: url(images/explorer.png);
+	color:Black;
+	cursor:default;
+}
+
+
+.igeb_GroupHover
+{
+    filter:;
+    background:;
+	background-repeat:repeat-x;
+	background-position:0px -25px ;
+	background-image: url(images/explorer.png);
+	color:Black;
+}
+
+
+.igeb_Item
+{
+	background-color:White;
+	padding-left:3px;
+}
+
+
+.igeb_ItemImage
+{
+	padding-top:5px;
+	padding-right:5px;
+	padding-left:0px;
+}
+
+
+.igeb_ItemSelected
+{
+	background-color:#FFB45F !important;
+}
+
+
+.igeb_ItemActive
+{
+	
+}
+
+
+.igeb_ItemHover
+{
+	background-color:#FFD497;
+}
+
+
+.igeb_ItemDisabled
+{
+}
+
+
+.igeb_GroupContents
+{
+	margin-top:0px;
+	margin-bottom:0px;
+	margin-left:0px;
+	padding-top:0px;
+	padding-bottom:0px;
+	padding-left:0px;
+	list-style: none;
+}
+
+
+.igeb_GroupLabel
+{
+	font-weight:bold;
+	font-size:10px;
+	font-family: Verdana, Arial, Helvetica, Western, Lucida, Tahoma;
+	margin-left:5px;
+	padding-left:5px;
+	text-decoration:none;
+}
+
+.igeb_GroupExpanderImage
+{
+	margin-top:5px;
+	margin-right:5px;
+	float: right;
+}
+
+
+.igeb_ItemLabel
+{
+	font-weight:normal;
+	font-size:10px;
+	font-family: Verdana, Arial, Helvetica, Western, Lucida, Tahoma;
+	display: block;
+}
+
+
+.igeb_Holder
+{
+}
+
+
+.igeb_GroupLink
+{
+	margin-bottom:0px;
+	padding-bottom:0px;
+	padding-left:6px;
+	display: block;
+	color: inherit;
+	text-decoration:none;
+}
+
+
+.igeb_ItemLink
+{
+	padding-top:2px;
+	padding-bottom:2px;
+	display: block;
+	color:#333333;
+	text-decoration:none;
+}
+
+.igeb_ItemParent div
+{
+	background-repeat:no-repeat;
+	background-image: url(images/plus.gif);
+	background-position: left 60%;
+}
+
+.igeb_Expanded div
+{
+    background-repeat:no-repeat;
+	background-image: url(images/minus.gif);
+}
+
+/* IE 7 Disabled item fix */
+.igeb_ItemDisabled a visited, .igeb_ItemDisabled a
+{
+	color:Gray;
+}
+
+
+.igeb_Group a visited
+{
+	color:#003366;
+}
+
+
+/* IE 7 fix to icon bad alignment*/
+.igeb_Item ,.igeb_ItemActive ,.igeb_ItemSelected
+{
+	min-height: 22px;
+	_height: 22px;
+}
+
+
+.igeb_GroupActive a
+{
+	color:#003366;
+}
+
+
+.igeb_GroupSelected a visited
+{
+	color:#003366;
+}
+
+
+.igeb_GroupSelected a
+{
+	color:#003366;
+}
+
+
+.igeb_GroupActive a visited
+{
+	color:#003366;
+}
+
+
+.igeb_GroupHover a
+{
+	color:#0060BF;
+}
+
+
+.igeb_ItemHolder img
+{
+	vertical-align:middle;
+}
+
+
+.igeb_GroupHover a visited
+{
+	color:#0060BF;
+}
+
+
+.igeb_Group a
+{
+	color:#003366;
+}
+
+
+.igeb_ItemHolder
+{
+}
+
+
+.igeb_ItemContents
+{
+	margin-left:0px;
+	padding-left:0px;
+	list-style: none;
+}
+
+.igeb_Control > .igeb_GroupContents > .igeb_Holder > .igeb_GroupContents
+{
+    overflow-y:auto;
+}

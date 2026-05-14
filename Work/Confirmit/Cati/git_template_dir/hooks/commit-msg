@@ -1,0 +1,30 @@
+#!/bin/sh
+#
+# Called by "git commit" with one argument, the name of the file
+# that has the commit message.  The hook should exit with non-zero
+# status after issuing an appropriate message if it wants to stop the
+# commit.  The hook is allowed to edit the commit message file.
+
+# Check if user has set author name
+test "" = "$(git var GIT_AUTHOR_IDENT | grep 'unknown')" ||  {
+	echo >&2 -e "Commit aborted.\nYou need to set the author name.\nSet up your name like this:\n'git config --global user.name \"YOUR NAME\"'" 
+	exit 1
+}
+
+# Check if user has set author email
+test "" = "$(git var GIT_AUTHOR_IDENT | egrep -v '<.+@forsta.com>')" ||  {
+	echo >&2 -e "Commit aborted.\nYou need to set the author email.\nSet up your email like this:\n'git config --global user.email \"YOUR_EMAIL@forsta.com\"'" 
+	exit 1
+}
+
+# Check if commit message contains valid Jira ID
+if egrep '[A-Z]{2,3}-[1-9]([0-9]*)' "$1" | egrep -v '^#'; then
+	exit 0
+else
+	# ignore merge commits
+	if egrep '^Merge.*branch.*into' "$1" | egrep -v '^#'; then
+		exit 0
+	fi
+	echo >&2 -e "Commit aborted.\nLooks like your commit message does not contain a valid Jira issue ID. Check your message and try again."
+	exit 1
+fi

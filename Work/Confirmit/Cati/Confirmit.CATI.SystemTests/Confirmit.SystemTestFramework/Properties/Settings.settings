@@ -1,0 +1,36 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Confirmit.SystemTestFramework.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Confirmit_SystemTestFramework_SurveyDeployer_SurveyDeployer" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/confirmit/webservices/current/surveydeployer.asmx</Value>
+    </Setting>
+    <Setting Name="Confirmit_SystemTestFramework_SurveyData_SurveyData" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/confirmit/webservices/current/surveydata.asmx</Value>
+    </Setting>
+    <Setting Name="Confirmit_SystemTestFramework_Authoring_Authoring" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://localhost/confirmit/webservices/current/Authoring.asmx</Value>
+    </Setting>
+    <Setting Name="CompanyId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="CatiServerAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/</Value>
+    </Setting>
+    <Setting Name="Login" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">administrator</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">administrator</Value>
+    </Setting>
+    <Setting Name="CompanyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Confirmit</Value>
+    </Setting>
+    <Setting Name="CatiConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Persist Security Info=False;User ID=sa;Password=firm;Initial Catalog=ConfirmitCATIV15;Server=.</Value>
+    </Setting>
+    <Setting Name="ConfirmConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Persist Security Info=False;User ID=sa;Password=firm;Initial Catalog=confirm;Server=.</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

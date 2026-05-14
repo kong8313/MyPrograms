@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunCloseSurveyTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="Common.props"/>
+
+  <Target Name="RunCloseSurveyTest">
+
+    <PropertyGroup Label="TestSuccessOrNot">
+      <TestSuccessOrNot>1</TestSuccessOrNot>
+    </PropertyGroup>
+
+    <Message Text="Running Olympic prepare $(OlympicMode) test for $(CompanyName) Company" />
+
+    <Exec Command="&quot;$(MsTestPath)&quot; /testcontainer:..\OlympicPrepareTest\CatiOlympicPrepareTest\bin\Debug\CatiOlympicPrepareTest.dll /test:OlympicCloseSurvey$(OlympicMode)$(CompanyName)Test"  ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="TestSuccessOrNot"/>
+    </Exec>
+
+    <Message Text="ExitCode = $(TestSuccessOrNot)" />
+
+  </Target> 
+
+</Project>

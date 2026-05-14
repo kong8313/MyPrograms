@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="NewDataSet" msprop:Generator_UserDSName="NewDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="table" msprop:Generator_UserTableName="table" msprop:Generator_RowEvArgName="tableRowChangeEvent" msprop:Generator_TableVarName="tabletable" msprop:Generator_TablePropName="table" msprop:Generator_RowDeletingName="tableRowDeleting" msprop:Generator_RowChangingName="tableRowChanging" msprop:Generator_RowDeletedName="tableRowDeleted" msprop:Generator_RowEvHandlerName="tableRowChangeEventHandler" msprop:Generator_TableClassName="tableDataTable" msprop:Generator_RowChangedName="tableRowChanged" msprop:Generator_RowClassName="tableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SurveySID" msprop:Generator_ColumnVarNameInTable="columnSurveySID" msprop:Generator_ColumnPropNameInRow="SurveySID" msprop:Generator_ColumnPropNameInTable="SurveySIDColumn" msprop:Generator_UserColumnName="SurveySID" type="xs:int" minOccurs="0" />
+              <xs:element name="SurveyName" msprop:Generator_ColumnVarNameInTable="columnSurveyName" msprop:Generator_ColumnPropNameInRow="SurveyName" msprop:Generator_ColumnPropNameInTable="SurveyNameColumn" msprop:Generator_UserColumnName="SurveyName" type="xs:string" minOccurs="0" />
+              <xs:element name="InterviewID" msprop:Generator_ColumnVarNameInTable="columnInterviewID" msprop:Generator_ColumnPropNameInRow="InterviewID" msprop:Generator_ColumnPropNameInTable="InterviewIDColumn" msprop:Generator_UserColumnName="InterviewID" type="xs:int" minOccurs="0" />
+              <xs:element name="Priority" msprop:Generator_ColumnVarNameInTable="columnPriority" msprop:Generator_ColumnPropNameInRow="Priority" msprop:Generator_ColumnPropNameInTable="PriorityColumn" msprop:Generator_UserColumnName="Priority" type="xs:int" minOccurs="0" />
+              <xs:element name="Time" msdata:DateTimeMode="Utc" msprop:Generator_ColumnVarNameInTable="columnTime" msprop:Generator_ColumnPropNameInRow="Time" msprop:Generator_ColumnPropNameInTable="TimeColumn" msprop:Generator_UserColumnName="Time" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ExpireTime" msdata:DateTimeMode="Utc" msprop:Generator_ColumnVarNameInTable="columnExpireTime" msprop:Generator_ColumnPropNameInRow="ExpireTime" msprop:Generator_ColumnPropNameInTable="ExpireTimeColumn" msprop:Generator_UserColumnName="ExpireTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TelephoneNumber" msprop:Generator_ColumnVarNameInTable="columnTelephoneNumber" msprop:Generator_ColumnPropNameInRow="TelephoneNumber" msprop:Generator_ColumnPropNameInTable="TelephoneNumberColumn" msprop:Generator_UserColumnName="TelephoneNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="RespondentName" msprop:Generator_ColumnVarNameInTable="columnRespondentName" msprop:Generator_ColumnPropNameInRow="RespondentName" msprop:Generator_ColumnPropNameInTable="RespondentNameColumn" msprop:Generator_UserColumnName="RespondentName" type="xs:string" minOccurs="0" />
+              <xs:element name="TimezoneID" msprop:Generator_ColumnVarNameInTable="columnTimezoneID" msprop:Generator_ColumnPropNameInRow="TimezoneID" msprop:Generator_ColumnPropNameInTable="TimezoneIDColumn" msprop:Generator_UserColumnName="TimezoneID" type="xs:int" minOccurs="0" />
+              <xs:element name="TransientState" msprop:Generator_ColumnVarNameInTable="columnTransientState" msprop:Generator_ColumnPropNameInRow="TransientState" msprop:Generator_ColumnPropNameInTable="TransientStateColumn" msprop:Generator_UserColumnName="TransientState" type="xs:int" minOccurs="0" />
+              <xs:element name="StateName" msprop:Generator_ColumnVarNameInTable="columnStateName" msprop:Generator_ColumnPropNameInRow="StateName" msprop:Generator_ColumnPropNameInTable="StateNameColumn" msprop:Generator_UserColumnName="StateName" type="xs:string" minOccurs="0" />
+              <xs:element name="LastCallTime" msdata:DateTimeMode="Utc" msprop:Generator_ColumnVarNameInTable="columnLastCallTime" msprop:Generator_ColumnPropNameInRow="LastCallTime" msprop:Generator_ColumnPropNameInTable="LastCallTimeColumn" msprop:Generator_UserColumnName="LastCallTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DialingMode" msprop:Generator_ColumnVarNameInTable="columnDialingMode" msprop:Generator_ColumnPropNameInRow="DialingMode" msprop:Generator_ColumnPropNameInTable="DialingModeColumn" msprop:Generator_UserColumnName="DialingMode" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="ApptTime" msdata:DateTimeMode="Utc" msprop:Generator_ColumnVarNameInTable="columnApptTime" msprop:Generator_ColumnPropNameInRow="ApptTime" msprop:Generator_ColumnPropNameInTable="ApptTimeColumn" msprop:Generator_UserColumnName="ApptTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ContactName" msprop:Generator_ColumnVarNameInTable="columnContactName" msprop:Generator_ColumnPropNameInRow="ContactName" msprop:Generator_ColumnPropNameInTable="ContactNameColumn" msprop:Generator_UserColumnName="ContactName" type="xs:string" minOccurs="0" />
+              <xs:element name="AttemptNumber" msprop:Generator_ColumnVarNameInTable="columnAttemptNumber" msprop:Generator_ColumnPropNameInRow="AttemptNumber" msprop:Generator_ColumnPropNameInTable="AttemptNumberColumn" msprop:Generator_UserColumnName="AttemptNumber" type="xs:int" minOccurs="0" />
+              <xs:element name="CallID" msprop:Generator_ColumnVarNameInTable="columnCallID" msprop:Generator_ColumnPropNameInRow="CallID" msprop:Generator_ColumnPropNameInTable="CallIDColumn" msprop:Generator_UserColumnName="CallID" type="xs:int" minOccurs="0" />
+              <xs:element name="ApptID" msprop:Generator_ColumnVarNameInTable="columnApptID" msprop:Generator_ColumnPropNameInRow="ApptID" msprop:Generator_ColumnPropNameInTable="ApptIDColumn" msprop:Generator_UserColumnName="ApptID" type="xs:int" minOccurs="0" />
+              <xs:element name="Shift_ID" msprop:Generator_ColumnVarNameInTable="columnShift_ID" msprop:Generator_ColumnPropNameInRow="Shift_ID" msprop:Generator_ColumnPropNameInTable="Shift_IDColumn" msprop:Generator_UserColumnName="Shift_ID" type="xs:int" minOccurs="0" />
+              <xs:element name="ExpTime" msdata:DateTimeMode="Utc" msprop:Generator_ColumnVarNameInTable="columnExpTime" msprop:Generator_ColumnPropNameInRow="ExpTime" msprop:Generator_ColumnPropNameInTable="ExpTimeColumn" msprop:Generator_UserColumnName="ExpTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TimezoneName" msprop:Generator_ColumnVarNameInTable="columnTimezoneName" msprop:Generator_ColumnPropNameInRow="TimezoneName" msprop:Generator_ColumnPropNameInTable="TimezoneNameColumn" msprop:Generator_UserColumnName="TimezoneName" type="xs:string" minOccurs="0" />
+              <xs:element name="ShiftType" msprop:Generator_ColumnVarNameInTable="columnShiftType" msprop:Generator_ColumnPropNameInRow="ShiftType" msprop:Generator_ColumnPropNameInTable="ShiftTypeColumn" msprop:Generator_UserColumnName="ShiftType" type="xs:string" minOccurs="0" />
+              <xs:element name="Resource" msprop:Generator_ColumnVarNameInTable="columnResource" msprop:Generator_ColumnPropNameInRow="Resource" msprop:Generator_ColumnPropNameInTable="ResourceColumn" msprop:Generator_UserColumnName="Resource" type="xs:string" minOccurs="0" />
+              <xs:element name="q1" msprop:Generator_ColumnVarNameInTable="columnq1" msprop:Generator_ColumnPropNameInRow="q1" msprop:Generator_ColumnPropNameInTable="q1Column" msprop:Generator_UserColumnName="q1" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="q2" msprop:Generator_ColumnVarNameInTable="columnq2" msprop:Generator_ColumnPropNameInRow="q2" msprop:Generator_ColumnPropNameInTable="q2Column" msprop:Generator_UserColumnName="q2" type="xs:unsignedByte" minOccurs="0" />
+              <xs:element name="CallState" msprop:Generator_ColumnVarNameInTable="columnCallState" msprop:Generator_ColumnPropNameInRow="CallState" msprop:Generator_ColumnPropNameInTable="CallStateColumn" msprop:Generator_UserColumnName="CallState" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

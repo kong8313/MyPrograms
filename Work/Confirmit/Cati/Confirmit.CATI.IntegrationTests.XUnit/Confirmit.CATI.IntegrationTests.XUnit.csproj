@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="..\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props" Condition="Exists('..\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props')" />
+    <Import Project="..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props" Condition="Exists('..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <PropertyGroup>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{B32C3477-5182-41B5-B720-B924DDD889E6}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>Confirmit.CATI.IntegrationTests.XUnit</RootNamespace>
+        <AssemblyName>Confirmit.CATI.IntegrationTests.XUnit</AssemblyName>
+        <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>..\assemblies\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>..\assemblies\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <ItemGroup>
+        <Reference Include="Microsoft.CSharp" />
+        <Reference Include="Microsoft.SqlServer.Smo">
+          <HintPath>..\_3rdpart\Smo\Microsoft.SqlServer.Smo.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.TestPlatform.CoreUtilities, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.17.13.0\lib\net462\Microsoft.TestPlatform.CoreUtilities.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.TestPlatform.PlatformAbstractions, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.17.13.0\lib\net462\Microsoft.TestPlatform.PlatformAbstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <HintPath>..\..\..\Program Files\Microsoft Visual Studio\2022\Professional\Common7\IDE\PublicAssemblies\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestPlatform.ObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\Microsoft.TestPlatform.ObjectModel.17.13.0\lib\net462\Microsoft.VisualStudio.TestPlatform.ObjectModel.dll</HintPath>
+        </Reference>
+        <Reference Include="mscorlib" />
+        <Reference Include="System" />
+        <Reference Include="System.Collections.Immutable, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Collections.Immutable.1.5.0\lib\netstandard2.0\System.Collections.Immutable.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Configuration" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Data.DataSetExtensions" />
+        <Reference Include="System.Reflection.Metadata, Version=1.4.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\System.Reflection.Metadata.1.6.0\lib\netstandard2.0\System.Reflection.Metadata.dll</HintPath>
+        </Reference>
+        <Reference Include="System.Runtime" />
+        <Reference Include="System.Runtime.Serialization" />
+        <Reference Include="System.ServiceModel" />
+        <Reference Include="System.Xml" />
+        <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+          <HintPath>..\packages\xunit.abstractions.2.0.0\lib\net35\xunit.abstractions.dll</HintPath>
+        </Reference>
+        <Reference Include="xunit.assert, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+          <HintPath>..\packages\xunit.assert.2.1.0\lib\dotnet\xunit.assert.dll</HintPath>
+        </Reference>
+        <Reference Include="xunit.core, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+          <HintPath>..\packages\xunit.extensibility.core.2.1.0\lib\dotnet\xunit.core.dll</HintPath>
+        </Reference>
+        <Reference Include="xunit.execution.desktop, Version=2.1.0.3179, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
+          <HintPath>..\packages\xunit.extensibility.execution.2.1.0\lib\net45\xunit.execution.desktop.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="..\GlobalAssemblyInfo.cs">
+          <Link>GlobalAssemblyInfo.cs</Link>
+        </Compile>
+        <Compile Include="AssemblyInitializer.cs" />
+        <Compile Include="BaseMockedIntegrationTest.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="TestDataGenerator.cs" />
+        <Compile Include="Tests\Dialer\CallsDistributionInPredictiveSurveyForMnTest.cs" />
+        <Compile Include="Tests\Dialer\CallsDistributionInPredictiveSurveyForProtsTest.cs" />
+        <Compile Include="Tests\Dialer\DialingPredictiveTest.cs" />
+        <Compile Include="Tests\Dialer\GetPredictiveCalls.cs" />
+        <Compile Include="Tests\Dialer\HybridTest.cs" />
+        <Compile Include="Tests\Dialer\PredictiveTest.cs" />
+        <Compile Include="Tests\Scheduling\Action_AddAdditionalAssignmentOnGroup.cs" />
+        <Compile Include="Tests\Scheduling\Action_AssignResource.cs" />
+        <Compile Include="Tests\Scheduling\Action_DecrementPriority.cs" />
+        <Compile Include="Tests\Scheduling\Action_EnableOrDisable.cs" />
+        <Compile Include="Tests\Scheduling\Action_FulfillTheSpecifiedAppointment.cs" />
+        <Compile Include="Tests\Scheduling\Action_GoTo.cs" />
+        <Compile Include="Tests\Scheduling\Action_IncrementPriority.cs" />
+        <Compile Include="Tests\Scheduling\Action_RecallAfterANumberOfMinutes.cs" />
+        <Compile Include="Tests\Scheduling\Action_RecallAfterANumberOfShifts.cs" />
+        <Compile Include="Tests\Scheduling\Action_RecallAfterNumberOfShiftsButChooseRandomTimeWithinShift.cs" />
+        <Compile Include="Tests\Scheduling\Action_RecallOnNextShiftOfSpecifiedType.cs" />
+        <Compile Include="Tests\Scheduling\Action_RecallOnTheSpecificShift.cs" />
+        <Compile Include="Tests\Scheduling\Action_RemoveAssignmentOnGroup.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetCallExpirationTime.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetCallExpirationTimeout.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetNewCallPriority.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetNewITS.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetNextRule.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetShiftType.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetTimeToCall.cs" />
+        <Compile Include="Tests\Scheduling\Action_SetTimeToNow.cs" />
+        <Compile Include="Tests\Scheduling\Action_SeveralActionSimultaneously.cs" />
+        <Compile Include="Tests\Scheduling\Action_SuspendTheInterview.cs" />
+        <Compile Include="Tests\Scheduling\Action_TerminateTheInterview.cs" />
+        <Compile Include="Tests\Scheduling\AddOrUpdateCallTest.cs" />
+        <Compile Include="Tests\Scheduling\Filter_ShiftTypeID.cs" />
+        <Compile Include="Tests\Scheduling\MultipleRulesTest.cs" />
+        <Compile Include="Tests\Scheduling\RegenerateScriptTest.cs" />
+        <Compile Include="Tests\Scheduling\Schedule_Check.cs" />
+        <Compile Include="Tests\Scheduling\SchedulingRepository.cs" />
+        <Compile Include="Tests\Scheduling\ScriptSecurityTest.cs" />
+        <Compile Include="Tests\Scheduling\Script_Cache.cs" />
+        <Compile Include="Tests\Scheduling\Script_CreateCustomAppointment.cs" />
+        <Compile Include="Tests\Scheduling\Script_CustomParameter.cs" />
+        <Compile Include="Tests\Scheduling\Script_CustomScript.cs" />
+        <Compile Include="Tests\Scheduling\Script_CustomScript_Actions.cs" />
+        <Compile Include="Tests\Scheduling\Script_FFunction.cs" />
+        <Compile Include="Tests\Scheduling\Script_FrFunction.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsAnyoneLoggedIntoSurvey.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsAnyoneLoggedIntoSurvey2.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsAnyoneReadyForCallInSurvey.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsCallExpiredFunction.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsCallExpiredWithResourceLoggedIn.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsResourceLoggedIntoSurvey.cs" />
+        <Compile Include="Tests\Scheduling\Script_IsResourceReadyForCallInSurvey.cs" />
+        <Compile Include="Tests\Scheduling\Script_XetRespondentValueFunction.cs" />
+        <Compile Include="Tests\Scheduling\Shifts.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Confirmit.CATI.Backend\Confirmit.CATI.Backend.csproj">
+        <Project>{a505b6ce-3ef7-49a8-83b8-4a01f9d54114}</Project>
+        <Name>Confirmit.CATI.Backend</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+        <Project>{459566a0-55f5-4b03-bcd9-1db63b55d575}</Project>
+        <Name>Confirmit.CATI.Common</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+        <Project>{ee2b1d20-65a3-4f8a-b79e-86e5b8dfc3db}</Project>
+        <Name>Confirmit.CATI.Core</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.CATI.IntegrationTests.Framework\Confirmit.CATI.IntegrationTests.Framework.csproj">
+        <Project>{eb15dd04-fed9-4333-b159-664d501a6932}</Project>
+        <Name>Confirmit.CATI.IntegrationTests.Framework</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.CATI.IntegrationTests\Confirmit.CATI.IntegrationTests.csproj">
+        <Project>{fa7b8dfa-a6e5-45d8-ae4f-836b4eb8aa9c}</Project>
+        <Name>Confirmit.CATI.IntegrationTests</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.CATI.Telephony\CommonDialerAPI\DialerCommon\DialerCommon.csproj">
+        <Project>{8b02686a-caa0-416c-bf94-bd28c7a61432}</Project>
+        <Name>DialerCommon</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+        <Project>{d68a6b1f-92ba-4305-b802-ff6b35d7a6d2}</Project>
+        <Name>ConfirmitDialerInterface</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Confirmit.Test.Common\Confirmit.Test.Common.csproj">
+        <Project>{a8831f8a-03d5-4381-b0b2-50e83887dacd}</Project>
+        <Name>Confirmit.Test.Common</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\NFakes\Generated\Confirmit.Cati.Core\Confirmit.Cati.Core.Fakes.csproj">
+        <Project>{3296be72-f1fc-1ac1-8a7c-0b96388600d6}</Project>
+        <Name>Confirmit.Cati.Core.Fakes</Name>
+      </ProjectReference>
+      <ProjectReference Include="..\Supervisor\Confirmit.CATI.Supervisor.Core\Confirmit.CATI.Supervisor.Core.csproj">
+        <Project>{7b612f3b-66f3-48be-b67b-edc43da1aa37}</Project>
+        <Name>Confirmit.CATI.Supervisor.Core</Name>
+      </ProjectReference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="App.config" />
+      <None Include="packages.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <Analyzer Include="..\packages\xunit.analyzers.1.27.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
+      <Analyzer Include="..\packages\xunit.analyzers.1.27.0\analyzers\dotnet\cs\xunit.analyzers.fixes.dll" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <PropertyGroup>
+      <PostBuildEvent>xcopy /Q /Y "$(SolutionDir)packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\*.dll" "$(SolutionDir)assemblies\"</PostBuildEvent>
+    </PropertyGroup>
+    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+      <PropertyGroup>
+        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
+      </PropertyGroup>
+      <Error Condition="!Exists('..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.visualstudio.2.2.0\build\net20\xunit.runner.visualstudio.props'))" />
+      <Error Condition="!Exists('..\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\xunit.runner.msbuild.2.0.0\build\portable-net45+win+wpa81+wp80+monotouch+monoandroid+Xamarin.iOS\xunit.runner.msbuild.props'))" />
+    </Target>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
+
+</Project>

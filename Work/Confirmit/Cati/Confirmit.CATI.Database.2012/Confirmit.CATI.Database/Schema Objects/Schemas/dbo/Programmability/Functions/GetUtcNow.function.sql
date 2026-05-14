@@ -1,0 +1,6 @@
+﻿CREATE FUNCTION [dbo].[GetUtcNow] ()
+RETURNS DATETIME
+WITH SCHEMABINDING
+begin
+    return GETUTCDATE()
+end

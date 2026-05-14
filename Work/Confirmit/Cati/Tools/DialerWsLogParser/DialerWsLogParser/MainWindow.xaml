@@ -1,0 +1,191 @@
+﻿<Window x:Class="DialerWsLogParser.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Closing="MainWindow_Closing"
+        mc:Ignorable="d"
+        Title="Dialer Log Parser" Height="1200" Width="1920" WindowState="Maximized">
+
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property = "Margin" Value = "5,5,5,5"/>
+            <Setter Property = "TextWrapping" Value = "Wrap"/>
+            <Setter Property = "Text" Value = ""/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property = "MinWidth" Value = "100"/>
+            <Setter Property = "MinHeight" Value = "30"/>
+            <Setter Property = "MaxHeight" Value = "30"/>
+            <Setter Property = "Margin" Value = "5"/>
+        </Style>
+        <Style TargetType="RadioButton">
+            <Setter Property = "MinHeight" Value = "30"/>
+            <Setter Property = "Margin" Value = "2"/>
+        </Style>
+        <Style TargetType="CheckBox">
+            <Setter Property = "MinHeight" Value = "30"/>
+            <Setter Property = "Margin" Value = "2"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Name="MainPanel" Grid.Row="0" Margin="0">
+            <Menu Width="35" Name="FileMenu" Margin="0,0,0,53"/>
+
+            <GroupBox Header="Uploaded files" Margin="0,0,0,0" Height="100">
+                <ToolBarPanel Width="400" Margin="0,0,0,0">
+                    <ListBox Name="Text_UploadedFiles" Height="72"/>
+                </ToolBarPanel>
+            </GroupBox>
+
+            <GroupBox Header="Condition" Margin="0,0,0,0" Height="100">
+                <ToolBarPanel>
+                    <RadioButton Name="ConditionAnd" Click="rb_AndOr_Click" MinHeight="16">AND</RadioButton>
+                    <RadioButton Name="ConditionOr" Click="rb_AndOr_Click" MinHeight="16">OR</RadioButton>
+                </ToolBarPanel>
+            </GroupBox>
+
+            <GroupBox Header="Сoincidences" Margin="0,0,0,0" Height="100">
+                <ToolBarPanel>
+                    <RadioButton Name="PositiveСoincidence" Click="rb_PosNeg_Click" MinHeight="16">Positive</RadioButton>
+                    <RadioButton Name="NegativeСoincidence" Click="rb_PosNeg_Click" MinHeight="16">Negative</RadioButton>
+                </ToolBarPanel>
+            </GroupBox>
+
+            <GroupBox Header="Columns" Margin="0,0,0,0" Height="100">
+                <WrapPanel>
+                    <StackPanel>
+                        <CheckBox x:Name="checkBox_StartTime" Height="16" Content="StartTime" Click="checkBox_Checked" MinHeight="16"/>
+                        <CheckBox x:Name="checkBox_FinishTime" Height="16" Content="FinishTime" Click="checkBox_Checked" MinHeight="16"/>
+                        <CheckBox x:Name="checkBox_CompanyId" Height="16" Content="CompanyId" Click="checkBox_Checked" MinHeight="16"/>
+                        <CheckBox x:Name="checkBox_DialerId" Height="16" Content="DialerId" Click="checkBox_Checked" MinHeight="16"/>
+                    </StackPanel>
+
+                    <StackPanel>
+                        <CheckBox x:Name="checkBox_CampaignId" Height="16" Content="CampaignId" Click="checkBox_Checked" MinHeight="16"/>
+                        <CheckBox x:Name="checkBox_AgentId" Height="16" Content="AgentId" Click="checkBox_Checked" MinHeight="16"/>
+                        <CheckBox x:Name="checkBox_CallId" Height="16" Content="CallId" Click="checkBox_Checked" MinHeight="16"/>
+                        <CheckBox x:Name="checkBox_InterviewId" Height="16" Content="InterviewId" Click="checkBox_Checked" MinHeight="16"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <CheckBox x:Name="checkBox_Duration" Height="16" Content="Duration" Click="checkBox_Checked" MinHeight="16"/>
+                    </StackPanel>
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox Header="Filters" Margin="0,0,0,0" Height="100">
+                <ToolBarPanel>
+                    <CheckBox x:Name="checkBox_DialerServiceOnly" Height="16" Content="DialerService only" Click="checkBox_filter_Checked" MinHeight="16" IsChecked="True"/>
+                    <CheckBox x:Name="checkBox_ExcludeGetState" Height="16" Content="Exclude GetState" Click="checkBox_filter_Checked" MinHeight="16" IsChecked="True"/>
+                    <CheckBox x:Name="checkBox_ExcludeDuplicateNotifications" Height="16" Content="Exclude start operation records" Click="checkBox_filter_Checked" MinHeight="16" IsChecked="True"/>
+                    <CheckBox x:Name="checkBox_ExcludeOnHook" Height="16" Content="Exclude OnHook/OffHook" Click="checkBox_filter_Checked" MinHeight="16" IsChecked="True"/>
+                </ToolBarPanel>
+            </GroupBox>
+            <GroupBox Header="Search everywhere" Width="Auto" Margin="0,0,0,0" Height="100">
+                <TextBox Name="Filter_AllInfo" KeyDown="OnKeyDownHandler" AcceptsTab="True"/>
+            </GroupBox>
+        </DockPanel>
+
+        <Grid Name="FilterGrid" Grid.Row="1" Height="Auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1.75*"/>
+                <ColumnDefinition Width="1.75*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Name="Filter_Name" Grid.Column="0" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_StartTime" Grid.Column="1" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_FinishTime" Grid.Column="2" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_CompanyId" Grid.Column="3" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_DialerId" Grid.Column="4" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_CampaignId" Grid.Column="5" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_AgentId" Grid.Column="6" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_CallId" Grid.Column="7" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_InterviewId" Grid.Column="8" KeyDown="OnKeyDownHandler"/>
+            <TextBox Name="Filter_Duration" Grid.Column="9" KeyDown="OnKeyDownHandler"/>
+        </Grid>
+
+        <DataGrid Name="DataGrid_EventsGroups" AutoGenerateColumns="False" LayoutUpdated="DataGrid_EventsGroups_LayoutUpdated" Loaded="DataGrid_EventsGroups_Loaded" SelectionChanged="DataGrid_EventsGroups_SelectionChanged" VerticalGridLinesBrush="LightGray" HorizontalGridLinesBrush="LightGray" IsReadOnly="True" Grid.Row="2">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridCell}">
+                    <EventSetter Event="MouseDoubleClick" Handler="DataGrid_EventsGroups_DoubleClick"/>
+                </Style>
+            </DataGrid.Resources>
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="RequestId" Binding="{Binding Path=RequestId}" Width="0.3*" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="2.7*"/>
+                <DataGridTextColumn Header="StartTime" Binding="{Binding Path=StartTime}" Width="1.75*"/>
+                <DataGridTextColumn Header="FinishTime" Binding="{Binding Path=FinishTime}" Width="1.75*"/>
+                <DataGridTextColumn Header="CompanyId" Binding="{Binding Path=CompanyId}" Width="*"/>
+                <DataGridTextColumn Header="DialerId" Binding="{Binding Path=DialerId}" Width="*"/>
+                <DataGridTextColumn Header="CampaignId" Binding="{Binding Path=CampaignId}" Width="*"/>
+                <DataGridTextColumn Header="AgentId" Binding="{Binding Path=AgentId}" Width="*"/>
+                <DataGridTextColumn Header="CallId" Binding="{Binding Path=CallId}" Width="*"/>
+                <DataGridTextColumn Header="InterviewId" Binding="{Binding Path=InterviewId}" Width="*"/>
+                <DataGridTextColumn Header="Duration" Binding="{Binding Path=Duration}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Name="BottomGrid" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid  Name="DataGrid_Events" Grid.Column="0" AutoGenerateColumns="False" SelectionChanged="DataGrid_Events_SelectionChanged" VerticalGridLinesBrush="LightGray" HorizontalGridLinesBrush="LightGray" IsReadOnly="True">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMatchesCondition}" Value="true">
+                                <Setter Property="Background" Value="LightBlue"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="Auto"/>
+
+                    <DataGridTemplateColumn Header="Icon" CanUserResize="False" Width="32">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding Icon}"  Width="24" Height="24"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                    <DataGridTextColumn Header="Name" Binding="{Binding Path=Name}" Width="*"/>
+                    <DataGridTextColumn Header="Time" Binding="{Binding Path=Time}" Width="*"/>
+                    <DataGridTextColumn Header="Duration" Binding="{Binding Path=Duration}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <TextBox Name="Text_AllInfo" Grid.Column="1" AcceptsTab="True" Margin="0"/>
+        </Grid>
+
+        <StatusBar Grid.Row="4">
+            <StatusBarItem>
+                <TextBlock Name="statusBarText" />
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

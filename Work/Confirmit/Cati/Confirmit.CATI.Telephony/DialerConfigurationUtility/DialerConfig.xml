@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DialersConfiguration>
+  <!--Possible values for dialer type are: BvTCI, PROTS, Generic, GenericProts, NoDialler -->
+  <!-- All types starts from Generic indeed just to specify more parameters into DialerConfigurationParameters -->
+  <DialerType>GenericProts</DialerType>
+
+  <BvTCI>
+    <Dialer>
+      <Id>1</Id>
+      <Name>dialer 1 name</Name>
+      <DialerConnectionParameters>
+        <HostNameOrIp>bvtcidialer</HostNameOrIp>
+        <TcpPort>12345</TcpPort>
+        <ServiceAddress>http://localhost/TciDialerService/BvTciDialer.svc</ServiceAddress>
+        <ServiceEndpoint>BvTciDialerServiceEndpoint</ServiceEndpoint>
+      </DialerConnectionParameters>
+    </Dialer>
+    <Dialer>
+      <Id>2</Id>
+      <Name>dialer 2 name</Name>
+      <DialerConnectionParameters>
+        <HostNameOrIp>bvtcidialer</HostNameOrIp>
+        <TcpPort>12345</TcpPort>
+        <ServiceAddress>http://localhost/TciDialerService/BvTciDialer.svc</ServiceAddress>
+        <ServiceEndpoint>BvTciDialerServiceEndpoint</ServiceEndpoint>
+      </DialerConnectionParameters>
+    </Dialer>
+    <DialerSurveyParameters>
+      <DialerParameter>
+        <Id>MaxRings</Id>
+        <Name>No reply timeout (secs)</Name>
+        <Value>45</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>TelephoneNumberPrefix</Id>
+        <Name>Telephone number prefix</Name>
+        <Value></Value>
+        <Type>System.String</Type>
+      </DialerParameter>
+    </DialerSurveyParameters>
+  </BvTCI>
+
+  <PROTS>
+    <Dialer>
+      <Id>1</Id>
+      <Name>dialer 1 name</Name>
+      <DialerConnectionParameters>
+        <HostNameOrIp>protsdialer</HostNameOrIp>
+        <OutgoingTcpPort>1810</OutgoingTcpPort>
+        <IncomingTcpPort>1811</IncomingTcpPort>
+        <ServiceAddress>http://localhost/ProtsDialerService/ProtsDialerService.svc</ServiceAddress>
+        <ServiceEndpoint>PROTSDialerServiceEndpoint</ServiceEndpoint>
+        <OperationsTimeout>7000</OperationsTimeout>
+      </DialerConnectionParameters>
+      <DialerConfigurationParameters>
+        <RootDirectoryForAudioRecords>C:\DSM</RootDirectoryForAudioRecords>
+      </DialerConfigurationParameters>
+    </Dialer>
+    <Dialer>
+      <Id>3</Id>
+      <Name>dialer 3 name</Name>
+      <DialerConnectionParameters>
+        <HostNameOrIp>protsdialer</HostNameOrIp>
+        <OutgoingTcpPort>1810</OutgoingTcpPort>
+        <IncomingTcpPort>1811</IncomingTcpPort>
+        <ServiceAddress>http://localhost/ProtsDialerService/ProtsDialerService.svc</ServiceAddress>
+        <ServiceEndpoint>PROTSDialerServiceEndpoint</ServiceEndpoint>
+        <OperationsTimeout>7000</OperationsTimeout>
+      </DialerConnectionParameters>
+      <DialerConfigurationParameters>
+        <RootDirectoryForAudioRecords>C:\DSM</RootDirectoryForAudioRecords>
+      </DialerConfigurationParameters>
+    </Dialer>
+    <DialerSurveyParameters>
+      <DialerParameter>
+        <Id>AbandonmentRate</Id>
+        <Name>Nuisance call abandonment rate</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>MaxRings</Id>
+        <Name>No reply timeout (no. of rings)</Name>
+        <Value>5</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AnsMachineDetect</Id>
+        <Name>Enable answer phone detection</Name>
+        <Value>False</Value>
+        <Type>System.Boolean</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>BillingCode</Id>
+        <Name>Billing Code</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+    </DialerSurveyParameters>
+  </PROTS>
+
+  <Generic>
+    <Dialer>
+      <Id>1</Id>
+      <Name>dialer 1 name</Name>
+      <DialerConnectionParameters>
+        <ServiceAddress>https://localhost/DialerService/DialerService.svc</ServiceAddress> <!-- http -->
+        <ServiceEndpoint>DialerServiceEndpointHttps</ServiceEndpoint> <!-- DialerServiceEndpointHttp -->
+        <AuthorizationKeyForOutgoingRequests>0275E046-7FFF-495B-ACFE-09B439DB4902</AuthorizationKeyForOutgoingRequests>
+      </DialerConnectionParameters>
+      <DialerConfigurationParameters>
+        <SupportedPersonModes>Manual,CampaignAssignment</SupportedPersonModes>
+        <IsReloginNeededOnCampaignChange>True</IsReloginNeededOnCampaignChange>
+        <IsHangUpSupported>True</IsHangUpSupported>
+        <IsPauseOrResumePlaybackSupported>False</IsPauseOrResumePlaybackSupported>
+        <IsToggleAgentListensToPlaybackOrRespondentSupported>False</IsToggleAgentListensToPlaybackOrRespondentSupported>
+        <IsDynamicExtensionNumberAllowedForLocalAgents>False</IsDynamicExtensionNumberAllowedForLocalAgents>
+        <IsDynamicExtensionNumberAllowedForRemoteAgents>False</IsDynamicExtensionNumberAllowedForRemoteAgents>
+      </DialerConfigurationParameters>
+    </Dialer>
+    <DialerSurveyParameters>
+      <DialerParameter>
+        <Id>AbandonmentRate</Id>
+        <Name>Nuisance call abandonment rate</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>MaxRings</Id>
+        <Name>No reply timeout (no. of rings)</Name>
+        <Value>5</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AnsMachineDetect</Id>
+        <Name>Enable answer phone detection</Name>
+        <Value>False</Value>
+        <Type>System.Boolean</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>BillingCode</Id>
+        <Name>Billing Code</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+    </DialerSurveyParameters>
+  </Generic>
+
+  <GenericProts>
+    <Dialer>
+      <Id>1</Id>
+      <Name>dialer 1 name</Name>
+      <DialerConnectionParameters>
+        <HostNameOrIp>dialer</HostNameOrIp>
+        <OutgoingTcpPort>1810</OutgoingTcpPort>
+        <IncomingTcpPort>1811</IncomingTcpPort>
+        <ServiceAddress>https://localhost/DialerService/DialerService.svc</ServiceAddress> <!-- http -->
+        <ServiceEndpoint>DialerServiceEndpointHttps</ServiceEndpoint> <!-- DialerServiceEndpointHttp -->
+        <OperationsTimeout>7000</OperationsTimeout>
+        <AuthorizationKeyForOutgoingRequests>0275E046-7FFF-495B-ACFE-09B439DB4902</AuthorizationKeyForOutgoingRequests>
+      </DialerConnectionParameters>
+      <DialerConfigurationParameters>
+        <!-- Pro-T-S dialer specific parameters -->
+        <HostNameOrIp>protsdialer</HostNameOrIp>
+        <OutgoingTcpPort>1810</OutgoingTcpPort>
+        <IncomingTcpPort>1811</IncomingTcpPort>
+        <OperationsTimeout>7000</OperationsTimeout>
+        <RootDirectoryForAudioRecords>C:\DSM</RootDirectoryForAudioRecords>
+        <SupportedPersonModes>Manual,CampaignAssignment</SupportedPersonModes>
+        <IsReloginNeededOnCampaignChange>True</IsReloginNeededOnCampaignChange>
+        <IsHangUpSupported>True</IsHangUpSupported>
+        <IsPauseOrResumePlaybackSupported>False</IsPauseOrResumePlaybackSupported>
+        <IsToggleAgentListensToPlaybackOrRespondentSupported>False</IsToggleAgentListensToPlaybackOrRespondentSupported>
+        <IsDynamicExtensionNumberAllowedForLocalAgents>False</IsDynamicExtensionNumberAllowedForLocalAgents>
+        <IsDynamicExtensionNumberAllowedForRemoteAgents>False</IsDynamicExtensionNumberAllowedForRemoteAgents>
+      </DialerConfigurationParameters>
+    </Dialer>
+    <DialerSurveyParameters>
+      <DialerParameter>
+        <Id>AbandonmentRate</Id>
+        <Name>Nuisance call abandonment rate</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>MaxRings</Id>
+        <Name>No reply timeout (no. of rings)</Name>
+        <Value>5</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AnsMachineDetect</Id>
+        <Name>Enable answer phone detection</Name>
+        <Value>False</Value>
+        <Type>System.Boolean</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>BillingCode</Id>
+        <Name>Billing Code</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+    </DialerSurveyParameters>
+  </GenericProts>
+
+</DialersConfiguration>

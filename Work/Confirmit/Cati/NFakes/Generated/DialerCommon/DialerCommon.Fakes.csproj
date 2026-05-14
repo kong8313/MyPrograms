@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\..\assemblies</OutputPath>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>DialerCommon</RootNamespace>
+    <AssemblyName>DialerCommon.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{547590d6-2c71-cc7d-0db3-873e658aca13}</ProjectGuid>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Telephony\CommonDialerAPI\DialerCommon\DialerCommon.csproj">
+      <Project>{8B02686A-CAA0-416C-BF94-BD28C7A61432}</Project>
+      <Name>DialerCommon</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubICommonLogger.cs" />
+    <compile Include=".\StubIDialerAPI.cs" />
+    <compile Include=".\StubIDialerAuthorizationKeyEncryptor.cs" />
+    <compile Include=".\StubIDialerCommonSettings.cs" />
+    <compile Include=".\StubIDialerEvent.cs" />
+    <compile Include=".\StubIDialerEventNotificationsSender.cs" />
+    <compile Include=".\StubIDialerEventsHandler.cs" />
+    <compile Include=".\StubIDialerEventsHandlerService.cs" />
+    <compile Include=".\StubIDialerRecordingAPI.cs" />
+    <compile Include=".\StubIErrorSender.cs" />
+    <compile Include=".\StubILoggerHealthChecker.cs" />
+    <compile Include=".\StubINotificationsSenderInitializer.cs" />
+    <compile Include=".\StubIServiceStartedNotificationSender.cs" />
+    <compile Include=".\StubIUtcOffsetSource.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

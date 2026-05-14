@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Confirmit.Cati.Rest.Sdk</id>
+    <version>18.5.0.0</version>
+    <authors>Forsta</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The package provides .NET model, proxy, enumerations classes for the Forsta Cati Rest API.</description>
+    <dependencies>
+        <dependency id="Newtonsoft.Json" version="13.0.3" />
+        <dependency id="Microsoft.Net.Http" version="2.2.29" />
+    </dependencies> 
+  </metadata>
+  <files>
+    <file src="..\assemblies\REST.SDK\Confirmit.CATI.REST.SDK.dll" target="lib\net45" />
+    <file src="..\assemblies\REST.SDK\Confirmit.CATI.REST.SDK.pdb" target="lib\net45" />
+  </files>
+</package>

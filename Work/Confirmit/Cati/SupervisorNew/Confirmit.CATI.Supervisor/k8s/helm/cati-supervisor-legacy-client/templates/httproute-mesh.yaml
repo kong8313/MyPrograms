@@ -1,0 +1,14 @@
+{{- if and .Values.global.httpRouteMesh.enabled .Values.httpRouteMesh.enabled -}}
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ template "cati-supervisor-legacy-client.fullname" . }}-mesh
+  labels: {{ include "cati-supervisor-legacy-client.labels" . | nindent 4 }}
+    app.confirmit.com/traffic-type: mesh
+spec:
+  parentRefs:
+  - kind: Service
+    name: '{{ template "cati-supervisor-legacy-client.fullname" . }}'
+    port: {{ .Values.service.port }}
+  rules: {{ tpl (.Values.httpRouteMesh.rules | toYaml) . | nindent 2 }}
+{{- end }}

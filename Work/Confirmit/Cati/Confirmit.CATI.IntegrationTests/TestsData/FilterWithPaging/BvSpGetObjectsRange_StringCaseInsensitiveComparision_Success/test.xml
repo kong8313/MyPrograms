@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <ColumnInt>100</ColumnInt>
+    <ColumnText>Bohgf</ColumnText>
+    <ColumnDate>2009-01-04T10:10:10Z</ColumnDate>
+    <ColumnDecimal>87688</ColumnDecimal>
+  </table>
+</DocumentElement>

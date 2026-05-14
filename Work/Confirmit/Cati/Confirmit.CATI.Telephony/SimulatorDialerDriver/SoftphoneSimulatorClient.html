@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Softphone Client</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            background-color: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .app {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            padding: 16px 24px;
+            background-color: #3f51b5;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+            header h1 {
+                margin: 0;
+                font-size: 24px;
+                font-weight: 500;
+            }
+
+        main {
+            flex: 1;
+            padding: 24px;
+            overflow: auto;
+            min-height: 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .logout-btn {
+            padding: 10px 24px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+            .logout-btn:hover {
+                background-color: #d32f2f;
+            }
+
+        .log-container {
+            display: flex;
+            flex-direction: column;
+            max-height: calc(100vh - 340px);
+        }
+
+        .log {
+            flex: 1;
+            overflow: auto;
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            padding: 12px;
+            font-family: monospace;
+            font-size: 13px;
+        }
+
+        .log-empty {
+            text-align: center;
+            color: #999;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        .msg {
+            margin-bottom: 8px;
+            padding: 8px 12px;
+            border-radius: 2px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            color: #333;
+        }
+
+        .received {
+            border-left: 3px solid #2196f3;
+            background: #e3f2fd;
+        }
+
+        .sent {
+            border-left: 3px solid #4caf50;
+            background: #e8f5e9;
+        }
+
+        .info {
+            border-left: 3px solid #ff9800;
+            background: #fff3e0;
+        }
+
+        .timestamp {
+            color: #666;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <header>
+            <h1>Softphone Client</h1>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Connection Status</h2>
+                <div class="status-row">
+                    <div id="statusDot" class="dot"></div>
+                    <p id="statusText"></p>
+                </div>
+                <button id="logoutBtn" class="logout-btn" style="display:none;">Logout</button>
+            </div>
+
+            <div class="card log-container">
+                <h2>Activity Log</h2>
+                <div id="log" class="log">
+                    <div id="logEmpty" class="log-empty">No messages yet</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let status = 'Not logged in';
+        let isLoggedIn = false;
+        let messages = [];
+
+        const statusText = document.getElementById('statusText');
+        const statusDot = document.getElementById('statusDot');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const log = document.getElementById('log');
+        const logEmpty = document.getElementById('logEmpty');
+
+        function renderStatus() {
+            statusText.textContent = status;
+            statusDot.style.backgroundColor = isLoggedIn ? '#4caf50' : '#f44336';
+            logoutBtn.style.display = isLoggedIn ? 'inline-block' : 'none';
+        }
+
+        function addNode(text, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            messages.push({ text, type, timestamp });
+            renderLog();
+        }
+
+        function renderLog() {
+            logEmpty.style.display = messages.length === 0 ? 'block' : 'none';
+
+            log.querySelectorAll('.msg').forEach(n => n.remove());
+
+            messages.forEach(m => {
+                const div = document.createElement('div');
+                div.className = `msg ${m.type}`;
+
+                const prefix = m.type === 'received' ? '⬇ ' :
+                    m.type === 'sent' ? '⬆ ' : 'ℹ ';
+
+                div.innerHTML = `
+            <strong>${prefix}</strong>
+            <span class="timestamp">[${m.timestamp}]</span>
+            ${m.text}
+          `;
+                log.appendChild(div);
+            });
+
+            log.scrollTop = log.scrollHeight;
+        }
+
+        function handleLogout() {
+            localStorage.setItem("login", "");
+            localStorage.setItem("pass", "");
+            status = "Not logged in";
+            isLoggedIn = false;
+            renderStatus();
+
+            if (window.parent) {
+                window.parent.postMessage({ type: "event", message: "logoutSuccess" }, "*");
+                addNode("Sent logout success", "sent");
+
+                window.parent.postMessage({ type: "event", message: "userNotLoggedIn" }, "*");
+                addNode("Sent userNotLoggedIn event", "sent");
+            }
+        }
+
+        logoutBtn.addEventListener('click', handleLogout);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const login = localStorage.getItem("login");
+            const pass = localStorage.getItem("pass");
+
+            if (login) {
+                status = `Logged in with login: ${login} and pass: ${pass}`;
+                isLoggedIn = true;
+            }
+
+            renderStatus();
+
+            if (window.parent) {
+                if (login) {
+                    window.parent.postMessage({ type: "event", message: "userIsLoggedIn" }, "*");
+                    addNode("Sent userIsLoggedIn event", "sent");
+
+                    window.parent.postMessage({ type: "event", message: "registered" }, "*");
+                    addNode("Sent registered event", "sent");
+                } else {
+                    window.parent.postMessage({ type: "event", message: "userNotLoggedIn" }, "*");
+                    addNode("Sent userNotLoggedIn event", "sent");
+                }
+            }
+        });
+
+        window.addEventListener("message", (msg) => {
+            if (msg.data.cmd === 'login') {
+                localStorage.setItem("login", msg.data.user);
+                localStorage.setItem("pass", msg.data.pass);
+
+                status = `Logged in with login: ${msg.data.user} and pass: ${msg.data.pass}`;
+                isLoggedIn = true;
+                renderStatus();
+
+                window.parent.postMessage({ type: "event", message: "loginSuccess" }, "*");
+                window.parent.postMessage({ type: "event", message: "userIsLoggedIn" }, "*");
+                window.parent.postMessage({ type: "event", message: "registered" }, "*");
+
+                addNode("Received login command", "received");
+                addNode("Sent loginSuccess event", "sent");
+                addNode("Sent userIsLoggedIn event", "sent");
+                addNode("Sent registered event", "sent");
+            }
+
+            if (msg.data.cmd === 'logout') {
+                handleLogout();
+            }
+
+            if (msg.data.cmd === 'getUser') {
+                addNode("Received getUser command", "received");
+
+                const currentLogin = localStorage.getItem("login");
+
+                if (currentLogin) {
+                    const userData = {
+                        type: "getUserResult",
+                        cmd: "getUserResult",
+                        user: currentLogin,
+                        message: { DefaultExtension: currentLogin }
+                    };
+                    window.parent.postMessage(userData, "*");
+                    addNode(`Sent getUserResult: user="${currentLogin}", extension="${currentLogin}"`, "sent");
+                } else {
+                    const userData = {
+                        type: "getUserResult",
+                        cmd: "getUserResult",
+                        user: null,
+                        message: "User not logged in"
+                    };
+                    window.parent.postMessage(userData, "*");
+                    addNode('Sent getUserResult: user=null, message="User not logged in"', "sent");
+                }
+            }
+        });
+    </script>
+</body>
+</html>

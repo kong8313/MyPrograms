@@ -1,0 +1,171 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="..\DefaultVersion.targets" />
+  <PropertyGroup Condition="'$(Configuration)'==''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <Optimize>true</Optimize>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ProjectDir)'==''">
+    <ProjectDir>$(MSBuildProjectDirectory)\..\</ProjectDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OutDir)'==''">
+    <OutDir>$(ProjectDir)assemblies\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(IsLocalBuild)'==''">
+    <IsLocalBuild>true</IsLocalBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(LocalTargetType)'==''">
+    <LocalTargetType>Build</LocalTargetType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(RecreateExistingFiles)'==''">
+    <RecreateExistingFiles>True</RecreateExistingFiles>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(SqlMachineName)' == '' AND '$(CATI_SQL_INSTANCE_NAME)'!=''">
+    <SqlMachineName>$(CATI_SQL_INSTANCE_NAME)</SqlMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(SqlMachineName)'==''">
+    <SqlMachineName>localhost</SqlMachineName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(sxs)'!=''">
+    <DefaultSideBySideName>$(sxs)</DefaultSideBySideName>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('C:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\MSTest.exe')">
+    <MsTestPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(VS150COMNTOOLS)..\IDE\MSTest.exe')">
+    <MsTestPath>$(VS150COMNTOOLS)..\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(VS140COMNTOOLS)..\IDE\MSTest.exe')">
+    <MsTestPath>$(VS140COMNTOOLS)..\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(VS120COMNTOOLS)..\IDE\MSTest.exe')">
+    <MsTestPath>$(VS120COMNTOOLS)..\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(NugetPackageVersion)'==''">
+    <NugetPackageVersion>$(BuildNumber)</NugetPackageVersion>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+
+  <Target Name="Build" DependsOnTargets="Code;DB" />
+  
+  <Target Name="Init">
+    <Message Text="Configuration = $(Configuration)"/>
+    <Message Text="ProjectDir = $(ProjectDir)"/>
+    <Message Text="OutDir = $(OutDir)"/>
+    <Message Text="ExtensionTasksPath = $(ExtensionTasksPath)"/>
+    <Message Text="BuildNumber = $(BuildNumber)"/>
+    <Message Text="IsLocalBuild = $(IsLocalBuild)"/>
+    <Message Text="LocalTargetType = $(LocalTargetType)"/>
+    <Message Text="SqlMachineName = $(SqlMachineName)"/>
+    <Message Text="NugetPackageVersion = $(NugetPackageVersion)"/>
+  </Target>
+
+  <Target Name="Clean">
+    <ItemGroup>
+      <CatiAssemblyDir Include="$(ProjectDir)assemblies\" />
+    </ItemGroup>
+    <MSBuild Projects="$(ProjectDir)Confirmit.CATI.sln;$(ProjectDir)Tools.sln;$(ProjectDir)Database.2012.sln" Targets="Clean" />
+    <Message Text="Start delete files"/>
+    <Delete Files="$(ProjectDir)GlobalAssemblyInfo.cs;$(ProjectDir)Confirmit.CATI.Setup\BranchInfo.wxs;$(ProjectDir)Confirmit.CATI.Common\SideBySide\SideBySide.cs" />
+    <RemoveDir Directories="@(CatiAssemblyDir)" />
+    <Message Text="end delete files"/>
+  </Target>
+
+  <Target Name="InstallCertificates">
+    <MSBuild.ExtensionPack.Security.Certificate TaskAction="GetInfo" Thumbprint="3795feb40d4c80a46709243ea274f1ca117349d8" ContinueOnError="true">
+      <Output TaskParameter="CertInfo" ItemName="ICertInfo" />
+    </MSBuild.ExtensionPack.Security.Certificate>
+
+    <Message Text="SubjectName: %(ICertInfo.SubjectName)"/>
+    <Message Text="Thumbprint: %(ICertInfo.Thumbprint)"/>
+
+    <MSBuild.ExtensionPack.Security.Certificate
+        TaskAction="Add"
+        FileName="$(ProjectDir)Certificates\CatiClickOnce.pfx"
+        CertPassword="Cati99ClickOnce543Password8"
+        Condition="'%(ICertInfo.Thumbprint)' == ''" />
+  </Target>  
+  
+  <Target Name="BuildSimulatorClient">
+    <RemoveDir Directories="$(ProjectDir)Confirmit.CATI.Telephony\Simulator.Client\build" ContinueOnError="true"/>
+    <Exec Command="npm install" WorkingDirectory="$(ProjectDir)Confirmit.CATI.Telephony\Simulator.Client" />
+    <Exec Command="npm run build" WorkingDirectory="$(ProjectDir)Confirmit.CATI.Telephony\Simulator.Client" />
+  </Target>
+  
+  <Target Name="CreateDbUpdateScriptsArchive">
+    <ZipDirectory SourceDirectory="$(ProjectDir)\Confirmit.CATI.Database.2012\Scripts" DestinationFile="$(ProjectDir)Confirmit.CATI.DatabaseDeploy\code\src\Confirmit.CATI.DatabaseUpdateLibraryCore\scripts.zip" Overwrite="true" />
+  </Target>
+  
+  <Target Name="CatiCode" DependsOnTargets="Init;InstallCertificates;BuildSimulatorClient;CreateDbUpdateScriptsArchive" >
+    <Message Text="DEVELOPMENT CODE BUILD STARTED"/>
+
+    <PropertyGroup Condition="'$(IsLocalBuild)' == 'false' OR '$(LocalTargetType)' == 'Rebuild'">
+      <NewSupervisorPublishProperty>DeployOnBuild=true;PublishProfile=$(ProjectDir)SupervisorNew\Confirmit.CATI.Supervisor\Properties\PublishProfiles\PrecompileAndMerge.pubxml;</NewSupervisorPublishProperty>
+    </PropertyGroup>
+	<Exec Command="dotnet.exe build &quot;$(ProjectDir)Confirmit.CATI.DatabaseDeploy\code\Confirmit.CATI.DatabaseDeploy.sln&quot;" />    
+	    
+    <MSBuild Projects="$(ProjectDir)Confirmit.Telephony.sln" Targets="$(LocalTargetType)" Properties="Configuration=$(Configuration);DefaultSideBySideName=$(DefaultSideBySideName);BuildNumber=$(BuildNumber);RecreateExistingFiles=$(RecreateExistingFiles)" />
+    <MSBuild Projects="$(ProjectDir)Confirmit.BackendAndSupervisor.sln" Targets="$(LocalTargetType)" Properties="$(NewSupervisorPublishProperty)Configuration=$(Configuration);DefaultSideBySideName=$(DefaultSideBySideName);BuildNumber=$(BuildNumber);RecreateExistingFiles=$(RecreateExistingFiles);NugetPackageVersion=$(NugetPackageVersion)" />
+
+    <MSBuild Projects="$(ProjectDir)Confirmit.CATI.DatabaseUpdate.Library\Confirmit.CATI.DatabaseUpdateLibrary.csproj" Targets="Rebuild" Properties="SolutionDir=$(ProjectDir);Configuration=$(Configuration);DefaultSideBySideName=$(DefaultSideBySideName);BuildNumber=$(BuildNumber);RecreateExistingFiles=$(RecreateExistingFiles);NugetPackageVersion=$(NugetPackageVersion)" />
+        
+    <Exec Command="del &quot;$(ProjectDir)assemblies\Confirmit.CATI.REST.SDK.zip&quot; /q" ContinueOnError="true" />
+    <Exec Command="&quot;$(ProjectDir)_3rdpart\7z\7z.exe&quot; a -tzip &quot;$(ProjectDir)assemblies\Confirmit.CATI.REST.SDK.zip&quot;  &quot;$(ProjectDir)assemblies\REST.SDK&quot;" />
+    
+    <MSBuild Projects="$(ProjectDir)Tools.sln" Targets="$(LocalTargetType)" Properties="Configuration=$(Configuration)" />
+		
+    <Message Text="DEVELOPMENT CODE BUILD FINISHED"/>
+  </Target>
+
+  <Target Name="Code" DependsOnTargets="CatiCode" >
+    
+  </Target>
+
+  <Target Name="DB" DependsOnTargets="Init" >
+    <Message Text="DEVELOPMENT DB BUILD STARTED"/>
+
+	<Message Text="Drop ConfirmitCATIV15_BUILD if exists"/>
+	<MSBuild.ExtensionPack.SqlServer.SqlCmd TaskAction="Execute" Server="$(SqlMachineName)" InputFiles="RemoveCatiBuildDB.sql" ContinueOnError="true"/>
+    
+    <MSBuild Projects="$(ProjectDir)Database.2012.sln" Targets="$(LocalTargetType)" Properties="Configuration=Debug" />
+
+    <Message Text="DEVELOPMENT DB BUILD FINISHED"/>
+
+  </Target>
+
+  <Target Name="help">
+    <Message Text="Use 'cati.proj /t:code' to build all solutions with code"/>
+    <Message Text=" "/>
+    <Message Text="Use 'cati.proj /t:db' to build database project only"/>
+    <Message Text=" "/>
+    <Message Text="Use 'cati.proj /t:Clean' to execute target Clean for all solutions"/>
+    <Message Text="as oppesed to 'Git clean' this target will keep your Git Untracked files "/>
+    <Message Text=" "/>
+    <Message Text="Specify DefaultSideBySideName parameter to build solution with needed SideBySide name. Default value is 'Rel'"/>
+    <Message Text="Example: 'cati.proj /p:DefaultSideBySideName=SxSName'"/>
+    <Message Text="To get side by side name automatically from a root folder it's name has to have the following template: AnyName.sxs.SxSName"/>
+    <Message Text="Example: CATI.sxs.Main"/>
+    <Message Text=" "/>
+    <Message Text="Specify BuildNumber parameter to build solution with needed version"/>
+    <Message Text="Example: 'cati.proj /p:BuildNumber=17.0.123.45678'"/>
+    <Message Text=" "/>
+    <Message Text="Specify RecreateExistingFiles parameter as 'False' if you don't need to recreate an existing autogenerated file. Default value is 'True'"/>
+    <Message Text="Example: 'cati.proj /p:RecreateExistingFiles=False'"/>
+    <Message Text=" "/>
+    <Message Text="Specify LocalTargetType parameter as 'Rebuild' to rebuild all solutions. Default value is 'Build'"/>
+    <Message Text="Example: 'cati.proj /t:code /p:LocalTargetType=Rebuild"/>
+    <Message Text=" "/>
+    <Message Text="To specify several parameters use semicolon:"/>
+    <Message Text="Example: 'cati.proj /t:code /p:DefaultSideBySideName=SxSName;BuildNumber=17.0.123.45678'"/>
+  </Target>
+</Project>

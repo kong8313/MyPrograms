@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confirmit.Configuration" Version="26.10.4" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="3.1.14" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="3.1.14" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.KeyPerFile" Version="3.1.14" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.DatabaseUpdateLibraryCore\Confirmit.CATI.DatabaseUpdateLibraryCore.csproj" />
+  </ItemGroup>
+
+</Project>

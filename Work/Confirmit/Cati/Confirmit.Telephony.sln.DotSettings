@@ -1,0 +1,15 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=3296BE72_002DF1FC_002D1AC1_002D8A7C_002D0B96388600D6/@EntryIndexedValue">3296BE72-F1FC-1AC1-8A7C-0B96388600D6</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=38F26E18_002D86F9_002DB7E8_002D7D54_002D55C78C128DE3/@EntryIndexedValue">38F26E18-86F9-B7E8-7D54-55C78C128DE3</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=547590D6_002D2C71_002DCC7D_002D0DB3_002D873E658ACA13/@EntryIndexedValue">547590D6-2C71-CC7D-0DB3-873E658ACA13</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=616A3166_002DE491_002D06C2_002D0090_002D55302642AD96/@EntryIndexedValue">616A3166-E491-06C2-0090-55302642AD96</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=781D9C51_002DC2EF_002D6EDA_002D245F_002DC58DB8FFBB04/@EntryIndexedValue">781D9C51-C2EF-6EDA-245F-C58DB8FFBB04</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=98C3662E_002DCE8C_002D8EFE_002D6E0F_002DBDB11F85BE1D/@EntryIndexedValue">98C3662E-CE8C-8EFE-6E0F-BDB11F85BE1D</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=9AFFAF32_002DC1E5_002DE2C8_002D1FFA_002D11A73BB83A8E/@EntryIndexedValue">9AFFAF32-C1E5-E2C8-1FFA-11A73BB83A8E</s:String>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=3296BE72_002DF1FC_002D1AC1_002D8A7C_002D0B96388600D6/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=38F26E18_002D86F9_002DB7E8_002D7D54_002D55C78C128DE3/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=547590D6_002D2C71_002DCC7D_002D0DB3_002D873E658ACA13/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=616A3166_002DE491_002D06C2_002D0090_002D55302642AD96/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=781D9C51_002DC2EF_002D6EDA_002D245F_002DC58DB8FFBB04/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=98C3662E_002DCE8C_002D8EFE_002D6E0F_002DBDB11F85BE1D/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=9AFFAF32_002DC1E5_002DE2C8_002D1FFA_002D11A73BB83A8E/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

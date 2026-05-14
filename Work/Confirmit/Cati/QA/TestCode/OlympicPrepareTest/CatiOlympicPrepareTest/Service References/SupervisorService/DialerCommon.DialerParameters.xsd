@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" />
+  <xs:complexType name="ArrayOfDialerParameter">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DialerParameter" nillable="true" type="tns:DialerParameter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDialerParameter" nillable="true" type="tns:ArrayOfDialerParameter" />
+  <xs:complexType name="DialerParameter">
+    <xs:sequence>
+      <xs:element name="_x003C_Description_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Type_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Value_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DialerParameter" nillable="true" type="tns:DialerParameter" />
+  <xs:complexType name="DialerParametersExceptionDetails">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Exceptions" base="q1:UserMessageExceptionDetails">
+        <xs:sequence>
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" minOccurs="0" name="Errors" nillable="true" type="q2:ArrayOfDialerParameterError" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="DialerParametersExceptionDetails" nillable="true" type="tns:DialerParametersExceptionDetails" />
+</xs:schema>

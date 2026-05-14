@@ -1,0 +1,51 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="SearchTestSample" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="SearchTestSample">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="ColumnInt" type="xs:int" minOccurs="0" />
+                <xs:element name="ColumnText" type="xs:string" minOccurs="0" />
+                <xs:element name="ColumnDate" type="xs:dateTime" minOccurs="0" msdata:DateTimeMode="Utc" />
+                <xs:element name="ColumnDecimal" type="xs:double" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <SearchTestSample>
+    <ColumnInt>1</ColumnInt>
+    <ColumnText>Text 1</ColumnText>
+    <ColumnDate>2009-11-03T11:54:23Z</ColumnDate>
+    <ColumnDecimal>5.732</ColumnDecimal>
+  </SearchTestSample>
+  <SearchTestSample>
+    <ColumnInt>2</ColumnInt>
+    <ColumnText>Text 2</ColumnText>
+    <ColumnDate>2009-11-03T11:54:23Z</ColumnDate>
+    <ColumnDecimal>-67865.22</ColumnDecimal>
+  </SearchTestSample>
+  <SearchTestSample>
+    <ColumnInt>45</ColumnInt>
+    <ColumnText>Acu</ColumnText>
+    <ColumnDate>2009-12-03T04:50:02Z</ColumnDate>
+    <ColumnDecimal>5.732</ColumnDecimal>
+  </SearchTestSample>
+  <SearchTestSample>
+    <ColumnInt>100</ColumnInt>
+    <ColumnText>Bohgf</ColumnText>
+    <ColumnDate>2009-01-04T10:10:10Z</ColumnDate>
+    <ColumnDecimal>87688</ColumnDecimal>
+  </SearchTestSample>
+  <SearchTestSample>
+    <ColumnInt>-2</ColumnInt>
+    <ColumnText>Text 2 k</ColumnText>
+    <ColumnDate>2010-11-03T11:54:23Z</ColumnDate>
+    <ColumnDecimal>5.732</ColumnDecimal>
+  </SearchTestSample>
+</NewDataSet>

@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Confirmit.CATI.Telephony.DialerService" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DialerDriverAssemblyName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NotDefined</Value>
+    </Setting>
+    <Setting Name="DialerDriverAssemblyNamespace" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NotDefined</Value>
+    </Setting>
+    <Setting Name="DialerDriverAssemblyMainClassName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NotDefined</Value>
+    </Setting>
+    <Setting Name="ServiceStateExpirationTimeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">200</Value>
+    </Setting>
+    <Setting Name="AuthorizationKeyForIncomingRequests" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Gfkr31ZZ7jyuUDoM+OQ0cHvaz88fqJoy9zoxdoRJjr7FVRYjWYtVX/C/afumpTX8erM0d5cQZPEtQ9khe/sbOUW8lSyswcJLkqzXkCbKy5mFMxJhTMhEcgE286I=</Value>
+    </Setting>
+    <Setting Name="UseAuthorization" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DialerId" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="StatefulMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SupervisorResourceBindingType" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">NotDefined</Value>
+    </Setting>
+    <Setting Name="AllowedAgentStates" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;string&gt;LoggedIn&lt;/string&gt;
+  &lt;string&gt;LoggedOut&lt;/string&gt;
+  &lt;string&gt;NotReady&lt;/string&gt;
+&lt;/ArrayOfString&gt;</Value>
+    </Setting>
+    <Setting Name="SecurityProtocols" Type="System.Collections.Specialized.StringCollection" Scope="Application">
+      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" /&gt;</Value>
+    </Setting>
+    <Setting Name="UseErrorReporting" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>    
+</SettingsFile>

@@ -1,0 +1,239 @@
+.ighg_Control
+{
+}
+
+
+.ighg_ExpandButton
+{
+	padding-left:5px;
+	cursor:default;
+	height:18px;
+	visibility: hidden;	
+}
+
+.ighg_Control .igg_HeaderCaption
+{
+    border-right: solid 1px #C5C1B1;
+    border-left: solid 1px white;
+    border-bottom: solid 1px #D1CDBB;
+    height: 20px;
+    padding: 0px 3px;
+    line-height: 10px;
+    font-weight:normal;
+}
+
+ .ighg_Control .ighg_ExpansionColumnHeader
+ {
+    border-right: solid 1px #C5C1B1;
+    border-bottom: solid 1px #D1CDBB;
+    height: 20px;
+    padding: 0px 3px;
+    line-height: 10px;
+ }
+
+.ighg_ExpansionColumnHeader
+{
+	width: 25px;
+}
+
+
+.ighg_ExpansionColumn
+{
+	padding:0px !important;
+	width: 25px;
+}
+
+.ighg_NoExpansionColumn
+{
+	padding:0px !important;
+	width: 7px;
+}
+
+.ighg_ExpansionColumnFooter
+{
+	width: 25px;
+}
+
+
+.ighg_GroupArea
+{
+	background-color:#EEEEEE;
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupareabg.png);
+	border-bottom:solid 1px #999999;
+	padding:10px;
+	color:#333333;
+}
+
+
+/* START -- GroupBy CSS Classes */
+.ighg_GroupIndentHeaderCell
+{
+}
+
+
+.ighg_GroupIndentFooterCell
+{
+}
+
+
+.ighg_GroupIndentAddNewRowCell
+{
+}
+
+
+.ighg_GroupedColumn
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedcolumnbg.png);
+	padding:3px 5px 0px 10px;
+	display: inline-block;
+	height: 16px;
+}
+
+
+.ighg_GroupedColumnRightEdge
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_groupedcolumnrightedgebg.png);
+	padding-top:3px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_GroupedColumnRightEdgeEnd
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_groupedcolumnrightedgeendbg.gif);
+	padding-top:3px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_GroupedBand
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedbandbg.png);
+	border-left:solid 1px #FF9900;
+	padding:3px 0px 0px 10px;
+	display: inline-block;
+	height: 16px;
+}
+
+
+.ighg_GroupedBandRightEdge
+{
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedbandbg.png);
+	border-right:solid 1px #FF9900;
+	padding:3px 0px 0px 0px;
+	display: inline-block;
+	width: 10px;
+	height: 16px;
+}
+
+
+.ighg_ColumnGroupingTopDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_topdragindicator.gif);
+	width: 5px;
+	height: 3px;
+	z-index: 100;
+}
+
+
+.ighg_ColumnGroupingMiddleDragIndicator
+{
+	background-repeat:repeat-y;
+	background-position:center ;
+	background-image: url(images/ighg_middledragindicator.gif);
+	width: 3px;
+}
+
+
+.ighg_ColumnGroupingBottomDragIndicator
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_bottomdragindicator.gif);
+	width: 5px;
+	height: 3px;
+	position: absolute;
+	z-index: 100;
+}
+
+
+.ighg_GroupedColumnLeftEdge
+{
+	background-repeat:no-repeat;
+	background-image: url(images/ighg_groupedcolumnleftedgebg.gif);
+	padding-top:3px;
+	display: inline-block;
+	width: 9px;
+	height: 16px;
+}
+
+
+TBODY>TR>TD.ighg_MergedCell
+{
+}
+
+
+TBODY>TR>TD.ighg_MergedCellAlt
+{
+}
+
+
+TBODY>TR>TD.ighg_MergedCellTop
+{
+}
+
+
+TBODY>TR>TD.ighg_MergedCellAltTop
+{
+}
+
+
+TBODY>TR>TD.ighg_MergedCellBottom
+{
+}
+
+
+TBODY>TR>TD.ighg_MergedCellAltBottom
+{
+}
+
+
+TBODY>TR>TD.ighg_MergedCellExpanded
+{
+}
+
+td.ighg_ExpandableArea
+{
+  border-bottom-width:0px !important;
+}
+
+tbody tr td.ighg_ExpandableArea
+{
+	padding:0px 0px 0px 25px;	
+	background-color:#E9E7D8;
+}
+
+tbody>tr.ighg_GroupedRow>td
+{
+	background-color:#EEEEEE;
+	background-repeat:repeat-x;
+	background-image: url(images/ighg_groupedrowbg.png);
+}
+
+
+tbody>tr>td.ighg_GroupIndentCell
+{
+	border-right:solid 1px #D8D8D8;
+}
+
+

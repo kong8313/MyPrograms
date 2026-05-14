@@ -1,0 +1,61 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>1</InterviewID>
+    <TelephoneNumber>5550</TelephoneNumber>
+    <RespondentName>0</RespondentName>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <ShiftType>[Any Valid]</ShiftType>
+    <Resource />
+    <InterviewCallID>1_0</InterviewCallID>
+    <TimeText>Now</TimeText>
+    <TimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Now</TimeExportColumn>
+    <ExpireTimeText>Never</ExpireTimeText>
+    <ExpireTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Never</ExpireTimeExportColumn>
+    <LastCallTimeText />
+    <LastCallTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ApptTimeText />
+    <ApptTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ExpTimeText />
+    <ExpTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>3</InterviewID>
+    <TelephoneNumber>5552</TelephoneNumber>
+    <RespondentName>2</RespondentName>
+    <TimezoneID>2</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Monrovia, Reykjavik</TimezoneName>
+    <ShiftType>[Any Valid]</ShiftType>
+    <Resource />
+    <InterviewCallID>3_0</InterviewCallID>
+    <TimeText>Now</TimeText>
+    <TimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Now</TimeExportColumn>
+    <ExpireTimeText>Never</ExpireTimeText>
+    <ExpireTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Never</ExpireTimeExportColumn>
+    <LastCallTimeText />
+    <LastCallTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ApptTimeText />
+    <ApptTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ExpTimeText />
+    <ExpTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </table>
+</DocumentElement>

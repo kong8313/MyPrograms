@@ -1,0 +1,39 @@
+{
+  "name": "simulator.client",
+  "version": "1.0.0",
+  "description": "Web Client for CATI Dialer simualtor",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel public/index.html --open chrome",
+    "build": "npm run build-core && npm run build-post",
+    "build-core": "parcel build public/index.html --public-url /catidialersimulator/app --out-dir build --no-content-hash --no-source-maps",
+    "build-post": "powershell .\\PrepareResultsToDeploy.ps1",
+    "post-build": "post-build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-redux": "^7.1.9",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.5",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.30.0",
+    "typescript": "^3.9.6"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-useinterval": "^1.0.1",
+    "redux": "^4.0.5"
+  }
+}

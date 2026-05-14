@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\DefaultVersion.targets" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <IsWin64>no</IsWin64>
+    <GType Condition=" '$(GType)' == '' ">prots</GType>
+    <ProcessorArchitecture Condition=" '$(ProcessorArchitecture)' == '' ">x64</ProcessorArchitecture>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>3.5</ProductVersion>
+    <ProjectGuid>{6159f261-eb62-4b99-b924-e94d54191fca}</ProjectGuid>
+    <SchemaVersion>2.0</SchemaVersion>
+    <OutputName>Confirmit.CATI.GenericDialerWebService</OutputName>
+    <OutputType>Package</OutputType>
+    <DefineSolutionProperties>false</DefineSolutionProperties>
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <Name>Confirmit.CATI.Pro-T-S.Dialer.Service</Name>
+  </PropertyGroup>
+  <PropertyGroup>
+    <WixToolPath>..\..\_3rdpart\Wix\3.8\bin\</WixToolPath>
+    <WixTargetsPath>$(WixToolPath)Wix.targets</WixTargetsPath>
+    <WixTasksPath>wixtasks.dll</WixTasksPath>
+    <WixExtDir>$(WixToolPath)</WixExtDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <IsWin64 Condition=" '$(ProcessorArchitecture)' == 'x64' ">yes</IsWin64>
+    <OutputPath>..\..\Assemblies\Installation\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>Debug;BuildNumber=$(BuildNumber);ProcessorArchitecture=$(ProcessorArchitecture);IsWin64=$(IsWin64);InstallationVersionForGUI=$(InstallationVersionForGUI);GType=$(GType)</DefineConstants>
+    <SuppressSpecificWarnings>1006;1076;1103</SuppressSpecificWarnings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <IsWin64 Condition=" '$(ProcessorArchitecture)' == 'x64' ">yes</IsWin64>
+    <OutputPath>..\..\Assemblies\Installation\</OutputPath>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+    <DefineConstants>BuildNumber=$(BuildNumber);ProcessorArchitecture=$(ProcessorArchitecture);IsWin64=$(IsWin64);InstallationVersionForGUI=$(InstallationVersionForGUI);GType=$(GType)</DefineConstants>
+    <SuppressSpecificWarnings>1006;1076;1103</SuppressSpecificWarnings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="StandartWixFiles" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DlgCertificateSettings.wxs" />
+    <Compile Include="DlgConfigSettings.wxs" />
+    <Compile Include="FeatureGeneric.wxs" />
+    <Compile Include="Product.wxs" />
+    <Compile Include="StandartWixFiles\BrowseDlg.wxs" />
+    <Compile Include="StandartWixFiles\CancelDlg.wxs" />
+    <Compile Include="StandartWixFiles\Common.wxs" />
+    <Compile Include="StandartWixFiles\CustomizeDlg.wxs" />
+    <Compile Include="StandartWixFiles\DiskCostDlg.wxs" />
+    <Compile Include="StandartWixFiles\ErrorDlg.wxs" />
+    <Compile Include="StandartWixFiles\ErrorProgressText.wxs" />
+    <Compile Include="StandartWixFiles\ExitDialog.wxs" />
+    <Compile Include="StandartWixFiles\FatalError.wxs" />
+    <Compile Include="StandartWixFiles\FilesInUse.wxs" />
+    <Compile Include="StandartWixFiles\InvalidDirDlg.wxs" />
+    <Compile Include="StandartWixFiles\LicenseAgreementDlg.wxs" />
+    <Compile Include="StandartWixFiles\MaintenanceTypeDlg.wxs" />
+    <Compile Include="StandartWixFiles\MaintenanceWelcomeDlg.wxs" />
+    <Compile Include="StandartWixFiles\MsiRMFilesInUse.wxs" />
+    <Compile Include="StandartWixFiles\OutOfDiskDlg.wxs" />
+    <Compile Include="StandartWixFiles\OutOfRbDiskDlg.wxs" />
+    <Compile Include="StandartWixFiles\PrepareDlg.wxs" />
+    <Compile Include="StandartWixFiles\ProgressDlg.wxs" />
+    <Compile Include="StandartWixFiles\ResumeDlg.wxs" />
+    <Compile Include="StandartWixFiles\UserExit.wxs" />
+    <Compile Include="StandartWixFiles\VerifyReadyDlg.wxs" />
+    <Compile Include="StandartWixFiles\WaitForCostingDlg.wxs" />
+    <Compile Include="StandartWixFiles\WelcomeDlg.wxs" />
+    <Compile Include="WixUI_GenericWS.wxs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WixUI_en-us.wxl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.DialerWebServicesWixLibrary\Confirmit.CATI.DialerWebServicesWixLibrary.wixproj">
+      <Name>Confirmit.CATI.DialerWebServicesWixLibrary</Name>
+      <Project>{0d29df28-b038-41f5-86b4-9945cdcb3c19}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixNetFxExtension">
+      <HintPath>$(WixExtDir)WixNetFxExtension.dll</HintPath>
+      <Name>WixNetFxExtension</Name>
+    </WixExtension>
+    <WixExtension Include="WixIIsExtension">
+      <HintPath>$(WixExtDir)WixIIsExtension.dll</HintPath>
+      <Name>WixIIsExtension</Name>
+    </WixExtension>
+  </ItemGroup>
+  <Import Project="$(WixTargetsPath)" />
+  <!--
+	To modify your build process, add your task inside one of the targets below and uncomment it.
+	Other similar extension points exist, see Wix.targets.
+	<Target Name="BeforeBuild">
+	</Target>
+	<Target Name="AfterBuild">
+	</Target>
+	-->
+</Project>

@@ -1,0 +1,27 @@
+<#+
+public class TextEngine
+{
+    public static string JoinEx(int indent, bool appendToLast, string[] value)
+    {
+        string indentString = new string(' ', indent);
+        string delimiterString = "\r\n" + indentString;
+        string commaDelimiterString = "," + delimiterString;
+        
+        var resultBuilder = new StringBuilder();
+        
+        if (value.Length != 0)
+        {
+            resultBuilder.Append(delimiterString);
+        }
+        
+        resultBuilder.Append(string.Join(commaDelimiterString, value));
+        
+        if ((appendToLast) && (value.Length != 0))
+        {
+            resultBuilder.Append(commaDelimiterString);
+        }
+        
+        return resultBuilder.ToString();
+    }
+}
+#>

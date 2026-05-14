@@ -1,0 +1,1 @@
+﻿CREATE UNIQUE CLUSTERED INDEX PK_BvClusteredQuotaCell ON BvClusteredQuotaCell ( SurveyId, CellId )

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vxml version="2.1" xml:lang="en-US" xmlns="http://www.w3.org/2001/vxml">
+  <form>
+    <var name="__prevPageProgress" expr="'0.25;0.25'" />
+    <var name="__pagemasterid" expr="'321'" />
+    <var name="__theme" expr="'Main+theme'" />
+    <var name="l" expr="'9'" />
+    <var name="__sres" expr="'0|0'" />
+    <var name="__sid__" expr="'cXgq7mb4k_LerZ_qy7Cm6LwR3URotTdXSjrgIjjKawoz9IfghaDU9FE_cdOXRhdlaOv1NnV0P8Q0KDwamS-HAn0cqLHqDPQToeFXa13VYn9OXyj5t77jgmOmu9N8ihRT0NpmyggjxtxQuiy_0Kvtx3Vnu43g5952K-nxH108rNFyGNHeE_jN7MpgYEZp-JKon5Bx9vg5EXZuE0woBvtPrDOTBxx7CChhsWhBdmndJyyhUtG19rcdRcDpx1ZHB77LHwxQOA6SLNtjeXOSLO9duclS29lH6e_ojwfE_bg2rD9m-6NJ_vG8sXuzo3Vq9e3ODYzkVe90RTDUJZR5BxKyY7scmmG4nbqNFkXJ87OKKMTfFjggeKRsxmqwjD0uxc6RZev8tzbCRtGsw2yxNr9slBwpFY8IJNqF2ZG195-WbgG5Hln0AVE3CCHjVvFK6GxUqmCeDBv1EN8197TsKK0jk2B2eViMgTNp1DxwwIiMkL0R4NVkKR9fnzbblCJtcp-8Egx_KnsH7YissB-IAu6-KnXMYVifvthPCniRzvMntaP1TdGnmo823bhsPqsu_LHEOTzOL-TJzK6EpNRBqbLffB8cB5_rpwKEiIfOqK8W3dQZoHIwaDlQyByE_d8U2-xr0'" />
+    <block name="i1">
+      <prompt>We have some info for you.</prompt>
+      <submit namelist="__prevPageProgress __pagemasterid __theme l __sres __sid__" />
+    </block>
+  </form>
+</vxml>

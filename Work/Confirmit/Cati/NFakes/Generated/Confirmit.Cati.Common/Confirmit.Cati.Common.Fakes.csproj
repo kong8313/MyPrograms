@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\..\assemblies</OutputPath>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>Confirmit.Cati.Common</RootNamespace>
+    <AssemblyName>Confirmit.Cati.Common.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{98c3662e-ce8c-8efe-6e0f-bdb11f85be1d}</ProjectGuid>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{d68a6b1f-92ba-4305-b802-ff6b35d7a6d2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_3rdpart\Unity 2.1\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.Cati.Common\Confirmit.Cati.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubIAuthorizationMessageHeaderReader.cs" />
+    <compile Include=".\StubICatiSecretKeyHasher.cs" />
+    <compile Include=".\StubICatiSymmetricEncryptor.cs" />
+    <compile Include=".\StubIChannelFactoryWrapperConfiguration.cs" />
+    <compile Include=".\StubIChannelFactoryWrapperFactoryOfT.cs" />
+    <compile Include=".\StubIChannelFactoryWrapperOfT.cs" />
+    <compile Include=".\StubIConsoleAuthorizationService.cs" />
+    <compile Include=".\StubIConsoleService.cs" />
+    <compile Include=".\StubIConsoleStateService.cs" />
+    <compile Include=".\StubIErrorReportingService.cs" />
+    <compile Include=".\StubIEventDetails.cs" />
+    <compile Include=".\StubIInputParameterValidator.cs" />
+    <compile Include=".\StubILogger.cs" />
+    <compile Include=".\StubILoginPasswordAuthenticationDataProvider.cs" />
+    <compile Include=".\StubIMessageHeaderAccessor.cs" />
+    <compile Include=".\StubIPerformanceCategoryCreator.cs" />
+    <compile Include=".\StubIPerformanceCounter.cs" />
+    <compile Include=".\StubIPerformanceCounterFactory.cs" />
+    <compile Include=".\StubIServiceInitializer.cs" />
+    <compile Include=".\StubIServiceLocator.cs" />
+    <compile Include=".\StubIServiceLocatorRegistry.cs" />
+    <compile Include=".\StubIServiceRegistrator.cs" />
+    <compile Include=".\StubIServiceResolver.cs" />
+    <compile Include=".\StubISideBySideManager.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,14 @@
+{{- if and .Values.global.metrics.enabled (and .Values.metrics.enabled .Values.metrics.serviceMonitor.enabled) }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ template "cati-supervisor-legacy-client.fullname" . }}
+  labels: {{ include "cati-supervisor-legacy-client.labels" $ | nindent 4 }}
+spec:
+  selector:
+    matchLabels: {{- include "cati-supervisor-legacy-client.serviceSelectorLabels" $ | nindent 6 }}
+  endpoints:
+  - port: http-metrics
+    path: /supervisor/metrics
+    interval: {{ $.Values.metrics.serviceMonitor.interval }}
+{{- end }}

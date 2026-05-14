@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\..\assemblies</OutputPath>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>Confirmit.CATI.DatabaseUpdateLibrary</RootNamespace>
+    <AssemblyName>Confirmit.CATI.DatabaseUpdateLibrary.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{020ad94e-611a-9ca9-de56-d94298f1c8d9}</ProjectGuid>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Installation.Common\Confirmit.CATI.Installation.Common.csproj">
+      <Project>{180DD67A-0841-40A6-A0C3-060707A2494D}</Project>
+      <Name>Confirmit.CATI.Installation.Common</Name>
+    </ProjectReference>
+
+    <Reference Include="System" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Management.Automation_PowerShell_3.0.6.3.9600.17400\lib\net40\System.Management.Automation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.XML" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.DatabaseUpdate.Library\Confirmit.CATI.DatabaseUpdateLibrary.csproj">
+      <Project>{C8F3E8E8-2DB7-4BBC-947F-BB3495E1765F}</Project>
+      <Name>Confirmit.CATI.DatabaseUpdateLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubIConfiguration.cs" />
+    <compile Include=".\StubIDatabaseUpdateEngine.cs" />
+    <compile Include=".\StubIDatabaseWorker.cs" />
+    <compile Include=".\StubIPowerShellScriptExecutor.cs" />
+    <compile Include=".\StubIQueryExecutor.cs" />
+    <compile Include=".\StubIResources.cs" />
+    <compile Include=".\StubIUpdateScriptDatabaseWorker.cs" />
+    <compile Include=".\StubIUpdateScriptsProvider.cs" />
+    <compile Include=".\StubIValidator.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

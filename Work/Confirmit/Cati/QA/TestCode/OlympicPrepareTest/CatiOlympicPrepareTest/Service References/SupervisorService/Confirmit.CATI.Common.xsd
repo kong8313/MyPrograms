@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="PersonAssignmentListMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="AssignedCallsOnly" />
+      <xs:enumeration value="AllCalls" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="PersonAssignmentListMode" nillable="true" type="tns:PersonAssignmentListMode" />
+  <xs:simpleType name="TaskChoicePermissions">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="Automatic" />
+          <xs:enumeration value="Manual" />
+          <xs:enumeration value="SurveyAssignment" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="TaskChoicePermissions" nillable="true" type="tns:TaskChoicePermissions" />
+  <xs:simpleType name="DialType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Landline" />
+      <xs:enumeration value="Cellphone" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DialType" nillable="true" type="tns:DialType" />
+</xs:schema>

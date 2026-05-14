@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <ColumnInt>-4</ColumnInt>
+    <ColumnText>Text 2 k</ColumnText>
+    <ColumnDate>2009-03-10T13:59:23Z</ColumnDate>
+    <ColumnDecimal>5.732</ColumnDecimal>
+  </table>
+  <table>
+    <ColumnInt>-2</ColumnInt>
+    <ColumnText>Text 2 k</ColumnText>
+    <ColumnDate>2009-03-11T19:59:23Z</ColumnDate>
+    <ColumnDecimal>5.732</ColumnDecimal>
+  </table>
+  <table>
+    <ColumnInt>45</ColumnInt>
+    <ColumnText>Acu</ColumnText>
+    <ColumnDate>2009-03-10T23:50:02Z</ColumnDate>
+    <ColumnDecimal>5.732</ColumnDecimal>
+  </table>
+  <table>
+    <ColumnInt>100</ColumnInt>
+    <ColumnText>Bohgf</ColumnText>
+    <ColumnDate>2009-03-11T09:10:10Z</ColumnDate>
+    <ColumnDecimal>87688</ColumnDecimal>
+  </table>
+</DocumentElement>

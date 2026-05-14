@@ -1,0 +1,70 @@
+using System.Collections.Generic;
+
+using Confirmit.CATI.Common;
+using Confirmit.CATI.Supervisor.Core.Confirmit;
+using Confirmit.CATI.Supervisor.Resources;
+
+namespace Confirmit.CATI.Supervisor.Core.Filters
+{
+    /// <summary>
+    /// Provides variables for filtering.
+    /// </summary>
+    public class FilterVariablesProvider : IFilterVariablesProvider
+    {
+        private readonly IFilterManager _filterManager;
+        private readonly IConfirmitQuestionsProvider _confirmitQuestionsProvider;
+
+        private readonly VariableInfo[] _callFields =
+                {
+                    new VariableInfo(Strings.CallPriority, VariableTypes.Integer, TableTypes.Call, "Priority"),
+                    new VariableInfo(Strings.TimeInShift, VariableTypes.Date, TableTypes.Call, "TimeInShift"),
+                    new VariableInfo(Strings.ExpireTime, VariableTypes.Date, TableTypes.Call, "ExpireTime"),
+                    new VariableInfo(Strings.ShiftTypeName, VariableTypes.String, TableTypes.ShiftType, "Name"),
+                    new VariableInfo(Strings.AssignedTo, VariableTypes.String, TableTypes.Resource, "Name"),
+                    new VariableInfo(Strings.StateName, VariableTypes.PredefinedValue, TableTypes.Call, "CallState")
+                };
+
+        private readonly VariableInfo[] _interviewFields =
+                {
+                    new VariableInfo(Strings.InterviewId, VariableTypes.Integer, TableTypes.Interview, "ID"),
+                    new VariableInfo(Strings.TelNumber, VariableTypes.String, TableTypes.Interview,
+                                     "TelephoneNumber"),
+                    new VariableInfo(Strings.RespondentName, VariableTypes.String, TableTypes.Interview,
+                                     "RespondentName"),
+                    new VariableInfo(Strings.Timezone, VariableTypes.Integer, TableTypes.Interview, "TimezoneID"),
+                    new VariableInfo(Strings.ExtendedStatus, VariableTypes.PredefinedValue, TableTypes.Interview,
+                                     "TransientState"),
+                    new VariableInfo(Strings.CallAttempts, VariableTypes.Integer, TableTypes.Interview,
+                                     "AttemptNumber"),
+                    new VariableInfo(Strings.LastCallTime, VariableTypes.Date, TableTypes.Interview, "LastCallTime"),
+                    new VariableInfo(Strings.InterviewerName, VariableTypes.String, TableTypes.Person, "Name")
+                };
+
+        private readonly VariableInfo[] _appointmentFields =
+                {
+                    new VariableInfo(Strings.AppointmentTime, VariableTypes.Date, TableTypes.Appointment, "Time"),
+                    new VariableInfo(Strings.ExpireTime, VariableTypes.Date, TableTypes.Appointment, "ExpTime")
+                };
+
+        public FilterVariablesProvider(IFilterManager filterManager, IConfirmitQuestionsProvider confirmitQuestionsProvider)
+        {
+            _filterManager = filterManager;
+            _confirmitQuestionsProvider = confirmitQuestionsProvider;
+        }
+
+        public List<VariableInfo> GetVariables(int surveyId, int? filterId)
+        {
+            List<VariableInfo> items = new List<VariableInfo>();
+
+            items.AddRange(_callFields);
+            items.AddRange(_appointmentFields);
+            items.AddRange(_interviewFields);
+            items.Add(new VariableInfo(Strings.ReviewStatus, VariableTypes.PredefinedValue, TableTypes.Interview, "ReviewStatus"));
+
+            items.AddRange(_filterManager.GetFilters(surveyId, filterId));
+            items.AddRange(_confirmitQuestionsProvider.GetReplicatedQuestionsOrderedByName(surveyId));
+
+            return items;
+        }
+    }
+}

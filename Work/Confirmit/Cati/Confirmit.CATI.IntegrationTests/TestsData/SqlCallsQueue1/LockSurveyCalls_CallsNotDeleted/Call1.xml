@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Call>
+    <callID>1</callID>
+    <apptID>1</apptID>
+    <surveySid>14</surveySid>
+    <iid>15</iid>
+    <phase>2</phase>
+    <roleID>2</roleID>
+    <shiftID>1</shiftID>
+    <priority>1</priority>
+    <timeInShift>1999-10-10T00:00:00</timeInShift>
+    <timeToExpire>2999-10-10T00:00:00</timeToExpire>
+    <resource>99</resource>
+    <resource_type>2</resource_type>
+  </Call>
+</DocumentElement>

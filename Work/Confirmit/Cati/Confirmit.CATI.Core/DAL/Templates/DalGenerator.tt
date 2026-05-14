@@ -1,0 +1,275 @@
+<#@ include file="T4Toolbox.tt" #>
+<#@ include file="TextEngine.tt" #>
+<#@ include file="CSharpEngine.tt" #>
+<#@ include file="DatabaseEngine.tt" #>
+<#@ include file="EntityTemplate.tt" #>
+<#@ include file="NoMetadataException.tt" #>
+<#@ include file="EntityAdapterTemplate.tt" #>
+<#@ include file="ProcedureEntityTemplate.tt" #>
+<#@ include file="ProcedureAdapterTemplate.tt" #>
+<#@ include file="TableCacheTemplate.tt" #>
+<#@ include file="TableTypeEntityTemplate.tt" #>
+<#@ include file="TableTypeAdapterTemplate.tt" #>
+
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Xml.dll" #>
+<#@ assembly name="c:\Program Files (x86)\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.ConnectionInfo.dll" #>
+<#@ assembly name="c:\Program Files (x86)\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Smo.dll" #>
+<#@ assembly name="c:\Program Files (x86)\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.SqlEnum.dll" #>
+<#@ assembly name="c:\Program Files (x86)\Microsoft SQL Server\120\SDK\Assemblies\Microsoft.SqlServer.Management.Sdk.Sfc.dll" #>
+
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Collections.Generic" #>
+
+<#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Common" #>
+
+<#+
+public class DalGenerator : Generator
+{
+    public DatabaseEngine DatabaseEngine = new DatabaseEngine();
+
+    protected override void RunCore()
+    {
+        using (StreamWriter log = new StreamWriter("c:\\log.txt", false))
+        {
+            log.WriteLine("Connecting to the SQL server.");
+            
+            ServerConnection serverConnection = new ServerConnection(new DatabaseEngine().GetSqlServerInstanceName(), DatabaseEngine.Login, DatabaseEngine.Password);
+            
+            log.WriteLine("Creating server object.");
+
+            Server server = new Server(serverConnection);
+            
+            server.SetDefaultInitFields(true);
+            
+            Database database = new Database(server, DatabaseEngine.DatabaseName);
+            
+            log.WriteLine("Reading database metadata.");
+
+            database.Refresh();
+
+			log.WriteLine(string.Format("Processing {0} user table type.", database.UserDefinedTableTypes.Count));
+
+            foreach (UserDefinedTableType type in database.UserDefinedTableTypes)
+            {
+				//
+				// Generate User table type entity 
+				//
+				
+                var entityTemplate = new TableTypeEntityTemplate();
+
+				entityTemplate.Output.File = @"..\Generated\Entity\TableType\" + type.Name + "Entity.cs";
+
+				log.WriteLine(string.Format("Generating user table type {0} entity ", type.Name));
+    
+                try
+                {
+					entityTemplate.DatabaseEngine = DatabaseEngine;
+					entityTemplate.Type = type; 
+
+                    entityTemplate.Render();
+                    log.WriteLine("Done");
+                }catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating entity class for the user table type {0}. Exception\r\n{1}",
+                            type.Name,
+                            e));
+                    
+                    throw;
+                }
+
+				//
+				// Generate User table type adapter 
+				//
+				var adapterTemplate = new TableTypeAdapterTemplate();
+
+				adapterTemplate.Output.File = @"..\Generated\Adapter\TableType\" + type.Name + "Adapter.cs";
+
+				log.WriteLine(string.Format("Generating user table type {0} adapter ", type.Name));
+    
+                try
+                {
+					adapterTemplate.DatabaseEngine = DatabaseEngine;
+					adapterTemplate.Type = type; 
+
+                    adapterTemplate.Render();
+                    log.WriteLine("Done");
+                }catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating entity class for the user table type {0}. Exception\r\n{1}",
+                            type.Name,
+                            e));
+                    
+                    throw;
+                }
+            }
+            
+            log.WriteLine(string.Format("Processing {0} stored procedures.", database.StoredProcedures.Count));
+
+            foreach(StoredProcedure procedure in database.StoredProcedures)
+            {
+                if (procedure.IsSystemObject == true)
+                    continue;
+                
+                //
+                // Generate Stored Procedure Entities
+                //
+                ProcedureEntityTemplate procedureEntityTemplate = new ProcedureEntityTemplate();
+    
+                procedureEntityTemplate.DatabaseEngine = DatabaseEngine;
+                procedureEntityTemplate.Procedure = procedure; 
+    
+                procedureEntityTemplate.Output.File = @"..\Generated\Entity\Procedure\" + procedure.Name + "Entity.cs";
+    
+                log.WriteLine(string.Format("Generating procedure {0} entity ", procedure.Name));
+                
+                try
+                {
+                    procedureEntityTemplate.Render();
+                    log.WriteLine("Done");
+                }
+                catch(NoMetadataException e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating entity class for the stored procedure {0}. Exception\r\n{1}",
+                            procedure.Name,
+                            e));
+                }
+                catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating entity class for the stored procedure {0}. Exception\r\n{1}",
+                            procedure.Name,
+                            e));
+                    
+                    throw;
+                }
+                
+                //
+                // Generate Stored Procedure Adapters
+                //
+                ProcedureAdapterTemplate procedureAdapterTemplate = new ProcedureAdapterTemplate();
+    
+                procedureAdapterTemplate.DatabaseEngine = DatabaseEngine;
+                procedureAdapterTemplate.Procedure = procedure; 
+    
+                procedureAdapterTemplate.Output.File = @"..\Generated\Adapter\Procedure\" + procedure.Name + "Adapter.cs";
+    
+                log.WriteLine(string.Format("Generating procedure {0} adapter ", procedure.Name));
+                
+                try
+                {
+                    procedureAdapterTemplate.Render();
+                    log.WriteLine("Done");
+                }
+                catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating adapter class for the stored procedure {0}. Exception\r\n{1}",
+                            procedure.Name,
+                            e));
+
+                    throw;
+                }
+            }
+    
+            log.WriteLine(string.Format("Processing {0} tables.", database.Tables.Count));
+
+            foreach(Table table in database.Tables)
+            {
+                //
+                // Generate Table Entities
+                //
+                EntityTemplate entityTemplate = new EntityTemplate();
+                entityTemplate.DatabaseEngine = DatabaseEngine;
+                entityTemplate.EntityTable = table; 
+                
+                entityTemplate.Output.File = @"..\Generated\Entity\Table\" + table.Name + "Entity.cs";
+                
+                log.WriteLine(string.Format("Generating table {0} entity ", table.Name));
+                
+                try
+                {
+                    entityTemplate.Render();
+                    log.WriteLine("Done");
+                }
+                catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating entity class for the table {0}. Exception\r\n{1}",
+                            table.Name,
+                            e));
+
+                    throw;
+                }
+                
+                //
+                // Generate Table Adapters
+                //
+                EntityAdapterTemplate entityAdapterTemplate = new EntityAdapterTemplate();
+                entityAdapterTemplate.DatabaseEngine = DatabaseEngine;
+                entityAdapterTemplate.EntityTable = table; 
+                
+                entityAdapterTemplate.Output.File = @"..\Generated\Adapter\Table\" + table.Name + "Adapter.cs";
+    
+                log.WriteLine(string.Format("Generating table {0} adapter ", table.Name));
+                
+                try
+                {
+                    entityAdapterTemplate.Render();
+                    log.WriteLine("Done");
+                }
+                catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating adapter class for the table {0}. Exception\r\n{1}",
+                            table.Name,
+                            e));
+
+                    throw;
+                }
+            }
+            
+            foreach(var cacheDefinition in DatabaseEngine.GetCacheDefinitions())
+            {
+                var tableName = cacheDefinition.Key;
+                
+                TableCacheTemplate tableCacheTemplate = new TableCacheTemplate();
+                tableCacheTemplate.Table = database.Tables[tableName];
+                tableCacheTemplate.DatabaseEngine = DatabaseEngine;
+                tableCacheTemplate.CacheDefinition = cacheDefinition;
+                
+                tableCacheTemplate.Output.File = @"..\Generated\Cache\" + tableName + "Cache.cs";
+                
+                log.WriteLine(string.Format("Generating table {0} cache ", tableName));
+                
+                try
+                {
+                    tableCacheTemplate.Render();
+                    log.WriteLine("Done");
+                }
+                catch(Exception e)
+                {
+                    log.WriteLine(string.Format(
+                            "Error generating cache class for the table {0}. Exception\r\n{1}",
+                            tableName,
+                            e));
+
+                    throw;
+                }
+            }
+
+            log.WriteLine("Done.");
+        }
+        
+    }
+}
+#>

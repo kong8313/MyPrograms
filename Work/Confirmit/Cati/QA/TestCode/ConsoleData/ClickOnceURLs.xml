@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<data>
+    <release>
+        <deployManifestUriStr>http://cati.testlab.firmglobal.net/CatiInterviewerConsole/catiinterviewerconsole.application</deployManifestUriStr>
+        <keepLocalCopy>False</keepLocalCopy>
+    </release>
+
+    <release>
+        <deployManifestUriStr>http://cati.testlab.firmglobal.net/CatiInterviewerConsole/catiinterviewerconsoleNew.application</deployManifestUriStr>
+        <keepLocalCopy>True</keepLocalCopy>
+    </release>
+
+    <release>
+        <deployManifestUriStr>http://cati.testlab.firmglobal.net/CatiSupervisorPlayer/catisupervisorplayer.application</deployManifestUriStr>
+        <keepLocalCopy>False</keepLocalCopy>
+    </release>
+  
+  
+    <master>
+        <deployManifestUriStr>http://co-osl-tenta198.firmglobal.com/download/cati/interviewerconsole/catiinterviewerconsole.application</deployManifestUriStr>
+        <keepLocalCopy>True</keepLocalCopy>
+    </master>
+
+    <master>
+        <deployManifestUriStr>http://co-osl-tenta198.firmglobal.com/download/cati/interviewerconsole/catiinterviewerconsoleNew.application</deployManifestUriStr>
+        <keepLocalCopy>False</keepLocalCopy>
+    </master>
+
+    <master>
+        <deployManifestUriStr>http://co-osl-tenta198.firmglobal.com/download/cati/monitoringconsole/catisupervisorplayer.application</deployManifestUriStr>
+        <keepLocalCopy>False</keepLocalCopy>
+    </master>
+
+
+    <feature1>
+        <deployManifestUriStr>http://co-osl-tenta180.firmglobal.com/catiinterviewerconsole/catiinterviewerconsolenew.application</deployManifestUriStr>
+        <keepLocalCopy>True</keepLocalCopy>
+    </feature1>
+
+    <feature1>
+        <deployManifestUriStr>http://co-osl-tenta180.firmglobal.com/catiinterviewerconsole/catiinterviewerconsole.application</deployManifestUriStr>
+        <keepLocalCopy>False</keepLocalCopy>
+    </feature1>
+
+    <feature1>
+        <deployManifestUriStr>http://co-osl-tenta180.firmglobal.com/catisupervisorplayer/catisupervisorplayer.application</deployManifestUriStr>
+        <keepLocalCopy>False</keepLocalCopy>
+    </feature1>
+</data>

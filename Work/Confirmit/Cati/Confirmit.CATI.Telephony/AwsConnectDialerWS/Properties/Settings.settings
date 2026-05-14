@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Confirmit.CATI.Telephony.AwsConnectDialerWS.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="RedisConnString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">redis-announce-0:6379,redis-announce-1:6379,redis-announce-2:6379</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
+

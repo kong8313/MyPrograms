@@ -1,0 +1,1 @@
+dotnet cake --target=InitHelmChart --dockerLogin=false

@@ -1,0 +1,11 @@
+{{- if and .Values.global.alerts.enabled .Values.alerts.enabled .Values.alerts.prometheusRules }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ template "cati-dialer-simulator.fullname" . }}
+  labels: {{ include "cati-dialer-simulator.labels" . | nindent 4 }}
+spec:
+  groups:
+  - name: {{ template "cati-dialer-simulator.fullname" . }}
+    rules: {{ tpl .Values.alerts.prometheusRules . | nindent 6 }}
+{{- end }}

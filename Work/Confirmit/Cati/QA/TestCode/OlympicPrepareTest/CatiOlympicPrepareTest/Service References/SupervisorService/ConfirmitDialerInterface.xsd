@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="AgentTaskChoiceMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Automatic" />
+      <xs:enumeration value="Manual" />
+      <xs:enumeration value="CampaignAssignment" />
+      <xs:enumeration value="Choice" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AgentTaskChoiceMode" nillable="true" type="tns:AgentTaskChoiceMode" />
+  <xs:simpleType name="AgentType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="LiveAgent" />
+      <xs:enumeration value="IvrAgent" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AgentType" nillable="true" type="tns:AgentType" />
+  <xs:complexType name="ArrayOfAudioRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AudioRecordInfo" nillable="true" type="tns:AudioRecordInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAudioRecordInfo" nillable="true" type="tns:ArrayOfAudioRecordInfo" />
+  <xs:complexType name="AudioRecordInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Url" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AudioRecordInfo" nillable="true" type="tns:AudioRecordInfo" />
+  <xs:complexType name="ArrayOfDialerParameterError">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="DialerParameterError" nillable="true" type="tns:DialerParameterError" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfDialerParameterError" nillable="true" type="tns:ArrayOfDialerParameterError" />
+  <xs:complexType name="DialerParameterError">
+    <xs:sequence>
+      <xs:element name="_x003C_ErrorDescription_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_FullDescription_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Id_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Name_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DialerParameterError" nillable="true" type="tns:DialerParameterError" />
+</xs:schema>

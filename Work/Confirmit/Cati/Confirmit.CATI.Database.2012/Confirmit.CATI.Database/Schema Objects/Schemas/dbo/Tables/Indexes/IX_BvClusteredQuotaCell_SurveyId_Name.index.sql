@@ -1,0 +1,1 @@
+﻿CREATE UNIQUE INDEX IX_BvClusteredQuotaCell_SurveyId_Name ON BvClusteredQuotaCell ( SurveyId, Name )

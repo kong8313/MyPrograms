@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.ConsoleService.Abstract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.ConsoleService.Abstract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="TransferOptions">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AllowInterviewing" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Resource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="tns:ConsoleTransferType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TransferOptions" nillable="true" type="tns:TransferOptions" />
+  <xs:simpleType name="ConsoleTransferType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="InternalCold">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ExternalCold">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="InternalWarm">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ExternalWarm">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConsoleTransferType" nillable="true" type="tns:ConsoleTransferType" />
+</xs:schema>

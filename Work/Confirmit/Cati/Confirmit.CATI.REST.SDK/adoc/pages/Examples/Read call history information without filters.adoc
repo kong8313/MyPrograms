@@ -1,0 +1,29 @@
+﻿
+.Read call history information without filters
+
+----
+// Read configuration parameters
+var catiServerAddress = ConfigurationManager.AppSettings.Get("CatiServerAddress");
+var wsServerAddress = ConfigurationManager.AppSettings.Get("WsServerAddress");
+var proxyServerAddress = ConfigurationManager.AppSettings.Get("ProxyServerAddress");
+var companyId = int.Parse(ConfigurationManager.AppSettings.Get("CompanyId"));
+var user = ConfigurationManager.AppSettings.Get("UserName");
+var password = ConfigurationManager.AppSettings.Get("Password");
+
+// Create and configure LogOn service proxy class
+var logonClient = new LogOnSoapClient();
+logonClient.Endpoint.Address = new EndpointAddress(logonClient.Endpoint.Address.ToString().Replace("localhost", wsServerAddress));
+
+// Log on and generate xConfirmitApiKey
+var xConfirmitApiKey = logonClient.LogOnUser(user, password);
+
+// Create RestClient class
+var client = new RestClient(catiServerAddress, proxyServerAddress, xConfirmitApiKey, companyId);
+
+// Create service class
+ICallHistoryService callHistoryService = new CallHistoryService(client);
+
+// Get all call history data
+var data = await callHistoryService.GetAsync("");
+
+----

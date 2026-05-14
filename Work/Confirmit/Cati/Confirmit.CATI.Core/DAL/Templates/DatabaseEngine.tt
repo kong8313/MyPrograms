@@ -1,0 +1,418 @@
+﻿<#+
+public enum CacheType
+{
+    None,
+    ById,
+    ByIdAndName
+}
+
+public class DatabaseEngine
+{
+	private HashSet<string> _userDefinedTableType;
+
+    public string DatabaseName;
+    public string Login;
+    public string Password;
+    
+    public string GetSqlServerInstanceName()
+    { 
+        string sqlInstanceName = Environment.MachineName;
+        if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("CATI_SQL_INSTANCE_NAME")))
+        {
+            sqlInstanceName = Environment.GetEnvironmentVariable("CATI_SQL_INSTANCE_NAME");
+        }
+        return sqlInstanceName;
+    }
+
+    public string ConnectionString
+    {
+        get
+        {
+            SqlConnectionStringBuilder cn = new SqlConnectionStringBuilder();
+            
+            cn.DataSource = GetSqlServerInstanceName();
+            cn.InitialCatalog = DatabaseName;
+            cn.UserID = Login;
+            cn.Password = Password;
+            
+            return cn.ToString();
+        }
+    }
+	
+	public HashSet<string> GetUserDefinedTableType()
+	{
+		if(_userDefinedTableType == null)
+		{
+			HashSet<string> types = new HashSet<string>();
+			using (SqlConnection cn = new SqlConnection(ConnectionString))
+            {
+                cn.Open();
+            
+                using (SqlCommand cmd = new SqlCommand("select name from sys.types WHERE is_user_defined = 1 AND is_table_type = 1", cn))
+                {
+                    SqlDataReader rd = cmd.ExecuteReader();
+                
+                    while(rd.Read())
+					{
+						types.Add((string)rd["name"]);
+					}
+                    
+                }
+            }
+			_userDefinedTableType = types;
+		}
+		return _userDefinedTableType;
+	}
+
+    public string SqlDataType2CSharpType(
+        string sqlDataType)
+    {
+		if(GetUserDefinedTableType().Contains(sqlDataType))
+			return "DataTable";
+
+        switch(sqlDataType)
+        {
+            case "char":
+            case "nchar":
+            case "varchar":
+            case "nvarchar":
+            case "text":
+            case "ntext":
+            case "xml":
+                return "string";
+            case "int":
+                return "int";
+            case "smallint":
+                return "short";
+            case "tinyint":
+                return "byte";
+            case "bigint":
+                return "long";
+            case "bit":
+                return "bool";
+            case "datetime":
+            case "datetime2":
+            case "smalldatetime":
+                return "DateTime";
+			case "time":
+				return "TimeSpan";
+            case "money":
+                return "decimal";
+			case "decimal":
+                return "decimal";
+            case "real":
+                return "float";
+            case "image":
+            case "varbinary":
+                return "byte[]";
+            case "uniqueidentifier":
+                return "Guid";
+            case "timestamp":
+                return "byte[]";
+            default :
+                throw new Exception(string.Format("Unknown SQL type '{0}'", sqlDataType));
+        }
+    }
+
+    public string SqlDataType2CSharpType(
+        DataType sqlDataType)
+    {
+        string dataType = sqlDataType.ToString();
+
+        if (sqlDataType.SqlDataType == SqlDataType.Xml)
+        {
+            dataType = "xml";
+        }
+
+        return SqlDataType2CSharpType(dataType);
+    }
+
+    public string SqlDataType2CSharpType(
+        DataType sqlDataType,
+        bool considerNull)
+    {
+        return SqlDataType2CSharpType(sqlDataType) + (considerNull ? (IsCouldBeNullable(sqlDataType) ? "?" : "") : "");
+    }
+    
+    public string SqlDataType2SqlDbType(
+        SqlDataType sqlDataType)
+    {
+        switch(sqlDataType.ToString())
+        {
+            case "VarCharMax":
+                return "VarChar";
+            case "NVarCharMax":
+                return "NVarChar";
+            case "VarBinaryMax":
+                return "VarBinary";
+			case "UserDefinedTableType":
+				return "Structured";
+            default:
+                return sqlDataType.ToString();
+        }
+    }
+    
+    public string SqlDataType2DataReaderMethod(
+        string sqlDataType,
+        string columnName)
+    {
+        switch(sqlDataType)
+        {
+            case "char":
+            case "nchar":
+            case "varchar":
+            case "nvarchar":
+            case "text":
+            case "ntext":
+            case "xml":
+                return "GetString(" + columnName + "Ordinal)";
+            case "int":
+                return "GetInt32(" + columnName + "Ordinal)";
+            case "smallint":
+                return "GetInt16(" + columnName + "Ordinal)";
+            case "tinyint":
+                return "GetByte(" + columnName + "Ordinal)";
+            case "bigint":
+                return "GetInt64(" + columnName + "Ordinal)";
+            case "bit":
+                return "GetBoolean(" + columnName + "Ordinal)";
+            case "datetime":
+            case "datetime2":
+            case "smalldatetime":
+			case "time":
+                return "GetDateTime(" + columnName + "Ordinal)";
+            case "money":
+			case "decimal":
+                return "GetDecimal(" + columnName + "Ordinal)";
+            case "real":
+                return "GetFloat(" + columnName + "Ordinal)";
+            case "image":
+            case "varbinary":
+                return "GetValue(" + columnName + "Ordinal)";
+            case "uniqueidentifier":
+                return "GetGuid(" + columnName + "Ordinal)";
+            case "timestamp":
+                return "GetValue(" + columnName + "Ordinal)";				
+            default :
+                throw new Exception(string.Format("Unknown SQL type '{0}'", sqlDataType));
+        }
+    }
+    
+    public string SqlDataType2DataReaderMethod(
+        DataType sqlDataType,
+        string columnName)
+    {
+        string dataType = sqlDataType.ToString();
+
+        if (sqlDataType.SqlDataType == SqlDataType.Xml)
+        {
+            dataType = "xml";
+        }
+
+        return SqlDataType2DataReaderMethod(dataType, columnName);
+    }
+    
+    public string SqlDataType2TypeCast(
+        string sqlDataType)
+    {
+        if ( sqlDataType == "image" || sqlDataType == "varbinary" || sqlDataType == "timestamp")
+        {
+            return "(byte[])";
+        }
+    
+        return "";
+    }
+    
+    public string SqlDataType2TypeCast(
+        DataType sqlDataType)
+    {
+        return SqlDataType2TypeCast(!string.IsNullOrEmpty(sqlDataType.ToString()) ? sqlDataType.ToString() : sqlDataType.SqlDataType.ToString().ToLower());
+    }
+    
+    public bool IsCouldBeNullable(
+        string sqlDataType)
+    {
+        switch(SqlDataType2CSharpType(sqlDataType))
+        {
+            case "Guid":
+            case "bool":
+            case "int":
+            case "short":
+            case "long":
+            case "byte":
+            case "real":
+            case "DateTime":
+			case "TimeSpan":
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    public bool IsCouldBeNullable(
+        DataType sqlDataType)
+    {
+        return IsCouldBeNullable(!string.IsNullOrEmpty(sqlDataType.ToString()) ? sqlDataType.ToString() : sqlDataType.SqlDataType.ToString().ToLower());
+    }
+    
+    public string DatabaseColumn2CSharpType(
+        Column column)
+    {
+        string cSharpDataType = SqlDataType2CSharpType(column.DataType);
+
+        if (column.Nullable && IsCouldBeNullable(column.DataType))
+        {
+            //
+            // Usefull for debugging:
+            // cSharpType += " /* column.Name:" + column.Name + " column.DefaultConstraint.Text:" + column.DefaultConstraint.Text + " column.Nullable:" + column.Nullable + " column.Default:" + column.Default + " */ ";
+            //
+            cSharpDataType += "?";
+        }
+        
+        return cSharpDataType;
+    }
+    
+    public string DatabaseColumn2CSharpDefaultValue(
+        Column column)
+    {
+        if (!column.Nullable)
+        {
+            return SqlDataType2CSharpDefaultValue(column.DataType);
+        }
+        else
+        {
+            return "null";
+        }
+    }
+    
+    public string SqlDataType2CSharpDefaultValue(
+        DataType sqlDataType)
+    {
+        string cSharpDataType = SqlDataType2CSharpType(sqlDataType);
+        
+        return CSharpType2DefaultValue(cSharpDataType);
+    }
+
+    public string CSharpType2DefaultValue(
+        string cSharpDataType)
+    {
+        switch(cSharpDataType)
+           {
+            case "string":
+                return "\"\"";
+            case "byte":
+            case "int": 
+            case "short":               
+            case "long":
+            case "float":
+            case "Int64":
+                return "0";
+            case "bool":
+                return "false";
+            case "DateTime":
+                return "DateTime.MinValue";
+			case "TimeSpan":
+				return "TimeSpan.Zero";
+            case "byte[]":
+                return "null";
+            case "Guid":
+                return "Guid.Empty";
+            default:
+                throw new Exception(string.Format("Unknown C# type {0}", cSharpDataType));
+           }
+    }
+    
+    public string GetStoredProcedureMetadataSql(
+        StoredProcedure procedure)
+    {
+		//Generate query like following: EXEC SpName @FirstParamName = NULL, ... , @LastParameterName = NULL
+		//SQL don't support NULL value for table parameters, so we exclude table params from generated list of args.
+        string procedureParameters = "";
+        foreach(StoredProcedureParameter procedureParameter in procedure.Parameters)
+        {
+			if(procedureParameter.DataType.SqlDataType == SqlDataType.UserDefinedTableType)
+				continue;
+
+            if (!string.IsNullOrEmpty(procedureParameters))
+                procedureParameters += ",";
+            procedureParameters += " " + procedureParameter.Name + " = null";
+        }
+        
+        string procedureSql = string.Format(
+            "SET FMTONLY ON;\r\n EXEC {0} {1};\r\nSET FMTONLY OFF;\r\n",
+            procedure.Name,
+            procedureParameters);
+        
+        return procedureSql;
+    }
+    
+    public Dictionary<string, string> GetRequestMetadata(
+        string sqlRequest)
+    {
+        try
+        {
+            Dictionary<string, string> requestMetadata = new Dictionary<string, string>();
+            
+            using (SqlConnection cn = new SqlConnection(ConnectionString))
+            {
+                cn.Open();
+            
+                using (SqlCommand cmd = new SqlCommand(sqlRequest, cn))
+                {
+                    SqlDataReader rd = cmd.ExecuteReader();
+                
+                    rd.Read();
+            
+                    if (rd.FieldCount == 0)
+                        throw new NoMetadataException(
+                            string.Format(
+                                "Request does not return metadata. Request:\r\n {0} ",
+                                sqlRequest));
+                    
+                    for(int i = 0; i < rd.FieldCount; ++i)
+                    {
+                        requestMetadata[rd.GetName(i)] = rd.GetDataTypeName(i);
+                    }
+                }
+            }
+            
+            return requestMetadata;
+        }
+        catch(Exception e)
+        {
+            throw new NoMetadataException(e.ToString());
+        }
+    }
+
+	public Column[] GetTableColumns(Table table)
+	{
+		if(!IgnoredTableColumns.TryGetValue(table.Name, out var columnNames ))
+			return table.Columns.Cast<Column>().ToArray();
+		
+		return table.Columns.Cast<Column>().Where( x => !columnNames.Contains(x.Name)).ToArray();
+	}
+	
+    public Dictionary<string, IList<string[]>> GetCacheDefinitions()
+    {
+       var table2CacheDefinition = new Dictionary<string, IList<string[]>>
+       {
+           { "BvPerson",           new [] { new[]{"SID"}, new[]{"Name"} } },
+           { "BvSurvey",           new [] { new[]{"SID"}, new[]{"Name"} } },
+           { "BvPersonGroup",      new [] { new []{"SID"}, new []{"Name"} } },
+           { "BvTimezone",         new [] { new []{"ID"} } },
+           { "BvState",            new [] { new []{"StateID", "StateGroupID" } } },
+           { "BvSchedule",         new [] { new[]{"ScheduleID"}, new[]{"Name"} } },
+           { "BvScheduleParam",    new [] { new[]{"ScheduleID", "SurveySID", "ParamID" }, new[]{"ScheduleID", "SurveySID", "Name"} } },
+           { "BvInboundTelephoneNumber",new [] { new []{"TelephoneNumber"} } },
+		   { "BvBreakType",new [] { new []{"Id"} } },
+       };
+    
+        return table2CacheDefinition;
+    }
+
+	public readonly Dictionary<string, string[]> IgnoredTableColumns = new Dictionary<string, string[]>
+	{
+		{"BvTasks", new[]{ "JsonWebConsoleState" } },
+	};
+}
+#>

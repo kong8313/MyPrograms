@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunConsoleClickOnceTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+  <ParameterGroup>
+    <InputFilename ParameterType="System.String" Required="true" />
+    <OutputFilename ParameterType="System.String" Required="true" />
+    <MatchExpression ParameterType="System.String" Required="true" />
+    <ReplacementText ParameterType="System.String" Required="true" />
+  </ParameterGroup>
+  <Task>
+    <Reference Include="System.Core" />
+    <Using Namespace="System" />
+    <Using Namespace="System.IO" />
+    <Using Namespace="System.Text.RegularExpressions" />
+    <Code Type="Fragment" Language="cs">
+      <![CDATA[
+            File.WriteAllText(
+                OutputFilename,
+                Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+                );
+          ]]>
+    </Code>
+  </Task>
+ </UsingTask>
+
+  <PropertyGroup>
+    <Server Condition="'$(Server)' == ''">master</Server>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)..\..\..\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+  <Import Project="..\OlympicData\Common.props"/>
+  
+  <Target Name="BeforeTests">
+
+    <Message Text="Set company name for $(CompanyName) Prepare test" />
+
+    <ReplaceFileText 
+      InputFilename="..\ClickOnceConsoleInstallationTest\ClickOnceConsoleInstallationTest\ServerInfo.cs" 
+      OutputFilename="..\ClickOnceConsoleInstallationTest\ClickOnceConsoleInstallationTest\ServerInfo.cs" 
+      MatchExpression="release"
+      ReplacementText="$(Server)" />
+
+  </Target>
+  <Target Name="AfterTests">
+
+    <Message Text="Set company name for $(CompanyName) Prepare test" />
+
+    <ReplaceFileText 
+      InputFilename="..\ClickOnceConsoleInstallationTest\ClickOnceConsoleInstallationTest\ServerInfo.cs" 
+      OutputFilename="..\ClickOnceConsoleInstallationTest\ClickOnceConsoleInstallationTest\ServerInfo.cs" 
+      MatchExpression="$(Server)"
+      ReplacementText="release" />
+
+  </Target>
+
+  <Target Name="BuildConsoleClickOnceTest" DependsOnTargets="BeforeTests">
+
+    <Message Text="Build ClickOnce console test" />
+
+    <MSBuild Projects="..\ClickOnceConsoleInstallationTest\ClickOnceConsoleInstallationTest.sln" Properties="Server=$(Server);"/>
+	
+	<CallTarget Targets="AfterTests"/>
+
+  </Target> 
+
+  <Target Name="RunConsoleClickOnceTest" DependsOnTargets="BuildConsoleClickOnceTest"> 
+
+    <PropertyGroup Label="TestSuccessOrNot">
+      <TestSuccessOrNot>1</TestSuccessOrNot>
+    </PropertyGroup>
+
+    <Message Text="Run ClickOnce console test" />
+
+    <Exec Command="&quot;$(VsTestConsolePath)&quot; ..\ClickOnceConsoleInstallationTest\ClickOnceConsoleInstallationTest\bin\Debug\ClickOnceConsoleInstallationTest.dll /Platform:x64 /inIsolation /logger:trx" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="TestSuccessOrNot"/>
+    </Exec>
+
+    <Message Text="ExitCode = $(TestSuccessOrNot)" />
+
+  </Target> 
+
+</Project>

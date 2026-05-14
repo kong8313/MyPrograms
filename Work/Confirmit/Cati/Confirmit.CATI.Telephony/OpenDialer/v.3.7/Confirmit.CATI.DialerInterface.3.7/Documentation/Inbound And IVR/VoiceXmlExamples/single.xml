@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vxml version="2.1" xml:lang="en-US" xmlns="http://www.w3.org/2001/vxml">
+  <form>
+    <var name="__prevPageProgress" expr="'1;0.25'" />
+    <var name="__pagemasterid" expr="'321'" />
+    <var name="__theme" expr="'Main+theme'" />
+    <var name="l" expr="'9'" />
+    <var name="__sres" expr="'0|0'" />
+    <var name="__sid__" expr="'Y-GbuaX2PtuSN6vgmfbbY-3frD622LSHhkSyT-sQWjGLswh9q4svqG0MymN8YaSuQsflCHQSClCmMjVlTDVrCK14YFJk_UOfgIyNnvqNaxOHr7Fg56dwFC408I7WNZ6uZoe8dzOc1Mt5vX9aWYsoSEbf1qmJVXQZW11c-WbrJJItPToe_dEYF3yIy5-RNATfMTMgchs3bLeFIQkI7pfzjQ2'" />
+    <field name="q4">
+      <grammar type="application/srgs+xml" root="ROOT" mode="dtmf">
+        <rule id="ROOT">
+          <one-of>
+            <item>1</item>
+            <item>2</item>
+            <item>3</item>
+          </one-of>
+        </rule>
+      </grammar>
+      <prompt>
+        <audio src="http://localhost/isa/PYAMLMFAKKOYIBEYNHKRJRBIMIEALXOH/p1000191/q4.wav">Please, choose an option
+1, 2, 3</audio>
+      </prompt>
+      <catch event="nomatch noinput" count="1">
+        <prompt>
+          <audio src="http://todotodotodo.wrong.input.com">Please, try again</audio>
+        </prompt>
+      </catch>
+      <catch event="nomatch noinput" count="3">
+        <prompt>
+          <audio src="http://todotodotodo.wrong.input.exit.com">Your input is not recognized. Goodbye.</audio>
+        </prompt>
+        <submit namelist="__prevPageProgress __pagemasterid __theme l __sres __sid__" />
+      </catch>
+      <filled>
+        <submit namelist="q4 __prevPageProgress __pagemasterid __theme l __sres __sid__" />
+      </filled>
+    </field>
+  </form>
+</vxml>

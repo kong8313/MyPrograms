@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunCheckInterviewStatusTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <CatiSQLConnectionString>Data Source=$(DataSource);Initial Catalog=ConfirmitCATIV15_1;Connect Timeout=120;User ID=ConfirmitDeploy;Password=%251confdep;</CatiSQLConnectionString>
+
+  </PropertyGroup>
+
+  <Import Project="Common.props"/>
+
+  <UsingTask
+    TaskName="SetEnvironmentVariableTask"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+
+    <ParameterGroup>
+      <Name ParameterType="System.String" Required="true" />
+      <Value ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          Environment.SetEnvironmentVariable(Name, Value);
+        ]]>
+      </Code>
+    </Task>
+
+  </UsingTask>
+
+  <Target Name="SetEnvironmentVariable">
+    <SetEnvironmentVariableTask Name="CatiSQLConnectionString" Value="$(CatiSQLConnectionString)" />
+  </Target> 
+
+  <Target Name="RunCheckInterviewStatusTest" DependsOnTargets="SetEnvironmentVariable">
+ 
+    <PropertyGroup Label="TestSuccessOrNot">
+      <TestSuccessOrNot>1</TestSuccessOrNot>
+    </PropertyGroup>
+
+    <Message Text="Running Olympic check interview status test for $(OlympicMode) survey and $(CompanyName) company" />
+
+    <Exec Command="&quot;$(MsTestPath)&quot; /testcontainer:..\OlympicPrepareTest\CatiOlympicPrepareTest\bin\Debug\CatiOlympicPrepareTest.dll /test:OlympicCheck$(OlympicMode)$(CompanyName)FcdInterviewStatusesCallStatesTest" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="TestSuccessOrNot"/>
+    </Exec>
+    
+    <Message Text="ExitCode = $(TestSuccessOrNot)" />
+
+  </Target>
+
+</Project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vxml version="2.1" xml:lang="en-US" xmlns="http://www.w3.org/2001/vxml">
+  <form>
+    <property name="termchar" value="#" />
+    <var name="__prevPageProgress" expr="'0.5;0.25'" />
+    <var name="__pagemasterid" expr="'321'" />
+    <var name="__theme" expr="'Main+theme'" />
+    <var name="l" expr="'9'" />
+    <var name="__sres" expr="'0|0'" />
+    <var name="__sid__" expr="'dTY1C-Pxbzuoza8q97XPZDcEAyIJsOhjOct6CP18Zz2tIlVXT3jznN_jD_UFbBL9PtrCY_BEc9_RFPBVraSEPCdrhgl5lOuS8odDFKvTp63ZveZA7OSAhJ1Ug08GBn7Ga5FNW8_nS4ROe051XcNGY8fQvjcm-ChtKlZIvYd5vHYiALKuXFlpNDta5vOFnAL_A4Le9BVWKvq1F6mqNi67sQ2'" />
+    <field name="q2" type="digits?minlength=1">
+      <prompt>
+        <audio src="http://localhost/isa/PYAMLMFAKKOYIBEYNHKRJRBIMIEALXOH/p1000191/q2.wav">Please, enter a number.</audio>
+      </prompt>
+      <catch event="nomatch noinput" count="1">
+        <prompt>
+          <audio src="http://todotodotodo.wrong.input.com">Please, try again</audio>
+        </prompt>
+      </catch>
+      <catch event="nomatch noinput" count="3">
+        <prompt>
+          <audio src="http://todotodotodo.wrong.input.exit.com">Your input is not recognized. Goodbye.</audio>
+        </prompt>
+        <submit namelist="__prevPageProgress __pagemasterid __theme l __sres __sid__" />
+      </catch>
+      <filled>
+        <submit namelist="q2 __prevPageProgress __pagemasterid __theme l __sres __sid__" />
+      </filled>
+    </field>
+  </form>
+</vxml>

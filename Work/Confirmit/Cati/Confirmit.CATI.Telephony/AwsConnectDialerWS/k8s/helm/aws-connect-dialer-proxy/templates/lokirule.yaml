@@ -1,0 +1,15 @@
+{{- if and .Values.global.alerts.enabled .Values.alerts.enabled .Values.alerts.lokiRules }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "aws-connect-dialer-proxy.fullname" . }}-lokirules
+  labels: {{ include "aws-connect-dialer-proxy.labels" . | nindent 4 }}
+    loki_rule: ''
+  annotations:
+    k8s-sidecar-target-directory: /rules/fake
+data:
+  rules.yaml: |
+    groups:
+      - name: {{ include "aws-connect-dialer-proxy.fullname" . }}
+        rules: {{ tpl .Values.alerts.lokiRules . | nindent 10 }}
+{{- end }}

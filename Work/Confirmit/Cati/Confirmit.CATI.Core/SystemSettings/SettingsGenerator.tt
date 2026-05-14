@@ -1,0 +1,217 @@
+﻿<#@ include file="T4Toolbox.tt" #>
+<#@ include file="..\DAL\Templates\NoMetadataException.tt" #>
+<#@ include file="..\DAL\Templates\DatabaseEngine.tt" #>
+<#@ include file="SettingGroup.tt" #>
+<#@ include file="SystemSetting.tt" #>
+<#@ include file="SystemSettingMetadata.tt" #>
+<#@ include file="SystemSettingRegistrator.tt" #>
+<#@ output extension="cs" #>
+
+<#@ assembly name="System.Data" #>
+<#@ assembly name="System.Xml.dll" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="Microsoft.SqlServer.ConnectionInfo.dll" #>
+<#@ assembly name="Microsoft.SqlServer.Smo.dll" #>
+<#@ assembly name="Microsoft.SqlServer.Management.Sdk.Sfc.dll" #>
+
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Data" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Data.SqlClient" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Smo" #>
+<#@ import namespace="Microsoft.SqlServer.Management.Common" #>
+
+<#+
+public enum ValueType
+{
+    Int = 1,
+    String = 2,
+    Bool = 3,
+    Timespan = 4
+}
+
+public class SettingInfo
+{
+    public string SystemName;
+	public string DisplayGroup;
+	public string DisplayName;
+    public string Group;
+	public string[] Path;
+    public string Name;
+    public string Description;
+    public ValueType Type;
+	public bool Hidden;
+    public string Value;
+}
+
+public class GroupInfo
+{
+	public string Name;
+	public string Namespace;
+	public string NamespacePrefix;
+	public string NamespacePostfix;
+	public GroupInfo[] Groups;
+	public SettingInfo[] Settings;
+}
+
+public class SettingsGenerator : Generator
+{
+    public DatabaseEngine DatabaseEngine = new DatabaseEngine();
+
+    private class Fields
+    {
+        public const string SystemName = "SystemName";
+		public const string DisplayName = "DisplayName";
+		public const string Group = "Group";
+        public const string Type = "Type";
+        public const string Value = "Value";
+        public const string Description = "Description";
+		public const string Hidden = "Hidden";
+    }
+
+    
+
+    
+
+    protected override void RunCore()
+    {
+        using (StreamWriter log = new StreamWriter("c:\\log2.txt", false))
+        {
+            try
+            {
+                log.WriteLine("Request configuration settings from database.");
+                var settings = GetSettingsFromDatabase().ToArray();
+
+				log.WriteLine("Convert flat list of settings to tree of group with settings:");
+                var systemSettingGroup = CreateSettingGroup(settings);
+				
+				log.WriteLine("Trace group tree configuration:");
+				
+				TraceGroup(log, systemSettingGroup);
+				
+                foreach( var group in systemSettingGroup.Groups )
+                {
+                    log.WriteLine("Generate group setting with name {0}.", group.Name);
+                    
+                    var groupTemplate = new SettingGroup( group );
+                    groupTemplate.Render();
+                    log.WriteLine("Done");
+                }
+
+                log.WriteLine("Generate main settings.");
+                var mainTemplate = new SystemSetting( systemSettingGroup.Groups, settings );
+                mainTemplate.Output.File ="SystemSetting.cs";
+                mainTemplate.Render();
+
+                log.WriteLine("Generate settings metadata.");
+                var metadataTemplate = new SystemSettingMetadata(settings);
+                metadataTemplate.Output.File ="SystemSettingMetadata.cs";
+                metadataTemplate.Render();
+				
+				var registrator = new SystemSettingRegistrator( systemSettingGroup.Groups );
+                registrator.Output.File ="SystemSettingRegistrator.cs";
+                registrator.Render();
+
+                log.WriteLine("Done");
+
+            }
+            catch( Exception ex )
+            {
+                log.WriteLine(ex);
+            }
+        }
+    }
+
+	void TraceGroup(StreamWriter log, GroupInfo group, string space="")
+	{
+		log.WriteLine("{0}<Group> G:{1} N:{2}", space, group.Name, group.Namespace );
+
+		space += "   ";
+		foreach( var setting in group.Settings )
+		{
+			log.WriteLine("{0}<Setting> G:{1} P:{2} N:{3} T:{4} V:{5}", space, setting.Group, String.Join(".", setting.Path), setting.Name, setting.Type, setting.Value );
+		} 
+
+		foreach( var g in group.Groups )
+		{
+			TraceGroup(log, g, space);
+		} 
+	}
+
+    IEnumerable<SettingInfo> GetSettingsFromDatabase()
+    {
+        using (var cn = new SqlConnection(DatabaseEngine.ConnectionString))
+        {
+            cn.Open();
+            using (var cmd = new SqlCommand("select * from BvSystemSettings", cn))
+            {
+                var reader = cmd.ExecuteReader();
+                while( reader.Read() )
+                {
+                    yield return ReadSettingInfo(reader);
+                }
+            }	
+        }
+    }
+
+    SettingInfo ReadSettingInfo(SqlDataReader reader)
+    {
+        var systemName = (string)reader[Fields.SystemName];
+        var type = (ValueType)reader[Fields.Type];
+        var value = reader[Fields.Value] is DBNull ? null : (string)reader[Fields.Value];
+        var description = (string)reader[Fields.Description];
+		var hidden = (bool)reader[Fields.Hidden];
+        var displayName = (string) reader[Fields.DisplayName];
+		var displayGroup = (string) reader[Fields.Group];
+        var parts = systemName.Split('.');
+        
+		if (type == ValueType.String && !string.IsNullOrWhiteSpace(value))
+		{
+			// Escape double quotes. Note that the regexp below does not cover all possible cases.
+			value = Regex.Replace(value, "\"", "\"\"", RegexOptions.CultureInvariant);
+		}
+
+        return new SettingInfo
+        {
+            SystemName = systemName,
+			DisplayName = displayName,
+			DisplayGroup = displayGroup,
+            Group = String.Join( ".", parts.Take(parts.Length - 1 )),
+			Path = parts.Take(parts.Length - 1 ).ToArray(),
+            Name = parts.Last(),
+            Type = type,
+            Value = value,
+			Hidden = hidden,
+            Description = description
+        };
+    }
+
+	GroupInfo CreateSettingGroup(SettingInfo[] settings )
+	{
+		return CreateSubSettingGroup(0, null, null, settings );
+	}
+
+	GroupInfo CreateSubSettingGroup(int level, string groupNamespace, string name, SettingInfo[] settings )
+	{
+		var subGroupNamespace = groupNamespace == null ? name : groupNamespace + "." + name;
+
+		var result = new GroupInfo()
+		{
+			Name = name,
+			Namespace = groupNamespace,
+			NamespacePrefix = groupNamespace == null ? "" : groupNamespace + ".",
+			NamespacePostfix = groupNamespace == null ? "" : "." + groupNamespace,
+			Settings = settings.Where( x=> x.Path.Length == level).ToArray(),
+			Groups = settings.Where(x => x.Path.Length > level )
+						     .GroupBy(g => g.Path[level])
+							 .Select( sg => CreateSubSettingGroup(level + 1, subGroupNamespace, sg.Key, sg.ToArray())).ToArray()
+		};
+
+		return result;
+	}
+}
+#>

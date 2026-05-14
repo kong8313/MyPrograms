@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F795738A-B45B-4EBF-89B6-EFB3A807433A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.TelephonyProblemStates</RootNamespace>
+    <AssemblyName>Confirmit.TelephonyProblemStates</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\assemblies\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ProblemState\AgentAlreadyBeingMonitoredState.cs" />
+    <Compile Include="ProblemState\AgentIsNotLoggedState.cs" />
+    <Compile Include="ProblemState\CatiProblemState.cs" />
+    <Compile Include="ProblemState\CatiProblemStateFactory.cs" />
+    <Compile Include="ProblemState\CatiProblemStateInfo.cs" />
+    <Compile Include="ProblemState\DialerCallExceptionState.cs" />
+    <Compile Include="ProblemState\DialerIsNotAvailableState.cs" />
+    <Compile Include="ProblemState\DialerRestartedState.cs" />
+    <Compile Include="ProblemState\ExistsAlreadyState.cs" />
+    <Compile Include="ProblemState\ForbiddenState.cs" />
+    <Compile Include="ProblemState\ICatiProblemStateInfo.cs" />
+    <Compile Include="ProblemState\InvalidDialingModeState.cs" />
+    <Compile Include="ProblemState\InvalidParamterState.cs" />
+    <Compile Include="ProblemState\LowLevelFaultState.cs" />
+    <Compile Include="ProblemState\CatiInterviewerErrorState.cs" />
+    <Compile Include="ProblemState\MethodNotSupportedState.cs" />
+    <Compile Include="ProblemState\MonitoringIsAlreadyStartedState.cs" />
+    <Compile Include="ProblemState\NoMoreConferenceResourcesState.cs" />
+    <Compile Include="ProblemState\NoMoreFreeChannelsState.cs" />
+    <Compile Include="ProblemState\NoMoreLicencesState.cs" />
+    <Compile Include="ProblemState\NoMoreSupervisorResourcesState.cs" />
+    <Compile Include="ProblemState\PhoneNumberAlreadyInUseState.cs" />
+    <Compile Include="ProblemState\ResourceAlreadyInUseState.cs" />
+    <Compile Include="ProblemState\ResourceNotFoundState.cs" />
+    <Compile Include="ProblemState\SuccessState.cs" />
+    <Compile Include="ProblemState\UnknownAgentState.cs" />
+    <Compile Include="ProblemState\UnknownErrorState.cs" />
+    <Compile Include="ProblemState\UnknownSupervisorState.cs" />
+    <Compile Include="ProblemState\WrongAgentStateState.cs" />
+    <Compile Include="ProblemState\WrongExtensionState.cs" />
+    <Compile Include="ProblemState\WrongNumberState.cs" />
+    <Compile Include="ProblemState\WrongStateDialingInProgressState.cs" />
+    <Compile Include="ProblemState\WrongStatePausedState.cs" />
+    <Compile Include="ProblemState\WrongStateResourceIsBusyState.cs" />
+    <Compile Include="Resources\Strings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strings.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\GlobalAssemblyInfo.cs">
+      <Link>GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Strings.ar.resx" />
+    <EmbeddedResource Include="Resources\Strings.bg.resx" />
+    <EmbeddedResource Include="Resources\Strings.bs.resx" />
+    <EmbeddedResource Include="Resources\Strings.cs.resx" />
+    <EmbeddedResource Include="Resources\Strings.da.resx" />
+    <EmbeddedResource Include="Resources\Strings.de.resx" />
+    <EmbeddedResource Include="Resources\Strings.es.resx" />
+    <EmbeddedResource Include="Resources\Strings.fr.resx" />
+    <EmbeddedResource Include="Resources\Strings.hr.resx" />
+    <EmbeddedResource Include="Resources\Strings.hu.resx" />
+    <EmbeddedResource Include="Resources\Strings.it.resx" />
+    <EmbeddedResource Include="Resources\Strings.mk.resx" />
+    <EmbeddedResource Include="Resources\Strings.nl.resx" />
+    <EmbeddedResource Include="Resources\Strings.no.resx" />
+    <EmbeddedResource Include="Resources\Strings.pl.resx" />
+    <EmbeddedResource Include="Resources\Strings.pt.resx" />
+    <EmbeddedResource Include="Resources\Strings.pt-BR.resx" />
+    <EmbeddedResource Include="Resources\Strings.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Strings.ro.resx" />
+    <EmbeddedResource Include="Resources\Strings.ru.resx" />
+    <EmbeddedResource Include="Resources\Strings.sk.resx" />
+    <EmbeddedResource Include="Resources\Strings.sl.resx" />
+    <EmbeddedResource Include="Resources\Strings.sq.resx" />
+    <EmbeddedResource Include="Resources\Strings.sr.resx" />
+    <EmbeddedResource Include="Resources\Strings.sv.resx" />
+    <EmbeddedResource Include="Resources\Strings.tr.resx" />
+    <EmbeddedResource Include="Resources\Strings.uk.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{d68a6b1f-92ba-4305-b802-ff6b35d7a6d2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

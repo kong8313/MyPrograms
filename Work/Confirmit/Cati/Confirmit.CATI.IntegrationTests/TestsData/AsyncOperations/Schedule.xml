@@ -1,0 +1,225 @@
+<?xml version="1.0"?>
+      <Schedule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <Id>3996</Id>
+      <Name />
+      <Rules>
+        <Rule>
+          <Id>13c49088-ad96-476b-a6b4-b09ddf873ae1</Id>
+          <Description />
+          <SubRules>
+            <SubRule>
+              <Id>ff32c0f5-5d1e-4726-9de7-ea95dc99c3ed</Id>
+              <ItsId>1</ItsId>
+              <ShiftTypeId>0</ShiftTypeId>
+              <Filter />
+              <FilterEnabled>false</FilterEnabled>
+              <Description />
+              <SubRuleActions>
+                <SubRuleAction>
+                  <Id>1</Id>
+                  <ActionId>27</ActionId>
+                  <Filter />
+                  <Enabled>true</Enabled>
+                  <Description />
+                  <ParameterValue Type="Constant">1000</ParameterValue>
+                  <FilterEnabled>false</FilterEnabled>
+                </SubRuleAction>
+                <SubRuleAction>
+                  <Id>2</Id>
+                  <ActionId>5</ActionId>
+                  <Filter />
+                  <Enabled>true</Enabled>
+                  <Description />
+                  <ParameterValue Type="Constant">0</ParameterValue>
+                  <FilterEnabled>false</FilterEnabled>
+                </SubRuleAction>
+              </SubRuleActions>
+            </SubRule>
+            <SubRule>
+              <Id>6cdc0632-15a2-4f4a-baf9-328eb9bb3b31</Id>
+              <ItsId>2</ItsId>
+              <ShiftTypeId>0</ShiftTypeId>
+              <Filter />
+              <FilterEnabled>false</FilterEnabled>
+              <Description />
+              <SubRuleActions>
+                <SubRuleAction>
+                  <Id>1</Id>
+                  <ActionId>2</ActionId>
+                  <Filter />
+                  <Enabled>true</Enabled>
+                  <Description />
+                  <ParameterValue Type="Constant">15</ParameterValue>
+                  <FilterEnabled>false</FilterEnabled>
+                </SubRuleAction>
+              </SubRuleActions>
+            </SubRule>
+            <SubRule>
+              <Id>14aa9b11-236d-4473-8043-3557f9853c86</Id>
+              <ItsId>3</ItsId>
+              <ShiftTypeId>0</ShiftTypeId>
+              <Filter />
+              <FilterEnabled>false</FilterEnabled>
+              <Description />
+              <SubRuleActions>
+                <SubRuleAction>
+                  <Id>1</Id>
+                  <ActionId>3</ActionId>
+                  <Filter />
+                  <Enabled>true</Enabled>
+                  <Description />
+                  <ParameterValue Type="Constant">1</ParameterValue>
+                  <FilterEnabled>false</FilterEnabled>
+                </SubRuleAction>
+              </SubRuleActions>
+            </SubRule>
+            <SubRule>
+              <Id>0d2081bd-80cd-4a0e-b3c3-70533863a712</Id>
+              <ItsId>16</ItsId>
+              <ShiftTypeId>0</ShiftTypeId>
+              <Filter />
+              <FilterEnabled>false</FilterEnabled>
+              <Description />
+              <SubRuleActions>
+                <SubRuleAction>
+                  <Id>1</Id>
+                  <ActionId>8</ActionId>
+                  <Filter />
+                  <Enabled>true</Enabled>
+                  <Description />
+                  <ParameterValue Type="Constant">0</ParameterValue>
+                  <FilterEnabled>false</FilterEnabled>
+                </SubRuleAction>
+              </SubRuleActions>
+            </SubRule>
+          </SubRules>
+        </Rule>
+      </Rules>
+      <ShiftTypes>
+        <ShiftType>
+          <Id>1</Id>
+          <Name>Default</Name>
+          <ColorInt>-16751616</ColorInt>
+        </ShiftType>
+        <ShiftType>
+          <Id>2</Id>
+          <Name>MinskTZ</Name>
+          <ColorInt>-1015680</ColorInt>
+        </ShiftType>
+      </ShiftTypes>
+      <Shifts>
+        <Shift>
+          <Id>1</Id>
+          <ShiftTypeId>1</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id xsi:nil="true" />
+              <Data>
+                <StartDayOfWeek>Monday</StartDayOfWeek>
+                <StartTime>00:00:00</StartTime>
+                <EndDayOfWeek>Tuesday</EndDayOfWeek>
+                <EndTime>00:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+        <Shift>
+          <Id>2</Id>
+          <ShiftTypeId>1</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id xsi:nil="true" />
+              <Data>
+                <StartDayOfWeek>Tuesday</StartDayOfWeek>
+                <StartTime>00:00:00</StartTime>
+                <EndDayOfWeek>Wednesday</EndDayOfWeek>
+                <EndTime>00:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+        <Shift>
+          <Id>3</Id>
+          <ShiftTypeId>1</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id xsi:nil="true" />
+              <Data>
+                <StartDayOfWeek>Wednesday</StartDayOfWeek>
+                <StartTime>00:00:00</StartTime>
+                <EndDayOfWeek>Thursday</EndDayOfWeek>
+                <EndTime>00:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+        <Shift>
+          <Id>4</Id>
+          <ShiftTypeId>1</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id xsi:nil="true" />
+              <Data>
+                <StartDayOfWeek>Thursday</StartDayOfWeek>
+                <StartTime>00:00:00</StartTime>
+                <EndDayOfWeek>Friday</EndDayOfWeek>
+                <EndTime>00:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+        <Shift>
+          <Id>5</Id>
+          <ShiftTypeId>1</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id xsi:nil="true" />
+              <Data>
+                <StartDayOfWeek>Friday</StartDayOfWeek>
+                <StartTime>00:00:00</StartTime>
+                <EndDayOfWeek>Saturday</EndDayOfWeek>
+                <EndTime>00:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+        <Shift>
+          <Id>6</Id>
+          <ShiftTypeId>1</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id xsi:nil="true" />
+              <Data>
+                <StartDayOfWeek>Saturday</StartDayOfWeek>
+                <StartTime>00:00:00</StartTime>
+                <EndDayOfWeek>Sunday</EndDayOfWeek>
+                <EndTime>00:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+        <Shift>
+          <Id>9</Id>
+          <ShiftTypeId>2</ShiftTypeId>
+          <Timezones>
+            <Timezone>
+              <Id>9</Id>
+              <Data>
+                <StartDayOfWeek>Sunday</StartDayOfWeek>
+                <StartTime>10:00:00</StartTime>
+                <EndDayOfWeek>Sunday</EndDayOfWeek>
+                <EndTime>16:00:00</EndTime>
+              </Data>
+            </Timezone>
+          </Timezones>
+        </Shift>
+      </Shifts>
+      <Exclusions />
+      <CustomParameters />
+      <CustomScript>
+        <Id>1</Id>
+        <LanguageName>JScript.Net</LanguageName>
+        <Body />
+      </CustomScript>
+    </Schedule>
+   

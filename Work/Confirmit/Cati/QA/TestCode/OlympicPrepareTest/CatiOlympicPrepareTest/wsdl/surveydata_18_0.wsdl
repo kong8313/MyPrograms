@@ -1,0 +1,3091 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://firmglobal.com/Confirmit/webservices/8.5/" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://firmglobal.com/Confirmit/webservices/8.5/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://firmglobal.com/Confirmit/webservices/8.5/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="ConstructWhereClause">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="dbType" type="tns:DatabaseType" />
+            <s:element minOccurs="1" maxOccurs="1" name="expressionVariableType" type="tns:ExpressionVariableType" />
+            <s:element minOccurs="0" maxOccurs="1" name="expression" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="DatabaseType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Production" />
+          <s:enumeration value="Test" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ExpressionVariableType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Response" />
+          <s:enumeration value="Panel" />
+          <s:enumeration value="BitStream" />
+          <s:enumeration value="Respondent" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ConstructWhereClauseResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConstructWhereClauseResult" type="tns:WhereClause" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="WhereClause">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionSurveyQuery" type="tns:SurveyQuery" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Binary" abstract="true">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandExpressionList" type="tns:ExpressionList" />
+          </s:choice>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandSurveyQuery" type="tns:SurveyQuery" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandExpressionList" type="tns:ExpressionList" />
+          </s:choice>
+        </s:sequence>
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="Function" abstract="true">
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:simpleType name="OrderByTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="ASC" />
+          <s:enumeration value="DESC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="GenericSqlFunction">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Arguments" type="tns:ArrayOfChoice1" />
+            </s:sequence>
+            <s:attribute name="Type" type="tns:GenericSqlFunctionType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice1">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="QueryConstant" nillable="true" type="tns:QueryConstant" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="Binary" nillable="true" type="tns:Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryForm" nillable="true" type="tns:QueryForm" />
+        </s:choice>
+      </s:complexType>
+      <s:complexType name="QueryConstant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+        <s:attribute name="Type" type="tns:ConfirmitDbType" use="required" />
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:simpleType name="ConfirmitDbType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Integer" />
+          <s:enumeration value="Char" />
+          <s:enumeration value="NChar" />
+          <s:enumeration value="VarChar" />
+          <s:enumeration value="NVarChar" />
+          <s:enumeration value="Text" />
+          <s:enumeration value="NText" />
+          <s:enumeration value="Float" />
+          <s:enumeration value="Numeric" />
+          <s:enumeration value="Datetime" />
+          <s:enumeration value="Guid" />
+          <s:enumeration value="BitVector" />
+          <s:enumeration value="Bool" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Categorization">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="OverrideTexts" type="tns:ArrayOfTextForCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="tns:LocaleString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfCategory" />
+        </s:sequence>
+        <s:attribute name="Alias" type="s:string" />
+      </s:complexType>
+      <s:complexType name="QueryProject">
+        <s:attribute name="ProjectId" type="s:string" />
+        <s:attribute name="DBType" type="tns:DatabaseType" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTextForCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CodeText" nillable="true" type="tns:TextForCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TextForCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="tns:LocaleStringSimple" />
+        </s:sequence>
+        <s:attribute name="Code" type="s:string" />
+      </s:complexType>
+      <s:complexType name="LocaleStringSimple">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LocaleString">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Strings" type="tns:ArrayOfLanguageString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LocaleString" abstract="true" />
+      <s:complexType name="LocaleStringCompound">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LocaleString" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfLanguageString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="String" nillable="true" type="tns:LanguageString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LanguageString">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="Language" type="s:int" use="required" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Category">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="tns:LocaleString" />
+        </s:sequence>
+        <s:attribute name="Code" type="s:string" />
+      </s:complexType>
+      <s:complexType name="CategoryFunction">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Function" type="tns:UnaryType" />
+              <s:element minOccurs="1" maxOccurs="1" name="CalculateOnly" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="UnaryType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ABS" />
+          <s:enumeration value="AVG" />
+          <s:enumeration value="COUNT" />
+          <s:enumeration value="SUM" />
+          <s:enumeration value="MIN" />
+          <s:enumeration value="MAX" />
+          <s:enumeration value="STDEV" />
+          <s:enumeration value="STDEVP" />
+          <s:enumeration value="VAR" />
+          <s:enumeration value="VARP" />
+          <s:enumeration value="UNWEIGHTEDVAR" />
+          <s:enumeration value="NEWID" />
+          <s:enumeration value="BASE" />
+          <s:enumeration value="MODE" />
+          <s:enumeration value="MEDIAN" />
+          <s:enumeration value="EFFBASE" />
+          <s:enumeration value="STDERROR" />
+          <s:enumeration value="WEIGHTEDMEDIAN" />
+          <s:enumeration value="WEIGHTEDMODE" />
+          <s:enumeration value="SUMOFSQUARES" />
+          <s:enumeration value="SUMOFSQUAREDWEIGHTS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CategoryField">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:attribute name="FieldName" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CategoryFormElements">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Mask" type="tns:CodeMask" />
+              <s:element minOccurs="1" maxOccurs="1" name="List" type="tns:ListType" />
+              <s:element minOccurs="0" maxOccurs="1" name="FormName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CodeMask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="tns:ArrayOfString" />
+        </s:sequence>
+        <s:attribute name="Exclusive" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Code" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ListType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fields" />
+          <s:enumeration value="Answers" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CategoryAnswer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyChildMask" type="tns:CodeMask" />
+            </s:sequence>
+            <s:attribute name="FormName" type="s:string" />
+            <s:attribute name="LoadCode" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CategoryNotAnswered">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CategoryAnswer" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CategoryTotal">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CategoryAnswer">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="SuffixNameWithParent" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="NamedCategorization">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Categorization">
+            <s:attribute name="Reference" type="s:string" />
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+            <s:attribute name="OrderBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="QuestionCategorization" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Categorization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Mask" type="tns:CodeMask" />
+            </s:sequence>
+            <s:attribute name="NameSource" type="tns:NameSourceType" use="required" />
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+            <s:attribute name="FormName" type="s:string" />
+            <s:attribute name="OrderBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="NameSourceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Title" />
+          <s:enumeration value="Text" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Dimension" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QuestionCategorization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TotalCategoryName" type="tns:LocaleString" />
+              <s:element minOccurs="0" maxOccurs="1" name="UnweightedTotalCategoryName" type="tns:LocaleString" />
+              <s:element minOccurs="0" maxOccurs="1" name="NotAnsweredCategoryName" type="tns:LocaleString" />
+            </s:sequence>
+            <s:attribute name="TotalsFirst" type="s:boolean" use="required" />
+            <s:attribute name="CreateNotAnsweredCategory" type="s:boolean" use="required" />
+            <s:attribute name="CreateTotalCategory" type="s:boolean" use="required" />
+            <s:attribute name="CreateUnweightedTotalCategory" type="s:boolean" use="required" />
+            <s:attribute name="SuffixTotalCatWithParent" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SnowflakeDimension">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dimension">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SubDimensions" type="tns:ArrayOfSimpleDimension" />
+            </s:sequence>
+            <s:attribute name="LoadUsedCombinations" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSimpleDimension">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Dim" nillable="true" type="tns:SimpleDimension" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SimpleDimension">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dimension">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="HierLevel" type="tns:QueryHierarchyLevel" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionBinary" type="tns:BinaryArithmetic" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionCategorization" type="tns:Categorization" />
+              </s:choice>
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyNodeMask" type="tns:HierarchyMask" />
+              <s:element minOccurs="0" maxOccurs="1" name="RecodingIdent" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DirectRecoding" type="s:boolean" />
+            </s:sequence>
+            <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="QueryHierarchyLevel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelfRelLevel" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelfRelLevelKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RelationName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentMask" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Precodes" type="tns:ArrayOfString1" />
+          <s:element minOccurs="0" maxOccurs="1" name="Weight" type="tns:ArrayOfCodeWeight1" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubQueryField" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierLevel" type="tns:QueryHierarchyLevel" />
+          <s:element minOccurs="0" maxOccurs="1" name="Scope" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Level" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Namespace" type="s:string" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+        <s:attribute name="Weighting" type="tns:WeightingType" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfString1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCodeWeight1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Weights" nillable="true" type="tns:CodeWeight" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CodeWeight">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="WeightingType">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="DatabaseWeights" />
+          <s:enumeration value="ExternalWeights" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="QueryForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Mask" type="tns:CodeMask" />
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Weights" type="tns:ArrayOfCodeWeight" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierLevel" type="tns:QueryHierarchyLevel" />
+        </s:sequence>
+        <s:attribute name="OnlyBasicFields" type="s:boolean" use="required" />
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+        <s:attribute name="Weighting" type="tns:WeightingType" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfCodeWeight">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Weight" nillable="true" type="tns:CodeWeight" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BinaryArithmetic">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Binary">
+            <s:attribute name="Type" type="tns:ArithmeticType" use="required" />
+            <s:attribute name="Alias" type="s:string" />
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ArithmeticType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ADD" />
+          <s:enumeration value="SUB" />
+          <s:enumeration value="MULT" />
+          <s:enumeration value="DIV" />
+          <s:enumeration value="MOD" />
+          <s:enumeration value="REM" />
+          <s:enumeration value="POWER" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HierarchyMask" abstract="true" />
+      <s:complexType name="CyclicDimension" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dimension">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionBinary" type="tns:BinaryArithmetic" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionFunction" type="tns:Function" />
+              </s:choice>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TimeseriesDimension">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CyclicDimension">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Units" type="tns:ArrayOfUnitType" />
+              <s:element minOccurs="0" maxOccurs="1" name="SubDimensions" type="tns:ArrayOfSimpleDimension" />
+            </s:sequence>
+            <s:attribute name="StartDate" type="s:dateTime" use="required" />
+            <s:attribute name="EndDate" type="s:dateTime" use="required" />
+            <s:attribute name="DayOfWeek" type="tns:DayOfWeek" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUnitType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UnitType" type="tns:UnitType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="UnitType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Year" />
+          <s:enumeration value="Quarter" />
+          <s:enumeration value="Month" />
+          <s:enumeration value="Week" />
+          <s:enumeration value="DayOfMonth" />
+          <s:enumeration value="DayOfWeek" />
+          <s:enumeration value="Hour" />
+          <s:enumeration value="Undefined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DayOfWeek">
+        <s:restriction base="s:string">
+          <s:enumeration value="Sunday" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FieldCategorization">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QuestionCategorization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Weights" type="tns:ArrayOfCodeWeight" />
+              <s:element minOccurs="0" maxOccurs="1" name="OverrideFieldNames" type="tns:OverriddenFields" />
+              <s:element minOccurs="0" maxOccurs="1" name="UnweightedTotalCategoryName" type="tns:LocaleString" />
+            </s:sequence>
+            <s:attribute name="Weighting" type="tns:WeightingType" use="required" />
+            <s:attribute name="CreateUnweightedTotalCategory" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OverriddenFields">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FunctionCategorization">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Categorization">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredBase" type="s:int" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentBinary" type="tns:Binary" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+            <s:attribute name="OrderBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="GenericSqlFunctionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="NullIf" />
+          <s:enumeration value="IsNull" />
+          <s:enumeration value="Coalesce" />
+          <s:enumeration value="PassThrough" />
+          <s:enumeration value="Power" />
+          <s:enumeration value="Len" />
+          <s:enumeration value="LTrim" />
+          <s:enumeration value="RTrim" />
+          <s:enumeration value="Left" />
+          <s:enumeration value="Right" />
+          <s:enumeration value="Replicate" />
+          <s:enumeration value="Not" />
+          <s:enumeration value="GetDate" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Case">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionFunction" type="tns:Function" />
+              </s:choice>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionConstant" type="tns:QueryConstant" />
+              </s:choice>
+              <s:element minOccurs="0" maxOccurs="1" name="WhenThenArguments" type="tns:ArrayOfCaseWhenThen" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCaseWhenThen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WhenThen" nillable="true" type="tns:CaseWhenThen" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CaseWhenThen">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionForm" type="tns:QueryForm" />
+          </s:choice>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionCategorization" type="tns:Categorization" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TypeConvertion">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateFormat" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataType" type="tns:ConfirmitDbType" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionCategorization" type="tns:Categorization" />
+              </s:choice>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DatePart">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="DateFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateBinary" type="tns:Binary" />
+              </s:choice>
+              <s:element minOccurs="1" maxOccurs="1" name="FiscalCalendarId" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="FiscalCalendarGuid" type="s1:guid" />
+            </s:sequence>
+            <s:attribute name="Period" type="tns:PeriodType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="PeriodType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Year" />
+          <s:enumeration value="Quarter" />
+          <s:enumeration value="Month" />
+          <s:enumeration value="Week" />
+          <s:enumeration value="DayOfYear" />
+          <s:enumeration value="DayOfMonth" />
+          <s:enumeration value="Hour" />
+          <s:enumeration value="Minute" />
+          <s:enumeration value="Second" />
+          <s:enumeration value="Weekday" />
+          <s:enumeration value="Millisecond" />
+          <s:enumeration value="ShiftedYear" />
+          <s:enumeration value="ShiftedQuarter" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DateAdd">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Number" type="s:int" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="DateBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateCategorization" type="tns:Categorization" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="Period" type="tns:PeriodType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DateDiff">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateCategorization" type="tns:Categorization" />
+              </s:choice>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateFunction" type="tns:Function" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="Period" type="tns:PeriodType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Unary">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredBase" type="s:int" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentCategorization" type="tns:Categorization" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="Type" type="tns:UnaryType" use="required" />
+            <s:attribute name="Distinct" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ExpressionList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Expressions" type="tns:ArrayOfChoice2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice2">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="ExprField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprForm" nillable="true" type="tns:QueryForm" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprFieldCategorization" nillable="true" type="tns:FieldCategorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprConstant" nillable="true" type="tns:QueryConstant" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprBinary" nillable="true" type="tns:BinaryArithmetic" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprFunction" nillable="true" type="tns:Function" />
+        </s:choice>
+      </s:complexType>
+      <s:complexType name="SurveyQuery">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsMultiProjUnion" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnionProjects" type="tns:ArrayOfString1" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectStatements" type="tns:ArrayOfSelectStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeleteStatement" type="tns:DeleteStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdateStatement" type="tns:UpdateStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultProject" type="tns:QueryProject" />
+        </s:sequence>
+        <s:attribute name="DayOfWeek" type="tns:DayOfWeekType" use="required" />
+        <s:attribute name="Alias" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectStatement" nillable="true" type="tns:SelectStatement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SelectClause" type="tns:SelectClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromClause" type="tns:FromClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="WhereClause" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderByClause" type="tns:OrderByClause" />
+          <s:element minOccurs="1" maxOccurs="1" name="FilterMissingAnswers" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultProject" type="tns:QueryProject" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeBaseRow" type="s:boolean" />
+        </s:sequence>
+        <s:attribute name="GroupBy" type="tns:GroupByTypes" use="required" />
+        <s:attribute name="UnionAll" type="s:boolean" use="required" />
+        <s:attribute name="Distinct" type="s:boolean" use="required" />
+        <s:attribute name="TopN" type="s:int" use="required" />
+        <s:attribute name="TopNPercent" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="SelectClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SelectItems" type="tns:ArrayOfChoice3" />
+        </s:sequence>
+        <s:attribute name="Star" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice3">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="QueryConstant" nillable="true" type="tns:QueryConstant" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinaryArithmetic" nillable="true" type="tns:BinaryArithmetic" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryForm" nillable="true" type="tns:QueryForm" />
+        </s:choice>
+      </s:complexType>
+      <s:complexType name="FromClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LogicalTables" type="tns:ArrayOfString2" />
+          <s:element minOccurs="0" maxOccurs="1" name="JoinProjects" type="tns:JoinProjects" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubQuery" type="tns:SurveyQuery" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Table" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JoinProjects">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LeftProject" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RightProject" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JoinFields" type="tns:Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderByClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrderByItems" type="tns:ArrayOfChoice4" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice4">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="QueryForm" nillable="true" type="tns:QueryForm" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinaryArithmetic" nillable="true" type="tns:BinaryArithmetic" />
+        </s:choice>
+      </s:complexType>
+      <s:simpleType name="GroupByTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Rollup" />
+          <s:enumeration value="Cube" />
+          <s:enumeration value="RimTotals" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DeleteStatement">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TopN" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="where" type="tns:WhereClause" />
+        </s:sequence>
+        <s:attribute name="LogicalTable" type="s:string" />
+      </s:complexType>
+      <s:complexType name="UpdateStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="update" type="tns:UpdateClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="where" type="tns:WhereClause" />
+        </s:sequence>
+        <s:attribute name="FromTable" type="s:string" />
+      </s:complexType>
+      <s:complexType name="UpdateClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UpdateItems" type="tns:ArrayOfChoice5" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice5">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+        </s:choice>
+      </s:complexType>
+      <s:simpleType name="DayOfWeekType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+          <s:enumeration value="Sunday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="BinaryComparison">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Binary">
+            <s:attribute name="Type" type="tns:ComparisonType" use="required" />
+            <s:attribute name="Not" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ComparisonType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Equal" />
+          <s:enumeration value="NotEqual" />
+          <s:enumeration value="LessThan" />
+          <s:enumeration value="GreaterThan" />
+          <s:enumeration value="LessThanOrEqual" />
+          <s:enumeration value="GreaterThanOrEqual" />
+          <s:enumeration value="Is" />
+          <s:enumeration value="IsNot" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="BinaryLogic">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Binary">
+            <s:attribute name="Type" type="tns:LogicType" use="required" />
+            <s:attribute name="Not" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="LogicType">
+        <s:restriction base="s:string">
+          <s:enumeration value="AND" />
+          <s:enumeration value="OR" />
+          <s:enumeration value="IN" />
+          <s:enumeration value="NOTIN" />
+          <s:enumeration value="LIKE" />
+          <s:enumeration value="NOTLIKE" />
+          <s:enumeration value="IS" />
+          <s:enumeration value="ISNOT" />
+          <s:enumeration value="XOR" />
+          <s:enumeration value="BLOT" />
+          <s:enumeration value="BIC" />
+          <s:enumeration value="IMP" />
+          <s:enumeration value="NIMP" />
+          <s:enumeration value="NAND" />
+          <s:enumeration value="NOR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="ExecuteQuery">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="query" type="tns:SurveyQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteQueryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExecuteQueryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteQueryGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="query" type="tns:SurveyQuery" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConfirmitData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DataLevels" type="tns:ArrayOfDataLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDataLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataLevel" nillable="true" type="tns:DataLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LevelId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Variables" type="tns:ArrayOfVariable" />
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfDataRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfVariable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Variable" nillable="true" type="tns:Variable" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Variable">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Type" type="tns:VariableType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="VariableType">
+        <s:restriction base="s:string">
+          <s:enumeration value="String" />
+          <s:enumeration value="Bool" />
+          <s:enumeration value="DateTime" />
+          <s:enumeration value="Byte" />
+          <s:enumeration value="Short" />
+          <s:enumeration value="Integer" />
+          <s:enumeration value="Long" />
+          <s:enumeration value="Numeric" />
+          <s:enumeration value="Guid" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfDataRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataRecord" nillable="true" type="tns:DataRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfAnyType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ExecuteQueryGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExecuteQueryGeneralResult" type="tns:ConfirmitData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDefBase" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransferDefBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Where" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderBy" type="tns:OrderByClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DbType" type="tns:DatabaseType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferDef">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TransferDefBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SystemVariables" type="tns:SystemVariables" />
+              <s:element minOccurs="1" maxOccurs="1" name="CollapseLoopReferences" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Levels" type="tns:ArrayOfTransferLevel" />
+            </s:sequence>
+            <s:attribute name="Key" type="s:string" />
+            <s:attribute name="AllChildrenLevels" type="s:boolean" use="required" />
+            <s:attribute name="IncludeRecodedVariables" type="s:boolean" use="required" />
+            <s:attribute name="AddRespondents" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SystemVariables">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLastTouched" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeSurveyPackageVersion" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeChannels" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeState" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeRespId" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeInterviewStart" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeInterviewEnd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeStatus" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLastComplete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeRowguid" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeIterationId" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLoopState" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeFirstQuestionOnLastPageDisplayed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeStartPageContext" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeCatiExtendedStatus" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransferLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Level" nillable="true" type="tns:TransferLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferLevel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SkipLoopValidation" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Where" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="Forms" type="tns:ArrayOfTransferForm" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfString3" />
+        </s:sequence>
+        <s:attribute name="LoopId" type="s:string" />
+        <s:attribute name="IsTopLevel" type="s:boolean" use="required" />
+        <s:attribute name="AllChildrenForms" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTransferForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Form" nillable="true" type="tns:TransferForm" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfTransferField" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="AllChildrenFields" type="s:boolean" use="required" />
+        <s:attribute name="IsSystemVariable" type="s:boolean" use="required" />
+        <s:attribute name="BitString" type="s:boolean" use="required" />
+        <s:attribute name="NullPadding" type="s1:char" use="required" />
+        <s:attribute name="Spread" type="s:boolean" use="required" />
+        <s:attribute name="SpreadSize" type="s:int" use="required" />
+        <s:attribute name="SpreadOutputPadding" type="s1:char" use="required" />
+        <s:attribute name="SpreadValuePadding" type="s1:char" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTransferField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Field" nillable="true" type="tns:TransferField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TypeConvertion" type="tns:TypeConvertion" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="IsSystemVariable" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfString3">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Field" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SimpleTransferDef">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TransferDefBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeSystemVariables" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResponseToken">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastResponseIdReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstResponseIdReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfResponsesReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="DatasetsReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastDataSet" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangeTrackingVersion" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result">
+            <s:complexType>
+              <s:sequence>
+                <s:element ref="s:schema" />
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseToken" type="tns:ResponseToken" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataResult" type="tns:TransferResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDefBase" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConfirmitDataResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ConfirmitData" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseToken" type="tns:ResponseToken" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataGeneralResult" type="tns:ConfirmitDataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChangedData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDef" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+            <s:element minOccurs="1" maxOccurs="1" name="lastSynchronizedVersion" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ChangedDataResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ChangedData" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseToken" type="tns:ResponseToken" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ChangedData">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Levels" type="tns:ArrayOfChangedDataLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChangedDataLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ChangedDataLevel" nillable="true" type="tns:ChangedDataLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ChangedDataLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Records" type="tns:ArrayOfChangedDataRecord" />
+        </s:sequence>
+        <s:attribute name="LevelId" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfChangedDataRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ChangedDataRecord" nillable="true" type="tns:ChangedDataRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ChangedDataRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Values" type="tns:ArrayOfDataCell" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDataCell">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataCell" nillable="true" type="tns:DataCell" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataCell">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Type" type="tns:VariableType" use="required" />
+        <s:attribute name="IsNull" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:element name="GetChangedDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChangedDataResult" type="tns:ChangedDataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataByProject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeSystemVariables" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataByProjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataByProjectResult" type="tns:TransferResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataByProjectGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeSystemVariables" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataByProjectGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataByProjectGeneralResult" type="tns:ConfirmitDataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLevelByName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="levelNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeSystemVariables" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLevelByNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLevelByNameResult" type="tns:TransferResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLevelByNameGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="levelNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="1" maxOccurs="1" name="includeSystemVariables" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="databaseType" type="tns:DatabaseType" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLevelByNameGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLevelByNameGeneralResult" type="tns:ConfirmitDataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDef" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="applyRules" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ErrorMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorInfoElements" type="tns:ArrayOfErrorInfo" />
+        </s:sequence>
+        <s:attribute name="Table" type="s:string" />
+        <s:attribute name="Row" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfErrorInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErrorInfo" nillable="true" type="tns:ErrorInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErrorInfo">
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfErrorMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErrorMessage" nillable="true" type="tns:ErrorMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateDataResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDef" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ConfirmitData" />
+            <s:element minOccurs="1" maxOccurs="1" name="applyRules" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDataGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateDataGeneralResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionStatus">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransactionStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransactionStatusResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDef" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteDataResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAllRespondents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteAllRespondentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteAllRespondentsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRespondents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyValues" type="tns:ArrayOfString1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteRespondentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteRespondentsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="merge" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRespondentsResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondentsGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ConfirmitData" />
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="merge" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondentsGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRespondentsGeneralResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondentsWithCatiScheduling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="merge" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="schedulingMode" type="tns:CatiScheduling" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="CatiScheduling">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Full" />
+          <s:enumeration value="Simple" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="UpdateRespondentsWithCatiSchedulingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRespondentsWithCatiSchedulingResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondentsGeneralWithCatiScheduling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ConfirmitData" />
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="merge" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="schedulingMode" type="tns:CatiScheduling" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateRespondentsGeneralWithCatiSchedulingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateRespondentsGeneralWithCatiSchedulingResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateExistingRespondentsResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ConfirmitData" />
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateExistingRespondentsGeneralResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsGeneralWithCatiScheduling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="data" type="tns:ConfirmitData" />
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="schedulingMode" type="tns:CatiScheduling" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsGeneralWithCatiSchedulingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateExistingRespondentsGeneralWithCatiSchedulingResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsWithCatiScheduling">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="validate" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="schedulingMode" type="tns:CatiScheduling" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateExistingRespondentsWithCatiSchedulingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateExistingRespondentsWithCatiSchedulingResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRespondentUniqueKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetRespondentUniqueKeyResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="RemoveRespondentUniqueKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveRespondentUniqueKeyResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="IsRespondentUniqueKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uniqueKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsRespondentUniqueKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsRespondentUniqueKeyResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentTransferDef" type="tns:RespondentTransferDef" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespondentTransferDef">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DatabaseType" type="tns:DatabaseType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Where" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="SystemVariables" type="tns:RespondentSystemVariables" />
+          <s:element minOccurs="1" maxOccurs="1" name="GenerateSurveyLink" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="FieldNames" type="tns:ArrayOfString1" />
+        </s:sequence>
+        <s:attribute name="AllFields" type="s:boolean" use="required" />
+        <s:attribute name="OnlySchema" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="RespondentSystemVariables">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeRespId" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeSID" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeUserId" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeNoOfEmailsSent" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLastUpdated" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRespondentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentsTokenized">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentTransferDef" type="tns:RespondentTransferDef" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:RespondentToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespondentToken">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastRespIdReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstRespIdReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfRespondentsReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="DatasetsReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastDataSet" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RespondentTransferResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result">
+            <s:complexType>
+              <s:sequence>
+                <s:element ref="s:schema" />
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="tns:RespondentToken" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRespondentsTokenizedResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentsTokenizedResult" type="tns:RespondentTransferResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentsGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentTransferDef" type="tns:RespondentTransferDef" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentsGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentsGeneralResult" type="tns:ConfirmitData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentsTokenizedGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="respondentTransferDef" type="tns:RespondentTransferDef" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:RespondentToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RespondentConfirmitDataResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result" type="tns:ConfirmitData" />
+          <s:element minOccurs="0" maxOccurs="1" name="Token" type="tns:RespondentToken" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetRespondentsTokenizedGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentsTokenizedGeneralResult" type="tns:RespondentConfirmitDataResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTaskResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentEmailLogByTaskResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTaskGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="1" maxOccurs="1" name="taskId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTaskGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentEmailLogByTaskGeneralResult" type="tns:ConfirmitData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByUniqueKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyValues" type="tns:ArrayOfString1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByUniqueKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentEmailLogByUniqueKeyResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByUniqueKeyGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="keyValues" type="tns:ArrayOfString1" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByUniqueKeyGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentEmailLogByUniqueKeyGeneralResult" type="tns:ConfirmitData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentEmailLogByTimeResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTimeGeneral">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fieldNames" type="tns:ArrayOfString1" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="to" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRespondentEmailLogByTimeGeneralResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRespondentEmailLogByTimeGeneralResult" type="tns:ConfirmitData" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInterviewProgressStats">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="projectId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InterviewProgressStats">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Web" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Capi" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Cati" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Mixed" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Total" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInterviewProgressStats">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InterviewProgressStats" nillable="true" type="tns:InterviewProgressStats" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInterviewProgressStatsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInterviewProgressStatsResult" type="tns:ArrayOfInterviewProgressStats" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetConfigSettings">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ResetConfigSettingsResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="char">
+        <s:restriction base="s:unsignedShort" />
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ConstructWhereClauseSoapIn">
+    <wsdl:part name="parameters" element="tns:ConstructWhereClause" />
+  </wsdl:message>
+  <wsdl:message name="ConstructWhereClauseSoapOut">
+    <wsdl:part name="parameters" element="tns:ConstructWhereClauseResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteQuerySoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteQuery" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteQuerySoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteQueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteQueryGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteQueryGeneral" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteQueryGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteQueryGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetDataGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChangedDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChangedData" />
+  </wsdl:message>
+  <wsdl:message name="GetChangedDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChangedDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataByProjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataByProject" />
+  </wsdl:message>
+  <wsdl:message name="GetDataByProjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataByProjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataByProjectGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataByProjectGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetDataByProjectGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataByProjectGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLevelByNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLevelByName" />
+  </wsdl:message>
+  <wsdl:message name="GetLevelByNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLevelByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLevelByNameGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLevelByNameGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetLevelByNameGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLevelByNameGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateData" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDataGeneral" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDataGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionStatusSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransactionStatus" />
+  </wsdl:message>
+  <wsdl:message name="GetTransactionStatusSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransactionStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteData" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDataSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAllRespondentsSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteAllRespondents" />
+  </wsdl:message>
+  <wsdl:message name="DeleteAllRespondentsSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteAllRespondentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRespondentsSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteRespondents" />
+  </wsdl:message>
+  <wsdl:message name="DeleteRespondentsSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteRespondentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRespondents" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsGeneral" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsWithCatiSchedulingSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsWithCatiScheduling" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsWithCatiSchedulingSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsWithCatiSchedulingResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsGeneralWithCatiSchedulingSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsGeneralWithCatiScheduling" />
+  </wsdl:message>
+  <wsdl:message name="UpdateRespondentsGeneralWithCatiSchedulingSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateRespondentsGeneralWithCatiSchedulingResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondents" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsGeneral" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsGeneralWithCatiSchedulingSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsGeneralWithCatiScheduling" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsGeneralWithCatiSchedulingSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsGeneralWithCatiSchedulingResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsWithCatiSchedulingSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsWithCatiScheduling" />
+  </wsdl:message>
+  <wsdl:message name="UpdateExistingRespondentsWithCatiSchedulingSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateExistingRespondentsWithCatiSchedulingResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetRespondentUniqueKeySoapIn">
+    <wsdl:part name="parameters" element="tns:SetRespondentUniqueKey" />
+  </wsdl:message>
+  <wsdl:message name="SetRespondentUniqueKeySoapOut">
+    <wsdl:part name="parameters" element="tns:SetRespondentUniqueKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRespondentUniqueKeySoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveRespondentUniqueKey" />
+  </wsdl:message>
+  <wsdl:message name="RemoveRespondentUniqueKeySoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveRespondentUniqueKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsRespondentUniqueKeySoapIn">
+    <wsdl:part name="parameters" element="tns:IsRespondentUniqueKey" />
+  </wsdl:message>
+  <wsdl:message name="IsRespondentUniqueKeySoapOut">
+    <wsdl:part name="parameters" element="tns:IsRespondentUniqueKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondents" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsTokenizedSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentsTokenized" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsTokenizedSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentsTokenizedResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentsGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentsGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsTokenizedGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentsTokenizedGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentsTokenizedGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentsTokenizedGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTask" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTaskGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTaskGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTaskGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTaskGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByUniqueKeySoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByUniqueKey" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByUniqueKeySoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByUniqueKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByUniqueKeyGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByUniqueKeyGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByUniqueKeyGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByUniqueKeyGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTime" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTimeGeneralSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTimeGeneral" />
+  </wsdl:message>
+  <wsdl:message name="GetRespondentEmailLogByTimeGeneralSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRespondentEmailLogByTimeGeneralResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInterviewProgressStatsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInterviewProgressStats" />
+  </wsdl:message>
+  <wsdl:message name="GetInterviewProgressStatsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInterviewProgressStatsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ResetConfigSettingsSoapIn">
+    <wsdl:part name="parameters" element="tns:ResetConfigSettings" />
+  </wsdl:message>
+  <wsdl:message name="ResetConfigSettingsSoapOut">
+    <wsdl:part name="parameters" element="tns:ResetConfigSettingsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SurveyDataSoap">
+    <wsdl:operation name="ConstructWhereClause">
+      <wsdl:input message="tns:ConstructWhereClauseSoapIn" />
+      <wsdl:output message="tns:ConstructWhereClauseSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <wsdl:input message="tns:ExecuteQuerySoapIn" />
+      <wsdl:output message="tns:ExecuteQuerySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQueryGeneral">
+      <wsdl:input message="tns:ExecuteQueryGeneralSoapIn" />
+      <wsdl:output message="tns:ExecuteQueryGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <wsdl:input message="tns:GetDataSoapIn" />
+      <wsdl:output message="tns:GetDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGeneral">
+      <wsdl:input message="tns:GetDataGeneralSoapIn" />
+      <wsdl:output message="tns:GetDataGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedData">
+      <wsdl:input message="tns:GetChangedDataSoapIn" />
+      <wsdl:output message="tns:GetChangedDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByProject">
+      <wsdl:input message="tns:GetDataByProjectSoapIn" />
+      <wsdl:output message="tns:GetDataByProjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByProjectGeneral">
+      <wsdl:input message="tns:GetDataByProjectGeneralSoapIn" />
+      <wsdl:output message="tns:GetDataByProjectGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLevelByName">
+      <wsdl:input message="tns:GetLevelByNameSoapIn" />
+      <wsdl:output message="tns:GetLevelByNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLevelByNameGeneral">
+      <wsdl:input message="tns:GetLevelByNameGeneralSoapIn" />
+      <wsdl:output message="tns:GetLevelByNameGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <wsdl:input message="tns:UpdateDataSoapIn" />
+      <wsdl:output message="tns:UpdateDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataGeneral">
+      <wsdl:input message="tns:UpdateDataGeneralSoapIn" />
+      <wsdl:output message="tns:UpdateDataGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionStatus">
+      <wsdl:input message="tns:GetTransactionStatusSoapIn" />
+      <wsdl:output message="tns:GetTransactionStatusSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <wsdl:input message="tns:DeleteDataSoapIn" />
+      <wsdl:output message="tns:DeleteDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllRespondents">
+      <wsdl:input message="tns:DeleteAllRespondentsSoapIn" />
+      <wsdl:output message="tns:DeleteAllRespondentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRespondents">
+      <wsdl:input message="tns:DeleteRespondentsSoapIn" />
+      <wsdl:output message="tns:DeleteRespondentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondents">
+      <wsdl:input message="tns:UpdateRespondentsSoapIn" />
+      <wsdl:output message="tns:UpdateRespondentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsGeneral">
+      <wsdl:input message="tns:UpdateRespondentsGeneralSoapIn" />
+      <wsdl:output message="tns:UpdateRespondentsGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsWithCatiScheduling">
+      <wsdl:input message="tns:UpdateRespondentsWithCatiSchedulingSoapIn" />
+      <wsdl:output message="tns:UpdateRespondentsWithCatiSchedulingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsGeneralWithCatiScheduling">
+      <wsdl:input message="tns:UpdateRespondentsGeneralWithCatiSchedulingSoapIn" />
+      <wsdl:output message="tns:UpdateRespondentsGeneralWithCatiSchedulingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondents">
+      <wsdl:input message="tns:UpdateExistingRespondentsSoapIn" />
+      <wsdl:output message="tns:UpdateExistingRespondentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsGeneral">
+      <wsdl:input message="tns:UpdateExistingRespondentsGeneralSoapIn" />
+      <wsdl:output message="tns:UpdateExistingRespondentsGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsGeneralWithCatiScheduling">
+      <wsdl:input message="tns:UpdateExistingRespondentsGeneralWithCatiSchedulingSoapIn" />
+      <wsdl:output message="tns:UpdateExistingRespondentsGeneralWithCatiSchedulingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsWithCatiScheduling">
+      <wsdl:input message="tns:UpdateExistingRespondentsWithCatiSchedulingSoapIn" />
+      <wsdl:output message="tns:UpdateExistingRespondentsWithCatiSchedulingSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRespondentUniqueKey">
+      <wsdl:input message="tns:SetRespondentUniqueKeySoapIn" />
+      <wsdl:output message="tns:SetRespondentUniqueKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRespondentUniqueKey">
+      <wsdl:input message="tns:RemoveRespondentUniqueKeySoapIn" />
+      <wsdl:output message="tns:RemoveRespondentUniqueKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsRespondentUniqueKey">
+      <wsdl:input message="tns:IsRespondentUniqueKeySoapIn" />
+      <wsdl:output message="tns:IsRespondentUniqueKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondents">
+      <wsdl:input message="tns:GetRespondentsSoapIn" />
+      <wsdl:output message="tns:GetRespondentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsTokenized">
+      <wsdl:input message="tns:GetRespondentsTokenizedSoapIn" />
+      <wsdl:output message="tns:GetRespondentsTokenizedSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsGeneral">
+      <wsdl:input message="tns:GetRespondentsGeneralSoapIn" />
+      <wsdl:output message="tns:GetRespondentsGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsTokenizedGeneral">
+      <wsdl:input message="tns:GetRespondentsTokenizedGeneralSoapIn" />
+      <wsdl:output message="tns:GetRespondentsTokenizedGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTask">
+      <wsdl:input message="tns:GetRespondentEmailLogByTaskSoapIn" />
+      <wsdl:output message="tns:GetRespondentEmailLogByTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTaskGeneral">
+      <wsdl:input message="tns:GetRespondentEmailLogByTaskGeneralSoapIn" />
+      <wsdl:output message="tns:GetRespondentEmailLogByTaskGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByUniqueKey">
+      <wsdl:input message="tns:GetRespondentEmailLogByUniqueKeySoapIn" />
+      <wsdl:output message="tns:GetRespondentEmailLogByUniqueKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByUniqueKeyGeneral">
+      <wsdl:input message="tns:GetRespondentEmailLogByUniqueKeyGeneralSoapIn" />
+      <wsdl:output message="tns:GetRespondentEmailLogByUniqueKeyGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTime">
+      <wsdl:input message="tns:GetRespondentEmailLogByTimeSoapIn" />
+      <wsdl:output message="tns:GetRespondentEmailLogByTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTimeGeneral">
+      <wsdl:input message="tns:GetRespondentEmailLogByTimeGeneralSoapIn" />
+      <wsdl:output message="tns:GetRespondentEmailLogByTimeGeneralSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInterviewProgressStats">
+      <wsdl:input message="tns:GetInterviewProgressStatsSoapIn" />
+      <wsdl:output message="tns:GetInterviewProgressStatsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetConfigSettings">
+      <wsdl:input message="tns:ResetConfigSettingsSoapIn" />
+      <wsdl:output message="tns:ResetConfigSettingsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SurveyDataSoap" type="tns:SurveyDataSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConstructWhereClause">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ConstructWhereClause" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ExecuteQuery" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQueryGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ExecuteQueryGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetDataGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedData">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetChangedData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByProject">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetDataByProject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByProjectGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetDataByProjectGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLevelByName">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetLevelByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLevelByNameGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetLevelByNameGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateDataGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionStatus">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetTransactionStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/DeleteData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllRespondents">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/DeleteAllRespondents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRespondents">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/DeleteRespondents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondents">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateRespondents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateRespondentsGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsWithCatiScheduling">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateRespondentsWithCatiScheduling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsGeneralWithCatiScheduling">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateRespondentsGeneralWithCatiScheduling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondents">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondentsGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsGeneralWithCatiScheduling">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondentsGeneralWithCatiScheduling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsWithCatiScheduling">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondentsWithCatiScheduling" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRespondentUniqueKey">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/SetRespondentUniqueKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRespondentUniqueKey">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/RemoveRespondentUniqueKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsRespondentUniqueKey">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/IsRespondentUniqueKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondents">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsTokenized">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentsTokenized" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentsGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsTokenizedGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentsTokenizedGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTask">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTaskGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTaskGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByUniqueKey">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByUniqueKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByUniqueKeyGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByUniqueKeyGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTime">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTimeGeneral">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTimeGeneral" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInterviewProgressStats">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetInterviewProgressStats" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetConfigSettings">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ResetConfigSettings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SurveyDataSoap12" type="tns:SurveyDataSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConstructWhereClause">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ConstructWhereClause" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQuery">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ExecuteQuery" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteQueryGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ExecuteQueryGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetData">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetDataGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChangedData">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetChangedData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByProject">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetDataByProject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByProjectGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetDataByProjectGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLevelByName">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetLevelByName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLevelByNameGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetLevelByNameGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDataGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateDataGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransactionStatus">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetTransactionStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteData">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/DeleteData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllRespondents">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/DeleteAllRespondents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRespondents">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/DeleteRespondents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondents">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateRespondents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRespondentsGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateRespondentsGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondents">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondentsGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsGeneralWithCatiScheduling">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondentsGeneralWithCatiScheduling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateExistingRespondentsWithCatiScheduling">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/UpdateExistingRespondentsWithCatiScheduling" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetRespondentUniqueKey">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/SetRespondentUniqueKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveRespondentUniqueKey">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/RemoveRespondentUniqueKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsRespondentUniqueKey">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/IsRespondentUniqueKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondents">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsTokenized">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentsTokenized" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentsGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentsTokenizedGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentsTokenizedGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTask">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTaskGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTaskGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByUniqueKey">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByUniqueKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByUniqueKeyGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByUniqueKeyGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTime">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRespondentEmailLogByTimeGeneral">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetRespondentEmailLogByTimeGeneral" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInterviewProgressStats">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/GetInterviewProgressStats" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetConfigSettings">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/webservices/8.5/ResetConfigSettings" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SurveyData">
+    <wsdl:port name="SurveyDataSoap" binding="tns:SurveyDataSoap">
+      <soap:address location="http://localhost/confirmit/webservices/current/surveydata.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SurveyDataSoap12" binding="tns:SurveyDataSoap12">
+      <soap12:address location="http://localhost/confirmit/webservices/current/surveydata.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "cati-dialer-simulator.fullname" . }}
+  labels: {{ include "cati-dialer-simulator.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http-internal
+      protocol: TCP
+      name: http-internal
+    - port: {{ .Values.service.externalPort }}
+      targetPort: http-external
+      protocol: TCP
+      name: http-external
+  selector: {{- include "cati-dialer-simulator.serviceSelectorLabels" . | nindent 4 }}

@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="HelloWorld">
+        <s:complexType />
+      </s:element>
+      <s:element name="HelloWorldResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppDomainName">
+        <s:complexType />
+      </s:element>
+      <s:element name="AppDomainNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppDomainNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppDomainName1">
+        <s:complexType />
+      </s:element>
+      <s:element name="AppDomainName1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppDomainName1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppDomainId">
+        <s:complexType />
+      </s:element>
+      <s:element name="AppDomainIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppDomainIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AppDomainStaticId">
+        <s:complexType />
+      </s:element>
+      <s:element name="AppDomainStaticIdResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AppDomainStaticIdResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExceptionTest">
+        <s:complexType />
+      </s:element>
+      <s:element name="ExceptionTestResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="HelloWorldSoapIn">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="HelloWorldSoapOut">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainNameSoapIn">
+    <wsdl:part name="parameters" element="tns:AppDomainName" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainNameSoapOut">
+    <wsdl:part name="parameters" element="tns:AppDomainNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainName1SoapIn">
+    <wsdl:part name="parameters" element="tns:AppDomainName1" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainName1SoapOut">
+    <wsdl:part name="parameters" element="tns:AppDomainName1Response" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainIdSoapIn">
+    <wsdl:part name="parameters" element="tns:AppDomainId" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainIdSoapOut">
+    <wsdl:part name="parameters" element="tns:AppDomainIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainStaticIdSoapIn">
+    <wsdl:part name="parameters" element="tns:AppDomainStaticId" />
+  </wsdl:message>
+  <wsdl:message name="AppDomainStaticIdSoapOut">
+    <wsdl:part name="parameters" element="tns:AppDomainStaticIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExceptionTestSoapIn">
+    <wsdl:part name="parameters" element="tns:ExceptionTest" />
+  </wsdl:message>
+  <wsdl:message name="ExceptionTestSoapOut">
+    <wsdl:part name="parameters" element="tns:ExceptionTestResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Service1Soap">
+    <wsdl:operation name="HelloWorld">
+      <wsdl:input message="tns:HelloWorldSoapIn" />
+      <wsdl:output message="tns:HelloWorldSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainName">
+      <wsdl:input message="tns:AppDomainNameSoapIn" />
+      <wsdl:output message="tns:AppDomainNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainName1">
+      <wsdl:input message="tns:AppDomainName1SoapIn" />
+      <wsdl:output message="tns:AppDomainName1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainId">
+      <wsdl:input message="tns:AppDomainIdSoapIn" />
+      <wsdl:output message="tns:AppDomainIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainStaticId">
+      <wsdl:input message="tns:AppDomainStaticIdSoapIn" />
+      <wsdl:output message="tns:AppDomainStaticIdSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExceptionTest">
+      <wsdl:input message="tns:ExceptionTestSoapIn" />
+      <wsdl:output message="tns:ExceptionTestSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Service1Soap" type="tns:Service1Soap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainName">
+      <soap:operation soapAction="http://tempuri.org/AppDomainName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainName1">
+      <soap:operation soapAction="http://tempuri.org/AppDomainName1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainId">
+      <soap:operation soapAction="http://tempuri.org/AppDomainId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainStaticId">
+      <soap:operation soapAction="http://tempuri.org/AppDomainStaticId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExceptionTest">
+      <soap:operation soapAction="http://tempuri.org/ExceptionTest" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="Service1Soap12" type="tns:Service1Soap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainName">
+      <soap12:operation soapAction="http://tempuri.org/AppDomainName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainName1">
+      <soap12:operation soapAction="http://tempuri.org/AppDomainName1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainId">
+      <soap12:operation soapAction="http://tempuri.org/AppDomainId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AppDomainStaticId">
+      <soap12:operation soapAction="http://tempuri.org/AppDomainStaticId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExceptionTest">
+      <soap12:operation soapAction="http://tempuri.org/ExceptionTest" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Service1">
+    <wsdl:port name="Service1Soap" binding="tns:Service1Soap">
+      <soap:address location="http://localhost:51069/Service1.asmx" />
+    </wsdl:port>
+    <wsdl:port name="Service1Soap12" binding="tns:Service1Soap12">
+      <soap12:address location="http://localhost:51069/Service1.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

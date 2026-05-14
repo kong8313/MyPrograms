@@ -1,0 +1,1 @@
+﻿CREATE UNIQUE INDEX IX_BvAssignmentResource_Qualifier ON BvAssignmentResource( Qualifier ) WITH ( IGNORE_DUP_KEY = ON )

@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[BvCallGroup]
+(
+	[Id] INT NOT NULL IDENTITY(1,1) CONSTRAINT PK_BvCallGroup PRIMARY KEY,
+	[Name] NVARCHAR(256) NOT NULL,
+	[Description] NVARCHAR(MAX) NULL,
+	[DesignStateGroupID]	INT NULL CONSTRAINT [FK_BvCallGroup_BvStateGroup] FOREIGN KEY ([DesignStateGroupID]) REFERENCES [BvStateGroup] ([ID]) ON DELETE SET NULL
+)

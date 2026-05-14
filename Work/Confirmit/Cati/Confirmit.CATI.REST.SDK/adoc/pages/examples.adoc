@@ -1,0 +1,12 @@
+﻿
+= Usage Examples
+
+[options="header", cols=".^10a"]
+|===
+|xref:Examples/Create interviewer and interviewer group assigning on survey.adoc[**Create interviewer and interviewer group assigning on survey**]
+|xref:Examples/Manage blacklist.adoc[**Manage blacklist**]
+|xref:Examples/Read call history information from Nordic site with filters.adoc[**Read call history information from Nordic site with filters**]
+|xref:Examples/Read call history information without filters.adoc[**Read call history information without filters**]
+|xref:Examples/Read interviewer session history information from Nordic site with filter by login time.adoc[**Read interviewer session history information from Nordic site with filter by login time**]
+|xref:Examples/Update interviewer properties.adoc[**Update interviewer properties**]
+|===

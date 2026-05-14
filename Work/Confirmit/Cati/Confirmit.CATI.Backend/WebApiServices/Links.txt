@@ -1,0 +1,51 @@
+﻿OData 4
+http://damienbod.wordpress.com/2014/06/10/getting-started-with-web-api-and-odata-v4/
+
+OData Query Options
+http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/supporting-odata-query-options
+
+OData Routing
+http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-routing-conventions
+
+OData Actions
+http://www.asp.net/web-api/overview/odata-support-in-aspnet-web-api/odata-v4/odata-actions-and-functions
+
+Protect your Queryable API with the validation feature in ASP.NET Web API OData
+http://blogs.msdn.com/b/webdev/archive/2013/02/06/protect-your-queryable-api-with-validation-feature-in-asp-net-web-api-odata.aspx
+
+GZip/Deflate 
+http://benfoster.io/blog/aspnet-web-api-compression
+http://stackoverflow.com/questions/12345292/how-do-enable-a-net-web-api-to-accept-g-ziped-posts
+
+GZip/Deflate Encoding
+http://forums.asp.net/t/1771770.aspx?Accept+Encoding+handling+
+
+HTTPS/SSL
+https://katanaproject.codeplex.com/wikipage?title=Selfhosting
+https://katanaproject.codeplex.com/discussions/438435
+http://msdn.microsoft.com/en-us/library/microsoft.owin.hosting.startoptions.urls(v=vs.113).aspx
+/*************************************************************************************************************************************/
+
+To log in and get X-Confirmit-ApiKey
+http://localhost/Confirmit/WebServices/18.0/LogOn.asmx
+
+To test authorisation / project permissions, provide key get in the LogOn.asmx
+http://localhost/Confirmit/InternalWebServices/14.0/FusionAuthoring.asmx
+
+Samples
+http://localhost/catiapi/companies/1/callhistory
+http://localhost/catiapi/companies/1/callhistory?$filter=SurveyId%20eq%20'p100001'%20and%20InterviewId%20eq%201
+(where %20 means a space)
+
+http://pragmatiqa.com/xodata/
+
+Short instruction to use Postman
+1. Open in a browser the following url: http://localhost/Confirmit/WebServices/18.0/LogOn.asmx
+2. Press on LogOnUser link
+3. Type login and password and press Enter.
+4. You will see the key like "5e90adba-a046-4a46-8c2d-7d1844282f47&7CA62A38E459D9E982BA82FF2A...FA23104EA509E+1". Keep it.
+5. Open Postman and specify url to rest api like the following: http://localhost/catiapi/companies/1/callhistory
+6. Specify header with key="X-Confirmit-ApiKey" and value=<the received key>) and press send
+7. You can try to use otada filter like the following: 
+http://localhost/catiapi/companies/1/callhistory?$filter=SurveyId eq 'p100001' 
+http://localhost/catiapi/companies/1/callhistory?$filter=CallCenterId eq 1 and InterviewId eq 11

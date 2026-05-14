@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="294fc25e-1b43-43b9-969e-1c979ecc4cbc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost/Rel/SupervisorMultimodeInstance1/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="2009.wsdl" MetadataType="Wsdl" ID="72c7231f-3fc6-4a61-a000-c7bc5e57f59d" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5084f76c-7ee3-4a25-8f77-df7a48f66edf" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="2009.xsd" MetadataType="Schema" ID="5ea3b73e-8981-4536-bb20-dbdaada38584" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="6b7f6e6c-001a-4760-8e9e-243d74022dbf" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Core.Mail.Feedback.xsd" MetadataType="Schema" ID="bb01584d-b7a2-4f38-8b60-b747b2f66f92" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Common.Exceptions.xsd" MetadataType="Schema" ID="6029dba5-b64b-4124-850f-a39957637c30" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Core.DAL.Generated.Entity.Table.xsd" MetadataType="Schema" ID="3481f79f-a2c5-41be-b082-3272580b0778" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Core.Tasks.xsd" MetadataType="Schema" ID="dd91b4a5-b03d-4bf8-8a7c-f9384d4e3b2c" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Common.ConsoleService.Abstract.xsd" MetadataType="Schema" ID="4d072120-2bcc-4d79-ab70-7f349739bd84" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="181dfbb6-cf72-422e-93c5-7234f05cb38f" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="System.CodeDom.Compiler.xsd" MetadataType="Schema" ID="df2454e4-0f9b-4b4a-9047-c3c7406b178e" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="ConfirmitDialerInterface.xsd" MetadataType="Schema" ID="3d3c8cc5-0f6a-401c-a187-13a0f42a1230" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Common.xsd" MetadataType="Schema" ID="fe8a38f0-1523-42ec-9888-70eb0b08563b" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="DialerCommon.DialerParameters.xsd" MetadataType="Schema" ID="76dd6cd9-77bb-40e8-8dfc-a18e610f25a4" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="102c7c67-1b69-4360-a7bc-a8cb49ed2b06" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Core.Services.PersonImport.xsd" MetadataType="Schema" ID="8d59cb9a-0e17-4880-b088-266382a7d431" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Common.Logging.xsd" MetadataType="Schema" ID="9f259d63-bdf6-403f-bc58-4f00ce03f897" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="Confirmit.CATI.Core.Telephony.xsd" MetadataType="Schema" ID="b3202716-965a-44e5-8e3d-e62a49115975" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+    <MetadataFile FileName="DialerCommon.xsd" MetadataType="Schema" ID="60d52346-2345-4752-8593-03f17fef69d4" SourceId="1" SourceUrl="http://localhost/Rel/SupervisorMultimodeInstance1/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

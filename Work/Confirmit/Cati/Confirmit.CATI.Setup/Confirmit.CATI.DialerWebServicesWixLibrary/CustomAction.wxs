@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+    <Fragment>
+        <CustomAction Id="DoubleInstallationPrevention" Error="!(loc.Message_SomeVersionAlreadyInstalled1)[INSTALLATION_VERSION_FOR_GUI]!(loc.Message_SomeVersionAlreadyInstalled2)" />
+        
+        <CustomAction Id="FillComboBoxesAndGetParametersFromMachineConfigCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="FillComboBoxesAndGetParamsFromMachineConfigCA" />
+
+        <CustomAction Id="VerifyLoggingSettingsCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="VerifyLoggingSettingsCustomAction" />
+
+        <CustomAction Id="SelectPathToCertificateCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="SelectPathToCertificateCustomAction" />
+        
+        <CustomAction Id="GetFullDomainNameCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="GetFullDomainNameCustomAction" />
+
+        <CustomAction Id="ValidateCertificateNamesAvailabilityCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="ValidateCertificateNamesAvailabilityCustomAction" />
+
+        <CustomAction Id="ValidateConfigSettingsForGenericInstallationCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="ValidateConfigSettingsForGenericInstallationCA" />
+      
+      <CustomAction Id="SelectProcDumpExecutablePathCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="SelectProcDumpExecutablePathCustomAction" />
+
+        <CustomAction Id="SelectProcDumpLogFolderCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="SelectProcDumpLogFolderCustomAction" />
+
+        <CustomAction Id="VerifyProcDumpParametersCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="VerifyProcDumpParametersCustomAction" />
+        
+        <CustomAction Id="BeforeWixInstallationCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="BeforeWixInstallationCustomAction" />
+
+        <CustomAction Id="AfterWixInstallationCustomAction"
+                      Return="check"
+                      Execute="immediate"
+                      BinaryKey="DialerCA"
+                      DllEntry="AfterWixInstallationCustomAction" />
+
+        <CustomAction Id="SetValueToUninstallCustomAction"
+                      Return="check"
+                      Property="UninstallCustomAction"
+                      Value="Version=[ProductVersion];INSTALL_LOCATION=[INSTALL_LOCATION];QUIET_MODE=[QUIET_MODE]" />
+        <CustomAction Id="UninstallCustomAction"
+                      Return="ignore"
+                      Execute="deferred"
+                      BinaryKey="DialerCA"
+                      DllEntry="UninstallEventSourceAndSaveConfigCustomAction" />
+        
+        <Binary Id='DialerCA' SourceFile='../../Assemblies/Installation/Confirmit.CATI.DialerWebServices.CustomAction.CA.dll'/>
+    </Fragment>
+</Wix>

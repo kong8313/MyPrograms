@@ -1,0 +1,61 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>5</InterviewID>
+    <TelephoneNumber>5554</TelephoneNumber>
+    <RespondentName>r_bel</RespondentName>
+    <TimezoneID>4</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</TimezoneName>
+    <ShiftType>[Any Valid]</ShiftType>
+    <Resource />
+    <InterviewCallID>5_0</InterviewCallID>
+    <TimeText>Now</TimeText>
+    <TimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Now</TimeExportColumn>
+    <ExpireTimeText>Never</ExpireTimeText>
+    <ExpireTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Never</ExpireTimeExportColumn>
+    <LastCallTimeText />
+    <LastCallTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ApptTimeText />
+    <ApptTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ExpTimeText />
+    <ExpTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>6</InterviewID>
+    <TelephoneNumber>5555</TelephoneNumber>
+    <RespondentName>r_bel</RespondentName>
+    <TimezoneID>5</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</TimezoneName>
+    <ShiftType>[Any Valid]</ShiftType>
+    <Resource />
+    <InterviewCallID>6_0</InterviewCallID>
+    <TimeText>Now</TimeText>
+    <TimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Now</TimeExportColumn>
+    <ExpireTimeText>Never</ExpireTimeText>
+    <ExpireTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">Never</ExpireTimeExportColumn>
+    <LastCallTimeText />
+    <LastCallTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ApptTimeText />
+    <ApptTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+    <ExpTimeText />
+    <ExpTimeExportColumn xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
+  </table>
+</DocumentElement>

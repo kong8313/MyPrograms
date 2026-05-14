@@ -1,0 +1,18 @@
+{{- if .Values.autoscaling.enabled -}}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ template "aws-connect-dialer-proxy.fullname" . }}
+  labels: {{ include "aws-connect-dialer-proxy.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ template "aws-connect-dialer-proxy.fullname" . }}
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
+  metrics: {{ .Values.autoscaling.metrics | toYaml | nindent 2 }}
+{{- if .Values.autoscaling.behavior }}
+  behavior: {{ .Values.autoscaling.behavior | toYaml | nindent 4 }}
+{{- end }}
+{{- end }}

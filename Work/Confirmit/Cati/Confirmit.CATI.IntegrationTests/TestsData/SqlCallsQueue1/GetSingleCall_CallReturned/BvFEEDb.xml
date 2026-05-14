@@ -1,0 +1,57 @@
+<?xml version="1.0" standalone="yes"?>
+<BvFEE_DS xmlns="http://tempuri.org/BvFEE_DS.xsd">
+  <BvSurvey>
+    <SID>14</SID>
+    <Number>0</Number>
+    <Name xml:space="preserve">p60</Name>
+    <Description xml:space="preserve"> </Description>
+    <QuotaType>0</QuotaType>
+    <PriorityGroupID>0</PriorityGroupID>
+    <State>1</State>
+    <ForceOpnRev>0</ForceOpnRev>
+    <StateGroupID>0</StateGroupID>
+    <RecWholeInt>0</RecWholeInt>
+	  <CfDbSchemaPath xml:space="preserve">none</CfDbSchemaPath>
+    <ScheduleID>33</ScheduleID>
+  </BvSurvey>
+	<BvSvySchedule>
+		<ApptID>0</ApptID>
+		<ShiftTypeID>1</ShiftTypeID>
+		<RoleID>2</RoleID>
+		<InterviewID>13</InterviewID>
+		<SurveySID>14</SurveySID>
+		<CallState>2</CallState>
+		<Priority>1</Priority>
+		<TimeInShift>1899-12-30T00:00:00Z</TimeInShift>
+		<ExpireTime>9999-12-31T23:59:59Z</ExpireTime>
+		<ExplicitSID>99</ExplicitSID>
+		<ExplicitType>2</ExplicitType>
+	</BvSvySchedule>
+	<BvCachedCallsInsert>
+		<InterviewID>13</InterviewID>
+		<SurveySID>14</SurveySID>
+	</BvCachedCallsInsert>
+	<BvLoginGroup>
+		<PersonSID>13</PersonSID>
+		<ObjectSID>99</ObjectSID>
+		<RoleID>2</RoleID>
+		<SurveySID>14</SurveySID>
+		<CallState>2</CallState>
+		<SurveyState>1</SurveyState>
+	</BvLoginGroup>
+	<BvAssignmentGroup>
+		<SID>99</SID>
+		<SurveySID>14</SurveySID>
+		<CallState>2</CallState>
+		<RoleID>2</RoleID>
+	</BvAssignmentGroup>
+	<BvUniqueAssignments>
+		<sid>99</sid>
+	</BvUniqueAssignments>
+	<BvPersonRel>
+		<PersonSID>99</PersonSID>
+		<ObjectSID>99</ObjectSID>
+		<RoleID>2</RoleID>
+		<Type>1</Type>
+	</BvPersonRel>
+</BvFEE_DS>

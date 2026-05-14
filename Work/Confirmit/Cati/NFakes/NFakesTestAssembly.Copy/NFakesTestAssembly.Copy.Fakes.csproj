@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\assemblies\Tools\NFakes</OutputPath>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>NFakesTestAssembly.Copy</RootNamespace>
+    <AssemblyName>NFakesTestAssembly.Copy.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{cf00d8da-5ab3-91aa-0726-2166bee35c2e}</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NFakesTestAssembly\NFakesTestAssembly.csproj">
+      <Project>{62EFD4C9-9B6B-4723-9D80-C8EFCC95CFB3}</Project>
+      <Name>NFakesTestAssembly</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubITestInterface10.cs" />
+    <compile Include=".\StubITestInterface1OfT1T2T3ZZZ.cs" />
+    <compile Include=".\StubITestInterface2.cs" />
+    <compile Include=".\StubITestInterface3.cs" />
+    <compile Include=".\StubITestInterface4.cs" />
+    <compile Include=".\StubITestInterface6OfT1T2.cs" />
+    <compile Include=".\StubITestInterface7OfT1.cs" />
+    <compile Include=".\StubITestInterface8OfT.cs" />
+    <compile Include=".\StubITestInterface9.cs" />
+    <compile Include=".\StubITestInterfaceOfT1.cs" />
+    <compile Include=".\StubITestInterfaceXxx.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

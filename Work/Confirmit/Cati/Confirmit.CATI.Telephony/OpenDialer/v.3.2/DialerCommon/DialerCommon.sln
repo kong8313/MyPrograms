@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialerCommon", "DialerCommon.csproj", "{8B02686A-CAA0-416C-BF94-BD28C7A61432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialerEventsWcfServiceConsoleHost", "..\DialerEventsWcfServiceConsoleHost\DialerEventsWcfServiceConsoleHost.csproj", "{ABC4D2D9-84F6-41DB-AF9A-21BF72056F98}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialerEventsTestWcfService", "..\DialerEventsTestWcfService\DialerEventsTestWcfService.csproj", "{D48ADAE1-EA00-4CE2-9213-3F1809749C9E}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://fi-osl-tfs:8080/
+		SccProjectUniqueName0 = DialerCommon.csproj
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ..\\DialerEventsWcfServiceConsoleHost\\DialerEventsWcfServiceConsoleHost.csproj
+		SccProjectName1 = ../DialerEventsWcfServiceConsoleHost
+		SccLocalPath1 = ..\\DialerEventsWcfServiceConsoleHost
+		SccProjectUniqueName2 = ..\\DialerEventsTestWcfService\\DialerEventsTestWcfService.csproj
+		SccProjectName2 = ../DialerEventsTestWcfService
+		SccLocalPath2 = ..\\DialerEventsTestWcfService
+		SccLocalPath3 = .
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B02686A-CAA0-416C-BF94-BD28C7A61432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B02686A-CAA0-416C-BF94-BD28C7A61432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B02686A-CAA0-416C-BF94-BD28C7A61432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B02686A-CAA0-416C-BF94-BD28C7A61432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABC4D2D9-84F6-41DB-AF9A-21BF72056F98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABC4D2D9-84F6-41DB-AF9A-21BF72056F98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABC4D2D9-84F6-41DB-AF9A-21BF72056F98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABC4D2D9-84F6-41DB-AF9A-21BF72056F98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D48ADAE1-EA00-4CE2-9213-3F1809749C9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D48ADAE1-EA00-4CE2-9213-3F1809749C9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D48ADAE1-EA00-4CE2-9213-3F1809749C9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D48ADAE1-EA00-4CE2-9213-3F1809749C9E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

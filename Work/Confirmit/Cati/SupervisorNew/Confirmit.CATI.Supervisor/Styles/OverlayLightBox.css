@@ -1,0 +1,173 @@
+.overlayLoader {
+  z-index: 101;
+  top: -9000px;
+  background-color: transparent;
+}
+
+.overlayLayer,
+.overlayLoader {
+  position: absolute;
+  left: 0;
+}
+
+.overlayLayer {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  background: #121821;
+}
+
+.overlayWindow {
+  width: 980px;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  background-color: #fff;
+  box-shadow: 0 0 1.714rem 0 rgba(0, 0, 0, 0.22), 0 1.714rem 1.714rem 0 rgba(0, 0, 0, 0.3);
+  line-height: normal;
+}
+
+.overlayBackFrame,
+.overlayWindow {
+  position: absolute;
+  top: -9000px;
+  left: 0;
+}
+
+.overlayBackFrame {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+.lightbox-loaded-test {
+  display: none;
+}
+
+.modalDialog {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+}
+
+    .modalDialog .dataarea {
+        display: flex;
+        flex: 1 1 auto;
+        margin: 10px 0 1.285rem;
+        overflow: auto;
+        /* padding:0 1.714rem; */
+    }
+
+.contentWrapper,
+.general-grid-control {
+  display: flex;
+  flex-direction: column;
+}
+
+.modalDialog .bottom-status-bar {
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  margin-top: 10px;
+  border-top: 1px solid #e2e3e4;
+  padding-bottom: 0;
+}
+/* TODO */
+.modalDialog .igtab_THControl  .bottom-status-bar,
+.modalDialog .no-bottom-borders-for-grids .bottom-status-bar {
+  padding-bottom: 10px;
+  min-height: 35px;
+}
+
+.modalDialog .total-records-count {
+  position: relative;
+  left: 0;
+  top: 0;
+}
+.modalDialog .general-grid-control__header-toolbar {
+    margin-bottom: 0;
+}
+.modalDialog .general-grid-control__header .attention {
+  margin: 0px 20px 0px 20px;
+}
+.modalDialog .gridHolder {
+    padding: 0 10px;
+}
+
+.modalDialog .igg_Header th {
+  padding-left: 5px;
+  padding-right: 0;
+}
+
+.modalDialog .igg_Header th:not(:first-of-type) {
+  padding-left: 4px;
+}
+
+.modalDialog tbody.ig_Item td {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+.modalDialog .XpButton,
+.modalDialog .XpButtonDisabled,
+.modalDialog .XpGeneric {
+  padding-left: 10px;
+}
+.modalDialog .leftMenu .XpButton,
+.modalDialog .leftMenu .XpButtonDisabled,
+.modalDialog .leftMenu .XpGeneric {
+  padding-left: 0;
+  padding-right: 10px;
+}
+.modalDialog .content-panel .attention {
+    margin: 0px 0px 10px 0px;
+}
+.modalDialog .attention {
+  margin: 0px 20px 10px 20px;
+}
+.modalDialog .XpMenu {
+  
+}
+
+.modalDialog .general-grid-control__header-toolbar .XpMenu{
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin: 10px 0;
+}
+
+.modalDialog .general-grid-control__dialog-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.modal-dialog__close {
+  border: none;
+  background: transparent;
+}
+.modal-dialog__close svg {
+  fill: rgba(0, 0, 0, 0.45);
+  width: 1rem;
+  height: 1rem;
+  cursor: pointer;
+}
+
+.modal-dialog__heading {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 12px 10px 8px 24px;
+  background: #fff;
+  height: 70px;
+  border-bottom: 1px solid #e2e3e4;
+}
+
+.modal-dialog__title h3 {
+  font: 600 1.429rem/1.4 Source Sans Pro, Arial, Helvetica, Geneva, sans-serif;
+}

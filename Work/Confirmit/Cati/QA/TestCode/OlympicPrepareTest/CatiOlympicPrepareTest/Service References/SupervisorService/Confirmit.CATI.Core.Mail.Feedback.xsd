@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Mail.Feedback" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Mail.Feedback" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="FeedbackForm">
+    <xs:sequence>
+      <xs:element name="_x003C_AuthorizedUserEmail_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_AuthorizedUserLogin_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_AuthorizedUserName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Category_x003E_k__BackingField" type="tns:FeedbackCategory" />
+      <xs:element name="_x003C_CompanyId_x003E_k__BackingField" type="xs:int" />
+      <xs:element name="_x003C_CompanyName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ContactEmail_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ContactName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Description_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Summary_x003E_k__BackingField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FeedbackForm" nillable="true" type="tns:FeedbackForm" />
+  <xs:simpleType name="FeedbackCategory">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Suggestion" />
+      <xs:enumeration value="Bug" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FeedbackCategory" nillable="true" type="tns:FeedbackCategory" />
+</xs:schema>

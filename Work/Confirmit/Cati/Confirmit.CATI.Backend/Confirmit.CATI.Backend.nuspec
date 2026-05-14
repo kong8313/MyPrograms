@@ -1,0 +1,192 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Confirmit.CATI.Backend</id>
+    <version>18.0.0.0</version>
+    <authors>Confirmit</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Backend</description>
+  </metadata>
+  <files>
+
+    <file src="..\assemblies\Confirmit.CATI.Backend.exe" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Backend.exe.config" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Core.dll" target="" />
+    <file src="..\assemblies\Confirmit.Security.Crypto.Web.dll" target="" />
+    <file src="..\assemblies\DialerCommon.DLL" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Common.DLL" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DatabaseUpdateLibraryCore.dll" target="" />
+      
+    <file src="..\assemblies\Confirmit.CATI.Monitoring.Common.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.WindowsServiceTools.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Supervisor.Core.dll" target="" />
+    <file src="..\assemblies\DialerConfigurationUtility.exe" target="" />
+    <file src="..\assemblies\DialerConfigurationUtility.exe.config" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.0.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.2.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.3.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.4.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.5.dll" target="" />
+      
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.6.dll" target="" />
+    <file src="..\assemblies\ConfirmitDialerInterface.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.0.Contract.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.2.Contract.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.3.Contract.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.4.Contract.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.5.Contract.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.6.Contract.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.Contract.dll" target="" />
+    <file src="..\assemblies\DialerLibrary.dll" target="" />
+    
+    <file src="..\assemblies\DialerConfig.xml" target="" />
+    <file src="..\assemblies\DialerConfig_InVade.xml" target="" />
+    <file src="..\assemblies\DialerConfig_Sytel.xml" target="" />
+    <file src="..\assemblies\DotNetZip.dll" target="" />
+    <file src="..\assemblies\Mono.Cecil.dll" target="" />
+    <file src="..\assemblies\IPAddressRange.dll" target="" />
+    <file src="..\assemblies\Confirmit.Identity.AccessTokenValidation.dll" target="" />    
+    <file src="..\assemblies\IdentityModel.dll" target="" />
+    <file src="..\assemblies\Confirmit.Logging.dll" target="" />
+      
+    <file src="..\assemblies\Confirmit.Identity.Sdk.dll" target="" />
+    <file src="..\assemblies\Confirmit.Common.dll" target="" />
+    <file src="..\assemblies\NLog.dll" target="" />
+    <file src="..\assemblies\Confirmit.Security.Crypto.dll" target="" />
+    <file src="..\assemblies\YamlDotNet.dll" target="" />
+    <file src="..\assemblies\Confirmit.DataServices.RDataAccess.dll" target="" />
+    <file src="..\assemblies\Confirmit.Configuration.dll" target="" />
+    <file src="..\assemblies\Firmglobal.Confirmit.DevUtils.dll" target="" />
+    <file src="..\assemblies\Microsoft.Rest.ClientRuntime.dll" target="" />
+    <file src="..\assemblies\Confirmit.Security.Pgp.dll" target="" />
+      
+    <file src="..\assemblies\Confirmit.NetworkFileSystem.dll" target="" />
+    <file src="..\assemblies\confirmit.surveyvoicexml.service.client.dll" target="" />
+    <file src="..\assemblies\EntityFramework.dll" target="" />
+    <file src="..\assemblies\EntityFramework.SqlServer.dll" target="" />
+    <file src="..\assemblies\Microsoft.OData.Core.dll" target="" />
+    <file src="..\assemblies\Microsoft.OData.Edm.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.Host.HttpListener.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.Hosting.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.Security.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.Security.OpenIdConnect.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.Security.Jwt.dll" target="" />
+    <file src="..\assemblies\Microsoft.Owin.Security.OAuth.dll" target="" />
+    <file src="..\assemblies\Microsoft.Bcl.AsyncInterfaces.dll" target="" />
+    <file src="..\assemblies\Microsoft.IdentityModel.Abstractions.dll" target="" />
+    <file src="..\assemblies\Microsoft.IdentityModel.JsonWebTokens.dll" target="" />
+    <file src="..\assemblies\Microsoft.IdentityModel.Logging.dll" target="" />
+    <file src="..\assemblies\Microsoft.IdentityModel.Protocols.dll" target="" />
+    <file src="..\assemblies\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" target="" />
+    <file src="..\assemblies\Microsoft.IdentityModel.Tokens.dll" target="" />
+	
+      
+    <file src="..\assemblies\Microsoft.Practices.ServiceLocation.dll" target="" />
+    <file src="..\assemblies\Microsoft.Spatial.dll" target="" />
+    <file src="..\assemblies\Newtonsoft.Json.dll" target="" />
+    <file src="..\assemblies\Owin.dll" target="" />
+    <file src="..\assemblies\System.Net.Http.Formatting.dll" target="" />
+    <file src="..\assemblies\System.Web.Http.dll" target="" />
+    <file src="..\assemblies\System.Web.Http.Owin.dll" target="" />
+    <file src="..\assemblies\Microsoft.AspNet.OData.dll" target="" />
+    <file src="..\assemblies\System.IdentityModel.Tokens.Jwt.dll" target="" />
+    <file src="..\assemblies\Confirmit.Configuration.Bootstrap.dll" target="" />
+    <file src="..\assemblies\System.Text.Encodings.Web.dll" target="" />
+    <file src="..\assemblies\System.Text.Json.dll" target="" />
+    <file src="..\assemblies\System.ValueTuple.dll" target="" />
+	  
+    <file src="..\assemblies\Confirmit.Rest.dll" target="" />
+    <file src="..\assemblies\Confirmit.Rest.Client.dll" target="" />
+    <file src="..\assemblies\Polly.dll" target="" />
+    <file src="..\assemblies\Confirmit.Databases.dll" target="" />
+    <file src="..\assemblies\Swashbuckle.Core.dll" target="" />
+    <file src="..\assemblies\Swashbuckle.OData.dll" target="" />
+    <file src="..\assemblies\System.Web.OData.dll" target="" />
+    <file src="..\assemblies\Microsoft.Extensions.DependencyInjection.dll" target="" />
+    <file src="..\assemblies\Microsoft.Extensions.DependencyInjection.Abstractions.dll" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Backend.xml" target="" />
+	
+    <file src="..\assemblies\Confirmit.MessageBroker.Consume.Sdk.dll" target="" />
+    <file src="..\assemblies\Confirmit.MessageBroker.Publish.Sdk.dll" target="" />
+    <file src="..\assemblies\Confirmit.NetCore.ApplicationHealth.dll" target="" />
+    <file src="..\assemblies\RabbitMQ.Client.dll" target="" />
+    <file src="..\assemblies\Microsoft.Extensions.Options.dll" target="" />
+    <file src="..\assemblies\Microsoft.Extensions.Logging.Abstractions.dll" target="" />
+    <file src="..\assemblies\Microsoft.Extensions.Primitives.dll" target="" />
+    <file src="..\assemblies\System.Buffers.dll" target="" />
+    <file src="..\assemblies\System.Memory.dll" target="" />
+    <file src="..\assemblies\System.Diagnostics.DiagnosticSource.dll" target="" />
+    <file src="..\assemblies\System.Threading.Channels.dll" target="" />
+    <file src="..\assemblies\System.Threading.Tasks.Extensions.dll" target="" />
+    <file src="..\assemblies\System.Threading.RateLimiting.dll" target="" />
+    <file src="..\assemblies\System.IO.Pipelines.dll" target="" />
+    <file src="..\assemblies\System.Runtime.CompilerServices.Unsafe.dll" target="" />
+    <file src="..\assemblies\System.Net.Http.WinHttpHandler.dll" target="" />
+    <file src="..\assemblies\System.Numerics.Vectors.dll" target="" />
+	
+    <file src="..\assemblies\Confirmit.CATI.Backend.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Core.pdb" target="" />
+    <file src="..\assemblies\DialerCommon.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.0.Contract.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.2.Contract.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.3.Contract.pdb" target="" />
+      
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.4.Contract.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.5.Contract.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.3.6.Contract.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Telephony.DialerService.Contract.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.0.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.2.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.3.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.4.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.5.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.DialerInterface.3.6.pdb" target="" />
+      
+    <file src="..\assemblies\ConfirmitDialerInterface.pdb" target="" />
+    <file src="..\assemblies\DialerLibrary.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Common.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Monitoring.Common.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.WindowsServiceTools.pdb" target="" />
+    <file src="..\assemblies\Confirmit.CATI.Supervisor.Core.pdb" target="" />
+    <file src="..\assemblies\Polly.pdb" target="" />
+    
+    <file src="..\OctopusDeploy\BackendDeploy.ps1" target="Deploy.ps1" />  
+    <file src="..\OctopusDeploy\PostDeploy.ps1" target="" />
+    <file src="..\OctopusDeploy\Installation\DeployFunctions.ps1" target="Installation" />
+    <file src="..\OctopusDeploy\Installation\InitialInitializations.ps1" target="Installation" />
+    <file src="..\OctopusDeploy\Installation\PreDeployFunctions.ps1" target="Installation" />
+    <file src="..\OctopusDeploy\Installation\CompLevelSystemAgentJob.sql" target="Installation" />
+    <file src="..\OctopusDeploy\Installation\CompLevelSystemStoredProcedure.sql" target="Installation" />
+    
+    <file src="..\assemblies\Installation\CustomActionLibrary.dll" target="Installation" />
+    <file src="..\assemblies\Installation\CatiInstallation.dll" target="Installation" />
+    <file src="..\assemblies\Installation\BootstrapperLibrary.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.CATI.Installation.Common.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Configuration.Bootstrap.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Configuration.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Databases.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.DataServices.RDataAccess.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Security.Crypto.dll" target="Installation" />
+    <file src="..\assemblies\Installation\System.Management.Automation.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.CATI.DatabaseUpdateLibrary.dll" target="Installation" />
+    <file src="..\assemblies\Installation\CryptographicUtility.exe" target="Installation" />
+    <file src="..\assemblies\Installation\CryptographicUtility.exe.config" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Configuration.Bootstrap.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Security.Crypto.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.Security.Crypto.Web.dll" target="Installation" />
+
+    <file src="..\_3rdpart\Karamasoft\UltimateSpellInclude\**\*.*" target="UltimateSpellInclude" />
+    <file src="..\_3rdpart\Karamasoft\UltimateSpell.dll" target="" />
+    <file src="..\_3rdpart\Unity 2.1\Microsoft.Practices.Unity.dll" target="" />
+    <file src="..\_3rdpart\Telerik\Telerik.Reporting.dll" target="" />
+      
+    <file src="..\_3rdpart\Unity 2.1\Microsoft.Practices.Unity.pdb" target="" />
+    <file src="..\_3rdpart\Telerik\Telerik.Reporting.pdb" target="" />
+	
+    <file src="..\assemblies\Pgp\**\*.*" target="Pgp" />
+    <file src="..\_3rdpart\Smo\**\*.*" target="" />
+    <file src="..\assemblies\Prometheus.NetStandard.dll" target="" /> 
+    
+  </files>
+</package>

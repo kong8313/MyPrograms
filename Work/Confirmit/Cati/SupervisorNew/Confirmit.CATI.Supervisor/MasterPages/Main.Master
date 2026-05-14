@@ -1,0 +1,51 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="Confirmit.CATI.Supervisor.MasterPages.Main" %>
+
+<%@ Import Namespace="Confirmit.CATI.Supervisor.Classes" %>
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <asp:PlaceHolder runat="server">
+        <link rel="shortcut icon" type="image/x-icon" href="<%=HttpContext.Current.Request.ApplicationPath + "/favicon.ico" %>" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title><%= HttpUtility.HtmlEncode(((BaseForm)Page).Title) %></title>
+        <%=((BaseForm)Page).GetStyleSheetLinks()%>
+        <script src="<%=BaseForm.GetYuiPreloadScriptUrl()%>&<%=PageHelper.VersionSuffix%>" type="text/javascript"></script>
+        <script type="text/javascript">
+            <%=BaseForm.GetYuiConfigScript()%>
+</script>
+    </asp:PlaceHolder>
+    <script type="text/javascript">
+        (function () {
+            YUI().use("*", function (Y) {
+                window.Y = Y;
+            });
+        })();
+        window.showTooltip = function (id, text, width) {
+            if (window.popper) {
+                window.popper.destroy();
+            }
+            window.tooltipReference = document.createElement('div');
+            window.tooltipReference.innerHTML =
+                '<div class="comd-tooltip__arrow"></div><div class="comd-tooltip__inner" style="max-width:' + width + 'px">' + text + '</div>';
+            window.tooltipReference.className = 'comd-tooltip';
+            document.body.appendChild(window.tooltipReference);
+            window.popper = new Popper(document.getElementById(id),
+                window.tooltipReference,
+                { placement: 'bottom', removeOnDestroy: true });
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="<%=TableDensityCssClass %> <%=NewUiCssClass %>">
+    <form id="MainForm" method="post" runat="server" style="margin: 0; position: relative;">
+        <asp:PlaceHolder ID="phScriptManager" runat="server">
+            <asp:ScriptManager ID="ajaxScriptManager" runat="server" EnablePageMethods="true" EnableScriptGlobalization="True" />
+        </asp:PlaceHolder>
+        <asp:ValidationSummary ID="vs" runat="server" ShowMessageBox="true" DisplayMode="List" ShowSummary="false" />
+
+        <asp:ContentPlaceHolder ID="Content" runat="server">
+        </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

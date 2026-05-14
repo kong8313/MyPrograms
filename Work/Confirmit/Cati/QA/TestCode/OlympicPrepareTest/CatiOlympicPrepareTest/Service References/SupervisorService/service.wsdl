@@ -1,0 +1,849 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:i0="http://www.confirmit.com/supervisorService/05/05/2009" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SupervisorService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="BasicHttpsBinding_supervisorService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:import namespace="http://www.confirmit.com/supervisorService/05/05/2009" location="" />
+  <wsdl:types />
+  <wsdl:binding name="BasicHttpBinding_supervisorService" type="i0:supervisorService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSurvey">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/OpenSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CloseSurvey">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CloseSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ShutdownSurvey">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ShutdownSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TerminateTaskByPerson">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTaskByPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TerminateTasksByDialerId">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTasksByDialerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnableDialer">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/EnableDialer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DisableDialer">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DisableDialer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetPersonParentGroups">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetPersonParentGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerson">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DeletePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LockPersonBySupervisor">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LockPersonBySupervisor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsDialerOperational">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/IsDialerOperational" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSchedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SaveSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SchedulingScriptSyntaxErrorExceptionDetailsFault">
+        <soap:fault use="literal" name="SchedulingScriptSyntaxErrorExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSchedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LaunchSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SchedulingScriptSyntaxErrorExceptionDetailsFault">
+        <soap:fault use="literal" name="SchedulingScriptSyntaxErrorExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSchedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CheckSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/Schedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartMonitor">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StartMonitor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StopMonitor">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StopMonitor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrUpdatePerson">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CreateOrUpdatePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetInterviewRecordings">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetInterviewRecordings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AreRecordsExists">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/AreRecordsExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetDialerDefaultSurveyParameters">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerDefaultSurveyParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DialerParametersExceptionDetailsFault">
+        <soap:fault use="literal" name="DialerParametersExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateDialerSurveyParameters">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ValidateDialerSurveyParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DialerParametersExceptionDetailsFault">
+        <soap:fault use="literal" name="DialerParametersExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetDialerSurveyParameters">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerSurveyParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DialerParametersExceptionDetailsFault">
+        <soap:fault use="literal" name="DialerParametersExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPersons">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ImportPersons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConfigureInboundDdiNumbers">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ConfigureInboundDdiNumbers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFiles">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFileBodyZipped">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFileBodyZipped" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDialerVersion">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableExtendedFunctionality">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetAvailableExtendedFunctionality" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDialerSupportedFeatures">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerSupportedFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverridenDialerSupportedFeatures">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetOverridenDialerSupportedFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOverridenDialerSupportedFeature">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/UpdateOverridenDialerSupportedFeature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpsBinding_supervisorService" type="i0:supervisorService">
+    <wsp:PolicyReference URI="#BasicHttpsBinding_supervisorService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SendMessage">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SendMessage" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="OpenSurvey">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/OpenSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CloseSurvey">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CloseSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ShutdownSurvey">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ShutdownSurvey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TerminateTaskByPerson">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTaskByPerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="TerminateTasksByDialerId">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/TerminateTasksByDialerId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EnableDialer">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/EnableDialer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DisableDialer">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DisableDialer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetPersonParentGroups">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetPersonParentGroups" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePerson">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/DeletePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LockPersonBySupervisor">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LockPersonBySupervisor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsDialerOperational">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/IsDialerOperational" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveSchedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SaveSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SchedulingScriptSyntaxErrorExceptionDetailsFault">
+        <soap:fault use="literal" name="SchedulingScriptSyntaxErrorExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="LaunchSchedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/LaunchSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="SchedulingScriptSyntaxErrorExceptionDetailsFault">
+        <soap:fault use="literal" name="SchedulingScriptSyntaxErrorExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckSchedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CheckSchedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="Schedule">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/Schedule" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StartMonitor">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StartMonitor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="StopMonitor">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/StopMonitor" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrUpdatePerson">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/CreateOrUpdatePerson" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetInterviewRecordings">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetInterviewRecordings" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AreRecordsExists">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/AreRecordsExists" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetDialerDefaultSurveyParameters">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerDefaultSurveyParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DialerParametersExceptionDetailsFault">
+        <soap:fault use="literal" name="DialerParametersExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateDialerSurveyParameters">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ValidateDialerSurveyParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DialerParametersExceptionDetailsFault">
+        <soap:fault use="literal" name="DialerParametersExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetDialerSurveyParameters">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/SetDialerSurveyParameters" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="DialerParametersExceptionDetailsFault">
+        <soap:fault use="literal" name="DialerParametersExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ImportPersons">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ImportPersons" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ConfigureInboundDdiNumbers">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/ConfigureInboundDdiNumbers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFiles">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFiles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLogFileBodyZipped">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetLogFileBodyZipped" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDialerVersion">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableExtendedFunctionality">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetAvailableExtendedFunctionality" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetDialerSupportedFeatures">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetDialerSupportedFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOverridenDialerSupportedFeatures">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/GetOverridenDialerSupportedFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateOverridenDialerSupportedFeature">
+      <soap:operation soapAction="http://www.confirmit.com/supervisorService/05/05/2009/supervisorService/UpdateOverridenDialerSupportedFeature" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="UserMessageExceptionDetailsFault">
+        <soap:fault use="literal" name="UserMessageExceptionDetailsFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SupervisorService">
+    <wsdl:port name="BasicHttpBinding_supervisorService" binding="tns:BasicHttpBinding_supervisorService">
+      <soap:address location="http://localhost/Rel/SupervisorMultimodeInstance1" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpsBinding_supervisorService" binding="tns:BasicHttpsBinding_supervisorService">
+      <soap:address location="https://localhost/Rel/SupervisorMultimodeInstance1" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

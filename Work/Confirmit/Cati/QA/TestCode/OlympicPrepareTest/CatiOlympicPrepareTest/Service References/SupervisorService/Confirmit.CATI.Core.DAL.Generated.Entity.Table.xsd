@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.DAL.Generated.Entity.Table" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.DAL.Generated.Entity.Table" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Tasks" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="BvTasksEntity">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Tasks" name="_context" nillable="true" type="q1:TaskContext" />
+      <xs:element name="m_authenticationkey" nillable="true" type="ser:guid" />
+      <xs:element name="m_breaktypeid" nillable="true" type="xs:int" />
+      <xs:element name="m_callcenterid" type="xs:int" />
+      <xs:element name="m_callconnectionstate" type="xs:unsignedByte" />
+      <xs:element name="m_callid" nillable="true" type="xs:int" />
+      <xs:element name="m_calloutcome" type="xs:int" />
+      <xs:element name="m_calltype" type="xs:unsignedByte" />
+      <xs:element name="m_currentutctime" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_dialerid" type="xs:int" />
+      <xs:element name="m_diallingmode" type="xs:int" />
+      <xs:element name="m_dialtypeid" type="xs:unsignedByte" />
+      <xs:element name="m_encryptioniv" nillable="true" type="xs:base64Binary" />
+      <xs:element name="m_encryptionkey" nillable="true" type="xs:base64Binary" />
+      <xs:element name="m_interviewid" type="xs:int" />
+      <xs:element name="m_interviewstate" type="xs:unsignedByte" />
+      <xs:element name="m_isdialeragentlocal" type="xs:boolean" />
+      <xs:element name="m_isloginrctodialer" type="xs:boolean" />
+      <xs:element name="m_iswebconsole" type="xs:boolean" />
+      <xs:element name="m_jsoncontext" nillable="true" type="xs:string" />
+      <xs:element name="m_lastkeepalivetime" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_linkedcallid" nillable="true" type="xs:int" />
+      <xs:element name="m_linkedchain" nillable="true" type="xs:string" />
+      <xs:element name="m_linkedinterviewsessionid" nillable="true" type="xs:int" />
+      <xs:element name="m_locktime" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_loggedintodialerstate" type="xs:unsignedByte" />
+      <xs:element name="m_newsurveysid" type="xs:int" />
+      <xs:element name="m_openendreviewstarttime" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_personsid" type="xs:int" />
+      <xs:element name="m_problemid" type="xs:int" />
+      <xs:element name="m_selectedsurveyid" nillable="true" type="xs:int" />
+      <xs:element name="m_sessionid" type="xs:int" />
+      <xs:element name="m_startsessiontime" type="xs:dateTime" />
+      <xs:element name="m_starttime" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_state" nillable="true" type="xs:string" />
+      <xs:element name="m_stationextensionnumber" nillable="true" type="xs:string" />
+      <xs:element name="m_stationid" nillable="true" type="xs:string" />
+      <xs:element name="m_statuslogout" type="xs:unsignedByte" />
+      <xs:element name="m_surveysid" type="xs:int" />
+      <xs:element name="m_timecalldelivered" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_timestatechanged" nillable="true" type="xs:dateTime" />
+      <xs:element name="m_tzid" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BvTasksEntity" nillable="true" type="tns:BvTasksEntity" />
+</xs:schema>

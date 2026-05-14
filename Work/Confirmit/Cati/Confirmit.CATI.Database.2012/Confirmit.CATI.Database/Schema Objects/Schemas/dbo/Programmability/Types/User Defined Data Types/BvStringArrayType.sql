@@ -1,0 +1,4 @@
+﻿CREATE TYPE BvStringArrayType AS TABLE
+(
+	Value NVARCHAR(MAX)
+)

@@ -1,0 +1,126 @@
+{
+    "src_folders": [
+        "tests"
+    ],
+    "output_folder": "reports",
+    "custom_commands_path": "commands",
+    "custom_assertions_path": "",
+    "page_objects_path": "pages",
+    "skip_testcases_on_fail": true,
+    "end_session_on_fail": false,
+    "globals_path": "./globals",
+    "selenium": {
+        "start_process": true,
+        "server_path": "./node_modules/confirmit-selenium-binaries/bin/selenium-server-standalone.jar",
+        "log_path": "",
+        "host": "127.0.0.1",
+        "port": 4444,
+        "cli_args": {
+            "webdriver.chrome.logfile": "./chromedriver.log",
+            "webdriver.chrome.driver": "./node_modules/chromedriver/lib/chromedriver/chromedriver.exe",
+            "webdriver.gecko.driver": ""
+        }
+    },
+    "test_settings": {
+        "default": {
+            "launch_url": "http://localhost/confirm/authoring/CATI/LoadCP.aspx?mode=SurveyManagement&ProjectId=",
+            "globals": {
+                "login": {
+                    "url": "http://localhost/confirm/",
+                    "user_name": "administrator",
+                    "password": "administrator"
+                },
+                "apiWebService": "http://localhost/api"
+            },
+            "selenium_port": 4444,
+            "selenium_host": "localhost",
+            "silent": true,
+            "screenshots": {
+                "enabled": true,
+                "on_failure": true,
+                "on_error": false,
+                "path": "./screenshots"
+            },
+            "desiredCapabilities": {
+                "browserName": "chrome",
+                "marionette": true
+            }
+        },
+        "masterStagingHTTPS": {
+            "launch_url": "https://cati.build.testlab.firmglobal.net/supervisor/default.aspx?doNotRedirect=1",
+            "globals": {
+                "login": {
+                    "url": "https://author-cati.build.testlab.firmglobal.net/confirm/",
+                    "user_name": "cati_test",
+                    "password": "test_cati01"
+                },
+                "apiWebService": "https://author-cati.build.testlab.firmglobal.net/api",
+                "config": {
+                    "user": "sa",
+                    "password": "firm",
+                    "server": "CO-OSL-TENTA203\\CATI",
+                    "database": "ConfirmitCATIV15_2"
+                }
+            },
+            "selenium_port": 4444,
+            "selenium_host": "localhost",
+            "silent": true,
+            "screenshots": {
+                "enabled": true,
+                "on_failure": true,
+                "on_error": false,
+                "path": "./screenshots"
+            },
+            "desiredCapabilities": {
+                "browserName": "chrome",
+                "marionette": true,
+                "chromeOptions": {
+                    "w3c": false,
+                    "args": [
+                        "--no-sandbox",
+                        "--headless",
+                        "--disable-gpu"
+                    ]
+                }
+            }
+        },
+        "testlabHTTPS": {
+            "launch_url": "https://cati.testlab.firmglobal.net/supervisor/default.aspx?doNotRedirect=1",
+            "globals": {
+                "login": {
+                    "url": "https://author.testlab.firmglobal.net/confirm/",
+                    "user_name": "cati_test",
+                    "password": "test_cati01"
+                },
+                "apiWebService": "https://metadata.testlab.firmglobal.net/api",
+                "config": {
+                    "user": "sa",
+                    "password": "%1firm",
+                    "server": "co-osl-tenta263\\CATI",
+                    "database": "ConfirmitCATIV15_1"
+                }
+            },
+            "selenium_port": 4444,
+            "selenium_host": "localhost",
+            "silent": true,
+            "screenshots": {
+                "enabled": true,
+                "on_failure": true,
+                "on_error": false,
+                "path": "./screenshots"
+            },
+            "desiredCapabilities": {
+                "browserName": "chrome",
+                "marionette": true,
+                "chromeOptions": {
+                    "w3c": false,
+                    "args": [
+                        "--no-sandbox",
+                        "--headless",
+                        "--disable-gpu"
+                    ]
+                }
+            }
+        }
+    }
+}

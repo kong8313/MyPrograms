@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[BvInterview] (
+    [ID]                 INT            NOT NULL,
+    [SurveySID]          INT            NOT NULL,
+    [TelephoneNumber]    VARCHAR (255)  NULL,
+    [RespondentName]     NVARCHAR (255) NULL,
+    [TimezoneID]         INT            NULL,
+    [TransientState]     INT            NOT NULL,
+    [LastCallTime]       DATETIME       NULL,
+    [LastCallPersonSID]  INT            NULL,
+    [Duration]           INT            NULL,
+    [ExtensionNumber]    VARCHAR (255)  NULL,
+    [ConfirmitSid]       VARCHAR (64)   NOT NULL CONSTRAINT DF_BvInterview_ConfirmitSid DEFAULT(''),
+    [BatchID]            INT            NOT NULL,
+    [LastChannelID]      TINYINT        NOT NULL,
+    [DialingMode]        TINYINT        NOT NULL CONSTRAINT DF_BvInterview_DialingMode DEFAULT(0),
+    [DialerId]           INT            NOT NULL CONSTRAINT DF_BvInterview_DialerId DEFAULT(0),
+    [IsSentToReview]     BIT            NOT NULL CONSTRAINT DF_BvInterview_IsSentToReview DEFAULT (0),
+    [DialTypeId]         TINYINT        NOT NULL, 
+    [ReviewStatus]		 TINYINT        NOT NULL CONSTRAINT DF_BvInterview_ReviewStatus DEFAULT (0) 
+);

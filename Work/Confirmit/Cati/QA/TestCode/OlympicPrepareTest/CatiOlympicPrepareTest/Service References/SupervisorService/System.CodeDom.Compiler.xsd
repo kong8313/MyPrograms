@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System.CodeDom.Compiler" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System.CodeDom.Compiler" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CompilerError">
+    <xs:sequence>
+      <xs:element name="column" type="xs:int" />
+      <xs:element name="errorNumber" nillable="true" type="xs:string" />
+      <xs:element name="errorText" nillable="true" type="xs:string" />
+      <xs:element name="fileName" nillable="true" type="xs:string" />
+      <xs:element name="line" type="xs:int" />
+      <xs:element name="warning" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CompilerError" nillable="true" type="tns:CompilerError" />
+</xs:schema>

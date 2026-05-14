@@ -1,0 +1,14 @@
+{{- if and .Values.global.pdb.enabled .Values.pdb.enabled -}}
+{{- if semverCompare ">=1.21-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: policy/v1
+{{- else -}}
+apiVersion: policy/v1beta1
+{{- end }}
+kind: PodDisruptionBudget
+metadata:
+  name: {{ template "aws-connect-dialer-proxy.fullname" . }}
+spec:
+  minAvailable: {{ .Values.pdb.minAvailable }}
+  selector:
+    matchLabels: {{- include "aws-connect-dialer-proxy.selectorLabels" . | nindent 6 }}
+{{- end }}

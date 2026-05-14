@@ -1,0 +1,26 @@
+{
+  "name": "e-2-e",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chromedriver": "^85.0.1",
+    "confirmit-selenium-binaries": "3.9.1",
+    "lodash": "^4.17.19",
+    "nightwatch": "1.3.6",
+    "q": "1.5.1",
+    "selenium-standalone": "6.17.0"
+  },
+  "dependencies": {
+    "confirmit-logging": "0.0.2",
+    "confirmit-oidc": "^0.16.2",
+    "confirmit-token-authentication-middleware": "^1.0.0",
+    "mssql": "^4.1.0",
+    "xml-reader": "^2.4.3"
+  }
+}

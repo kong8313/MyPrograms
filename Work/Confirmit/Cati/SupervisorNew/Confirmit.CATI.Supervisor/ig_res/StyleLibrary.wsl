@@ -1,0 +1,18 @@
+<Library Name="StyleLibrary">
+  <StyleSets>
+    <StyleSet>
+      <Name>Default</Name>
+      <DisplayName>Default</DisplayName>
+      <Description>
+      </Description>
+      <Version>
+      </Version>
+      <Author>
+      </Author>
+      <Copyright>
+      </Copyright>
+      <Company>
+      </Company>
+    </StyleSet>
+  </StyleSets>
+</Library>

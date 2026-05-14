@@ -1,0 +1,72 @@
+.grid-holder{
+    width:100%;
+    height:100px;
+    overflow:visible;
+}
+
+.grid-holder{
+    height:100%;
+    overflow:scroll;
+    border-collapse:separate;
+}
+
+    .grid-holder>table{
+        width:100%;
+        border-spacing:5px;
+        background:#d6d6d6;
+    }
+
+    .grid-holder td{
+        padding:2px 5px;
+        border:1px solid #d8d8d8;
+        background:#fff;
+        vertical-align:top;
+    }
+
+.quota-grid{
+    width:100%;
+    border:1px solid #d8d8d8;
+    border-collapse:collapse;
+    text-align:left;
+}
+
+.grid-holder .quota-grid td{
+    padding:2px 5px;
+}
+
+.quota-grid.generic-grid tr.even td {
+    background: #ececec;
+}
+
+.quota-table-header {
+    cursor: default;
+}
+
+.all-quotas-wrapper {
+    width: 100%
+}
+
+    .all-quotas-wrapper > tbody > tr > td {
+        padding: 0px 10px 10px 0px;
+        vertical-align: top;
+    }
+
+.quota-grid caption {
+    border-bottom: 2px solid #000;
+    font-weight: 700;
+    text-align: left;
+}
+
+td.quota-cell-Remaining{
+    width:60px;
+}
+
+td.quota-cell-CounterPercentage{
+    width:30px;
+}
+td.quota-cell-Counter,td.quota-cell-Limit,td.quota-row-selector {
+    width: 50px;
+}
+td.quota-cell-ExtraCounter{
+    width:60px;
+}

@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\..\assemblies</OutputPath>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <RootNamespace>Confirmit.Cati.Core</RootNamespace>
+    <AssemblyName>Confirmit.Cati.Core.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{3296be72-f1fc-1ac1-8a7c-0b96388600d6}</ProjectGuid>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Common\Confirmit.CATI.Common.csproj">
+      <Project>{459566A0-55F5-4B03-BCD9-1DB63B55D575}</Project>
+      <Name>Confirmit.CATI.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Monitoring.Common\Confirmit.CATI.Monitoring.Common.csproj">
+      <Project>{452C0EB9-7E5E-4E35-BFE5-3531D79647A5}</Project>
+      <Name>Confirmit.CATI.Monitoring.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Telephony\CommonDialerAPI\DialerCommon\DialerCommon.csproj">
+      <Project>{8B02686A-CAA0-416C-BF94-BD28C7A61432}</Project>
+      <Name>DialerCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Telephony\ConfirmitDialerInterface\ConfirmitDialerInterface.csproj">
+      <Project>{D68A6B1F-92BA-4305-B802-FF6B35D7A6D2}</Project>
+      <Name>ConfirmitDialerInterface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.WindowsServiceTools\Confirmit.CATI.WindowsServiceTools.csproj">
+      <Project>{6834FC44-562B-4393-9614-A926D3F2702D}</Project>
+      <Name>Confirmit.CATI.WindowsServiceTools</Name>
+    </ProjectReference>
+
+    <Reference Include="Azure.Identity, Version=1.13.2.0, Culture=neutral, PublicKeyToken=92742159e12e44c8, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Azure.Identity.1.13.2\lib\netstandard2.0\Azure.Identity.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.OpenPgp, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\BouncyCastle.OpenPgp.1.8.1.1\lib\net20\BouncyCastle.OpenPgp.dll</HintPath>
+    </Reference>
+    <Reference Include="confirmit.common, Version=8.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\confirmit.common.8.0.1\lib\netstandard2.0\confirmit.common.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Configuration, Version=27.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Configuration.27.0.8\lib\net472\Confirmit.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Configuration.Bootstrap, Version=4.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Configuration.Bootstrap.4.3.11\lib\net462\Confirmit.Configuration.Bootstrap.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Databases, Version=19.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Databases.19.7.0\lib\net472\Confirmit.Databases.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.DataServices.RDataAccess, Version=29.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.DataServices.RDataAccess.29.0.3\lib\net472\Confirmit.DataServices.RDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Identity.AccessTokenValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Identity.AccessTokenValidation.14.4.0\lib\net472\Confirmit.Identity.AccessTokenValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Identity.Sdk, Version=13.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Identity.Sdk.13.2.0\lib\net472\Confirmit.Identity.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.IPLockdown, Version=3.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.IPLockdown.3.0.4\lib\net472\Confirmit.IPLockdown.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Locking, Version=21.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Locking.21.1.1\lib\net472\Confirmit.Locking.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Logging, Version=10.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Logging.11.0.0\lib\netstandard2.0\Confirmit.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.MessageBroker.Consume.Sdk, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.MessageBroker.Consume.Sdk.9.2.0\lib\net472\Confirmit.MessageBroker.Consume.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.MessageBroker.Publish.Sdk, Version=8.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.MessageBroker.Publish.Sdk.8.0.0\lib\netstandard2.0\Confirmit.MessageBroker.Publish.Sdk.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.NetCore.ApplicationHealth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.NetCore.ApplicationHealth.2.1.1\lib\netstandard2.0\Confirmit.NetCore.ApplicationHealth.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Security.Crypto, Version=24.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Security.Crypto.24.0.9\lib\net462\Confirmit.Security.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.SurveyVoiceXml.Service.Client, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.SurveyVoiceXml.Service.Client.1.4.1\lib\net472\Confirmit.SurveyVoiceXml.Service.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip">
+      <HintPath>..\..\..\_3rdpart\DotNetZip\DotNetZip.dll</HintPath>
+    </Reference>
+    <Reference Include="Firmglobal.Framework.Security, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Firmglobal.Framework.Security.1.2.1\lib\net472\Firmglobal.Framework.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="IPAddressRange, Version=6.0.0.0, Culture=neutral, PublicKeyToken=578e3c3d17e7c751, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\IPAddressRange.6.0.0\lib\net462\IPAddressRange.dll</HintPath>
+    </Reference>
+    <Reference Include="Konscious.Security.Cryptography.Argon2, Version=1.3.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Konscious.Security.Cryptography.Argon2.Signed.1.3.0\lib\net46\Konscious.Security.Cryptography.Argon2.dll</HintPath>
+    </Reference>
+    <Reference Include="Konscious.Security.Cryptography.Blake2, Version=1.1.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Konscious.Security.Cryptography.Blake2.Signed.1.1.0\lib\net46\Konscious.Security.Cryptography.Blake2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Caching.Memory, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Caching.Memory.7.0.0\lib\net462\Microsoft.Extensions.Caching.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Logging.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client, Version=4.67.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Identity.Client.4.67.2\lib\net472\Microsoft.Identity.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Identity.Client.Extensions.Msal, Version=4.67.2.0, Culture=neutral, PublicKeyToken=0a613f4dd989e8ae, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Identity.Client.Extensions.Msal.4.67.2\lib\netstandard2.0\Microsoft.Identity.Client.Extensions.Msal.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Abstractions, Version=7.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Abstractions.7.0.3\lib\net472\Microsoft.IdentityModel.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.JsonWebTokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.JsonWebTokens.6.17.0\lib\net472\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Logging, Version=7.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Logging.7.0.3\lib\net472\Microsoft.IdentityModel.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocol.Extensions, Version=1.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Protocol.Extensions.1.0.4.403061554\lib\net45\Microsoft.IdentityModel.Protocol.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Protocols.6.17.0\lib\net472\Microsoft.IdentityModel.Protocols.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect, Version=2.1.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Protocols.OpenIdConnect.2.1.5\lib\net451\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.IdentityModel.Tokens, Version=6.17.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.IdentityModel.Tokens.6.17.0\lib\net472\Microsoft.IdentityModel.Tokens.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.4.2.2\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Security.4.2.2\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Jwt, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Security.Jwt.3.1.0\lib\net45\Microsoft.Owin.Security.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Security.OAuth.4.2.2\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OpenIdConnect, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Owin.Security.OpenIdConnect.3.1.0\lib\net45\Microsoft.Owin.Security.OpenIdConnect.dll</HintPath>
+    </Reference>
+    <Reference Include="Prometheus.NetStandard, Version=4.0.0.0, Culture=neutral, PublicKeyToken=a243e9817ba9d559, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\prometheus-net.4.2.0\lib\net461\Prometheus.NetStandard.dll</HintPath>
+    </Reference>
+    <Reference Include="RabbitMQ.Client, Version=7.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\RabbitMQ.Client.7.2.0\lib\netstandard2.0\RabbitMQ.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Buffers.4.6.1\lib\net462\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Configuration.ConfigurationManager.7.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=8.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Diagnostics.DiagnosticSource.8.0.1\lib\net462\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IdentityModel.Tokens.Jwt, Version=4.0.40306.1554, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.IdentityModel.Tokens.Jwt.4.0.4.403061554\lib\net45\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.IO.FileSystem.AccessControl.5.0.0\lib\net461\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.IO.Pipelines.8.0.0\lib\net462\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Memory.4.6.3\lib\net462\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WinHttpHandler, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Net.Http.WinHttpHandler.8.0.0\lib\net462\System.Net.Http.WinHttpHandler.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors, Version=4.1.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Numerics.Vectors.4.6.1\lib\net462\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.6.1.2\lib\net462\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.AccessControl.6.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.ProtectedData, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Cryptography.ProtectedData.4.7.0\lib\net461\System.Security.Cryptography.ProtectedData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Permissions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Permissions.7.0.0\lib\net462\System.Security.Permissions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.NetworkFileSystem, Version=18.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.NetworkFileSystem.19.11.0\lib\net472\Confirmit.NetworkFileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Rest, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Rest.7.0.0\lib\net472\Confirmit.Rest.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Rest.Client, Version=6.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Rest.Client.11.0.0\lib\net472\Confirmit.Rest.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Security.Crypto.Web, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Security.Crypto.Web.1.0.2\lib\net45\Confirmit.Security.Crypto.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.Security.Pgp, Version=18.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.Security.Pgp.19.0.5\lib\net472\Confirmit.Security.Pgp.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Firmglobal.Confirmit.DevUtils, Version=18.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Confirmit.DevUtils.19.1.8\lib\net45\Firmglobal.Confirmit.DevUtils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="IdentityModel, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\IdentityModel.Signed.1.11.0\lib\net45\IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\IdentityServer3.AccessTokenValidation.Signed.2.10.4\lib\net45\IdentityServer3.AccessTokenValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.7.0.0\lib\net462\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=7.0.0.1, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Options.7.0.1\lib\net462\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.7.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.Practices.Unity, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_3rdpart\Unity 2.1\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Rest.ClientRuntime, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Rest.ClientRuntime.2.3.12\lib\net452\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.ConnectionInfo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\..\_3rdpart\Smo\Microsoft.SqlServer.ConnectionInfo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Management.Sdk.Sfc, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\..\_3rdpart\Smo\Microsoft.SqlServer.Management.Sdk.Sfc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Smo, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\..\_3rdpart\Smo\Microsoft.SqlServer.Smo.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SmoExtended, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\..\_3rdpart\Smo\Microsoft.SqlServer.SmoExtended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.SqlEnum, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\..\_3rdpart\Smo\Microsoft.SqlServer.SqlEnum.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Mono.Cecil.0.9.6.4\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="mscorlib" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.4.7.15\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Polly, Version=7.0.0.0, Culture=neutral, PublicKeyToken=c8a3ffc3f8f825cc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Polly.7.2.3\lib\net472\Polly.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.IO.Compression">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.8\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Channels.8.0.0\lib\net462\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.RateLimiting, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.RateLimiting.8.0.0\lib\net462\System.Threading.RateLimiting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Thinktecture.IdentityModel.Client.Net45, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Thinktecture.IdentityModel.Client.Signed.4.0.1\lib\net45\Thinktecture.IdentityModel.Client.Net45.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Thinktecture.IdentityServer3.AccessTokenValidation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=8134450e5a05c0c1, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Thinktecture.IdentityServer3.AccessTokenValidation.Signed.1.2.3\lib\net45\Thinktecture.IdentityServer3.AccessTokenValidation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="UltimateSpell, Version=3.6.3861.37157, Culture=neutral, PublicKeyToken=722373a75218b33c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\_3rdpart\Karamasoft\UltimateSpell.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="YamlDotNet, Version=6.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\YamlDotNet.6.1.2\lib\net45\YamlDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Reporting, Version=15.1.21.616, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+      <Private>True</Private>
+      <SpecificVersion>true</SpecificVersion>
+      <HintPath>..\..\..\_3rdpart\Telerik\Telerik.Reporting.dll</HintPath>
+    </Reference>
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Confirmit.CATI.Core\Confirmit.CATI.Core.csproj">
+      <Project>{EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB}</Project>
+      <Name>Confirmit.CATI.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubFusionAuthoringSoap.cs" />
+    <compile Include=".\StubFusionAuthoringSoapChannel.cs" />
+    <compile Include=".\StubFusionSurveyDataSoap.cs" />
+    <compile Include=".\StubFusionSurveyDataSoapChannel.cs" />
+    <compile Include=".\StubIAccountLockingSettings.cs" />
+    <compile Include=".\StubIAccountLockingSettingsGroup.cs" />
+    <compile Include=".\StubIActionCollection.cs" />
+    <compile Include=".\StubIActionsSettings.cs" />
+    <compile Include=".\StubIActionsSettingsGroup.cs" />
+    <compile Include=".\StubIActiveDialRepository.cs" />
+    <compile Include=".\StubIActiveDialService.cs" />
+    <compile Include=".\StubIActiveSupervisorService.cs" />
+    <compile Include=".\StubIActivityEvent.cs" />
+    <compile Include=".\StubIActivityEventsLoader.cs" />
+    <compile Include=".\StubIActivityLoggingSettings.cs" />
+    <compile Include=".\StubIActivityLoggingSettingsGroup.cs" />
+    <compile Include=".\StubIAlertingSettings.cs" />
+    <compile Include=".\StubIAlertingSettingsGroup.cs" />
+    <compile Include=".\StubIAnswerSubmissionAlertHistoryTableCleanupSettings.cs" />
+    <compile Include=".\StubIAnswerSubmissionAlertHistoryTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIAppointmentAlertSettings.cs" />
+    <compile Include=".\StubIAppointmentAlertSettingsGroup.cs" />
+    <compile Include=".\StubIAssignmentResourceTableCleanupSettings.cs" />
+    <compile Include=".\StubIAssignmentResourceTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIAssignmentService.cs" />
+    <compile Include=".\StubIAsyncBatchedOperationParameters.cs" />
+    <compile Include=".\StubIAsynchronousTrigger.cs" />
+    <compile Include=".\StubIAsyncManager.cs" />
+    <compile Include=".\StubIAsyncOperation.cs" />
+    <compile Include=".\StubIAsyncOperationAwaiter.cs" />
+    <compile Include=".\StubIAsyncOperationExecutor.cs" />
+    <compile Include=".\StubIAsyncOperationFactory.cs" />
+    <compile Include=".\StubIAsyncOperationParameters.cs" />
+    <compile Include=".\StubIAsyncOperationProgressLogger.cs" />
+    <compile Include=".\StubIAsyncOperationQueue.cs" />
+    <compile Include=".\StubIAsyncOperationQueueTableCleanupSettings.cs" />
+    <compile Include=".\StubIAsyncOperationQueueTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIAsyncOperationRepository.cs" />
+    <compile Include=".\StubIAsyncOperationRetry.cs" />
+    <compile Include=".\StubIAsyncOperationSchedulerThread.cs" />
+    <compile Include=".\StubIAsyncOperationSettings.cs" />
+    <compile Include=".\StubIAsyncOperationSettingsGroup.cs" />
+    <compile Include=".\StubIAsyncOperationsHeartBeatUpdaterThread.cs" />
+    <compile Include=".\StubIAsyncOperationsSettings.cs" />
+    <compile Include=".\StubIAsyncOperationsSettingsGroup.cs" />
+    <compile Include=".\StubIAudioMonitoring.cs" />
+    <compile Include=".\StubIAuthoringService.cs" />
+    <compile Include=".\StubIAutoLogoutSettings.cs" />
+    <compile Include=".\StubIAutoLogoutSettingsGroup.cs" />
+    <compile Include=".\StubIBackendInstanceFactory.cs" />
+    <compile Include=".\StubIBaseIpFilterInspector.cs" />
+    <compile Include=".\StubIBatch.cs" />
+    <compile Include=".\StubIBatchFactory.cs" />
+    <compile Include=".\StubIBatchInitializer.cs" />
+    <compile Include=".\StubIBatchUploader.cs" />
+    <compile Include=".\StubIBBCCSettings.cs" />
+    <compile Include=".\StubIBBCCSettings.cs" />
+    <compile Include=".\StubIBBCCSettingsGroup.cs" />
+    <compile Include=".\StubIBBCCSettingsGroup.cs" />
+    <compile Include=".\StubIBreakTypeRepository.cs" />
+    <compile Include=".\StubIBulkCopy.cs" />
+    <compile Include=".\StubIBulkCopyCommiter.cs" />
+    <compile Include=".\StubIBulkCopyEntityAccumulatorOfT.cs" />
+    <compile Include=".\StubIBulkCopyEntitySerializerOfT.cs" />
+    <compile Include=".\StubIBvCallHandlerRoot.cs" />
+    <compile Include=".\StubICacheCallsSettings.cs" />
+    <compile Include=".\StubICacheCallsSettingsGroup.cs" />
+    <compile Include=".\StubICallCenterRepository.cs" />
+    <compile Include=".\StubICallCenterService.cs" />
+    <compile Include=".\StubICallDeliveryService.cs" />
+    <compile Include=".\StubICallGroupRepository.cs" />
+    <compile Include=".\StubICallGroupService.cs" />
+    <compile Include=".\StubICallGroupSettings.cs" />
+    <compile Include=".\StubICallGroupSettingsGroup.cs" />
+    <compile Include=".\StubICallHistoryDataProvider.cs" />
+    <compile Include=".\StubICallHistoryHubSettings.cs" />
+    <compile Include=".\StubICallHistoryHubSettingsGroup.cs" />
+    <compile Include=".\StubICallHistoryRepository.cs" />
+    <compile Include=".\StubICallHistoryTableCleanupSettings.cs" />
+    <compile Include=".\StubICallHistoryTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubICallManagementSettings.cs" />
+    <compile Include=".\StubICallManagementSettingsGroup.cs" />
+    <compile Include=".\StubICallProvider.cs" />
+    <compile Include=".\StubICallQueueService.cs" />
+    <compile Include=".\StubICallRequestResultFactory.cs" />
+    <compile Include=".\StubICallsManagementBatchedOperation.cs" />
+    <compile Include=".\StubICallsManagementBatchedOperationBase.cs" />
+    <compile Include=".\StubICallsManagementOperation.cs" />
+    <compile Include=".\StubICallsManagementOperationBase.cs" />
+    <compile Include=".\StubICallsManagementService.cs" />
+    <compile Include=".\StubICallsSentToDialerTableCleanupSettings.cs" />
+    <compile Include=".\StubICallsSentToDialerTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubICatiAgentSettings.cs" />
+    <compile Include=".\StubICatiAgentSettingsGroup.cs" />
+    <compile Include=".\StubICatiBackendNotificationHandler.cs" />
+    <compile Include=".\StubICatiBackendNotificationPublisher.cs" />
+    <compile Include=".\StubICleaningServiceEmailGenerator.cs" />
+    <compile Include=".\StubICommandLineParser.cs" />
+    <compile Include=".\StubICompanyInfo.cs" />
+    <compile Include=".\StubICompanyInformationService.cs" />
+    <compile Include=".\StubIConfirmitClientKeyProvider.cs" />
+    <compile Include=".\StubIConfirmitDatabaseProvider.cs" />
+    <compile Include=".\StubIConfirmitEncryptionSettingProvider.cs" />
+    <compile Include=".\StubIConnectionProvider.cs" />
+    <compile Include=".\StubIConnectionStrings.cs" />
+    <compile Include=".\StubIConsoleDialProcessor.cs" />
+    <compile Include=".\StubIConsoleLoginProcessor.cs" />
+    <compile Include=".\StubIConsoleLoginToDialerProcessor.cs" />
+    <compile Include=".\StubIConsoleSettings.cs" />
+    <compile Include=".\StubIConsoleSettingsGroup.cs" />
+    <compile Include=".\StubIConsoleStartInterviewProcessor.cs" />
+    <compile Include=".\StubIConsoleStateProvider.cs" />
+    <compile Include=".\StubIConsoleTransferCancelProcessor.cs" />
+    <compile Include=".\StubIConsoleTransferCompleteProcessor.cs" />
+    <compile Include=".\StubIConsoleTransferProcessProcessor.cs" />
+    <compile Include=".\StubIConsoleTransferSetConnectionStateProcessor.cs" />
+    <compile Include=".\StubIConsoleTransferStartProcessor.cs" />
+    <compile Include=".\StubIConsoleWrapUpProcessor.cs" />
+    <compile Include=".\StubIContextInfoService.cs" />
+    <compile Include=".\StubIDatabaseAppLockService.cs" />
+    <compile Include=".\StubIDatabaseAttachService.cs" />
+    <compile Include=".\StubIDatabaseBatch.cs" />
+    <compile Include=".\StubIDatabaseBatchItemTransfer.cs" />
+    <compile Include=".\StubIDatabaseConnectionProviderFactory.cs" />
+    <compile Include=".\StubIDatabaseEngine.cs" />
+    <compile Include=".\StubIDatabaseEngineFactory.cs" />
+    <compile Include=".\StubIDatabaseExpressionService.cs" />
+    <compile Include=".\StubIDatabaseIdentifierService.cs" />
+    <compile Include=".\StubIDatabaseIndexService.cs" />
+    <compile Include=".\StubIDatabaseLockTimeouts.cs" />
+    <compile Include=".\StubIDatabaseMaintenanceSettings.cs" />
+    <compile Include=".\StubIDatabaseMaintenanceSettingsGroup.cs" />
+    <compile Include=".\StubIDatabaseNameService.cs" />
+    <compile Include=".\StubIDatabaseObjectService.cs" />
+    <compile Include=".\StubIDatabaseServerPropertiesProvider.cs" />
+    <compile Include=".\StubIDatabaseStatisticService.cs" />
+    <compile Include=".\StubIDatabaseTransactionScope.cs" />
+    <compile Include=".\StubIDbLibProvider.cs" />
+    <compile Include=".\StubIDebugSettings.cs" />
+    <compile Include=".\StubIDebugSettingsGroup.cs" />
+    <compile Include=".\StubIDeferredMonitoringRepository.cs" />
+    <compile Include=".\StubIDeferredMonitoringService.cs" />
+    <compile Include=".\StubIDialerApiClient.cs" />
+    <compile Include=".\StubIDialerAvailabilityManager.cs" />
+    <compile Include=".\StubIDialerCampaignInitializer.cs" />
+    <compile Include=".\StubIDialerCollection.cs" />
+    <compile Include=".\StubIDialerConnectionStateProvider.cs" />
+    <compile Include=".\StubIDialerEmailNotificationService.cs" />
+    <compile Include=".\StubIDialerFacilities.cs" />
+    <compile Include=".\StubIDialerFeaturesRepository.cs" />
+    <compile Include=".\StubIDialerHealthController.cs" />
+    <compile Include=".\StubIDialerInitializer.cs" />
+    <compile Include=".\StubIDialerInstance.cs" />
+    <compile Include=".\StubIDialerInstanceFactory.cs" />
+    <compile Include=".\StubIDialerLoginLogoutManager.cs" />
+    <compile Include=".\StubIDialerNotifyCallDroppedByRespondentHandler.cs" />
+    <compile Include=".\StubIDialerNotifyInboundCallDroppedByRespondentHandler.cs" />
+    <compile Include=".\StubIDialerNotifyInboundCallHandler.cs" />
+    <compile Include=".\StubIDialerOperation.cs" />
+    <compile Include=".\StubIDialerOperationalStateNotificator.cs" />
+    <compile Include=".\StubIDialerRecordingWrapper.cs" />
+    <compile Include=".\StubIDialerService.cs" />
+    <compile Include=".\StubIDialerSettings.cs" />
+    <compile Include=".\StubIDialerSettingsGroup.cs" />
+    <compile Include=".\StubIDialersRepository.cs" />
+    <compile Include=".\StubIDialerStateRepository.cs" />
+    <compile Include=".\StubIDialerStateTools.cs" />
+    <compile Include=".\StubIDialerSurveyParametersManager.cs" />
+    <compile Include=".\StubIDialerType.cs" />
+    <compile Include=".\StubIDialingMode.cs" />
+    <compile Include=".\StubIEditCallsQueryProvider.cs" />
+    <compile Include=".\StubIEmailNotificationService.cs" />
+    <compile Include=".\StubIEmailReportsManager.cs" />
+    <compile Include=".\StubIEmailSettings.cs" />
+    <compile Include=".\StubIEmailSettingsGroup.cs" />
+    <compile Include=".\StubIEventSchedule.cs" />
+    <compile Include=".\StubIExclusiveDatabaseLockFactory.cs" />
+    <compile Include=".\StubIExternalTransferTelephoneNumberRepository.cs" />
+    <compile Include=".\StubIExternalTransferTelephoneNumberService.cs" />
+    <compile Include=".\StubIExternalVerifiable.cs" />
+    <compile Include=".\StubIExtraQuotaCounterCalculator.cs" />
+    <compile Include=".\StubIExtraQuotaCounterParameters.cs" />
+    <compile Include=".\StubIExtraQuotaCounterService.cs" />
+    <compile Include=".\StubIFcdQuotaService.cs" />
+    <compile Include=".\StubIFCDSettings.cs" />
+    <compile Include=".\StubIFCDSettingsGroup.cs" />
+    <compile Include=".\StubIFeatureToggleClient.cs" />
+    <compile Include=".\StubIFeedbackMessageCreator.cs" />
+    <compile Include=".\StubIFilterRepository.cs" />
+    <compile Include=".\StubIFilterService.cs" />
+    <compile Include=".\StubIFormDescValidator.cs" />
+    <compile Include=".\StubIFullSynchronizationOfCatiDataInHubSettings.cs" />
+    <compile Include=".\StubIFullSynchronizationOfCatiDataInHubSettingsGroup.cs" />
+    <compile Include=".\StubIHistoryRepository.cs" />
+    <compile Include=".\StubIHttpClientFactory.cs" />
+    <compile Include=".\StubIIdentityService.cs" />
+    <compile Include=".\StubIInboundAudioMessages.cs" />
+    <compile Include=".\StubIInboundCallService.cs" />
+    <compile Include=".\StubIInboundCallsHistoryRepository.cs" />
+    <compile Include=".\StubIInboundTelephoneNumberRepository.cs" />
+    <compile Include=".\StubIInstanceInfo.cs" />
+    <compile Include=".\StubIInstanceManagementService.cs" />
+    <compile Include=".\StubIInternalVoiceXmlApiFactory.cs" />
+    <compile Include=".\StubIIntersectableOfT.cs" />
+    <compile Include=".\StubIInterviewDataServiceFactory.cs" />
+    <compile Include=".\StubIInterviewerActivityEventBase.cs" />
+    <compile Include=".\StubIInterviewerApiClient.cs" />
+    <compile Include=".\StubIInterviewerPasswordSettings.cs" />
+    <compile Include=".\StubIInterviewerPasswordSettingsGroup.cs" />
+    <compile Include=".\StubIInterviewerPropertiesSettings.cs" />
+    <compile Include=".\StubIInterviewerPropertiesSettingsGroup.cs" />
+    <compile Include=".\StubIInterviewFormDataDatabaseSourceService.cs" />
+    <compile Include=".\StubIInterviewFormDataService.cs" />
+    <compile Include=".\StubIInterviewFormDataSourceService.cs" />
+    <compile Include=".\StubIInterviewFormDataWebSourceService.cs" />
+    <compile Include=".\StubIInterviewHistoryAndDataProcessor.cs" />
+    <compile Include=".\StubIInterviewQuotaCellRepository.cs" />
+    <compile Include=".\StubIInterviewQuotaCellService.cs" />
+    <compile Include=".\StubIInterviewRecordingManager.cs" />
+    <compile Include=".\StubIInterviewRepository.cs" />
+    <compile Include=".\StubIInterviewRespondentDataService.cs" />
+    <compile Include=".\StubIInterviewRespondentDataSourceService.cs" />
+    <compile Include=".\StubIInterviewResponseDataService.cs" />
+    <compile Include=".\StubIInterviewService.cs" />
+    <compile Include=".\StubIInterviewTimings.cs" />
+    <compile Include=".\StubIInvalidSymbolsRepairer.cs" />
+    <compile Include=".\StubIIpAddressValidator.cs" />
+    <compile Include=".\StubIIpFilterCache.cs" />
+    <compile Include=".\StubIIpHostEntryResolver.cs" />
+    <compile Include=".\StubIIvrConsoleService.cs" />
+    <compile Include=".\StubIIvrSettings.cs" />
+    <compile Include=".\StubIIvrSettingsGroup.cs" />
+    <compile Include=".\StubIIvrSettingsRepository.cs" />
+    <compile Include=".\StubIIvrThread.cs" />
+    <compile Include=".\StubIIvrVariablesProvider.cs" />
+    <compile Include=".\StubILanguageVariableProvider.cs" />
+    <compile Include=".\StubILargeObjectHeapFragmentationSettings.cs" />
+    <compile Include=".\StubILargeObjectHeapFragmentationSettingsGroup.cs" />
+    <compile Include=".\StubILicenseService.cs" />
+    <compile Include=".\StubILinkedInterviewProvider.cs" />
+    <compile Include=".\StubILocalTimeProvider.cs" />
+    <compile Include=".\StubILoggingSettings.cs" />
+    <compile Include=".\StubILoggingSettingsGroup.cs" />
+    <compile Include=".\StubILoginGroupRepository.cs" />
+    <compile Include=".\StubILogWriter.cs" />
+    <compile Include=".\StubILookupCallEntity.cs" />
+    <compile Include=".\StubIMailSender.cs" />
+    <compile Include=".\StubIManagementActivityEvent.cs" />
+    <compile Include=".\StubIManagementService.cs" />
+    <compile Include=".\StubIMemoryBatch.cs" />
+    <compile Include=".\StubIMessageTableCleanupSettings.cs" />
+    <compile Include=".\StubIMessageTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIMetricsSettings.cs" />
+    <compile Include=".\StubIMetricsSettingsGroup.cs" />
+    <compile Include=".\StubIMigrationService.cs" />
+    <compile Include=".\StubIMnTciTools.cs" />
+    <compile Include=".\StubIMonitoringService.cs" />
+    <compile Include=".\StubIMonitoringSettings.cs" />
+    <compile Include=".\StubIMonitoringSettingsGroup.cs" />
+    <compile Include=".\StubIMultimodeInstanceName.cs" />
+    <compile Include=".\StubIMultipleAssignmentsSettings.cs" />
+    <compile Include=".\StubIMultipleAssignmentsSettingsGroup.cs" />
+    <compile Include=".\StubIMultipleAssignmentValidator.cs" />
+    <compile Include=".\StubINoCallsSettings.cs" />
+    <compile Include=".\StubINoCallsSettingsGroup.cs" />
+    <compile Include=".\StubIOperationDescriptor.cs" />
+    <compile Include=".\StubIOrderedSearchableFieldsRepository.cs" />
+    <compile Include=".\StubIOrderedSearchableFieldsService.cs" />
+    <compile Include=".\StubIPasswordHash.cs" />
+    <compile Include=".\StubIPasswordRulesChecker.cs" />
+    <compile Include=".\StubIPasswordSaver.cs" />
+    <compile Include=".\StubIPerformanceCountersContainer.cs" />
+    <compile Include=".\StubIPeriodicalThread.cs" />
+    <compile Include=".\StubIPersonAuthorizer.cs" />
+    <compile Include=".\StubIPersonDeferredMonitoringRepository.cs" />
+    <compile Include=".\StubIPersonDeferredMonitoringTableCleanupSettings.cs" />
+    <compile Include=".\StubIPersonDeferredMonitoringTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIPersonGroupRepository.cs" />
+    <compile Include=".\StubIPersonGroupService.cs" />
+    <compile Include=".\StubIPersonGroupValidator.cs" />
+    <compile Include=".\StubIPersonImportService.cs" />
+    <compile Include=".\StubIPersonMessageService.cs" />
+    <compile Include=".\StubIPersonMonitoringRepository.cs" />
+    <compile Include=".\StubIPersonPwdSetDateSetter.cs" />
+    <compile Include=".\StubIPersonRepository.cs" />
+    <compile Include=".\StubIPersonService.cs" />
+    <compile Include=".\StubIPersonSessionHistoryRepository.cs" />
+    <compile Include=".\StubIPgpEncryptionService.cs" />
+    <compile Include=".\StubIProblemStateSetter.cs" />
+    <compile Include=".\StubIProcessAndEnvironmentInfo.cs" />
+    <compile Include=".\StubIProjectsActivityService.cs" />
+    <compile Include=".\StubIPromotionHistoryTableCleanupSettings.cs" />
+    <compile Include=".\StubIPromotionHistoryTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIQuotaBalancingConfigurationValidator.cs" />
+    <compile Include=".\StubIQuotaBalancingRepository.cs" />
+    <compile Include=".\StubIQuotaBalancingService.cs" />
+    <compile Include=".\StubIQuotaBalancingSettings.cs" />
+    <compile Include=".\StubIQuotaBalancingSettingsGroup.cs" />
+    <compile Include=".\StubIQuotaCellRepository.cs" />
+    <compile Include=".\StubIQuotaClusteringConfigurationService.cs" />
+    <compile Include=".\StubIQuotaClusteringSettings.cs" />
+    <compile Include=".\StubIQuotaClusteringSettingsGroup.cs" />
+    <compile Include=".\StubIQuotaClusteringSyncService.cs" />
+    <compile Include=".\StubIQuotaClusterService.cs" />
+    <compile Include=".\StubIQuotaDatabaseReader.cs" />
+    <compile Include=".\StubIQuotaInfoService.cs" />
+    <compile Include=".\StubIQuotaRepository.cs" />
+    <compile Include=".\StubIQuotasSettings.cs" />
+    <compile Include=".\StubIQuotasSettingsGroup.cs" />
+    <compile Include=".\StubIRecordedInterviewsSettings.cs" />
+    <compile Include=".\StubIRecordedInterviewsSettingsGroup.cs" />
+    <compile Include=".\StubIRedialNumberSaver.cs" />
+    <compile Include=".\StubIRemoteDataCopier.cs" />
+    <compile Include=".\StubIReplicatedDataRepository.cs" />
+    <compile Include=".\StubIReplicationIndexService.cs" />
+    <compile Include=".\StubIReplicationSchemaInfoService.cs" />
+    <compile Include=".\StubIReplicationSchemaService.cs" />
+    <compile Include=".\StubIReplicationService.cs" />
+    <compile Include=".\StubIReplicationSettings.cs" />
+    <compile Include=".\StubIReplicationSettingsGroup.cs" />
+    <compile Include=".\StubIReport.cs" />
+    <compile Include=".\StubIReportBuilder.cs" />
+    <compile Include=".\StubIReportsSettings.cs" />
+    <compile Include=".\StubIReportsSettingsGroup.cs" />
+    <compile Include=".\StubIRespondentBatchObtainer.cs" />
+    <compile Include=".\StubIRespondentObtainer.cs" />
+    <compile Include=".\StubIRespondentsClient.cs" />
+    <compile Include=".\StubIRespondentsSynchronizationProcessor.cs" />
+    <compile Include=".\StubIRespondentVariablesService.cs" />
+    <compile Include=".\StubIResponseReviewerApiClient.cs" />
+    <compile Include=".\StubIRetryingService.cs" />
+    <compile Include=".\StubIRetryingServiceSettings.cs" />
+    <compile Include=".\StubIRetryingServiceSettingsGroup.cs" />
+    <compile Include=".\StubIReviewerService.cs" />
+    <compile Include=".\StubIReviewerSettings.cs" />
+    <compile Include=".\StubIReviewerSettingsGroup.cs" />
+    <compile Include=".\StubIRoutineMaintenanceAction.cs" />
+    <compile Include=".\StubIRoutineMaintenanceLogger.cs" />
+    <compile Include=".\StubIRoutineMaintenanceSettings.cs" />
+    <compile Include=".\StubIRoutineMaintenanceSettingsGroup.cs" />
+    <compile Include=".\StubIRoutineMaintenanceShiftService.cs" />
+    <compile Include=".\StubISampleBatchProcessor.cs" />
+    <compile Include=".\StubISampleDataStorage.cs" />
+    <compile Include=".\StubISampleDataStorageFactory.cs" />
+    <compile Include=".\StubISampleDataStorageRepository.cs" />
+    <compile Include=".\StubISampleRecordProcessor.cs" />
+    <compile Include=".\StubISampleRecordProcessorFactory.cs" />
+    <compile Include=".\StubISampleRecordStorage.cs" />
+    <compile Include=".\StubISampleService.cs" />
+    <compile Include=".\StubIScheduledEmailReportsRepository.cs" />
+    <compile Include=".\StubIScheduledReportEmail.cs" />
+    <compile Include=".\StubIScheduleErrorRepository.cs" />
+    <compile Include=".\StubIScheduleRepository.cs" />
+    <compile Include=".\StubIScheduleService.cs" />
+    <compile Include=".\StubISchedulingErrorsSettings.cs" />
+    <compile Include=".\StubISchedulingErrorsSettingsGroup.cs" />
+    <compile Include=".\StubISchedulingObjectValidator.cs" />
+    <compile Include=".\StubISchedulingScript.cs" />
+    <compile Include=".\StubISchedulingScriptAction.cs" />
+    <compile Include=".\StubISchedulingScriptActionOfT.cs" />
+    <compile Include=".\StubISchedulingScriptLogger.cs" />
+    <compile Include=".\StubISchedulingScriptLogRepository.cs" />
+    <compile Include=".\StubISchedulingScriptLogTableCleanupSettings.cs" />
+    <compile Include=".\StubISchedulingScriptLogTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubISchedulingScriptNotificator.cs" />
+    <compile Include=".\StubISchedulingScriptSecurityValidator.cs" />
+    <compile Include=".\StubISchedulingScriptSettings.cs" />
+    <compile Include=".\StubISchedulingScriptSettingsGroup.cs" />
+    <compile Include=".\StubIScriptAssembly.cs" />
+    <compile Include=".\StubISecuritySettings.cs" />
+    <compile Include=".\StubISecuritySettingsGroup.cs" />
+    <compile Include=".\StubISelectingStateSettings.cs" />
+    <compile Include=".\StubISelectingStateSettingsGroup.cs" />
+    <compile Include=".\StubISeQuotaCellRepository.cs" />
+    <compile Include=".\StubISeQuotaRepository.cs" />
+    <compile Include=".\StubIServerSettings.cs" />
+    <compile Include=".\StubIServerSettingsGroup.cs" />
+    <compile Include=".\StubIServiceBrokerObjectsCleanupSettings.cs" />
+    <compile Include=".\StubIServiceBrokerObjectsCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIServiceDiscoveryClientProxy.cs" />
+    <compile Include=".\StubIServicesRegistryInitializer.cs" />
+    <compile Include=".\StubISetupSettings.cs" />
+    <compile Include=".\StubISetupSettingsGroup.cs" />
+    <compile Include=".\StubIShiftService.cs" />
+    <compile Include=".\StubIShiftServiceFactory.cs" />
+    <compile Include=".\StubISiteSettings.cs" />
+    <compile Include=".\StubISiteSettingsGroup.cs" />
+    <compile Include=".\StubISqlFilterProvider.cs" />
+    <compile Include=".\StubISQLServerSettings.cs" />
+    <compile Include=".\StubISQLServerSettingsGroup.cs" />
+    <compile Include=".\StubISqlTableUpdatedPublisher.cs" />
+    <compile Include=".\StubIStartedServicesRepository.cs" />
+    <compile Include=".\StubIStateGroupRepository.cs" />
+    <compile Include=".\StubIStateGroupService.cs" />
+    <compile Include=".\StubIStateRepository.cs" />
+    <compile Include=".\StubIStationIdParser.cs" />
+    <compile Include=".\StubIStationInfoFactory.cs" />
+    <compile Include=".\StubISupervisorApiClient.cs" />
+    <compile Include=".\StubISupervisorNameProvider.cs" />
+    <compile Include=".\StubISupervisorNotificationService.cs" />
+    <compile Include=".\StubISupervisorService.cs" />
+    <compile Include=".\StubISupervisorServiceClient.cs" />
+    <compile Include=".\StubISupervisorSettings.cs" />
+    <compile Include=".\StubISupervisorSettings.cs" />
+    <compile Include=".\StubISupervisorSettingsGroup.cs" />
+    <compile Include=".\StubISupervisorSettingsGroup.cs" />
+    <compile Include=".\StubISurveyArchiveService.cs" />
+    <compile Include=".\StubISurveyCallDistributionService.cs" />
+    <compile Include=".\StubISurveyCleaningConfirmitDataAccess.cs" />
+    <compile Include=".\StubISurveyCleaningDataAccess.cs" />
+    <compile Include=".\StubISurveyCleaningService.cs" />
+    <compile Include=".\StubISurveyCleanupSettings.cs" />
+    <compile Include=".\StubISurveyCleanupSettingsGroup.cs" />
+    <compile Include=".\StubISurveyConnectionStringProvider.cs" />
+    <compile Include=".\StubISurveyDatabaseEngine.cs" />
+    <compile Include=".\StubISurveyDatabaseInfoProvider.cs" />
+    <compile Include=".\StubISurveyDatabaseService.cs" />
+    <compile Include=".\StubISurveyDataRowsDatabaseUpdater.cs" />
+    <compile Include=".\StubISurveyDataRowsWebServiceUpdater.cs" />
+    <compile Include=".\StubISurveyDataService.cs" />
+    <compile Include=".\StubISurveyListSettings.cs" />
+    <compile Include=".\StubISurveyListSettingsGroup.cs" />
+    <compile Include=".\StubISurveyMetadataCache.cs" />
+    <compile Include=".\StubISurveyMetadataCacheService.cs" />
+    <compile Include=".\StubISurveyPublishService.cs" />
+    <compile Include=".\StubISurveyRepository.cs" />
+    <compile Include=".\StubISurveyService.cs" />
+    <compile Include=".\StubISurveysSettings.cs" />
+    <compile Include=".\StubISurveysSettingsGroup.cs" />
+    <compile Include=".\StubISurveyStateService.cs" />
+    <compile Include=".\StubISystemActivity.cs" />
+    <compile Include=".\StubISystemSettingCache.cs" />
+    <compile Include=".\StubISystemSettingMedatadataProvider.cs" />
+    <compile Include=".\StubISystemSettingRepository.cs" />
+    <compile Include=".\StubISystemSettings.cs" />
+    <compile Include=".\StubISystemSettingsNotifyChanged.cs" />
+    <compile Include=".\StubISystemStateRepository.cs" />
+    <compile Include=".\StubITableCache.cs" />
+    <compile Include=".\StubITaskExtension.cs" />
+    <compile Include=".\StubITaskRepository.cs" />
+    <compile Include=".\StubITelephoneBlacklistRepository.cs" />
+    <compile Include=".\StubITelephoneBlacklistService.cs" />
+    <compile Include=".\StubITelephoneBlacklistSettings.cs" />
+    <compile Include=".\StubITelephoneBlacklistSettingsGroup.cs" />
+    <compile Include=".\StubITelephony.cs" />
+    <compile Include=".\StubITelephonyCore.cs" />
+    <compile Include=".\StubITelephonyFacilities.cs" />
+    <compile Include=".\StubITelephonyPlayback.cs" />
+    <compile Include=".\StubITelephonyRecording.cs" />
+    <compile Include=".\StubITimeBreakService.cs" />
+    <compile Include=".\StubITimeService.cs" />
+    <compile Include=".\StubITimeZoneBalancingSettings.cs" />
+    <compile Include=".\StubITimeZoneBalancingSettingsGroup.cs" />
+    <compile Include=".\StubITimezoneConverter.cs" />
+    <compile Include=".\StubITimezoneManager.cs" />
+    <compile Include=".\StubITimezoneRepository.cs" />
+    <compile Include=".\StubITimezoneService.cs" />
+    <compile Include=".\StubIToggleSettings.cs" />
+    <compile Include=".\StubIToggleSettingsGroup.cs" />
+    <compile Include=".\StubITokenCacheService.cs" />
+    <compile Include=".\StubITransactedConnectionProvider.cs" />
+    <compile Include=".\StubITransaction.cs" />
+    <compile Include=".\StubITransferService.cs" />
+    <compile Include=".\StubITriggerMessage.cs" />
+    <compile Include=".\StubIUsedCallsCalculator.cs" />
+    <compile Include=".\StubIUserSurveyListRepository.cs" />
+    <compile Include=".\StubIUserSurveyListTableCleanupSettings.cs" />
+    <compile Include=".\StubIUserSurveyListTableCleanupSettingsGroup.cs" />
+    <compile Include=".\StubIUserSurveyPermissionRepository.cs" />
+    <compile Include=".\StubIVerifiable.cs" />
+    <compile Include=".\StubIWaitingService.cs" />
+    <compile Include=".\StubIWaitingStateSettings.cs" />
+    <compile Include=".\StubIWaitingStateSettingsGroup.cs" />
+    <compile Include=".\StubIWebApiSettings.cs" />
+    <compile Include=".\StubIWebApiSettingsGroup.cs" />
+    <compile Include=".\StubIWebServiceUrlSettings.cs" />
+    <compile Include=".\StubIWebServiceUrlSettingsGroup.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

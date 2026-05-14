@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-16"?>
+<SurveyArchive {SchemaUrl} {SchemaUrl}>
+  <SchedulingScript Id="35" Name="schedulingScript {Guid}">
+    <Source>&lt;?xml version="1.0"?&gt;&lt;Schedule {SchemaUrl} {SchemaUrl}&gt;&lt;Id xsi:nil="true" /&gt;&lt;Name /&gt;
+&lt;Rules {SchemaUrl} {SchemaUrl}&gt;
+  &lt;Rule&gt;
+    &lt;Id&gt;{Guid}&lt;/Id&gt;
+    &lt;Description&gt;rule&lt;/Description&gt;
+    &lt;SubRules&gt;
+      &lt;SubRule&gt;
+        &lt;Id&gt;{Guid}&lt;/Id&gt;
+        &lt;ItsId&gt;0&lt;/ItsId&gt;
+        &lt;ShiftTypeId&gt;0&lt;/ShiftTypeId&gt;
+        &lt;CallState&gt;0&lt;/CallState&gt;
+        &lt;Filter /&gt;
+        &lt;FilterEnabled&gt;true&lt;/FilterEnabled&gt;
+        &lt;Description&gt;subrule&lt;/Description&gt;
+        &lt;SubRuleActions&gt;
+          &lt;SubRuleAction&gt;
+            &lt;Id&gt;1&lt;/Id&gt;
+            &lt;ActionId&gt;28&lt;/ActionId&gt;
+            &lt;Filter /&gt;
+            &lt;Enabled&gt;true&lt;/Enabled&gt;
+            &lt;Description /&gt;
+            &lt;ParameterValue Type="Constant"&gt;1&lt;/ParameterValue&gt;
+            &lt;FilterEnabled&gt;false&lt;/FilterEnabled&gt;
+          &lt;/SubRuleAction&gt;
+        &lt;/SubRuleActions&gt;
+      &lt;/SubRule&gt;
+    &lt;/SubRules&gt;
+  &lt;/Rule&gt;
+&lt;/Rules&gt;
+&lt;ShiftTypes {SchemaUrl} {SchemaUrl}&gt;
+  &lt;ShiftType&gt;
+    &lt;Id&gt;1&lt;/Id&gt;
+    &lt;Name&gt;shiftType 1&lt;/Name&gt;
+    &lt;ColorInt&gt;0&lt;/ColorInt&gt;
+  &lt;/ShiftType&gt;
+&lt;/ShiftTypes&gt;
+&lt;Shifts {SchemaUrl} {SchemaUrl}&gt;
+  &lt;Shift&gt;
+    &lt;Id&gt;1&lt;/Id&gt;
+    &lt;ShiftTypeId&gt;1&lt;/ShiftTypeId&gt;
+    &lt;Timezones&gt;
+      &lt;Timezone&gt;
+        &lt;Id xsi:nil="true" /&gt;
+        &lt;Data&gt;
+          &lt;StartDayOfWeek&gt;Monday&lt;/StartDayOfWeek&gt;
+          &lt;StartTime&gt;00:00:00&lt;/StartTime&gt;
+          &lt;EndDayOfWeek&gt;Tuesday&lt;/EndDayOfWeek&gt;
+          &lt;EndTime&gt;00:00:00&lt;/EndTime&gt;
+        &lt;/Data&gt;
+      &lt;/Timezone&gt;
+    &lt;/Timezones&gt;
+  &lt;/Shift&gt;
+&lt;/Shifts&gt;
+&lt;Exclusions {SchemaUrl} {SchemaUrl} /&gt;
+&lt;CustomParameters {SchemaUrl} {SchemaUrl} /&gt;&lt;CustomScript&gt;
+                        &lt;Id&gt;1&lt;/Id&gt;
+                        &lt;LanguageName&gt;JScript.Net&lt;/LanguageName&gt;
+                        &lt;Body&gt;&lt;/Body&gt;
+                    &lt;/CustomScript&gt;
+                &lt;/Schedule&gt;</Source>
+  </SchedulingScript>
+  <StateGroup Id="27" Name="Default group">
+    <State>
+      <StateData Its="1" Name="Appointment" Priority="1000" Disable="false" />
+      <StateData Its="2" Name="Busy" Priority="1" Disable="false" />
+      <StateData Its="3" Name="No reply" Priority="1" Disable="false" />
+      <StateData Its="4" Name="Quota failure" Priority="1" Disable="false" />
+      <StateData Its="5" Name="Refusal" Priority="1" Disable="false" />
+      <StateData Its="6" Name="Terminated" Priority="1" Disable="false" />
+      <StateData Its="7" Name="Answer phone" Priority="1" Disable="false" />
+      <StateData Its="8" Name="Modem" Priority="1" Disable="false" />
+      <StateData Its="9" Name="Fax" Priority="1" Disable="false" />
+      <StateData Its="10" Name="Congestion" Priority="1" Disable="false" />
+      <StateData Its="11" Name="Unobtainable" Priority="1" Disable="false" />
+      <StateData Its="12" Name="Nuisance" Priority="1" Disable="false" />
+      <StateData Its="13" Name="Completed" Priority="1" Disable="true" />
+      <StateData Its="14" Name="Screened" Priority="1" Disable="false" />
+      <StateData Its="15" Name="Returned not dialled" Priority="1" Disable="false" />
+      <StateData Its="16" Name="Fresh sample" Priority="1" Disable="false" />
+      <StateData Its="17" Name="Blacklist" Priority="1" Disable="true" />
+      <StateData Its="18" Name="Not automatically dialled (ie manual dialling)" Priority="1" Disable="false" />
+      <StateData Its="19" Name="Status not sensed" Priority="1" Disable="false" />
+      <StateData Its="20" Name="Transfer to Web" Priority="1" Disable="false" />
+      <StateData Its="21" Name="Transfer to CATI" Priority="1" Disable="false" />
+      <StateData Its="22" Name="Transfer to CAPI" Priority="1" Disable="false" />
+      <StateData Its="23" Name="Transfer to IVR" Priority="1" Disable="false" />
+      <StateData Its="24" Name="Interrupted by interviewer" Priority="1" Disable="false" />
+      <StateData Its="25" Name="Returned dialler expired" Priority="1" Disable="false" />
+      <StateData Its="26" Name="Interrupted by system" Priority="1" Disable="false" />
+      <StateData Its="27" Name="Filtered by call delivery" Priority="1" Disable="false" />
+      <StateData Its="28" Name="Stopped" Priority="1" Disable="false" />
+      <StateData Its="29" Name="Telephony failure" Priority="1" Disable="false" />
+      <StateData Its="30" Name="Error" Priority="1" Disable="false" />
+      <StateData Its="31" Name="Custom1" Priority="1" Disable="false" />
+      <StateData Its="32" Name="Custom2" Priority="1" Disable="false" />
+      <StateData Its="33" Name="Custom3" Priority="1" Disable="false" />
+      <StateData Its="34" Name="Custom4" Priority="1" Disable="false" />
+      <StateData Its="35" Name="Custom5" Priority="1" Disable="false" />
+      <StateData Its="36" Name="Custom6" Priority="1" Disable="false" />
+      <StateData Its="37" Name="Custom7" Priority="1" Disable="false" />
+      <StateData Its="38" Name="Custom8" Priority="1" Disable="false" />
+      <StateData Its="39" Name="Custom9" Priority="1" Disable="false" />
+      <StateData Its="40" Name="Custom10" Priority="1" Disable="false" />
+      <StateData Its="41" Name="Custom11" Priority="1" Disable="false" />
+      <StateData Its="42" Name="Custom12" Priority="1" Disable="false" />
+      <StateData Its="43" Name="Custom13" Priority="1" Disable="false" />
+      <StateData Its="44" Name="Custom14" Priority="1" Disable="false" />
+      <StateData Its="45" Name="Custom15" Priority="1" Disable="false" />
+      <StateData Its="46" Name="Custom16" Priority="1" Disable="false" />
+      <StateData Its="47" Name="Custom17" Priority="1" Disable="false" />
+      <StateData Its="48" Name="Custom18" Priority="1" Disable="false" />
+      <StateData Its="49" Name="Custom19" Priority="1" Disable="false" />
+      <StateData Its="50" Name="Custom20" Priority="1" Disable="false" />
+      <StateData Its="51" Name="Custom21" Priority="1" Disable="false" />
+      <StateData Its="52" Name="Custom22" Priority="1" Disable="false" />
+      <StateData Its="53" Name="Custom23" Priority="1" Disable="false" />
+      <StateData Its="54" Name="Custom24" Priority="1" Disable="false" />
+      <StateData Its="55" Name="Custom25" Priority="1" Disable="false" />
+      <StateData Its="56" Name="Custom26" Priority="1" Disable="false" />
+      <StateData Its="57" Name="Custom27" Priority="1" Disable="false" />
+      <StateData Its="58" Name="Custom28" Priority="1" Disable="false" />
+      <StateData Its="59" Name="Custom29" Priority="1" Disable="false" />
+      <StateData Its="60" Name="Custom30" Priority="1" Disable="false" />
+      <StateData Its="61" Name="Custom31" Priority="1" Disable="false" />
+      <StateData Its="62" Name="Custom32" Priority="1" Disable="false" />
+      <StateData Its="63" Name="Custom33" Priority="1" Disable="false" />
+      <StateData Its="64" Name="Custom34" Priority="1" Disable="false" />
+      <StateData Its="65" Name="Custom35" Priority="1" Disable="false" />
+      <StateData Its="66" Name="Custom36" Priority="1" Disable="false" />
+      <StateData Its="67" Name="Custom37" Priority="1" Disable="false" />
+      <StateData Its="68" Name="Custom38" Priority="1" Disable="false" />
+      <StateData Its="69" Name="Custom39" Priority="1" Disable="false" />
+      <StateData Its="70" Name="Custom40" Priority="1" Disable="false" />
+      <StateData Its="71" Name="Custom41" Priority="1" Disable="false" />
+      <StateData Its="72" Name="Custom42" Priority="1" Disable="false" />
+      <StateData Its="73" Name="Custom43" Priority="1" Disable="false" />
+      <StateData Its="74" Name="Custom44" Priority="1" Disable="false" />
+      <StateData Its="75" Name="Custom45" Priority="1" Disable="false" />
+      <StateData Its="76" Name="Custom46" Priority="1" Disable="false" />
+      <StateData Its="77" Name="Custom47" Priority="1" Disable="false" />
+      <StateData Its="78" Name="Custom48" Priority="1" Disable="false" />
+      <StateData Its="79" Name="Custom49" Priority="1" Disable="false" />
+      <StateData Its="80" Name="Custom50" Priority="1" Disable="false" />
+      <StateData Its="81" Name="Custom51" Priority="1" Disable="false" />
+      <StateData Its="82" Name="Custom52" Priority="1" Disable="false" />
+      <StateData Its="83" Name="Custom53" Priority="1" Disable="false" />
+      <StateData Its="84" Name="Custom54" Priority="1" Disable="false" />
+      <StateData Its="85" Name="Custom55" Priority="1" Disable="false" />
+      <StateData Its="86" Name="Custom56" Priority="1" Disable="false" />
+      <StateData Its="87" Name="Custom57" Priority="1" Disable="false" />
+      <StateData Its="88" Name="Custom58" Priority="1" Disable="false" />
+      <StateData Its="89" Name="Custom59" Priority="1" Disable="false" />
+      <StateData Its="90" Name="Custom60" Priority="1" Disable="false" />
+      <StateData Its="91" Name="Custom61" Priority="1" Disable="false" />
+      <StateData Its="92" Name="Custom62" Priority="1" Disable="false" />
+      <StateData Its="93" Name="Custom63" Priority="1" Disable="false" />
+      <StateData Its="94" Name="Custom64" Priority="1" Disable="false" />
+      <StateData Its="95" Name="Custom65" Priority="1" Disable="false" />
+      <StateData Its="96" Name="Custom66" Priority="1" Disable="false" />
+      <StateData Its="97" Name="Custom67" Priority="1" Disable="false" />
+      <StateData Its="98" Name="Custom68" Priority="1" Disable="false" />
+      <StateData Its="99" Name="Custom69" Priority="1" Disable="false" />
+      <StateData Its="100" Name="Custom70" Priority="1" Disable="false" />
+      <StateData Its="101" Name="Custom71" Priority="1" Disable="false" />
+      <StateData Its="102" Name="Custom72" Priority="1" Disable="false" />
+      <StateData Its="103" Name="Custom73" Priority="1" Disable="false" />
+      <StateData Its="104" Name="Custom74" Priority="1" Disable="false" />
+      <StateData Its="105" Name="Custom75" Priority="1" Disable="false" />
+      <StateData Its="106" Name="Custom76" Priority="1" Disable="false" />
+      <StateData Its="107" Name="Custom77" Priority="1" Disable="false" />
+      <StateData Its="108" Name="Custom78" Priority="1" Disable="false" />
+      <StateData Its="109" Name="Custom79" Priority="1" Disable="false" />
+      <StateData Its="110" Name="Custom80" Priority="1" Disable="false" />
+      <StateData Its="111" Name="Custom81" Priority="1" Disable="false" />
+      <StateData Its="112" Name="Custom82" Priority="1" Disable="false" />
+      <StateData Its="113" Name="Custom83" Priority="1" Disable="false" />
+      <StateData Its="114" Name="Custom84" Priority="1" Disable="false" />
+      <StateData Its="115" Name="Custom85" Priority="1" Disable="false" />
+      <StateData Its="116" Name="Custom86" Priority="1" Disable="false" />
+      <StateData Its="117" Name="Custom87" Priority="1" Disable="false" />
+      <StateData Its="118" Name="Custom88" Priority="1" Disable="false" />
+      <StateData Its="119" Name="Custom89" Priority="1" Disable="false" />
+      <StateData Its="120" Name="Custom90" Priority="1" Disable="false" />
+      <StateData Its="1000" Name="Inbound call" Priority="1" Disable="false" />
+      <StateData Its="1001" Name="Inbound call dropped by respondent" Priority="1" Disable="false" />
+      <StateData Its="1020" Name="Dial interrupted by interviewer" Priority="1" Disable="false" />
+      <StateData Its="1021" Name="Externally validated number" Priority="1" Disable="false" />
+    </State>
+  </StateGroup>
+</SurveyArchive>

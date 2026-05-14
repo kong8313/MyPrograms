@@ -1,0 +1,6 @@
+Wscript.Echo("set YEAR=" & DatePart("yyyy", Now))
+Wscript.Echo("set MONTH=" & DatePart("m", Now))
+Wscript.Echo("set DAY=" & DatePart("d", Now))
+Wscript.Echo("set HOUR=" & DatePart("h", Now))
+Wscript.Echo("set MIN=" & DatePart("n", Now))
+Wscript.Echo("set SEC=" & DatePart("s", Now))

@@ -1,0 +1,13 @@
+﻿<#@ template language="C#" hostspecific="True" debug="True" #>
+<#@ output extension="cs" #>
+
+<#@ include file="SettingsGenerator.tt" #>
+
+<# 
+SettingsGenerator settingsGenerator = new SettingsGenerator();
+settingsGenerator.DatabaseEngine.DatabaseName = "ConfirmitCATIV15_BUILD";
+settingsGenerator.DatabaseEngine.Login = "sa";
+settingsGenerator.DatabaseEngine.Password = "firm"; 
+
+settingsGenerator.Run();
+#>

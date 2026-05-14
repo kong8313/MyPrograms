@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Confirmit.CATI.Backend.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SupervisorServiceBaseAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/SupervisorMultimodeInstance</Value>
+    </Setting>
+    <Setting Name="ManagementServiceBaseAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/ManagementMultimodeInstance</Value>
+    </Setting>
+    <Setting Name="InstanceManagementServiceBaseAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost/ManagementMultimodeInstance</Value>
+    </Setting>
+    <Setting Name="DialerEventsHandlerServiceBaseAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://localhost/DialerMultimodeInstance</Value>
+    </Setting>
+    <Setting Name="ErrorReportingServiceBaseAddress" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://localhost/ErrorReportingMultimodeInstance</Value>
+    </Setting>
+    <Setting Name="AreMetricsEnabled" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="MetricsUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://*:9866</Value>
+    </Setting>
+    <Setting Name="ErrorReportingInternalServiceBaseAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://cati-backend-master/ErrorReportingMultimodeInstanceHttp</Value>
+    </Setting>
+    <Setting Name="DialerEventsHandlerInternalServiceBaseAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://cati-backend-{companyId}/DialerMultimodeInstanceHttp</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
+

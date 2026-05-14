@@ -1,0 +1,36 @@
+﻿CREATE TABLE [dbo].[BvPerson] (
+    [SID]					 INT              NOT NULL,
+    [Name]					 NVARCHAR (255)   NOT NULL,
+    [FullName]				 NVARCHAR (255)   NOT NULL,
+    [Description]			 NVARCHAR (255)   NOT NULL,
+    [ManualSelection]		 INT              NOT NULL,
+    [PwdHashTxt]			 NVARCHAR (256)   NOT NULL CONSTRAINT DF_BvPerson_TotalSampleSize_PwdHashTxt DEFAULT (''),
+    [PwdSaltTxt]			 NVARCHAR (256)   NOT NULL CONSTRAINT DF_BvPerson_TotalSampleSize_PwdSaltTxt DEFAULT (''),
+    [HasNewMessage]			 BIT				  NULL CONSTRAINT DF_BvPerson_TotalSampleSize_HasNewMessage DEFAULT (NULL),
+    [AutomaticSurveyID]		 INT              NULL,
+    [AllowedChoices]		 INT              NULL CONSTRAINT DF_BvPerson_TotalSampleSize_AllowedChoices DEFAULT (NULL),
+	[IsLocked]               BIT              NOT NULL CONSTRAINT DF_BvPerson_TotalSampleSize_IsLocked DEFAULT (0),
+	[LockedDate]             DATETIME         NULL,
+	[AssignmentsListMode]    INT              NOT NULL,
+    [CallGroupID]            INT              NULL,
+	[CallCenterID]           INT              NOT NULL,
+	[Location]               NVARCHAR(256)    NULL CONSTRAINT DF_BvPerson_TotalSampleSize_Location DEFAULT (NULL),
+	[PwdSetDate]			 DATETIME		  NOT NULL CONSTRAINT DF_BvPerson_TotalSampleSize_PwdSetDate DEFAULT GETUTCDATE(), 
+	[DialTypeId]             TINYINT NOT NULL CONSTRAINT DF_BvPerson_DialTypeId DEFAULT(0/*Landline*/),
+	[Type]                   TINYINT NOT NULL CONSTRAINT DF_BvPerson_Type DEFAULT(0),
+    [ImproperLogoutBBCC] BIT NOT NULL CONSTRAINT DF_BvPerson_ImproperLogout DEFAULT (0), 
+    [EnableSoftphoneIntegration] BIT NOT NULL CONSTRAINT DF_BvPerson_EnableSoftphoneIntegration DEFAULT (1), 
+    [PasswordNeedsChange] BIT NOT NULL CONSTRAINT DF_BvPerson_PasswordNeedsChange DEFAULT (0), 
+    [ManualSelectionOnLogin] INT NULL, 
+    [AllowedChoicesOnLogin] TINYINT NULL,
+    [Attribute1]			 NVARCHAR (50)     NULL,
+    [Attribute2]			 NVARCHAR (50)     NULL,
+    [Attribute3]			 NVARCHAR (50)     NULL,
+    [Attribute4]			 NVARCHAR (50)     NULL,
+    [Attribute5]			 NVARCHAR (50)     NULL,
+    CONSTRAINT FK_BvPerson_CallGroupID FOREIGN KEY ([CallGroupID]) REFERENCES [dbo].[BvCallGroup] ([ID]) ON DELETE SET NULL,
+    CONSTRAINT UQ_BvPerson_Name UNIQUE NONCLUSTERED ([Name] ASC) WITH (ALLOW_PAGE_LOCKS = ON, ALLOW_ROW_LOCKS = ON, PAD_INDEX = OFF, IGNORE_DUP_KEY = OFF, STATISTICS_NORECOMPUTE = OFF)
+);
+
+
+GO

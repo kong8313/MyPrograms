@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+
+  <work>
+    <login>cati_api</login>
+    <password>Password123$</password>
+    <companyId>2</companyId>
+    <company>CATICompany</company>
+    <catiServer>Cati.build.testlab.firmglobal.net</catiServer>
+    <wsServer>author-cati.build.testlab.firmglobal.net</wsServer>
+    <surveyLocation>..\..\..\..\OlympicData\OlympicPredictiveSurvey.xml</surveyLocation>
+    <language_q5_q6>..\..\..\..\OlympicData\language_q5_q6.txt</language_q5_q6>
+    <dialMode>0</dialMode>
+    <surveyName>OlympicCodedUiPredictive</surveyName>
+    <surveyMode>Predictive</surveyMode>
+    <interviewerName>OlympicPredictiveInter</interviewerName>
+    <interviewerPassword>Password123$</interviewerPassword>
+    <interviewerLocation>OlympicLocation</interviewerLocation>
+    <taskChoice>SurveyAssignment</taskChoice>
+    <shedulingScript>CodedUI All Hours</shedulingScript>
+    <fcdBehaviorType>0</fcdBehaviorType>
+    <AutoPilotMinDelay>350</AutoPilotMinDelay>
+    <AutoPilotMaxDelay>500</AutoPilotMaxDelay>
+    <AutopilotAnswersFileName>OlympicAutopilot.txt</AutopilotAnswersFileName>
+    <AutoPilotTimesToRepeat>1</AutoPilotTimesToRepeat>
+    <AutopilotExtensionNumber>250</AutopilotExtensionNumber>
+    <AutoPilotLocale>en-US</AutoPilotLocale>
+
+    <interview>
+      <id>1</id>
+      <expectedStatus0>33</expectedStatus0>
+      <expectedStatus1>33</expectedStatus1>
+      <CallHistoryStatus>6</CallHistoryStatus>
+    </interview>
+
+    <interview>
+      <id>2</id>
+      <expectedStatus0>13</expectedStatus0>
+      <expectedStatus1>13</expectedStatus1>
+      <CallHistoryStatus>13</CallHistoryStatus>
+    </interview>
+
+    <interview>
+      <id>3</id>
+      <expectedStatus0>31</expectedStatus0>
+      <expectedStatus1>31</expectedStatus1>
+      <CallHistoryStatus>2</CallHistoryStatus>
+    </interview>
+
+    <interview>
+      <id>4</id>
+      <expectedStatus0>32</expectedStatus0>
+      <expectedStatus1>32</expectedStatus1>
+      <CallHistoryStatus>3</CallHistoryStatus>
+    </interview>
+
+    <interview>
+      <id>5</id>
+      <expectedStatus0>34</expectedStatus0>
+      <expectedStatus1>34</expectedStatus1>
+      <CallHistoryStatus>7</CallHistoryStatus>
+    </interview>
+
+    <interview>
+      <id>6</id>
+      <expectedStatus0>33</expectedStatus0>
+      <expectedStatus1>33</expectedStatus1>
+      <CallHistoryStatus>6</CallHistoryStatus>
+    </interview>
+
+    <interview>
+      <id>7</id>
+      <expectedStatus0>27</expectedStatus0>
+      <expectedStatus1>16</expectedStatus1>
+      <expectedCallState>1</expectedCallState>
+    </interview>
+
+    <interview>
+      <id>8</id>
+      <expectedStatus0>27</expectedStatus0>
+      <expectedStatus1>16</expectedStatus1>
+      <expectedCallState>1</expectedCallState>
+    </interview>
+
+    <interview>
+      <id>9</id>
+      <expectedStatus0>27</expectedStatus0>
+      <expectedStatus1>16</expectedStatus1>
+      <expectedCallState>1</expectedCallState>
+    </interview>
+
+    <interview>
+      <id>10</id>
+      <expectedStatus0>16</expectedStatus0>
+      <expectedStatus1>16</expectedStatus1>
+      <expectedCallState>2</expectedCallState>
+    </interview>
+
+    <interview>
+      <id>11</id>
+      <expectedStatus0>16</expectedStatus0>
+      <expectedStatus1>16</expectedStatus1>
+      <expectedCallState>2</expectedCallState>
+    </interview>
+
+    <interview>
+      <id>12</id>
+      <expectedStatus0>16</expectedStatus0>
+      <expectedStatus1>16</expectedStatus1>
+      <expectedCallState>2</expectedCallState>
+    </interview>
+
+  </work>
+
+</data>

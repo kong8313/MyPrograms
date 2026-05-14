@@ -1,0 +1,40 @@
+﻿
+.Create interviewer and interviewer group assigning on survey
+
+----
+// Read configuration parameters
+var companyId = int.Parse(ConfigurationManager.AppSettings.Get("CompanyId"));
+var user = ConfigurationManager.AppSettings.Get("UserName");
+var password = ConfigurationManager.AppSettings.Get("Password");
+
+// Create RestClient class
+var client = Environments.Nordic.CreateCatiRestClient(user, password, companyId);
+
+// Create service classes
+var interviewerService = new InterviewerService(client);
+var groupService = new GroupService(client);
+var surveyService = new SurveyService(client);
+
+// Create new interviewer group
+var group = new Group
+{
+    Name = "TestGroup_" + Guid.NewGuid()
+};
+var groupId = await groupService.Create(group);
+
+// Create new interviewer in the new group
+var interviewerProperties = new InterviewerProperties
+{
+    Name = "TestInter_" + Guid.NewGuid(),
+    Location = "Foo",
+    Password = "123",
+    AssignmentsListMode = AssignmentListMode.AllCalls
+};
+interviewerProperties.ParentGroups.Add(groupId);
+var interviewerId = await interviewerService.Create(interviewerProperties);
+
+// Assign interviewer on the survey
+var surveys = await surveyService.GetAsync("");
+var survey = surveys.FirstOrDefault();
+await interviewerService.AssignOnSurvey(interviewerId, survey.SurveyId);
+----

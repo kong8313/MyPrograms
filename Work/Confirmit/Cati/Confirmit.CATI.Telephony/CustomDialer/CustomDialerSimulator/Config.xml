@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Commands>
+    <DialCommands>
+        <Command>
+            <Result>0</Result>
+            <Timeout>1000</Timeout>
+        </Command>
+        <Command>
+            <Result>1</Result>
+            <Timeout>2000</Timeout>
+        </Command>
+    </DialCommands>
+</Commands>

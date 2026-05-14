@@ -1,0 +1,1 @@
+﻿CREATE INDEX IX_BvInboundTelephoneNumber_SurveyId ON [BvInboundTelephoneNumber]( SurveyId)

@@ -1,0 +1,335 @@
+﻿<?xml version="1.0"?>
+<Actions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Action>
+		<Id>1</Id>
+		<Name>Suspend the interview</Name>
+		<HasParameter>false</HasParameter>
+		<ParameterDescription />
+		<ParameterTypeName />
+    <ParameterType xsi:nil="true"/>
+	</Action>
+	<Action>
+		<Id>6</Id>
+		<Name>Terminate the interview</Name>
+		<HasParameter>false</HasParameter>
+		<ParameterDescription />
+		<ParameterTypeName />
+    <ParameterType xsi:nil="true"/>
+	</Action>
+	<Action>
+		<Id>8</Id>
+		<Name>Set time to NOW</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a value to set the desired shift type, specify 0 for "None" or 1 for "Any Valid"</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+	</Action>
+	<Action>
+		<Id>5</Id>
+		<Name>Fulfill the specified appointment</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the number of minutes before the appointment time</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+	</Action>
+	<Action>
+		<Id>2</Id>
+		<Name>Recall after number of minutes</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the number of minutes</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>3</Id>
+		<Name>Recall after number of shifts</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the number of shifts</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>4</Id>
+		<Name>Recall after number of shifts (random time)</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the number of shifts</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>17</Id>
+		<Name>Recall after number of shifts specified by variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>7</Id>
+		<Name>Recall on next shift of specified type</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the Shift Type ID</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>ShiftType</ParameterType>
+  </Action>
+	<Action>
+		<Id>20</Id>
+		<Name>Recall on next shift of the type specified by variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>35</Id>
+		<Name>Recall on the specific shift</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the Shift ID</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Shift</ParameterType>
+  </Action>
+	<Action>
+		<Id>36</Id>
+		<Name>Recall on the shift specified by variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>33</Id>
+		<Name>Recall on specific time</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Time format: dd/mm/yyyy hh:mm</ParameterDescription>
+		<ParameterTypeName>System.DateTime</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>25</Id>
+		<Name>Set Next Rule</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the Next Rule ID</ParameterDescription>
+		<ParameterTypeName>System.Guid</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>26</Id>
+		<Name>Set new Extended Status</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the new extended status</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>ExtendedStatus</ParameterType>
+  </Action>
+	<Action>
+		<Id>27</Id>
+		<Name>Set new Call Priority</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the new call priority value</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>28</Id>
+		<Name>Increment Priority</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the value to increment the current priority by</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>29</Id>
+		<Name>Decrement Priority</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the value to decrement the current priority by</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>30</Id>
+		<Name>Assign user/group(s)</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter Interviewer ID or Group ID or a list of Group IDs separated by comma, -1 for "Unchanged", -2 for "Last Person", -3 to set no specific assignment</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType>Resource</ParameterType>
+  </Action>
+	<Action>
+		<Id>31</Id>
+		<Name>Set Call expiration timeout</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the timeout value in minutes</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>Integer</ParameterType>
+  </Action>
+	<Action>
+		<Id>34</Id>
+		<Name>Set Call expiration time</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Time format: dd/mm/yyyy hh:mm</ParameterDescription>
+		<ParameterTypeName>System.DateTime</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>37</Id>
+		<Name>Set Shift Type</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the Shift Type ID, 0 for "Any Valid", -1 for "None"</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+    <ParameterType>ShiftType</ParameterType>
+  </Action>
+	<Action>
+		<Id>10</Id>
+		<Name>Increment quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>11</Id>
+		<Name>Special increment quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>12</Id>
+		<Name>Decrement quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>13</Id>
+		<Name>Special decrement quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>14</Id>
+		<Name>Reset quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>15</Id>
+		<Name>Special reset quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a quantity variable name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>16</Id>
+		<Name>Assign value to quantity variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Quantity variable name = value, value should be a whole number >= 0</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>18</Id>
+		<Name>Assign function call result to variable</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Quantity variable name = function name</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<!--<Action>
+		<Id>19</Id>
+		<Name>Place call history bookmark</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter a new history bookmark value</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+	</Action>
+	<Action>
+		<Id>21</Id>
+		<Name>Place call history bookmark to NOW</Name>
+		<HasParameter>false</HasParameter>
+		<ParameterDescription />
+		<ParameterTypeName />
+	</Action>-->
+	<Action>
+		<Id>23</Id>
+		<Name>Go To</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the Subrule number</ParameterDescription>
+		<ParameterTypeName>System.Guid</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>9</Id>
+		<Name>Run custom script</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter the function name from Custom script</ParameterDescription>
+		<ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+	<Action>
+		<Id>22</Id>
+		<Name>Stop execution</Name>
+		<HasParameter>false</HasParameter>
+		<ParameterDescription />
+		<ParameterTypeName />
+	</Action>
+	<Action>
+		<Id>38</Id>
+		<Name>Set dialing mode</Name>
+		<HasParameter>true</HasParameter>
+		<ParameterDescription>Enter 2 for preview dialing mode or 0 to reset the dialing mode.</ParameterDescription>
+		<ParameterTypeName>System.Int32</ParameterTypeName>
+	</Action>
+  <Action>
+    <Id>39</Id>
+    <Name>Enable call</Name>
+    <HasParameter>false</HasParameter>
+    <ParameterDescription />
+    <ParameterTypeName />
+    <ParameterType xsi:nil="true"/>
+  </Action>
+  <Action>
+    <Id>40</Id>
+    <Name>Disable call</Name>
+    <HasParameter>false</HasParameter>
+    <ParameterDescription />
+    <ParameterTypeName />
+    <ParameterType xsi:nil="true"/>
+  </Action>
+  <Action>
+    <Id>41</Id>
+    <Name>Add a group to a multiple assignment</Name>
+    <HasParameter>true</HasParameter>
+    <ParameterDescription>Enter a group ID or a list of Group IDs separated by commas</ParameterDescription>
+    <ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+  <Action>
+    <Id>42</Id>
+    <Name>Remove a group from a multiple assignment</Name>
+    <HasParameter>true</HasParameter>
+    <ParameterDescription>Enter a group ID or a list of Group IDs separated by commas</ParameterDescription>
+    <ParameterTypeName>System.String</ParameterTypeName>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+  <Action>
+    <Id>43</Id>
+    <Name>Restore previous call attributes</Name>
+    <HasParameter>false</HasParameter>
+    <ParameterDescription/>
+    <ParameterTypeName/>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+  <Action>
+    <Id>44</Id>
+    <Name>Accept inbound call</Name>
+    <HasParameter>false</HasParameter>
+    <ParameterDescription/>
+    <ParameterTypeName/>
+    <ParameterType xsi:nil="true"/>
+  </Action>
+</Actions>

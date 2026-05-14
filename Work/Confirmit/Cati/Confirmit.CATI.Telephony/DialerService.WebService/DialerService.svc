@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Service="Confirmit.CATI.Telephony.DialerService.DialerService"  %>

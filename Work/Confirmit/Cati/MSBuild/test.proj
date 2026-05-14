@@ -1,0 +1,113 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup Condition="'$(Configuration)'==''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <Optimize>true</Optimize>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ProjectDir)'==''">
+    <ProjectDir>$(MSBuildProjectDirectory)\..\</ProjectDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ConfigFolderName)'==''">
+    <ConfigFolderName>default</ConfigFolderName>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('C:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\MSTest.exe')">
+    <MsTestPath>C:\Program Files (x86)\Microsoft Visual Studio\2019\TestAgent\Common7\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(VS150COMNTOOLS)..\IDE\MSTest.exe')">
+    <MsTestPath>$(VS150COMNTOOLS)..\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(VS140COMNTOOLS)..\IDE\MSTest.exe')">
+    <MsTestPath>$(VS140COMNTOOLS)..\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="Exists('$(VS120COMNTOOLS)..\IDE\MSTest.exe')">
+    <MsTestPath>$(VS120COMNTOOLS)..\IDE\MSTest.exe</MsTestPath>
+  </PropertyGroup>
+  
+  <UsingTask AssemblyFile="$(ProjectDir)assemblies\xunit.runner.msbuild.dll" TaskName="Xunit.Runner.MSBuild.xunit"/>
+
+  <Target Name="Build" DependsOnTargets="BuildCati;RunTests" />
+  <Target Name="RunTests" DependsOnTargets="Unit;Int;System" />
+    
+  <Target Name="Int">
+    <Message Text="INTEGRATION TESTS BUILD STARTED"/>
+    <Message Text="Configuration = $(Configuration)"/>
+    <Message Text="ProjectDir = $(ProjectDir)"/>
+
+    <Exec Command="&quot;$(ProjectDir)\_3rdpart\Microsoft\gacutil.exe&quot; /i &quot;$(ProjectDir)\_3rdpart\Smo\x86\microsoft.sqlserver.batchparser.dll&quot;" />
+    
+    <xunit Assemblies="$(ProjectDir)assemblies\Confirmit.CATI.IntegrationTests.SchedulingScript.dll" ShadowCopy="false" TeamCity="" MaxParallelThreads="2"/>
+    <xunit Assemblies="$(ProjectDir)assemblies\Confirmit.CATI.IntegrationTests.XUnit.dll" ShadowCopy="false" TeamCity="" MaxParallelThreads="2"/>
+    
+    <Exec ContinueOnError="true" Command="$(ProjectDir)assemblies\RunTestParallelUtility.exe /threadcount:12 /testcontainers:*IntegrationTests.dll" IgnoreExitCode="true" />
+
+    <Message Text="INTEGRATION TESTS BUILD FINISHED"/>
+  </Target>
+
+  <Target Name="Unit">
+    <Message Text="UNIT TESTS BUILD STARTED"/>
+    <Message Text="Configuration = $(Configuration)"/>
+    <Message Text="ProjectDir = $(ProjectDir)"/>
+
+    <ItemGroup>
+      <UnitTestFiles Include="$(ProjectDir)assemblies\*UnitTests.dll" />
+    </ItemGroup>
+    
+    <Exec ContinueOnError="true" Command="mkdir &quot;$(ProjectDir)TestResults\&quot;" />
+    <Exec ContinueOnError="true" Command="del &quot;$(ProjectDir)TestResults\UnitTests.trx&quot;" />
+    <Exec ContinueOnError="true" Command="&quot;$(MsTestPath)&quot; /nologo /detail:duration /detail:owner /detail:errormessage /testsettings:&quot;$(ProjectDir)Temp.testsettings&quot; /resultsfile:&quot;$(ProjectDir)TestResults\UnitTests.trx&quot; /testcontainer:@(UnitTestFiles, ' /testcontainer:')" />
+
+    <Message Text="UNIT TESTS BUILD FINISHED"/>
+  </Target>
+
+  <Target Name="System" DependsOnTargets="PrepareConfigsForSystemTests">
+    <Message Text="SYSTEM TESTS BUILD STARTED"/>
+    <Message Text="Configuration = $(Configuration)"/>
+    <Message Text="ProjectDir = $(ProjectDir)"/>
+    <Message Text="ConfigFolderName = $(ConfigFolderName)"/>
+      
+    <ZipDirectory SourceDirectory="$(ProjectDir)\Confirmit.CATI.Database.2012\Scripts" DestinationFile="$(ProjectDir)Confirmit.CATI.DatabaseDeploy\code\src\Confirmit.CATI.DatabaseUpdateLibraryCore\scripts.zip" Overwrite="true" />
+	<Exec Command="dotnet.exe build &quot;$(ProjectDir)Confirmit.CATI.DatabaseDeploy\code\Confirmit.CATI.DatabaseDeploy.sln&quot;" />    
+	
+    <MSBuild Projects="$(ProjectDir)Confirmit.Consoles.sln" Properties="SignManifests=false" />
+    <MSBuild Projects="$(ProjectDir)Confirmit.Telephony.sln"/>
+    <MSBuild Projects="$(ProjectDir)Confirmit.BackendAndSupervisor.sln" />
+	
+    <MSBuild Projects="$(ProjectDir)Confirmit.CATI.SystemTests\Confirmit.CATI.SystemTests.sln"/>
+
+    <Exec ContinueOnError="true" Command="mkdir &quot;$(ProjectDir)TestResults&quot;" />
+
+    <Exec ContinueOnError="true" Command="&quot;$(MsTestPath)&quot; /nologo /detail:duration /detail:owner /detail:errormessag /testsettings:&quot;$(ProjectDir)Temp.testsettings&quot; /resultsfile:&quot;$(ProjectDir)TestResults\SystemTests.trx&quot; /testcontainer:&quot;$(ProjectDir)assemblies\Confirmit.CATI.SystemTests.dll&quot;" IgnoreExitCode="true" />
+    <Message Text="SYSTEM TESTS BUILD FINISHED"/>
+  </Target>
+    
+  <Target Name="PrepareConfigsForSystemTests">
+    <Copy SourceFiles="$(ProjectDir)Confirmit.CATI.SystemTests\Configs\$(ConfigFolderName)\Confirmit.CATI.SystemTests\app.config" 
+          DestinationFiles="$(ProjectDir)Confirmit.CATI.SystemTests\Confirmit.CATI.SystemTests\app.config" OverwriteReadOnlyFiles="true" />
+  </Target>
+    
+  <Target Name="BuildCati">
+    <MSBuild Projects="$(ProjectDir)MSBuild\cati.proj" Targets="Build" />
+
+    <MakeDir ContinueOnError="true" Directories="$(TestResultsRoot)" />
+  </Target>
+
+  <Target Name="help">
+    <Message Text="This project builds all code and run all tests"/>
+    <Message Text="Use 'test.proj /t:BuildCati' to build code only. cati.proj file will be ran"/>
+    <Message Text=" "/>
+    <Message Text="Use 'test.proj /t:RunTest' to run unit and integration tests only"/>
+    <Message Text=" "/>
+    <Message Text="Use 'test.proj /t:Int' to run integration tests only"/>
+    <Message Text=" "/>
+    <Message Text="Use 'test.proj /t:Unit' to run unit tests only"/>
+    <Message Text=" "/>
+    <Message Text="Use 'test.proj /t:System' to run system tests only"/>
+    <Message Text=" "/>
+  </Target>
+</Project>

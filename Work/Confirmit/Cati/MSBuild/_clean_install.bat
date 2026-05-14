@@ -1,0 +1,1 @@
+"C:\Program Files (x86)\FinalBuilder 8\fbcmd.exe" ..\FinalBuilder\CATI.fbp8 -t:CleanInstall

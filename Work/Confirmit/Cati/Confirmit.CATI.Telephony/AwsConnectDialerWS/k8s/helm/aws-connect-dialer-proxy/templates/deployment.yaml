@@ -1,0 +1,196 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "aws-connect-dialer-proxy.fullname" . }}
+  labels: {{ include "aws-connect-dialer-proxy.labels" . | nindent 4 }}
+spec:
+{{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+{{- end }}
+  selector:
+    matchLabels: {{- include "aws-connect-dialer-proxy.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels: {{ include "aws-connect-dialer-proxy.labels" . | nindent 8 }}
+    spec:
+      enableServiceLinks: {{ .Values.enableServiceLinks }}
+      volumes:
+      - name: bootstrap-secrets
+        secret:
+          secretName: horizons-secrets
+{{- if .Values.databaseDeploy.enabled }}
+      - name: horizons-dbdeploy-secrets
+        secret:
+          secretName: horizons-dbdeploy-secrets
+{{- end }}
+      - name: confirmit-service-logs
+        emptyDir: {}
+      - name: inetpub-logs
+        emptyDir: {}
+{{- if .Values.localVolumes.confirmData }}
+      - name: confirm-data
+        emptyDir: {}
+{{- end }}
+{{- if .Values.sharedVolumes.sharedData }}
+      - name: shared-data
+        persistentVolumeClaim:
+          claimName: shared-data
+{{- end }}
+{{- if .Values.sharedVolumes.ftp }}
+      - name: ftp
+        persistentVolumeClaim:
+          claimName: ftp
+{{- end }}
+{{- if .Values.sharedVolumes.surveyMedia }}
+      - name: survey-audio-upload
+        persistentVolumeClaim:
+          claimName: survey-audio-upload
+      - name: survey-image-upload
+        persistentVolumeClaim:
+          claimName: survey-image-upload
+      - name: survey-video-upload
+        persistentVolumeClaim:
+          claimName: survey-video-upload          
+{{- end }}
+{{- if .Values.sharedVolumes.surveyCustomcode }}
+      - name: survey-customcode
+        persistentVolumeClaim:
+          claimName: survey-customcode
+      - name: survey-projectcustomcode
+        persistentVolumeClaim:
+          claimName: survey-projectcustomcode
+{{- end }}
+{{- if .Values.sharedVolumes.surveyDeploy }}
+      - name: survey-deploy
+        persistentVolumeClaim:
+          claimName: shared-surveys
+{{- end }}
+      imagePullSecrets:
+      - name: horizons-imagepullsecret
+      serviceAccountName: {{ include "aws-connect-dialer-proxy.serviceAccountName" . }}
+      securityContext: {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      terminationGracePeriodSeconds: {{ add .Values.terminationGracePeriodSeconds (default .Values.global.iisApp.preStopSleepSeconds .Values.preStopSleepSecondsOverride) }}
+{{- if .Values.databaseDeploy.enabled }}
+      initContainers:
+      - name: {{ .Chart.Name }}-database-update
+        securityContext: {{- toYaml .Values.appSecurityContext | nindent 12 }}
+        image: "{{ .Values.global.registry }}/{{ .Values.appImage.repository }}-databasedeploy:{{ default .Chart.AppVersion .Values.appImage.tagOverride }}"
+        imagePullPolicy: {{ .Values.appImage.pullPolicy }}
+        args: [{{ .Values.databaseDeploy.applicationId | quote }}, {{ .Values.databaseDeploy.databaseName | quote }}]
+        envFrom:
+          - configMapRef:
+              name: horizons-dbdeploy-config
+          - configMapRef:
+              name: horizons-config
+{{- with .Values.databaseDeploy.env }}
+        env:
+{{ toYaml . | indent 10 }}
+{{- end }}
+        volumeMounts:
+        - name: horizons-dbdeploy-secrets
+          mountPath: /etc/confirmit/secrets
+        resources: {{ toYaml $.Values.appResources | nindent 12 }}
+{{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext: {{- toYaml .Values.appSecurityContext | nindent 12 }}
+          image: "{{ .Values.global.registry }}/{{ .Values.appImage.repository }}:{{ default .Chart.AppVersion .Values.appImage.tagOverride }}"
+          imagePullPolicy: {{ .Values.appImage.pullPolicy }}
+          ports:
+            - name: http-app
+              containerPort: 80
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: horizons-config
+          env:
+          - name: Confirmit__DefaultHostname
+            value: {{ default (index .Values.global.ingress.hosts 0) (join ";" .Values.ingress.hosts) | quote }}
+{{- with .Values.env }}
+{{ toYaml . | indent 10 }}
+{{- end }}
+          volumeMounts:
+          - name: bootstrap-secrets
+            mountPath: /etc/confirmit/secrets
+          - name: confirmit-service-logs
+            mountPath: /AWSDialerLogs
+          - name: inetpub-logs
+            mountPath: /inetpub/logs
+{{- if .Values.localVolumes.confirmData }}
+          - name: confirm-data
+            mountPath: /confirmit_data
+{{- end }}
+{{- if .Values.sharedVolumes.sharedData }}
+          - name: shared-data
+            mountPath: /shared_data
+{{- end }}
+{{- if .Values.sharedVolumes.ftp }}
+          - name: ftp
+            mountPath: /ftp
+{{- end }}
+{{- if .Values.sharedVolumes.surveyMedia }}
+          - name: survey-audio-upload
+            mountPath: /surveyaudioupload
+          - name: survey-image-upload
+            mountPath: /surveyimageupload
+          - name: survey-video-upload
+            mountPath: /surveyvideoupload            
+{{- end }}
+{{- if .Values.sharedVolumes.surveyCustomcode }}
+          - name: survey-customcode
+            mountPath: /app/bin/customcode
+          - name: survey-projectcustomcode
+            mountPath: /app/bin/projectcustomcode
+{{- end }}
+{{- if .Values.sharedVolumes.surveyDeploy }}
+          - name: survey-deploy
+            mountPath: /surveys
+{{- end }}
+          lifecycle:
+            preStop:
+              exec:
+                command: ["powershell","sleep {{default .Values.global.iisApp.preStopSleepSeconds .Values.preStopSleepSecondsOverride}}"]
+          startupProbe:
+            httpGet:
+              path: "DialerService.svc"
+              port: http-app
+            failureThreshold: 30
+            timeoutSeconds: 10
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: "DialerService.svc"
+              port: http-app
+            initialDelaySeconds: 60
+            timeoutSeconds: 1
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: "DialerService.svc"
+              port: http-app
+            initialDelaySeconds: 10
+            timeoutSeconds: 30
+            periodSeconds: 10
+          resources: {{ toYaml .Values.appResources | nindent 12 }}
+    {{- with .Values.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+{{- if or .Values.global.topologySpreadConstraints .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{- range default .Values.global.topologySpreadConstraints .Values.topologySpreadConstraints }}
+      - topologyKey: {{ .topologyKey }}
+        labelSelector:
+          matchLabels: {{- include "aws-connect-dialer-proxy.selectorLabels" $ | nindent 12 }}
+        maxSkew: {{ .maxSkew }}
+        whenUnsatisfiable: {{ .whenUnsatisfiable }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,18 @@
+{
+    "LogConfig": {
+      "sources": [
+        {
+            "type": "File",
+            "directory": "c:\\DialerLogs",
+            "filter": "*.log",
+            "includeSubdirectories": true
+        },        
+        {
+          "type": "File",
+          "directory": "c:\\inetpub\\logs",
+          "filter": "*.log",
+          "includeSubdirectories": true
+        }
+      ]
+    }
+}

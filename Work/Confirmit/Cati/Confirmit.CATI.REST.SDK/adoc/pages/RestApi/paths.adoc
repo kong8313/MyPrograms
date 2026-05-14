@@ -1,0 +1,1848 @@
+
+[[_paths]]
+== Paths
+
+[[_root_getoperations]]
+=== Return all used API URLs
+....
+GET /
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_link[Link] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+* `text/json`
+* `application/xml`
+* `text/xml`
+
+
+==== Tags
+
+* Root
+
+
+[[_blacklist_post]]
+=== Add telephone number to the blacklist
+....
+POST /blacklist
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**TelephoneBlacklistItem** +
+__required__|The entity to post|link:definitions.html#_telephoneblacklistitem[TelephoneBlacklistItem]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|integer (int32)
+|**201**|Created|integer (int32)
+|**400**|BadRequest|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* BlackList
+
+
+[[_blacklist_get]]
+=== Get telephone numbers from the blacklist using OData filter
+....
+GET /blacklist
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_telephoneblacklistitem[TelephoneBlacklistItem] > array
+|**400**|BadRequest|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* BlackList
+
+
+[[_blacklist_getbyid]]
+=== Get telephone number from the blacklist by the unique identifier
+....
+GET /blacklist({Id})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**Id** +
+__required__|key: Id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_telephoneblacklistitem[TelephoneBlacklistItem]
+|**400**|BadRequest|No Content
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* BlackList
+
+
+[[_blacklist_putbyid]]
+=== Update telephone number in the blacklist
+....
+PUT /blacklist({Id})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**Id** +
+__required__|key: Id|integer (int32)
+|**Body**|**TelephoneBlacklistItem** +
+__required__|The entity to put|link:definitions.html#_telephoneblacklistitem[TelephoneBlacklistItem]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_telephoneblacklistitem[TelephoneBlacklistItem]
+|**400**|BadRequest|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* BlackList
+
+
+[[_blacklist_deletebyid]]
+=== Delete telephone number from the blacklist
+....
+DELETE /blacklist({Id})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**If-Match** +
+__optional__|If-Match header|string
+|**Path**|**Id** +
+__required__|key: Id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**204**|NoContent|link:definitions.html#_void[Void]
+|**400**|BadRequest|No Content
+|**404**|NotFound|No Content
+|===
+
+
+==== Tags
+
+* BlackList
+
+
+[[_blacklist_import]]
+=== Add a list of the telephone numbers to the blacklist. The number of added elements cannot be more than 10000.
+....
+POST /blacklist/Controller.Import
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**parameters** +
+__optional__|OData parameters which contains list of the telephone numbers to be added to the blacklist|link:definitions.html#_blacklist_import_parameters[parameters]
+|===
+
+[[_blacklist_import_parameters]]
+**parameters**
+
+[options="header", cols=".^3a,.^4a"]
+|===
+|Name|Schema
+|**BlackListItems** +
+__optional__|link:definitions.html#_telephoneblacklistitems[TelephoneBlacklistItems]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**201**|Created|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|**400**|BadRequest|No Content
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Tags
+
+* BlackList
+
+
+[[_breakhistory_get]]
+=== Get history of breaks using OData filter
+....
+GET /breakhistory
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_breakhistory[BreakHistory] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* BreakHistory
+
+
+[[_breakhistory_getbyid]]
+=== Get a specific break history entity by id
+....
+GET /breakhistory({Id})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**Id** +
+__required__|key: Id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_breakhistory[BreakHistory]
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* BreakHistory
+
+
+[[_callhistory_get]]
+=== Get history of calls using OData filter
+....
+GET /callhistory
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_callhistory[CallHistory] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* CallHistory
+
+
+[[_callhistory_getbyid]]
+=== Get a specific call history entity by id
+....
+GET /callhistory({Id})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**Id** +
+__required__|key: Id|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_callhistory[CallHistory]
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* CallHistory
+
+
+[[_callhistorywithvariables_getcallhistorywithvariables]]
+=== Get call history including replicated variables
+....
+GET /callhistorywithvariables
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**endTime** +
+__optional__|When specified, only events that occurred before this time will be returned|string (date-time)
+|**Query**|**includeBreakTimes** +
+__optional__|Whether break times are to be included|boolean
+|**Query**|**includeLoginLogoutInfo** +
+__optional__|Whether login/logout information is to be included in the result|boolean
+|**Query**|**startTime** +
+__optional__|When specified, only events occurring after this time will be returned|string (date-time)
+|**Query**|**surveyIds** +
+__optional__|List of unique identifiers for the surveys (pXXXXXXXX), separated by comma or semicolon. If not specified, the history for all surveys will be returned.|string
+|**Query**|**variables** +
+__optional__|Survey field names separated by comma or semicolon (having 'Available as CATI filter' option enabled) to be included in the result|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_callhistorywithvariables[CallHistoryWithVariables] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* CallHistoryWithVariables
+
+
+[[_groups_post]]
+=== Create a new interviewer group
+....
+POST /groups
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**group** +
+__required__|The instance of the group object|link:definitions.html#_group[Group]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|integer (int32)
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_get]]
+=== Get groups using OData filter
+....
+GET /groups
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_group[Group] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_getbygroupid]]
+=== Get a specific group by an identifier
+....
+GET /groups({GroupId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_group[Group]
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_putbygroupid]]
+=== Update an existing interviewer group
+....
+PUT /groups({GroupId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Body**|**group** +
+__required__|The instance of the group object|link:definitions.html#_group[Group]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|integer (int32)
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_deletebygroupid]]
+=== Delete an existing interviewer group
+....
+DELETE /groups({GroupId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**If-Match** +
+__optional__|If-Match header|string
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_assignoncallbygroupidandsurveyidandinterviewidandcallcenterid]]
+=== Assign the specified group to the specified call
+....
+GET /groups({GroupId})/Controller.AssignOnCall(surveyId='{surveyId}',interviewId={interviewId},callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Path**|**callCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**Path**|**interviewId** +
+__required__|Unique identifier of the interview|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_assignonsurveybygroupidandsurveyidandcallcenterid]]
+=== Assign the specified group to the specified survey
+....
+GET /groups({GroupId})/Controller.AssignOnSurvey(surveyId='{surveyId}',callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Path**|**callCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_deassignfromcallsbygroupidandsurveyidandcallcenterid]]
+=== Unassign the specified group from all calls on the specified survey
+....
+GET /groups({GroupId})/Controller.DeAssignFromCalls(surveyId='{surveyId}',callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Path**|**callCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_deassignfromsurveybygroupidandsurveyidandcallcenterid]]
+=== Unassign the specified group from the specified survey
+....
+GET /groups({GroupId})/Controller.DeAssignFromSurvey(surveyId='{surveyId}',callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Path**|**callCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_getassignmentsbygroupidandcallcenterid]]
+=== Get all assignment information related to the specified group
+....
+GET /groups({GroupId})/Controller.GetAssignments(callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Path**|**callCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_surveyassignment[SurveyAssignment] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Groups
+
+
+[[_groups_getinterviewersbygroupidandcallcenterid]]
+=== Get all interviewers belonging to the specified group
+....
+GET /groups({GroupId})/Controller.GetInterviewers(callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**GroupId** +
+__required__|key: GroupId|integer (int32)
+|**Path**|**callCenterId** +
+__required__|Unique identifier of the call center|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_interviewer[Interviewer] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Groups
+
+
+[[_healthz_live]]
+=== Check that CATI REST API is alive
+....
+GET /healthz/live
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+* `text/json`
+* `application/xml`
+* `text/xml`
+
+
+==== Tags
+
+* Healthz
+
+
+[[_healthz_ready]]
+=== Check that CATI REST API is ready to work
+....
+GET /healthz/ready
+....
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+* `text/json`
+* `application/xml`
+* `text/xml`
+
+
+==== Tags
+
+* Healthz
+
+
+[[_interviewerproperties_post]]
+=== Create a new interviewer
+....
+POST /interviewerproperties
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Body**|**interviewerProperties** +
+__required__|The instance of the InterviewerProperties object|link:definitions.html#_interviewerproperties[InterviewerProperties]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|integer (int32)
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* InterviewerProperties
+
+
+[[_interviewerproperties_putbyinterviewerid]]
+=== Update an existing interviewer
+....
+PUT /interviewerproperties({InterviewerId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|**Body**|**interviewerProperties** +
+__required__|The instance of the InterviewerProperties object|link:definitions.html#_interviewerproperties[InterviewerProperties]
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|integer (int32)
+|===
+
+
+==== Consumes
+
+* `application/json`
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* InterviewerProperties
+
+
+[[_interviewerproperties_deletebyinterviewerid]]
+=== Delete an existing interviewer
+....
+DELETE /interviewerproperties({InterviewerId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Header**|**If-Match** +
+__optional__|If-Match header|string
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* InterviewerProperties
+
+
+[[_interviewers_get]]
+=== Get interviewers list using OData filter
+....
+GET /interviewers
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_interviewer[Interviewer] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_getbyinterviewerid]]
+=== Get a specific interviewer by id
+....
+GET /interviewers({InterviewerId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_interviewer[Interviewer]
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_assignoncallbyintervieweridandsurveyidandinterviewid]]
+=== Assign the specified interviewer to the specified call
+....
+GET /interviewers({InterviewerId})/Controller.AssignOnCall(surveyId='{surveyId}',interviewId={interviewId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|**Path**|**interviewId** +
+__required__|Unique identifier of the interview|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_assignonsurveybyintervieweridandsurveyid]]
+=== Assign the specified interviewer to the specified survey
+....
+GET /interviewers({InterviewerId})/Controller.AssignOnSurvey(surveyId='{surveyId}')
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_cleanassignmentsbyinterviewerid]]
+=== Remove all assignments from the specified interviewer
+....
+GET /interviewers({InterviewerId})/Controller.CleanAssignments()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_deassignfromcallsbyintervieweridandsurveyid]]
+=== Unassign the specified interviewer from all calls on the specified survey
+....
+GET /interviewers({InterviewerId})/Controller.DeAssignFromCalls(surveyId='{surveyId}')
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_deassignfromsurveybyintervieweridandsurveyid]]
+=== Unassign the specified interviewer from the specified survey
+....
+GET /interviewers({InterviewerId})/Controller.DeAssignFromSurvey(surveyId='{surveyId}')
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|**Path**|**surveyId** +
+__required__|Unique identifier of the survey (pXXXXXXXX)|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_getassignmentsbyinterviewerid]]
+=== Get all assignment information related to the specified interviewer
+....
+GET /interviewers({InterviewerId})/Controller.GetAssignments()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_surveyassignment[SurveyAssignment] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_getgroupsbyinterviewerid]]
+=== Get list of groups which contains the specified interviewer
+....
+GET /interviewers({InterviewerId})/Controller.GetGroups()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_group[Group] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_lockbyinterviewerid]]
+=== Lock interviewer
+....
+GET /interviewers({InterviewerId})/Controller.Lock()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewers_unlockbyinterviewerid]]
+=== Unlock interviewer
+....
+GET /interviewers({InterviewerId})/Controller.Unlock()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**InterviewerId** +
+__required__|key: InterviewerId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_void[Void]
+|**204**|No Content|No Content
+|===
+
+
+==== Tags
+
+* Interviewers
+
+
+[[_interviewersessionhistory_get]]
+=== Get history of interviewer sessions using OData filter
+....
+GET /interviewersessionhistory
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_interviewersessionhistory[InterviewerSessionHistory] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* InterviewerSessionHistory
+
+
+[[_interviewersessionhistory_getbysessionid]]
+=== Get history of interviewer sessions using OData filter
+....
+GET /interviewersessionhistory({SessionId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SessionId** +
+__required__|key: SessionId|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_interviewersessionhistory[InterviewerSessionHistory] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* InterviewerSessionHistory
+
+
+[[_surveys_get]]
+=== Get surveys using OData filter
+....
+GET /surveys
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Query**|**$filter** +
+__optional__|Filters the results, based on a Boolean condition.|string
+|**Query**|**$orderby** +
+__optional__|Sorts the results.|string
+|**Query**|**$skip** +
+__optional__|Skips the first n results.|integer (int32)
+|**Query**|**$top** +
+__optional__|Returns only the first n results.|integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_survey[Survey] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_getbysurveyid]]
+=== Get survey by survey ID
+....
+GET /surveys('{SurveyId}')
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_survey[Survey]
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_closebysurveyid]]
+=== Close the survey
+....
+GET /surveys('{SurveyId}')/Controller.Close()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_getassignmentsbysurveyidandcallcenterid]]
+=== Get all assignment information related to the specified survey
+....
+GET /surveys('{SurveyId}')/Controller.GetAssignments(callCenterId={callCenterId})
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|**Path**|**callCenterId** +
+__required__||integer (int32)
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|< link:definitions.html#_resourceassignment[ResourceAssignment] > array
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_getbasicpropertiesbysurveyid]]
+=== Get basic properties of the survey
+....
+GET /surveys('{SurveyId}')/Controller.GetBasicProperties()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|link:definitions.html#_surveybasicproperties[SurveyBasicProperties]
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_openbysurveyid]]
+=== Open the survey
+....
+GET /surveys('{SurveyId}')/Controller.Open()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_putbasicpropertiesbysurveyidandproperties]]
+=== Update basic properties of the survey
+....
+GET /surveys('{SurveyId}')/Controller.PutBasicProperties(properties='{properties}')
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|**Path**|**properties** +
+__required__|Json serialized string of SurveyBasicProperties object|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+[[_surveys_shutdownbysurveyid]]
+=== Shutdown the survey
+....
+GET /surveys('{SurveyId}')/Controller.Shutdown()
+....
+
+
+==== Parameters
+
+[options="header", cols=".^2a,.^3a,.^9a,.^4a"]
+|===
+|Type|Name|Description|Schema
+|**Path**|**SurveyId** +
+__required__|key: SurveyId|string
+|===
+
+
+==== Responses
+
+[options="header", cols=".^2a,.^14a,.^4a"]
+|===
+|HTTP Code|Description|Schema
+|**200**|OK|boolean
+|===
+
+
+==== Produces
+
+* `application/json`
+
+
+==== Tags
+
+* Surveys
+
+
+

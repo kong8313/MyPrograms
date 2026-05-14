@@ -1,0 +1,231 @@
+# Default values for aws-connect-dialer-proxy.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  registry: confirmithorizonsdev.azurecr.io
+  httpRouteIngress:
+    enabled: true
+    enableIngressHostnamesFallback: false
+    parentRefs:
+    - name: traefik-gateway
+      namespace: ingress
+      kind: Gateway
+    hostnames: [] # If empty, all hostnames will be accepted by default
+  httpRouteMesh:
+    enabled: true
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+    - rnd.aks.firmglobal.net
+  iisApp:
+    preStopSleepSeconds: 10
+  pdb:
+    enabled: true
+  alerts:
+    enabled: true
+  topologySpreadConstraints:
+  - topologyKey: kubernetes.io/hostname
+    maxSkew: 1
+    whenUnsatisfiable: ScheduleAnyway
+
+preStopSleepSecondsOverride:
+#Actual terminationGracePeriodSeconds will be the sum of terminationGracePeriodSeconds and preStopSleepSeconds or preStopSleepSecondsOverride
+terminationGracePeriodSeconds: 30
+
+enableServiceLinks: false
+
+fullnameOverride: aws-connect-dialer-proxy
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 1000
+
+appSecurityContext: {}
+  # runAsUser: 1000
+  # runAsGroup: 1000
+  # allowPrivilegeEscalation: false
+  # capabilities:
+  #   drop:
+  #   - ALL
+
+appImage:
+  repository: confirmit/aws-connect-dialer-proxy
+  pullPolicy: IfNotPresent
+  tagOverride:
+
+service:
+  type: ClusterIP
+  port: &servicePort 80
+
+ingress:
+  enabled: false
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  ingressClassName:
+  path: /awsconnectdialer(/|$)(.*)
+  pathType: ImplementationSpecific
+  hosts: []
+  tls: []
+
+# North-South (external → cluster)
+httpRouteIngress:
+  enabled: false
+  parentRefs: [] # Leave empty to use the gateway defined in global.httpRouteIngress
+  hostnames: [] # Leave empty to use the hostnames defined in global config or in ingress.hosts
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /awsconnectdialer
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
+    - type: RequestHeaderModifier
+      requestHeaderModifier:
+        add:
+        - name: X-Forwarded-Prefix
+          value: /awsconnectdialer
+    backendRefs:
+    - name: '{{ template "aws-connect-dialer-proxy.fullname" . }}'
+      port: *servicePort
+
+# East-West (service → service)
+httpRouteMesh:
+  enabled: false
+  rules:
+  - backendRefs:
+    - name: '{{ template "aws-connect-dialer-proxy.fullname" . }}'
+      port: *servicePort
+
+appResources:
+  limits:
+    memory: 800Mi
+  requests:
+    cpu: 25m
+    memory: 800Mi
+
+# If you use the folder defined in ConfirmitConfiguration.ConfirmData then you need to enable this volume
+localVolumes:
+  confirmData: false
+
+# Shared volumes defined in ConfirmitConfiguration.SharedData, ConfConfirmitConfigurationiguration.FtpRootPath
+# surveyMedia enables volumes defined in ConfirmitConfiguration.ImageUploadRootFolder, ConfirmitConfiguration.AudioUploadRootFolder and ConfirmitConfiguration.VideoUploadRootFolder
+# surveyCustomcode enables volumes for survey customcode
+# surveyDeploy enables volumes defined in ConfirmitConfiguration.SharedSurveyDeploymentPath
+sharedVolumes:
+  sharedData: false
+  ftp: false
+  surveyMedia: false
+  surveyCustomcode: false
+  surveyDeploy: false
+
+# replicaCount is not used if autoscaling is enabled
+replicaCount: 1
+
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 4
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        averageUtilization: 100
+        type: Utilization
+  behavior: {}
+
+pdb:
+  # PodDisruptionBudget will only be enabled if global.enabled=true and enabled=true
+  enabled: true
+  minAvailable: 1
+
+# Alerts
+# severity levels
+# * critical : Should be used for alerts which will immediately interrupt a human. They would, for example, trigger a pager notification.
+#              Only use critical for alerts that are important enough to wake you up at night
+# * warning : Should be used for alerts which will be read by a human, but do not require immediate action.
+#             They would, for example, trigger a Slack notification
+# category should be used as a identifier for a subsystem or group of applications that belong together
+# Add the team label so that you can easily create alertmanager config for your teams services
+alerts: # Alerts will be enabled if there exists any prometheusRules and, local and global alerts are enabled
+  enabled: true
+  # Prometheus alerts
+  # Expression is written in PromQL
+  # prometheusRules: | # Example prometheusRules. Uncomment and change to your needs
+  #   - alert: TaskSystemQueueTooLong
+  #     labels:
+  #       severity: warning
+  #       category: tasksystem
+  #       team: PET
+  #     annotations:
+  #       message: {{ `"{{$value}} tasks in queue"` }}
+  #     expr: tasksystem_tasks_in_queue_total{}>100
+  #     for: 30m
+
+  # Loki alerts
+  # Expression is written in LogQL and must be in the format of either rate() or count_over_time()
+  # If you use sum in addition to rate you will loose all the labels
+  # Make sure to use e.g. sum by (cluster, namespace, service_name, node, pod, container, log_logger) to add all lables that you want to the alert
+  # Note that labels have different names in Prometheus and Loki when setting up AlertmanagerConfig in the horizons-alers Helm chart
+  # Make sure to include all labels that you want to the alert. At a minimum include severity, service and any labels you need to effectively create a matchers for alerts
+  # All well known labels will be automatically relabeled to match the Prometheus naming convention so that the AlertmanagerConfig can use a uniform set of names
+  # lokiRules: | # Example lokiRules. Uncomment and change to your needs
+  #   - alert: error_rate
+  #     labels:
+  #       severity: warning
+  #       category: tasksystem
+  #       team: PET
+  #     annotations:
+  #       message: Error rate is too high
+  #     expr:
+  #       sum(rate({namespace="{{ .Release.Namespace }}", service_name="aws-connect-dialer-proxy"}[5m] |= `` | json | level = `ERROR`)) by (cluster, namespace, service_name, node, pod, container, log_logger) > 0.1
+  #     for: 10m
+
+env: []
+  # - name: Confirmit__SomeEnvVariableName
+  #   value: "1"
+
+nodeSelector:
+  node.kubernetes.io/windows-build: "10.0.20348"
+
+tolerations:
+  - key: "kubernetes.io/os"
+    operator: "Equal"
+    value: "windows"
+    effect: "NoSchedule"
+
+affinity: {}
+
+topologySpreadConstraints: []
+
+databaseDeploy:
+  enabled: false
+  #Don't use . in applicationId
+  applicationId: cati
+  databaseName: cati
+  env: []
+  # - name: Confirmit__Site__Application__cati__SQLServerName
+  #   value: serverB
+  # - name: Confirmit__Site__Application__cati__SQLServerDataPath
+  #   value:  c:\data
+  # - name: Confirmit__Site__Application__cati__SQLServerLogPath
+  #   value:  c:\logs
+
+
+# See https://pressganey.atlassian.net/wiki/x/YYA_tQ for more information
+namedRestartRules: []
+
+# See https://pressganey.atlassian.net/wiki/x/YYA_tQ for more information
+metricRestartRules: []

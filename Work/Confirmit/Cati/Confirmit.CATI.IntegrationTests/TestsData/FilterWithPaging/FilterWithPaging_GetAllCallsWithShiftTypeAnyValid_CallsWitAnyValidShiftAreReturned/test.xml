@@ -1,0 +1,164 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>14</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>55513</TelephoneNumber>
+    <RespondentName>13</RespondentName>
+    <TimezoneID>6</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>14</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-6</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>13</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>55512</TelephoneNumber>
+    <RespondentName>12</RespondentName>
+    <TimezoneID>5</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>13</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-5</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>12</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>55511</TelephoneNumber>
+    <RespondentName>11</RespondentName>
+    <TimezoneID>4</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>12</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-4</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>11</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>55510</TelephoneNumber>
+    <RespondentName>10</RespondentName>
+    <TimezoneID>3</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>11</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-3</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>10</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>5559</TelephoneNumber>
+    <RespondentName>9</RespondentName>
+    <TimezoneID>2</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>10</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-2</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Monrovia, Reykjavik</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>9</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>5558</TelephoneNumber>
+    <RespondentName>8</RespondentName>
+    <TimezoneID>1</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>9</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-1</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>8</InterviewID>
+    <Priority>10</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>5557</TelephoneNumber>
+    <RespondentName>7</RespondentName>
+    <TimezoneID>0</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>8</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName />
+    <ShiftType />
+    <Resource />
+  </table>
+</DocumentElement>

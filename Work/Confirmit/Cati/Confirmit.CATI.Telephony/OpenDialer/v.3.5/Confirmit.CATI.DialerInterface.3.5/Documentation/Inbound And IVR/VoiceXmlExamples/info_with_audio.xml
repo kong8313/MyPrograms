@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vxml version="2.1" xml:lang="en-US" xmlns="http://www.w3.org/2001/vxml">
+  <form>
+    <var name="__prevPageProgress" expr="'0.25;0.25'" />
+    <var name="__pagemasterid" expr="'321'" />
+    <var name="__theme" expr="'Main+theme'" />
+    <var name="l" expr="'9'" />
+    <var name="__sres" expr="'0|0'" />
+    <var name="__sid__" expr="'cXgq7mb4k_LerZ_qy7Cm6LwR3URotTdXSjrgIjjKawoU6NpBrjVbpkUf3zz7wRs1g6pbhqvm3c_80G_CrenqA6xEQ21fwpzmV831imo9B6UNvtFuq83Vk2XJ1W5M2mm_JeaNUvqYPYIGwaM059RTW24TgQltaI-FhMEWDhXWr0d4I50ojoVAj6BqKKslq7dTccW432kNvMyDq9nWoXf2F3x5EZDMRyXqIaOh29YjK9RkqoyOoPvGOUR9yeZ6UQapbsFboAO7xYSi-bFnlWocj797jBirMLiHM8dDlJa6UVpMgodKwOIE8bdY5zo32HszgRoIrqfRQCQ1PHA925bgRJTKbuOPel_fv58ySMXu_u7KJHHJxmVNwxdnBuaud-jJzc97gSP8oaMXk-PD7zZCKkoI5kQ4OY2okP-EsNpmDIqwU2JMtbFDqe2SqBbcgD05hAcwBsB3TM3qMxpuqGsYtkZffmho-P7sQhxjF867gVnrlEWmGs8FLMndEIFVgxZlY8VrhRMJHb5O7PMqB6Fu00liBe70k64xWVGIV1QEo1wK17ePz9eSb-842SxPB4akz0rd5fB8xsu8EjUkbzbAmgPPOz3GvCt68G4_5ecdVyLZzQPLsZRlw01Eb2N2WNsF0'" />
+    <block name="i1">
+      <prompt>
+        <audio src="http://localhost/isa/PYAMLMFAKKOYIBEYNHKRJRBIMIEALXOH/p1000191/i1.wav">We have some info for you.</audio>
+      </prompt>
+      <submit namelist="__prevPageProgress __pagemasterid __theme l __sres __sid__" />
+    </block>
+  </form>
+</vxml>

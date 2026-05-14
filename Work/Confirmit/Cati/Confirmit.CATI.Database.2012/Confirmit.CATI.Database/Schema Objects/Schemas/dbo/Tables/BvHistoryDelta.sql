@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[BvHistoryDelta]
+(
+    [ID] INT IDENTITY(1, 1) NOT NULL,
+	[SurveyId] INT NOT NULL,
+	[PersonId] INT NOT NULL,
+	[ITS] INT NOT NULL,
+	[LogonTime] INT NOT NULL,
+	[WaitingTime] INT NOT NULL,
+	[FiredTime] DATETIME NOT NULL,
+	CONSTRAINT PK_BvHistoryDelta_Id PRIMARY KEY CLUSTERED(ID)
+)

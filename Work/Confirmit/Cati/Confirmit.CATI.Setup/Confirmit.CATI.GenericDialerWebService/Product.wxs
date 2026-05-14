@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:IIs="http://schemas.microsoft.com/wix/IIsExtension">
+
+  <?include ..\BranchInfo.wxs ?>
+
+  <?if $(var.GType)=no ?>
+  <?define GenericProductName="Confirmit CATI Generic Dialer Web Service" ?>
+  <?define DialerName="Generic" ?>
+  <?define DialerWsType="GENERIC" ?>
+  <?define UpgradeGUID="$(var.GenericWsUpgradeGUID)" ?>
+  <?define SetSettingsInRegistry_Guid="{70056922-F12C-41D8-9552-8F83DA65EFD9}" ?>
+  <?endif?>
+
+  <?if $(var.GType)=simulator ?>
+  <?define GenericProductName="Confirmit CATI Simulator (G) Dialer Web Service" ?>
+  <?define DialerName="Simulator(G)" ?>
+  <?define DialerWsType="GENERIC_SIMULATOR" ?>
+  <?define UpgradeGUID="$(var.SimulatorGWsUpgradeGUID)" ?>
+  <?define SetSettingsInRegistry_Guid="{A8CD4F3E-281F-49A3-8548-E6C4A9D88626}" ?>
+  <?endif?>
+
+  <?if $(var.GType)=simulator_ltu ?>
+  <?define GenericProductName="Confirmit CATI LTU Simulator (G) Dialer Web Service" ?>
+  <?define DialerName="LTUSimulator(G)" ?>
+  <?define DialerWsType="GENERIC_LTU_SIMULATOR" ?>
+  <?define UpgradeGUID="$(var.LtuSimulatorGWsUpgradeGUID)" ?>
+  <?define SetSettingsInRegistry_Guid="{95CB8270-E42F-47D8-B5DB-9121FCEC3511}" ?>
+  <?endif?>
+  
+  <Product Id="*"
+           Name="$(var.GenericProductName) $(var.SideBySideName) ver.$(var.BuildNumber) $(var.ProcessorArchitecture)"
+           Language="1033"
+           Version="$(var.BuildNumber)"
+           Manufacturer="Confirmit"
+           UpgradeCode="$(var.UpgradeGUID)">
+
+    <Package InstallerVersion="200"
+             Description="$(var.GenericProductName) $(var.SideBySideName) ver.$(var.BuildNumber) $(var.ProcessorArchitecture) installer"
+             Comments="$(var.GenericProductName) $(var.SideBySideName) ver.$(var.BuildNumber) $(var.ProcessorArchitecture)"
+             Compressed="yes"
+             Platform="$(var.ProcessorArchitecture)" />
+
+    <Upgrade Id="$(var.UpgradeGUID)">
+      <UpgradeVersion Minimum="0.0.0.0"
+                      IncludeMinimum="yes"
+                      OnlyDetect="yes"
+                      Language="1033"
+                      Property="ANY_VERSION_FOUND" />
+    </Upgrade>
+
+    <Media Id="1"
+           Cabinet="wixproj.cab"
+           EmbedCab="yes" />
+
+    <IIs:WebSite Id='WebSiteId' Description='Dummy' SiteId='[WEB_SITE_ID]'>
+      <IIs:WebAddress Id='WebAddressId' Port='80' />
+    </IIs:WebSite>
+
+    <Property Id="ALLUSERS">2</Property>
+
+    <Condition Message="!(loc.Message_Privilege)">
+      Privileged
+    </Condition>
+
+    <?if $(var.ProcessorArchitecture)=x86 ?>
+    <Condition Message="!(loc.Message_WrongArchitecture1)$(var.InstallationVersionForGUI)!(loc.Message_WrongArchitecture2)">
+      Not Msix64
+    </Condition>
+    <?endif ?>
+
+    <Property Id="ARPNOREPAIR" Value="1" />
+    <Property Id="ARPNOMODIFY" Value="1" />
+    <Property Id='ARPINSTALLLOCATION' />
+
+    <Property Id="SAVE_PARAMETERS_REGISTRY_KEY_NAME" Value="SOFTWARE\Confirmit\$(var.DialerWsType)_DialerWebService.$(var.SideBySideName)" />
+
+    <Property Id="DIALER_WS_TYPE" Value="$(var.DialerWsType)" />
+
+    <Property Id="APP_POOL_NAME" Value="$(var.DialerName)DialerAppPool" >
+      <RegistrySearch Id='Previous_POOL_NAME_Search' Type='raw' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='APP_POOL_NAME' Win64='$(var.IsWin64)' />
+    </Property>
+
+    <Property Id="WEB_SITE_ID">
+      <RegistrySearch Id='Previous_WEB_SITE_ID_Search' Type='raw' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='WEB_SITE_ID' Win64='$(var.IsWin64)' />
+    </Property>
+
+    <Property Id="ALIAS_EDIT" Value="$(var.DialerName)DialerService.$(var.SideBySideName)" />
+    <Property Id="INSTALL_LOCATION" />
+    <Property Id="WEB_SITE_NAME" Value="novalue" />
+    <Property Id="IS_SET_RECYCLING_VALUE_TO_ZERO" Value="1" />
+    <Property Id="CATI_SERVER_ADDRESS" Value="localhost" />
+
+    <Property Id="MONITOR_ROOT" Value="C:\Interviews" />
+    <Property Id="URL_ROOT" Value="http://localhost/Interviews/" />
+    <Property Id="FILE_NAME_PATTERN" Value="{0:D10}*.wav" />
+
+    <Property Id="DIALER_ID" Value="0"/>
+    
+    <Property Id="BINDING_CONFIGURATION" Value="http" />
+    <Property Id="USE_AUTHORIZATION" />
+    <Property Id="USE_AUTHORIZATION_TRUE_OR_FALSE" Value="False" />
+
+    <Property Id="IS_FILE_LOGGING_ENABLED" Value="1" />
+    <Property Id="LOG_FILE_NAME" Value="$(var.DialerName)WS_%datetime%.log" />
+    <Property Id="LOG_FILE_PATH" Value="c:\DialerLogs\" />
+
+    <Property Id="CERTIFICATE_TYPE" Value="Test" />
+    <Property Id="TEST_CERTIFICATE_NAME" Value="localhost"/>
+    <Property Id="CERTIFICATE_PATH" />
+    <Property Id="CERTIFICATE_PASSWORD" Hidden="yes" Secure="yes" />
+    <Property Id="ENCRYPTED_CERTIFICATE_PASSWORD" />
+    
+    <Property Id="AUTHORIZATION_KEY" Value="0275E046-7FFF-495B-ACFE-09B439DB4902" />
+    <Property Id="ENCRYPTED_AUTHORIZATION_KEY" />
+
+    <Property Id="GENERIC_DIALER_TYPE" Value="NotDefined" />
+
+    <Property Id="MACHINE_CONFIG_CHANGING" Value="DoNotChange" />
+    <Property Id="MIN_WORKER_THREADS" Value="40" />
+    <Property Id="MAX_WORKER_THREADS" Value="250" />
+    <Property Id="MIN_IO_THREADS" Value="30" />
+    <Property Id="MAX_IO_THREADS" Value="250" />
+    <Property Id="MIN_FREE_THREADS" Value="352" />
+    <Property Id="MIN_LOCAL_REQUEST_FREE_THREADS" Value="304" />
+    <Property Id="MAX_CONNECTION_COUNT" Value="96" />
+
+    <Property Id="MIN_WORKET_THREADS_CURRENT_VALUE_LABEL" />
+    <Property Id="MAX_WORKER_THREADS_CURRENT_VALUE_LABEL" />
+    <Property Id="MIN_IO_THREADS_CURRENT_VALUE_LABEL" />
+    <Property Id="MAX_IO_THREADS_CURRENT_VALUE_LABEL" />
+    <Property Id="MIN_FREE_THREADS_CURRENT_VALUE_LABEL" />
+    <Property Id="MIN_LOCAL_REQUEST_FREE_THREADS_CURRENT_VALUE_LABEL" />
+
+    <Property Id="DUMP_CREATION_OPTIONS" Value="DoNotModifyCurrentOptions" />
+    <Property Id="PROCDUMP_FILE_PATH" />
+    <Property Id="PROCDUMP_LOG_FOLDER_PATH" />
+    <Property Id="PROCDUMP_ADDITIONAL_PARAMETERS" />
+
+    <Property Id="TEST_RESULT" Value="Error" />
+    <Property Id="MYDEBUG" />
+
+    <!--If TRUE - don't show any messeges and questions during installation process. FALSE - show as usual-->
+    <Property Id="QUIET_MODE" Value="FALSE"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir" >
+
+      <?if $(var.ProcessorArchitecture)=x64 ?>
+      <Directory Id="ProgramFiles64Folder">
+        <?else ?>
+        <Directory Id="ProgramFilesFolder">
+          <?endif ?>
+
+          <Directory Id="INSTALL_LOCATION" Name="$(var.GenericProductName) $(var.SideBySideName)" />
+
+          <?if $(var.ProcessorArchitecture)=x64 ?>
+        </Directory>
+        <?else ?>
+      </Directory>
+      <?endif ?>
+
+    </Directory>
+    <Feature Id="Complete" Title="!(loc.FeatureComplete_Title)" Description="!(loc.FeatureComplete_Description)" Level="1" ConfigurableDirectory="INSTALL_LOCATION">
+
+      <FeatureRef Id="GenericFeature" />
+
+    </Feature>
+
+    <UIRef Id="WixUI_GenericWS" />
+    <UIRef Id="WixUI_ErrorProgressText" />
+
+    <UI>
+      <ComboBox Property="TEMP_COMBO_BOX_VALUE">
+        <ListItem Text="Temp" Value="Temp" />
+      </ComboBox>
+
+      <ProgressText Action="AfterWixInstallationCustomAction">!(loc.ProgressText_AfterApplicationSettings)</ProgressText>
+    </UI>
+
+    <InstallExecuteSequence>
+      <Custom Action="DoubleInstallationPrevention" After="FindRelatedProducts">ANY_VERSION_FOUND</Custom>
+
+      <Custom Action="BeforeWixInstallationCustomAction" Before="CostFinalize">Not Installed</Custom>
+      <Custom Action="AfterWixInstallationCustomAction" After="InstallFinalize">Not Installed</Custom>
+
+      <!--This custom action calls by deinstallation-->
+      <Custom Action="SetValueToUninstallCustomAction" After="MsiUnpublishAssemblies">REMOVE</Custom>
+      <Custom Action="UninstallCustomAction" After="SetValueToUninstallCustomAction">REMOVE</Custom>
+    </InstallExecuteSequence>
+
+    <InstallUISequence>
+      <Custom Action="DoubleInstallationPrevention" After="FindRelatedProducts">ANY_VERSION_FOUND</Custom>
+    </InstallUISequence>
+
+  </Product>
+</Wix>

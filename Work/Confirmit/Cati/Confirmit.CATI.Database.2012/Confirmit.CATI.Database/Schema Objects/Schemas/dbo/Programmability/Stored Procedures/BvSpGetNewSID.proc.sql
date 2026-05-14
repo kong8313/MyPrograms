@@ -1,0 +1,8 @@
+﻿CREATE PROCEDURE [dbo].[BvSpGetNewSID]
+AS
+DECLARE @SID int
+
+UPDATE BvSIDCounter 
+    SET @SID = SID, SID = SID + 1
+
+return @SID

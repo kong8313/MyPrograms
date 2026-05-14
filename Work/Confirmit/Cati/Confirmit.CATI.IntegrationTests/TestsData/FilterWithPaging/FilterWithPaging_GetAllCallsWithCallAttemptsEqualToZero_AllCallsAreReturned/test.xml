@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>26</InterviewID>
+    <TelephoneNumber />
+    <RespondentName />
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID>
+    <ShiftType />
+    <Resource />
+  </table>
+</DocumentElement>

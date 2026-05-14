@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\DefaultVersion.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <BuildDependsOn>$(BuildDependsOn);Nuget</BuildDependsOn>
+    <RebuildDependsOn>$(RebuildDependsOn);Nuget</RebuildDependsOn>
+  </PropertyGroup>
+  <Target Name="Nuget" AfterTargets="Build">
+    <Message Text="Nuget for Confirmit.Cati.Rest.Sdk starting..." />
+    <Exec Command="%22$(ProjectDir)..\_3rdpart\Nuget\Nuget.exe%22 pack -Verbosity detailed -NonInteractive -OutputDirectory %22$(ProjectDir)..\assemblies\REST.SDK%22 -Version $(NugetPackageVersion) %22$(ProjectDir)Confirmit.CATI.REST.SDK.nuspec%22" />
+    <Message Text="Nuget for Confirmit.Cati.Rest.Sdk finished." />
+  </Target>
+  <PropertyGroup Condition="'$(NugetPackageVersion)'==''">
+    <NugetPackageVersion>$(BuildNumber)</NugetPackageVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA2830C4-FC58-4400-AE4C-3CD81D6D316F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Confirmit.CATI.REST.SDK</RootNamespace>
+    <AssemblyName>Confirmit.CATI.REST.SDK</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>0e4ef812</NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\assemblies\REST.SDK\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DocumentationFile>..\assemblies\REST.SDK\Confirmit.CATI.REST.SDK.xml</DocumentationFile>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\assemblies\REST.SDK\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.8\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants\BlackListActions.cs" />
+    <Compile Include="Exceptions\BadRequestException.cs" />
+    <Compile Include="Interfaces\IBlacklistService.cs" />
+    <Compile Include="Model\BlackListPatternType.cs" />
+    <Compile Include="Model\TelephoneBlackListItem.cs" />
+    <Compile Include="Model\TelephoneBlackListItems.cs" />
+    <Compile Include="Services\BlacklistService.cs" />
+    <Compile Include="Services\BreakHistoryService.cs" />
+    <Compile Include="Services\CallHistoryWithVariablesService.cs" />
+    <Compile Include="Services\CallHistoryService.cs" />
+    <Compile Include="Client\Environments.cs" />
+    <Compile Include="Interfaces\ICallHistoryWithVariablesService.cs" />
+    <Compile Include="Interfaces\IInterviewerSessionHistoryService.cs" />
+    <Compile Include="Services\InterviewerSessionHistoryService.cs" />
+    <Compile Include="Constants\UrlConstants.cs" />
+    <Compile Include="Exceptions\ForbiddenException.cs" />
+    <Compile Include="Constants\GroupActions.cs" />
+    <Compile Include="Services\GroupService.cs" />
+    <Compile Include="Interfaces\IBreakHistoryService.cs" />
+    <Compile Include="Interfaces\ICallHistoryService.cs" />
+    <Compile Include="Interfaces\IGroupService.cs" />
+    <Compile Include="Interfaces\IInterviewerService.cs" />
+    <Compile Include="Exceptions\InternalServerErrorException.cs" />
+    <Compile Include="Constants\InterviewerActions.cs" />
+    <Compile Include="Services\InterviewerService.cs" />
+    <Compile Include="Interfaces\ISurveyService.cs" />
+    <Compile Include="Interfaces\IRestClient.cs" />
+    <Compile Include="Exceptions\NotFoundException.cs" />
+    <Compile Include="Constants\SurveyActions.cs" />
+    <Compile Include="Services\SurveyService.cs" />
+    <Compile Include="Client\RestClient.cs" />
+    <Compile Include="Exceptions\RestClientException.cs" />
+    <Compile Include="Exceptions\ServiceUnavailableException.cs" />
+    <Compile Include="Model\CallDeliveryMode.cs" />
+    <Compile Include="Model\CallHistoryWithVariables.cs" />
+    <Compile Include="Model\DialType.cs" />
+    <Compile Include="Model\InterviewerSessionHistory.cs" />
+    <Compile Include="Model\SurveyBasicProperties.cs" />
+    <Compile Include="Model\TaskChoiceMode.cs" />
+    <Compile Include="Model\AssignmentType.cs" />
+    <Compile Include="Model\BreakHistory.cs" />
+    <Compile Include="Model\CallHistory.cs" />
+    <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Model\Interviewer.cs" />
+    <Compile Include="Model\Group.cs" />
+    <Compile Include="Model\ResourceAssignment.cs" />
+    <Compile Include="Model\InterviewerProperties.cs" />
+    <Compile Include="Model\AssignmentListMode.cs" />
+    <Compile Include="Model\Survey.cs" />
+    <Compile Include="Model\Root.cs" />
+    <Compile Include="Model\SurveyAssignment.cs" />
+    <Compile Include="Model\SurveyState.cs" />
+    <Compile Include="Model\TaskChoicePermissions.cs" />
+    <Compile Include="Model\Variable.cs" />
+    <Compile Include="Service References\LogOn\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <None Include="..\ConfirmitKeyPair.snk">
+      <Link>ConfirmitKeyPair.snk</Link>
+    </None>
+    <None Include="adoc\pages\Examples\Manage blacklist.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Examples\Update interviewer properties.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\index.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Manual.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Examples.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Examples\Create interviewer and interviewer group assigning on survey.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Examples\Read interviewer session history information from Nordic site with filter by login time.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Examples\Read call history information from Nordic site with filters.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\Examples\Read call history information without filters.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\RestApi\definitions.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\RestApi\overview.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="adoc\pages\RestApi\overview_static.adoc" />
+    <None Include="adoc\pages\RestApi\paths.adoc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="app.config" />
+    <None Include="Confirmit.CATI.REST.SDK.nuspec" />
+    <None Include="packages.config" />
+    <None Include="Service References\LogOn\Confirmit.CATI.REST.SDK.LogOn.LogOnUserResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LogOn\LogOn.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\LogOn\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogOn\LogOn.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogOn\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogOn\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LogOn\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="adoc\assets\images\InstallNugetPackage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

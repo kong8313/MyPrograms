@@ -1,0 +1,121 @@
+Version 3.7.8
+	- [API] Add callerId, ringTime, callOutcomeMetadata, correlationId parameters to the NotifyOutcome method. DialerAccompanyingCallInfo parameter deleted from NotifyOutcome method.
+	
+Version 3.7.7
+	- [API] Add the respondentVariables parameter to the SendNumberToAgent method and the CallInfo class.
+
+Version 3.7.6
+	- [API] Add interviewId and callId parameters into the CompleteCall and Hangup methods
+
+Version 3.7.5
+	- [API] Add GetAudioFile method to download file content from dialer by url
+	- [API] GetFeatures method updated to support IsAudioContentDownloadSupported flag
+
+Version 3.7.4
+	- [API] Add RegisterAgentSoftphone to ensure that agent is ready to use softphone (e.g. SIP or WebRTC) and get softphone connection credentials
+	- [API] GetFeatures method updated to support IsSoftphoneSingleSignOnSupported flag
+
+Version 3.7.3
+	- [API] Add compulsory audio message for inbound calls and send it as "IncomingCallMandatory = 3" to dialer
+
+Version 3.7.2
+	- [API] Send DialerId to Recording API methods
+	- [API] Send CompanyId to IDialerCoreApi.Release() method
+
+Version 3.7
+	- [API] GetFeatures method is introduced
+
+Version 3.6.11
+	- [API] MonitorMode enum is introduced
+	- [API] SetMonitorMode method is introduced
+
+Version 3.6.10
+	- [API] ExternallyValidatedNumber (1021) outcome code is added.
+
+Version 3.6.9
+	- [API] CanceledTransfer (1012) outcome code is added.
+	- [API] NotDefined (0) field is added to ConnectionState, InitiatorState, TargetState, TargetType enums.
+
+Version 3.6.8
+	- [API] Add Conference field to ConnectionState enum
+
+Version 3.6.7
+	- [API] Add dialerId parameter to Release method
+
+Version 3.6.6
+	- [API] Add breakName parameter to GoNotReady method
+	- [API] Add breakName parameter to CompleteCall method
+
+Version 3.6.5
+	- [API] Add borrowAgentsFromAllCampaigns parameter to TransferSetTarget method
+
+Version 3.6.4
+	- [API] Typing error is fixed: Trans't'erStart -> Trans'f'erStart()
+
+Version 3.6.3
+	- [API] Methods are introduced: TransferStart(), TransferSetTarget(), TransferSetConnectionState(),
+			TransferComplete(), TransferCancel()
+	- [API] Event notifications are introduced: DialerEventNotifyCallDroppedByRespondent, NotifyTransferState.
+
+Version 3.6.2
+	- [API] Add RepeatCount member to AudioMessageDescriptor.
+
+Version 3.5.6
+	- [API] Event notifications are introduced: NotifyInboundCall and NotifyInboundCallDroppedByRespondent.
+	- [API] AudioSourceType enum and AudioMessageDescriptor class are introduced.
+	- [API] Methods are introduced: ConfigureInboundDdiNumbers(), DropInboundCall(), ConnectInboundCall(), 
+			ConnectInboundCallToAgent(), SetNextInterview()
+
+Version 3.4.4
+	- [API] DialingInterrupted (1020) outcome code is added.
+
+Version 3.4.3
+	- [WS] Dialer id is moved to DialerEvent level.
+	       Several CATI dialers can work through a single dialer WS as the result.
+
+Version 3.4.2
+	- [API] AgentType enum is introduced
+	- [API] AgentType parameter is added to the login method
+
+Version 3.4.1
+	- [API] IvrRenderVoiceXml method is introduced
+	- [API] NotifyIvrSubmit and NotifyInboundCall event notifications are introduced
+
+Version 3.3.1
+	- [API] UpdateInterviewStatus() method is obsolete and is removed from the API
+
+Version 3.2.2
+	- [WS] AgentState.NotReady notification is unfiltered by default
+
+	- [WS] [AgentState.LoggedIn, AgentState.LoggedOut, AgentState.NotReady] state notifications AgentState.NotReady are made mandatory
+
+
+Version 3.2
+	- [API] 'callerId' field is added to the CallInfo structure
+
+	- [API] 'callerId' parameter is added to the following methods:
+			SendNumberToAgent, Redial
+
+	- [API] 'dialerId' parameter is added to the following methods:
+			GetState, Login, SetCampaign, Logout, KillAgent, GoReady, GoNotReady, SetGroups,
+			SendNumberToAgent, Redial, SendNumbers, Hangup, CompleteCall, UpdateInterviewStatus,
+			CompletePreview, StartRecording, StopRecording, StartPlayback, StopPlayback,
+			PauseOrResumePlayback, ToggleInterviewerListensToPlaybackOrRespondent, StartMonitor,
+			StopMonitor, GetTrunkLineStatesAndAlarms, TransferToIvr 
+
+	- [API] 'dialerIds' parameter is added to the following methods:
+			StartCampaign, StopCampaign, KillCampaign, SetCampaignParameters, FlushNumbers 
+
+	- [API] 'interviewStatus' parameter is added to the following methods:
+			CompleteCall
+			Note, CATI fills the parameter with proper value
+
+	- [WS] CODI & Dialer Dll version logging is improved
+
+	- [WS] Fixed a bug in formatting log error message
+
+	- [WS] ShutdownReason and call stack logging on Dispose is added
+
+
+Version 3.0
+	- Initial version. All "pre-versioned" versions are treated by CATI backend as 3.0.

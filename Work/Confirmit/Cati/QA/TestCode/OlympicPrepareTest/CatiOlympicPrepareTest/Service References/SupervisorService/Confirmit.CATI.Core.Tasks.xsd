@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Tasks" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Tasks" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.ConsoleService.Abstract" />
+  <xs:complexType name="TaskContext">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActiveDialId" nillable="true" type="xs:long" />
+      <xs:element minOccurs="0" name="ActiveDialStart" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CurrentCampaignId" type="xs:long" />
+      <xs:element minOccurs="0" name="DialHistories" nillable="true" type="tns:ArrayOfTaskDialHistory" />
+      <xs:element minOccurs="0" name="IsLiveMonitoringEnabled" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="TransferId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.ConsoleService.Abstract" minOccurs="0" name="TransferOptions" nillable="true" type="q1:TransferOptions" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskContext" nillable="true" type="tns:TaskContext" />
+  <xs:complexType name="ArrayOfTaskDialHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TaskDialHistory" nillable="true" type="tns:TaskDialHistory" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTaskDialHistory" nillable="true" type="tns:ArrayOfTaskDialHistory" />
+  <xs:complexType name="TaskDialHistory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DialId" type="xs:long" />
+      <xs:element minOccurs="0" name="FinishTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StartTime" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TaskDialHistory" nillable="true" type="tns:TaskDialHistory" />
+</xs:schema>

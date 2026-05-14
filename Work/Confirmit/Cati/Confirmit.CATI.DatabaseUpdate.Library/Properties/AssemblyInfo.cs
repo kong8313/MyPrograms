@@ -1,0 +1,30 @@
+﻿using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCulture("")]
+
+// Setting ComVisible to false makes the types in this assembly not visible 
+// to COM components.  If you need to access a type in this assembly from 
+// COM, set the ComVisible attribute to true on that type.
+[assembly: ComVisible(false)]
+
+// The following GUID is for the ID of the typelib if this project is exposed to COM
+[assembly: Guid("cfa26020-9b04-4175-b19c-39ad13d96c06")]
+
+[assembly: InternalsVisibleTo("Confirmit.CATI.DatabaseUpdateLibrary.UnitTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100b900a6faa24e303228ff621eb394983c9471ccf803a1caaf380d3b87b4744f1ad5bf1889b9b3ee7ac5cee6a3f10d42e7fbb3f858f8d7140426469d35d847faddcda0efbc3366fc52779195ff64ff4b02633cb1c8a7ef02e00a48357b54970a35c26088e51d35919b7f111fa1ad5ce539f17e2fb323d0660e4220500416347bc8")]
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Build and Revision Numbers 
+// by using the '*' as shown below:
+// [assembly: AssemblyVersion("1.0.*")]

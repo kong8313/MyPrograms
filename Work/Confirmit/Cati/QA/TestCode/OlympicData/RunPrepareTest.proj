@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunPrepareTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <CurrentDate>$([System.DateTime]::Now.ToString('_yyyy_MM_dd_HH_mm_ss'))</CurrentDate>
+    <CatiSQLConnectionString>Data Source=$(DataSource);Initial Catalog=ConfirmitCATIV15_1;Connect Timeout=120;User ID=ConfirmitDeploy;Password=%251confdep;</CatiSQLConnectionString>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)..\..\..\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+  <Import Project="Common.props"/>
+
+  <UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+   <ParameterGroup>
+     <InputFilename ParameterType="System.String" Required="true" />
+     <OutputFilename ParameterType="System.String" Required="true" />
+     <MatchExpression ParameterType="System.String" Required="true" />
+     <ReplacementText ParameterType="System.String" Required="true" />
+   </ParameterGroup>
+   <Task>
+     <Reference Include="System.Core" />
+     <Using Namespace="System" />
+     <Using Namespace="System.IO" />
+     <Using Namespace="System.Text.RegularExpressions" />
+     <Code Type="Fragment" Language="cs">
+       <![CDATA[
+             File.WriteAllText(
+                 OutputFilename,
+                 Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+                 );
+           ]]>
+     </Code>
+   </Task>
+  </UsingTask>
+
+  <UsingTask TaskName="SetEnvironmentVariableTask" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <Name ParameterType="System.String" Required="true" />
+      <Value ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          Environment.SetEnvironmentVariable(Name, Value);
+        ]]>
+      </Code>
+    </Task>
+
+  </UsingTask>
+
+  <Target Name="SetEnvironmentVariable">
+    <Message Text="Set EnvironmentVariable CatiSQLConnectionString to $(CatiSQLConnectionString)" />
+    <SetEnvironmentVariableTask Name="CatiSQLConnectionString" Value="$(CatiSQLConnectionString)" />
+   </Target>
+
+  <Target Name="SetDate"> <!--Condition="'$(CompanyName)'=='CATICompany'"-->
+    <Message Text="Set surveyname and intername to OlympicCodedUi$(OlympicMode)$(CurrentDate) and Olympic$(OlympicMode)Inter$(CurrentDate)" />
+    
+    <!-- set unique Interviewer name --> 
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="interviewerName>Olympic$(OlympicMode)Inter"
+      ReplacementText="interviewerName>Olympic$(OlympicMode)Inter$(CurrentDate)" />
+    <!-- set unique Survey name -->
+    <ReplaceFileText 
+      InputFilename="..\TestData\OlympicData.xml" 
+      OutputFilename="..\TestData\OlympicData.xml" 
+      MatchExpression="surveyName>OlympicCodedUi$(OlympicMode)"
+      ReplacementText="surveyName>OlympicCodedUi$(OlympicMode)$(CurrentDate)" />
+  </Target>
+
+  <Target Name="AddOlympicModeToTestNames">
+    <!-- Add current OlympicMode to the Test Names --> 
+    <ReplaceFileText 
+    InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    MatchExpression="Olympic$(CompanyName)PrepareSurveyTest"
+    ReplacementText="Olympic$(OlympicMode)$(CompanyName)PrepareSurveyTest" />
+
+    <ReplaceFileText 
+    InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    MatchExpression="OlympicCloseSurvey$(CompanyName)Test"
+    ReplacementText="OlympicCloseSurvey$(OlympicMode)$(CompanyName)Test" />
+
+    <ReplaceFileText 
+    InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    MatchExpression="OlympicCheck$(CompanyName)"
+    ReplacementText="OlympicCheck$(OlympicMode)$(CompanyName)" />
+
+  </Target>
+
+  <Target Name="RemoveOlympicModeFromTestNames">
+
+    <ReplaceFileText 
+    InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    MatchExpression="Olympic$(OlympicMode)$(CompanyName)PrepareSurveyTest"
+    ReplacementText="Olympic$(CompanyName)PrepareSurveyTest" />
+
+    <ReplaceFileText 
+    InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    MatchExpression="OlympicCloseSurvey$(OlympicMode)$(CompanyName)Test"
+    ReplacementText="OlympicCloseSurvey$(CompanyName)Test" />
+
+    <ReplaceFileText 
+    InputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    OutputFilename="..\OlympicPrepareTest\CatiOlympicPrepareTest\AuthoringAndCatiPrepare.cs" 
+    MatchExpression="OlympicCheck$(OlympicMode)$(CompanyName)"
+    ReplacementText="OlympicCheck$(CompanyName)" />
+
+
+  </Target>
+
+  <Target Name="BuildPrepareTest">
+
+    <CallTarget Targets="AddOlympicModeToTestNames" />
+	
+    <MSBuild Projects="..\OlympicPrepareTest\OlympicPrepareTest.sln"/>
+    
+    <CallTarget Targets="RemoveOlympicModeFromTestNames" />
+ 
+  </Target>   
+
+  <Target Name="RunPrepareTest" DependsOnTargets="SetEnvironmentVariable;SetDate;BuildPrepareTest">
+
+    <PropertyGroup Label="TestSuccessOrNot">
+      <TestSuccessOrNot>1</TestSuccessOrNot>
+    </PropertyGroup>
+
+    <Message Text="Running Olympic prepare $(OlympicMode) test for $(CompanyName) Company" />
+
+    <Exec Command="&quot;$(MsTestPath)&quot; /testcontainer:..\OlympicPrepareTest\CatiOlympicPrepareTest\bin\Debug\CatiOlympicPrepareTest.dll /test:Olympic$(OlympicMode)$(CompanyName)PrepareSurveyTest"  ContinueOnError="false">
+      <Output TaskParameter="ExitCode" PropertyName="TestSuccessOrNot"/>
+    </Exec>
+
+    <Message Text="ExitCode = $(TestSuccessOrNot)" />
+ 
+  </Target> 
+
+</Project>

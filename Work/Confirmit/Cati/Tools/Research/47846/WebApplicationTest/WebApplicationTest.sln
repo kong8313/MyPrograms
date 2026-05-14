@@ -1,0 +1,158 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService1", "WebService1\WebService1.csproj", "{A00C3AE9-A46E-4E46-8FDB-638F60672F6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IISConfig", "IISConfig\IISConfig.csproj", "{CCB37106-E621-455A-9F36-0539B30EACE7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A00C3AE9-A46E-4E46-8FDB-638F60672F6B} = {A00C3AE9-A46E-4E46-8FDB-638F60672F6B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsService1", "WindowsService1\WindowsService1.csproj", "{C13A009E-E8F6-4675-A62D-ED68F140E21E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{D972EF60-F455-4CCE-890B-4383BA6A5B9E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TreadTest", "TreadTest\TreadTest.csproj", "{96E0DB70-8835-4D7D-96CB-3FD5600D3676}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppDomainTest", "AppDomainTest\AppDomainTest.csproj", "{20C75BF1-1C6F-4396-A8D0-5E202740665F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartStopTest", "StartStopTest\StartStopTest.csproj", "{A8BBCFE5-234C-40FD-AE75-D1A19C52575D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebService2", "WebService2\WebService2.csproj", "{89812904-0E13-4F64-9F6B-634D5B3C4706}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{D4FDBF52-B4E0-46B0-AE16-B5E09152321C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService1", "WcfService1\WcfService1.csproj", "{B1E431B7-47D4-4DC9-A21D-1D5523183C87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartStopLibrary", "StartStopLibrary\StartStopLibrary.csproj", "{1FE7E004-3EF1-49A4-85DE-90E344C196FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceLibrary", "WcfServiceLibrary\WcfServiceLibrary.csproj", "{39113E1C-A4FE-4341-BC8C-A633EAE0C7BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfTestServiceTest", "WcfTestServiceTest\WcfTestServiceTest.csproj", "{9FDCB4FB-7BB0-4D6D-8ED0-5BCBBE093B63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService2", "WcfService2\WcfService2.csproj", "{B56DF6B4-A631-459D-B3C4-245E0F1FC799}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfServiceFactory", "WcfServiceFactory\WcfServiceFactory.csproj", "{87C5A797-652D-419E-9D19-975FBA19106E}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 16
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://fi-osl-tfs:8080/tfs
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AppDomainTest\\AppDomainTest.csproj
+		SccProjectName1 = AppDomainTest
+		SccLocalPath1 = AppDomainTest
+		SccProjectUniqueName2 = ConsoleApplication1\\ConsoleApplication1.csproj
+		SccProjectName2 = ConsoleApplication1
+		SccLocalPath2 = ConsoleApplication1
+		SccProjectUniqueName3 = IISConfig\\IISConfig.csproj
+		SccProjectName3 = IISConfig
+		SccLocalPath3 = IISConfig
+		SccProjectUniqueName4 = StartStopTest\\StartStopTest.csproj
+		SccProjectName4 = StartStopTest
+		SccLocalPath4 = StartStopTest
+		SccProjectUniqueName5 = TreadTest\\TreadTest.csproj
+		SccProjectName5 = TreadTest
+		SccLocalPath5 = TreadTest
+		SccProjectUniqueName6 = WcfService1\\WcfService1.csproj
+		SccProjectName6 = WcfService1
+		SccLocalPath6 = WcfService1
+		SccProjectUniqueName7 = WebApplication1\\WebApplication1.csproj
+		SccProjectName7 = WebApplication1
+		SccLocalPath7 = WebApplication1
+		SccProjectUniqueName8 = WebService1\\WebService1.csproj
+		SccProjectName8 = WebService1
+		SccLocalPath8 = WebService1
+		SccProjectUniqueName9 = WebService2\\WebService2.csproj
+		SccProjectName9 = WebService2
+		SccLocalPath9 = WebService2
+		SccProjectUniqueName10 = WindowsService1\\WindowsService1.csproj
+		SccProjectName10 = WindowsService1
+		SccLocalPath10 = WindowsService1
+		SccProjectUniqueName11 = StartStopLibrary\\StartStopLibrary.csproj
+		SccProjectName11 = StartStopLibrary
+		SccLocalPath11 = StartStopLibrary
+		SccProjectUniqueName12 = WcfServiceLibrary\\WcfServiceLibrary.csproj
+		SccProjectName12 = WcfServiceLibrary
+		SccLocalPath12 = WcfServiceLibrary
+		SccProjectUniqueName13 = WcfTestServiceTest\\WcfTestServiceTest.csproj
+		SccProjectName13 = WcfTestServiceTest
+		SccLocalPath13 = WcfTestServiceTest
+		SccProjectUniqueName14 = WcfService2\\WcfService2.csproj
+		SccProjectName14 = WcfService2
+		SccLocalPath14 = WcfService2
+		SccProjectUniqueName15 = WcfServiceFactory\\WcfServiceFactory.csproj
+		SccProjectName15 = WcfServiceFactory
+		SccLocalPath15 = WcfServiceFactory
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A00C3AE9-A46E-4E46-8FDB-638F60672F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A00C3AE9-A46E-4E46-8FDB-638F60672F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A00C3AE9-A46E-4E46-8FDB-638F60672F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A00C3AE9-A46E-4E46-8FDB-638F60672F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCB37106-E621-455A-9F36-0539B30EACE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCB37106-E621-455A-9F36-0539B30EACE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCB37106-E621-455A-9F36-0539B30EACE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCB37106-E621-455A-9F36-0539B30EACE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C13A009E-E8F6-4675-A62D-ED68F140E21E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C13A009E-E8F6-4675-A62D-ED68F140E21E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C13A009E-E8F6-4675-A62D-ED68F140E21E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C13A009E-E8F6-4675-A62D-ED68F140E21E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D972EF60-F455-4CCE-890B-4383BA6A5B9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D972EF60-F455-4CCE-890B-4383BA6A5B9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D972EF60-F455-4CCE-890B-4383BA6A5B9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D972EF60-F455-4CCE-890B-4383BA6A5B9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96E0DB70-8835-4D7D-96CB-3FD5600D3676}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96E0DB70-8835-4D7D-96CB-3FD5600D3676}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96E0DB70-8835-4D7D-96CB-3FD5600D3676}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96E0DB70-8835-4D7D-96CB-3FD5600D3676}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20C75BF1-1C6F-4396-A8D0-5E202740665F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20C75BF1-1C6F-4396-A8D0-5E202740665F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20C75BF1-1C6F-4396-A8D0-5E202740665F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20C75BF1-1C6F-4396-A8D0-5E202740665F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8BBCFE5-234C-40FD-AE75-D1A19C52575D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8BBCFE5-234C-40FD-AE75-D1A19C52575D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8BBCFE5-234C-40FD-AE75-D1A19C52575D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8BBCFE5-234C-40FD-AE75-D1A19C52575D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89812904-0E13-4F64-9F6B-634D5B3C4706}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89812904-0E13-4F64-9F6B-634D5B3C4706}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89812904-0E13-4F64-9F6B-634D5B3C4706}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89812904-0E13-4F64-9F6B-634D5B3C4706}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4FDBF52-B4E0-46B0-AE16-B5E09152321C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4FDBF52-B4E0-46B0-AE16-B5E09152321C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4FDBF52-B4E0-46B0-AE16-B5E09152321C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4FDBF52-B4E0-46B0-AE16-B5E09152321C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1E431B7-47D4-4DC9-A21D-1D5523183C87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1E431B7-47D4-4DC9-A21D-1D5523183C87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1E431B7-47D4-4DC9-A21D-1D5523183C87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1E431B7-47D4-4DC9-A21D-1D5523183C87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FE7E004-3EF1-49A4-85DE-90E344C196FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FE7E004-3EF1-49A4-85DE-90E344C196FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FE7E004-3EF1-49A4-85DE-90E344C196FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FE7E004-3EF1-49A4-85DE-90E344C196FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39113E1C-A4FE-4341-BC8C-A633EAE0C7BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39113E1C-A4FE-4341-BC8C-A633EAE0C7BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39113E1C-A4FE-4341-BC8C-A633EAE0C7BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39113E1C-A4FE-4341-BC8C-A633EAE0C7BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FDCB4FB-7BB0-4D6D-8ED0-5BCBBE093B63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FDCB4FB-7BB0-4D6D-8ED0-5BCBBE093B63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FDCB4FB-7BB0-4D6D-8ED0-5BCBBE093B63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FDCB4FB-7BB0-4D6D-8ED0-5BCBBE093B63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B56DF6B4-A631-459D-B3C4-245E0F1FC799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B56DF6B4-A631-459D-B3C4-245E0F1FC799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B56DF6B4-A631-459D-B3C4-245E0F1FC799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B56DF6B4-A631-459D-B3C4-245E0F1FC799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87C5A797-652D-419E-9D19-975FBA19106E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87C5A797-652D-419E-9D19-975FBA19106E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87C5A797-652D-419E-9D19-975FBA19106E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87C5A797-652D-419E-9D19-975FBA19106E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

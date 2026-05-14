@@ -1,0 +1,26 @@
+{{- range $index, $rule := .Values.metricRestartRules }}
+apiVersion: horizons.confirmit.com/v1
+kind: MetricThresholdRestartRule
+metadata:
+  name: {{ template "cati-supervisor-legacy-client.fullname" $ }}-{{ $index }}
+  labels: {{ include "cati-supervisor-legacy-client.labels" $ | nindent 4 }}
+{{- if $.Values.annotations }}
+  annotations: {{ toYaml $.Values.annotations | nindent 4 }}
+{{- end }}
+spec:
+  targetName: {{ template "cati-supervisor-legacy-client.fullname" $ }}
+{{- if $rule.targetKind }}
+  targetKind: {{ $rule.targetKind }}
+{{- end }}
+  promQL: | 
+{{ tpl ($rule.promQL ) $ | indent 4 }}
+  threshold: {{ $rule.threshold }}
+  comparisonOperator: {{ $rule.comparisonOperator }}
+{{- if $rule.stabilizationWindowSeconds }}
+  stabilizationWindowSeconds: {{ $rule.stabilizationWindowSeconds }}
+{{- end }}
+{{- if $rule.dryRun }}
+  dryRun: {{ $rule.dryRun }}
+{{- end }}
+---
+{{- end }}

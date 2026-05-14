@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DialersConfiguration>
+  <DialerType>Generic</DialerType>
+
+  <Generic>
+    <Dialer>
+      <Id>1</Id>
+      
+      <Name>SPECIFY A DIALER NAME HERE</Name>
+      
+      <DialerConnectionParameters>
+        <ServiceAddress>http://LOCALHOST/GenericDialerService/DialerService.svc</ServiceAddress>
+        <ServiceEndpoint>DialerServiceEndpointHttp</ServiceEndpoint>
+        <AuthorizationKeyForOutgoingRequests>0275E046-7FFF-495B-ACFE-09B439DB4902</AuthorizationKeyForOutgoingRequests>
+      </DialerConnectionParameters>
+      
+      <DialerConfigurationParameters>
+        <SupportedPersonModes>Manual,CampaignAssignment</SupportedPersonModes>
+        <IsReloginNeededOnCampaignChange>True</IsReloginNeededOnCampaignChange>
+        <IsHangUpSupported>True</IsHangUpSupported>
+        <IsPauseOrResumePlaybackSupported>False</IsPauseOrResumePlaybackSupported>
+        <IsToggleAgentListensToPlaybackOrRespondentSupported>False</IsToggleAgentListensToPlaybackOrRespondentSupported>
+        <IsDynamicExtensionNumberAllowedForLocalAgents>False</IsDynamicExtensionNumberAllowedForLocalAgents>
+        <IsDynamicExtensionNumberAllowedForRemoteAgents>True</IsDynamicExtensionNumberAllowedForRemoteAgents>
+      </DialerConfigurationParameters>
+    </Dialer>
+    
+    <DialerSurveyParameters>
+      <DialerParameter>
+        <Id>AbandonmentRate</Id>
+        <Name>Nuisance call abandonment rate</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>MaxRings</Id>
+        <Name>No reply timeout (no. of rings)</Name>
+        <Value>5</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>AnsMachineDetect</Id>
+        <Name>Enable answer phone detection</Name>
+        <Value>False</Value>
+        <Type>System.Boolean</Type>
+      </DialerParameter>
+      <DialerParameter>
+        <Id>BillingCode</Id>
+        <Name>Billing Code</Name>
+        <Value>0</Value>
+        <Type>System.Int32</Type>
+      </DialerParameter>
+    </DialerSurveyParameters>
+  </Generic>
+
+</DialersConfiguration>

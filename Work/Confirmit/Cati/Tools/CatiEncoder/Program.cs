@@ -1,0 +1,40 @@
+﻿using System;
+using System.IO;
+using System.Windows.Forms;
+using Confirmit.Security.Crypto.Web;
+
+namespace CatiEncoder
+{
+    static class Program
+    {
+        /// <summary>
+        /// The main entry point for the application.
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            LoadConfigFile();
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MainForm());
+        }
+
+        private static void LoadConfigFile()
+        {
+            const string configFileContent = @"<?xml version=""1.0"" encoding=""utf-8"" ?>
+<configuration>
+  <system.web>
+    <machineKey validation=""SHA1"" validationKey=""DFD06FF3058574D6A2E7B592E33A80EDE007E596EE8A1754CC68ECE5B44EA9A8A7ABC3C53F0EA8BD90B26AE301977609F142578EF3EB1E05A592C92F354E3341"" decryptionKey=""FFEE834B2BB87C08D5CA27C65E0F2512B8EC3F0F3DAE0AFB""/>
+  </system.web>
+</configuration>";
+
+            string configPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "App.config");
+            File.WriteAllText(configPath, configFileContent);
+
+            AppDomain.CurrentDomain.SetData("APP_CONFIG_FILE", configPath);
+            EncryptionUsingMachineKey.Encrypt(DataProtection.All, "test");
+            File.Delete(configPath);
+        }
+    }
+}

@@ -1,0 +1,8 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Condition="'$(BuildNumber)'==''">
+    <BuildNumber>28.0.0.0</BuildNumber>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(InstallationVersionForGUI)'==''">
+    <InstallationVersionForGUI>V28.0</InstallationVersionForGUI>
+  </PropertyGroup>
+</Project>

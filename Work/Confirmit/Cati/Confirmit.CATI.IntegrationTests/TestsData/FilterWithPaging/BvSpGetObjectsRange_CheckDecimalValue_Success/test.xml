@@ -1,0 +1,9 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <ColumnInt>2</ColumnInt>
+    <ColumnText>Text 2</ColumnText>
+    <ColumnDate>2009-11-03T11:54:23Z</ColumnDate>
+    <ColumnDecimal>-67865.22</ColumnDecimal>
+  </table>
+</DocumentElement>

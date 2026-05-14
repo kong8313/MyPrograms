@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:IIs="http://schemas.microsoft.com/wix/IIsExtension"
+     xmlns:Util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Fragment>
+
+    <?if $(var.GType)=no ?>
+    <?define App_Data_Guid="{42456C80-6DB9-4C82-95B6-71D4EEA029CB}" ?>
+    <?define ChangeCATIApplication_Guid="{A314268C-497A-4685-9312-5A0072DAD0B3}" ?>
+    <?define ChangeServiceStateExpirationTimeout_Guid="{4B091988-4C2C-49E2-8F5C-16F989767248}" ?>
+    <?define SetMaxConnections_Guid="{0FBBCC65-79F0-45C3-88E3-6158A885A556}" ?>
+    <?define ChangeFileLoggingSettings_Guid="{B1548E09-B99D-4CF6-951F-0F42109F6B22}" ?>
+    <?define ControlPanelAppPoolComponent_Guid="{147E31D3-F06F-448E-9DC9-7B2211F024B5}" ?>
+    <?define CATIWebVirtualDirComponent_Guid="{30F95F7B-4238-48C6-BE9C-47AF1C995C2D}" ?>
+    <?define RootFiles_Guid="{8887C987-F536-4DCE-940F-81D3801AC50A}" ?>
+    <?define BinFiles_Guid="{A91A9179-D3E6-47C3-A056-FFF438FCFE16}" ?>
+    <?define SaveJointParameters_Guid="{805C36F1-4563-4BEC-9C41-49F30C70AC5F}" ?>
+    <?endif?>
+
+    <?if $(var.GType)=simulator ?>
+    <?define App_Data_Guid="{AFF1E5CF-E994-454E-891B-AB2E31595E7F}" ?>
+    <?define ChangeCATIApplication_Guid="{777C3EDD-CD36-431F-A1CF-ECC2E955C741}" ?>
+    <?define ChangeServiceStateExpirationTimeout_Guid="{333A2C0F-29FB-4D60-A42C-B3F9191DD8C5}" ?>
+    <?define SetMaxConnections_Guid="{6AE2682B-5BA6-4002-AF71-8DE449D4FFF0}" ?>
+    <?define ChangeFileLoggingSettings_Guid="{5828F64C-377B-4372-8B05-65222E56761F}" ?>
+    <?define ControlPanelAppPoolComponent_Guid="{A6784FED-2078-46D9-8E3D-8042A2308CE8}" ?>
+    <?define CATIWebVirtualDirComponent_Guid="{505F8DE4-37C5-4FB5-9923-7E62E88A053F}" ?>
+    <?define RootFiles_Guid="{65518C10-A35B-44C7-AF18-FFB768F75DE1}" ?>
+    <?define BinFiles_Guid="{C6FB6117-9E30-48A0-B3F9-9138673D9260}" ?>
+    <?define SaveJointParameters_Guid="{85C4E81F-1ABA-498D-9A3D-68E4F6067C76}" ?>
+    <?endif?>
+
+    <?if $(var.GType)=simulator_ltu ?>
+    <?define App_Data_Guid="{0897CA26-FF5E-46A9-955E-88732DFDCF2E}" ?>
+    <?define ChangeCATIApplication_Guid="{C215BD1E-DB55-4F95-81C8-AB2D1D5DBC75}" ?>
+    <?define ChangeServiceStateExpirationTimeout_Guid="{D14829AF-B6A6-49E9-90AA-E06DD1B01F9C}" ?>
+    <?define SetMaxConnections_Guid="{86E8CB45-206F-4FD2-8978-73F50BBC0D36}" ?>
+    <?define ChangeFileLoggingSettings_Guid="{180D700D-6B08-43DD-9B32-B5E59D40FA9C}" ?>
+    <?define ControlPanelAppPoolComponent_Guid="{536DCE32-3934-43DF-A2F7-1034E5F83360}" ?>
+    <?define CATIWebVirtualDirComponent_Guid="{261DC409-CC77-4EAA-8765-10D785BC2B76}" ?>
+    <?define RootFiles_Guid="{25A0ABBF-BC34-4EC8-A152-C1CE45FBFEB0}" ?>
+    <?define BinFiles_Guid="{22D5D004-8BDB-4436-9219-F8B0C37A47C6}" ?>
+    <?define SaveJointParameters_Guid="{ADEBDC94-26E3-4804-B132-D9808F1D7E26}" ?>
+    <?endif?>
+    
+    <DirectoryRef Id="TARGETDIR">
+      <Component Id='Component_SaveJointParameters' Guid='$(var.SaveJointParameters_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <RegistryValue Id='Reg_APP_POOL_NAME' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='APP_POOL_NAME' Value='[APP_POOL_NAME]' Type='string' />
+        <RegistryValue Id='Reg_WEB_SITE_ID' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='WEB_SITE_ID' Value='[WEB_SITE_ID]' Type='string' />
+        <RegistryValue Id='Reg_WEB_SITE_NAME' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='WEB_SITE_NAME' Value='[WEB_SITE_NAME]' Type='string' />
+        <RegistryValue Id='Reg_IS_SET_RECYCLING_VALUE_TO_ZERO' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='IS_SET_RECYCLING_VALUE_TO_ZERO' Value='[IS_SET_RECYCLING_VALUE_TO_ZERO]' Type='string' />
+        <RegistryValue Id='Reg_CATI_SERVER_ADDRESS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='CATI_SERVER_ADDRESS' Value='[CATI_SERVER_ADDRESS]' Type='string' />
+        <RegistryValue Id='Reg_IS_FILE_LOGGING_ENABLED' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='IS_FILE_LOGGING_ENABLED' Value='[IS_FILE_LOGGING_ENABLED]' Type='string' />
+        <RegistryValue Id='Reg_LOG_FILE_NAME' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='LOG_FILE_NAME' Value='[LOG_FILE_NAME]' Type='string' />
+        <RegistryValue Id='Reg_LOG_FILE_PATH' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='LOG_FILE_PATH' Value='[LOG_FILE_PATH]' Type='string' />
+        <RegistryValue Id='Reg_MACHINE_CONFIG_CHANGING' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MACHINE_CONFIG_CHANGING' Value='[MACHINE_CONFIG_CHANGING]' Type='string' />
+        <RegistryValue Id='Reg_MIN_WORKER_THREADS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MIN_WORKER_THREADS' Value='[MIN_WORKER_THREADS]' Type='string' />
+        <RegistryValue Id='Reg_MAX_WORKER_THREADS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MAX_WORKER_THREADS' Value='[MAX_WORKER_THREADS]' Type='string' />
+        <RegistryValue Id='Reg_MIN_IO_THREADS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MIN_IO_THREADS' Value='[MIN_IO_THREADS]' Type='string' />
+        <RegistryValue Id='Reg_MAX_IO_THREADS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MAX_IO_THREADS' Value='[MAX_IO_THREADS]' Type='string' />
+        <RegistryValue Id='Reg_MIN_FREE_THREADS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MIN_FREE_THREADS' Value='[MIN_FREE_THREADS]' Type='string' />
+        <RegistryValue Id='Reg_MIN_LOCAL_REQUEST_FREE_THREADS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MIN_LOCAL_REQUEST_FREE_THREADS' Value='[MIN_LOCAL_REQUEST_FREE_THREADS]' Type='string' />
+        <RegistryValue Id='Reg_MAX_CONNECTION_COUNT' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='MAX_CONNECTION_COUNT' Value='[MAX_CONNECTION_COUNT]' Type='string' />
+        <RegistryValue Id='Reg_DUMP_CREATION_OPTIONS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='DUMP_CREATION_OPTIONS' Value='[DUMP_CREATION_OPTIONS]' Type='string' />
+        <RegistryValue Id='Reg_PROCDUMP_FILE_PATH' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='PROCDUMP_FILE_PATH' Value='[PROCDUMP_FILE_PATH]' Type='string' />
+        <RegistryValue Id='Reg_PROCDUMP_LOG_FOLDER_PATH' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='PROCDUMP_LOG_FOLDER_PATH' Value='[PROCDUMP_LOG_FOLDER_PATH]' Type='string' />
+        <RegistryValue Id='Reg_PROCDUMP_ADDITIONAL_PARAMETERS' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='PROCDUMP_ADDITIONAL_PARAMETERS' Value='[PROCDUMP_ADDITIONAL_PARAMETERS]' Type='string' />
+
+        <RegistryValue Id='Reg_CERTIFICATE_TYPE' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='CERTIFICATE_TYPE' Value='[CERTIFICATE_TYPE]' Type='string' />
+        <RegistryValue Id='Reg_TEST_CERTIFICATE_NAME' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='TEST_CERTIFICATE_NAME' Value='[TEST_CERTIFICATE_NAME]' Type='string' />
+        <RegistryValue Id='Reg_CERTIFICATE_PATH' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='CERTIFICATE_PATH' Value='[CERTIFICATE_PATH]' Type='string' />
+        <RegistryValue Id='Reg_CERTIFICATE_PASSWORD' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='ENCRYPTED_CERTIFICATE_PASSWORD' Value='[ENCRYPTED_CERTIFICATE_PASSWORD]' Type='string' />
+        <RegistryValue Id='Reg_AUTHORIZATION_KEY' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='AUTHORIZATION_KEY' Value='[AUTHORIZATION_KEY]' Type='string' />
+
+        <RegistryValue Id='Reg_BINDING_CONFIGURATION' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='BINDING_CONFIGURATION' Value='[BINDING_CONFIGURATION]' Type='string' />
+        <RegistryValue Id='Reg_USE_AUTHORIZATION' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='USE_AUTHORIZATION' Value='[USE_AUTHORIZATION]' Type='string' />
+        
+        <RegistryValue Id='Reg_DIALER_ID' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='DIALER_ID' Value='[DIALER_ID]' Type='string' />
+      </Component>
+
+      <?if $(var.GType)="no" ?>
+      <Component Id='Component_SaveGenericParameters' Guid='{F2A15054-C5A4-4BAC-8F16-D5B016463CB4}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <RegistryValue Id='Reg_GENERIC_DIALER_TYPE' Root='HKLM' Key='[SAVE_PARAMETERS_REGISTRY_KEY_NAME]' Name='GENERIC_DIALER_TYPE' Value='[GENERIC_DIALER_TYPE]' Type='string' />        
+      </Component>
+      <?endif?>
+      
+      
+      <Component Id='Component_ChangeCATIApplication' Guid='$(var.ChangeCATIApplication_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Util:XmlFile Id="Modify_DialerMultimodeInstance"
+                      Action="setValue"
+                      ElementPath="/configuration/system.serviceModel/client/endpoint[\[]@name='DialerEventsHandlerServiceEndpoint'[\]]/@address"
+                      File="[INSTALL_LOCATION]Web.config"
+                      Value="https://[CATI_SERVER_ADDRESS]/DialerMultimodeInstance"/>
+        <Util:XmlFile Id="Modify_ErrorReportingServiceEndpoint"
+                      Action="setValue"
+                      ElementPath="/configuration/system.serviceModel/client/endpoint[\[]@name='ErrorReportingServiceEndpoint'[\]]/@address"
+                      File="[INSTALL_LOCATION]Web.config"
+                      Value="https://[CATI_SERVER_ADDRESS]/ErrorReportingMultimodeInstance"/>        
+        <Util:XmlFile Id="Modify_ENCRYPTED_AUTHORIZATION_KEY"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='AuthorizationKeyForIncomingRequests'[\]]/value"
+                      File="[INSTALL_LOCATION]Web.config"
+                      Value="[ENCRYPTED_AUTHORIZATION_KEY]"/>
+        <Util:XmlFile Id="Modify_AuthorizationValue"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='UseAuthorization'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="[USE_AUTHORIZATION_TRUE_OR_FALSE]"/>
+
+        <Util:XmlFile Id="Modify_DialerId"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerId'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="[DIALER_ID]"/>
+      </Component>
+      
+      <Component Id='Component_SetMaxConnections' Guid='$(var.SetMaxConnections_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Condition><![CDATA[MACHINE_CONFIG_CHANGING<>"DoNotChange"]]></Condition>
+        <Util:XmlFile Id="Modify_MAX_CONNECTION_COUNT"
+                      Action="setValue"
+                      ElementPath="/configuration/system.net/connectionManagement/add/@maxconnection"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="[MAX_CONNECTION_COUNT]"/>
+      </Component>
+
+      <Component Id='Component_ChangeFileLoggingSettings' Guid='$(var.ChangeFileLoggingSettings_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Condition><![CDATA[IS_FILE_LOGGING_ENABLED~="1"]]></Condition>
+        <Util:XmlFile Id="Modify_LOG_FILE_PATH"
+                      Action="setValue"
+                      ElementPath="/configuration/system.diagnostics/sharedListeners/add[\[]@name='DialerLogFileListener'[\]]/@LoggingPath"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="[LOG_FILE_PATH]"/>
+        <Util:XmlFile Id="Modify_LOG_FILE_NAME"
+                      Action="setValue"
+                      ElementPath="/configuration/system.diagnostics/sharedListeners/add[\[]@name='DialerLogFileListener'[\]]/@LoggingFileName"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="[LOG_FILE_NAME]"/>
+      </Component>
+      
+      <Component Id='Component_SetHttpsBinding' Guid='{2CBB3AE7-F61A-4D1A-8E89-445DAFD91883}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Condition><![CDATA[BINDING_CONFIGURATION~="https"]]></Condition>
+        <Util:XmlFile Id="Modify_SecurityBindingConfiguration"
+                      Action="setValue"
+                      ElementPath="/configuration/system.serviceModel/services/service[\[]@name='Confirmit.CATI.Telephony.DialerService.DialerService'[\]]/endpoint[\[]@address=''[\]]/@bindingConfiguration"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="Service_WsHttpBinding_TransportSecurity"/>
+      </Component>
+
+      <Component Id='Component_SetHttpBinding' Guid='{E58314C0-D279-4826-9B6A-58FC96FAFF04}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Condition><![CDATA[BINDING_CONFIGURATION~="http"]]></Condition>
+        <Util:XmlFile Id="Modify_BindingConfiguration"
+                      Action="setValue"
+                      ElementPath="/configuration/system.serviceModel/services/service[\[]@name='Confirmit.CATI.Telephony.DialerService.DialerService'[\]]/endpoint[\[]@address=''[\]]/@bindingConfiguration"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="Service_WsHttpBinding_NoSecurity"/>
+      </Component>
+
+      <?if $(var.GType)="simulator" ?>
+      <Component Id='Component_ChangeSimulatorSettings' Guid='{7C1AB7E0-152A-41D7-B999-CBDD1D2126F8}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Util:XmlFile Id="Modify_DialerDriverDemoAssemblyName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="SimulatorDialerDriverDemo"/>
+        <Util:XmlFile Id="Modify_DialerDriverDemoAssemblyNamespace"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyNamespace'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="Confirmit.CATI.Telephony.SimulatorDialerDriver"/>
+        <Util:XmlFile Id="Modify_Telephony_DialerDriverDemoAssemblyMainClassName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyMainClassName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="SimulatorDialerDriver"/>
+      </Component>
+      <?endif?>
+
+      <?if $(var.GType)="simulator_ltu" ?>
+      <Component Id='Component_ChangeSimulatorLtuSettings' Guid='{8275EE5F-27C8-475C-A45C-601E2E4EABF4}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Util:XmlFile Id="Modify_DialerDriverAssemblyName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="SimulatorDialerDriver"/>
+        <Util:XmlFile Id="Modify_DialerDriverAssemblyNamespace"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyNamespace'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="Confirmit.CATI.Telephony.SimulatorDialerDriver"/>
+        <Util:XmlFile Id="Modify_Telephony_DialerDriverAssemblyMainClassName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyMainClassName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="SimulatorDialerDriver"/>
+
+        <Util:XmlFile Id="AddNode_SimulatorDialerDriverSection"
+                      Action="createElement"
+                      Name="section"
+                      ElementPath="/configuration/configSections/sectionGroup"
+                      File="[INSTALL_LOCATION]web.config" />
+        <Util:XmlFile Id="SimulatorDialerDriverSection_AddParameter_Name"
+                      Action="setValue"
+                      ElementPath="/configuration/configSections/sectionGroup/section[\[]not(@name)[\]]"
+                      File="[INSTALL_LOCATION]web.config"
+                      Name="name"
+                      Value="SimulatorDialerDriver.Settings"/>
+        <Util:XmlFile Id="SimulatorDialerDriverSection_AddParameter_Type"
+                      Action="setValue"
+                      ElementPath="/configuration/configSections/sectionGroup/section[\[]@name='SimulatorDialerDriver.Settings'[\]]"
+                      File="[INSTALL_LOCATION]web.config"
+                      Name="type"
+                      Value="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"/>
+        <Util:XmlFile Id="SimulatorDialerDriverSection_AddParameter_RequirePermission"
+                      Action="setValue"
+                      ElementPath="/configuration/configSections/sectionGroup/section[\[]@name='SimulatorDialerDriver.Settings'[\]]"
+                      File="[INSTALL_LOCATION]web.config"
+                      Name="requirePermission"
+                      Value="false"/>
+
+        <Util:XmlFile Id="AddNode_SimulatorDialerDriverSettings"
+                      Action="createElement"
+                      Name="SimulatorDialerDriver.Settings"
+                      ElementPath="/configuration/applicationSettings"
+                      File="[INSTALL_LOCATION]web.config" />
+        <Util:XmlFile Id="SimulatorDialerDriverSettings_AddNode_Setting"
+                      Action="createElement"
+                      Name="setting"
+                      ElementPath="/configuration/applicationSettings/SimulatorDialerDriver.Settings"
+                      File="[INSTALL_LOCATION]web.config" />
+        <Util:XmlFile Id="SimulatorDialerDriverSettings_Setting_AddParameter_Name"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/SimulatorDialerDriver.Settings/setting"
+                      File="[INSTALL_LOCATION]web.config"
+                      Name="name"
+                      Value="WebApiUrl"/>
+        <Util:XmlFile Id="SimulatorDialerDriverSettings_Setting_AddParameter_SerializeAs"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/SimulatorDialerDriver.Settings/setting"
+                      File="[INSTALL_LOCATION]web.config"
+                      Name="serializeAs"
+                      Value="String"/>
+        <Util:XmlFile Id="SimulatorDialerDriverSettings_Setting_AddNode_Value"
+                      Action="createElement"
+                      Name="value"
+                      ElementPath="/configuration/applicationSettings/SimulatorDialerDriver.Settings/setting"
+                      File="[INSTALL_LOCATION]web.config" />
+        <Util:XmlFile Id="SimulatorDialerDriverSettings_Setting_Value_SetValue"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/SimulatorDialerDriver.Settings/setting/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="http://*:3838/catidialersimulator"/>
+      </Component>
+      <?endif?>
+
+      <?if $(var.GType)="no" ?>
+      <Component Id='Component_ConfigureInVade' Guid='{89AC161F-AA65-4601-B079-4D7DF5C48FF3}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Condition><![CDATA[GENERIC_DIALER_TYPE~="InVade"]]></Condition> 
+        <Util:XmlFile Id="ModifyInVade_DialerDriverAssemblyName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="ConfirmitDiallerProxy"/>
+        <Util:XmlFile Id="ModifyInVade_DialerDriverAssemblyNamespace"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyNamespace'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="Invade.ConfirmitDiallerProxy"/>
+        <Util:XmlFile Id="ModifyInVade_Telephony_DialerDriverAssemblyMainClassName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyMainClassName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="ConfirmitDiallerProxy"/>
+      </Component>
+
+      <Component Id='Component_ConfigureSytel' Guid='{07AF5188-4276-4F3A-A1D5-6DAAD23EFC37}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <Condition><![CDATA[GENERIC_DIALER_TYPE~="Sytel"]]></Condition>
+        <Util:XmlFile Id="ModifySytel_DialerDriverAssemblyName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="CallGemDialerDriver"/>
+        <Util:XmlFile Id="ModifySytel_DialerDriverAssemblyNamespace"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyNamespace'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="CallGemDialerDriver"/>
+        <Util:XmlFile Id="ModifySytel_Telephony_DialerDriverAssemblyMainClassName"
+                      Action="setValue"
+                      ElementPath="/configuration/applicationSettings/Confirmit.CATI.Telephony.DialerService.Settings/setting[\[]@name='DialerDriverAssemblyMainClassName'[\]]/value"
+                      File="[INSTALL_LOCATION]web.config"
+                      Value="CallGemDialerDriver"/>
+      </Component>
+      <?endif?>
+
+      <?if $(var.GType)!="simulator_ltu" ?>
+      <Component Id="ControlPanelAppPoolComponent" Guid="$(var.ControlPanelAppPoolComponent_Guid)" Feature="GenericFeature" Permanent="yes" Win64='$(var.IsWin64)'>
+        <IIs:WebAppPool Id="AppPoolId" Name="[APP_POOL_NAME]" ManagedPipelineMode="integrated" Identity="networkService" ManagedRuntimeVersion="v4.0" />
+      </Component>
+      <?endif?>
+
+      <?if $(var.GType)="simulator_ltu" ?>
+      <Component Id="ControlPanelAppPoolComponent" Guid="$(var.ControlPanelAppPoolComponent_Guid)" Feature="GenericFeature" Permanent="yes" Win64='$(var.IsWin64)'>
+        <IIs:WebAppPool Id="AppPoolId" Name="[APP_POOL_NAME]" ManagedPipelineMode="integrated" Identity="localSystem" ManagedRuntimeVersion="v4.0" />
+      </Component>
+      <?endif?>
+      
+      <Component Id="CATIWebVirtualDirComponent" Guid="$(var.CATIWebVirtualDirComponent_Guid)" Feature="GenericFeature" Win64='$(var.IsWin64)'>
+        <IIs:WebVirtualDir Id='GenericWebVirtualDir' Alias='[ALIAS_EDIT]' Directory='INSTALL_LOCATION' WebSite='WebSiteId'>
+          <IIs:WebApplication Id='CATIWebApplication' Name='[ALIAS_EDIT]' WebAppPool='AppPoolId' />
+        </IIs:WebVirtualDir>
+      </Component>
+
+    </DirectoryRef>
+
+    <DirectoryRef Id="INSTALL_LOCATION">
+      <Component Id='RootFiles' Guid='$(var.RootFiles_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)' KeyPath='yes'>
+        <File Id='File_DialerService.svc' Name='DialerService.svc' Source='..\..\assemblies\Telephony\DialerService\DialerService.svc' Checksum='yes'/>
+        <File Id='File_Web.config' Name='Web.config' Source='..\..\assemblies\Telephony\DialerService\Web.config' Checksum='yes' />
+        <File Id='File_dumpCreator.cmd' Name='dumpCreator.cmd' Source='..\Confirmit.CATI.DialerWebServicesWixLibrary\Files\dumpCreator.cmd' Checksum='yes'/>
+        <File Id='File_get_date_time.vbs' Name='get_date_time.vbs' Source='..\Confirmit.CATI.DialerWebServicesWixLibrary\Files\get_date_time.vbs' Checksum='yes'/>
+      </Component>
+
+      <?if $(var.GType)="simulator" ?>
+      <Component Id='SimulatorFiles' Guid='{8CCA7D31-1AC3-4D1D-9E60-BA8F8F7ADCCB}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <File Id='File_SimulatorScenarioDemo.xml' Name='SimulatorScenario.xml' Source='..\..\assemblies\Telephony\SimulatorDialerDriverCodiDemo\SimulatorScenario.xml' Checksum='yes' />
+      </Component>
+      <?endif ?>
+      
+      <?if $(var.GType)="simulator_ltu" ?>
+      <Component Id='LtuSimulatorFiles' Guid='{7E4E63A5-9450-4C41-A790-2E7C99B6E612}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+        <File Id='File_SimulatorScenario.xml' Name='SimulatorScenario.xml' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\SimulatorScenario.xml' Checksum='yes' />
+        <File Id='File_SoftphoneSimulatorClient.html' Name='SoftphoneSimulatorClient.html' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\SoftphoneSimulatorClient.html' Checksum='yes' />
+      </Component>
+      <?endif ?>
+      
+      <Directory Id="bin" Name="bin">
+        <Component Id='BinFiles' Guid='$(var.BinFiles_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+          <File Id='File_Confirmit.CATI.Telephony.DialerService.dll' Name='Confirmit.CATI.Telephony.DialerService.dll' Source='..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.dll' Checksum='yes' />
+          <File Id='File_Confirmit.CATI.Telephony.DialerService.pdb' Name='Confirmit.CATI.Telephony.DialerService.pdb' Source='..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.pdb' Checksum='yes' />
+          <File Id='File_Confirmit.CATI.Telephony.DialerService.Contract.dll' Name='Confirmit.CATI.Telephony.DialerService.Contract.dll' Source='..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.Contract.dll' Checksum='yes' />
+          <File Id='File_Confirmit.CATI.Telephony.DialerService.Contract.pdb' Name='Confirmit.CATI.Telephony.DialerService.Contract.pdb' Source='..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Telephony.DialerService.Contract.pdb' Checksum='yes' />
+          <File Id='File_Confirmit.CATI.Common.dll' Name='Confirmit.CATI.Common.dll' Source='..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Common.dll' Checksum='yes' />
+          <File Id='File_Confirmit.CATI.Common.pdb' Name='Confirmit.CATI.Common.pdb' Source='..\..\assemblies\Telephony\DialerService\Confirmit.CATI.Common.pdb' Checksum='yes' />
+          <File Id='File_DialerCommon.dll' Name='DialerCommon.dll' Source='..\..\assemblies\Telephony\DialerService\DialerCommon.dll' Checksum='yes' />
+          <File Id='File_DialerCommon.pdb' Name='DialerCommon.pdb' Source='..\..\assemblies\Telephony\DialerService\DialerCommon.pdb' Checksum='yes' />
+          <File Id='File_ConfirmitDialerInterface.dll' Name='ConfirmitDialerInterface.dll' Source='..\..\assemblies\Telephony\DialerService\ConfirmitDialerInterface.dll' Checksum='yes' />
+          <File Id='File_ConfirmitDialerInterface.pdb' Name='ConfirmitDialerInterface.pdb' Source='..\..\assemblies\Telephony\DialerService\ConfirmitDialerInterface.pdb' Checksum='yes' />
+        </Component>
+
+        <?if $(var.GType)="simulator" ?>
+        <Component Id='BinSimulatorFiles' Guid='{8B1FE73C-884E-4659-9BDA-13654C26D0EB}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+          <File Id='File_SimulatorDialerDriverDemo.dll' Name='SimulatorDialerDriverDemo.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriverCodiDemo\SimulatorDialerDriverDemo.dll' Checksum='yes' />
+          <File Id='File_SimulatorDialerDriverDemo.pdb' Name='SimulatorDialerDriverDemo.pdb' Source='..\..\assemblies\Telephony\SimulatorDialerDriverCodiDemo\SimulatorDialerDriverDemo.pdb' Checksum='yes' />
+        </Component>
+        <?endif ?>
+
+        <?if $(var.GType)="simulator_ltu" ?>
+        <Component Id='BinLtuSimulatorFiles' Guid='{6A36D43A-9E11-4B4E-A2B5-57989F6D491D}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+          <File Id='File_SimulatorDialerDriver.dll' Name='SimulatorDialerDriver.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\SimulatorDialerDriver.dll' Checksum='yes' />
+          <File Id='File_SimulatorDialerDriver.pdb' Name='SimulatorDialerDriver.pdb' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\SimulatorDialerDriver.pdb' Checksum='yes' />
+          <File Id='File_SimulatorDialerDriver.xml' Name='SimulatorDialerDriver.xml' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\SimulatorDialerDriver.xml' Checksum='yes' />
+          <File Id='File_Microsoft.Owin.dll.pdb' Name='Microsoft.Owin.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Owin.Host.HttpListener.dll' Name='Microsoft.Owin.Host.HttpListener.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.Host.HttpListener.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Owin.Hosting.dll' Name='Microsoft.Owin.Hosting.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.Hosting.dll' Checksum='yes' />
+          <File Id='File_Newtonsoft.Json.dll' Name='Newtonsoft.Json.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Newtonsoft.Json.dll' Checksum='yes' />
+          <File Id='File_Owin.dll' Name='Owin.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Owin.dll' Checksum='yes' />
+          <File Id='File_System.Net.Http.Formatting.dll' Name='System.Net.Http.Formatting.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\System.Net.Http.Formatting.dll' Checksum='yes' />
+          <File Id='File_System.Web.Http.dll' Name='System.Web.Http.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\System.Web.Http.dll' Checksum='yes' />
+          <File Id='File_System.Web.Http.Owin.dll' Name='System.Web.Http.Owin.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\System.Web.Http.Owin.dll' Checksum='yes' />
+          <File Id='File_Swashbuckle.Core.dll' Name='Swashbuckle.Core.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Swashbuckle.Core.dll' Checksum='yes' />
+
+          <File Id='File_Microsoft.Owin.Cors.dll' Name='Microsoft.Owin.Cors.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.Cors.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Owin.Diagnostics.dll' Name='Microsoft.Owin.Diagnostics.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.Diagnostics.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Owin.FileSystems.dll' Name='Microsoft.Owin.FileSystems.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.FileSystems.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Owin.StaticFiles.dll' Name='Microsoft.Owin.StaticFiles.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Owin.StaticFiles.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Practices.ServiceLocation.dll' Name='Microsoft.Practices.ServiceLocation.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Practices.ServiceLocation.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Practices.Unity.dll' Name='Microsoft.Practices.Unity.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Practices.Unity.dll' Checksum='yes' />
+          <File Id='File_Microsoft.Practices.Unity.pdb' Name='Microsoft.Practices.Unity.pdb' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Microsoft.Practices.Unity.pdb' Checksum='yes' />
+          <File Id='File_NLog.dll' Name='NLog.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\NLog.dll' Checksum='yes' />
+		  <File Id='File_NAudio.dll' Name='NAudio.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\NAudio.dll' Checksum='yes' />
+          <File Id='File_System.Web.Cors.dll' Name='System.Web.Cors.dll' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\System.Web.Cors.dll' Checksum='yes' />
+        </Component>
+        <?endif ?>
+        
+      </Directory>
+
+      <Directory Id="App_Data" Name="App_Data">
+        <Component Id='Create_Folder' Guid='$(var.App_Data_Guid)' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+          <CreateFolder>
+            <Util:PermissionEx User='NETWORK SERVICE' GenericAll='yes'/>
+          </CreateFolder>
+        </Component>
+        
+        <Directory Id="www" Name="www">
+          <?if $(var.GType)="simulator_ltu" ?>
+          <Component Id='WwwLtuSimulatorFiles' Guid='{38860DB1-6000-4E1C-8227-22BDED3F6C37}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+            <File Id='File_index.html' Name='index.html' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Client\index.html' Checksum='yes' />
+            <File Id='File_src.js' Name='src.js' Source='..\..\assemblies\Telephony\SimulatorDialerDriver\Client\src.js' Checksum='yes' />
+          </Component>
+          <?endif ?>
+        </Directory>
+		
+		<Directory Id="AudioTemplates" Name="AudioTemplates">
+          <?if $(var.GType)="simulator_ltu" ?>
+          <Component Id='AudioTemplatesLtuSimulatorFiles' Guid='{046F8EB7-237E-447F-A5D6-CE24392596B3}' Feature='GenericFeature' Win64='$(var.IsWin64)'>
+            <File Id='File_1.wav' Name='1.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\1.wav' Checksum='yes' />
+			<File Id='File_2.wav' Name='2.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\2.wav' Checksum='yes' />
+			<File Id='File_3.wav' Name='3.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\3.wav' Checksum='yes' />
+			<File Id='File_4.wav' Name='4.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\4.wav' Checksum='yes' />
+			<File Id='File_5.wav' Name='5.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\5.wav' Checksum='yes' />
+			<File Id='File_6.wav' Name='6.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\6.wav' Checksum='yes' />
+			<File Id='File_7.wav' Name='7.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\7.wav' Checksum='yes' />
+			<File Id='File_8.wav' Name='8.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\8.wav' Checksum='yes' />
+			<File Id='File_9.wav' Name='9.wav' Source='..\..\Confirmit.CATI.Telephony\SimulatorDialerDriver\AudioTemplates\9.wav' Checksum='yes' />
+          </Component>
+          <?endif ?>
+        </Directory>
+
+      </Directory>
+    </DirectoryRef>
+
+    <Feature Id="GenericFeature" Title="!(loc.FeatureGeneric_Title)" Description="!(loc.FeatureGeneric_Description)" Level="1" ConfigurableDirectory="INSTALL_LOCATION" Display="hidden" >
+
+    </Feature>
+  </Fragment>
+</Wix>

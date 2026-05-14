@@ -1,0 +1,11 @@
+{{- if and .Values.global.alerts.enabled .Values.alerts.enabled .Values.alerts.prometheusRules }}
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: {{ template "cati-supervisor-legacy-client.fullname" . }}
+  labels: {{ include "cati-supervisor-legacy-client.labels" . | nindent 4 }}
+spec:
+  groups:
+  - name: {{ template "cati-supervisor-legacy-client.fullname" . }}
+    rules: {{ tpl .Values.alerts.prometheusRules . | nindent 6 }}
+{{- end }}

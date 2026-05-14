@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Owin.Host.HttpListener</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Owin.Host.HttpListener.OwinHttpListener">
+      <summary>Tato metoda zabalí objekt HttpListener a zpřístupní ho jako server kompatibilní s OWIN.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Host.HttpListener.OwinHttpListener.Dispose">
+      <summary>Ukončí naslouchací proces a zruší ho.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Host.HttpListener.OwinHttpListener.GetRequestProcessingLimits(System.Int32@,System.Int32@)">
+      <summary>Získá limity pro zpracování žádosti.</summary>
+      <param name="maxAccepts">Maximální počet příjmů žádostí čekajících na vyřízení.</param>
+      <param name="maxRequests">Maximální počet aktivních zpracovávaných žádostí.</param>
+    </member>
+    <member name="P:Microsoft.Owin.Host.HttpListener.OwinHttpListener.Listener">
+      <summary>Získá instanci HttpListener zabalenou touto obálkou.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Host.HttpListener.OwinHttpListener.SetRequestProcessingLimits(System.Int32,System.Int32)">
+      <summary>Tyto jsou sloučeny do jednoho volání, protože by měla být automaticky nahrazována.Tato volba určuje, kolik žádostí se server pokusí zpracovat souběžně.</summary>
+      <param name="maxAccepts">Maximální počet příjmů žádostí čekajících na vyřízení.</param>
+      <param name="maxRequests">Maximální počet aktivních zpracovávaných žádostí.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Host.HttpListener.OwinHttpListener.SetRequestQueueLimit(System.Int64)">
+      <summary>Nastaví maximální počet požadavků, které se zařadí do fronty v Http.Sys.</summary>
+    </member>
+    <member name="T:Microsoft.Owin.Host.HttpListener.OwinServerFactory">
+      <summary>Implementuje vzor nastavení Katana pro server OwinHttpListener.</summary>
+    </member>
+    <member name="M:Microsoft.Owin.Host.HttpListener.OwinServerFactory.Create(System.Func{System.Collections.Generic.IDictionary{System.String,System.Object},System.Threading.Tasks.Task},System.Collections.Generic.IDictionary{System.String,System.Object})">
+      <summary>Vytvoří OwinHttpListener a začne naslouchat na dané adrese URL.</summary>
+      <returns>OwinHttpListener.Pro ukončení je třeba volat metodu Dispose.</returns>
+      <param name="app">Vstupní bod aplikace.</param>
+      <param name="properties">Adresy, na kterých se má naslouchat.</param>
+    </member>
+    <member name="M:Microsoft.Owin.Host.HttpListener.OwinServerFactory.Initialize(System.Collections.Generic.IDictionary{System.String,System.Object})">
+      <summary>Inzerování možností serveru.</summary>
+    </member>
+  </members>
+</doc>

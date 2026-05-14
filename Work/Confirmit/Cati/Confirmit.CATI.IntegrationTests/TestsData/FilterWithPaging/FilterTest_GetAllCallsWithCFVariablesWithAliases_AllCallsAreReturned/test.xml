@@ -1,0 +1,496 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>1</InterviewID>
+    <TelephoneNumber>5550</TelephoneNumber>
+    <RespondentName>0</RespondentName>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <ShiftType />
+    <Resource />
+    <Varq1>2</Varq1>
+    <Varq2>3</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>2</InterviewID>
+    <TelephoneNumber>5551</TelephoneNumber>
+    <RespondentName>1</RespondentName>
+    <TimezoneID>1</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>3</InterviewID>
+    <TelephoneNumber>5552</TelephoneNumber>
+    <RespondentName>2</RespondentName>
+    <TimezoneID>2</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Monrovia, Reykjavik</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>6</Varq1>
+    <Varq2>9</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>4</InterviewID>
+    <TelephoneNumber>5553</TelephoneNumber>
+    <RespondentName>3</RespondentName>
+    <TimezoneID>3</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>5</InterviewID>
+    <TelephoneNumber>5554</TelephoneNumber>
+    <RespondentName>4</RespondentName>
+    <TimezoneID>4</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>10</Varq1>
+    <Varq2>15</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>6</InterviewID>
+    <TelephoneNumber>5555</TelephoneNumber>
+    <RespondentName>5</RespondentName>
+    <TimezoneID>5</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>7</InterviewID>
+    <TelephoneNumber>5556</TelephoneNumber>
+    <RespondentName>6</RespondentName>
+    <TimezoneID>6</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>14</Varq1>
+    <Varq2>21</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>8</InterviewID>
+    <TelephoneNumber>5557</TelephoneNumber>
+    <RespondentName>7</RespondentName>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>9</InterviewID>
+    <TelephoneNumber>5558</TelephoneNumber>
+    <RespondentName>8</RespondentName>
+    <TimezoneID>1</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>18</Varq1>
+    <Varq2>27</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>10</InterviewID>
+    <TelephoneNumber>5559</TelephoneNumber>
+    <RespondentName>9</RespondentName>
+    <TimezoneID>2</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Monrovia, Reykjavik</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>11</InterviewID>
+    <TelephoneNumber>55510</TelephoneNumber>
+    <RespondentName>10</RespondentName>
+    <TimezoneID>3</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>22</Varq1>
+    <Varq2>33</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>12</InterviewID>
+    <TelephoneNumber>55511</TelephoneNumber>
+    <RespondentName>11</RespondentName>
+    <TimezoneID>4</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>13</InterviewID>
+    <TelephoneNumber>55512</TelephoneNumber>
+    <RespondentName>12</RespondentName>
+    <TimezoneID>5</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>26</Varq1>
+    <Varq2>39</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>14</InterviewID>
+    <TelephoneNumber>55513</TelephoneNumber>
+    <RespondentName>13</RespondentName>
+    <TimezoneID>6</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>15</InterviewID>
+    <TelephoneNumber>55514</TelephoneNumber>
+    <RespondentName>14</RespondentName>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <ShiftType />
+    <Resource />
+    <Varq1>30</Varq1>
+    <Varq2>45</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>16</InterviewID>
+    <TelephoneNumber>55515</TelephoneNumber>
+    <RespondentName>15</RespondentName>
+    <TimezoneID>1</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>17</InterviewID>
+    <TelephoneNumber>55516</TelephoneNumber>
+    <RespondentName>16</RespondentName>
+    <TimezoneID>2</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Monrovia, Reykjavik</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>34</Varq1>
+    <Varq2>51</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>18</InterviewID>
+    <TelephoneNumber>55517</TelephoneNumber>
+    <RespondentName>17</RespondentName>
+    <TimezoneID>3</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>19</InterviewID>
+    <TelephoneNumber>55518</TelephoneNumber>
+    <RespondentName>18</RespondentName>
+    <TimezoneID>4</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Belgrade, Bratislava, Budapest, Ljubljana, Prague</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>38</Varq1>
+    <Varq2>57</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>20</InterviewID>
+    <TelephoneNumber>55519</TelephoneNumber>
+    <RespondentName>19</RespondentName>
+    <TimezoneID>5</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>21</InterviewID>
+    <TelephoneNumber>55520</TelephoneNumber>
+    <RespondentName>20</RespondentName>
+    <TimezoneID>6</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>42</Varq1>
+    <Varq2>63</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>22</InterviewID>
+    <TelephoneNumber>55521</TelephoneNumber>
+    <RespondentName>21</RespondentName>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>23</InterviewID>
+    <TelephoneNumber>55522</TelephoneNumber>
+    <RespondentName>22</RespondentName>
+    <TimezoneID>1</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Greenwich Mean Time : Dublin, Edinburgh, Lisbon, London</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>46</Varq1>
+    <Varq2>69</Varq2>
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>24</InterviewID>
+    <TelephoneNumber>55523</TelephoneNumber>
+    <RespondentName>23</RespondentName>
+    <TimezoneID>2</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT) Monrovia, Reykjavik</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>25</InterviewID>
+    <TelephoneNumber>55524</TelephoneNumber>
+    <RespondentName>24</RespondentName>
+    <TimezoneID>3</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <CallID>0</CallID>
+    <Shift_ID>0</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</TimezoneName>
+    <ShiftType />
+    <Resource />
+    <Varq1>50</Varq1>
+    <Varq2>75</Varq2>
+  </table>
+</DocumentElement>

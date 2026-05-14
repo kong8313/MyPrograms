@@ -1,0 +1,17 @@
+security_scan_job:
+  allow_failure: true
+  trigger:
+    include:
+    - component: gitlab.com/pgforsta/devops/components/security-scans/gitlab-sast-component@~latest
+  rules: 
+    - !reference [.security_scan_rules, rules]
+  
+.security_scan_rules:
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - when: never
+# This set of rules will run security scans only on merge request pipelines and on the default branch     
+# For other rules options visit - https://gitlab.com/pgforsta/devops/components/security-scans/-/blob/main/templates/gitlab-sast-component/rules.yml?ref_type=heads
+# Follow the instructions for customization of rules
+
+

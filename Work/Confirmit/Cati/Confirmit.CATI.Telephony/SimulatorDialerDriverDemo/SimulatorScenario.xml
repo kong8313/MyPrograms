@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimulatorScenario xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CallOutcomeList>Connected</CallOutcomeList>
+  <!--
+  <CallOutcomeList>Unobtainable</CallOutcomeList>
+  <CallOutcomeList>Busy</CallOutcomeList>
+  <CallOutcomeList>NoReply</CallOutcomeList>
+  <CallOutcomeList>AnswerMachine</CallOutcomeList>
+  <CallOutcomeList>Fax</CallOutcomeList>
+  -->
+  <GenerationMethod>Sequence</GenerationMethod>
+</SimulatorScenario>

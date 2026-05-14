@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Confirmit.CATI.BackendAndSupervisorParametersValidation</id>
+    <version>18.0.0.0</version>
+    <authors>Confirmit</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Validation of Backend and Supervisor parameters</description>
+  </metadata>
+  <files>
+
+    <file src="..\OctopusDeploy\BackendAndSupervisorParametersValidation.ps1" target="Deploy.ps1" />
+    <file src="..\OctopusDeploy\PostDeploy.ps1" target="" />
+    <file src="..\OctopusDeploy\Installation\DeployFunctions.ps1" target="Installation" />
+    <file src="..\OctopusDeploy\Installation\InitialInitializations.ps1" target="Installation" />
+    <file src="..\OctopusDeploy\Installation\PreDeployFunctions.ps1" target="Installation" />
+    <file src="..\OctopusDeploy\WriteReleaseNumber.ps1" target="Installation" />
+
+    <file src="..\assemblies\Installation\CustomActionLibrary.dll" target="Installation" />
+    <file src="..\assemblies\Installation\CatiInstallation.dll" target="Installation" />
+    <file src="..\assemblies\Installation\BootstrapperLibrary.dll" target="Installation" />
+    <file src="..\assemblies\Installation\Confirmit.CATI.Installation.Common.dll" target="Installation" />
+
+  </files>
+</package>

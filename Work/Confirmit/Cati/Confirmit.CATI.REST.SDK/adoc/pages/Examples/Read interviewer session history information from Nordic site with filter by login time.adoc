@@ -1,0 +1,18 @@
+
+.Read interviewer session history information from Nordic site with filter by login time
+
+----
+// Read configuration parameters
+var companyId = int.Parse(ConfigurationManager.AppSettings.Get("CompanyId"));
+var user = ConfigurationManager.AppSettings.Get("UserName");
+var password = ConfigurationManager.AppSettings.Get("Password");
+
+// Create RestClient class
+var client = Environments.Nordic.CreateCatiRestClient(user, password, companyId);
+
+// Create service class
+IInterviewerSessionHistoryService interviewerSessionHistoryService = new InterviewerSessionHistoryService(client);
+
+// Get all call history data
+var data = await interviewerSessionHistoryService.GetAsync("$filter=cast(LoginTime,'Edm.DateTimeOffset') gt 2020-01-02T00:00:00Z");
+----

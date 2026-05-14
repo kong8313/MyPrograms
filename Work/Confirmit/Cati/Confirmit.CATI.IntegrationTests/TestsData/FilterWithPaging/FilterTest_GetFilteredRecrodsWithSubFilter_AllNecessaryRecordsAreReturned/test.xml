@@ -1,0 +1,76 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>4</InterviewID>
+    <Priority>4</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>5553</TelephoneNumber>
+    <RespondentName>3</RespondentName>
+    <TimezoneID>3</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>4</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-3</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>7</InterviewID>
+    <Priority>7</Priority>
+    <Time>1899-12-30T00:00:00Z</Time>
+    <TelephoneNumber>5556</TelephoneNumber>
+    <RespondentName>6</RespondentName>
+    <TimezoneID>6</TimezoneID>
+    <TransientState>16</TransientState>
+    <StateName>Fresh sample</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>7</CallID>
+    <ApptID>0</ApptID>
+    <Shift_ID>-6</Shift_ID><CallState>2</CallState>
+    <TimezoneName>(GMT+01:00) Sarajevo, Skopje, Warsaw, Zagreb</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+  <table>
+    <SurveySID>34</SurveySID>
+    <SurveyName>p0000001</SurveyName>
+    <InterviewID>13</InterviewID>
+    <Priority>13</Priority>
+    <Time>2019-10-10T10:10:10Z</Time>
+    <ExpireTime>2019-10-11T10:10:10Z</ExpireTime>
+    <TelephoneNumber>55512</TelephoneNumber>
+    <RespondentName>12</RespondentName>
+    <TimezoneID>5</TimezoneID>
+    <TransientState>1</TransientState>
+    <StateName>Appointment</StateName>
+    <LastCallTime>1899-12-30T00:00:00Z</LastCallTime>
+    <DialingMode>0</DialingMode>
+    <ApptTime>2019-10-10T10:10:10Z</ApptTime>
+    <ContactName>interviewSID=13</ContactName>
+    <AttemptNumber>0</AttemptNumber>
+
+    <Name>CATI Interviewers</Name>
+    <CallID>13</CallID>
+    <ApptID>1</ApptID>
+    <Shift_ID>-2147483648</Shift_ID><CallState>2</CallState>
+    <ExpTime>2019-10-11T10:10:10Z</ExpTime>
+    <TimezoneName>(GMT+01:00) Brussels, Copenhagen, Madrid, Paris</TimezoneName>
+    <ShiftType />
+    <Resource />
+  </table>
+</DocumentElement>

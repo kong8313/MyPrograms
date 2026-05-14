@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="RunConsoleTest" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  
+  <PropertyGroup>
+    <CatiConsoleLocation>$(CatiConsoleLocationFolder)\CatiInterviewerConsole.exe</CatiConsoleLocation>
+    <CatiSQLConnectionString>Data Source=$(DataSource);Initial Catalog=ConfirmitCATIV15_1;Connect Timeout=120;User ID=ConfirmitDeploy;Password=%251confdep;</CatiSQLConnectionString>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(ExtensionTasksPath)'==''">
+    <ExtensionTasksPath>$(ProjectDir)..\..\..\_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+  <Import Project="Common.props"/>
+
+  <UsingTask
+    TaskName="SetEnvironmentVariableTask"
+    TaskFactory="CodeTaskFactory"
+    AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+
+    <ParameterGroup>
+      <Name ParameterType="System.String" Required="true" />
+      <Value ParameterType="System.String" Required="true" />
+    </ParameterGroup>
+
+    <Task>
+      <Using Namespace="System" />
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+          Environment.SetEnvironmentVariable(Name, Value);
+        ]]>
+      </Code>
+    </Task>
+
+  </UsingTask>
+
+  <UsingTask TaskName="ReplaceFileText" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+   <ParameterGroup>
+     <InputFilename ParameterType="System.String" Required="true" />
+     <OutputFilename ParameterType="System.String" Required="true" />
+     <MatchExpression ParameterType="System.String" Required="true" />
+     <ReplacementText ParameterType="System.String" Required="true" />
+   </ParameterGroup>
+   <Task>
+     <Reference Include="System.Core" />
+     <Using Namespace="System" />
+     <Using Namespace="System.IO" />
+     <Using Namespace="System.Text.RegularExpressions" />
+     <Code Type="Fragment" Language="cs">
+       <![CDATA[
+             File.WriteAllText(
+                 OutputFilename,
+                 Regex.Replace(File.ReadAllText(InputFilename), MatchExpression, ReplacementText)
+                 );
+           ]]>
+     </Code>
+   </Task>
+  </UsingTask>
+
+  <Target Name="ConsolePreparations" DependsOnTargets="ReplaceServerName">
+    <ItemGroup>
+      <SourceFiles Include="OlympicAutopilot.txt" />
+    </ItemGroup>
+    
+    <Copy SourceFiles="@(SourceFiles)" DestinationFolder="$(CatiConsoleLocationFolder)" />  
+
+  </Target>
+
+
+  <Target Name="ReplaceServerName">
+    <Message Text="Replacing server name from localhost to $(catiServerName)" />
+
+    <ReplaceFileText 
+      InputFilename="$(CatiConsoleLocationFolder)CatiInterviewerConsole.exe.config" 
+      OutputFilename="$(CatiConsoleLocationFolder)CatiInterviewerConsole.exe.config" 
+      MatchExpression="localhost" 
+      ReplacementText="$(catiServerName)" />
+
+  </Target>
+
+
+  <Target Name="SetEnvironmentVariable">
+    <SetEnvironmentVariableTask Name="CatiConsoleLocation" Value="$(CatiConsoleLocation)" />
+    <SetEnvironmentVariableTask Name="MSBuildThisFileDirectory" Value="$(MSBuildThisFileDirectory)" />
+    <SetEnvironmentVariableTask Name="CatiSQLConnectionString" Value="$(CatiSQLConnectionString)" />
+  </Target> 
+
+  <Target Name="BuildConsoleTest">
+
+    <MSBuild Projects="..\OlympicInterviewerConsole\OlympicInterviewerConsole.sln"/> 
+
+  </Target>
+
+
+  <Target Name="RunConsoleTest" DependsOnTargets="SetEnvironmentVariable;BuildConsoleTest">
+ 
+    <CallTarget Targets="RunConsoleTestAutopilot" />
+
+  </Target>
+
+
+  <Target Name="RunConsoleTestAutopilot" Condition="$(IsAutopilotMode) == 'True'">
+
+    <PropertyGroup Label="TestSuccessOrNot">
+      <TestSuccessOrNot>1</TestSuccessOrNot>
+    </PropertyGroup>
+
+    <Message Text="Running Olympic Console $(OlympicMode) test for $(CompanyName) Company using autopilot" />
+
+    <Exec Command="&quot;$(VsTestConsolePath)&quot; ..\OlympicInterviewerConsole\OlympicInterviewerConsole\bin\Debug\OlympicInterviewerConsole.dll /logger:trx" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="TestSuccessOrNot"/>
+    </Exec>
+    
+    <Message Text="ExitCode = $(TestSuccessOrNot)" />
+
+  </Target>
+
+</Project>

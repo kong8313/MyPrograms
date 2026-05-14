@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)/$(MSBuildToolsVersion)/Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration>Debug</Configuration>
+    <Platform>AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <OutputPath>..\..\..\assemblies</OutputPath>
+    <TargetFrameworkVersion>4.7.2</TargetFrameworkVersion>
+    <RootNamespace>confirmit.surveyvoicexml.service.client</RootNamespace>
+    <AssemblyName>confirmit.surveyvoicexml.service.client.Fakes</AssemblyName>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <ProjectGuid>{56502e10-47df-457e-8ddd-92d00a3552e6}</ProjectGuid>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\..\..\ConfirmitKeyPair.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+
+    <Reference Include="Microsoft.Rest.ClientRuntime" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\assemblies\Microsoft.Rest.ClientRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\assemblies\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\assemblies\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Confirmit.SurveyVoiceXml.Service.Client" >
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\assemblies\Confirmit.SurveyVoiceXml.Service.Client.dll</HintPath>
+    </Reference>
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <compile Include=".\StubIAbout.cs" />
+    <compile Include=".\StubIInternalSurveyVoiceXmlAPI.cs" />
+    <compile Include=".\StubIMain.cs" />
+    <compile Include=".\StubIRoot.cs" />
+
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)/Microsoft.CSharp.targets" />
+</Project>

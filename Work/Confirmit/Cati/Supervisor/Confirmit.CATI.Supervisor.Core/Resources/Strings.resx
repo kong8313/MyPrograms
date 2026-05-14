@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ActionNotInitializedMessage" xml:space="preserve">
+    <value>The action type is not initialized.</value>
+  </data>
+  <data name="ActionParameterNotSpecifiedMessage" xml:space="preserve">
+    <value>Action parameter for action '{0}' is not specified.</value>
+  </data>
+  <data name="ActionParameterTypeNotSpecifiedMessage" xml:space="preserve">
+    <value>Action parameter type for action '{0}' is not specified or is wrong.</value>
+  </data>
+  <data name="CantGetTimeZoneMessage" xml:space="preserve">
+    <value>Can't get timeZone with ID {0}</value>
+  </data>
+  <data name="ColorNotInitializedMessage" xml:space="preserve">
+    <value>The item should have specified color.</value>
+  </data>
+  <data name="EndDateNotInitializedMessage" xml:space="preserve">
+    <value>End date in not initialized.</value>
+  </data>
+  <data name="ErrorAccessingConfirmitWS" xml:space="preserve">
+    <value>Error accessing Confirmit web service.</value>
+  </data>
+  <data name="ExclusionIntersectionMessage" xml:space="preserve">
+    <value>Current exclusion intersects with exclusion with identifier {0} in timezone {1}.</value>
+  </data>
+  <data name="ExclusionTypeExceptionMessage" xml:space="preserve">
+    <value>Only exclusion shift type is allowed for exclusion object.</value>
+  </data>
+  <data name="IdentifierNotInitializedMessage" xml:space="preserve">
+    <value>The item identifier is not initialized.</value>
+  </data>
+  <data name="IndexOutOfRangeExceptionMessage" xml:space="preserve">
+    <value>Index is less than zero or is greater than collection size.</value>
+  </data>
+  <data name="InvalidGuidStringMessage" xml:space="preserve">
+    <value>Couldn't convert string '{0}' to GUID value.</value>
+  </data>
+  <data name="InvalidItemExceptionMessage" xml:space="preserve">
+    <value>Item is in invalid state.</value>
+  </data>
+  <data name="ItemNotFoundMessage" xml:space="preserve">
+    <value>Item with identifier {0} was not found in the collection.</value>
+  </data>
+  <data name="ItemNullExceptionMessage" xml:space="preserve">
+    <value>Item cannot be null.</value>
+  </data>
+  <data name="NameNotInitializedMessage" xml:space="preserve">
+    <value>The item should have name.</value>
+  </data>
+  <data name="ParameterValueCouldntBeConvertedMessage" xml:space="preserve">
+    <value>Parameter value '{0}' couldn't be converted to action parameter type.</value>
+  </data>
+  <data name="QuestionnaireNotFound" xml:space="preserve">
+    <value>Questionnaire not found.</value>
+  </data>
+  <data name="RemovedItemCannotBeNullException" xml:space="preserve">
+    <value>You cannot remove null value.</value>
+  </data>
+  <data name="RespondentTimezoneName" xml:space="preserve">
+    <value>Respondent</value>
+  </data>
+  <data name="RuleIsInUseMessage" xml:space="preserve">
+    <value>Rule {0} is used in 'Set next rule' action of sub-rule {1}.{2}.</value>
+  </data>
+  <data name="RuleNumberFormatExceptionMessage" xml:space="preserve">
+    <value>Rule or sub-rule number should be in format "number" or "number.number".</value>
+  </data>
+  <data name="ShiftIntersectionMessage" xml:space="preserve">
+    <value>Current shift intersects with shift with identifier {0} in timezone {1}.</value>
+  </data>
+  <data name="ShiftIsInUseInActionMessage" xml:space="preserve">
+    <value>Shift {0} is used in action "{1}" of sub-rule {2}.</value>
+  </data>
+  <data name="ShiftTypeIsInUseMessage" xml:space="preserve">
+    <value>Shift type '{0}' is used in {1} with identifier {2}.</value>
+  </data>
+  <data name="ShiftTypeNotInitializedMessage" xml:space="preserve">
+    <value>Shift type is not initialized.</value>
+  </data>
+  <data name="StartDateGreaterEndDateMessage" xml:space="preserve">
+    <value>Start date is greater than end date.</value>
+  </data>
+  <data name="StartDateNotInitializedMessage" xml:space="preserve">
+    <value>Start date in not initialized.</value>
+  </data>
+  <data name="SubRuleIsInUseMessage" xml:space="preserve">
+    <value>Sub-rule {0} is used in 'Go to' action of sub-rule {1}.</value>
+  </data>
+  <data name="TimezoneOutOfRangeException" xml:space="preserve">
+    <value>The timezone does not exist in the list of timezones and is not Respondent timezone.</value>
+  </data>
+  <data name="UnrecognizedActionMessage" xml:space="preserve">
+    <value>Action with identifier '{0}' doesn't belong to actions dictionary.</value>
+  </data>
+  <data name="ValidationNotSupportedExceptionMessage" xml:space="preserve">
+    <value>There is no event handler attached to validation event.</value>
+  </data>
+  <data name="VariablesResourceString" xml:space="preserve">
+    <value>&lt;%Resources.CallListHeaderVariables%&gt;</value>
+  </data>
+  <data name="QuotaDefinitionIsNotInSyncWithTheDatabase" xml:space="preserve">
+    <value>Quota definition is not in sync with the database. Survey relaunch may resolve this issue.</value>
+  </data>
+  <data name="UnableToTerminateTask" xml:space="preserve">
+    <value>Unable to terminate task.</value>
+  </data>
+  <data name="InterviewWithTheSpecifiedIDNotExsists" xml:space="preserve">
+    <value>Interview with the specified ID not exsists</value>
+  </data>
+  <data name="CantDisableDialerMessage" xml:space="preserve">
+    <value>Can't disable dialer. It is not installed in the system.</value>
+  </data>
+  <data name="GroupNameExistMessage" xml:space="preserve">
+    <value>State group with such name already exists.</value>
+  </data>
+  <data name="InterviewWithIDNotExists" xml:space="preserve">
+    <value>Interview with ID {0} not exists.</value>
+  </data>
+  <data name="InvalidIdentifierExceptionMessage" xml:space="preserve">
+    <value>{0} identifier {1} is not valid.</value>
+  </data>
+  <data name="ITSNotFoundMessage" xml:space="preserve">
+    <value>ITS with ID = {0} not found</value>
+  </data>
+  <data name="PersonsGroupNotFound" xml:space="preserve">
+    <value>Root {0} group not found.</value>
+  </data>
+  <data name="InvalidCallPropertyValueExceptionMessage" xml:space="preserve">
+    <value>Call's property {0} has invalid value '{1}'.</value>
+  </data>
+  <data name="InvalidCallStateExceptionMessage" xml:space="preserve">
+    <value>Call state '{0}' is not valid for this action.</value>
+  </data>
+  <data name="ItemNotInitializedExceptionMessage" xml:space="preserve">
+    <value>The item is not initialized.</value>
+  </data>
+  <data name="CantParseActionListFromXmlMessage" xml:space="preserve">
+    <value>Can't parse Action List from xml.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="CouldNotAddTimezone" xml:space="preserve">
+    <value>Could not add timezone.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="CouldNotDeleteTimezone" xml:space="preserve">
+    <value>Could not delete timezone.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ErrorTimezoneNotFound" xml:space="preserve">
+    <value>Error - timezone not found.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ErrorWhileDeleting" xml:space="preserve">
+    <value>An error has occured while deleting {0} '{1}' (SID={2}, GARBAGE_SID={3}).</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ErrorWhileRestoring" xml:space="preserve">
+    <value>An error has occured while restoring {0} '{1}' (SID={2}, GARBAGE_SID={3}).</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ErrorWhileTryingToReceiveRootInstanceForTheCompany" xml:space="preserve">
+    <value>Error while trying to receive root instance for the company '{0}'</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="InitializeDiallerFailedInternalMessage" xml:space="preserve">
+    <value>Initialize of Dialler failed with result {0}.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="InitializeDiallerFailedUserMessage" xml:space="preserve">
+    <value>Initialize of Dialler failed.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="InvalidSurveyIdValue" xml:space="preserve">
+    <value>Invalid survey ID value.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ItemCantBeDeleted" xml:space="preserve">
+    <value>Item can't be deleted because of incorrect data format.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ItemCantBeRestored" xml:space="preserve">
+    <value>Item can't be restored because of incorrect data format.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="NoDiallerInSystem" xml:space="preserve">
+    <value>There is no Dialler in the system.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="NoRecordsInBvSiteMessage" xml:space="preserve">
+    <value>There is no records in BvSite table.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="SurveyCantBeRestored" xml:space="preserve">
+    <value>Survey '{0}' can't be restored because of missing parent folder.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="SurveyCantBeRestored_Details" xml:space="preserve">
+    <value>All of survey's parent folders has been deleted previously, so it can't be restored.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="SurveyConvertionExceptionMessage" xml:space="preserve">
+    <value>Survey couldn't be converted to type IPtBvSurveyEx.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="TaskNotFoundExceptionMessage" xml:space="preserve">
+    <value>Could not find task for SurveySID={0} and InterviewID={1}.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="TheErrorOccuredWhileScriptLaunchingScriptWasNotGenerated" xml:space="preserve">
+    <value>The error occured while script launching. Script was not generated</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="TimeSpecifiedIsOutOfShiftsOfSelectedType" xml:space="preserve">
+    <value>Time specified is out of shifts of selected type.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="TimezoneLiteFillingExceptionMessage" xml:space="preserve">
+    <value>While filling up lite timezone collection exception occurs. Collection could be incomplete: {0}</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="UnableDeleteStateGroupMessage" xml:space="preserve">
+    <value>Unable to delete this state group.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="UnableToActivateCall" xml:space="preserve">
+    <value>Unable to activate calls.
+
+Possible causes:
+- Time specified is out of shifts of selected type.
+- Extended status does not allow activation.
+
+No calls were activated.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="UnableToDeleteScript" xml:space="preserve">
+    <value>Unable to delete script.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="UnableToGetDiallerConfigurationMessage" xml:space="preserve">
+    <value>Unable to get dialler configuration.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="UnexpectedErrorDuringScriptDeleting" xml:space="preserve">
+    <value>Unexpected error during script deleting</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="UnexpectedErrorOccursDuringFilterDeleting" xml:space="preserve">
+    <value>Unexpected error occurs during filter deleting</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="ZeroIdentifierExceptionMessage" xml:space="preserve">
+    <value>Identifier {0} is equal to zero.</value>
+    <comment>Unused in Supervisor.Backend assembly</comment>
+  </data>
+  <data name="InvalidSurveyDialModeExceptionMessage" xml:space="preserve">
+    <value>Survey {0} is not supported - invalid dial mode {1}. Only predictive surveys are supported.</value>
+  </data>
+  <data name="Error_TryToCopyDefaultStatusGroupIntoItself" xml:space="preserve">
+    <value>Unable to complete this operation for the "{0}" status group as this is the default</value>
+  </data>
+  <data name="IncorrectTimezone" xml:space="preserve">
+    <value>Incorrect timezone</value>
+  </data>
+  <data name="UnableToTerminateTaskLoggedOut" xml:space="preserve">
+    <value>Unable to terminate the interviewer’s session. The interviewer has already logged out. Please refresh the page.</value>
+  </data>
+</root>

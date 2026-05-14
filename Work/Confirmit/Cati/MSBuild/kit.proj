@@ -1,0 +1,301 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <Import Project="..\DefaultVersion.targets" />
+  <PropertyGroup Condition="'$(Configuration)'==''">
+    <Configuration>Debug</Configuration>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <Optimize>true</Optimize>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>  
+  <PropertyGroup Condition="'$(ProjectDir)'==''">
+    <ProjectDir>$(MSBuildProjectDirectory)\..\</ProjectDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(OutDir)'==''">
+    <OutDir>$(ProjectDir)assemblies\Installation\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ExtensionTasksPath>$(ProjectDir)_3rdpart\MSBuildExtentionPack\4.0\</ExtensionTasksPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(ILMergePath)'==''">
+    <ILMergePath>&quot;$(ProjectDir)_3rdpart\Microsoft\ILMerge.exe&quot;</ILMergePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(BootstrapperLibraryPath)'==''">
+    <BootstrapperLibraryPath>&quot;$(OutDir)BootstrapperLibrary.dll&quot;</BootstrapperLibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(InstallationCommonPath)'==''">
+    <InstallationCommonPath>&quot;$(OutDir)..\Confirmit.CATI.Installation.Common.dll&quot;</InstallationCommonPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(EncryptionPath)'==''">
+    <EncryptionPath>&quot;$(OutDir)..\Confirmit.Security.Crypto.Web.dll&quot;</EncryptionPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(FirmglobalFrameworkSecurityDllPath)'==''">
+    <FirmglobalFrameworkSecurityDllPath>&quot;$(OutDir)..\Firmglobal.Framework.Security.dll&quot;</FirmglobalFrameworkSecurityDllPath>
+  </PropertyGroup>    
+  <PropertyGroup Condition="'$(SkipDependedTargets)'==''">
+    <SkipDependedTargets>false</SkipDependedTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(sxs)'!=''">
+    <DefaultSideBySideName>$(sxs)</DefaultSideBySideName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(DefaultSideBySideName)'!=''">
+    <SideBySideName>$(DefaultSideBySideName)</SideBySideName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(NugetPackageVersion)'==''">
+    <NugetPackageVersion>$(BuildNumber.Substring(0, $(BuildNumber.LastIndexOf('.'))))</NugetPackageVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(MsiVersion)'==''">
+    <MsiVersion>$(BuildNumber)</MsiVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(NugetPackageOutputPath)'==''">
+    <NugetPackageOutputPath>..\assemblies\NugetPackages</NugetPackageOutputPath>
+  </PropertyGroup>
+    
+  <UsingTask TaskName="StaticTeamCityBuildEngine.GetSideBySideName" AssemblyFile="StaticTeamCityBuildEngine.dll" />
+  <Import Project="$(ExtensionTasksPath)MSBuild.ExtensionPack.tasks"/>
+
+  <Target Name="Build" DependsOnTargets="x86;x64;CreateNugetPackages;Tests" />
+  
+  <Target Name="x86" DependsOnTargets="x86G;x86simG;x86ltusimG" />
+  <Target Name="x64" DependsOnTargets="x64G;x64simG;x64ltusimG" />
+  
+  <Target Name="help">
+    <Message Text="Use 'kit.proj /p:DefaultSideBySideName=YourName' to build instalaltions with non default SideBySide name (you can specify both '/p' and '/t' parameters)"/>
+    <Message Text="To get side by side name automatically from a root folder it's name has to have the following template: AnyName.sxs.SxSName (for example CATI.sxs.Main)"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /p:BuildNumber=26.0.0.0' to build instalaltions with non default version (use semicolon to specify both parameters)"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x64' to build all installations for x64 platform (Generic Dialer WS, Simulator Generic Dialer WS, LTU Simulator Generic Dialer WS)"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x86' to build all installations for x86 platform (Generic Dialer WS, Simulator Generic Dialer WS, LTU Simulator Generic Dialer WS)"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x64G' to build Generic Dialer Web Service installation for x64 platform"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x64simG' to build Simulator (G) Dialer Web Service installation for x64 platform"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x64ltusimG' to build LTU Simulator (G) Dialer Web Service installation for x64 platform"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x86G' to build Generic Dialer Web Service installation for x86 platform"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x86simG' to build Simulator (G) Dialer Web Service installation for x86 platform"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:x86ltusimG' to build LTU Simulator (G) Dialer Web Service installation for x86 platform"/>
+    <Message Text=" "/>
+    <Message Text="Use 'kit.proj /t:CreateNugetPackages' to create nuget packages for Octopus"/>
+    <Message Text="You can specify two parameters if needed: /p:[NugetPackageVersion=1.2.3.4];[NugetPackageOutputPath='path']"/>
+    <Message Text=" "/>
+  </Target>
+    
+  <Target Name="PrepareAutogeneratedFiles">
+    <MSBuild Projects="..\_BuildProject\_BuildProject.csproj" Properties="Configuration=$(Configuration);DefaultSideBySideName=$(DefaultSideBySideName);BuildNumber=$(BuildNumber);RecreateExistingFiles=False" />
+  </Target>
+    
+  <Target Name="CopyCertificates" >
+    <Copy SourceFiles="$(ProjectDir)Certificates\Confirmit CATI Root Test Certificate Sha256.cer" DestinationFiles="$(ProjectDir)assemblies\Certificates\Confirmit CATI Root Test Certificate.cer" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="$(ProjectDir)Certificates\Confirmit CATI Root Test Certificate Sha256.pvk" DestinationFiles="$(ProjectDir)assemblies\Certificates\Confirmit CATI Root Test Certificate.pvk" SkipUnchangedFiles="true" />
+  </Target>
+    
+  <Target Name="CA" DependsOnTargets="PrepareAutogeneratedFiles" Condition="'$(SkipDependedTargets)' == 'false' ">
+    <Message Text="KIT BUILD STARTED"/>
+    <Message Text="Configuration = $(Configuration)"/>
+    <Message Text="ProjectDir = $(ProjectDir)"/>
+    <Message Text="OutDir = $(OutDir)"/>
+
+    <GetSideBySideName DefaultSideBySideName="$(DefaultSideBySideName)" Condition="'$(SideBySideName)'==''" >
+      <Output TaskParameter="SideBySideName" PropertyName="SideBySideName"/>
+    </GetSideBySideName>
+
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\CustomActionLibrary\CustomActionLibrary.csproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir);SolutionDir=$(ProjectDir)" />
+
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\SessionCustomActionLibrary\SessionCustomActionLibrary.csproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir);SolutionDir=$(ProjectDir)" />
+    
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\CatiInstallation\CatiInstallation.csproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir);SolutionDir=$(ProjectDir)" />
+
+    <MakeDir Directories="$(OutDir)exe\x86\" />
+    <MakeDir Directories="$(OutDir)exe\x64\" />
+  </Target>
+
+  <Target Name="CAx86" Condition="'$(SkipDependedTargets)' == 'false' " DependsOnTargets="CA">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.DialerWebServicesCustomAction\Confirmit.CATI.DialerWebServices.CustomAction.csproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir);SfxCADllTarget=x86;SolutionDir=$(ProjectDir)" />
+  </Target>
+
+  <Target Name="CAx64" Condition="'$(SkipDependedTargets)' == 'false' " DependsOnTargets="CA">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.DialerWebServicesCustomAction\Confirmit.CATI.DialerWebServices.CustomAction.csproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir);SfxCADllTarget=x64;SolutionDir=$(ProjectDir)" />
+  </Target>
+
+  <Target Name="CreateBackendNugetPackage" DependsOnTargets="CAx64">
+    <Exec Command="mkdir &quot;$(NugetPackageOutputPath)&quot;" ContinueOnError="true" />
+    <Exec Command="$(ProjectDir)_3rdpart\Nuget\NuGet.exe pack &quot;$(ProjectDir)Confirmit.CATI.Backend\Confirmit.CATI.Backend.nuspec&quot; -NoPackageAnalysis -BasePath &quot;$(ProjectDir)Confirmit.CATI.Backend&quot; -OutputDirectory &quot;$(NugetPackageOutputPath)&quot; -Version $(NugetPackageVersion)" />
+  </Target>
+  
+  <Target Name="CreateNugetPackages" DependsOnTargets="CreateBackendNugetPackage;CopyCertificates">
+    <Exec Command="$(ProjectDir)_3rdpart\Nuget\NuGet.exe pack &quot;$(ProjectDir)Confirmit.CATI.Backend\Confirmit.CATI.BackendAndSupervisorParametersValidation.nuspec&quot; -NoPackageAnalysis -BasePath &quot;$(ProjectDir)Confirmit.CATI.Backend&quot; -OutputDirectory &quot;$(NugetPackageOutputPath)&quot; -Version $(NugetPackageVersion)" />
+
+    <Exec Command="$(ProjectDir)_3rdpart\Nuget\NuGet.exe pack &quot;$(ProjectDir)SupervisorNew\Confirmit.CATI.Supervisor\Confirmit.CATI.Supervisor.New.nuspec&quot; -NoPackageAnalysis -BasePath &quot;$(ProjectDir)SupervisorNew\Confirmit.CATI.Supervisor&quot; -OutputDirectory &quot;$(NugetPackageOutputPath)&quot; -Version $(NugetPackageVersion)" />
+    
+    <Exec Command="$(ProjectDir)_3rdpart\Nuget\NuGet.exe pack &quot;$(ProjectDir)Confirmit.CATI.Telephony\SimulatorDialerDriver\Confirmit.GenericDialerSimulator.nuspec&quot; -NoPackageAnalysis -BasePath &quot;$(ProjectDir)Confirmit.CATI.Telephony\SimulatorDialerDriver&quot; -OutputDirectory &quot;$(NugetPackageOutputPath)&quot; -Version $(NugetPackageVersion)" />
+    <Exec Command="$(ProjectDir)_3rdpart\Nuget\NuGet.exe pack &quot;$(ProjectDir)Confirmit.CATI.Telephony\AwsConnectDialerWS\AwsConnectDialerWS.nuspec&quot; -NoPackageAnalysis -BasePath &quot;$(ProjectDir)Confirmit.CATI.Telephony\AwsConnectDialerWS&quot; -OutputDirectory &quot;$(NugetPackageOutputPath)&quot; -Version $(NugetPackageVersion)" />        
+  </Target>
+
+  <Target Name="x86G" DependsOnTargets="CAx86">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)msi\x86\;OutputName=Confirmit CATI Generic Dialer Web Service $(MsiVersion) x86;BuildNumber=$(MsiVersion);ProcessorArchitecture=x86;InstallationVersionForGUI=$(InstallationVersionForGUI);GType=no" />
+
+    <Copy SourceFiles="$(OutDir)msi\x86\en-us\Confirmit CATI Generic Dialer Web Service $(MsiVersion) x86.msi" DestinationFiles="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Resources\Setup.msi" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Confirmit.CATI.GenericDialerWebService.Bootstrapper.csproj"
+      Targets="Build"
+      Properties="DefineConstants=Generic;x86"/>
+
+    <Exec Command="$(ILMergePath) /closed &quot;$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe&quot; $(BootstrapperLibraryPath) $(InstallationCommonPath) $(EncryptionPath) $(FirmglobalFrameworkSecurityDllPath) /t:winexe /targetplatform:v4 /out:&quot;$(OutDir)exe\x86\Confirmit CATI Generic Dialer Web Service $(SideBySideName) $(MsiVersion) x86.exe&quot;" />
+
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.pdb" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe.config" />
+    <Exec Command="RmDir /S /Q $(OutDir)msi" />
+  </Target>
+
+  <Target Name="x86simG" DependsOnTargets="CAx86">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)msi\x86\;OutputName=Confirmit CATI Simulator (G) Dialer Web Service $(MsiVersion) x86;BuildNumber=$(MsiVersion);ProcessorArchitecture=x86;InstallationVersionForGUI=$(InstallationVersionForGUI);GType=simulator" />
+
+    <Copy SourceFiles="$(OutDir)msi\x86\en-us\Confirmit CATI Simulator (G) Dialer Web Service $(MsiVersion) x86.msi" DestinationFiles="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Resources\Setup.msi" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Confirmit.CATI.GenericDialerWebService.Bootstrapper.csproj"
+      Targets="Build"
+      Properties="DefineConstants=Simulator;x86" />
+
+    <Exec Command="$(ILMergePath) /closed &quot;$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe&quot; $(BootstrapperLibraryPath) $(InstallationCommonPath) $(EncryptionPath) $(FirmglobalFrameworkSecurityDllPath) /t:winexe /targetplatform:v4 /out:&quot;$(OutDir)exe\x86\Confirmit CATI Simulator (G) Dialer Web Service $(SideBySideName) $(MsiVersion) x86.exe&quot;" />
+
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.pdb" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe.config" />
+    <Exec Command="RmDir /S /Q $(OutDir)msi" />
+  </Target>
+
+  <Target Name="x86ltusimG" DependsOnTargets="CAx86">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)msi\x86\;OutputName=Confirmit CATI LTU Simulator (G) Dialer Web Service $(MsiVersion) x86;BuildNumber=$(MsiVersion);ProcessorArchitecture=x86;InstallationVersionForGUI=$(InstallationVersionForGUI);GType=simulator_ltu" />
+
+    <Copy SourceFiles="$(OutDir)msi\x86\en-us\Confirmit CATI LTU Simulator (G) Dialer Web Service $(MsiVersion) x86.msi" DestinationFiles="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Resources\Setup.msi" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Confirmit.CATI.GenericDialerWebService.Bootstrapper.csproj"
+      Targets="Build"
+      Properties="DefineConstants=SimulatorLtu;x86" />
+
+    <Exec Command="$(ILMergePath) /closed &quot;$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe&quot; $(BootstrapperLibraryPath) $(InstallationCommonPath) $(EncryptionPath) $(FirmglobalFrameworkSecurityDllPath) /t:winexe /targetplatform:v4 /out:&quot;$(OutDir)exe\x86\Confirmit CATI LTU Simulator (G) Dialer Web Service $(SideBySideName) $(MsiVersion) x86.exe&quot;" />
+
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.pdb" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe.config" />
+    <Exec Command="RmDir /S /Q $(OutDir)msi" />
+  </Target>
+
+  <Target Name="x64G" DependsOnTargets="CAx64">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Clean"
+      Properties="OutDir=$(OutDir)msi\x64\" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)msi\x64\;OutputName=Confirmit CATI Generic Dialer Web Service $(MsiVersion) x64;BuildNumber=$(MsiVersion);ProcessorArchitecture=x64;InstallationVersionForGUI=$(InstallationVersionForGUI);GType=no" />
+
+    <Copy SourceFiles="$(OutDir)msi\x64\en-us\Confirmit CATI Generic Dialer Web Service $(MsiVersion) x64.msi" DestinationFiles="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Resources\Setup.msi" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Confirmit.CATI.GenericDialerWebService.Bootstrapper.csproj"
+      Targets="Build"
+      Properties="DefineConstants=Generic;x64" />
+
+    <Exec Command="$(ILMergePath) /closed &quot;$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe&quot; $(BootstrapperLibraryPath) $(InstallationCommonPath) $(EncryptionPath) $(FirmglobalFrameworkSecurityDllPath) /t:winexe /targetplatform:v4 /out:&quot;$(OutDir)exe\x64\Confirmit CATI Generic Dialer Web Service $(SideBySideName) $(MsiVersion) x64.exe&quot;" />
+
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.pdb" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe.config" />
+    <Exec Command="RmDir /S /Q $(OutDir)msi" />
+  </Target>
+
+  <Target Name="x64simG" DependsOnTargets="CAx64">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Clean"
+      Properties="OutDir=$(OutDir)msi\x64\" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)msi\x64\;OutputName=Confirmit CATI Simulator (G) Dialer Web Service $(MsiVersion) x64;BuildNumber=$(MsiVersion);ProcessorArchitecture=x64;InstallationVersionForGUI=$(InstallationVersionForGUI);GType=simulator" />
+
+    <Copy SourceFiles="$(OutDir)msi\x64\en-us\Confirmit CATI Simulator (G) Dialer Web Service $(MsiVersion) x64.msi" DestinationFiles="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Resources\Setup.msi" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Confirmit.CATI.GenericDialerWebService.Bootstrapper.csproj"
+      Targets="Build"
+      Properties="DefineConstants=Simulator;x64" />
+
+    <Exec Command="$(ILMergePath) /closed &quot;$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe&quot; $(BootstrapperLibraryPath) $(InstallationCommonPath) $(EncryptionPath) $(FirmglobalFrameworkSecurityDllPath) /t:winexe /targetplatform:v4 /out:&quot;$(OutDir)exe\x64\Confirmit CATI Simulator (G) Dialer Web Service $(SideBySideName) $(MsiVersion) x64.exe&quot;" />
+
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.pdb" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe.config" />
+    <Exec Command="RmDir /S /Q $(OutDir)msi" />
+  </Target>
+
+  <Target Name="x64ltusimG" DependsOnTargets="CAx64">
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Clean"
+      Properties="OutDir=$(OutDir)msi\x64\" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService\Confirmit.CATI.GenericDialerWebService.wixproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)msi\x64\;OutputName=Confirmit CATI LTU Simulator (G) Dialer Web Service $(MsiVersion) x64;BuildNumber=$(MsiVersion);ProcessorArchitecture=x64;InstallationVersionForGUI=$(InstallationVersionForGUI);GType=simulator_ltu" />
+
+    <Copy SourceFiles="$(OutDir)msi\x64\en-us\Confirmit CATI LTU Simulator (G) Dialer Web Service $(MsiVersion) x64.msi" DestinationFiles="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Resources\Setup.msi" />
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.GenericDialerWebService.Bootstrapper\Confirmit.CATI.GenericDialerWebService.Bootstrapper.csproj"
+      Targets="Build"
+      Properties="DefineConstants=SimulatorLtu;x64" />
+
+    <Exec Command="$(ILMergePath) /closed &quot;$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe&quot; $(BootstrapperLibraryPath) $(InstallationCommonPath) $(EncryptionPath) $(FirmglobalFrameworkSecurityDllPath) /t:winexe /targetplatform:v4 /out:&quot;$(OutDir)exe\x64\Confirmit CATI LTU Simulator (G) Dialer Web Service $(SideBySideName) $(MsiVersion) x64.exe&quot;" />
+    
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.pdb" />
+    <Delete Files="$(OutDir)Confirmit.CATI.GenericDialerWebService.Bootstrapper.exe.config" />
+    <Exec Command="RmDir /S /Q $(OutDir)msi" />
+  </Target>
+
+  <Target Name="Tests" DependsOnTargets="CAx64">
+    <Message Text="TEST BUILD STARTED"/>
+    
+    <MSBuild
+      Projects="$(ProjectDir)Confirmit.CATI.Setup\Confirmit.CATI.Setup.UnitTests\Confirmit.CATI.Setup.UnitTests.csproj"
+      Targets="Rebuild"
+      Properties="OutDir=$(OutDir)..\;SolutionDir=$(ProjectDir)" />
+
+    <Message Text="TEST BUILD FINISHED"/>
+  </Target>
+    
+</Project>

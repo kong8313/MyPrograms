@@ -1,0 +1,73 @@
+.co-tooltip___digitalfeedback {
+  line-height: normal;
+  font-size: 12px;
+  display: inline-block;
+  padding: 4px;
+  position: relative; }
+
+.co-tooltip__arrow___digitalfeedback {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: none;
+  background: #2e3337;
+  transform: rotate(45deg);
+  z-index: 1; }
+
+.co-tooltip__inner___digitalfeedback {
+  max-width: 300px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  padding: 3px 8px;
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  background-color: #2e3337;
+  border-radius: 3px;
+  z-index: 2;
+  position: relative; }
+
+.co-tooltip__arrow--error___digitalfeedback,
+.co-tooltip__inner--error___digitalfeedback {
+  background-color: #ea3e5e; }
+
+.co-tooltip___digitalfeedback.co-tooltip--left-start___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--left-end___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--left___digitalfeedback .co-tooltip__arrow___digitalfeedback {
+  right: 0; }
+
+.co-tooltip___digitalfeedback.co-tooltip--right-start___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--right-end___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--right___digitalfeedback .co-tooltip__arrow___digitalfeedback {
+  left: 0; }
+
+.co-tooltip___digitalfeedback.co-tooltip--top-start___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--top-end___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--top___digitalfeedback .co-tooltip__arrow___digitalfeedback {
+  bottom: 0; }
+
+.co-tooltip___digitalfeedback.co-tooltip--bottom-start___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--bottom-end___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--bottom___digitalfeedback .co-tooltip__arrow___digitalfeedback {
+  top: 0; }
+
+.co-tooltip___digitalfeedback.co-tooltip--auto___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--auto-start___digitalfeedback .co-tooltip__arrow___digitalfeedback,
+.co-tooltip___digitalfeedback.co-tooltip--auto-end___digitalfeedback .co-tooltip__arrow___digitalfeedback {
+  display: none; }
+
+.co-tooltip--enter___digitalfeedback,
+.co-tooltip--appear___digitalfeedback {
+  opacity: 0; }
+
+.co-tooltip--enter___digitalfeedback.co-tooltip--enter-active___digitalfeedback,
+.co-tooltip--appear___digitalfeedback.co-tooltip--appear-active___digitalfeedback {
+  transition: opacity 200ms ease-out;
+  opacity: 1; }
+
+.co-tooltip--leave___digitalfeedback {
+  opacity: 1; }
+
+.co-tooltip--leave___digitalfeedback.co-tooltip--leave-active___digitalfeedback {
+  transition: opacity 200ms ease-out;
+  opacity: 0; }

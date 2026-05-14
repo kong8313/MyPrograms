@@ -1,0 +1,21 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=020AD94E_002D611A_002D9CA9_002DDE56_002DD94298F1C8D9/@EntryIndexedValue">020AD94E-611A-9CA9-DE56-D94298F1C8D9</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=3296BE72_002DF1FC_002D1AC1_002D8A7C_002D0B96388600D6/@EntryIndexedValue">3296BE72-F1FC-1AC1-8A7C-0B96388600D6</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=547590D6_002D2C71_002DCC7D_002D0DB3_002D873E658ACA13/@EntryIndexedValue">547590D6-2C71-CC7D-0DB3-873E658ACA13</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=56502E10_002D47DF_002D457E_002D8DDD_002D92D00A3552E6/@EntryIndexedValue">56502E10-47DF-457E-8DDD-92D00A3552E6</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=616A3166_002DE491_002D06C2_002D0090_002D55302642AD96/@EntryIndexedValue">616A3166-E491-06C2-0090-55302642AD96</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=98C3662E_002DCE8C_002D8EFE_002D6E0F_002DBDB11F85BE1D/@EntryIndexedValue">98C3662E-CE8C-8EFE-6E0F-BDB11F85BE1D</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=AAD1FFD9_002D1CD0_002DD7F9_002D6A4E_002DF406C7A85F69/@EntryIndexedValue">AAD1FFD9-1CD0-D7F9-6A4E-F406C7A85F69</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=B5AD4E89_002D25FC_002D4593_002D8713_002D0B581B986117/@EntryIndexedValue">B5AD4E89-25FC-4593-8713-0B581B986117</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=E4701C59_002D38FE_002DEE82_002D97D1_002D6BCB16EF90F0/@EntryIndexedValue">E4701C59-38FE-EE82-97D1-6BCB16EF90F0</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/GeneratedFilesAndFolders/=EE2B1D20_002D65A3_002D4F8A_002DB79E_002D86E5B8DFC3DB_002Fd_003ADAL_002Fd_003AGenerated/@EntryIndexedValue">EE2B1D20-65A3-4F8A-B79E-86E5B8DFC3DB/d:DAL/d:Generated</s:String>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=020AD94E_002D611A_002D9CA9_002DDE56_002DD94298F1C8D9/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=3296BE72_002DF1FC_002D1AC1_002D8A7C_002D0B96388600D6/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=547590D6_002D2C71_002DCC7D_002D0DB3_002D873E658ACA13/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=56502E10_002D47DF_002D457E_002D8DDD_002D92D00A3552E6/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=616A3166_002DE491_002D06C2_002D0090_002D55302642AD96/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=98C3662E_002DCE8C_002D8EFE_002D6E0F_002DBDB11F85BE1D/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=AAD1FFD9_002D1CD0_002DD7F9_002D6A4E_002DF406C7A85F69/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=B5AD4E89_002D25FC_002D4593_002D8713_002D0B581B986117/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/Environment/SearchAndNavigation/FileAndDirsToSkip/=E4701C59_002D38FE_002DEE82_002D97D1_002D6BCB16EF90F0/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Dialers/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.confirmit.com/supervisorService/05/05/2009" elementFormDefault="qualified" targetNamespace="http://www.confirmit.com/supervisorService/05/05/2009" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Mail.Feedback" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.DAL.Generated.Entity.Table" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Services.PersonImport" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Logging" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Telephony" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/DialerCommon" />
+  <xs:element name="SendMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Mail.Feedback" minOccurs="0" name="feedback" nillable="true" type="q1:FeedbackForm" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendMessageResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OpenSurvey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="surveySid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OpenSurveyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CloseSurvey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="surveySid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CloseSurveyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShutdownSurvey">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="surveySid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ShutdownSurveyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TerminateTaskByPerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="personSid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TerminateTaskByPersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.DAL.Generated.Entity.Table" minOccurs="0" name="TerminateTaskByPersonResult" nillable="true" type="q2:BvTasksEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TerminateTasksByDialerId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TerminateTasksByDialerIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableDialer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EnableDialerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="EnableDialerResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableDialer">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DisableDialerResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DisableDialerResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPersonParentGroups">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="personSid" type="xs:int" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="parentGroupsSids" nillable="true" type="q3:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetPersonParentGroupsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="personSid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeletePersonResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockPersonBySupervisor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="personId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LockPersonBySupervisorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsDialerOperational">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsDialerOperationalResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsDialerOperationalResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="scheduleSid" type="xs:int" />
+        <xs:element minOccurs="0" name="serializedSchedule" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveScheduleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LaunchSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="scheduleSid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LaunchScheduleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckSchedule">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="serializedSchedule" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckScheduleResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Schedule">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ScheduleResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ScheduleResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartMonitor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="supervisorName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="interviewerId" type="xs:int" />
+        <xs:element minOccurs="0" name="telephoneNumber" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartMonitorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopMonitor">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="supervisorName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="interviewerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StopMonitorResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrUpdatePerson">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="callCenterId" type="xs:int" />
+        <xs:element minOccurs="0" name="personSid" type="xs:int" />
+        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="description" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" minOccurs="0" name="mode" type="q4:AgentTaskChoiceMode" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" minOccurs="0" name="assignmentListMode" type="q5:PersonAssignmentListMode" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" minOccurs="0" name="permissions" nillable="true" type="q6:TaskChoicePermissions" />
+        <xs:element xmlns:q7="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="parentGroups" nillable="true" type="q7:ArrayOfint" />
+        <xs:element minOccurs="0" name="autoSurveyId" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="callGroupId" type="xs:int" />
+        <xs:element minOccurs="0" name="location" nillable="true" type="xs:string" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common" minOccurs="0" name="dialType" type="q8:DialType" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" minOccurs="0" name="agentType" type="q9:AgentType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrUpdatePersonResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateOrUpdatePersonResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInterviewRecordings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="surveyId" type="xs:int" />
+        <xs:element minOccurs="0" name="interviewId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInterviewRecordingsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/ConfirmitDialerInterface" minOccurs="0" name="GetInterviewRecordingsResult" nillable="true" type="q10:ArrayOfAudioRecordInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AreRecordsExists">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="surveySid" type="xs:int" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="interviewIds" nillable="true" type="q11:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AreRecordsExistsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="AreRecordsExistsResult" nillable="true" type="q12:ArrayOfboolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDialerDefaultSurveyParameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" minOccurs="0" name="parameters" nillable="true" type="q13:ArrayOfDialerParameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDialerDefaultSurveyParametersResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateDialerSurveyParameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" minOccurs="0" name="parameters" nillable="true" type="q14:ArrayOfDialerParameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateDialerSurveyParametersResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDialerSurveyParameters">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="surveySid" type="xs:int" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/DialerCommon.DialerParameters" minOccurs="0" name="parameters" nillable="true" type="q15:ArrayOfDialerParameter" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetDialerSurveyParametersResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportPersons">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="callCenterId" type="xs:int" />
+        <xs:element minOccurs="0" name="dataTable" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataTable" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+              <xs:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element xmlns:q16="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="columnRoleMap" nillable="true" type="q16:ArrayOfKeyValueOfstringColumnRole4B4LEC1l" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Services.PersonImport" minOccurs="0" name="importOptions" nillable="true" type="q17:ImportOptions" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ImportPersonsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Services.PersonImport" minOccurs="0" name="ImportPersonsResult" nillable="true" type="q18:ImportResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfigureInboundDdiNumbers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConfigureInboundDdiNumbersResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogFiles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogFilesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Common.Logging" minOccurs="0" name="GetLogFilesResult" nillable="true" type="q19:ArrayOfLogFileInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogFileBodyZipped">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+        <xs:element minOccurs="0" name="fileName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLogFileBodyZippedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetLogFileBodyZippedResult" nillable="true" type="xs:base64Binary" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDialerVersion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDialerVersionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDialerVersionResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableExtendedFunctionality">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAvailableExtendedFunctionalityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Telephony" minOccurs="0" name="GetAvailableExtendedFunctionalityResult" nillable="true" type="q20:DialerAvailableExtendedFunctionality" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDialerSupportedFeatures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDialerSupportedFeaturesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/DialerCommon" minOccurs="0" name="GetDialerSupportedFeaturesResult" nillable="true" type="q21:DialerFeatures" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOverridenDialerSupportedFeatures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOverridenDialerSupportedFeaturesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Confirmit.CATI.Core.Telephony" minOccurs="0" name="GetOverridenDialerSupportedFeaturesResult" nillable="true" type="q22:ArrayOfDialerOverridenFeature" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOverridenDialerSupportedFeature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="dialerId" type="xs:int" />
+        <xs:element minOccurs="0" name="featureName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="overridenFeatureValue" nillable="true" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateOverridenDialerSupportedFeatureResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://firmglobal.com/Confirmit/InternalWebServices/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s1="http://microsoft.com/wsdl/types/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://firmglobal.com/Confirmit/InternalWebServices/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">NOT SUPPORTED. FOR INTERNAL USE ONLY.</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://firmglobal.com/Confirmit/InternalWebServices/">
+      <s:import namespace="http://microsoft.com/wsdl/types/" />
+      <s:element name="GetData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDefBase" />
+            <s:element minOccurs="0" maxOccurs="1" name="token" type="tns:ResponseToken" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransferDefBase" abstract="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Where" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderBy" type="tns:OrderByClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="DbType" type="tns:DatabaseType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="WhereClause">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="ExpressionSurveyQuery" type="tns:SurveyQuery" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Precodes" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Weight" type="tns:ArrayOfCodeWeight" />
+          <s:element minOccurs="1" maxOccurs="1" name="SubQueryField" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierLevel" type="tns:QueryHierarchyLevel" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+        <s:attribute name="Weighting" type="tns:WeightingType" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="QueryProject">
+        <s:attribute name="ProjectId" type="s:string" />
+        <s:attribute name="DBType" type="tns:DatabaseType" use="required" />
+      </s:complexType>
+      <s:simpleType name="DatabaseType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Production" />
+          <s:enumeration value="Test" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCodeWeight">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Weights" nillable="true" type="tns:CodeWeight" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CodeWeight">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="QueryHierarchyLevel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="SelfRelLevel" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelfRelLevelKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RelationName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParentMask" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OrderByTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="ASC" />
+          <s:enumeration value="DESC" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="WeightingType">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="DatabaseWeights" />
+          <s:enumeration value="ExternalWeights" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="QueryForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Mask" type="tns:CodeMask" />
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Weights" type="tns:ArrayOfCodeWeight1" />
+          <s:element minOccurs="0" maxOccurs="1" name="HierLevel" type="tns:QueryHierarchyLevel" />
+        </s:sequence>
+        <s:attribute name="OnlyBasicFields" type="s:boolean" use="required" />
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+        <s:attribute name="Weighting" type="tns:WeightingType" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="CodeMask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Code" type="tns:ArrayOfString1" />
+        </s:sequence>
+        <s:attribute name="Exclusive" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfString1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Code" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfCodeWeight1">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Weight" nillable="true" type="tns:CodeWeight" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Binary" abstract="true">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="LeftOperandExpressionList" type="tns:ExpressionList" />
+          </s:choice>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="RightOperandExpressionList" type="tns:ExpressionList" />
+          </s:choice>
+        </s:sequence>
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="Function" abstract="true">
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="GenericSqlFunction">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Arguments" type="tns:ArrayOfChoice1" />
+            </s:sequence>
+            <s:attribute name="Type" type="tns:GenericSqlFunctionType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice1">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryForm" nillable="true" type="tns:QueryForm" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="Binary" nillable="true" type="tns:Binary" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryConstant" nillable="true" type="tns:QueryConstant" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+        </s:choice>
+      </s:complexType>
+      <s:complexType name="Categorization">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="OverrideTexts" type="tns:ArrayOfTextForCategory" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="tns:LocaleString" />
+          <s:element minOccurs="0" maxOccurs="1" name="Categories" type="tns:ArrayOfCategory" />
+        </s:sequence>
+        <s:attribute name="Alias" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTextForCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CodeText" nillable="true" type="tns:TextForCategory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TextForCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Text" type="tns:LocaleStringSimple" />
+        </s:sequence>
+        <s:attribute name="Code" type="s:string" />
+      </s:complexType>
+      <s:complexType name="LocaleStringSimple">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LocaleString">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Strings" type="tns:ArrayOfLanguageString" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="LocaleString" abstract="true" />
+      <s:complexType name="LocaleStringCompound">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:LocaleString" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfLanguageString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="String" nillable="true" type="tns:LanguageString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LanguageString">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="Language" type="s:int" use="required" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCategory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Category" nillable="true" type="tns:Category" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Category">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Project" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="tns:LocaleString" />
+        </s:sequence>
+        <s:attribute name="Code" type="s:string" />
+      </s:complexType>
+      <s:complexType name="CategoryFunction">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Function" type="tns:UnaryType" />
+              <s:element minOccurs="1" maxOccurs="1" name="CalculateOnly" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="UnaryType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ABS" />
+          <s:enumeration value="AVG" />
+          <s:enumeration value="COUNT" />
+          <s:enumeration value="SUM" />
+          <s:enumeration value="MIN" />
+          <s:enumeration value="MAX" />
+          <s:enumeration value="STDEV" />
+          <s:enumeration value="STDEVP" />
+          <s:enumeration value="VAR" />
+          <s:enumeration value="VARP" />
+          <s:enumeration value="UNWEIGHTEDVAR" />
+          <s:enumeration value="NEWID" />
+          <s:enumeration value="BASE" />
+          <s:enumeration value="MODE" />
+          <s:enumeration value="MEDIAN" />
+          <s:enumeration value="EFFBASE" />
+          <s:enumeration value="STDERROR" />
+          <s:enumeration value="WEIGHTEDMEDIAN" />
+          <s:enumeration value="WEIGHTEDMODE" />
+          <s:enumeration value="SUMOFSQUARES" />
+          <s:enumeration value="SUMOFSQUAREDWEIGHTS" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CategoryField">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:attribute name="FieldName" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CategoryFormElements">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Mask" type="tns:CodeMask" />
+              <s:element minOccurs="1" maxOccurs="1" name="List" type="tns:ListType" />
+              <s:element minOccurs="0" maxOccurs="1" name="FormName" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ListType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Fields" />
+          <s:enumeration value="Answers" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="CategoryAnswer">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Category">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyChildMask" type="tns:CodeMask" />
+            </s:sequence>
+            <s:attribute name="FormName" type="s:string" />
+            <s:attribute name="LoadCode" type="s:string" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CategoryNotAnswered">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CategoryAnswer" />
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="CategoryTotal">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CategoryAnswer">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="SuffixNameWithParent" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="NamedCategorization">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Categorization">
+            <s:attribute name="Reference" type="s:string" />
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+            <s:attribute name="OrderBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="FunctionCategorization">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Categorization">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredBase" type="s:int" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentCategorization" type="tns:Categorization" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+            <s:attribute name="OrderBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="QueryConstant">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Value" />
+        </s:sequence>
+        <s:attribute name="Type" type="tns:ConfirmitDbType" use="required" />
+        <s:attribute name="Alias" type="s:string" />
+        <s:attribute name="GroupBy" type="s:boolean" use="required" />
+        <s:attribute name="OrderBy" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:simpleType name="ConfirmitDbType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Integer" />
+          <s:enumeration value="Char" />
+          <s:enumeration value="NChar" />
+          <s:enumeration value="VarChar" />
+          <s:enumeration value="NVarChar" />
+          <s:enumeration value="Text" />
+          <s:enumeration value="NText" />
+          <s:enumeration value="Float" />
+          <s:enumeration value="Numeric" />
+          <s:enumeration value="Datetime" />
+          <s:enumeration value="Guid" />
+          <s:enumeration value="BitVector" />
+          <s:enumeration value="Bool" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="QuestionCategorization" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Categorization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Mask" type="tns:CodeMask" />
+            </s:sequence>
+            <s:attribute name="NameSource" type="tns:NameSourceType" use="required" />
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+            <s:attribute name="FormName" type="s:string" />
+            <s:attribute name="OrderBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="NameSourceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Title" />
+          <s:enumeration value="Text" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="FieldCategorization">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QuestionCategorization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Weights" type="tns:ArrayOfCodeWeight1" />
+              <s:element minOccurs="0" maxOccurs="1" name="OverrideFieldNames" type="tns:OverriddenFields" />
+              <s:element minOccurs="0" maxOccurs="1" name="UnweightedTotalCategoryName" type="tns:LocaleString" />
+            </s:sequence>
+            <s:attribute name="Weighting" type="tns:WeightingType" use="required" />
+            <s:attribute name="CreateUnweightedTotalCategory" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="OverriddenFields">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="From" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="To" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Dimension" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:QuestionCategorization">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="TotalCategoryName" type="tns:LocaleString" />
+              <s:element minOccurs="0" maxOccurs="1" name="UnweightedTotalCategoryName" type="tns:LocaleString" />
+              <s:element minOccurs="0" maxOccurs="1" name="NotAnsweredCategoryName" type="tns:LocaleString" />
+            </s:sequence>
+            <s:attribute name="TotalsFirst" type="s:boolean" use="required" />
+            <s:attribute name="CreateNotAnsweredCategory" type="s:boolean" use="required" />
+            <s:attribute name="CreateTotalCategory" type="s:boolean" use="required" />
+            <s:attribute name="CreateUnweightedTotalCategory" type="s:boolean" use="required" />
+            <s:attribute name="SuffixTotalCatWithParent" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SnowflakeDimension">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dimension">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SubDimensions" type="tns:ArrayOfSimpleDimension" />
+            </s:sequence>
+            <s:attribute name="LoadUsedCombinations" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfSimpleDimension">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Dim" nillable="true" type="tns:SimpleDimension" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SimpleDimension">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dimension">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="HierLevel" type="tns:QueryHierarchyLevel" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionBinary" type="tns:BinaryArithmetic" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionField" type="tns:QueryField" />
+              </s:choice>
+              <s:element minOccurs="0" maxOccurs="1" name="HierarchyNodeMask" type="tns:HierarchyMask" />
+              <s:element minOccurs="0" maxOccurs="1" name="RecodingIdent" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DirectRecoding" type="s:boolean" />
+            </s:sequence>
+            <s:attribute name="OrderDirection" type="tns:OrderByTypes" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="BinaryArithmetic">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Binary">
+            <s:attribute name="Type" type="tns:ArithmeticType" use="required" />
+            <s:attribute name="Alias" type="s:string" />
+            <s:attribute name="GroupBy" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ArithmeticType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ADD" />
+          <s:enumeration value="SUB" />
+          <s:enumeration value="MULT" />
+          <s:enumeration value="DIV" />
+          <s:enumeration value="MOD" />
+          <s:enumeration value="REM" />
+          <s:enumeration value="POWER" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HierarchyMask" abstract="true" />
+      <s:complexType name="CyclicDimension" abstract="true">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Dimension">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionBinary" type="tns:BinaryArithmetic" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="SelectExpressionForm" type="tns:QueryForm" />
+              </s:choice>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="TimeseriesDimension">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:CyclicDimension">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Units" type="tns:ArrayOfUnitType" />
+              <s:element minOccurs="0" maxOccurs="1" name="SubDimensions" type="tns:ArrayOfSimpleDimension" />
+            </s:sequence>
+            <s:attribute name="StartDate" type="s:dateTime" use="required" />
+            <s:attribute name="EndDate" type="s:dateTime" use="required" />
+            <s:attribute name="DayOfWeek" type="tns:DayOfWeek" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfUnitType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="UnitType" type="tns:UnitType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="UnitType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Year" />
+          <s:enumeration value="Quarter" />
+          <s:enumeration value="Month" />
+          <s:enumeration value="Week" />
+          <s:enumeration value="DayOfMonth" />
+          <s:enumeration value="DayOfWeek" />
+          <s:enumeration value="Hour" />
+          <s:enumeration value="Undefined" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DayOfWeek">
+        <s:restriction base="s:string">
+          <s:enumeration value="Sunday" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="GenericSqlFunctionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="NullIf" />
+          <s:enumeration value="IsNull" />
+          <s:enumeration value="Coalesce" />
+          <s:enumeration value="PassThrough" />
+          <s:enumeration value="Power" />
+          <s:enumeration value="Len" />
+          <s:enumeration value="LTrim" />
+          <s:enumeration value="RTrim" />
+          <s:enumeration value="Left" />
+          <s:enumeration value="Right" />
+          <s:enumeration value="Replicate" />
+          <s:enumeration value="Not" />
+          <s:enumeration value="GetDate" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DateDiff">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="StartDateField" type="tns:QueryField" />
+              </s:choice>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="EndDateBinary" type="tns:Binary" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="Period" type="tns:PeriodType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="PeriodType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Year" />
+          <s:enumeration value="Quarter" />
+          <s:enumeration value="Month" />
+          <s:enumeration value="Week" />
+          <s:enumeration value="DayOfYear" />
+          <s:enumeration value="DayOfMonth" />
+          <s:enumeration value="Hour" />
+          <s:enumeration value="Minute" />
+          <s:enumeration value="Second" />
+          <s:enumeration value="Weekday" />
+          <s:enumeration value="Millisecond" />
+          <s:enumeration value="ShiftedYear" />
+          <s:enumeration value="ShiftedQuarter" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="Unary">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RequiredBase" type="s:int" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="ArgumentCategorization" type="tns:Categorization" />
+              </s:choice>
+            </s:sequence>
+            <s:attribute name="Type" type="tns:UnaryType" use="required" />
+            <s:attribute name="Distinct" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="Case">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="InputExpressionCategorization" type="tns:Categorization" />
+              </s:choice>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ElseExpressionBinary" type="tns:Binary" />
+              </s:choice>
+              <s:element minOccurs="0" maxOccurs="1" name="WhenThenArguments" type="tns:ArrayOfCaseWhenThen" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ArrayOfCaseWhenThen">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="WhenThen" nillable="true" type="tns:CaseWhenThen" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CaseWhenThen">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionFunction" type="tns:Function" />
+            <s:element minOccurs="0" maxOccurs="1" name="WhenExpressionBinary" type="tns:Binary" />
+          </s:choice>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionBinary" type="tns:Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionCategorization" type="tns:Categorization" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionForm" type="tns:QueryForm" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionConstant" type="tns:QueryConstant" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionField" type="tns:QueryField" />
+            <s:element minOccurs="0" maxOccurs="1" name="ThenExpressionFunction" type="tns:Function" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TypeConvertion">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="Length" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="DateFormat" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="DataType" type="tns:ConfirmitDbType" />
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionBinary" type="tns:Binary" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="ExpressionCategorization" type="tns:Categorization" />
+              </s:choice>
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="DatePart">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Function">
+            <s:sequence>
+              <s:choice minOccurs="1" maxOccurs="1">
+                <s:element minOccurs="0" maxOccurs="1" name="DateConstant" type="tns:QueryConstant" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateForm" type="tns:QueryForm" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateCategorization" type="tns:Categorization" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateField" type="tns:QueryField" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateFunction" type="tns:Function" />
+                <s:element minOccurs="0" maxOccurs="1" name="DateBinary" type="tns:Binary" />
+              </s:choice>
+              <s:element minOccurs="1" maxOccurs="1" name="FiscalCalendarId" type="s:int" />
+            </s:sequence>
+            <s:attribute name="Period" type="tns:PeriodType" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ExpressionList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Expressions" type="tns:ArrayOfChoice2" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice2">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="ExprFunction" nillable="true" type="tns:Function" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprFieldCategorization" nillable="true" type="tns:FieldCategorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprForm" nillable="true" type="tns:QueryForm" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprConstant" nillable="true" type="tns:QueryConstant" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExprBinary" nillable="true" type="tns:BinaryArithmetic" />
+        </s:choice>
+      </s:complexType>
+      <s:complexType name="BinaryLogic">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Binary">
+            <s:attribute name="Type" type="tns:LogicType" use="required" />
+            <s:attribute name="Not" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="LogicType">
+        <s:restriction base="s:string">
+          <s:enumeration value="AND" />
+          <s:enumeration value="OR" />
+          <s:enumeration value="IN" />
+          <s:enumeration value="NOTIN" />
+          <s:enumeration value="LIKE" />
+          <s:enumeration value="NOTLIKE" />
+          <s:enumeration value="IS" />
+          <s:enumeration value="ISNOT" />
+          <s:enumeration value="XOR" />
+          <s:enumeration value="BLOT" />
+          <s:enumeration value="BIC" />
+          <s:enumeration value="IMP" />
+          <s:enumeration value="NIMP" />
+          <s:enumeration value="NAND" />
+          <s:enumeration value="NOR" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="BinaryComparison">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Binary">
+            <s:attribute name="Type" type="tns:ComparisonType" use="required" />
+            <s:attribute name="Not" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:simpleType name="ComparisonType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Equal" />
+          <s:enumeration value="NotEqual" />
+          <s:enumeration value="LessThan" />
+          <s:enumeration value="GreaterThan" />
+          <s:enumeration value="LessThanOrEqual" />
+          <s:enumeration value="GreaterThanOrEqual" />
+          <s:enumeration value="Is" />
+          <s:enumeration value="IsNot" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="SurveyQuery">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IsMultiProjUnion" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnionProjects" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="SelectStatements" type="tns:ArrayOfSelectStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeleteStatement" type="tns:DeleteStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="UpdateStatement" type="tns:UpdateStatement" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultProject" type="tns:QueryProject" />
+        </s:sequence>
+        <s:attribute name="DayOfWeek" type="tns:DayOfWeekType" use="required" />
+        <s:attribute name="Alias" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfSelectStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SelectStatement" nillable="true" type="tns:SelectStatement" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SelectStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SelectClause" type="tns:SelectClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="FromClause" type="tns:FromClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="WhereClause" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderByClause" type="tns:OrderByClause" />
+          <s:element minOccurs="1" maxOccurs="1" name="FilterMissingAnswers" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultProject" type="tns:QueryProject" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeBaseRow" type="s:boolean" />
+        </s:sequence>
+        <s:attribute name="GroupBy" type="tns:GroupByTypes" use="required" />
+        <s:attribute name="UnionAll" type="s:boolean" use="required" />
+        <s:attribute name="Distinct" type="s:boolean" use="required" />
+        <s:attribute name="TopN" type="s:int" use="required" />
+        <s:attribute name="TopNPercent" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="SelectClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SelectItems" type="tns:ArrayOfChoice3" />
+        </s:sequence>
+        <s:attribute name="Star" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice3">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinaryArithmetic" nillable="true" type="tns:BinaryArithmetic" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryForm" nillable="true" type="tns:QueryForm" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryConstant" nillable="true" type="tns:QueryConstant" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+        </s:choice>
+      </s:complexType>
+      <s:complexType name="FromClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="LogicalTables" type="tns:ArrayOfString2" />
+          <s:element minOccurs="0" maxOccurs="1" name="JoinProjects" type="tns:JoinProjects" />
+          <s:element minOccurs="0" maxOccurs="1" name="SubQuery" type="tns:SurveyQuery" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString2">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Table" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JoinProjects">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LeftProject" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RightProject" type="tns:QueryProject" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="JoinFields" type="tns:Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderByClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrderByItems" type="tns:ArrayOfChoice4" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice4">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="BinaryArithmetic" nillable="true" type="tns:BinaryArithmetic" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryForm" nillable="true" type="tns:QueryForm" />
+          <s:element minOccurs="1" maxOccurs="1" name="QueryField" nillable="true" type="tns:QueryField" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+        </s:choice>
+      </s:complexType>
+      <s:simpleType name="GroupByTypes">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Rollup" />
+          <s:enumeration value="Cube" />
+          <s:enumeration value="RimTotals" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="DeleteStatement">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TopN" nillable="true" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="where" type="tns:WhereClause" />
+        </s:sequence>
+        <s:attribute name="LogicalTable" type="s:string" />
+      </s:complexType>
+      <s:complexType name="UpdateStatement">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="update" type="tns:UpdateClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="where" type="tns:WhereClause" />
+        </s:sequence>
+        <s:attribute name="FromTable" type="s:string" />
+      </s:complexType>
+      <s:complexType name="UpdateClause">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="UpdateItems" type="tns:ArrayOfChoice5" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChoice5">
+        <s:choice minOccurs="0" maxOccurs="unbounded">
+          <s:element minOccurs="1" maxOccurs="1" name="Categorization" nillable="true" type="tns:Categorization" />
+          <s:element minOccurs="1" maxOccurs="1" name="Function" nillable="true" type="tns:Function" />
+        </s:choice>
+      </s:complexType>
+      <s:simpleType name="DayOfWeekType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Default" />
+          <s:enumeration value="Monday" />
+          <s:enumeration value="Tuesday" />
+          <s:enumeration value="Wednesday" />
+          <s:enumeration value="Thursday" />
+          <s:enumeration value="Friday" />
+          <s:enumeration value="Saturday" />
+          <s:enumeration value="Sunday" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="TransferDef">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TransferDefBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="SystemVariables" type="tns:SystemVariables" />
+              <s:element minOccurs="1" maxOccurs="1" name="CollapseLoopReferences" type="s:boolean" />
+              <s:element minOccurs="0" maxOccurs="1" name="Levels" type="tns:ArrayOfTransferLevel" />
+            </s:sequence>
+            <s:attribute name="Key" type="s:string" />
+            <s:attribute name="AllChildrenLevels" type="s:boolean" use="required" />
+            <s:attribute name="IncludeRecodedVariables" type="s:boolean" use="required" />
+            <s:attribute name="AddRespondents" type="s:boolean" use="required" />
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="SystemVariables">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLastTouched" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeSurveyPackageVersion" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeChannels" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeState" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeRespId" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeInterviewStart" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeInterviewEnd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeStatus" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLastComplete" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeRowguid" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeIterationId" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeLoopState" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeFirstQuestionOnLastPageDisplayed" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeStartPageContext" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IncludeCatiExtendedStatus" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTransferLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Level" nillable="true" type="tns:TransferLevel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferLevel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Where" type="tns:WhereClause" />
+          <s:element minOccurs="0" maxOccurs="1" name="Forms" type="tns:ArrayOfTransferForm" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfString3" />
+        </s:sequence>
+        <s:attribute name="LoopId" type="s:string" />
+        <s:attribute name="IsTopLevel" type="s:boolean" use="required" />
+        <s:attribute name="AllChildrenForms" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTransferForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Form" nillable="true" type="tns:TransferForm" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferForm">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Fields" type="tns:ArrayOfTransferField" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="AllChildrenFields" type="s:boolean" use="required" />
+        <s:attribute name="IsSystemVariable" type="s:boolean" use="required" />
+        <s:attribute name="BitString" type="s:boolean" use="required" />
+        <s:attribute name="NullPadding" type="s1:char" use="required" />
+        <s:attribute name="Spread" type="s:boolean" use="required" />
+        <s:attribute name="SpreadSize" type="s:int" use="required" />
+        <s:attribute name="SpreadOutputPadding" type="s1:char" use="required" />
+        <s:attribute name="SpreadValuePadding" type="s1:char" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTransferField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Field" nillable="true" type="tns:TransferField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TypeConvertion" type="tns:TypeConvertion" />
+        </s:sequence>
+        <s:attribute name="Name" type="s:string" />
+        <s:attribute name="IsSystemVariable" type="s:boolean" use="required" />
+      </s:complexType>
+      <s:complexType name="ArrayOfString3">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Field" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SimpleTransferDef">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:TransferDefBase">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="IncludeSystemVariables" type="s:boolean" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="ResponseToken">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s1:guid" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastResponseIdReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstResponseIdReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfResponsesReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="DatasetsReturned" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastDataSet" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ProjectId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangeTrackingVersion" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransferResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Result">
+            <s:complexType>
+              <s:sequence>
+                <s:element ref="s:schema" />
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="ResponseToken" type="tns:ResponseToken" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataResult" type="tns:TransferResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateData">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transferDef" type="tns:TransferDef" />
+            <s:element minOccurs="0" maxOccurs="1" name="ds">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="1" maxOccurs="1" name="applyRules" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="inTransaction" type="s:boolean" />
+            <s:element minOccurs="1" maxOccurs="1" name="transactionKey" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ErrorMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorInfoElements" type="tns:ArrayOfErrorInfo" />
+        </s:sequence>
+        <s:attribute name="Table" type="s:string" />
+        <s:attribute name="Row" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfErrorInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErrorInfo" nillable="true" type="tns:ErrorInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ErrorInfo">
+        <s:attribute name="Type" type="s:string" />
+        <s:attribute name="Description" type="s:string" />
+      </s:complexType>
+      <s:complexType name="ArrayOfErrorMessage">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ErrorMessage" nillable="true" type="tns:ErrorMessage" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="UpdateDataResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateDataResult" type="tns:ArrayOfErrorMessage" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://microsoft.com/wsdl/types/">
+      <s:simpleType name="char">
+        <s:restriction base="s:unsignedShort" />
+      </s:simpleType>
+      <s:simpleType name="guid">
+        <s:restriction base="s:string">
+          <s:pattern value="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetDataSoapIn">
+    <wsdl:part name="parameters" element="tns:GetData" />
+  </wsdl:message>
+  <wsdl:message name="GetDataSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateData" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDataSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDataResponse" />
+  </wsdl:message>
+  <wsdl:portType name="FusionSurveyDataSoap">
+    <wsdl:operation name="GetData">
+      <wsdl:input message="tns:GetDataSoapIn" />
+      <wsdl:output message="tns:GetDataSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <wsdl:input message="tns:UpdateDataSoapIn" />
+      <wsdl:output message="tns:UpdateDataSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FusionSurveyDataSoap" type="tns:FusionSurveyDataSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/InternalWebServices/GetData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <soap:operation soapAction="http://firmglobal.com/Confirmit/InternalWebServices/UpdateData" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="FusionSurveyDataSoap12" type="tns:FusionSurveyDataSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetData">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/InternalWebServices/GetData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateData">
+      <soap12:operation soapAction="http://firmglobal.com/Confirmit/InternalWebServices/UpdateData" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FusionSurveyData">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">NOT SUPPORTED. FOR INTERNAL USE ONLY.</wsdl:documentation>
+    <wsdl:port name="FusionSurveyDataSoap" binding="tns:FusionSurveyDataSoap">
+      <soap:address location="http://localhost/Confirmit/InternalWebServices/14.0/FusionSurveyData.asmx" />
+    </wsdl:port>
+    <wsdl:port name="FusionSurveyDataSoap12" binding="tns:FusionSurveyDataSoap12">
+      <soap12:address location="http://localhost/Confirmit/InternalWebServices/14.0/FusionSurveyData.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

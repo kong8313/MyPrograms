@@ -1,0 +1,18 @@
+﻿
+= Welcome to the CATI REST API documentation
+
+The CATI REST API functionality is provided as an optional add-on so please check with your account manager if you are unsure if it is included in your license or would like more information.
+
+The Forsta CATI REST API lets you integrate Forsta CATI paradata with your internal systems. 
+Typical use cases include extracting interviewer session and activity related information from the CATI system to calculate interviewer pay or to feed workforce management solutions.
+The following areas of Forsta CATI can be integrated with your systems:
+
+* Exporting of call history and interviewer break data
+* Interviewer management
+* Assignment management
+* Ability to open and close surveys
+* Interviewer session data (login and logout timing info)
+* Ability to read, write or update numbers in the blacklist
+* Ability to apply CATI survey settings (e.g. applied scheduling script or extended status group)
+
+You can either use the REST API directly, or use the .NET CATI Rest SDK that we provide.

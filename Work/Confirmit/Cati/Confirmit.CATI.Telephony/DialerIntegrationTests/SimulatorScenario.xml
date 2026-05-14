@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SimulatorScenario xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <GenerateRequestCalls>true</GenerateRequestCalls>
+
+  <RequestFrequency>00:00:00.001</RequestFrequency>
+  <MaxRequestTime>00:00:01</MaxRequestTime>
+  <CallsCountPerInterviewer>2</CallsCountPerInterviewer>
+  <LoginResultCode>Success</LoginResultCode>
+  <SetCampaignResultCode>Success</SetCampaignResultCode>
+  <GoNotReadyNotificationDelay>0</GoNotReadyNotificationDelay>
+  <SendNotReadyNotificationOnLogin>false</SendNotReadyNotificationOnLogin>
+  <CallOutcomeDistributionScenario>
+    <OutcomePhonePrefix>5554321</OutcomePhonePrefix>
+    <GenerationMethod>Random</GenerationMethod>
+    <OutcomeList CallOutcome="Connected" ProcessingTime="1" DistributionWeight="100"/>
+  </CallOutcomeDistributionScenario>
+</SimulatorScenario>
